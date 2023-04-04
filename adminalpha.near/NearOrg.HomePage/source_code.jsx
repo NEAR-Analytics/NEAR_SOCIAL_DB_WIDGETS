@@ -161,6 +161,30 @@ const Icon = styled.div`
   }
 `;
 
+const OpenArrowText = styled.span`
+  img { 
+    display: none;
+  }
+  
+  @media (min-width: 900px) {
+    color: var(--green8);
+    display: inline-block;
+    position: relative;
+    margin-right: -2.2em;
+    right: -0.9em;
+    top: -1.4em;
+    transform: rotate(5deg);
+
+    img {
+      display: block;
+      width: 52px;
+      position: absolute;
+      left: -42px;
+      top: 16px;
+    }
+  }
+`;
+
 const ContentWithImage = styled.div`
   display: flex;
   align-items: center;
@@ -323,32 +347,15 @@ return (
           style={{ maxWidth: "430px" }}
         >
           Your toolkit for the
-          <span
-            style={{
-              display: "inline-block",
-              color: "var(--green8)",
-              position: "relative",
-              marginRight: "-2.2em",
-              right: "-0.9em",
-              top: "-1.4em",
-              transform: "rotate(5deg)",
-            }}
-          >
+          <OpenArrowText>
             <Widget
               src="mob.near/widget/Image"
               props={{
                 image: returnIpfsImage(ipfsImages.textArrow),
-                style: {
-                  display: "block",
-                  width: "52px",
-                  position: "absolute",
-                  left: "-42px",
-                  top: "16px",
-                },
               }}
             />
             Open
-          </span>
+          </OpenArrowText>
           Web.
         </Text>
       </Flex>
