@@ -45,13 +45,14 @@ const TopSection = styled.div`
   flex-direction:column;
   align-items: flex-start;
   justify-content: flex-start;
-
+    padding-block: 4px;
 `;
 
 const Logo = styled.div`
-  width: 100%;
-  max-width: 100px;
-  height:100px;
+margin-left:4px;
+width: 75px;
+min-width:75px;
+  height:75px;
   aspect-ratio: 1 / 1;
 
   border-radius: 4px;
