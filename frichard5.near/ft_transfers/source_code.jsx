@@ -1,4 +1,4 @@
-const user = "frichard5.near";
+const widgetProvider = props.widgetProvider;
 const account = props.account || "foundation.near";
 const ftList = props.ftList;
 const apiUrl = `https://api.pikespeak.ai/account/ft-transfer/${account}`;
@@ -8,7 +8,7 @@ const ftFormatter = (ftList) => {
   return (data) => {
     return (
       <Widget
-        src={`${user}/widget/table_ft_formatter`}
+        src={`${widgetProvider}/widget/table_ft_formatter`}
         props={{
           ftList,
           ft: data["contract"],
