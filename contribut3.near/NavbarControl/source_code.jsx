@@ -98,6 +98,10 @@ const Stats = styled.div`
   order: 0;
   align-self: stretch;
   flex-grow: 0;
+  font-style: normal;
+  font-weight: 600;
+  font-size: .95em;
+  line-height: 1em;
 `;
 
 const stats = (
