@@ -98,6 +98,4 @@ const fetchTransfers = (offset) => {
 };
 fetchTransfers();
 
-const rows = [];
-
 return <div>{GenericTable}</div>;
