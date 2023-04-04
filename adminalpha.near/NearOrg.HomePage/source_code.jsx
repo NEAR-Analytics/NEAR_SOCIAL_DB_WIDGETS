@@ -135,9 +135,7 @@ const Section = styled.div`
   justify-content: ${(p) => (p.center ? "center" : undefined)};
   text-align: ${(p) => (p.center ? "center" : undefined)};
 
-  @media (max-width: 900px) {
-    padding: var(--section-gap) 16px;
-  }
+  
 `;
 
 const LogoLink = styled.a`
