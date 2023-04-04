@@ -27,7 +27,6 @@ const Container = styled.div`
       align-items:center;
       justify-content:space-between;
       margin-left:6px;
-      color:red;
     }
     .template .title{
       font-size:14px;
