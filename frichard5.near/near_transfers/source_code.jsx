@@ -29,15 +29,24 @@ State.init({
   offset: 0,
 });
 
-const test = () => {
-  console.log("HEYEYEYYE");
+const nextPage = () => {
   State.update({ offset: state.offset + 50 });
+};
+
+const previousPage = () => {
+  State.update({ offset: state.offset - 50 });
 };
 
 const GenericTable = (
   <Widget
     src={`${user}/widget/generic_table`}
-    props={{ columns, data: state.txs, test }}
+    props={{
+      columns,
+      data: state.txs,
+      nextPage,
+      previousPage,
+      offset: state.offset,
+    }}
   />
 );
 
