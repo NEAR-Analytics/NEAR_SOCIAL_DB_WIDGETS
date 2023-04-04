@@ -195,7 +195,7 @@ return (
     })}
     {navItem({
       text: "Profile",
-      icon: graph,
+      icon: profile,
       id: "profile",
     })}
     {navItem({
