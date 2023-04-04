@@ -63,9 +63,10 @@ return (
       alignItems: "flex-start",
       gap: 4,
       width: "100%",
+      paddingTop: 4,
     }}
   >
-    <div
+    {/*<div
       style={{
         padding: "4px 8px",
         gap: 8,
@@ -73,7 +74,7 @@ return (
         flexDirection: "column",
       }}
     >
-      {/*<p
+      <p
         style={{
           color: props.theme.textColor2,
           fontWeight: 400,
@@ -83,19 +84,19 @@ return (
         }}
       >
         Discover the latest widgets from the NEAR community.
-      </p>*/}
-
-      <div style={{ width: "100%" }}>
-        <Widget
-          src="saidulbadhon.near/widget/SearchPage.Searchbar"
-          props={{
-            limit: 21,
-            onChange: onSearchChange,
-            theme: props.theme,
-          }}
-        />
-      </div>
+      </p>
+      
     </div>
+      */}
+
+    <Widget
+      src="saidulbadhon.near/widget/SearchPage.Searchbar"
+      props={{
+        limit: 21,
+        onChange: onSearchChange,
+        theme: props.theme,
+      }}
+    />
 
     <div
       style={{
