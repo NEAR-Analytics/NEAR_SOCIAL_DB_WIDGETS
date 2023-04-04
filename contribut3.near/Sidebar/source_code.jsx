@@ -145,28 +145,6 @@ const navItem = ({ text, icon, id, count }) => (
   </NavItem>
 );
 
-const HomeLink = styled.a`
-  color: #000;
-  margin-bottom: 1.5rem;
-
-  &:hover {
-    text-decoration: none;
-    color: #000;
-  }
-
-  h4 {
-    font-weight: 600;
-    white-space: nowrap;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-
-  span {
-    margin-left: 0.5rem;
-  }
-`;
-
 const NavContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -174,15 +152,6 @@ const NavContainer = styled.div`
 
 return (
   <NavContainer>
-    <HomeLink
-      href={`/#/${ownerId}/widget/Index`}
-      onClick={() => props.update({ tab: "home", content: "", search: "" })}
-    >
-      <h4>
-        <Widget src={`${ownerId}/widget/Logo`} props={{ size: 32 }} />
-        <span>Web3 Combinator</span>
-      </h4>
-    </HomeLink>
     {navItem({
       text: "Inbox",
       icon: mail,
