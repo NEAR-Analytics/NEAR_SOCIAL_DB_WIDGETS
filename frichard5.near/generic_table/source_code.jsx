@@ -4,7 +4,6 @@ const columns = props.columns || [
 const data = props.data || [{ data: "no data props" }];
 const test = props.test;
 
-test();
 let rows = [];
 
 props.data &&
@@ -19,11 +18,15 @@ props.data &&
   });
 
 return (
-  <table>
-    <tr>
-      {columns.map((c) => (
-        <th>{c.label}</th>
-      ))}
-    </tr>
-  </table>
+  <div>
+    <table>
+      <tr>
+        {columns.map((c) => (
+          <th>{c.label}</th>
+        ))}
+      </tr>
+      {rows}
+    </table>
+    <button onClick={test}>next 50</button>
+  </div>
 );
