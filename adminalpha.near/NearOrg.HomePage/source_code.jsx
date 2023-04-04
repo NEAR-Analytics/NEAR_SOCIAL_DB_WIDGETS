@@ -262,6 +262,7 @@ const Develop_TabButton = styled.button`
 const Develop_Preview = styled.div`
   width: 100%;
   height: 200px;
+  line-height: 200px;
   background: var(--sand6);
 `;
 
@@ -506,7 +507,7 @@ return (
           Web Components built on shared, persistent data.
         </Text>
 
-        <Develop_Preview>Component preview placeholder.</Develop_Preview>
+        <Develop_Preview>(Component Preview)</Develop_Preview>
       </Develop>
     </Section>
 
