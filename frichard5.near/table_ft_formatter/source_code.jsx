@@ -1,6 +1,6 @@
 const ftList = props.ftList || [];
 const { amount, ft } = props;
-
+console.log("FTLIST", ftList);
 const numberWithCommas = (x) => {
   return JSON.stringify(x).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
