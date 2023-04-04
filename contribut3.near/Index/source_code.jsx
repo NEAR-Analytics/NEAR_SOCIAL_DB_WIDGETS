@@ -119,6 +119,7 @@ const tabContent = {
 }[state.tab];
 
 const ContentContainer = styled.div`
+width: 100%;
   background: #ffffff;
   border: 1px solid #eceef0;
   border-radius: 24px 24px 0px 0px;
@@ -136,9 +137,7 @@ return (
           />
         </div>
       </div>
-      <ContentContainer>
-        {tabContent}
-      </ContentContainer>
+      <ContentContainer>{tabContent}</ContentContainer>
     </div>
   </div>
 );
