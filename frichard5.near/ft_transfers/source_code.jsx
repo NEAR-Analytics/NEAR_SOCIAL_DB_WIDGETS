@@ -7,18 +7,18 @@ const publicApiKey = "36f2b87a-7ee6-40d8-80b9-5e68e587a5b5";
 
 const ftFormatter = () => {
   return (data) => {
-      return (
-        <Widget
-          src={`${user}/widget/table_ft_formatter`}
-          props={{
-            ftList,
-            ft: data["contract"],
-            amount: data["amount"],
-          }}
-        />
-      );
-  }
-}
+    return (
+      <Widget
+        src={`${user}/widget/table_ft_formatter`}
+        props={{
+          ftList,
+          ft: data["contract"],
+          amount: data["amount"],
+        }}
+      />
+    );
+  };
+};
 
 const columns = [
   {
@@ -37,6 +37,7 @@ const columns = [
     id: "amount",
     label: "amount",
     formatter: ftFormatter,
+  },
   {
     id: "transaction_id",
   },
