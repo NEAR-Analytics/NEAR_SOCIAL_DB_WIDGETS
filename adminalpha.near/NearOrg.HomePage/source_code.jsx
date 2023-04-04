@@ -74,6 +74,7 @@ const Wrapper = styled.div`
     --section-gap: 60px;
     --large-gap: 24px;
     --medium-gap: 16px;
+    padding-top: 0;
   }
 `;
 
@@ -127,6 +128,7 @@ const Section = styled.div`
   text-align: ${(p) => (p.center ? "center" : undefined)};
 
   @media (max-width: 900px) {
+    padding: var(--section-gap) 16px;
     border-bottom: 1px solid var(--sand4);
   }
 `;
