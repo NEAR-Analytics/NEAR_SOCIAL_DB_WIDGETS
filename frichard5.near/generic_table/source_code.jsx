@@ -6,8 +6,8 @@ const test = props.test;
 
 let rows = [];
 
-props.data &&
-  props.forEach.map((d) => {
+data &&
+  data.forEach.map((d) => {
     rows.push(
       <tr>
         {columns.map((c) => (
