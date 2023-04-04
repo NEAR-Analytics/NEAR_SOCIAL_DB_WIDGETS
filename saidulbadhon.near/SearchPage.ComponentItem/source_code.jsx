@@ -152,7 +152,7 @@ return (
         href={detailsUrl}
         style={{
           fontSize: 14,
-          fontWeight: 700,
+          fontWeight: 600,
           color: props.theme.textColor,
           textDecoration: "none",
 
@@ -186,9 +186,8 @@ return (
           style: {
             color: props.theme.textColor3,
             margin: 0,
-            fontSize: 12,
-            fontWeight: 500,
-            // marginTop: 1,
+            fontSize: 11,
+            fontWeight: 400,
           },
           theme: props.theme,
         }}
