@@ -370,7 +370,7 @@ return (
       </Text>
     </Section>
 
-    <Section>
+    <Section gap="var(--section-gap)">
       <ContentWithImage alternate>
         <ContentBlock>
           <Icon color="green12" backgroundColor="green4" borderColor="green9">
@@ -632,7 +632,7 @@ return (
       </Text>
     </Section>
 
-    <Section gap="var(--large-gap)">
+    <Section gap="var(--section-gap)">
       <ContentWithImage>
         <ContentBlock>
           <Icon color="green12" backgroundColor="green4" borderColor="green9">
