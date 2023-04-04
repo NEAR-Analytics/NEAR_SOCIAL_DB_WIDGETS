@@ -2,10 +2,10 @@ const address = `${(context.accountId ?? "").replace(
   ".near",
   ""
 )}@near.mailchain.com`;
-let sendToEmail = `https://app.mailchain.com/mailto:${address}`;
+let mailchainUrl = `https://app.mailchain.com/mailto:${address}`;
 
 if (props.subject) {
-  sendToEmail = `${sendToEmail}?subject=${props.subject}`;
+  mailchainUrl = `${mailchainUrl}?subject=${props.subject}`;
 }
 
 const res = fetch(
@@ -13,8 +13,8 @@ const res = fetch(
 );
 
 const linkunderline = props.linkunderline === "yes";
-const indicator = props.indicator === "yes";
-const externallinkicon = props["external-link-icon"] === "yes";
+const showRegisteredAddressIndicator = props.indicator === "yes";
+const showExternalLinkIcon = props["external-link-icon"] === "yes";
 const color = props.color;
 
 const LogoBlack = (
@@ -111,7 +111,7 @@ const LogoColor = (
     </defs>
   </svg>
 );
-const TransparentLogo = (
+const WhiteLogo = (
   <svg
     width="33"
     height="33"
@@ -190,12 +190,12 @@ return (
             position: "relative",
           }}
         >
-          {props.symbol === "color" && LogoColor}
+          {!["bw", "icon"].includes(props.symbol) && LogoColor}
 
           {props.symbol === "bw" && LogoBlack}
-          {props.symbol === "icon" && TransparentLogo}
+          {props.symbol === "icon" && WhiteLogo}
 
-          {indicator && props.symbol && res && (
+          {showRegisteredAddressIndicator && props.symbol && res && (
             <div
               style={{
                 height: "12px",
@@ -212,7 +212,7 @@ return (
         </div>
         &nbsp; &nbsp;
         <a
-          href={sendToEmail}
+          href={mailchainUrl}
           style={{ textDecoration: linkunderline ? "underline" : "none" }}
           target="_blank"
           style={{ color }}
@@ -220,7 +220,7 @@ return (
           Send a web3 email to [{context.accountId}]
         </a>
         &nbsp;
-        {externallinkicon && ExtenalLinkIcon}
+        {showExternalLinkIcon && ExtenalLinkIcon}
       </div>
     </OverlayTrigger>
   </div>
