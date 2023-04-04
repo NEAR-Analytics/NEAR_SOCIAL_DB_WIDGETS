@@ -26,8 +26,6 @@ function makeUpperCase(sentence) {
 
 const MainContainer = styled.div`
   width: 100%;
-//   height: 100%;
-
   border: 1px ${props.theme.borderColor} solid;
   border-radius: 4px;
 
@@ -73,13 +71,38 @@ const BottomSection = styled.div`
   flex-direction: column;
   gap: 8px;
   box-sizing: border-box;
+  margin-right: 4px;
 `;
 
 const Button = styled.button`
+  background-color: ${props.theme.buttonColor}66;
+  color: ${props.theme.buttonTextColor};
+  width: 100%;
+  height: 40px;
+  width:40px;
+  outline:none;
+  transition: all .2s ease-in-out;
+
+  border: none;
+  font-weight: 600;
+  border-radius: 4px;
+
+  &:hover{
+    background-color: ${props.theme.buttonColor}33;
+    outline:none;
+    border:none;
+  }
+  
+  &:active{
+    background-color: ${props.theme.buttonColor}44;
+  }
+`;
+const Button2 = styled.button`
   background-color: ${props.theme.buttonColor};
   color: ${props.theme.buttonTextColor};
   width: 100%;
   height: 40px;
+  width:40px;
   outline:none;
   transition: all .2s ease-in-out;
 
@@ -199,30 +222,16 @@ return (
 
     <BottomSection>
       <a href={detailsUrl}>
-        <Button
-          style={
-            {
-              // backgroundColor: props.theme.buttonColor + 33,
-            }
-          }
-        >
+        <Button>
           <i class="bi bi-eye"></i>
           {/*View Details*/}
         </Button>
       </a>
       <a href={appUrl}>
-        <Button
-          style={{
-            // backgroundColor: props.theme.buttonColor,
-            color: props.theme.buttonTextColor,
-            border: "none",
-            fontWeight: 600,
-            borderRadius: 4,
-          }}
-        >
+        <Button2>
           <i class="bi bi-box-arrow-up-right"></i>
           {/*Open*/}
-        </Button>
+        </Button2>
       </a>
     </BottomSection>
   </MainContainer>
