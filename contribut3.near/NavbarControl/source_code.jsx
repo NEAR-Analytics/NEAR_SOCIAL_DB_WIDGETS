@@ -30,6 +30,8 @@ const Navbar = styled.div`
   flex-grow: 0;
   position: sticky;
   top: 0;
+  margin-bottom: 1.5em;
+  transform: translateY(-10px);
 `;
 
 const LogoArea = styled.a`
