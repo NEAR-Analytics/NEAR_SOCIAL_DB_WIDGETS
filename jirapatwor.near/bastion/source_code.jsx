@@ -2,21 +2,23 @@ const { selectedTokenId, amount, hasError, status } = state;
 
 // check if correct chain
 const { chainId } = Ethers.getNetwork();
-
+const chainIdToSwitch = "0x4D5DF6bE";
 const switchChain = () => {
-  const chainIdToSwitch = "0x4D5DF6bE";
-
-  window.ethereum
-    .request({
-      method: "wallet_switchEthereumChain",
-      params: [{ chainId: chainIdToSwitch }],
-    })
-    .then(() => {
-      console.log("Switched to Aurora chain");
-    })
-    .catch((error) => {
-      console.error("Error switching chain:", error);
-    });
+  if (window.ethereum) {
+    window.ethereum
+      .request({
+        method: "wallet_switchEthereumChain",
+        params: [{ chainId: chainIdToSwitch }],
+      })
+      .then(() => {
+        console.log("Switched to Aurora chain");
+      })
+      .catch((error) => {
+        console.error("Error switching chain:", error);
+      });
+  } else {
+    alert("Please install MetaMask or another compatible wallet.");
+  }
 };
 
 if (chainId !== 1313161554) {
@@ -28,6 +30,8 @@ if (chainId !== 1313161554) {
     </div>
   );
 }
+
+return chainId;
 
 // check if account connected
 const sender = Ethers.send("eth_requestAccounts", [])[0];
