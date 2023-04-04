@@ -122,6 +122,7 @@ const Flex = styled.div`
     `
     @media (max-width: 900px) {
       flex-direction: column;
+      gap: var(--section-gap);
     }
   `}
 `;
@@ -134,8 +135,6 @@ const Section = styled.div`
   align-items: ${(p) => (p.center ? "center" : undefined)};
   justify-content: ${(p) => (p.center ? "center" : undefined)};
   text-align: ${(p) => (p.center ? "center" : undefined)};
-
-  
 `;
 
 const LogoLink = styled.a`
