@@ -18,7 +18,7 @@ const TabItem = styled.a`
   padding: 0.5em;
   margin: 0;
   text-decoration: none;
-  transition: background-color 0.2s ease-in-out;
+  transition: border 0.2s ease-in-out;
   ${({ selected }) => selected ? "border-bottom: 4px solid #0091ff;" : ""}
 
   &:hover {
