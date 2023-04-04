@@ -2,7 +2,29 @@ const { selectedTokenId, amount, hasError, status } = state;
 
 // check if correct chain
 const { chainId } = Ethers.getNetwork();
-return chainId;
+
+const switchChain = async () => {
+  try {
+    const chainIdToSwitch = "0x4D5DF6bE";
+
+    await window.ethereum.request({
+      method: "wallet_switchEthereumChain",
+      params: [{ chainId: chainIdToSwitch }],
+    });
+  } catch (error) {
+    console.error("Error switching chain:", error);
+  }
+};
+
+if (chainId !== 1313161554) {
+  return (
+    <div>
+      <h2>Please switch to Aurora</h2>
+      <br />
+      <button onClick={switchChain}>Switch to Aurora</button>
+    </div>
+  );
+}
 
 // check if account connected
 const sender = Ethers.send("eth_requestAccounts", [])[0];
