@@ -39,33 +39,33 @@ function parseUTCDate(dateString) {
 let Style = styled.div`
 
 
-                .bar {
-                  transition: fill 0.2s;
-                }
-
-                .bar:hover {
-                  fill: #ffa726;
-                }
-
-                .bar-chart {
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                }
-
-                  svg {
-                    width: 80%;
+                  .bar {
+                    transition: fill 0.2s;
                   }
 
-                  rect {
-                    shape-rendering: crispEdges;
-                    fill: #61dafb;
-                    stroke: #333;
-                    stroke-width: 1;
+                  .bar:hover {
+                    fill: #ffa726;
                   }
 
+                  .bar-chart {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                  }
 
-                  `;
+                    svg {
+                      width: 80%;
+                    }
+
+                    rect {
+                      shape-rendering: crispEdges;
+                      fill: #61dafb;
+                      stroke: #333;
+                      stroke-width: 1;
+                    }
+
+
+                    `;
 
 const colorGenerator = () => {
   const colors = [
@@ -94,6 +94,39 @@ const colorGenerator = () => {
   };
 };
 
+function updateProcessedData(filteredSortedData, selectedMetric) {
+  const processedData = [];
+
+  filteredSortedData.forEach((datum) => {
+    if (!datum.ACTIVITY_DATE) {
+      return;
+    }
+
+    const activity_date = parseUTCDate(datum.ACTIVITY_DATE);
+
+    const month =
+      months[
+        parseInt(activity_date.toISOString().slice(0, 10).split("-")[1]) - 1
+      ];
+
+    let monthData = processedData.find((data) => data.label === month);
+
+    if (!monthData) {
+      monthData = {
+        label: month,
+        data: {},
+        backgroundColor: getBackgroundColor(),
+      };
+      processedData.push(monthData);
+    }
+
+    monthData.data[activity_date.toISOString().slice(0, 10)] =
+      datum[selectedMetric];
+  });
+
+  return processedData;
+}
+
 const finalData = rawData.body;
 
 if (!finalData) {
@@ -102,7 +135,7 @@ if (!finalData) {
 
 const project_name = props.project_name || "Sweat Economy";
 
-const METRIC_NAME = `"${project_name}'s ${state.metric_period} Active Accounts"`;
+const METRIC_NAME = `"${project_name}'s ${state.metric_period}"`;
 
 const filteredData = filterByProjectName(finalData, project_name) || [];
 
@@ -192,58 +225,37 @@ const handleDropdownChange = (e) => {
   });
 };
 
+const header_map = {
+  DAA: "Daily Active Accounts",
+  WAU: "Weekly Active Accounts",
+  MAU: "Monthly Active Accounts",
+  M2_RETENTION: "Retention Rate",
+  NEW_MAA: "New MAAs",
+  PERCENT_NEW: "% New Accounts",
+  STICKINESS: "DAA / MAA",
+};
 const getBarData = () => {
   const { selectedMetric } = state;
+  console.log(selectedMetric);
+  State.update({ processedData: [] });
 
-  if (selectedMetric == "MAU") {
-    console.log(processedData);
-    console.log("processedData MAU");
-    State.update({ metric_period: "Monthly" });
+  let newProcessedData = updateProcessedData(
+    filteredSortedData,
+    selectedMetric
+  );
 
-    return {
-      v_bar_labels,
-      datasets: processedData,
-    };
-  } else {
-    // Replace the logic here with the WAU data processing
-    // For now, I'll return the same data as the MAU example
-    State.update({ processedData: [] });
-    filteredSortedData.forEach((datum) => {
-      if (!datum.ACTIVITY_DATE) {
-        return;
-      }
+  State.update({
+    processedData: newProcessedData,
+    metric_period: header_map[selectedMetric],
+  });
 
-      const activity_date = parseUTCDate(datum.ACTIVITY_DATE);
+  console.log(newProcessedData);
+  console.log("processedData WAA");
 
-      const month =
-        months[
-          parseInt(activity_date.toISOString().slice(0, 10).split("-")[1]) - 1
-        ];
-
-      let monthData = processedData.find((data) => data.label === month);
-
-      if (!monthData) {
-        monthData = {
-          label: month,
-          data: {},
-          backgroundColor: getBackgroundColor(),
-        };
-        processedData.push(monthData);
-      }
-
-      monthData.data[activity_date.toISOString().slice(0, 10)] = datum.WAU;
-    });
-
-    State.update({ processedData: processedData, metric_period: "Weekly" });
-
-    console.log(processedData);
-    console.log("processedData WAU");
-
-    return {
-      v_bar_labels,
-      datasets: processedData,
-    };
-  }
+  return {
+    v_bar_labels,
+    datasets: newProcessedData,
+  };
 };
 
 return (
@@ -262,8 +274,13 @@ return (
                   value={selectedMetric}
                   onChange={handleDropdownChange}
                 >
-                  <option value="MAU">MAU</option>
-                  <option value="WAU">WAU</option>
+                  <option value="MAU">MAA</option>
+                  <option value="WAU">WAA</option>
+                  <option value="DAA">DAA</option>
+                  <option value="M2_RETENTION">Retention Rate</option>
+                  <option value="NEW_MAA">New MAAs</option>
+                  <option value="PERCENT_NEW">% New Accounts</option>
+                  <option value="STICKINESS">DAA / MAA</option>
                 </select>
 
                 <BarEl options={v_bar_options} data={getBarData()} />
