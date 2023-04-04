@@ -571,7 +571,7 @@ const fetchAllData = () => {
 };
 
 const portfolio = Object.keys(TokensDetail).map((key) => {
-  if (!state.cTokenBalancesAll || !state.cTokenMetadataAll) return;
+  if (!state.cTokenBalancesAll) return;
   const indexMeta = state.cTokenMetadataAll.findIndex(
     (element) => element[0] == TokensDetail[key].cAddress
   );
