@@ -98,7 +98,7 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     width: 100%;
-    height: 40px;
+    height: 35px;
     border-radius: 4px;
 `;
 
@@ -117,8 +117,8 @@ const Input = styled.input`
 const Button = styled.button`
   background-color: ${props.theme.buttonColor};
   color: ${props.theme.buttonTextColor};
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   outline:none;
   border:none;
   transition: all .2s ease-in-out;
@@ -146,7 +146,8 @@ return (
     <i
       className="bi bi-search"
       style={{
-        width: 40,
+        width: 35,
+        fontSize: 16,
         display: "flex",
         justifyContent: "center",
         color: props.theme.textColor2,
