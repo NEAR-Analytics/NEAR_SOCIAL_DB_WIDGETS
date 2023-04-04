@@ -1,4 +1,5 @@
 let totalComponents = 0;
+const imageRatio = 590 / 327;
 
 const componentsData = Social.keys("*/widget/*", "final", {
   return_type: "BlockHeight",
@@ -109,7 +110,7 @@ const Flex = styled.div`
 const Section = styled.div`
   display: flex;
   padding: 82px 0;
-  gap: 48px;
+  gap: ${(p) => p.gap ?? "48px"};
   flex-direction: column;
   align-items: ${(p) => (p.center ? "center" : undefined)};
   justify-content: ${(p) => (p.center ? "center" : undefined)};
@@ -379,7 +380,7 @@ return (
         </ContentBlock>
 
         <ContentWithImage_Image>
-          <AspectRatio.Root ratio={590 / 327}>
+          <AspectRatio.Root ratio={imageRatio}>
             <img src="https://images.unsplash.com/photo-1678845750026-0b9936b4202c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3774&q=80" />
           </AspectRatio.Root>
         </ContentWithImage_Image>
@@ -417,7 +418,7 @@ return (
         </ContentBlock>
 
         <ContentWithImage_Image>
-          <AspectRatio.Root ratio={590 / 327}>
+          <AspectRatio.Root ratio={imageRatio}>
             <img src="https://images.unsplash.com/photo-1678845750026-0b9936b4202c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3774&q=80" />
           </AspectRatio.Root>
         </ContentWithImage_Image>
@@ -451,7 +452,7 @@ return (
         </ContentBlock>
 
         <ContentWithImage_Image>
-          <AspectRatio.Root ratio={590 / 327}>
+          <AspectRatio.Root ratio={imageRatio}>
             <img src="https://images.unsplash.com/photo-1678845750026-0b9936b4202c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3774&q=80" />
           </AspectRatio.Root>
         </ContentWithImage_Image>
@@ -608,6 +609,114 @@ return (
         Publish, store, and host your front-end directly on chain, in an
         instant.
       </Text>
+    </Section>
+
+    <Section gap="108px">
+      <ContentWithImage>
+        <ContentBlock>
+          <Icon color="green12" backgroundColor="green4" borderColor="green9">
+            <i className="ph-duotone ph-butterfly" />
+          </Icon>
+          <ContentBlock_Text>
+            <Text size="text-xl" fontWeight="600" color="sand12">
+              Distribute freely...
+            </Text>
+            <Text>
+              No more jumping through hoops to reach your audience. Your code is
+              stored and hosted on chain and served directly to users,
+              eliminating reliance on providers and intermediaries.
+            </Text>
+          </ContentBlock_Text>
+          <Widget
+            src="adminalpha.near/widget/DS.Button"
+            props={{
+              href: "/",
+              iconLeft: "ph-duotone ph-play",
+              label: "Try It Out",
+              variant: "secondary",
+              size: "large",
+            }}
+          />
+        </ContentBlock>
+
+        <ContentWithImage_Image>
+          <AspectRatio.Root ratio={imageRatio}>
+            <img src="https://images.unsplash.com/photo-1678845750026-0b9936b4202c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3774&q=80" />
+          </AspectRatio.Root>
+        </ContentWithImage_Image>
+      </ContentWithImage>
+
+      <ContentWithImage>
+        <ContentBlock>
+          <Icon
+            color="violet11"
+            backgroundColor="violet3"
+            borderColor="violet5"
+          >
+            <i className="ph-duotone ph-currency-eth" />
+          </Icon>
+          <ContentBlock_Text>
+            <Text size="text-xl" fontWeight="600" color="sand12">
+              ...on any chain...
+            </Text>
+            <Text>
+              Deploy your app to Ethereum, Cosmos, and more. Take full advantage
+              of NEAR’s speed, low cost and scalability, all while meeting your
+              users where they are.
+            </Text>
+          </ContentBlock_Text>
+          <Widget
+            src="adminalpha.near/widget/DS.Button"
+            props={{
+              href: "/",
+              iconRight: "ph-bold ph-arrow-up-right",
+              label: "Learn More",
+              variant: "secondary",
+              size: "large",
+            }}
+          />
+        </ContentBlock>
+
+        <ContentWithImage_Image>
+          <AspectRatio.Root ratio={imageRatio}>
+            <img src="https://images.unsplash.com/photo-1678845750026-0b9936b4202c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3774&q=80" />
+          </AspectRatio.Root>
+        </ContentWithImage_Image>
+      </ContentWithImage>
+
+      <ContentWithImage>
+        <ContentBlock>
+          <Icon color="red11" backgroundColor="red3" borderColor="red5">
+            <i className="ph-duotone ph-globe-hemisphere-west" />
+          </Icon>
+          <ContentBlock_Text>
+            <Text size="text-xl" fontWeight="600" color="sand12">
+              ...on any platform, anywhere.
+            </Text>
+            <Text>
+              Any browser, app, or connected device capable of running a few
+              lines of Javascript can run your application within an embeded
+              blockchain experience.
+            </Text>
+          </ContentBlock_Text>
+          <Widget
+            src="adminalpha.near/widget/DS.Button"
+            props={{
+              href: "/",
+              iconLeft: "ph-bold ph-door-open",
+              label: "Explore Gateways",
+              variant: "secondary",
+              size: "large",
+            }}
+          />
+        </ContentBlock>
+
+        <ContentWithImage_Image>
+          <AspectRatio.Root ratio={imageRatio}>
+            <img src="https://images.unsplash.com/photo-1678845750026-0b9936b4202c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3774&q=80" />
+          </AspectRatio.Root>
+        </ContentWithImage_Image>
+      </ContentWithImage>
     </Section>
   </Wrapper>
 );
