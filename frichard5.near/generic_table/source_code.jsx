@@ -19,8 +19,6 @@ data &&
     rows.push(<tr>{columns.map((c) => formatRow(d, c))}</tr>);
   });
 
-console.log(data, offset);
-
 return (
   <div>
     {title && <h2>{title}</h2>}
