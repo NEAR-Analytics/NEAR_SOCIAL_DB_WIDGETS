@@ -37,3 +37,33 @@ const ActionArea = styled.div`
 `;
 
 const logo = (<LogoArea><></>NEAR Horizon</LogoArea>);
+
+const Credits = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: .05em .55em;
+  gap: 1em;
+  background: #eceef0;
+  border-radius: 100px;
+  flex: none;
+  order: 3;
+  flex-grow: 0;
+  font-style: normal;
+  font-weight: 600;
+  font-size: .95em;
+  line-height: 1em;
+  color: #11181c;
+`;
+
+const Info = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: .5em;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+`;
