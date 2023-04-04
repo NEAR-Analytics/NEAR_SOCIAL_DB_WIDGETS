@@ -20,7 +20,15 @@ const switchChain = () => {
   window.location.reload();
 };
 
-if (chainId !== 1313161554) {
+const checkChain = () => {
+  if (chainId !== 1313161554) {
+    State.update({ isCorrectChain: false });
+  } else {
+    State.update({ isCorrectChain: true });
+  }
+};
+
+if (state.isCorrectChain == false) {
   return (
     <div>
       <h2>Please switch to Aurora</h2>
