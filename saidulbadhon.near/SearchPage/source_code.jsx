@@ -85,7 +85,7 @@ return (
         Discover the latest widgets from the NEAR community.
       </p>
 
-      <div style={{ maxWidth: 500, width: "100%" }}>
+      <div style={{ width: "100%" }}>
         <Widget
           src="saidulbadhon.near/widget/SearchPage.Searchbar"
           props={{
@@ -102,8 +102,6 @@ return (
         width: "100%",
         display: "flex",
         flexDirection: "column",
-        // gap: 8,
-        // gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
       }}
     >
       {items.length > 0 &&
