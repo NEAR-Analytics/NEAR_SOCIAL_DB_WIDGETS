@@ -1,4 +1,4 @@
-const user = "frichard5.near";
+const widgetProvider = "frichard5.near";
 const refUrl = "https://api.stats.ref.finance/api/ft";
 const ftList = fetch(refUrl);
 State.init({
@@ -14,21 +14,21 @@ const Balances = (
 
 const NearTransfers = (
   <Widget
-    src={`${user}/widget/near_transfers`}
+    src={`${widgetProvider}/widget/near_transfers`}
     props={{ account: state.selectedDao }}
   />
 );
 
 const FTransfers = (
   <Widget
-    src={`${user}/widget/ft_transfers`}
+    src={`${widgetProvider}/widget/ft_transfers`}
     props={{ account: state.selectedDao, ftList: ftList.body && ftList.body }}
   />
 );
 
 const ContractMetrics = (
   <Widget
-    src={`${user}/widget/contract_metrics`}
+    src={`${widgetProvider}/widget/contract_metrics`}
     props={{ account: state.selectedDao }}
   />
 );
