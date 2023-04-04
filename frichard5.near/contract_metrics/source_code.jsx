@@ -52,10 +52,7 @@ const nextPage = () => {
   const currentOffset = state.offset + resPerPage;
   State.update({
     offset: currentOffset,
-    displayedTxs: nearTransfers.body.slice(
-      currentOffset,
-      resPerPage + currentOffset
-    ),
+    displayedTxs: state.txs.slice(currentOffset, resPerPage + currentOffset),
   });
 };
 
@@ -63,10 +60,7 @@ const previousPage = () => {
   const currentOffset = state.offset - resPerPage;
   State.update({
     offset: currentOffset,
-    displayedTxs: nearTransfers.body.slice(
-      currentOffset,
-      resPerPage + currentOffset
-    ),
+    displayedTxs: state.txs.slice(currentOffset, resPerPage + currentOffset),
   });
 };
 
