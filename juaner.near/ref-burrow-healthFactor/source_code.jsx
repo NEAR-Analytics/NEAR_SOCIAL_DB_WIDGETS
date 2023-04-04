@@ -45,6 +45,7 @@ function getHealthFactor() {
     .toFixed(0);
   return Number(healthFactor) < MAX_RATIO ? healthFactor : MAX_RATIO;
 }
+if (!assets || !account) return <div />;
 const adjustedCollateralSum = getAdjustedSum("collateral", account);
 const adjustedBorrowedSum = getAdjustedSum("borrowed", account);
 const healthFactor = getHealthFactor();
