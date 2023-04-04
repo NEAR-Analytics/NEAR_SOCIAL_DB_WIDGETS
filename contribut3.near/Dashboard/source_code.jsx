@@ -117,7 +117,29 @@ const header = (
   </div>
 );
 
-const Heading = styled.div``;
+const Heading = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 1em;
+
+  h1 {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 2em;
+    line-height: 2.5em;
+    color: #101828;
+  }
+
+  h2 {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1em;
+    line-height: 1.5em;
+    color: #475467;
+  }
+`;
 
 return (
   <div>
