@@ -1,3 +1,17 @@
+const stNEarIcon = (
+  <svg
+    width="18"
+    height="19"
+    viewBox="0 0 18 19"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M9.06863 18.336C13.8926 18.336 17.8046 14.424 17.8046 9.6C17.8046 4.776 13.8926 0.863999 9.06863 0.863999C4.24463 0.863999 0.332625 4.776 0.332625 9.6C0.332625 14.424 4.24463 18.336 9.06863 18.336ZM9.06863 14.208L4.38863 9.528L5.49263 8.4L9.06863 11.928L12.6206 8.4L13.7486 9.528L9.06863 14.208ZM9.06863 10.632L6.16463 7.752L7.29263 6.624L9.06863 8.424L10.8446 6.624L11.9726 7.752L9.06863 10.632ZM9.06863 7.128L7.94063 5.952L9.06863 4.848L10.1966 5.952L9.06863 7.128Z"
+      fill="#032131"
+    />
+  </svg>
+);
 const Input = styled.div`
     border-radius: 8px;
     background-color: #f5ffd1;
@@ -31,7 +45,7 @@ const Frame = styled.div`
     column-gap: 16.9126px;
     margin-bottom: 56px;
   `;
-const Btc = styled.span`
+const Title = styled.span`
     letter-spacing: 1px;
     margin-right: 34px;
     margin-top: 3px;
@@ -50,10 +64,8 @@ const Frame1 = styled.div`
 const Frame2 = styled.div`
     display: flex;
     flex-direction: row;
-    justify-content: center;
     align-items: center;
     column-gap: 8px;
-    margin-bottom: 5px;
   `;
 const Stnearcircle = styled.span`
     text-align: right;
@@ -66,7 +78,7 @@ const Stnearcircle = styled.span`
     margin-bottom: 10px;
   `;
 const Num = styled.span`
-    font-size: 2.5rem;
+    
   `;
 const StNear = styled.span`
     text-align: right;
@@ -76,13 +88,21 @@ const StNear = styled.span`
     margin-left: 2px;
     margin-bottom: 5px;
   `;
+const StNearIcon = styled.div`
+  & svg {
+      width: 29px;
+      height: 32px;
+    }
+
+`;
 return (
   <Input className={props.className || ""}>
     <Frame>
-      <Btc>{props.btc || "You’ll get"}</Btc>
+      <Title>You’ll get</Title>
     </Frame>
     <Frame1>
       <Frame2>
+        <StNearIcon>{stNEarIcon}</StNearIcon>
         <Num>{props.amount || "0.00"}</Num>
       </Frame2>
       <StNear>stNEAR</StNear>
