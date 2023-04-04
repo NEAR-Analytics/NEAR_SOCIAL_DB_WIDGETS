@@ -177,6 +177,7 @@ const ContentWithImage_Image = styled.div`
 const ContentBlock = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 40px;
   width: 100%;
 `;
