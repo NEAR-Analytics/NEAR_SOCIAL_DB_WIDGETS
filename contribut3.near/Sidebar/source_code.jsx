@@ -206,7 +206,7 @@ return (
     })}
     {navItem({
       text: "Learn",
-      icon: graph,
+      icon: book,
       id: "learn",
     })}
     <hr className="border-2" />
