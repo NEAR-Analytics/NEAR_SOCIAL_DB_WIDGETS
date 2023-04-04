@@ -38,18 +38,20 @@ return (
         <div class="row  ">
           <h1 class="fw-light">Monthly Active Accounts</h1>
 
-          <div class="row">
+          <div class="row ">
             <Widget
               src="y3k.near/widget/NEAR-ATLAS-MonthlyActiveAcounts"
               props={{}}
             />
           </div>
+          <hr />
+          <div className="py-5">
+            <div class="row py-5">
+              <div class="card shadow-sm bg-dark">
+                <h1 class="fw-light">NEAR Projects</h1>
 
-          <div class="row">
-            <div class="card shadow-sm bg-dark">
-              <h1 class="fw-light">NEAR Projects</h1>
-
-              <Widget src="y3k.near/widget/NEAR.ATLAS.REACT.TABLE.TOP.DAPPS" />
+                <Widget src="y3k.near/widget/NEAR.ATLAS.REACT.TABLE.TOP.DAPPS" />
+              </div>
             </div>
           </div>
         </div>
