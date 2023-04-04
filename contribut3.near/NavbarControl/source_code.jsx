@@ -18,8 +18,6 @@ return (
       aria-expanded="false"
       aria-controls={`collapse${formName}Form`}
     >
-
-
       <i className={icon} />
       {text}
     </a>
