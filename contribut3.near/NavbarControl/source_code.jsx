@@ -11,7 +11,6 @@ return (
     <a
       className="nav-link active"
       aria-current="page"
-      href="#"
       data-bs-toggle="collapse"
       href={`#collapse${formName}Form`}
       role="button"
