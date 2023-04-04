@@ -12,7 +12,7 @@ console.log(items);
 return (
   <div
     style={{
-      padding: 16,
+      padding: 8,
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
