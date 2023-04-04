@@ -2,7 +2,8 @@ const columns = props.columns || [
   { label: "props columns missing", id: "data" },
 ];
 const data = props.data || [{ data: "no data props" }];
-const test = props.test;
+const nextPage = props.nextPage;
+const previousPage = props.previousPage;
 
 let rows = [];
 
@@ -27,6 +28,7 @@ return (
       </tr>
       {rows}
     </table>
-    <button onClick={test}>next 50</button>
+    <button onClick={previousPage}>previous 50</button>
+    <button onClick={nextPage}>next 50</button>
   </div>
 );
