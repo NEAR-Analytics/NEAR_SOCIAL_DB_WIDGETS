@@ -27,10 +27,6 @@ const TabItem = styled.a`
     background-color: #f9fafb;
   }
 
-  &:nth-child(n + 2) {
-    border-left: 1px solid #d0d5dd;
-  }
-
   span {
     margin-left: 0.25em;
     margin-right: ${({ hasCount }) => (hasCount ? "1.75em" : "0")};
