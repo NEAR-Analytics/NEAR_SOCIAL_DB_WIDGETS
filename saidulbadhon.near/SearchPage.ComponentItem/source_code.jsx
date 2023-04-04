@@ -26,13 +26,12 @@ function makeUpperCase(sentence) {
 
 const MainContainer = styled.div`
   width: 100%;
-  height: 100%;
+//   height: 100%;
 
   border: 1px ${props.theme.borderColor} solid;
   border-radius: 4px;
 
   display: flex;
-  flex-direction: column;
   gap: 8px;
   justify-content: space-between;
   align-items: center;
@@ -42,21 +41,23 @@ const MainContainer = styled.div`
   background-color: ${props.theme.backgroundColor};
 `;
 const TopSection = styled.div`
-  position: relative;
-  height: 100%;
+  width: 100%;
+  height:100%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction:column;
+  align-items: flex-start;
+  justify-content: flex-start;
+
 `;
 
 const Logo = styled.div`
   width: 100%;
+  max-width: 100px;
+  height:100px;
   aspect-ratio: 1 / 1;
 
   border-radius: 4px;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  border-bottom: 1px ${props.theme.borderColor} solid;
+//   border-bottom: 1px ${props.theme.borderColor} solid;
   overflow: hidden;
   zindex: 9;
 
@@ -68,11 +69,9 @@ const Logo = styled.div`
 `;
 
 const BottomSection = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 8px;
-  margin: 8px;
-  width: calc(100% - 16px);
   box-sizing: border-box;
 `;
 
@@ -82,16 +81,18 @@ const Button = styled.button`
   width: 100%;
   height: 40px;
   outline:none;
-  border:none;
   transition: all .2s ease-in-out;
-  border-top-right-radius:4px;
-  border-bottom-right-radius:4px;
+
+  border: none;
+  font-weight: 600;
+  border-radius: 4px;
 
   &:hover{
     background-color: ${props.theme.buttonColor}CC;
     outline:none;
     border:none;
   }
+  
   &:active{
     background-color: ${props.theme.buttonColor}99;
   }
@@ -108,23 +109,23 @@ return (
         theme: props.theme,
       }}
     />
-    <TopSection>
-      <Logo>
-        <Widget
-          src="mob.near/widget/Image"
-          props={{
-            image: metadata.image,
-            fallbackUrl:
-              "https://ipfs.near.social/ipfs/bafkreifc4burlk35hxom3klq4mysmslfirj7slueenbj7ddwg7pc6ixomu",
-            alt: metadata.name,
-          }}
-        />
-      </Logo>
 
+    <Logo>
+      <Widget
+        src="mob.near/widget/Image"
+        props={{
+          image: metadata.image,
+          fallbackUrl:
+            "https://ipfs.near.social/ipfs/bafkreifc4burlk35hxom3klq4mysmslfirj7slueenbj7ddwg7pc6ixomu",
+          alt: metadata.name,
+        }}
+      />
+    </Logo>
+
+    <TopSection>
       <a
         href={detailsUrl}
         style={{
-          marginTop: 16,
           fontSize: 20,
           fontWeight: 600,
           color: props.theme.textColor,
@@ -133,7 +134,6 @@ return (
 
           wordBreak: "break-all",
           textAlign: "center",
-          paddingInline: 8,
         }}
       >
         {metadata.name || widgetName}
@@ -147,7 +147,6 @@ return (
           color: props.theme.textColor3,
           textDecoration: "none",
           marginBottom: 8,
-          paddingInline: 8,
         }}
       >
         @{accountId}
@@ -158,7 +157,6 @@ return (
           display: "flex",
           gap: 8,
           flexWrap: "wrap",
-          padding: "0 8px",
 
           justifyContent: "center",
         }}
@@ -187,28 +185,28 @@ return (
     <BottomSection>
       <a href={detailsUrl}>
         <Button
-          style={{
-            backgroundColor: props.theme.buttonColor + 33,
-            color: props.theme.buttonColor,
-            border: "none",
-            fontWeight: 600,
-            borderRadius: 4,
-          }}
+          style={
+            {
+              // backgroundColor: props.theme.buttonColor + 33,
+            }
+          }
         >
-          View Details
+          <i class="bi bi-eye"></i>
+          {/*View Details*/}
         </Button>
       </a>
       <a href={appUrl}>
         <Button
           style={{
-            backgroundColor: props.theme.buttonColor,
+            // backgroundColor: props.theme.buttonColor,
             color: props.theme.buttonTextColor,
             border: "none",
             fontWeight: 600,
             borderRadius: 4,
           }}
         >
-          Open
+          <i class="bi bi-box-arrow-up-right"></i>
+          {/*Open*/}
         </Button>
       </a>
     </BottomSection>
