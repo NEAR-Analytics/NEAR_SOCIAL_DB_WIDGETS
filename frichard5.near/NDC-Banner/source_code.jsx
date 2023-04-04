@@ -13,6 +13,6 @@ const Lines = styled.img`
 return (
   <Banner role="banner">
     <Logo src="https://ipfs.near.social/ipfs/bafkreihbisodby5rjawdzxqokdbqbrcskp2kayrqcos73smdba2svzciym" />
-    <Lines src="https://ipfs.near.social/ipfs/bafybeics4dmd4pxcz2sheslisxwosj43vt3emdxelhbptv73om6p6wlhxi" />
+    <Lines src="https://ipfs.near.social/ipfs/bafkreihbisodby5rjawdzxqokdbqbrcskp2kayrqcos73smdba2svzciym" />
   </Banner>
 );
