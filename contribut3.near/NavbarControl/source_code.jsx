@@ -79,7 +79,7 @@ const Credits = styled.div`
   background: #eceef0;
   border-radius: 100px;
   flex: none;
-  order: 2;
+  order: 0;
   flex-grow: 0;
   font-style: normal;
   font-weight: 600;
