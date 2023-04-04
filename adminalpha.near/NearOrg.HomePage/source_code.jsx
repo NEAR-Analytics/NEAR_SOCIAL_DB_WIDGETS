@@ -258,7 +258,7 @@ return (
         </Text>
       </Flex>
 
-      <Flex gap="24px" wrap="wrap">
+      <Flex gap="24px" wrap="wrap" justifyContent="center">
         <Widget
           src="adminalpha.near/widget/DS.Button"
           props={{
