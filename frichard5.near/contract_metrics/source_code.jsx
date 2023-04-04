@@ -1,4 +1,4 @@
-const user = "frichard5.near";
+const widgetProvider = props.widgetProvider;
 const account = props.account || "foundation.near";
 const apiUrl = `https://api.pikespeak.ai/contract-analysis/metrics/${account}`;
 const publicApiKey = "36f2b87a-7ee6-40d8-80b9-5e68e587a5b5";
@@ -68,7 +68,7 @@ const previousPage = () => {
 
 const GenericTable = (
   <Widget
-    src={`${user}/widget/generic_table`}
+    src={`${widgetProvider}/widget/generic_table`}
     props={{
       title: "Contract metrics",
       columns,
