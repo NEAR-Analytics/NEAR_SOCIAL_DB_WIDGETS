@@ -16,7 +16,7 @@ const TabItem = styled.a`
   margin: 0;
   text-decoration: none;
   transition: all 0.2s ease-in-out;
-  ${({ selected }) => selected ? "border-bottom: 4px solid #0091ff;" : ""}
+  border-bottom: ${({ selected }) => selected ? "4px solid #0091ff;" : "4px transparent"}
   font-style: normal;
   font-weight: 600;
   font-size: .95em;
