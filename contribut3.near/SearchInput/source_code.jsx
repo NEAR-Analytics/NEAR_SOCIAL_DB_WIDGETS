@@ -19,19 +19,18 @@ const icon = (
 const SearchInput = styled.input`
   display: block;
   box-sizing: border-box;
-display: flex;
-flex-direction: row;
-align-items: center;
-padding: .5em .75em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: .5em .75em;
   padding-left: 3em;
-gap: .5em;
-
-width: 359px;
-height: 36px;
-background: #FFFFFF;
-border: 1px solid #D0D5DD;
-box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
-border-radius: 4px;
+  gap: .5em;
+  width: 359px;
+  height: 36px;
+  background: #ffffff;
+  border: 1px solid #d0d5dd;
+  box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+  border-radius: 4px;
 `;
 
 const Icon = styled.div`
