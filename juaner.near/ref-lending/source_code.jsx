@@ -302,6 +302,16 @@ return (
           <label class="t">Borrowed</label>
           <span class="v">{yourBurrowedUSD || "$0"}</span>
         </div>
+        <div class="block">
+          <label class="t">Borrowed</label>
+          <span class="v">{yourBurrowedUSD || "$0"}</span>
+        </div>
+        <div class="block noBorder">
+          <label class="t">Health Factor</label>
+          <span class="v" style={{ color: "#00C595" }}>
+            <Widget src="juaner.near/widget/ref-burrow-healthFactor"></Widget>
+          </span>
+        </div>
       </div>
       <div class="block mt_26 noBorder">
         <label class="t">Unclaimed Rewards</label>
