@@ -224,6 +224,17 @@ const Develop_Preview = styled.div`
   background: var(--sand6);
 `;
 
+const Stats = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 40px;
+  gap: 40px;
+  text-align: center;
+  background: var(--sand2);
+`;
+
 return (
   <Wrapper>
     <Section center>
@@ -535,6 +546,45 @@ return (
           />
         </ContentBlock>
       </Flex>
+    </Section>
+
+    <Section>
+      <Stats>
+        <div>
+          <Text size="text-3xl" color="violet9" fontWeight="500">
+            0000
+          </Text>
+          <Text size="text-l" fontWeight="500">
+            Active Developers
+          </Text>
+        </div>
+        <div>
+          <Text size="text-3xl" color="violet9" fontWeight="500">
+            {totalComponents}
+          </Text>
+          <Text size="text-l" fontWeight="500">
+            OS Components
+          </Text>
+        </div>
+
+        <div>
+          <Text size="text-3xl" color="violet9" fontWeight="500">
+            0000
+          </Text>
+          <Text size="text-l" fontWeight="500">
+            Applications
+          </Text>
+        </div>
+
+        <div>
+          <Text size="text-3xl" color="violet9" fontWeight="500">
+            00%
+          </Text>
+          <Text size="text-l" fontWeight="500">
+            Uptime
+          </Text>
+        </div>
+      </Stats>
     </Section>
 
     <Section center>
