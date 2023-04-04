@@ -120,7 +120,7 @@ const Flex = styled.div`
   ${(p) =>
     p.mobileStack &&
     `
-    @media (max-width: 700px) {
+    @media (max-width: 900px) {
       flex-direction: column;
     }
   `}
