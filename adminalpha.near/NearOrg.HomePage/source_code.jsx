@@ -125,6 +125,10 @@ const Section = styled.div`
   align-items: ${(p) => (p.center ? "center" : undefined)};
   justify-content: ${(p) => (p.center ? "center" : undefined)};
   text-align: ${(p) => (p.center ? "center" : undefined)};
+
+  @media (max-width: 900px) {
+    border-bottom: 1px solid var(--sand4);
+  }
 `;
 
 const LogoLink = styled.a`
