@@ -163,23 +163,6 @@ return (
         {metadata.name || widgetName}
       </a>
 
-      {/* • </div>*/}
-      <Widget
-        src="saidulbadhon.near/widget/SearchPage.ComponentItem.TimeAgo"
-        props={{
-          blockHeight: props.blockHeight,
-          keyPath: `${accountId}/widget/${widgetName}`,
-          style: {
-            color: props.theme.textColor3,
-            margin: 0,
-            fontSize: 12,
-            fontWeight: 600,
-            marginTop: 1,
-          },
-          theme: props.theme,
-        }}
-      />
-
       <a
         href={detailsUrl}
         style={{
@@ -195,27 +178,43 @@ return (
         @{accountId}
       </a>
 
-      <div
-        style={{
-          display: "flex",
-          gap: 4,
-          flexWrap: "wrap",
-          //   marginTop: 8,
-
-          justifyContent: "flex-start",
+      <Widget
+        src="saidulbadhon.near/widget/SearchPage.ComponentItem.TimeAgo"
+        props={{
+          blockHeight: props.blockHeight,
+          keyPath: `${accountId}/widget/${widgetName}`,
+          style: {
+            color: props.theme.textColor3,
+            margin: 0,
+            fontSize: 12,
+            fontWeight: 500,
+            // marginTop: 1,
+          },
+          theme: props.theme,
         }}
-      >
-        {tags.length > 0 &&
-          tags.map((tag, index) => (
+      />
+
+      {tags.length > 0 && tags.length > 0 && (
+        <div
+          style={{
+            display: "flex",
+            gap: 4,
+            flexWrap: "wrap",
+            marginTop: 8,
+
+            justifyContent: "flex-start",
+          }}
+        >
+          {tags.map((tag, index) => (
             <p
               style={{
                 marginBottom: 0,
-                // backgroundColor:
-                //   props.theme.name === "dark"
-                //     ? "rgba(255,255,255,.075)"
-                //     : "rgba(0,0,0,.075)",
+                backgroundColor:
+                  props.theme.name === "dark"
+                    ? "rgba(255,255,255,.075)"
+                    : "rgba(0,0,0,.075)",
                 color: props.theme.textColor,
-                // padding: "4px 8px",
+                padding: "4px 8px",
                 fontWeight: 500,
                 borderRadius: 4,
                 fontSize: 12,
@@ -224,7 +223,8 @@ return (
               {makeUpperCase(tag)},
             </p>
           ))}
-      </div>
+        </div>
+      )}
     </TopSection>
 
     <BottomSection>
