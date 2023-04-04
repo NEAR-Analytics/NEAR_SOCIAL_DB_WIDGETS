@@ -15,21 +15,31 @@ const Balances = (
 const NearTransfers = (
   <Widget
     src={`${widgetProvider}/widget/near_transfers`}
-    props={{ account: state.selectedDao }}
+    props={{
+      account: state.selectedDao,
+      widgetProvider,
+    }}
   />
 );
 
 const FTransfers = (
   <Widget
     src={`${widgetProvider}/widget/ft_transfers`}
-    props={{ account: state.selectedDao, ftList: ftList.body && ftList.body }}
+    props={{
+      account: state.selectedDao,
+      ftList: ftList.body && ftList.body,
+      widgetProvider,
+    }}
   />
 );
 
 const ContractMetrics = (
   <Widget
     src={`${widgetProvider}/widget/contract_metrics`}
-    props={{ account: state.selectedDao }}
+    props={{
+      account: state.selectedDao,
+      widgetProvider,
+    }}
   />
 );
 
