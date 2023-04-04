@@ -119,19 +119,20 @@ const tabContent = {
 }[state.tab];
 
 return (
-  <div className="d-flex flex-row position-relative">
+  <div>
     <Widget src={`${ownerId}/widget/NavbarControl`} />
-    <div className="d-flex flex-row position-sticky top-0">
-      <div className="flex-grow-1">
-        <Widget
-          src={`${ownerId}/widget/Sidebar`}
-          props={{ tab: state.tab, update }}
-        />
+    <div className="d-flex flex-row position-relative">
+      <div className="d-flex flex-row position-sticky top-0">
+        <div className="flex-grow-1">
+          <Widget
+            src={`${ownerId}/widget/Sidebar`}
+            props={{ tab: state.tab, update }}
+          />
+        </div>
+        <div className="vr mx-3" style={{ height: "90vh" }} />
       </div>
-      <div className="vr mx-3" style={{ height: "90vh" }} />
-    </div>
-    <div className="flex-grow-1" style={{ maxWidth: "calc(100% - 272px)" }}>
-      {tabContent}
-    </div>
-  </div>
+      <div className="flex-grow-1" style={{ maxWidth: "calc(100% - 272px)" }}>
+        {tabContent}
+      </div>
+    </div></div>
 );
