@@ -7,7 +7,7 @@ State.init({
 
 const Balances = (
   <Widget
-    src={`${user}/widget/account_balance`}
+    src={`${widgetProvider}/widget/account_balance`}
     props={{ account: state.selectedDao }}
   />
 );
