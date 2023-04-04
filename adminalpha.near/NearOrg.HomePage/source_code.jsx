@@ -149,13 +149,6 @@ const ContentWithImage = styled.div`
   }
 `;
 
-const ContentWithImage_Content = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-  width: 100%;
-`;
-
 const ContentWithImage_Image = styled.div`
   overflow: hidden;
   border-radius: 6px;
@@ -167,6 +160,19 @@ const ContentWithImage_Image = styled.div`
     width: 100%;
     height: 100%;
   }
+`;
+
+const ContentBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 100%;
+`;
+
+const ContentBlock_Text = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 `;
 
 return (
@@ -196,7 +202,7 @@ return (
         <Widget
           src="adminalpha.near/widget/DS.Button"
           props={{
-            href: "/edit",
+            href: "/#/edit",
             iconLeft: "ph-duotone ph-code-block",
             label: "Try It First",
             variant: "affirmative",
@@ -283,11 +289,11 @@ return (
 
     <Section>
       <ContentWithImage alternate>
-        <ContentWithImage_Content>
+        <ContentBlock>
           <Icon color="green12" backgroundColor="green4" borderColor="green9">
             <i className="ph-duotone ph-plugs-connected" />
           </Icon>
-          <Flex direction="column" gap="16px">
+          <ContentBlock_Text>
             <Text size="text-xl" fontWeight="600" color="sand12">
               Truly Plug & Play
             </Text>
@@ -298,7 +304,7 @@ return (
                 No crypto required.
               </Text>
             </Text>
-          </Flex>
+          </ContentBlock_Text>
           <Widget
             src="adminalpha.near/widget/DS.Button"
             props={{
@@ -309,7 +315,7 @@ return (
               size: "large",
             }}
           />
-        </ContentWithImage_Content>
+        </ContentBlock>
 
         <ContentWithImage_Image>
           <AspectRatio.Root ratio={590 / 327}>
@@ -319,11 +325,11 @@ return (
       </ContentWithImage>
 
       <ContentWithImage alternate>
-        <ContentWithImage_Content>
+        <ContentBlock>
           <Icon color="amber11" backgroundColor="amber4" borderColor="amber9">
             <i className="ph-duotone ph-plugs-connected" />
           </Icon>
-          <Flex direction="column" gap="16px">
+          <ContentBlock_Text>
             <Text size="text-xl" fontWeight="600" color="sand12">
               Build Your Way
             </Text>
@@ -336,7 +342,7 @@ return (
               , in confidence with Rust, or in any language that compiles to
               Assembly.
             </Text>
-          </Flex>
+          </ContentBlock_Text>
           <Widget
             src="adminalpha.near/widget/DS.Button"
             props={{
@@ -347,7 +353,7 @@ return (
               size: "large",
             }}
           />
-        </ContentWithImage_Content>
+        </ContentBlock>
 
         <ContentWithImage_Image>
           <AspectRatio.Root ratio={590 / 327}>
@@ -357,11 +363,11 @@ return (
       </ContentWithImage>
 
       <ContentWithImage alternate>
-        <ContentWithImage_Content>
+        <ContentBlock>
           <Icon color="red11" backgroundColor="red3" borderColor="red5">
             <i className="ph-duotone ph-graph" />
           </Icon>
-          <Flex direction="column" gap="16px">
+          <ContentBlock_Text>
             <Text size="text-xl" fontWeight="600" color="sand12">
               Data, Decentralized
             </Text>
@@ -370,7 +376,7 @@ return (
               on the platform, providing a level playing field for developers
               and a more consistent experience for users.
             </Text>
-          </Flex>
+          </ContentBlock_Text>
           <Widget
             src="adminalpha.near/widget/DS.Button"
             props={{
@@ -381,7 +387,7 @@ return (
               size: "large",
             }}
           />
-        </ContentWithImage_Content>
+        </ContentBlock>
 
         <ContentWithImage_Image>
           <AspectRatio.Root ratio={590 / 327}>
@@ -389,6 +395,66 @@ return (
           </AspectRatio.Root>
         </ContentWithImage_Image>
       </ContentWithImage>
+    </Section>
+
+    <Section>
+      <Flex gap="112px">
+        <ContentBlock>
+          <Icon
+            color="violet11"
+            backgroundColor="violet3"
+            borderColor="violet5"
+          >
+            <i className="ph-duotone ph-shapes" />
+          </Icon>
+          <ContentBlock_Text>
+            <Text size="text-xl" fontWeight="600" color="sand12">
+              Composable to the Core
+            </Text>
+            <Text>
+              Explore a host of components built by our community. Use them in
+              your applications, combine them in new and interesting ways, or
+              build and publish your own.
+            </Text>
+          </ContentBlock_Text>
+          <Widget
+            src="adminalpha.near/widget/DS.Button"
+            props={{
+              href: "/#/adminalpha.near/widget/ComponentsPage",
+              iconRight: "ph-bold ph-arrow-up-right",
+              label: "Explore Components",
+              variant: "secondary",
+              size: "large",
+            }}
+          />
+        </ContentBlock>
+
+        <ContentBlock>
+          <Icon color="red11" backgroundColor="red3" borderColor="red5">
+            <i className="ph-duotone ph-keyhole" />
+          </Icon>
+          <ContentBlock_Text>
+            <Text size="text-xl" fontWeight="600" color="sand12">
+              Always Open Source
+            </Text>
+            <Text>
+              Every component, including this page, is live on NEAR&apos;s
+              public blockchain. The source code is available to everyone,
+              waiting to be inspected, forked, modified and reused.
+            </Text>
+          </ContentBlock_Text>
+          <Widget
+            src="adminalpha.near/widget/DS.Button"
+            props={{
+              href: "/#/edit/adminalpha.near/widget/NearOrg.HomePage",
+              iconLeft: "ph-bold ph-git-fork",
+              label: "Fork This Page",
+              variant: "secondary",
+              size: "large",
+            }}
+          />
+        </ContentBlock>
+      </Flex>
     </Section>
 
     <Section center>
