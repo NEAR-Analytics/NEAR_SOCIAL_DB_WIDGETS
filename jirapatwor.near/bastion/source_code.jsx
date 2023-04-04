@@ -21,10 +21,11 @@ const switchChain = () => {
 
 if (chainId !== 1313161554) {
   return (
-    <div>
+    <div style={{ margin: "auto", textAlign: "center" }}>
       <h2>Please switch to Aurora</h2>
       <br />
       <button onClick={switchChain}>Switch to Aurora</button>
+      <br />
       <br />
       <p>**Please refresh once after switch chain**</p>
     </div>
