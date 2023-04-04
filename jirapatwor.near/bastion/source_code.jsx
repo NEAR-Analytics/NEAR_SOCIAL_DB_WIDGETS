@@ -15,8 +15,9 @@ const switchChain = () => {
     blockExplorerUrls: ["https://aurorascan.dev/"], // The block explorer URL for Aurora
   };
 
-  Ethers.send("wallet_addEthereumChain", [auroraChain]);
-  window.location.reload();
+  Ethers.send("wallet_addEthereumChain", [auroraChain]).then(() => {
+    checkChain();
+  });
 };
 
 const checkChain = () => {
@@ -27,6 +28,7 @@ const checkChain = () => {
     State.update({ isCorrectChain: true });
   }
 };
+checkChain();
 
 if (state.isCorrectChain == false) {
   return (
