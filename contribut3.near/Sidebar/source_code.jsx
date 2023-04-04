@@ -163,6 +163,7 @@ const NavContainer = styled.div`
 return (
   <NavContainer>
     {navItem({ text: "Discover", icon: discover, id: "" })}
+    {navItem({ text: "Pulse", icon: discover, id: "pulse" })}
     {navItem({
       text: "Inbox",
       icon: mail,
@@ -172,18 +173,23 @@ return (
     {navItem({
       text: "Manage",
       icon: org,
-      id: "entities",
+      id: "manage",
     })}
     {navItem({
-      text: "My graph",
+      text: "Profile",
       icon: graph,
-      id: "contributions",
+      id: "profile",
+    })}
+    {navItem({
+      text: "Learn",
+      icon: graph,
+      id: "learn",
     })}
     <hr className="border-2" />
     {navItem({
-      text: "About this app",
+      text: "Help",
       icon: about,
-      id: "about",
+      id: "help",
     })}
     <NavItem href="/#/">
       <svg
@@ -201,7 +207,7 @@ return (
           stroke-linejoin="round"
         />
       </svg>
-      <span>Exit application</span>
+      <span>Exit app</span>
     </NavItem>
   </NavContainer>
 );
