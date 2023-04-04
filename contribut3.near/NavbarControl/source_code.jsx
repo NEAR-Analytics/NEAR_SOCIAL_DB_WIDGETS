@@ -1,4 +1,5 @@
-const creditId = "credits.contribut3.near";
+const ownerId = "contribut3.near";
+const creditId = `credits.${ownerId}`;
 
 State.init({
   credits: null,
@@ -109,4 +110,11 @@ const stats = (
       />
     </svg>
   </Stats>
+);
+
+const actions = (
+  <ActionArea>
+    {stats}
+    <Widget src={`${ownerId}/widget/CreateNewInput`} />
+  </ActionArea>
 );
