@@ -279,6 +279,12 @@ const Stats = styled.div`
   gap: var(--medium-gap);
   text-align: center;
   background: var(--sand2);
+
+  @media (max-width: 900px) {
+    > div {
+      width: 50%;
+    }
+  }
 `;
 
 return (
