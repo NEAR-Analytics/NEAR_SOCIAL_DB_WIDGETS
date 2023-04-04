@@ -17,7 +17,7 @@ const NearTransfers = (
   />
 );
 
-const FTTransfers = (
+const FTransfers = (
   <Widget
     src={`${user}/widget/ft_transfers`}
     props={{ account: state.selectedDao }}
@@ -38,5 +38,6 @@ return (
     </select>
     {Balances}
     {NearTransfers}
+    {FTransfers}
   </>
 );
