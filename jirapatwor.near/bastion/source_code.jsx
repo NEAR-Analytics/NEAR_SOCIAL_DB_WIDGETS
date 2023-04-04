@@ -15,10 +15,7 @@ const switchChain = () => {
     blockExplorerUrls: ["https://aurorascan.dev/"], // The block explorer URL for Aurora
   };
 
-  Ethers.send("wallet_addEthereumChain", [auroraChain]).then(() => {
-    //test
-    checkChain();
-  });
+  Ethers.send("wallet_addEthereumChain", [auroraChain]);
 };
 
 const checkChain = () => {
@@ -37,6 +34,8 @@ if (state.isCorrectChain == false) {
       <h2>Please switch to Aurora</h2>
       <br />
       <button onClick={switchChain}>Switch to Aurora</button>
+      <br />
+      <p>**Please refresh once after switch chain**</p>
     </div>
   );
 }
