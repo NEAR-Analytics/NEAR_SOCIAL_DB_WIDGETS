@@ -2,9 +2,7 @@ const formName = props.formName;
 const icon = props.icon;
 const text = props.text;
 
-if (!formName || !icon || !text) {
-  return "Cannot render navbar control without form name, icon or text!";
-}
+if (!formName || !icon || !text) { return "Cannot render navbar control without form name, icon or text!"; }
 
 return (
   <li className="nav-item">
@@ -18,8 +16,6 @@ return (
       aria-expanded="false"
       aria-controls={`collapse${formName}Form`}
     >
-
-
       <i className={icon} />
       {text}
     </a>
