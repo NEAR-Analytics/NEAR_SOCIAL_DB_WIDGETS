@@ -162,6 +162,7 @@ return (
           textDecoration: "none",
           padding: 0,
           margin: 0,
+          wordBreak: "break-all",
           textAlign: "left",
         }}
       >
