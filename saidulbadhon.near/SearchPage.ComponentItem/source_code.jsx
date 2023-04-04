@@ -101,12 +101,12 @@ const Button = styled.button`
   }
 `;
 const Button2 = styled.button`
-  background-color: ${props.theme.buttonColor}11;
+  background-color: ${props.theme.buttonColor}22;
   color: ${props.theme.buttonColor};
   width: 100%;
-  height: 40px;
-  width: 40px;
-  border-radius:20px;
+  height: 35px;
+  width: 35px;
+  border-radius:4px;
 
   outline:none;
   transition: all .2s ease-in-out;
@@ -115,7 +115,7 @@ const Button2 = styled.button`
   font-weight: 600;
 
   &:hover{
-    background-color: ${props.theme.buttonColor}33;
+    background-color: ${props.theme.buttonColor}44;
   color: ${props.theme.buttonColor};
     outline:none;
     border:none;
