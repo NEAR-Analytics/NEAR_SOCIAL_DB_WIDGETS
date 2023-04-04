@@ -129,7 +129,15 @@ return (
         {metadata.name || widgetName}
       </a>
 
-      <div style={{ display: "flex", alignItems: "center" }}>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          marginBottom: 8,
+          gap: 8,
+        }}
+      >
         <a
           href={detailsUrl}
           style={{
@@ -137,10 +145,11 @@ return (
             fontWeight: 400,
             color: props.theme.textColor3,
             textDecoration: "none",
-            marginBottom: 8,
+            padding: 0,
+            margin: 0,
           }}
         >
-          @{accountId}
+          @{accountId} •
         </a>
         <Widget
           src="saidulbadhon.near/widget/SearchPage.ComponentItem.TimeAgo"
