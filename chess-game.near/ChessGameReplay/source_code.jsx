@@ -15,6 +15,7 @@ const BoardView = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  max-width: 100vw;
 `;
 const LoadingWrapper = styled.div`
   display: flex;
@@ -32,13 +33,13 @@ const Loading = styled.div`
   animation: rotate 800ms linear infinite;
 
   @keyframes rotate {
-		0% {
-			transform: rotate(0deg);
-		}
-		100% {
-			transform: rotate(360deg);
-		}
-	}
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 `;
 
 const fetchOptions = {
@@ -122,8 +123,9 @@ const GameInfo = styled.div`
   flex-direction: column;
   justify-content: center;
   font-size: 1.4rem;
-  margin: 1rem;
+  margin: 1rem 0.3rem;
   width: 350px;
+  max-width: calc(100% - 0.6rem);
 `;
 const Button = styled.button`
   display: flex;
