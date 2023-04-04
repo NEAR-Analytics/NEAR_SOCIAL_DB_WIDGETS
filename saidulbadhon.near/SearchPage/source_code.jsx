@@ -61,7 +61,7 @@ return (
         width: "100%",
         display: "flex",
         flexDirection: "column",
-        // gap: 16,
+        gap: 8,
         // gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
       }}
     >
