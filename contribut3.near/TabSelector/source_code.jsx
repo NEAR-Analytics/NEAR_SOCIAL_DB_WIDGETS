@@ -53,6 +53,8 @@ const Container = styled.div`
   justify-content: center;
   align-items: flex-start;
   overflow: hidden;
+  border-bottom: 1px solid #eceef0;
+  width: 100%;
 `;
 
 return (
