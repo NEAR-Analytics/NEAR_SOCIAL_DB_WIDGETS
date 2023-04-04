@@ -247,6 +247,10 @@ const NavContainer = styled.div`
   margin-right: 2.5em;
 `;
 
+const Border = styled.hr`
+  background-color: #eceef0;
+`;
+
 return (
   <NavContainer>
     {navItem({ text: "Discover", icon: discover, id: "home" })}
