@@ -293,7 +293,7 @@ return (
         Trusted by Web3’s MOST innovative teams
       </Text>
 
-      <Flex gap="var(--medium-gap)" wrap="wrap" justifyContent="center">
+      <Flex gap="var(--large-gap)" wrap="wrap" justifyContent="center">
         {web3Teams.map((team) => {
           return (
             <LogoLink href={team.url} target="_blank" title={team.name}>
