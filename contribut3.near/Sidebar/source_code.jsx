@@ -232,7 +232,7 @@ const CountIndicator = styled.div`
 const navItem = ({ text, icon, id, count }) => (
   <NavItem
     selected={id === props.tab}
-    href={`/#/${ownerId}/widget/Index${!!id ? "?tab=" + id : ""}`}
+    href={`/#/${ownerId}/widget/Index?tab=${id}`}
     onClick={() => props.update({ tab: id, content: "", search: "" })}
   >
     {icon}
@@ -248,7 +248,7 @@ const NavContainer = styled.div`
 
 return (
   <NavContainer>
-    {navItem({ text: "Discover", icon: discover, id: "" })}
+    {navItem({ text: "Discover", icon: discover, id: "home" })}
     {navItem({ text: "Pulse", icon: pulse, id: "pulse" })}
     {navItem({
       text: "Inbox",
