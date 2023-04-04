@@ -70,7 +70,7 @@ const GenericTable = (
     props={{
       title: "Contract metrics",
       columns,
-      data: state.txs,
+      data: state.displayedTxs,
       nextPage,
       previousPage,
       offset: state.offset,
