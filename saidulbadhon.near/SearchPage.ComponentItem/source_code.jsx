@@ -157,7 +157,7 @@ return (
             blockHeight: props.blockHeight,
             keyPath: `${accountId}/widget/${widgetName}`,
             style: {
-              color: props.theme.textColor2,
+              color: props.theme.textColor3,
               margin: 0,
               fontSize: 14,
               fontWeight: 600,
