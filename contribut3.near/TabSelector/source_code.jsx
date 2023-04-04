@@ -19,7 +19,6 @@ const TabItem = styled.a`
   margin: 0;
   text-decoration: none;
   transition: background-color 0.2s ease-in-out;
-  background-color: ${({ selected }) => (selected ? "#f2f4f7" : "white")};
   ${({ selected }) => selected ? "border-bottom: 4px solid #0091ff;" : ""}
 
   &:hover {
@@ -51,7 +50,6 @@ const Container = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  border: 1px solid #d0d5dd;
   overflow: hidden;
   border-radius: 8px;
 `;
