@@ -2,9 +2,9 @@ const { selectedTokenId, amount, hasError, status } = state;
 
 // check if correct chain
 const { chainId } = Ethers.getNetwork();
-const chainIdToSwitch = "0x4D5DF6bE";
+const chainIdToSwitch = "0x4E97D6A2";
 const switchChain = () => {
-  Ethers.send("wallet_switchEthereumChain", [{ chainId: chainIdToSwitch }]);
+  // Ethers.send("wallet_switchEthereumChain", [{ chainId: chainIdToSwitch }]);
   // if (window.ethereum) {
   //   window.ethereum
   //     .request({
@@ -20,6 +20,26 @@ const switchChain = () => {
   // } else {
   //   console.log("Please install MetaMask or another compatible wallet.");
   // }
+  const auroraChain = {
+    chainId: "0x4E97D6A2", // The chain ID for Aurora (1313161554 in hexadecimal)
+    chainName: "Aurora", // The name of the Aurora chain
+    nativeCurrency: {
+      name: "Aurora ETH",
+      symbol: "AETH",
+      decimals: 18,
+    },
+    rpcUrls: ["https://rpc.aurora.dev"], // The RPC endpoint for the Aurora chain
+    blockExplorerUrls: ["https://explorer.aurora.dev"], // The block explorer URL for Aurora
+  };
+
+  Ethers.send("wallet_addEthereumChain", [auroraChain]);
+  // .then(() => {
+  //   // Once the Aurora chain is added, you can switch to it
+  //   Ethers.send("wallet_switchEthereumChain", [{ chainId: "0x4E97D6A2" }]);
+  // })
+  // .catch((error) => {
+  //   console.error("An error occurred while adding the Aurora chain:", error);
+  // });
 };
 
 if (chainId !== 1313161554) {
