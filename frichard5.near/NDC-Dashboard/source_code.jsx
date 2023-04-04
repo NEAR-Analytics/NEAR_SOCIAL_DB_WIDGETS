@@ -1,6 +1,8 @@
+// Constants
 const widgetProvider = "frichard5.near";
 const refUrl = "https://api.stats.ref.finance/api/ft";
 
+// Style
 const theme = {
   main: "#FFD50D",
   secondaryPink: "#F29BC0",
@@ -12,11 +14,13 @@ const DashboardContainer = styled.div`
     padding: 24px;
 `;
 
+// Fetch
 const ftList = fetch(refUrl);
 State.init({
   selectedDao: "marketing.sputnik-dao.near",
 });
 
+// Components
 const Balances = (
   <Widget
     src={`${widgetProvider}/widget/account_balance`}
@@ -55,12 +59,14 @@ const ContractMetrics = (
   />
 );
 
+// State function
 const selectDao = ({ target: { value } }) => {
   State.update({ selectedDao: value });
 };
 
 return (
   <DashboardContainer theme={theme}>
+    <image src="https://ipfs.near.social/ipfs/bafkreihbisodby5rjawdzxqokdbqbrcskp2kayrqcos73smdba2svzciym" />
     <h1>NDC Dashboard</h1>
     <select onChange={selectDao}>
       <option value="marketing.sputnik-dao.near">Marketing</option>
