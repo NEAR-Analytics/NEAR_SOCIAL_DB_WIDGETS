@@ -18,6 +18,7 @@ const chainIdToSwitch = "0x4E97D6A2";
 const switchChain = () => {
   const auroraChain = {
     chainId: "0x4e454152", // The chain ID for Aurora (1313161554 in hexadecimal)
+    chainName: "Aurora", // The name of the Aurora chain
     rpcUrls: ["https://mainnet.aurora.dev"], // The RPC endpoint for the Aurora chain
     blockExplorerUrls: ["https://aurorascan.dev/"], // The block explorer URL for Aurora
   };
