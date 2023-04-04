@@ -12,10 +12,9 @@ console.log(items);
 return (
   <div
     style={{
-      padding: 8,
       display: "flex",
       flexDirection: "column",
-      alignItems: "center",
+      alignItems: "flex-start",
       gap: 8,
       width: "100%",
     }}
@@ -34,26 +33,30 @@ return (
       </h1>
     </div>
       */}
-    <p
-      style={{
-        color: props.theme.textColor2,
-        fontWeight: 400,
-        padding: 0,
-        margin: 0,
-      }}
+    <div
+      style={{ padding: 8, gap: 8, display: "flex", flexDirection: "column" }}
     >
-      Discover the latest widgets from the NEAR community.
-    </p>
-
-    <div style={{ maxWidth: 500, width: "100%" }}>
-      <Widget
-        src="saidulbadhon.near/widget/SearchPage.Searchbar"
-        props={{
-          limit: 21,
-          onChange: onSearchChange,
-          theme: props.theme,
+      <p
+        style={{
+          color: props.theme.textColor2,
+          fontWeight: 400,
+          padding: 0,
+          margin: 0,
         }}
-      />
+      >
+        Discover the latest widgets from the NEAR community.
+      </p>
+
+      <div style={{ maxWidth: 500, width: "100%" }}>
+        <Widget
+          src="saidulbadhon.near/widget/SearchPage.Searchbar"
+          props={{
+            limit: 21,
+            onChange: onSearchChange,
+            theme: props.theme,
+          }}
+        />
+      </div>
     </div>
 
     <div
