@@ -139,7 +139,7 @@ return (
     </Logo>
 
     <TopSection>
-      <div
+      {/*<div
         style={{
           display: "flex",
           alignItems: "center",
@@ -147,38 +147,38 @@ return (
           wdith: "100%",
           gap: 8,
         }}
+      >*/}
+      <a
+        href={detailsUrl}
+        style={{
+          fontSize: 14,
+          fontWeight: 700,
+          color: props.theme.textColor,
+          textDecoration: "none",
+
+          wordBreak: "break-all",
+          textAlign: "left",
+        }}
       >
-        <a
-          href={detailsUrl}
-          style={{
-            fontSize: 14,
-            fontWeight: 700,
-            color: props.theme.textColor,
-            textDecoration: "none",
+        {metadata.name || widgetName}
+      </a>
 
-            wordBreak: "break-all",
-            textAlign: "left",
-          }}
-        >
-          {metadata.name || widgetName} •
-        </a>
-
-        <Widget
-          src="saidulbadhon.near/widget/SearchPage.ComponentItem.TimeAgo"
-          props={{
-            blockHeight: props.blockHeight,
-            keyPath: `${accountId}/widget/${widgetName}`,
-            style: {
-              color: props.theme.textColor3,
-              margin: 0,
-              fontSize: 12,
-              fontWeight: 600,
-              marginTop: 1,
-            },
-            theme: props.theme,
-          }}
-        />
-      </div>
+      {/* • </div>*/}
+      <Widget
+        src="saidulbadhon.near/widget/SearchPage.ComponentItem.TimeAgo"
+        props={{
+          blockHeight: props.blockHeight,
+          keyPath: `${accountId}/widget/${widgetName}`,
+          style: {
+            color: props.theme.textColor3,
+            margin: 0,
+            fontSize: 12,
+            fontWeight: 600,
+            marginTop: 1,
+          },
+          theme: props.theme,
+        }}
+      />
 
       <a
         href={detailsUrl}
@@ -200,9 +200,9 @@ return (
           display: "flex",
           gap: 4,
           flexWrap: "wrap",
-          marginTop: 8,
+          //   marginTop: 8,
 
-          justifyContent: "center",
+          justifyContent: "flex-start",
         }}
       >
         {tags.length > 0 &&
@@ -210,18 +210,18 @@ return (
             <p
               style={{
                 marginBottom: 0,
-                backgroundColor:
-                  props.theme.name === "dark"
-                    ? "rgba(255,255,255,.075)"
-                    : "rgba(0,0,0,.075)",
+                // backgroundColor:
+                //   props.theme.name === "dark"
+                //     ? "rgba(255,255,255,.075)"
+                //     : "rgba(0,0,0,.075)",
                 color: props.theme.textColor,
-                padding: "4px 8px",
+                // padding: "4px 8px",
                 fontWeight: 500,
                 borderRadius: 4,
                 fontSize: 12,
               }}
             >
-              {makeUpperCase(tag)}
+              {makeUpperCase(tag)},
             </p>
           ))}
       </div>
