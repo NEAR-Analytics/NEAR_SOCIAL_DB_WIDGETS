@@ -9,6 +9,7 @@ if (!formName || !icon || !text) {
 return (
   <li className="nav-item">
     <a>
+      {" "}
       <i className={icon} />
       {text}
     </a>
