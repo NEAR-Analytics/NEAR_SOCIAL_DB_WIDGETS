@@ -67,11 +67,11 @@ const TimeAgoContainer = styled.div`
   z-index: 10;
 `;
 
+// <TimeAgoContainer>
+// <i className="bi bi-clock" style={{ fontSize: 14 }}></i>{" "}
 return (
-  <TimeAgoContainer>
-    <i className="bi bi-clock" style={{ fontSize: 14 }}></i>{" "}
-    <p style={props.style} title={title}>
-      {timeAgo(Date.now() - timeMs)} ago
-    </p>
-  </TimeAgoContainer>
+  <p style={props.style} title={title}>
+    {timeAgo(Date.now() - timeMs)} ago
+  </p>
 );
+// </TimeAgoContainer>
