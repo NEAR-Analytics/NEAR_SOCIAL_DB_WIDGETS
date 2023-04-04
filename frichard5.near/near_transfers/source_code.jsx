@@ -37,7 +37,7 @@ const test = () => {
 const GenericTable = (
   <Widget
     src={`${user}/widget/generic_table`}
-    props={{ columns, elements: state.txs, test }}
+    props={{ columns, data: state.txs, test }}
   />
 );
 
