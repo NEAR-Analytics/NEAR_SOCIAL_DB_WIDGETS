@@ -3,7 +3,7 @@ const apiUrl = `https://api.pikespeak.ai/account/balance/${account}`;
 const publicApiKey = "36f2b87a-7ee6-40d8-80b9-5e68e587a5b5";
 
 const numberWithCommas = (x) => {
-  return JSON.stringify(x).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return x.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
 
 const contractsBalance = fetch(apiUrl, {
