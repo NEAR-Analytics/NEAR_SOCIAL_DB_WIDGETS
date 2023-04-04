@@ -14,6 +14,7 @@ const amountsFormatter = (amounts) => {
   });
   return tds;
 };
+
 const columns = [
   {
     id: "day",
@@ -42,16 +43,25 @@ const columns = [
 const resPerPage = 10;
 
 State.init({
+  displayedTxs: [],
   txs: [],
   offset: 0,
 });
 
 const nextPage = () => {
-  State.update({ offset: state.offset + resPerPage });
+  const currentOffset = state.offset + resPerPage;
+  State.update({
+    offset: currentOffset,
+    displayedTxs: nearTransfers.body.slice(currentOffset, resPerPage - 1),
+  });
 };
 
 const previousPage = () => {
-  State.update({ offset: state.offset - resPerPage });
+  const currentOffset = state.offset - resPerPage;
+  State.update({
+    offset: currentOffset,
+    displayedTxs: nearTransfers.body.slice(currentOffset, resPerPage - 1),
+  });
 };
 
 const GenericTable = (
@@ -80,9 +90,13 @@ const fetchTransfers = (offset) => {
       },
     }
   );
-  nearTransfers.body && State.update({ txs: nearTransfers.body });
+  nearTransfers.body &&
+    State.update({
+      txs: nearTransfers.body,
+      displayedTxs: nearTransfers.body.slice(0, resPerPage - 1),
+    });
 };
-fetchTransfers(state.offset);
+fetchTransfers();
 
 const rows = [];
 
