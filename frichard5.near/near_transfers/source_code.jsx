@@ -1,10 +1,40 @@
+const user = "frichard5.near";
 const account = props.account || "foundation.near";
 const apiUrl = `https://api.pikespeak.ai/account/near-transfer/${account}`;
 const publicApiKey = "36f2b87a-7ee6-40d8-80b9-5e68e587a5b5";
+const columns = [
+  {
+    id: "timestamp",
+    label: "date",
+  },
+  {
+    id: "sender",
+    label: "sender",
+  },
+  {
+    id: "receiver",
+    label: "receiver",
+  },
+  {
+    id: "amount",
+    label: "amount",
+  },
+  {
+    id: "transaction_id",
+  },
+];
 
 State.init({
   txs: [],
 });
+
+const GenericTable = (
+  <Widget
+    src={`${user}/widget/generic_table`}
+    props={{ columns, elements: state.txs }}
+  />
+);
+
 let transactions = [];
 const fetchTransfers = (offset) => {
   const nearTransfers = fetch(apiUrl + `?offset=${offset}`, {
@@ -20,7 +50,7 @@ const fetchTransfers = (offset) => {
   }
 };
 fetchTransfers(0);
-console.log(transactions);
+
 const rows = [];
 
-return <div>Hello World</div>;
+return <div>{GenericTable}</div>;
