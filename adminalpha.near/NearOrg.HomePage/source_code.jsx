@@ -272,8 +272,8 @@ const Develop_Preview = styled.div`
 
 const Stats = styled.div`
   display: grid;
-  gap: var(--large-gap);
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: var(--medium-gap);
   padding: var(--medium-gap);
   text-align: center;
   background: var(--sand2);
@@ -284,6 +284,8 @@ const Stats = styled.div`
 
   @media (max-width: 600px) {
     grid-template-columns: 1fr;
+    gap: var(--large-gap);
+    padding: var(--large-gap);
   }
 `;
 
