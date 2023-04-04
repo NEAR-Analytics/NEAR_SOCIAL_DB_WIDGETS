@@ -1,7 +1,6 @@
 const { selectedTokenId, amount, hasError, status } = state;
 
 // check if correct chain
-const { chainId } = Ethers.getNetwork();
 const chainIdToSwitch = "0x4E97D6A2";
 const switchChain = () => {
   const auroraChain = {
@@ -21,6 +20,7 @@ const switchChain = () => {
 };
 
 const checkChain = () => {
+  const { chainId } = Ethers.getNetwork();
   if (chainId !== 1313161554) {
     State.update({ isCorrectChain: false });
   } else {
