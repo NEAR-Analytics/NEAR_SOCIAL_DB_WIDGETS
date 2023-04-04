@@ -55,4 +55,9 @@ fetchTransfers(offset);
 
 const rows = [];
 
-return <div>{GenericTable}</div>;
+return (
+  <div>
+    {GenericTable}
+    <button onClick={test}>next 50</button>
+  </div>
+);
