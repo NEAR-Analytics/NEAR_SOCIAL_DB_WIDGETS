@@ -120,7 +120,7 @@ const Flex = styled.div`
 const Section = styled.div`
   display: flex;
   padding: calc(var(--section-gap) / 2) 16px;
-  gap: ${(p) => p.gap ?? "var(--medium-gap"};
+  gap: ${(p) => p.gap ?? "var(--medium-gap)"};
   flex-direction: column;
   align-items: ${(p) => (p.center ? "center" : undefined)};
   justify-content: ${(p) => (p.center ? "center" : undefined)};
