@@ -194,6 +194,10 @@ const ContentWithImage = styled.div`
   &:nth-child(odd) {
     flex-direction: ${(p) => (p.alternate ? "row-reverse" : undefined)};
   }
+
+  @media (max-width: 900px) {
+    flex-direction: column !important;
+  }
 `;
 
 const ContentWithImage_Image = styled.div`
