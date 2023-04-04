@@ -22,7 +22,7 @@ const Navbar = styled.nav`
   align-items: center;
   justify-content: space-between;
   background: #fff;
-  border-bottom: 1px solid #ECEEF0;
+  border-bottom: 1px solid #eceef0;
   padding: 0.75em 0;
   flex: none;
   order: 0;
