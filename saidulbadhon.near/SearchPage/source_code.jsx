@@ -34,7 +34,14 @@ return (
       </h1>
     </div>
       */}
-    <p style={{ color: props.theme.textColor2, fontWeight: 400 }}>
+    <p
+      style={{
+        color: props.theme.textColor2,
+        fontWeight: 400,
+        padding: 0,
+        margin: 0,
+      }}
+    >
       Discover the latest widgets from the NEAR community.
     </p>
 
