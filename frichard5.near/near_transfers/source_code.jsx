@@ -43,11 +43,13 @@ const GenericTable = (
   <Widget
     src={`${user}/widget/generic_table`}
     props={{
+      title: "NEAR transfers",
       columns,
       data: state.txs,
       nextPage,
       previousPage,
       offset: state.offset,
+      resPerPage,
     }}
   />
 );
