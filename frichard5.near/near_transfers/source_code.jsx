@@ -24,6 +24,7 @@ const columns = [
   {
     id: "amount",
     label: "amount",
+    formatter: (d) => Number(d["amount"]).toFixed(2),
   },
   {
     id: "transaction_id",
