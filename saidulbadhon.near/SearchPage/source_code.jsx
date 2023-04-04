@@ -20,6 +20,7 @@ return (
       width: "100%",
     }}
   >
+    {/*
     <div
       style={{
         display: "flex",
@@ -28,13 +29,14 @@ return (
         gap: 4,
       }}
     >
-      {/*<h1 style={{ color: props.theme.textColor, fontWeight: 700 }}>
+      <h1 style={{ color: props.theme.textColor, fontWeight: 700 }}>
         BOS Widgets
-      </h1>*/}
-      <p style={{ color: props.theme.textColor2, fontWeight: 400 }}>
-        Discover the latest widgets from the NEAR community.
-      </p>
+      </h1>
     </div>
+      */}
+    <p style={{ color: props.theme.textColor2, fontWeight: 400 }}>
+      Discover the latest widgets from the NEAR community.
+    </p>
 
     <div style={{ maxWidth: 500, width: "100%" }}>
       <Widget
@@ -50,9 +52,10 @@ return (
     <div
       style={{
         width: "100%",
-        display: "grid",
-        gap: 16,
-        gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+        display: "flex",
+        flexDirection: "column",
+        // gap: 16,
+        // gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
       }}
     >
       {items.length > 0 &&
