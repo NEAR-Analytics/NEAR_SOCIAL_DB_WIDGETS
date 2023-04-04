@@ -34,7 +34,7 @@ if (chainId !== 1313161554) {
 
 // check if account connected
 const sender = Ethers.send("eth_requestAccounts", [])[0];
-if (!sender)
+if (!sender) {
   return (
     <div>
       <h2>Please login first</h2>
@@ -42,6 +42,7 @@ if (!sender)
       <Web3Connect connectLabel="Connect with Web3" />
     </div>
   );
+}
 
 // fetch data from lens
 const LenABI = fetch(
@@ -149,11 +150,7 @@ if (
   !state.cTokenMetadataAll ||
   !state.cTokenBalancesAll
 )
-  return (
-    <div>
-      <h2>Loading...</h2>
-    </div>
-  );
+  return;
 
 const expandToken = (value, decimals) => {
   return new Big(value).mul(new Big(10).pow(decimals));
