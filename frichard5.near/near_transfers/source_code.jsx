@@ -28,10 +28,14 @@ State.init({
   txs: [],
 });
 
+const test = () => {
+  console.log("HEYEYEYYE");
+};
+
 const GenericTable = (
   <Widget
     src={`${user}/widget/generic_table`}
-    props={{ columns, elements: state.txs }}
+    props={{ columns, elements: state.txs, test }}
   />
 );
 
