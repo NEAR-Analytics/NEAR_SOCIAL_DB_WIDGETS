@@ -1,5 +1,9 @@
 const { selectedTokenId, amount, hasError, status } = state;
 
+// check if correct chain
+const { chainId } = Ethers.getNetwork();
+return chainId;
+
 // check if account connected
 const sender = Ethers.send("eth_requestAccounts", [])[0];
 if (!sender)
