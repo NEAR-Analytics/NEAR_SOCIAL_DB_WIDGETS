@@ -10,6 +10,13 @@ const Balances = (
   />
 );
 
+const NearTransfers = (
+  <Widget
+    src={`${user}/widget/near_transfers`}
+    props={{ account: state.selectedDao }}
+  />
+);
+
 const selectDao = ({ target: { value } }) => {
   State.update({ selectedDao: value });
 };
@@ -23,5 +30,6 @@ return (
       <option value="neardevgov.sputnik-dao.near">Gov</option>
     </select>
     {Balances}
+    {NearTransfers}
   </>
 );
