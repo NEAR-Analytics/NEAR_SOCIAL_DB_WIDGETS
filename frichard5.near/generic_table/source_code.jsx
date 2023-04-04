@@ -4,6 +4,7 @@ const columns = props.columns || [
 const data = props.data || [{ data: "no data props" }];
 const nextPage = props.nextPage;
 const previousPage = props.previousPage;
+const resPerPage = props.resPerPage;
 
 let rows = [];
 
@@ -28,7 +29,11 @@ return (
       </tr>
       {rows}
     </table>
-    <button onClick={previousPage}>previous 50</button>
-    <button onClick={nextPage}>next 50</button>
+    {nextPage && previousPage && resPerPage && (
+      <div>
+        <button onClick={previousPage}>previous {resPerPage}</button>
+        <button onClick={nextPage}>next {resPerPage}</button>
+      </div>
+    )}
   </div>
 );
