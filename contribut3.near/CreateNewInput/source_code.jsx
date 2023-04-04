@@ -121,20 +121,19 @@ const DropdownList = styled.ul`
 `;
 
 const MenuIcon = styled.button`
+  color: #fff;
+  cursor: pointer;
   display: flex;
   flex-direction: row;
-  background-color: #7f56d9;
   justify-content: center;
   align-items: center;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: 5px;
-  color: white;
-  cursor: pointer;
-  padding: 0.4em 1em;
-
-  &:hover {
-    background-color: #7050c0;
-  }
+  padding: .5em 1em;
+  gap: .5em;
+  background: #11181c;
+  border-radius: 50px;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
 `;
 
 const DropdownContainer = styled.div`
