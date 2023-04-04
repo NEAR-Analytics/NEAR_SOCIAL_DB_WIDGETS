@@ -8,17 +8,13 @@ const resPerPage = props.resPerPage;
 const title = props.title;
 const offset = props.offset;
 
+const formatRow = (r) => (r.formatter ? r.formatter(r) : <td>{d[c.id]}</td>);
+
 let rows = [];
 
 data &&
   data.forEach((d) => {
-    rows.push(
-      <tr>
-        {columns.map((c) => (
-          <td>{d[c.id]}</td>
-        ))}
-      </tr>
-    );
+    rows.push(<tr>{columns.map((c) => formatRow(d[c.id]))}</tr>);
   });
 
 return (
