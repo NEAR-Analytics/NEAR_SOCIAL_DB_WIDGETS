@@ -2,11 +2,7 @@ const columns = props.columns || [
   { label: "props columns missing", id: "data" },
 ];
 const data = props.data || [{ data: "no data props" }];
-const nextPage = props.nextPage;
-const previousPage = props.previousPage;
-const resPerPage = props.resPerPage;
-const title = props.title;
-const offset = props.offset;
+const { title, nextPage, previousPage, offset, resPerPage } = props;
 
 const formatRow = (data, column) => {
   return column.formatter ? (
