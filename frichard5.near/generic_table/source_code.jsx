@@ -8,15 +8,19 @@ const resPerPage = props.resPerPage;
 const title = props.title;
 const offset = props.offset;
 
-const formatRow = (r) => {
-  return <td>{r}</td>;
+const formatRow = (data, column) => {
+  return column.formatter ? (
+    column.formatter(data[column.id])
+  ) : (
+    <td>{data[column.id]}</td>
+  );
 };
 
 let rows = [];
 
 data &&
   data.forEach((d) => {
-    rows.push(<tr>{columns.map((c) => formatRow(d[c.id]))}</tr>);
+    rows.push(<tr>{columns.map((c) => formatRow(d, c))}</tr>);
   });
 
 return (
