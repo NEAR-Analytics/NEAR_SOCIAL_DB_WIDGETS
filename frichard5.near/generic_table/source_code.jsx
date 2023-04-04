@@ -5,11 +5,7 @@ const data = props.data || [{ data: "no data props" }];
 const { title, nextPage, previousPage, offset, resPerPage } = props;
 
 const formatRow = (data, column) => {
-  return column.formatter ? (
-    column.formatter(data[column.id])
-  ) : (
-    <td>{data[column.id]}</td>
-  );
+  return column.formatter ? column.formatter(data) : <td>{data[column.id]}</td>;
 };
 
 let rows = [];
