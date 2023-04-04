@@ -1,3 +1,15 @@
+let totalComponents = 0;
+
+const componentsData = Social.keys("*/widget/*", "final", {
+  return_type: "BlockHeight",
+});
+
+if (componentsData) {
+  Object.keys(componentsData).forEach((accountId) => {
+    totalComponents += Object.keys(componentsData[accountId].widget).length;
+  });
+}
+
 const ipfsImages = {
   textArrow: "bafkreidcvglzeenk2wd6y2gh5skiuc62fcdvo3qikjosejobclcekaqwru",
   logos: {
@@ -51,74 +63,74 @@ function returnIpfsImage(cfid) {
 }
 
 const Wrapper = styled.div`
-    padding: 82px 0;
+  padding: 82px 0;
 `;
 
 const H1 = styled.h1`
-    font-family: 'FK Grotesk', 'Mona Sans', sans-serif;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 80px;
-    line-height: 1.1;
-    text-align: center;
-    letter-spacing: -0.015em;
-    color: var(--sand12);
-    margin: 0;
+  font-family: "FK Grotesk", "Mona Sans", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 80px;
+  line-height: 1.1;
+  text-align: center;
+  letter-spacing: -0.015em;
+  color: var(--sand12);
+  margin: 0;
 `;
 
 const Text = styled.p`
-    font: var(--${(p) => p.size ?? "text-base"});
-    font-weight: ${(p) => p.fontWeight};
-    color: var(--${(p) => p.color ?? "sand10"});
-    margin: 0;
+  font: var(--${(p) => p.size ?? "text-base"});
+  font-weight: ${(p) => p.fontWeight};
+  color: var(--${(p) => p.color ?? "sand10"});
+  margin: 0;
 
-    [href] {
-      color: var(--violet8);
-      &:hover {
-        color: var(--violet11);
-        text-decoration: none;
-      }
-      &:focus {
-        text-decoration: underline;
-        outline: none;
-      }
+  [href] {
+    color: var(--violet8);
+    &:hover {
+      color: var(--violet11);
+      text-decoration: none;
     }
+    &:focus {
+      text-decoration: underline;
+      outline: none;
+    }
+  }
 `;
 
 const Flex = styled.div`
-    display: flex;
-    gap: ${(p) => p.gap};
-    align-items: ${(p) => p.alignItems};
-    justify-content: ${(p) => p.justifyContent};
-    flex-direction: ${(p) => p.direction ?? "row"};
-    flex-wrap: ${(p) => p.wrap ?? "nowrap"};
+  display: flex;
+  gap: ${(p) => p.gap};
+  align-items: ${(p) => p.alignItems};
+  justify-content: ${(p) => p.justifyContent};
+  flex-direction: ${(p) => p.direction ?? "row"};
+  flex-wrap: ${(p) => p.wrap ?? "nowrap"};
 `;
 
 const Section = styled.div`
-    display: flex;
-    padding: 82px 0;
-    gap: 48px;
-    flex-direction: column;
-    align-items: ${(p) => (p.center ? "center" : undefined)};
-    justify-content: ${(p) => (p.center ? "center" : undefined)};
-    text-align: ${(p) => (p.center ? "center" : undefined)};
+  display: flex;
+  padding: 82px 0;
+  gap: 48px;
+  flex-direction: column;
+  align-items: ${(p) => (p.center ? "center" : undefined)};
+  justify-content: ${(p) => (p.center ? "center" : undefined)};
+  text-align: ${(p) => (p.center ? "center" : undefined)};
 `;
 
 const LogoLink = styled.a`
-    display: block;
-    height: 28px;
-    color: var(--sand10);
+  display: block;
+  height: 28px;
+  color: var(--sand10);
 
-    img {
-        display: block;
-        height: 100%;
-    }
+  img {
+    display: block;
+    height: 100%;
+  }
 `;
 
 const VerticalBorder = styled.div`
-    height: 82px;
-    width: 1px;
-    background: linear-gradient(to bottom, var(--violet1), var(--violet10))
+  height: 82px;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--violet1), var(--violet10));
 `;
 
 const Icon = styled.div`
@@ -145,7 +157,7 @@ const ContentWithImage = styled.div`
   gap: 122px;
 
   &:nth-child(odd) {
-    flex-direction: ${(p) => (p.alternate ? "row-reverse" : undefined)}
+    flex-direction: ${(p) => (p.alternate ? "row-reverse" : undefined)};
   }
 `;
 
@@ -173,6 +185,43 @@ const ContentBlock_Text = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
+`;
+
+const Develop = styled.div`
+  display: flex;
+  gap: 112px;
+  align-items: center;
+`;
+
+const Develop_Content = styled.div`
+  display: flex;
+  gap: 48px;
+  flex-direction: column;
+  width: 100%;
+`;
+
+const Develop_TabButton = styled.button`
+  all: unset;
+  display: inline-block;
+  font: inherit;
+  color: ${(p) => `var(--${p.color})`};
+  transition: all 200ms;
+  border-bottom: 2px solid ${(p) =>
+    p.active ? `var(--${p.color})` : "hsla(0, 0%, 100%, 0)"};
+  box-shadow: 0 0 0 0px var(--violet4);
+
+  &:hover {
+    border-color: ${(p) => `var(--${p.color})`};
+  }
+  &:focus {
+    box-shadow: 0 0 0 4px var(--violet4);
+  }
+`;
+
+const Develop_Preview = styled.div`
+  width: 100%;
+  height: 200px;
+  background: var(--sand6);
 `;
 
 return (
@@ -395,6 +444,37 @@ return (
           </AspectRatio.Root>
         </ContentWithImage_Image>
       </ContentWithImage>
+    </Section>
+
+    <Section>
+      <Develop>
+        <Develop_Content>
+          <Flex gap="16px" direction="column">
+            <Text as="h2" size="text-l" fontWeight="600" color="violet10">
+              Develop
+            </Text>
+            <VerticalBorder />
+            <Text size="text-2xl" fontWeight="600" color="sand12">
+              Don’t reinvent the wheel. Reinvent
+              <span style={{ color: "var(--sand9)" }}>
+                <Develop_TabButton active color="red10">
+                  social
+                </Develop_TabButton>
+                , <Develop_TabButton color="violet10">gaming</Develop_TabButton>
+                , <Develop_TabButton color="green10">finance</Develop_TabButton>
+              </span>
+            </Text>
+          </Flex>
+
+          <Text size="text-2xl" fontWeight="500">
+            Weave new experiences with over{" "}
+            <span style={{ color: "var(--sand12)" }}>{totalComponents}</span>{" "}
+            Open Web Components built on shared, persistent data.
+          </Text>
+        </Develop_Content>
+
+        <Develop_Preview />
+      </Develop>
     </Section>
 
     <Section>
