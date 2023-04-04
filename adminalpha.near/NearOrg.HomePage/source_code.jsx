@@ -68,15 +68,15 @@ const Wrapper = styled.div`
 `;
 
 const H1 = styled.h1`
-  font-family: "FK Grotesk", "Mona Sans", sans-serif;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 80px;
-  line-height: 1.1;
+  font: var(--text-hero);
   text-align: center;
   letter-spacing: -0.015em;
   color: var(--sand12);
   margin: 0;
+
+  @media (max-width: 900px) {
+    font: var(--text-3xl);
+  }
 `;
 
 const Text = styled.p`
