@@ -51,7 +51,6 @@ const LogoArea = styled.a`
     text-decoration: none;
     color: #11181c;
   }
-
 `;
 
 const ActionArea = styled.div`
@@ -102,7 +101,7 @@ const Stats = styled.div`
   flex-grow: 0;
   font-style: normal;
   font-weight: 600;
-  font-size: .95em;
+  font-size: 0.95em;
   line-height: 1em;
 `;
 
