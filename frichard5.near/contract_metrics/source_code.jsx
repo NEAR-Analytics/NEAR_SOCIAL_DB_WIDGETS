@@ -54,7 +54,7 @@ const GenericTable = (
   <Widget
     src={`${user}/widget/generic_table`}
     props={{
-      title: "FT transfers",
+      title: "Contract metrics",
       columns,
       data: state.txs,
       nextPage,
