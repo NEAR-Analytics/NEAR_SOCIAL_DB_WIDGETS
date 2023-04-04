@@ -5,6 +5,7 @@ const data = props.data || [{ data: "no data props" }];
 const nextPage = props.nextPage;
 const previousPage = props.previousPage;
 const resPerPage = props.resPerPage;
+const title = props.title;
 
 let rows = [];
 
@@ -21,6 +22,7 @@ data &&
 
 return (
   <div>
+    {title && <h2>{title}</h2>}
     <table>
       <tr>
         {columns.map((c) => (
