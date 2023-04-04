@@ -120,7 +120,7 @@ const tabContent = {
 
 return (
   <div>
-    <Widget src={`${ownerId}/widget/NavbarControl`} />
+    <Widget src={`${ownerId}/widget/NavbarControl`} props={{ update }} />
     <div className="d-flex flex-row position-relative">
       <div className="d-flex flex-row position-sticky top-0">
         <div className="flex-grow-1">
