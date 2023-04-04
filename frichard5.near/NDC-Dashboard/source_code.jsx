@@ -8,9 +8,9 @@ const theme = {
   secondaryPink: "#F29BC0",
   secondaryBlue: "#4498E0",
 };
+//    background: ${(props) => props.theme.secondaryBlue};
 
 const DashboardContainer = styled.div`
-    background: ${(props) => props.theme.secondaryBlue};
     padding: 24px;
 `;
 
