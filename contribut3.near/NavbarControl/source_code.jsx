@@ -16,7 +16,7 @@ if (!state.creditsIsFetched) {
   ).then((credits) => State.update({ credits, creditsIsFetched: true }));
 }
 
-const Navbar = styled.nav`
+const Navbar = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
