@@ -1,16 +1,23 @@
-const formName = props.formName;
-const icon = props.icon;
-const text = props.text;
+const Navbar = styled.nav`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  padding: .75em 0;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+  position: sticky;
+  top: 0;
+`;
 
-if (!formName || !icon || !text) {
-  return "Cannot render navbar control without form name, icon or text!";
-}
-
-return (
-  <li className="nav-item">
-    <a>
-      <i className={icon} />
-      {text}
-    </a>
-  </li>
-);
+const LogoArea = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  gap: .7em;
+`;
