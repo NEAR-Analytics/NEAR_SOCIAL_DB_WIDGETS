@@ -20,6 +20,7 @@ const TabItem = styled.a`
   text-decoration: none;
   transition: background-color 0.2s ease-in-out;
   background-color: ${({ selected }) => (selected ? "#f2f4f7" : "white")};
+  ${({ selected }) => selected ? "border-bottom: 4px solid #0091ff;" : ""}
 
   &:hover {
     color: #667085;
