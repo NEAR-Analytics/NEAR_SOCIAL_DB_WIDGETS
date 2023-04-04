@@ -59,7 +59,7 @@ const previousPage = () => {
 
 const GenericTable = (
   <Widget
-    src={`${user}/widget/generic_table`}
+    src={`${widgetProvider}/widget/generic_table`}
     props={{
       title: "FT transfers",
       columns,
