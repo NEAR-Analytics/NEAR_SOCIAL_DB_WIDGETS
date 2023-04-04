@@ -24,17 +24,19 @@ const columns = [
   },
 ];
 
+const resPerPage = 10;
+
 State.init({
   txs: [],
   offset: 0,
 });
 
 const nextPage = () => {
-  State.update({ offset: state.offset + 50 });
+  State.update({ offset: state.offset + resPerPage });
 };
 
 const previousPage = () => {
-  State.update({ offset: state.offset - 50 });
+  State.update({ offset: state.offset - resPerPage });
 };
 
 const GenericTable = (
@@ -52,12 +54,15 @@ const GenericTable = (
 
 let transactions = [];
 const fetchTransfers = (offset) => {
-  const nearTransfers = fetch(apiUrl + `?offset=${offset}`, {
-    mode: "cors",
-    headers: {
-      "x-api-key": publicApiKey,
-    },
-  });
+  const nearTransfers = fetch(
+    apiUrl + `?offset=${offset}&limit=${resPerPage}`,
+    {
+      mode: "cors",
+      headers: {
+        "x-api-key": publicApiKey,
+      },
+    }
+  );
   nearTransfers.body && State.update({ txs: nearTransfers.body });
 };
 fetchTransfers(state.offset);
