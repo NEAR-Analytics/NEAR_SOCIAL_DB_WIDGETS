@@ -208,6 +208,7 @@ const NavItem = styled.a`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: .5em;
 
   &:hover {
     color: #667085;
