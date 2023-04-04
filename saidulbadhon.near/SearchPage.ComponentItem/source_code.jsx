@@ -26,7 +26,7 @@ function makeUpperCase(sentence) {
 
 const MainContainer = styled.div`
   width: 100%;
-  border: 1px ${props.theme.borderColor} solid;
+//   border: 1px ${props.theme.borderColor} solid;
   border-radius: 4px;
 
   display: flex;
