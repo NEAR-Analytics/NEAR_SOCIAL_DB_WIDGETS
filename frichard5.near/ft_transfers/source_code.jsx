@@ -1,6 +1,7 @@
 const user = "frichard5.near";
 const account = props.account || "foundation.near";
 const apiUrl = `https://api.pikespeak.ai/account/ft-transfer/${account}`;
+const refUrl = "https://api.stats.ref.finance/api/ft";
 const publicApiKey = "36f2b87a-7ee6-40d8-80b9-5e68e587a5b5";
 const columns = [
   {
@@ -29,6 +30,7 @@ const resPerPage = 10;
 State.init({
   txs: [],
   offset: 0,
+  ftList: [],
 });
 
 const nextPage = () => {
@@ -53,6 +55,13 @@ const GenericTable = (
     }}
   />
 );
+
+if (!state.ftList.length) {
+  const ftList = fetch(refUrl);
+  State.update({ ftList });
+}
+
+console.log("FTLIST", state.ftList);
 
 let transactions = [];
 const fetchTransfers = (offset) => {
