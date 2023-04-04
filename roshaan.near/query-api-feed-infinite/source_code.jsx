@@ -20,7 +20,7 @@ const Subheading = styled.h2`
   outline: none;
 `;
 
-let querySortFilter = option;
+let querySortFilter = "";
 switch (option) {
   case "recentComments":
     querySortFilter = `{ last_comment_timestamp: desc_nulls_last },`;
