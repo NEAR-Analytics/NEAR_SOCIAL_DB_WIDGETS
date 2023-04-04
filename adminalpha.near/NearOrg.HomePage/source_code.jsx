@@ -65,6 +65,10 @@ function returnIpfsImage(cfid) {
 
 const Wrapper = styled.div`
   padding: 82px 0;
+
+  @media (max-width: 900px) {
+    padding: 24px 0;
+  }
 `;
 
 const H1 = styled.h1`
@@ -115,6 +119,10 @@ const Section = styled.div`
   align-items: ${(p) => (p.center ? "center" : undefined)};
   justify-content: ${(p) => (p.center ? "center" : undefined)};
   text-align: ${(p) => (p.center ? "center" : undefined)};
+
+  @media (max-width: 900px) {
+    padding: 24px 16px;
+  }
 `;
 
 const LogoLink = styled.a`
