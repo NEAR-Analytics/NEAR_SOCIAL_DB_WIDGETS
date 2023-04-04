@@ -27,6 +27,5 @@ return (
       </tr>
       {rows}
     </table>
-    <button onClick={test}>next 50</button>
   </div>
 );
