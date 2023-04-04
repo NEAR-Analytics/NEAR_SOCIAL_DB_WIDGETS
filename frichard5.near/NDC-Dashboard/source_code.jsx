@@ -12,7 +12,9 @@ const theme = {
 
 const DashboardContainer = styled.div`
     padding: 28px;
-    background: url("https://ipfs.near.social/ipfs/bafkreiasup7s7ujh7tzqg2ya2slnvmqobajehrckjccza35i3m5fcfw25i"),
+    background: #e2e8f0;
+    background-size: contain;
+    background-repeat: no-repeat;
 `;
 
 // Fetch
