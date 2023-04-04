@@ -20,6 +20,11 @@ const LogoArea = styled.div`
   align-items: center;
   padding: 0px;
   gap: .7em;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.2em;
+  line-height: 1.5em;
+  color: #11181c;
 `;
 
 const ActionArea = styled.div`
@@ -30,3 +35,5 @@ const ActionArea = styled.div`
   padding: 0px;
   gap: 1em;
 `;
+
+const logo = (<LogoArea><></>NEAR Horizon</LogoArea>);
