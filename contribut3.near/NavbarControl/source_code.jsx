@@ -8,7 +8,7 @@ State.init({
 if (!state.creditsIsFetched) {
   Near.asyncView(
     creditId,
-    "balance_of",
+    "ft_balance_of",
     { account_id: context.accountId },
     "final",
     false
