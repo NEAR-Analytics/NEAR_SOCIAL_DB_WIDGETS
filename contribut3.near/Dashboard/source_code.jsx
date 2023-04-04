@@ -122,13 +122,11 @@ const Heading = styled.div`
   flex-direction: column;
   align-items: flex-start;
   padding: 0px;
-  // gap: 1em;
 
   h1 {
     font-style: normal;
     font-weight: 700;
     font-size: 2em;
-    // line-height: 2.5em;
     color: #101828;
   }
 
