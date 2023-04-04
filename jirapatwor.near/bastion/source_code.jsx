@@ -144,6 +144,17 @@ len.callStatic
     State.update({ getAccountLimits });
   });
 
+if (
+  !state.getAccountLimits ||
+  !state.cTokenMetadataAll ||
+  !state.cTokenBalancesAll
+)
+  return (
+    <div>
+      <h2>Loading...</h2>
+    </div>
+  );
+
 const expandToken = (value, decimals) => {
   return new Big(value).mul(new Big(10).pow(decimals));
 };
