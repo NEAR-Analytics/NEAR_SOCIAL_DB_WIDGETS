@@ -23,7 +23,8 @@ const onChange = (e) => {
 };
 
 const Wrapper = styled.div`
-    border-radius: 8px;
+  border: 0.8px solid #D7E0E4;
+  border-radius: 8px;
     background-color: #ffffff;
     line-height: 48px;
     font-family: "Aeonik Fono", Arial;
