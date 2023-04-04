@@ -55,33 +55,23 @@ function onSearchChange({ result, term }) {
 }
 const items = state.searchResults || components;
 
-console.log("items : ", items, data);
 return (
   <div
     style={{
       display: "flex",
       flexDirection: "column",
       alignItems: "flex-start",
-      gap: 8,
+      gap: 4,
       width: "100%",
     }}
   >
-    {/*
     <div
       style={{
+        padding: "4px 8px",
+        gap: 8,
         display: "flex",
         flexDirection: "column",
-        alignItems: "center",
-        gap: 4,
       }}
-    >
-      <h1 style={{ color: props.theme.textColor, fontWeight: 700 }}>
-        BOS Widgets
-      </h1>
-    </div>
-      */}
-    <div
-      style={{ padding: 8, gap: 8, display: "flex", flexDirection: "column" }}
     >
       <p
         style={{
@@ -112,7 +102,7 @@ return (
         width: "100%",
         display: "flex",
         flexDirection: "column",
-        gap: 8,
+        // gap: 8,
         // gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
       }}
     >
