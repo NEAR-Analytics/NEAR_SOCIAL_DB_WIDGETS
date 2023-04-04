@@ -8,7 +8,9 @@ const alertProps = {
 }[props.type];
 return (
   <div
-    class={`alert d-flex justify-content-between ${alertProps.alertType}`}
+    class={`${
+      props.fontSize ? props.fontSize : "fs-4"
+    } alert d-flex justify-content-between ${alertProps.alertType}`}
     role="alert"
   >
     <i class={`bi ${alertProps.icon}`}></i>
