@@ -17,6 +17,13 @@ const NearTransfers = (
   />
 );
 
+const FTTransfers = (
+  <Widget
+    src={`${user}/widget/ft_transfers`}
+    props={{ account: state.selectedDao }}
+  />
+);
+
 const selectDao = ({ target: { value } }) => {
   State.update({ selectedDao: value });
 };
