@@ -119,10 +119,11 @@ const tabContent = {
 }[state.tab];
 
 const ContentContainer = styled.div`
-width: 100%;
+  width: 100%;
   background: #ffffff;
   border: 1px solid #eceef0;
   border-radius: 24px 24px 0px 0px;
+  padding: 2.5em;
 `;
 
 return (
