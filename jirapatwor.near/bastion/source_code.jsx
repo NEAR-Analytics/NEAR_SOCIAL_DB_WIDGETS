@@ -528,7 +528,7 @@ const allAssetData = Object.keys(TokensDetail).map((key) => {
       <td class="text-end">
         {numberWithCommas(totalSupplyValue)} {TokensDetail[key].symbol}
         <br />
-        ($ {numberWithCommas(valueUSD.toFixed(2))})
+        (${numberWithCommas(valueUSD.toFixed(2))})
       </td>
     </tr>
   );
@@ -539,7 +539,10 @@ const fetchAllData = () => {
 };
 
 const portfolio = Object.keys(TokensDetail).map((key) => {
-  if (!state.cTokenBalancesAll) return;
+  if (!state.cTokenBalancesAll || !state.cTokenMetadataAll) return;
+  const indexMeta = state.cTokenMetadataAll.findIndex(
+    (element) => element[0] == TokensDetail[key].cAddress
+  );
   const indexBalance = state.cTokenBalancesAll.findIndex(
     (element) => element[0] == TokensDetail[key].cAddress
   );
@@ -560,17 +563,26 @@ const portfolio = Object.keys(TokensDetail).map((key) => {
     Number(bigValueBorrowed.toString()) /
     Math.pow(10, TokensDetail[key].decimals)
   ).toFixed(2);
+  const price =
+    Number(state.cTokenMetadataAll[indexMeta][1].toString()) /
+    Math.pow(10, 18 + (18 - TokensDetail[key].decimals));
   return (
     <tr>
       <td>{TokensDetail[key].name}</td>
       <td class="text-end">
         {cal} {TokensDetail[key].symbol}
+        <br />
+        (${numberWithCommas((Number(cal) * price).toFixed(2))})
       </td>
       <td class="text-end">
         {supplied} {TokensDetail[key].symbol}
+        <br />
+        (${numberWithCommas((Number(supplied) * price).toFixed(2))})
       </td>
       <td class="text-end">
         {finalValueBorrowed} {TokensDetail[key].symbol}
+        <br />
+        (${numberWithCommas((Number(finalValueBorrowed) * price).toFixed(2))})
       </td>
     </tr>
   );
