@@ -119,6 +119,12 @@ const manage = (
   </svg>
 );
 
+const profile = (
+  <svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M13 14.75C13 13.7033 13 13.18 12.8708 12.7541C12.58 11.7953 11.8297 11.045 10.8709 10.7542C10.445 10.625 9.92167 10.625 8.875 10.625H5.125C4.07833 10.625 3.55499 10.625 3.12914 10.7542C2.17034 11.045 1.42003 11.7953 1.12918 12.7541C1 13.18 1 13.7033 1 14.75M10.375 4.625C10.375 6.48896 8.86396 8 7 8C5.13604 8 3.625 6.48896 3.625 4.625C3.625 2.76104 5.13604 1.25 7 1.25C8.86396 1.25 10.375 2.76104 10.375 4.625Z" stroke="#7E868C" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" />
+  </svg>
+);
+
 const NavItem = styled.a`
   position: relative;
   color: #344054;
@@ -184,7 +190,7 @@ return (
     })}
     {navItem({
       text: "Manage",
-      icon: org,
+      icon: manage,
       id: "manage",
     })}
     {navItem({
