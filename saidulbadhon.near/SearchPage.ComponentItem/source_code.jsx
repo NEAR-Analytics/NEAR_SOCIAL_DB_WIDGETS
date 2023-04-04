@@ -33,7 +33,7 @@ const MainContainer = styled.div`
   align-items: center;
   overflow: hidden;
   position: relative;
-  padding: 4px 8px;
+  padding: 8px 8px;
 
   background-color: ${props.theme.backgroundColor};
   &:hover{
