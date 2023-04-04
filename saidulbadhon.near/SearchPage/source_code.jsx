@@ -102,6 +102,7 @@ return (
         width: "100%",
         display: "flex",
         flexDirection: "column",
+        gap: 1,
       }}
     >
       {items.length > 0 &&
