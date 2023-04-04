@@ -128,7 +128,7 @@ const Heading = styled.div`
     font-style: normal;
     font-weight: 700;
     font-size: 2em;
-    line-height: 2.5em;
+    // line-height: 2.5em;
     color: #101828;
   }
 
