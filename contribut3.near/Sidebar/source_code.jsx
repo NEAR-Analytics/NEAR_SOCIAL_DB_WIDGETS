@@ -192,7 +192,6 @@ const book = (
 
 const NavItem = styled.a`
   position: relative;
-  color: #344054;
   cursor: pointer;
   padding: 0.5em;
   margin: 0.25em 0;
@@ -200,7 +199,7 @@ const NavItem = styled.a`
   font-weight: 600;
   font-size: .8em;
   line-height: 1em;
-  color: #3A3F42;
+  color: #3a3f42;
   border-radius: 5px;
   text-decoration: none;
   transition: background-color 0.2s ease-in-out;
