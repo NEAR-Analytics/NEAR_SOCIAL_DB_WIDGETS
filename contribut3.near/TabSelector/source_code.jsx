@@ -55,7 +55,7 @@ const Container = styled.div`
 
 return (
   <Container>
-    {buttons.map(({ id, text, icon, count, grey }) => (
+    {buttons.map(({ id, text, count, grey }) => (
       <TabItem
         selected={props.content === id}
         hasCount={!!count && count > 0}
@@ -73,7 +73,6 @@ return (
         }
         key={id}
       >
-        {icon}
         <span>{text}</span>
         <CountIndicator show={!!count && count > 0} grey={grey}>
           {count}
