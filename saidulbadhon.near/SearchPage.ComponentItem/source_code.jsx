@@ -57,6 +57,7 @@ const Logo = styled.div`
   min-width:75px;
   height:75px;
   aspect-ratio: 1 / 1;
+  cursor: pointer;
 
   border-radius: 4px;
   overflow: hidden;
@@ -100,32 +101,39 @@ const Button = styled.button`
   }
 `;
 const Button2 = styled.button`
-  background-color: ${props.theme.buttonColor};
-  color: ${props.theme.buttonTextColor};
+  background-color: ${props.theme.buttonColor}11;
+  color: ${props.theme.buttonColor};
   width: 100%;
-  height: 30px;
-  width: 30px;
+  height: 40px;
+  width: 40px;
+  border-radius:20px;
+
   outline:none;
   transition: all .2s ease-in-out;
 
   border: none;
   font-weight: 600;
-  border-radius: 4px;
 
   &:hover{
-    background-color: ${props.theme.buttonColor}CC;
+    background-color: ${props.theme.buttonColor}33;
+  color: ${props.theme.buttonColor};
     outline:none;
     border:none;
   }
   
   &:active{
-    background-color: ${props.theme.buttonColor}99;
-  }
+    background-color: ${props.theme.buttonColor};
+   color: ${props.theme.buttonTextColor};
+ }
 `;
 
 return (
   <MainContainer>
-    <Logo>
+    <Logo
+      onClick={() =>
+        props?.onDetailsUrlClick(`${accountId}/widget/${widgetName}`)
+      }
+    >
       <Widget
         src="mob.near/widget/Image"
         props={{
@@ -138,23 +146,27 @@ return (
     </Logo>
 
     <TopSection>
-      <a
+      <p
         href={detailsUrl}
         style={{
           fontSize: 14,
           fontWeight: 600,
           color: props.theme.textColor,
           textDecoration: "none",
-
+          padding: 0,
+          margin: 0,
           wordBreak: "break-all",
           textAlign: "left",
+          cursor: "pointer",
         }}
+        onClick={() =>
+          props?.onDetailsUrlClick(`${accountId}/widget/${widgetName}`)
+        }
       >
         {metadata.name || widgetName}
-      </a>
+      </p>
 
-      <a
-        href={detailsUrl}
+      <p
         style={{
           fontSize: 13,
           fontWeight: 500,
@@ -164,10 +176,14 @@ return (
           margin: 0,
           wordBreak: "break-all",
           textAlign: "left",
+          cursor: "pointer",
         }}
+        onClick={() =>
+          props?.onDetailsUrlClick(`${accountId}/widget/${widgetName}`)
+        }
       >
         @{accountId}
-      </a>
+      </p>
 
       <Widget
         src="saidulbadhon.near/widget/SearchPage.ComponentItem.TimeAgo"
@@ -217,23 +233,27 @@ return (
       )}
     </TopSection>
 
-    <BottomSection>
-      {/*<a href={detailsUrl}>*/}
+    {/*<BottomSection>
       <Button
         onClick={() =>
           props?.onDetailsUrlClick(`${accountId}/widget/${widgetName}`)
         }
       >
         <i class="bi bi-eye"></i>
-        {/*View Details*/}
       </Button>
-      {/*</a>*/}
-      <a href={appUrl}>
-        <Button2>
-          <i class="bi bi-box-arrow-up-right"></i>
-          {/*Open*/}
-        </Button2>
-      </a>
-    </BottomSection>
+
+      </a>*/}
+    <a href={appUrl}>
+      <Button2
+        type="button"
+        data-toggle="tooltip"
+        data-placement="top"
+        title="Open Component"
+      >
+        <i class="bi bi-box-arrow-up-right"></i>
+        {/*Open*/}
+      </Button2>
+    </a>
+    {/*</BottomSection>*/}
   </MainContainer>
 );
