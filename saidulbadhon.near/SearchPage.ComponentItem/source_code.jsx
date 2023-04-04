@@ -218,12 +218,16 @@ return (
     </TopSection>
 
     <BottomSection>
-      <a href={detailsUrl}>
-        <Button>
-          <i class="bi bi-eye"></i>
-          {/*View Details*/}
-        </Button>
-      </a>
+      {/*<a href={detailsUrl}>*/}
+      <Button
+        onClick={() =>
+          props?.onDetailsUrlClick(`${accountId}/widget/${widgetName}`)
+        }
+      >
+        <i class="bi bi-eye"></i>
+        {/*View Details*/}
+      </Button>
+      {/*</a>*/}
       <a href={appUrl}>
         <Button2>
           <i class="bi bi-box-arrow-up-right"></i>
