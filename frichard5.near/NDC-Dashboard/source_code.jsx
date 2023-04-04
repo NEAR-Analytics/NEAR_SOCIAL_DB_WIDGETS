@@ -24,6 +24,13 @@ const FTransfers = (
   />
 );
 
+const ContractMetrics = (
+  <Widget
+    src={`${user}/widget/contract_metrics`}
+    props={{ account: state.selectedDao }}
+  />
+);
+
 const selectDao = ({ target: { value } }) => {
   State.update({ selectedDao: value });
 };
@@ -39,5 +46,6 @@ return (
     {Balances}
     {NearTransfers}
     {FTransfers}
+    {ContractMetrics}
   </>
 );
