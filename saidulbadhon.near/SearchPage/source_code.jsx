@@ -66,38 +66,16 @@ return (
       paddingTop: 4,
     }}
   >
-    {/*<div
-      style={{
-        padding: "4px 8px",
-        gap: 8,
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
-      <p
-        style={{
-          color: props.theme.textColor2,
-          fontWeight: 400,
-          padding: 0,
-          margin: 0,
-          fontSize: 14,
+    <div style={{ width: "calc(100% - 4px)" }}>
+      <Widget
+        src="saidulbadhon.near/widget/SearchPage.Searchbar"
+        props={{
+          limit: 21,
+          onChange: onSearchChange,
+          theme: props.theme,
         }}
-      >
-        Discover the latest widgets from the NEAR community.
-      </p>
-      
+      />
     </div>
-      */}
-
-    <Widget
-      src="saidulbadhon.near/widget/SearchPage.Searchbar"
-      props={{
-        limit: 21,
-        onChange: onSearchChange,
-        theme: props.theme,
-      }}
-    />
-
     <div
       style={{
         width: "100%",
