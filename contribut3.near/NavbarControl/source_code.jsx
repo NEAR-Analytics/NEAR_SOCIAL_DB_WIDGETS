@@ -4,7 +4,7 @@ const Navbar = styled.nav`
   align-items: center;
   justify-content: space-between;
   background: #fff;
-  padding: .75em 0;
+  padding: 0.75em 0;
   flex: none;
   order: 0;
   align-self: stretch;
@@ -19,7 +19,7 @@ const LogoArea = styled.div`
   justify-content: center;
   align-items: center;
   padding: 0px;
-  gap: .7em;
+  gap: 0.7em;
   font-style: normal;
   font-weight: 700;
   font-size: 1.2em;
@@ -36,13 +36,17 @@ const ActionArea = styled.div`
   gap: 1em;
 `;
 
-const logo = (<LogoArea><></>NEAR Horizon</LogoArea>);
+const logo = (
+  <LogoArea>
+    <></>NEAR Horizon
+  </LogoArea>
+);
 
 const Credits = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: .05em .55em;
+  padding: 0.05em 0.55em;
   gap: 1em;
   background: #eceef0;
   border-radius: 100px;
@@ -51,7 +55,7 @@ const Credits = styled.div`
   flex-grow: 0;
   font-style: normal;
   font-weight: 600;
-  font-size: .95em;
+  font-size: 0.95em;
   line-height: 1em;
   color: #11181c;
 `;
@@ -61,11 +65,19 @@ const Stats = styled.div`
   flex-direction: row;
   align-items: center;
   padding: 0px;
-  gap: .5em;
+  gap: 0.5em;
   flex: none;
   order: 0;
   align-self: stretch;
   flex-grow: 0;
 `;
 
-const stats = (<Stats><span>Available credits:</span><Credits>{state.credits} NHZN</Credits></Stats>);
+const stats = (
+  <Stats>
+    <span>Available credits:</span>
+    <Credits>{state.credits} NHZN</Credits>
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M5.30283 5.2513C5.43997 4.86144 5.71066 4.5327 6.06697 4.3233C6.42327 4.11389 6.84218 4.03735 7.24951 4.10722C7.65684 4.17709 8.0263 4.38886 8.29245 4.70503C8.55861 5.0212 8.70427 5.42136 8.70366 5.83464C8.70366 7.0013 6.95366 7.58464 6.95366 7.58464M7.00033 9.91797H7.00616M12.8337 7.0013C12.8337 10.223 10.222 12.8346 7.00033 12.8346C3.77866 12.8346 1.16699 10.223 1.16699 7.0013C1.16699 3.77964 3.77866 1.16797 7.00033 1.16797C10.222 1.16797 12.8337 3.77964 12.8337 7.0013Z" stroke="#7E868C" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  </Stats>
+);
