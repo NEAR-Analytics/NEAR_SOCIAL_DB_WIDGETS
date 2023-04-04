@@ -6,7 +6,11 @@ const publicApiKey = "36f2b87a-7ee6-40d8-80b9-5e68e587a5b5";
 const amountsFormatter = (amounts) => {
   let tds = [];
   Object.keys(amounts).forEach((k) => {
-    tds.push(<td>{amounts[k]}</td>);
+    tds.push(
+      <td>
+        {amounts[k]} {k}
+      </td>
+    );
   });
   return tds;
 };
