@@ -118,6 +118,12 @@ const tabContent = {
   ),
 }[state.tab];
 
+const ContentContainer = styled.div`
+  background: #ffffff;
+  border: 1px solid #eceef0;
+  border-radius: 24px 24px 0px 0px;
+`;
+
 return (
   <div>
     <Widget src={`${ownerId}/widget/NavbarControl`} props={{ update }} />
