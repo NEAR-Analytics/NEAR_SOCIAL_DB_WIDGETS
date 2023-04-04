@@ -67,7 +67,7 @@ const Wrapper = styled.div`
   --section-gap: 162px;
   --large-gap: 82px;
   --medium-gap: 48px;
-  margin-top: calc(var(--body-top-padding) * -1);
+  margin: calc(var(--body-top-padding) * -1) calc(var(--bs-gutter-x) * -.5) 0;
   padding: calc(var(--section-gap) / 2) 0;
 
   @media (max-width: 900px) {
@@ -116,6 +116,14 @@ const Flex = styled.div`
   justify-content: ${(p) => p.justifyContent};
   flex-direction: ${(p) => p.direction ?? "row"};
   flex-wrap: ${(p) => p.wrap ?? "nowrap"};
+
+  ${(p) =>
+    p.mobileStack &&
+    `
+    @media (max-width: 700px) {
+      flex-direction: column;
+    }
+  `}
 `;
 
 const Section = styled.div`
@@ -512,7 +520,7 @@ return (
     </Section>
 
     <Section>
-      <Flex gap="var(--large-gap)">
+      <Flex gap="var(--large-gap)" mobileStack>
         <ContentBlock>
           <Icon
             color="violet11"
