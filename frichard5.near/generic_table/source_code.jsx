@@ -6,6 +6,7 @@ const nextPage = props.nextPage;
 const previousPage = props.previousPage;
 const resPerPage = props.resPerPage;
 const title = props.title;
+const offset = props.offset;
 
 let rows = [];
 
@@ -33,8 +34,12 @@ return (
     </table>
     {nextPage && previousPage && resPerPage && (
       <div>
-        <button onClick={previousPage}>previous {resPerPage}</button>
-        <button onClick={nextPage}>next {resPerPage}</button>
+        {offset && (
+          <button onClick={previousPage}>previous {resPerPage}</button>
+        )}
+        {data.length <= resPerPage && (
+          <button onClick={nextPage}>next {resPerPage}</button>
+        )}
       </div>
     )}
   </div>
