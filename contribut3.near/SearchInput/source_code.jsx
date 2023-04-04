@@ -23,7 +23,7 @@ const SearchInput = styled.input`
   flex-direction: row;
   align-items: center;
   padding: .5em .75em;
-  padding-left: 2em;
+  padding-left: 2.25em;
   gap: .5em;
   width: 359px;
   height: 36px;
