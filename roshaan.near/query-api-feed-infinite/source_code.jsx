@@ -119,23 +119,21 @@ const loadMorePosts = () => {
 
 const renderedItems = state.posts.map(renderItem);
 return (
-  <div>
-    <InfiniteScroll
-      pageStart={0}
-      loadMore={loadMorePosts}
-      hasMore={state.posts.length < state.postsCount || state.posts.length == 0}
-      loader={
-        <div className="loader">
-          <span
-            className="spinner-grow spinner-grow-sm me-1"
-            role="status"
-            aria-hidden="true"
-          />
-          Loading ...
-        </div>
-      }
-    >
-      {renderedItems}
-    </InfiniteScroll>
-  </div>
+  <InfiniteScroll
+    pageStart={0}
+    loadMore={loadMorePosts}
+    hasMore={state.posts.length < state.postsCount || state.posts.length == 0}
+    loader={
+      <div className="loader">
+        <span
+          className="spinner-grow spinner-grow-sm me-1"
+          role="status"
+          aria-hidden="true"
+        />
+        Loading ...
+      </div>
+    }
+  >
+    {renderedItems}
+  </InfiniteScroll>
 );
