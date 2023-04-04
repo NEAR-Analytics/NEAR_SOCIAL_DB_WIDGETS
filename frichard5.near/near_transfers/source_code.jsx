@@ -26,10 +26,12 @@ const columns = [
 
 State.init({
   txs: [],
+  offset: 0,
 });
 
 const test = () => {
   console.log("HEYEYEYYE");
+  State.update({ offset: state.offset + 50 });
 };
 
 const GenericTable = (
@@ -47,13 +49,9 @@ const fetchTransfers = (offset) => {
       "x-api-key": publicApiKey,
     },
   });
-  //State.update({ txs: [...state.txs, nearTransfers.body] });
-  nearTransfers.body && transactions.push(...nearTransfers.body);
-  if (nearTransfers.body.length === 50) {
-    fetchTransfers(offset + 50);
-  }
+  nearTransfers.body && State.update({ txs: nearTransfers.body });
 };
-fetchTransfers(0);
+fetchTransfers(offset);
 
 const rows = [];
 
