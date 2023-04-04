@@ -3,7 +3,13 @@ const Banner = styled.div`
     height: 200px;
 `;
 const Logo = styled.img`
-    width: 200px;
+    width: 130px;
+    position: absolute;
+    top: 22px;
+    left: 50px;
+    z-index: 1;
+    border-radius: 50%;
+    background: rgba(68, 152, 224, 0.75);
 `;
 
 const Lines = styled.div`
