@@ -51,7 +51,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: flex-end;
   overflow: hidden;
   border-bottom: 1px solid #eceef0;
   width: 100%;
