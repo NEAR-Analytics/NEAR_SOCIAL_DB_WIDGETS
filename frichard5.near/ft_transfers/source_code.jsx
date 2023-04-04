@@ -5,7 +5,7 @@ const apiUrl = `https://api.pikespeak.ai/account/ft-transfer/${account}`;
 const refUrl = "https://api.stats.ref.finance/api/ft";
 const publicApiKey = "36f2b87a-7ee6-40d8-80b9-5e68e587a5b5";
 
-const ftFormatter = () => {
+const ftFormatter = (ftList) => {
   return (data) => {
     return (
       <Widget
@@ -36,7 +36,7 @@ const columns = [
   {
     id: "amount",
     label: "amount",
-    formatter: ftFormatter,
+    formatter: ftFormatter(ftList),
   },
   {
     id: "transaction_id",
