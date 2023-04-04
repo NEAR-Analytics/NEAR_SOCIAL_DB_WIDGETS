@@ -271,17 +271,19 @@ const Develop_Preview = styled.div`
 `;
 
 const Stats = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  flex-wrap: wrap;
+  display: grid;
+  gap: var(--large-gap);
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   padding: var(--medium-gap);
-  gap: var(--medium-gap);
   text-align: center;
   background: var(--sand2);
 
   @media (max-width: 900px) {
-    flex-direction: column;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
   }
 `;
 
