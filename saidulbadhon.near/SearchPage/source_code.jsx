@@ -73,7 +73,7 @@ return (
         flexDirection: "column",
       }}
     >
-      <p
+      {/*<p
         style={{
           color: props.theme.textColor2,
           fontWeight: 400,
@@ -83,7 +83,7 @@ return (
         }}
       >
         Discover the latest widgets from the NEAR community.
-      </p>
+      </p>*/}
 
       <div style={{ width: "100%" }}>
         <Widget
