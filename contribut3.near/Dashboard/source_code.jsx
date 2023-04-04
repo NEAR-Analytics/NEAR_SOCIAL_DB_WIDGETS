@@ -119,7 +119,7 @@ const header = (
 
 const Heading = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: flex-start;
   padding: 0px;
   gap: 1em;
