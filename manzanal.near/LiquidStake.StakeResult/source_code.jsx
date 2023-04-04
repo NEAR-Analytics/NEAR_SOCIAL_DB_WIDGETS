@@ -46,10 +46,10 @@ const Frame = styled.div`
     margin-bottom: 56px;
   `;
 const Title = styled.span`
-    letter-spacing: 1px;
-    margin-right: 34px;
-    margin-top: 3px;
-    margin-bottom: -2px;
+    font-weight: 500;
+    font-size: 1.125rem;
+    line-height: 18px;
+    letter-spacing: 0.6px;
   `;
 const Frame1 = styled.div`
     font-family: "Aeonik Mono", Arial;
@@ -78,7 +78,9 @@ const Stnearcircle = styled.span`
     margin-bottom: 10px;
   `;
 const Num = styled.span`
-    
+    font-weight: 500;
+    font-size: 2.5rem;
+    line-height: 48px;
   `;
 const StNear = styled.span`
     text-align: right;
