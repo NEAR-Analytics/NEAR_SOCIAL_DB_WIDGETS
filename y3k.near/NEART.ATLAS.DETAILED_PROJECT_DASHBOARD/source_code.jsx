@@ -169,7 +169,7 @@ const v_bar_options = {
     },
     title: {
       display: true,
-      text: "Weekly Active Accounts",
+      text: "",
     },
   },
 };
