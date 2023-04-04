@@ -21,6 +21,8 @@ State.init({
 });
 
 // Components
+const Banner = <Widget src={`${widgetProvider}/widget/NDC-Banner`} />;
+
 const Balances = (
   <Widget
     src={`${widgetProvider}/widget/account_balance`}
@@ -66,8 +68,7 @@ const selectDao = ({ target: { value } }) => {
 
 return (
   <DashboardContainer theme={theme}>
-    <image src="https://ipfs.near.social/ipfs/bafkreihbisodby5rjawdzxqokdbqbrcskp2kayrqcos73smdba2svzciym" />
-    <h1>NDC Dashboard</h1>
+    <Banner />
     <select onChange={selectDao}>
       <option value="marketing.sputnik-dao.near">Marketing</option>
       <option value="creativesdao.sputnik-dao.near">Creative</option>
