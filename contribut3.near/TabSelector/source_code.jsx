@@ -55,6 +55,7 @@ const Container = styled.div`
   overflow: hidden;
   border-bottom: 1px solid #eceef0;
   width: 100%;
+  padding: 0;
 `;
 
 return (
