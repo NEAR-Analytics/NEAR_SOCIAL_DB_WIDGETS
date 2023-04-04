@@ -64,11 +64,16 @@ function returnIpfsImage(cfid) {
 }
 
 const Wrapper = styled.div`
+  --section-gap: 162px;
+  --large-gap: 82px;
+  --medium-gap: 48px;
   margin-top: calc(var(--body-top-padding) * -1);
-  padding: 82px 0;
+  padding: calc(var(--section-gap) / 2) 0;
 
   @media (max-width: 900px) {
-    padding: 24px 0;
+    --section-gap: 48px;
+    --large-gap: 24px;
+    --medium-gap: 16px;
   }
 `;
 
@@ -114,16 +119,12 @@ const Flex = styled.div`
 
 const Section = styled.div`
   display: flex;
-  padding: 82px 16px;
-  gap: ${(p) => p.gap ?? "48px"};
+  padding: calc(var(--section-gap) / 2) 16px;
+  gap: ${(p) => p.gap ?? "var(--medium-gap"};
   flex-direction: column;
   align-items: ${(p) => (p.center ? "center" : undefined)};
   justify-content: ${(p) => (p.center ? "center" : undefined)};
   text-align: ${(p) => (p.center ? "center" : undefined)};
-
-  @media (max-width: 900px) {
-    padding: 24px 16px;
-  }
 `;
 
 const LogoLink = styled.a`
@@ -164,7 +165,7 @@ const ContentWithImage = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 122px;
+  gap: var(--large-gap);
 
   &:nth-child(odd) {
     flex-direction: ${(p) => (p.alternate ? "row-reverse" : undefined)};
@@ -188,7 +189,7 @@ const ContentBlock = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 40px;
+  gap: var(--medium-gap);
   width: 100%;
 `;
 
@@ -200,13 +201,13 @@ const ContentBlock_Text = styled.div`
 
 const Develop = styled.div`
   display: flex;
-  gap: 112px;
+  gap: var(--large-gap);
   align-items: center;
 `;
 
 const Develop_Content = styled.div`
   display: flex;
-  gap: 48px;
+  gap: var(--medium-gap);
   flex-direction: column;
   width: 100%;
 `;
@@ -240,8 +241,8 @@ const Stats = styled.div`
   align-items: center;
   justify-content: space-around;
   flex-wrap: wrap;
-  padding: 40px;
-  gap: 40px;
+  padding: var(--medium-gap);
+  gap: var(--medium-gap);
   text-align: center;
   background: var(--sand2);
 `;
@@ -500,7 +501,7 @@ return (
     </Section>
 
     <Section>
-      <Flex gap="112px">
+      <Flex gap="var(--large-gap)">
         <ContentBlock>
           <Icon
             color="violet11"
@@ -620,7 +621,7 @@ return (
       </Text>
     </Section>
 
-    <Section gap="108px">
+    <Section gap="var(--large-gap)">
       <ContentWithImage>
         <ContentBlock>
           <Icon color="green12" backgroundColor="green4" borderColor="green9">
