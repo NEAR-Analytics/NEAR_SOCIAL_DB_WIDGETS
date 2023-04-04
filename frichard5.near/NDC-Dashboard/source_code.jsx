@@ -68,7 +68,7 @@ const selectDao = ({ target: { value } }) => {
 
 return (
   <DashboardContainer theme={theme}>
-    <Banner />
+    {Banner}
     <select onChange={selectDao}>
       <option value="marketing.sputnik-dao.near">Marketing</option>
       <option value="creativesdao.sputnik-dao.near">Creative</option>
