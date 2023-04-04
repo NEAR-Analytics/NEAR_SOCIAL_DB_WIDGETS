@@ -10,11 +10,6 @@ const getContent = (content) => {
   return content;
 };
 
-const header = (
-  <div>
-    <h1 className="fs-3">Find projects, contributors or requests</h1>
-  </div>
-);
 
 const contentSelector = (
   <Widget
@@ -115,6 +110,14 @@ const content = {
     />
   ),
 }[getContent(props.content)];
+
+const header = (
+  <div>
+    <h1 className="fs-3">Find projects, contributors or requests</h1>
+  </div>
+);
+
+const Heading = styled.div``;
 
 return (
   <div>
