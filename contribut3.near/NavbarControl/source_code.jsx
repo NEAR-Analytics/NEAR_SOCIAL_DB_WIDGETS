@@ -74,7 +74,7 @@ const Credits = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 0.05em 0.55em;
+  padding: 0.5em 0.55em;
   gap: 1em;
   background: #eceef0;
   border-radius: 100px;
