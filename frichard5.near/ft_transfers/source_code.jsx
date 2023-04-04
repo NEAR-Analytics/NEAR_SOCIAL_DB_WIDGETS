@@ -1,5 +1,6 @@
 const user = "frichard5.near";
 const account = props.account || "foundation.near";
+const ftList = props.ftList;
 const apiUrl = `https://api.pikespeak.ai/account/ft-transfer/${account}`;
 const refUrl = "https://api.stats.ref.finance/api/ft";
 const publicApiKey = "36f2b87a-7ee6-40d8-80b9-5e68e587a5b5";
@@ -19,6 +20,18 @@ const columns = [
   {
     id: "amount",
     label: "amount",
+    formatter: (data) => {
+      return (
+        <Widget
+          src={`${user}/widget/table_ft_formatter`}
+          props={{
+            ftList,
+            ft: data["contract"],
+            amount: data["amount"],
+          }}
+        />
+      );
+    },
   },
   {
     id: "transaction_id",
