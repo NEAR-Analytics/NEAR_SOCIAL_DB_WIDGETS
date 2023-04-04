@@ -1,5 +1,7 @@
 const columns = props.columns || [{ label: "columns missing" }];
+const test = props.test;
 
+test();
 return (
   <table>
     <tr>
