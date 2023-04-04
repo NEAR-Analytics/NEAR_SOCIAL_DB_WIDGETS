@@ -141,6 +141,7 @@ return (
       // backgroundColor: props.theme.backgroundColor,
       backgroundColor: props.theme.ui2,
       // border: `1px ${props.theme.borderColor} solid`,
+      ...props.sx,
     }}
   >
     <i
