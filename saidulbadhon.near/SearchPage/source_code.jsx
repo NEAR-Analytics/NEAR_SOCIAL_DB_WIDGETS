@@ -42,6 +42,7 @@ return (
           fontWeight: 400,
           padding: 0,
           margin: 0,
+          fontSize: 14,
         }}
       >
         Discover the latest widgets from the NEAR community.
