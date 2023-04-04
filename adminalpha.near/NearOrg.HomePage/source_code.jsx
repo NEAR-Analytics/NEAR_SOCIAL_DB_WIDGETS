@@ -75,7 +75,7 @@ const H1 = styled.h1`
   margin: 0;
 
   @media (max-width: 900px) {
-    font: var(--text-3xl);
+    font: var(--text-2xl);
   }
 `;
 
@@ -109,7 +109,7 @@ const Flex = styled.div`
 
 const Section = styled.div`
   display: flex;
-  padding: 82px 0;
+  padding: 82px 16px;
   gap: ${(p) => p.gap ?? "48px"};
   flex-direction: column;
   align-items: ${(p) => (p.center ? "center" : undefined)};
