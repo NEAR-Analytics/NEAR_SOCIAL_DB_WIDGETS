@@ -207,17 +207,18 @@ const debounce = (callable, timeout) => {
   };
 };
 
-const fetchSearchHits = (query, { pageNumber, filters, optionalFilters }) => {
+const fetchSearchHits = (query, { pageNumber, configs, optionalFilters }) => {
+  configs = configs ?? configsPerFacet(state.facet);
   let body = {
     query,
     page: pageNumber ?? 0,
-    filters: filters ?? searchFilters(state.facet),
     optionalFilters: optionalFilters ?? [
       "categories:profile<score=3>",
       "categories:widget<score=2>",
       "categories:post<score=1>",
       "categories:comment<score=0>",
     ],
+    ...configs,
   };
 
   return asyncFetch(API_URL, {
@@ -231,8 +232,8 @@ const fetchSearchHits = (query, { pageNumber, filters, optionalFilters }) => {
   });
 };
 
-const updateSearchHits = debounce(({ term, pageNumber, filters }) => {
-  fetchSearchHits(term, { pageNumber, filters }).then((resp) => {
+const updateSearchHits = debounce(({ term, pageNumber, configs }) => {
+  fetchSearchHits(term, { pageNumber, configs }).then((resp) => {
     const { results, hitsTotal, hitsPerPage } = categorizeSearchHits(resp.body);
     State.update({
       search: {
@@ -294,6 +295,23 @@ const searchFilters = (facet) => {
   return filters;
 };
 
+const restrictSearchable = (facet) => {
+  const category = FACET_TO_CATEGORY[facet];
+  let restrictSearchableAttrs = undefined;
+  if (category === "post") {
+    // Only the content should be searchable when the posts facet is selected.
+    restrictSearchableAttrs = ["content"];
+  }
+  return restrictSearchableAttrs;
+};
+
+const configsPerFacet = (facet) => {
+  return {
+    filters: searchFilters(facet),
+    restrictSearchableAttributes: restrictSearchable(facet),
+  };
+};
+
 const onFacetClick = (facet) => {
   if (facet === state.facet) {
     console.log("Clicked the same facet");
@@ -306,7 +324,7 @@ const onFacetClick = (facet) => {
 
   updateSearchHits({
     term: state.term,
-    filters: searchFilters(facet),
+    configs: configsPerFacet(facet),
   });
 };
 
