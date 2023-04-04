@@ -25,12 +25,11 @@ const onChange = (e) => {
 const Wrapper = styled.div`
     border-radius: 8px;
     background-color: #ffffff;
-    border: 0.8px solid #c0c5c1;
-    font-weight: 500;
-    font-family: "Aeonik Mono", Arial;
-    color: #032131;
     line-height: 48px;
-    font-size: 2.5rem;
+    font-family: "Aeonik Fono", Arial;
+    color: #032131;
+    font-size: 1.125rem;
+    font-weight: 500;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -56,7 +55,6 @@ const Frame = styled.div`
     flex-direction: column;
     justify-content: space-between;
     row-gap: 2px;
-    margin-right: 65px;
   `;
 const Frame1 = styled.div`
     display: flex;
@@ -66,11 +64,10 @@ const Frame1 = styled.div`
     margin-bottom: 20px;
   `;
 const Title = styled.span`
-    letter-spacing: 1px;
-    margin-left: 1px;
-    margin-right: 5px;
-    margin-top: 3px;
-    margin-bottom: 2px;
+    font-weight: 500;
+    font-size: 1.125rem;
+    line-height: 18px;
+    letter-spacing: 0.6px;
   `;
 const MaxButton = styled.div`
    text-align: right;
@@ -93,28 +90,21 @@ const Frame3 = styled.div`
     align-items: flex-end;
     row-gap: 8px;
   `;
-const Num = styled.span`
-  `;
+
 const Usd = styled.div`
     color: #032131;
     font-weight: 400;
-    line-height: 18px;
     text-align: right;
     font-size: 0.75rem;
     line-height: 18px;
-    margin-left: 1px;
-    margin-right: 1px;
-    margin-bottom: 5px;
+    text-align: right;
   `;
 const Input = styled.input`
+    font-weight: 500;
     font-size: 2.5rem;
-     font-weight: 500;
-    margin-top: 10px;
-    margin-bottom: 15px;
-    font-size: 2.5rem;
+    line-height: 48px;
     border: 0;
     text-align-last: right;
-
 `;
 return (
   <Wrapper>
