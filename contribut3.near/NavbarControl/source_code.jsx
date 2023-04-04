@@ -56,7 +56,7 @@ const Credits = styled.div`
   color: #11181c;
 `;
 
-const Info = styled.div`
+const Stats = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -67,3 +67,5 @@ const Info = styled.div`
   align-self: stretch;
   flex-grow: 0;
 `;
+
+const stats = (<Stats><span>Available credits:</span><Credits>{state.credits} NHZN</Credits></Stats>);
