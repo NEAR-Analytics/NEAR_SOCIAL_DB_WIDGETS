@@ -59,14 +59,22 @@ const onChangeDescription = (description) => {
   });
 };
 
+const onChangeLink = (link) => {
+  State.update({
+    link,
+  });
+};
+
 const handleProposal = () => {
+  const link = state.link ? state.link.toString() : "";
+  const description = `${state.description.trim()}$$$$${link}`;
   Near.call([
     {
       contractName: state.contract_name,
       methodName: "add_proposal",
       args: {
         proposal: {
-          description: state.description.trim(),
+          description: description,
           kind: {
             Transfer: {
               token_id: "",
@@ -104,6 +112,10 @@ return (
         placeholder="describe your proposal"
         onChange={(e) => onChangeDescription(e.target.value)}
       />
+      <div className=" mb-2">
+        Link:
+        <input type="text" onChange={(e) => onChangeLink(e.target.value)} />
+      </div>
     </div>
     <div className=" mb-2">
       Payout Amount
