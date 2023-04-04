@@ -118,3 +118,7 @@ const actions = (
     <Widget src={`${ownerId}/widget/CreateNewInput`} />
   </ActionArea>
 );
+
+return (
+  <Navbar>{logo}{actions}</Navbar>
+);
