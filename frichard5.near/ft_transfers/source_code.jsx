@@ -6,6 +6,7 @@ const refUrl = "https://api.stats.ref.finance/api/ft";
 const publicApiKey = "36f2b87a-7ee6-40d8-80b9-5e68e587a5b5";
 
 const ftFormatter = (ftList) => {
+  console.log("ahahha", ftList);
   return (data) => {
     return (
       <Widget
