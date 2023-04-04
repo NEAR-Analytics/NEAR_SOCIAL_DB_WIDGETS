@@ -74,7 +74,6 @@ const BottomSection = styled.div`
   flex-direction: column;
   gap: 4px;
   box-sizing: border-box;
-//   margin-right: 4px;
 `;
 
 const Button = styled.button`
@@ -139,15 +138,6 @@ return (
     </Logo>
 
     <TopSection>
-      {/*<div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          wdith: "100%",
-          gap: 8,
-        }}
-      >*/}
       <a
         href={detailsUrl}
         style={{
@@ -219,7 +209,7 @@ return (
                 fontSize: 12,
               }}
             >
-              {makeUpperCase(tag)},
+              {makeUpperCase(tag)}
             </p>
           ))}
         </div>
