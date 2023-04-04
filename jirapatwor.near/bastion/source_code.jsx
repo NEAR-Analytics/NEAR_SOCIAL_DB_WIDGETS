@@ -16,6 +16,7 @@ const switchChain = () => {
   };
 
   Ethers.send("wallet_addEthereumChain", [auroraChain]).then(() => {
+    //test
     checkChain();
   });
 };
