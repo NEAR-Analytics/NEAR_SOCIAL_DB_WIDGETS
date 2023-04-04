@@ -235,15 +235,10 @@ const ContentBlock_Text = styled.div`
 
 const Develop = styled.div`
   display: flex;
-  gap: var(--large-gap);
-  align-items: center;
-`;
-
-const Develop_Content = styled.div`
-  display: flex;
-  gap: var(--medium-gap);
-  flex-direction: column;
   width: 100%;
+  gap: var(--medium-gap);
+  align-items: center;
+  flex-direction: column;
 `;
 
 const Develop_TabButton = styled.button`
@@ -486,34 +481,32 @@ return (
       </ContentWithImage>
     </Section>
 
-    <Section>
+    <Section center>
       <Develop>
-        <Develop_Content>
-          <Flex gap="16px" direction="column">
-            <Text as="h2" size="text-l" fontWeight="600" color="violet10">
-              Develop
-            </Text>
-            <VerticalBorder />
-            <Text size="text-2xl" fontWeight="600" color="sand12">
-              Don’t reinvent the wheel. Reinvent
-              <span style={{ color: "var(--sand9)" }}>
-                <Develop_TabButton active color="red10">
-                  social
-                </Develop_TabButton>
-                , <Develop_TabButton color="violet10">gaming</Develop_TabButton>
-                , <Develop_TabButton color="green10">finance</Develop_TabButton>
-              </span>
-            </Text>
-          </Flex>
-
-          <Text size="text-2xl" fontWeight="500">
-            Weave new experiences with over{" "}
-            <span style={{ color: "var(--sand12)" }}>{totalComponents}</span>{" "}
-            Open Web Components built on shared, persistent data.
+        <Flex gap="16px" direction="column" alignItems="center">
+          <Text as="h2" size="text-l" fontWeight="600" color="violet10">
+            Develop
           </Text>
-        </Develop_Content>
+          <VerticalBorder />
+          <Text size="text-2xl" fontWeight="600" color="sand12">
+            Don’t reinvent the wheel. Reinvent
+            <span style={{ color: "var(--sand9)" }}>
+              <Develop_TabButton active color="red10">
+                social
+              </Develop_TabButton>
+              , <Develop_TabButton color="violet10">gaming</Develop_TabButton>,{" "}
+              <Develop_TabButton color="green10">finance</Develop_TabButton>
+            </span>
+          </Text>
+        </Flex>
 
-        <Develop_Preview />
+        <Text size="text-2xl" fontWeight="500" style={{ maxWidth: "800px" }}>
+          Weave new experiences with over{" "}
+          <span style={{ color: "var(--sand12)" }}>{totalComponents}</span> Open
+          Web Components built on shared, persistent data.
+        </Text>
+
+        <Develop_Preview>Component preview placeholder.</Develop_Preview>
       </Develop>
     </Section>
 
