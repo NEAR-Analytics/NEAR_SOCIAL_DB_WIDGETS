@@ -120,6 +120,7 @@ const tabContent = {
 
 return (
   <div className="d-flex flex-row position-relative">
+    <Widget src={`${ownerId}/widget/NavbarControl`} />
     <div className="d-flex flex-row position-sticky top-0">
       <div className="flex-grow-1">
         <Widget
