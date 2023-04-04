@@ -51,7 +51,6 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  border-radius: 8px;
 `;
 
 return (
