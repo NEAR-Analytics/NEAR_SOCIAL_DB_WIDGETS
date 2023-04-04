@@ -23,6 +23,12 @@ const columns = [
   {
     id: "timestamp",
     label: "date",
+    formatter: (data) => {
+      const milliTimestamp = Math.trunc(
+        Number(data["timestamp"]) / Math.pow(10, 6)
+      );
+      return new Date(Number(milliTimestamp)).toISOString();
+    },
   },
   {
     id: "sender",
