@@ -134,5 +134,6 @@ return (
       <div className="flex-grow-1" style={{ maxWidth: "calc(100% - 272px)" }}>
         {tabContent}
       </div>
-    </div></div>
+    </div>
+  </div>
 );
