@@ -17,11 +17,11 @@ const TabItem = styled.a`
   text-decoration: none;
   transition: all 0.2s ease-in-out;
   ${({ selected }) => selected ? "border-bottom: 4px solid #0091ff;" : ""}
-font-style: normal;
-font-weight: 600;
-font-size: .95em;
-line-height: 1em;
-color: #11181c;
+  font-style: normal;
+  font-weight: 600;
+  font-size: .95em;
+  line-height: 1em;
+  color: ${({ selected }) => selected ? "#11181c" : "#687076"};
 
   &:hover {
     color: #667085;
