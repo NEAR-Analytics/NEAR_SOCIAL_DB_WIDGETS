@@ -30,8 +30,8 @@ switch (option) {
     querySortFilter = "";
 }
 
-const postsQuery = `
-  query IndexerQuery($offset: Int) {
+const indexerQueries = `
+  query GetPostsQuery($offset: Int) {
   roshaan_near_feed_indexer_posts(order_by: [${querySortFilter} { block_height: desc }], offset: $offset, limit: ${LIMIT}) {
     account_id
     block_height
@@ -97,7 +97,7 @@ const renderItem = (item, i) => {
 };
 
 const loadMorePosts = () => {
-  fetchGraphQL(postsQuery, "IndexerQuery", {
+  fetchGraphQL(indexerQueries, "GetPostsQuery", {
     offset: state.posts.length,
   }).then((result) => {
     if (result.status === 200) {
