@@ -244,6 +244,7 @@ const navItem = ({ text, icon, id, count }) => (
 const NavContainer = styled.div`
   display: flex;
   flex-direction: column;
+  margin-right: 2.5em;
 `;
 
 return (
