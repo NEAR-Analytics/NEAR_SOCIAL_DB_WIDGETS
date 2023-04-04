@@ -92,7 +92,7 @@ const fetchTransfers = (offset) => {
   );
   nearTransfers.body &&
     State.update({
-      txs: nearTransfers.body,
+      txs: nearTransfers.body.reverse(),
       displayedTxs: nearTransfers.body.slice(0, resPerPage),
     });
 };
