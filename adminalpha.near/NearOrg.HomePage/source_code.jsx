@@ -281,9 +281,7 @@ const Stats = styled.div`
   background: var(--sand2);
 
   @media (max-width: 900px) {
-    > div {
-      width: 50%;
-    }
+    flex-direction: column;
   }
 `;
 
@@ -581,7 +579,7 @@ return (
       </Flex>
     </Section>
 
-    <Section>
+    <Section style={{ paddingLeft: 0, paddingRight: 0 }}>
       <Stats>
         <div>
           <Text size="text-3xl" color="violet9" fontWeight="500">
