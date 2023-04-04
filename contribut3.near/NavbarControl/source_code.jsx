@@ -2,7 +2,7 @@ const ownerId = "contribut3.near";
 const creditId = `credits.${ownerId}`;
 
 State.init({
-  credits: null,
+  credits: 0,
   creditsIsFetched: false,
 });
 
