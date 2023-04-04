@@ -22,6 +22,7 @@ const Navbar = styled.nav`
   align-items: center;
   justify-content: space-between;
   background: #fff;
+  border-bottom: 1px solid #ECEEF0;
   padding: 0.75em 0;
   flex: none;
   order: 0;
@@ -120,5 +121,8 @@ const actions = (
 );
 
 return (
-  <Navbar>{logo}{actions}</Navbar>
+  <Navbar>
+    {logo}
+    {actions}
+  </Navbar>
 );
