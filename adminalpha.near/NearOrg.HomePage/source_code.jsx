@@ -1,4 +1,5 @@
 const ipfsImages = {
+  textArrow: "bafkreidcvglzeenk2wd6y2gh5skiuc62fcdvo3qikjosejobclcekaqwru",
   logos: {
     aurora: "bafkreidgbgeghpr257xhlaqkzdnsoigjgbdhf3exe5iw23h2bniipe7dwe",
     calimero: "bafkreifmztxlff3sxt2psgfm7vjo22xhyfiyjyp7sn3npcncfhck45f6ky",
@@ -70,14 +71,26 @@ const Text = styled.p`
     font-weight: ${(p) => p.fontWeight};
     color: var(--${(p) => p.color ?? "sand10"});
     margin: 0;
+
+    [href] {
+      color: var(--violet8);
+      &:hover {
+        color: var(--violet11);
+        text-decoration: none;
+      }
+      &:focus {
+        text-decoration: underline;
+        outline: none;
+      }
+    }
 `;
 
 const Flex = styled.div`
     display: flex;
     gap: ${(p) => p.gap};
-    align-items: ${(p) => p.alignItems ?? "center"};
-    justify-content: ${(p) => p.justifyContent ?? "center"};
-    flex-direction: ${(p) => p.flexDirection ?? "row"};
+    align-items: ${(p) => p.alignItems};
+    justify-content: ${(p) => p.justifyContent};
+    flex-direction: ${(p) => p.direction ?? "row"};
     flex-wrap: ${(p) => p.wrap ?? "nowrap"};
 `;
 
@@ -94,6 +107,7 @@ const Section = styled.div`
 const LogoLink = styled.a`
     display: block;
     height: 28px;
+    color: var(--sand10);
 
     img {
         display: block;
@@ -101,10 +115,64 @@ const LogoLink = styled.a`
     }
 `;
 
+const VerticalBorder = styled.div`
+    height: 82px;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--violet1), var(--violet10))
+`;
+
+const Icon = styled.div`
+  display: inline-flex;
+  width: 64px;
+  height: 64px;
+  border-radius: 100%;
+  align-items: center;
+  justify-content: center;
+  color: 1px solid ${(p) => `var(--${p.color})` ?? "var(--sand10)"};
+  background: ${(p) => `var(--${p.backgroundColor})` ?? "var(--sand3)"};
+  border: 1px solid ${(p) => `var(--${p.borderColor})` ?? "var(--sand5)"};
+
+  i {
+    font-size: 28px;
+    line-height: 28px;
+  }
+`;
+
+const ContentWithImage = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 122px;
+
+  &:nth-child(odd) {
+    flex-direction: ${(p) => (p.alternate ? "row-reverse" : undefined)}
+  }
+`;
+
+const ContentWithImage_Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 100%;
+`;
+
+const ContentWithImage_Image = styled.div`
+  overflow: hidden;
+  border-radius: 6px;
+  border: 1px solid var(--sand5);
+  width: 100%;
+
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+`;
+
 return (
   <Wrapper>
     <Section center>
-      <Flex gap="16px" flexDirection="column">
+      <Flex gap="16px" direction="column" alignItems="center">
         <H1>Build the Open Web</H1>
 
         <Text size="text-l" style={{ maxWidth: "662px" }}>
@@ -128,7 +196,7 @@ return (
         <Widget
           src="adminalpha.near/widget/DS.Button"
           props={{
-            href: "/",
+            href: "/edit",
             iconLeft: "ph-duotone ph-code-block",
             label: "Try It First",
             variant: "affirmative",
@@ -147,7 +215,7 @@ return (
         Trusted by Web3’s MOST innovative teams
       </Text>
 
-      <Flex gap="68px" wrap="wrap">
+      <Flex gap="68px" wrap="wrap" justifyContent="center">
         {web3Teams.map((team) => {
           return (
             <LogoLink href={team.url} target="_blank" title={team.name}>
@@ -162,6 +230,187 @@ return (
           );
         })}
       </Flex>
+    </Section>
+
+    <Section center>
+      <Flex gap="16px" direction="column" alignItems="center">
+        <Text as="h2" size="text-l" fontWeight="600" color="violet10">
+          Platform
+        </Text>
+        <VerticalBorder />
+        <Text
+          size="text-2xl"
+          fontWeight="600"
+          color="sand12"
+          style={{ maxWidth: "430px" }}
+        >
+          Your toolkit for the
+          <span
+            style={{
+              display: "inline-block",
+              color: "var(--green8)",
+              position: "relative",
+              marginRight: "-2.2em",
+              right: "-0.9em",
+              top: "-1.4em",
+              transform: "rotate(5deg)",
+            }}
+          >
+            <Widget
+              src="mob.near/widget/Image"
+              props={{
+                image: returnIpfsImage(ipfsImages.textArrow),
+                style: {
+                  display: "block",
+                  width: "52px",
+                  position: "absolute",
+                  left: "-42px",
+                  top: "16px",
+                },
+              }}
+            />
+            Open
+          </span>
+          Web.
+        </Text>
+      </Flex>
+
+      <Text size="text-2xl" fontWeight="500" style={{ maxWidth: "550px" }}>
+        Get building in seconds on a new decentralized foundation, all with the
+        tools you know and love.
+      </Text>
+    </Section>
+
+    <Section>
+      <ContentWithImage alternate>
+        <ContentWithImage_Content>
+          <Icon color="green12" backgroundColor="green4" borderColor="green9">
+            <i className="ph-duotone ph-plugs-connected" />
+          </Icon>
+          <Flex direction="column" gap="16px">
+            <Text size="text-xl" fontWeight="600" color="sand12">
+              Truly Plug & Play
+            </Text>
+            <Text>
+              Why invest before you’re invested? Enjoy frictionless onboarding
+              for both you and your users.{" "}
+              <Text as="span" fontWeight="600" color="sand12">
+                No crypto required.
+              </Text>
+            </Text>
+          </Flex>
+          <Widget
+            src="adminalpha.near/widget/DS.Button"
+            props={{
+              href: "/",
+              iconLeft: "ph-bold ph-fingerprint-simple",
+              label: "Try Fast Auth",
+              variant: "secondary",
+              size: "large",
+            }}
+          />
+        </ContentWithImage_Content>
+
+        <ContentWithImage_Image>
+          <AspectRatio.Root ratio={590 / 327}>
+            <img src="https://images.unsplash.com/photo-1678845750026-0b9936b4202c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3774&q=80" />
+          </AspectRatio.Root>
+        </ContentWithImage_Image>
+      </ContentWithImage>
+
+      <ContentWithImage alternate>
+        <ContentWithImage_Content>
+          <Icon color="amber11" backgroundColor="amber4" borderColor="amber9">
+            <i className="ph-duotone ph-plugs-connected" />
+          </Icon>
+          <Flex direction="column" gap="16px">
+            <Text size="text-xl" fontWeight="600" color="sand12">
+              Build Your Way
+            </Text>
+            <Text>
+              Avoid spending time learning proprietary languages that inhibit
+              your productivity.{" "}
+              <Text as="a" href="https://docs.near.org/sdk/js/introduction">
+                Build faster with Javascript
+              </Text>
+              , in confidence with Rust, or in any language that compiles to
+              Assembly.
+            </Text>
+          </Flex>
+          <Widget
+            src="adminalpha.near/widget/DS.Button"
+            props={{
+              href: "https://docs.near.org/sdk/js/introduction",
+              iconLeft: "ph-bold ph-book-open-text",
+              label: "Read the Docs",
+              variant: "secondary",
+              size: "large",
+            }}
+          />
+        </ContentWithImage_Content>
+
+        <ContentWithImage_Image>
+          <AspectRatio.Root ratio={590 / 327}>
+            <img src="https://images.unsplash.com/photo-1678845750026-0b9936b4202c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3774&q=80" />
+          </AspectRatio.Root>
+        </ContentWithImage_Image>
+      </ContentWithImage>
+
+      <ContentWithImage alternate>
+        <ContentWithImage_Content>
+          <Icon color="red11" backgroundColor="red3" borderColor="red5">
+            <i className="ph-duotone ph-graph" />
+          </Icon>
+          <Flex direction="column" gap="16px">
+            <Text size="text-xl" fontWeight="600" color="sand12">
+              Data, Decentralized
+            </Text>
+            <Text>
+              Data stored on NEAR is accessible to any component or application
+              on the platform, providing a level playing field for developers
+              and a more consistent experience for users.
+            </Text>
+          </Flex>
+          <Widget
+            src="adminalpha.near/widget/DS.Button"
+            props={{
+              href: "/",
+              iconRight: "ph-bold ph-arrow-up-right",
+              label: "Learn More",
+              variant: "secondary",
+              size: "large",
+            }}
+          />
+        </ContentWithImage_Content>
+
+        <ContentWithImage_Image>
+          <AspectRatio.Root ratio={590 / 327}>
+            <img src="https://images.unsplash.com/photo-1678845750026-0b9936b4202c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3774&q=80" />
+          </AspectRatio.Root>
+        </ContentWithImage_Image>
+      </ContentWithImage>
+    </Section>
+
+    <Section center>
+      <Flex gap="16px" direction="column" alignItems="center">
+        <Text as="h2" size="text-l" fontWeight="600" color="violet10">
+          Publish
+        </Text>
+        <VerticalBorder />
+        <Text
+          size="text-2xl"
+          fontWeight="600"
+          color="sand12"
+          style={{ maxWidth: "420px" }}
+        >
+          Ditch traditional hosting. Serve straight to your users.
+        </Text>
+      </Flex>
+
+      <Text size="text-2xl" fontWeight="500" style={{ maxWidth: "550px" }}>
+        Publish, store, and host your front-end directly on chain, in an
+        instant.
+      </Text>
     </Section>
   </Wrapper>
 );
