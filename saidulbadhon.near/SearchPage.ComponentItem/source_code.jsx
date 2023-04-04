@@ -129,17 +129,19 @@ return (
         {metadata.name || widgetName}
       </a>
 
-      <a
-        href={detailsUrl}
-        style={{
-          fontSize: 14,
-          fontWeight: 400,
-          color: props.theme.textColor3,
-          textDecoration: "none",
-          marginBottom: 8,
-        }}
-      >
-        @{accountId}
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <a
+          href={detailsUrl}
+          style={{
+            fontSize: 14,
+            fontWeight: 400,
+            color: props.theme.textColor3,
+            textDecoration: "none",
+            marginBottom: 8,
+          }}
+        >
+          @{accountId}
+        </a>
         <Widget
           src="saidulbadhon.near/widget/SearchPage.ComponentItem.TimeAgo"
           props={{
@@ -148,12 +150,13 @@ return (
             style: {
               color: props.theme.textColor2,
               margin: 0,
-              fontSize: "1rem",
+              fontSize: 14,
+              fontWeight: 600,
             },
             theme: props.theme,
           }}
         />
-      </a>
+      </div>
 
       <div
         style={{
