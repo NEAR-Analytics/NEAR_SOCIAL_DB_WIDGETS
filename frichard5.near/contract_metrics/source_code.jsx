@@ -52,7 +52,10 @@ const nextPage = () => {
   const currentOffset = state.offset + resPerPage;
   State.update({
     offset: currentOffset,
-    displayedTxs: nearTransfers.body.slice(currentOffset, resPerPage - 1),
+    displayedTxs: nearTransfers.body.slice(
+      currentOffset,
+      resPerPage + currentOffset
+    ),
   });
 };
 
@@ -60,7 +63,10 @@ const previousPage = () => {
   const currentOffset = state.offset - resPerPage;
   State.update({
     offset: currentOffset,
-    displayedTxs: nearTransfers.body.slice(currentOffset, resPerPage - 1),
+    displayedTxs: nearTransfers.body.slice(
+      currentOffset,
+      resPerPage + currentOffset
+    ),
   });
 };
 
@@ -93,7 +99,7 @@ const fetchTransfers = (offset) => {
   nearTransfers.body &&
     State.update({
       txs: nearTransfers.body,
-      displayedTxs: nearTransfers.body.slice(0, resPerPage - 1),
+      displayedTxs: nearTransfers.body.slice(0, resPerPage),
     });
 };
 fetchTransfers();
