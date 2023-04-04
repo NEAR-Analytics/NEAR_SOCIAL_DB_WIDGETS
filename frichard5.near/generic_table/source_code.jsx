@@ -34,11 +34,15 @@ return (
     </table>
     {nextPage && previousPage && resPerPage && (
       <div>
-        {offset && (
+        {offset ? (
           <button onClick={previousPage}>previous {resPerPage}</button>
+        ) : (
+          ""
         )}
-        {data.length <= resPerPage && (
+        {data.length === resPerPage ? (
           <button onClick={nextPage}>next {resPerPage}</button>
+        ) : (
+          ""
         )}
       </div>
     )}
