@@ -516,6 +516,10 @@ const allAssetData = Object.keys(TokensDetail).map((key) => {
       1) *
     100
   ).toFixed(2);
+  const valueUSD =
+    totalSupplyValue *
+    (Number(state.cTokenMetadataAll[indexMeta][1].toString()) /
+      Math.pow(10, 18 + (18 - TokensDetail[key].decimals)));
   return (
     <tr>
       <td>{TokensDetail[key].name}</td>
@@ -524,7 +528,7 @@ const allAssetData = Object.keys(TokensDetail).map((key) => {
       <td class="text-end">
         {numberWithCommas(totalSupplyValue)} {TokensDetail[key].symbol}
         <br />
-        test
+        ($ {numberWithCommas(valueUSD.toFixed(2))})
       </td>
     </tr>
   );
