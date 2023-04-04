@@ -143,7 +143,7 @@ const Heading = styled.div`
 
 return (
   <div>
-    <div className="mb-3 px-3">
+    <div className="mb-3">
       <Heading>
         <h1>Discover NEAR Horizon</h1>
         <h2>Explore projects, vendors, investors and contribution requests</h2>
