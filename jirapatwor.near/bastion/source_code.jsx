@@ -23,7 +23,7 @@ const switchChain = () => {
     blockExplorerUrls: ["https://aurorascan.dev/"], // The block explorer URL for Aurora
   };
 
-  Ethers.send("wallet_addEthereumChain", [auroraChain]);
+  Ethers.send("wallet_switchEthereumChain", [{ chainId: "0x4E97D6A2" }]);
 };
 
 if (chainId !== 1313161554) {
