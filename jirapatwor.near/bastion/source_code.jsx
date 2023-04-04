@@ -4,21 +4,22 @@ const { selectedTokenId, amount, hasError, status } = state;
 const { chainId } = Ethers.getNetwork();
 const chainIdToSwitch = "0x4D5DF6bE";
 const switchChain = () => {
-  if (window.ethereum) {
-    window.ethereum
-      .request({
-        method: "wallet_switchEthereumChain",
-        params: [{ chainId: chainIdToSwitch }],
-      })
-      .then(() => {
-        console.log("Switched to Aurora chain");
-      })
-      .catch((error) => {
-        console.error("Error switching chain:", error);
-      });
-  } else {
-    alert("Please install MetaMask or another compatible wallet.");
-  }
+  Ethers.send("wallet_switchEthereumChain", [{ chainId: chainIdToSwitch }]);
+  // if (window.ethereum) {
+  //   window.ethereum
+  //     .request({
+  //       method: "wallet_switchEthereumChain",
+  //       params: [{ chainId: chainIdToSwitch }],
+  //     })
+  //     .then(() => {
+  //       console.log("Switched to Aurora chain");
+  //     })
+  //     .catch((error) => {
+  //       console.log("Error switching chain:", error);
+  //     });
+  // } else {
+  //   console.log("Please install MetaMask or another compatible wallet.");
+  // }
 };
 
 if (chainId !== 1313161554) {
