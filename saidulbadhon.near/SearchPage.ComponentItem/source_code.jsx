@@ -26,8 +26,6 @@ function makeUpperCase(sentence) {
 
 const MainContainer = styled.div`
   width: 100%;
-//   border: 1px ${props.theme.borderColor} solid;
-  border-radius: 4px;
 
   display: flex;
   gap: 8px;
@@ -35,28 +33,32 @@ const MainContainer = styled.div`
   align-items: center;
   overflow: hidden;
   position: relative;
+  padding: 4px;
 
   background-color: ${props.theme.backgroundColor};
+  &:hover{
+    background-color: ${props.theme.ui2};
+    outline:none;
+    border:none;
+  }
 `;
+
 const TopSection = styled.div`
   width: 100%;
   height:100%;
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-    padding-block: 4px;
 `;
 
 const Logo = styled.div`
-margin-left:4px;
-width: 75px;
-min-width:75px;
+  width: 75px;
+  min-width:75px;
   height:75px;
   aspect-ratio: 1 / 1;
 
   border-radius: 4px;
-//   border-bottom: 1px ${props.theme.borderColor} solid;
   overflow: hidden;
   zindex: 9;
 
@@ -70,17 +72,17 @@ min-width:75px;
 const BottomSection = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
   box-sizing: border-box;
-  margin-right: 4px;
+//   margin-right: 4px;
 `;
 
 const Button = styled.button`
   background-color: ${props.theme.buttonColor}66;
   color: ${props.theme.buttonTextColor};
   width: 100%;
-  height: 40px;
-  width:40px;
+  height:30px;
+  width:30px;
   outline:none;
   transition: all .2s ease-in-out;
 
@@ -102,8 +104,8 @@ const Button2 = styled.button`
   background-color: ${props.theme.buttonColor};
   color: ${props.theme.buttonTextColor};
   width: 100%;
-  height: 40px;
-  width:40px;
+  height: 30px;
+  width: 30px;
   outline:none;
   transition: all .2s ease-in-out;
 
@@ -137,28 +139,12 @@ return (
     </Logo>
 
     <TopSection>
-      <a
-        href={detailsUrl}
-        style={{
-          fontSize: 16,
-          fontWeight: 600,
-          color: props.theme.textColor,
-          textDecoration: "none",
-          textAlign: "canter",
-
-          wordBreak: "break-all",
-          textAlign: "center",
-        }}
-      >
-        {metadata.name || widgetName}
-      </a>
-
       <div
         style={{
           display: "flex",
           alignItems: "center",
-          justifyContent: "center",
-          marginBottom: 8,
+          justifyContent: "space-between",
+          wdith: "100%",
           gap: 8,
         }}
       >
@@ -166,15 +152,17 @@ return (
           href={detailsUrl}
           style={{
             fontSize: 14,
-            fontWeight: 400,
-            color: props.theme.textColor3,
+            fontWeight: 700,
+            color: props.theme.textColor,
             textDecoration: "none",
-            padding: 0,
-            margin: 0,
+
+            wordBreak: "break-all",
+            textAlign: "center",
           }}
         >
-          @{accountId} •
+          {metadata.name || widgetName} •
         </a>
+
         <Widget
           src="saidulbadhon.near/widget/SearchPage.ComponentItem.TimeAgo"
           props={{
@@ -183,19 +171,35 @@ return (
             style: {
               color: props.theme.textColor3,
               margin: 0,
-              fontSize: 14,
+              fontSize: 12,
               fontWeight: 600,
+              marginTop: 1,
             },
             theme: props.theme,
           }}
         />
       </div>
 
+      <a
+        href={detailsUrl}
+        style={{
+          fontSize: 13,
+          fontWeight: 500,
+          color: props.theme.textColor3,
+          textDecoration: "none",
+          padding: 0,
+          margin: 0,
+        }}
+      >
+        @{accountId}
+      </a>
+
       <div
         style={{
           display: "flex",
-          gap: 8,
+          gap: 4,
           flexWrap: "wrap",
+          marginTop: 8,
 
           justifyContent: "center",
         }}
