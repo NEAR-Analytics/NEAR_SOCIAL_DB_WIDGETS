@@ -140,7 +140,7 @@ return (
       <a
         href={detailsUrl}
         style={{
-          fontSize: 20,
+          fontSize: 16,
           fontWeight: 600,
           color: props.theme.textColor,
           textDecoration: "none",
@@ -211,6 +211,7 @@ return (
                     : "rgba(0,0,0,.075)",
                 color: props.theme.textColor,
                 padding: "4px 8px",
+                fontWeight: 500,
                 borderRadius: 4,
                 fontSize: 12,
               }}
