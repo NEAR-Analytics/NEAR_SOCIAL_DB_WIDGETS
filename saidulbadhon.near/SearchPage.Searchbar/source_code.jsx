@@ -138,14 +138,15 @@ const Button = styled.button`
 return (
   <Container
     style={{
-      backgroundColor: props.theme.backgroundColor,
-      border: `1px ${props.theme.borderColor} solid`,
+      // backgroundColor: props.theme.backgroundColor,
+      backgroundColor: props.theme.ui2,
+      // border: `1px ${props.theme.borderColor} solid`,
     }}
   >
     <i
       className="bi bi-search"
       style={{
-        width: 50,
+        width: 40,
         display: "flex",
         justifyContent: "center",
         color: props.theme.textColor2,
