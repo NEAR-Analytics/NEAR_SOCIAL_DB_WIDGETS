@@ -493,6 +493,7 @@ function numberWithCommas(x) {
 }
 
 const allAssetData = Object.keys(TokensDetail).map((key) => {
+  if (!state.cTokenMetadataAll) return;
   const indexMeta = state.cTokenMetadataAll.findIndex(
     (element) => element[0] == TokensDetail[key].cAddress
   );
@@ -522,6 +523,8 @@ const allAssetData = Object.keys(TokensDetail).map((key) => {
       <td class="text-end">{borrowApy}%</td>
       <td class="text-end">
         {numberWithCommas(totalSupplyValue)} {TokensDetail[key].symbol}
+        <br />
+        test
       </td>
     </tr>
   );
@@ -532,6 +535,7 @@ const fetchAllData = () => {
 };
 
 const portfolio = Object.keys(TokensDetail).map((key) => {
+  if (!state.cTokenBalancesAll) return;
   const indexBalance = state.cTokenBalancesAll.findIndex(
     (element) => element[0] == TokensDetail[key].cAddress
   );
