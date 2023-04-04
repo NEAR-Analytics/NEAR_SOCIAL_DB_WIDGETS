@@ -144,9 +144,10 @@ const Heading = styled.div`
 return (
   <div>
     <div className="mb-3 px-3">
-      <div className="d-flex flex-row justify-content-between mb-3">
-        {header}
-      </div>
+      <Heading>
+        <h1>Discover NEAR Horizon</h1>
+        <h2>Explore projects, vendors, investors and contribution requests</h2>
+      </Heading>
       <div className="d-flex flex-row justify-content-between">
         {contentSelector}
         <Widget
