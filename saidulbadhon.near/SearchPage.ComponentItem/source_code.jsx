@@ -33,7 +33,7 @@ const MainContainer = styled.div`
   align-items: center;
   overflow: hidden;
   position: relative;
-  padding: 4px;
+  padding: 4px 8px;
 
   background-color: ${props.theme.backgroundColor};
   &:hover{
@@ -157,7 +157,7 @@ return (
             textDecoration: "none",
 
             wordBreak: "break-all",
-            textAlign: "center",
+            textAlign: "left",
           }}
         >
           {metadata.name || widgetName} •
@@ -189,6 +189,7 @@ return (
           textDecoration: "none",
           padding: 0,
           margin: 0,
+          textAlign: "left",
         }}
       >
         @{accountId}
