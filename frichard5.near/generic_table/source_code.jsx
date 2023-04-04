@@ -8,7 +8,7 @@ const resPerPage = props.resPerPage;
 const title = props.title;
 const offset = props.offset;
 
-const formatRow = (r) => (r.formatter ? r.formatter(r) : <td>{r}</td>);
+const formatRow = (r) => <td>{r}</td>;
 
 let rows = [];
 
