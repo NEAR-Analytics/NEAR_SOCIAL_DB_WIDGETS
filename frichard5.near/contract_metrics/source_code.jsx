@@ -96,6 +96,6 @@ const fetchTransfers = (offset) => {
       displayedTxs: nearTransfers.body.slice(0, resPerPage),
     });
 };
-fetchTransfers();
+!state.displayedTxs.length && fetchTransfers();
 
 return <div>{GenericTable}</div>;
