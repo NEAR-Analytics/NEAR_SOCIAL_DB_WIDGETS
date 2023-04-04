@@ -162,6 +162,7 @@ const NavContainer = styled.div`
 
 return (
   <NavContainer>
+    {navItem({ text: "Discover", icon: discover, id: "" })}
     {navItem({
       text: "Inbox",
       icon: mail,
