@@ -22,7 +22,7 @@ const NearTransfers = (
 const FTransfers = (
   <Widget
     src={`${user}/widget/ft_transfers`}
-    props={{ account: state.selectedDao, ftList }}
+    props={{ account: state.selectedDao, ftList: ftList.body && ftList.body }}
   />
 );
 
