@@ -253,17 +253,19 @@ return (
         <p>
           <div class="">
             <div class="">
-              <label htmlFor="metric-dropdown">Select metric: </label>
-              <select
-                id="metric-dropdown"
-                value={selectedMetric}
-                onChange={handleDropdownChange}
-              >
-                <option value="MAU">MAU</option>
-                <option value="WAU">WAU</option>
-              </select>
               <div>
                 <h2 className="text-black">Metric: {METRIC_NAME}</h2>
+
+                <label htmlFor="metric-dropdown">Select metric: </label>
+                <select
+                  id="metric-dropdown"
+                  value={selectedMetric}
+                  onChange={handleDropdownChange}
+                >
+                  <option value="MAU">MAU</option>
+                  <option value="WAU">WAU</option>
+                </select>
+
                 <BarEl options={v_bar_options} data={getBarData()} />
               </div>
             </div>
