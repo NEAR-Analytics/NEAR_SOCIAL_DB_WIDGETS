@@ -69,6 +69,4 @@ const fetchTransfers = (offset) => {
 };
 fetchTransfers(state.offset);
 
-const rows = [];
-
 return <div>{GenericTable}</div>;
