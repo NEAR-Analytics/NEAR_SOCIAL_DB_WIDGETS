@@ -100,7 +100,7 @@ return (
       <div className="d-flex flex-row justify-content-between">
         {contentSelector}
       </div>
-      <div>
+      <div className="mt-2">
         <Widget
           src={`${ownerId}/widget/SearchInput`}
           props={{ search: props.search, update: props.update }}
