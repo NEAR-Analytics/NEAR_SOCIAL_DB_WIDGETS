@@ -4,8 +4,6 @@ const option = props.postsOrderOption ?? "blockHeight";
 State.init({
   posts: [],
   postsCount: 0,
-  postsPage: 0,
-  loaded: 0,
 });
 
 const Subheading = styled.h2`
@@ -21,13 +19,20 @@ const Subheading = styled.h2`
   white-space: nowrap;
   outline: none;
 `;
+
+let querySortFilter = option;
+switch (option) {
+  case "recentComments":
+    querySortFilter = `{ last_comment_timestamp: desc_nulls_last },`;
+    break;
+  // More options...
+  default:
+    querySortFilter = "";
+}
+
 const postsQuery = `
   query IndexerQuery($offset: Int) {
-  roshaan_near_feed_indexer_posts(order_by: [${
-    option === "recentComments"
-      ? `{last_comment_timestamp: desc_nulls_last},`
-      : ""
-  } { block_height: desc }], offset: $offset, limit: ${LIMIT}) {
+  roshaan_near_feed_indexer_posts(order_by: [${querySortFilter} { block_height: desc }], offset: $offset, limit: ${LIMIT}) {
     account_id
     block_height
     block_timestamp
@@ -91,8 +96,7 @@ const renderItem = (item, i) => {
   );
 };
 
-const loadMorePosts = (page) => {
-  console.log(page, "page requested");
+const loadMorePosts = () => {
   fetchGraphQL(postsQuery, "IndexerQuery", {
     offset: state.posts.length,
   }).then((result) => {
@@ -114,7 +118,6 @@ const loadMorePosts = (page) => {
 };
 
 const renderedItems = state.posts.map(renderItem);
-
 return (
   <div>
     <InfiniteScroll
