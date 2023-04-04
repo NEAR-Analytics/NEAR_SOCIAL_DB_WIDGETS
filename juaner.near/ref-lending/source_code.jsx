@@ -298,10 +298,6 @@ return (
           <label class="t">Supplied</label>
           <span class="v">{yourSuppliedUSD || "$0"}</span>
         </div>
-        <div class="block noBorder">
-          <label class="t">Borrowed</label>
-          <span class="v">{yourBurrowedUSD || "$0"}</span>
-        </div>
         <div class="block">
           <label class="t">Borrowed</label>
           <span class="v">{yourBurrowedUSD || "$0"}</span>
