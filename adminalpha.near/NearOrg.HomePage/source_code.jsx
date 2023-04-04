@@ -64,6 +64,7 @@ function returnIpfsImage(cfid) {
 }
 
 const Wrapper = styled.div`
+  margin-top: calc(var(--body-top-padding) * -1);
   padding: 82px 0;
 
   @media (max-width: 900px) {
