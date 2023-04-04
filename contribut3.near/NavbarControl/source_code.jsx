@@ -32,7 +32,7 @@ const Navbar = styled.div`
   top: 0;
 `;
 
-const LogoArea = styled.div`
+const LogoArea = styled.a`
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -44,6 +44,12 @@ const LogoArea = styled.div`
   font-size: 1.2em;
   line-height: 1.5em;
   color: #11181c;
+
+  &:hover {
+    text-decoration: none;
+    color: #11181c;
+  }
+
 `;
 
 const ActionArea = styled.div`
@@ -56,7 +62,10 @@ const ActionArea = styled.div`
 `;
 
 const logo = (
-  <LogoArea>
+  <LogoArea
+    href={`/#/${ownerId}/widget/Index`}
+    onClick={() => props.update({ tab: "home", content: "", search: "" })}
+  >
     <></>NEAR Horizon
   </LogoArea>
 );
