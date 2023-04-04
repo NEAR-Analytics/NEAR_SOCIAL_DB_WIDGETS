@@ -66,7 +66,7 @@ return (
       paddingTop: 4,
     }}
   >
-    <div style={{ width: "calc(100% - 4px)" }}>
+    <div style={{ marginLeft: 4, width: "calc(100% - 8px)" }}>
       <Widget
         src="saidulbadhon.near/widget/SearchPage.Searchbar"
         props={{
