@@ -93,7 +93,7 @@ const createNewButton = ({ id, text, icon, kind }) => (
         }`}
       onClick={() => props.update({ tab: "create", content: id, kind })}
     >
-      {icon}
+      <i className={icon} />
       <span>{text}</span>
     </DropdownItem>
   </DropdownLi>
@@ -159,7 +159,7 @@ return (
       {createNewButton({
         id: "project",
         text: "Project",
-        icon: "bi-ui-checks-grid",
+        icon: "bi-boxes",
       })}
       <li>
         <DropdownDivider />
@@ -167,7 +167,7 @@ return (
       {createNewButton({
         id: "vendor",
         text: "Vendor",
-        icon: "bi-boxes",
+        icon: "bi-diagram-2"
       })}
     </DropdownList>
   </DropdownContainer>
