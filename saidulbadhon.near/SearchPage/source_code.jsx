@@ -113,6 +113,7 @@ return (
                 src: `${component.accountId}/widget/${component.widgetName}`,
                 blockHeight: component.blockHeight,
                 theme: props.theme,
+                onDetailsUrlClick: props?.onDetailsUrlClick,
               }}
             />
           </div>
