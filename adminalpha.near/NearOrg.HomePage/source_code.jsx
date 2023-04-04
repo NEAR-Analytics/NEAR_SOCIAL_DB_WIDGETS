@@ -71,7 +71,7 @@ const Wrapper = styled.div`
   padding: calc(var(--section-gap) / 2) 0;
 
   @media (max-width: 900px) {
-    --section-gap: 48px;
+    --section-gap: 60px;
     --large-gap: 24px;
     --medium-gap: 16px;
   }
