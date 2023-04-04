@@ -51,7 +51,7 @@ const fetchTransfers = (offset) => {
   });
   nearTransfers.body && State.update({ txs: nearTransfers.body });
 };
-fetchTransfers(offset);
+fetchTransfers(state.offset);
 
 const rows = [];
 
