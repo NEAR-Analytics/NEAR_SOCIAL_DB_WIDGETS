@@ -1,11 +1,3 @@
-const columns = props.columns || ["columns missing"];
+const columns = props.columns || [{ label: "columns missing" }];
 
-return (
-  <table>
-    <tr>
-      {columns.map((c) => (
-        <th>{c}</th>
-      ))}
-    </tr>
-  </table>
-);
+return <table></table>;
