@@ -1,5 +1,17 @@
 const { selectedTokenId, amount, hasError, status } = state;
 
+// check if account connected
+const sender = Ethers.send("eth_requestAccounts", [])[0];
+if (!sender) {
+  return (
+    <div style={{ margin: "auto", textAlign: "center" }}>
+      <h2>Please login first</h2>
+      <br />
+      <Web3Connect connectLabel="Connect with Web3" />
+    </div>
+  );
+}
+
 // check if correct chain
 const { chainId } = Ethers.getNetwork();
 const chainIdToSwitch = "0x4E97D6A2";
@@ -28,18 +40,6 @@ if (chainId !== 1313161554) {
       <br />
       <br />
       <p>**Please refresh once after switch chain**</p>
-    </div>
-  );
-}
-
-// check if account connected
-const sender = Ethers.send("eth_requestAccounts", [])[0];
-if (!sender) {
-  return (
-    <div>
-      <h2>Please login first</h2>
-      <br />
-      <Web3Connect connectLabel="Connect with Web3" />
     </div>
   );
 }
