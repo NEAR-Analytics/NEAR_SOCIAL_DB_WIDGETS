@@ -113,6 +113,10 @@ const NavItem = styled.a`
   text-decoration: none;
   transition: background-color 0.2s ease-in-out;
   background-color: ${({ selected }) => (selected ? "#f2f4f7" : "white")};
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  alitn-items: center;
 
   &:hover {
     color: #667085;
