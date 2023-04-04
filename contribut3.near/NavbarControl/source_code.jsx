@@ -31,7 +31,7 @@ const Navbar = styled.div`
   position: sticky;
   top: 0;
   margin-bottom: 1.5em;
-  transform: translateY(-10px);
+  transform: translateY(-1em);
 `;
 
 const LogoArea = styled.a`
