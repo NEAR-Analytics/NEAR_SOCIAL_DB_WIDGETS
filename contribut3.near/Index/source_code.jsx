@@ -129,7 +129,6 @@ return (
             props={{ tab: state.tab, update }}
           />
         </div>
-        <div className="vr mx-3" style={{ height: "90vh" }} />
       </div>
       <div className="flex-grow-1" style={{ maxWidth: "calc(100% - 272px)" }}>
         {tabContent}
