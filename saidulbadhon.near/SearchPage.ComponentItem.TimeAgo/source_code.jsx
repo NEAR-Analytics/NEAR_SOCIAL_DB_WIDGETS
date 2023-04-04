@@ -59,9 +59,9 @@ const TimeAgoContainer = styled.div`
   padding: 4px 8px;
   border-radius: 4px;
 
-  position: absolute;
-  top: 8px;
-  right: 8px;
+  // position: absolute;
+  // top: 8px;
+  // right: 8px;
   background-color: ${props.theme.ui2};
 
   z-index: 10;
