@@ -276,7 +276,7 @@ return (
       icon: book,
       id: "learn",
     })}
-    <hr className="border-2" />
+    <Border />
     {navItem({
       text: "Help",
       icon: about,
