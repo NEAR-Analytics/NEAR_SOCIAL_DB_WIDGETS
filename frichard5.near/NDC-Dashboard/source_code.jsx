@@ -1,4 +1,6 @@
 const user = "frichard5.near";
+const refUrl = "https://api.stats.ref.finance/api/ft";
+const ftList = fetch(refUrl);
 State.init({
   selectedDao: "marketing.sputnik-dao.near",
 });
@@ -20,7 +22,7 @@ const NearTransfers = (
 const FTransfers = (
   <Widget
     src={`${user}/widget/ft_transfers`}
-    props={{ account: state.selectedDao }}
+    props={{ account: state.selectedDao, ftList }}
   />
 );
 
