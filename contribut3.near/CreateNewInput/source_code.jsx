@@ -89,8 +89,9 @@ const DropdownLi = styled.li`
 const createNewButton = ({ id, text, icon, kind }) => (
   <DropdownLi>
     <DropdownItem
-      href={`/#/${ownerId}/widget/Index?tab=create&content=${id}${kind ? "&kind=" + kind : ""
-        }`}
+      href={`/#/${ownerId}/widget/Index?tab=create&content=${id}${
+        kind ? "&kind=" + kind : ""
+      }`}
       onClick={() => props.update({ tab: "create", content: id, kind })}
     >
       <i className={icon} />
@@ -127,8 +128,8 @@ const MenuIcon = styled.button`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: .5em 1em;
-  gap: .5em;
+  padding: 0.5em 1em;
+  gap: 0.5em;
   background: #11181c;
   border-radius: 50px;
   flex: none;
@@ -167,7 +168,7 @@ return (
       {createNewButton({
         id: "vendor",
         text: "Vendor",
-        icon: "bi-diagram-2"
+        icon: "bi-diagram-2",
       })}
     </DropdownList>
   </DropdownContainer>
