@@ -70,17 +70,17 @@ return (
     </LabelArea>
 
     {state.edit ? (
-      isLink ? (
-        <a href={link}>{value}</a>
-      ) : (
-        value
-      )
-    ) : (
       <Input
         type={isLink ? "url" : "text"}
         value={state.value}
         onChange={(e) => State.update({ value: e.target.value })}
       />
+    ) : (
+      isLink ? (
+        <a href={link}>{value}</a>
+      ) : (
+        value
+      )
     )}
   </Container>
 );
