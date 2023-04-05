@@ -130,7 +130,7 @@ const Container = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 1em;
+  gap: .5em;
 `
 
 return (
