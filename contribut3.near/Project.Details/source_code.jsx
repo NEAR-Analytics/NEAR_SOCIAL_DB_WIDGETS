@@ -3,12 +3,12 @@ const Container = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  gap: .5em;
-  padding: .5em .2em;
+  gap: 0.5em;
+  padding: 0.5em 0.2em;
 `;
 
 const Heading = styled.div`
-  padding-bottom: .5em;
+  padding-bottom: 0.5em;
   border-bottom: 1px solid #eceef0;
   font-style: normal;
   font-weight: 600;
@@ -21,5 +21,14 @@ const Heading = styled.div`
 return (
   <Container>
     <Heading>Details</Heading>
+    <Widget
+      src={`${ownerId}/widget/Inputs.Viewable.Text`}
+      props={{
+        label: "Website",
+        id: "website",
+        value: "layers.gg",
+        link: "https://layers.gg",
+      }}
+    />
   </Container>
 );
