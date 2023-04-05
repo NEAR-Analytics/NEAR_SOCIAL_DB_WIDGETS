@@ -107,7 +107,7 @@ const DropdownButton = styled.button`
   flex-direction: row;
   align-items: center;
   padding: 0px;
-  gap: 0.25em;
+  gap: 0.1em;
   font-style: normal;
   font-weight: 400;
   font-size: 0.95em;
