@@ -7,6 +7,10 @@ const options = props.options ?? [
 ];
 const selected = props.selected ?? options[0].id;
 
+State.init({
+  show: false,
+});
+
 const DropdownContainer = styled.div`
   position: relative;
 
@@ -132,7 +136,10 @@ return (
     <Label htmlFor={name}>{name}:</Label>
 
     <DropdownContainer>
-      <DropdownButton>
+      <DropdownButton
+        onClick={() => State.update({ show: !state.show })}
+        onBlur={() => State.update({ show: false })}
+      >
         {options.find((option) => option.id === selected).text}
         <Arrow className={selected ? "show" : ""}>
           {arrowIcon}
