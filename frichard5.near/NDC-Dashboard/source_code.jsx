@@ -5,7 +5,6 @@ const refUrl = "https://api.stats.ref.finance/api/ft";
 // Initial state
 State.init({
   selectedDao: "marketing.sputnik-dao.near",
-  selectedTab: "money",
 });
 
 // Style
