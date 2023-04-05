@@ -751,5 +751,27 @@ return (
         </ContentWithImage_Image>
       </ContentWithImage>
     </Section>
+
+    <Section center>
+      <Flex gap="16px" direction="column" alignItems="center">
+        <Text as="h2" size="text-l" fontWeight="600" color="violet10">
+          Discover
+        </Text>
+        <VerticalBorder />
+        <Text
+          size="text-2xl"
+          fontWeight="600"
+          color="sand12"
+          style={{ maxWidth: "420px" }}
+        >
+          Learn, connect, & collaborate!
+        </Text>
+      </Flex>
+
+      <Text size="text-2xl" fontWeight="500" style={{ maxWidth: "660px" }}>
+        Join a vibrant community of builders and innovators cultivating a more
+        Open Web.
+      </Text>
+    </Section>
   </Wrapper>
 );
