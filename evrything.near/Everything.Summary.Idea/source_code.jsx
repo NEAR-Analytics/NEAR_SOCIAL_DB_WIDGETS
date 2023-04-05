@@ -3,8 +3,9 @@ const Card = styled.div`
   background-color: white;
   padding: 12px;
   margin: 8px;
-  border-radius: 22px;
-  box-shadow: 5px 5px 5px gray;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 7px 0 #ddd;
 `;
 const Header = styled.div`
     width: 100%;
