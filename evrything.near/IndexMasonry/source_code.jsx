@@ -197,6 +197,7 @@ return props.manual ? (
         Loading ...
       </div>
     }
+    style={{ width: "100%" }}
   >
     {props.headerElement}
     <Masonry
