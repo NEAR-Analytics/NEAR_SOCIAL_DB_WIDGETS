@@ -21,9 +21,9 @@ const loadMore = () => {
 const ListContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
-  gap: .5em;
+  gap: 0.5em;
 `;
 
 const WidgetContainer = styled.div`
@@ -41,12 +41,9 @@ const WidgetContainer = styled.div`
 return (
   <InfiniteScroll loadMore={loadMore} hasMore={state.hasMore}>
     <ListContainer>
-      {state.shown
-        .map((args, index) => (
-          <WidgetContainer key={index}>
-            {createItem(args)}
-          </WidgetContainer>
-        ))}
+      {state.shown.map((args, index) => (
+        <WidgetContainer key={index}>{createItem(args)}</WidgetContainer>
+      ))}
     </ListContainer>
   </InfiniteScroll>
 );
