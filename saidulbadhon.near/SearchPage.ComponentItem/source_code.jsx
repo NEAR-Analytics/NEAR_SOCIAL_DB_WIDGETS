@@ -91,13 +91,13 @@ const Button = styled.button`
   border-radius: 4px;
 
   &:hover{
-    background-color: ${props.theme.buttonColor}33;
+    background-color: ${props.theme.buttonColor}cc;
     outline:none;
     border:none;
   }
   
   &:active{
-    background-color: ${props.theme.buttonColor}44;
+    background-color: ${props.theme.buttonColor}aa;
   }
 `;
 const Button2 = styled.button`
