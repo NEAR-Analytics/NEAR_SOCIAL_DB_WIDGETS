@@ -128,7 +128,7 @@ const Container = styled.div`
 `
 
 return (
-  <Center>
+  <Container>
     <Label htmlFor={name}>{name}:</Label>
 
     <DropdownContainer>
@@ -140,5 +140,5 @@ return (
         {options.map((option) => createOption(option))}
       </ul>
     </DropdownContainer>
-  </Center>
+  </Container>
 );
