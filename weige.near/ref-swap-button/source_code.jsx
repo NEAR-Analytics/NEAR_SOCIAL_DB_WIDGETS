@@ -22,7 +22,7 @@ const ButtonWrapper = styled.button`
 
 return (
   <ButtonWrapper
-    notEnough={notEnough && accountId}
+    notEnough={notEnough && accountId && !noPool}
     disabled={!accountId ? false : !canSwap || (notEnough && accountId)}
     onClick={() => {
       // if (!accountId) {
