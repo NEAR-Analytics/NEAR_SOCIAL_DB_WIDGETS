@@ -40,7 +40,7 @@ const EditButton = styled.button`
 const LabelArea = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: flex-end;
+  align-items: center;
   justify-content: flex-start;
   gap: 0.25em;
 `;
