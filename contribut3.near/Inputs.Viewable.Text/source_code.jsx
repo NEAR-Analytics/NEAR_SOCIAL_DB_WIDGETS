@@ -33,6 +33,7 @@ const EditButton = styled.button`
   background: none;
   border: none;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
 `;
 
 const LabelArea = styled.div`
