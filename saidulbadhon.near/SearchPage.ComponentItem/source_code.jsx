@@ -269,7 +269,7 @@ return (
         <i class="bi bi-clipboard-check"></i>
       </Button>
 
-      <a href={appUrl}>
+      <a href={appUrl} target="_blank">
         <Button2
           type="button"
           data-toggle="tooltip"
