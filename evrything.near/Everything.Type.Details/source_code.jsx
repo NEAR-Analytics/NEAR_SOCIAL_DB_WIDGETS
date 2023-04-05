@@ -24,6 +24,20 @@ return (
           src="evrything.near/widget/H1"
           props={{ text: type.split("/")[2].toLowerCase() }}
         />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            gap: 4,
+          }}
+        >
+          <a
+            href={`/#/evrything.near/widget/Everything.Type.Overview?type=${type}`}
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            <button className="text-lowercase">back</button>
+          </a>
+        </div>
       </div>
     </div>
   </>
