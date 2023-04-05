@@ -183,7 +183,10 @@ return (
           .substring(4)}`}
       </p>
     </div>
-    <div className={thisWidgetClassNames.cardsContainer}>
+    <div
+      className={thisWidgetClassNames.cardsContainer}
+      style={thisWidgetInlineStyles.cardsContainer}
+    >
       {finalData
         ? finalData.map((d) => {
             if (_account == "All" || _account == d.accountId) {
