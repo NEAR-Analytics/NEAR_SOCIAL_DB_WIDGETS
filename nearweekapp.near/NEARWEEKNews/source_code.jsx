@@ -131,9 +131,11 @@ return (
               </div>
               <div
                 style={{ minWidth: 40 }}
-                class="align-text-top d-flex flex-wrap m-2 float-end"
+                class="align-text-bottom d-flex flex-wrap m-2 float-end"
               >
-                <Text small>{dateToDays(item.createdAt)} ago</Text>
+                <Text style={{ marginTop: 25 }} small>
+                  {dateToDays(item.createdAt)} ago
+                </Text>
               </div>
             </div>
           </>
