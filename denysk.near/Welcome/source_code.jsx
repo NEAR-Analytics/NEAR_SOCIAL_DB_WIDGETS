@@ -50,6 +50,9 @@ return (
         role="tabpanel"
         aria-labelledby="pills-explore-tab"
       >
+        <div className="text-bg-light rounded-4 p-3 mb-3">
+          <Widget src="nearweekapp.near/widget/NEARWEEKNews" />
+        </div>
         <Widget src="denysk.near/widget/PriceStats" />
 
         <div className="text-bg-light rounded-4 p-3 mb-3">
