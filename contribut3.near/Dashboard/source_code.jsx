@@ -127,7 +127,15 @@ return (
       <div>
         <Widget
           src={`${ownerId}/widget/Filter`}
-          props={{ search: props.search, update: props.update }}
+          props={{
+            name: "Type",
+            options: [
+              { id: "verified", text: "Verified", href: "#" },
+              { id: "not-verified", text: "Not verified", href: "#" },
+            ],
+            selected: "verified",
+            update: (id) => alert(id),
+          }}
         />
       </div>
     </Filter>
