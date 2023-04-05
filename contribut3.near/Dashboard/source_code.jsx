@@ -118,6 +118,18 @@ const Filter = styled.div`
   gap: 1em;
 `;
 
+const Stats = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: .5em;
+  
+  div {
+    width: 20%;
+  }
+`;
+
 return (
   <Container>
     <Heading>
@@ -132,6 +144,28 @@ return (
           label: "Projects",
         }}
       />
+      <Widget
+        src={`${ownerId}/widget/Stats.Card`}
+        props={{
+          value: "1M+",
+          label: "Monthly active accounts",
+        }}
+      />
+      <Widget
+        src={`${ownerId}/widget/Stats.Card`}
+        props={{
+          value: "25M+",
+          label: "Total accounts",
+        }}
+      />
+      <Widget
+        src={`${ownerId}/widget/Stats.Card`}
+        props={{
+          value: "$88M+",
+          label: "Raised",
+        }}
+      />
+      <Widget src={`${ownerId}/widget/Stats.Link`} />
     </Stats>
     <div>{contentSelector}</div>
     <Filters>
