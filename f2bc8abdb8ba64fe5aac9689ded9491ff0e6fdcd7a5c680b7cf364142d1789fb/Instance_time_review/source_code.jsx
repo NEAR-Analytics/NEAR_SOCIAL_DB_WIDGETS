@@ -194,6 +194,7 @@ return (
               }
               return (
                 <div
+                  className={thisWidgetClassNames.cardGeneralContainer}
                   style={
                     context.accountId != d.accountId
                       ? thisWidgetInlineStyles.cardGeneralContainerDisabled
