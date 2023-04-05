@@ -1,4 +1,4 @@
-const { accountId, notEnough, canSwap, callTx, requestSignIn } = props;
+const { accountId, notEnough, canSwap, callTx, requestSignIn, noPool } = props;
 
 const ButtonWrapper = styled.button`
   
@@ -34,7 +34,9 @@ return (
       callTx();
     }}
   >
-    {!accountId
+    {noPool
+      ? "No pool"
+      : !accountId
       ? "Connect wallet"
       : notEnough
       ? "Insufficient Balance"
