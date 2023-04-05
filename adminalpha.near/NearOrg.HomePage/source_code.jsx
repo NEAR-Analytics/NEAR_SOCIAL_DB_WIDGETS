@@ -286,7 +286,7 @@ const Stats = styled.div`
   text-align: center;
   background: var(--sand2);
 
-  @media (max-width: 900px) {
+  @media (max-width: 800px) {
     gap: var(--large-gap);
     padding: var(--large-gap);
     grid-template-columns: 1fr;
