@@ -137,7 +137,7 @@ return (
   <Container>
     <Label htmlFor={name}>{name}:</Label>
 
-    <DropdownContainer className={state.show ? "show" : ""}>
+    <DropdownContainer>
       <DropdownButton
         onClick={() => State.update({ show: !state.show })}
         onBlur={() => State.update({ show: false })}
@@ -148,7 +148,7 @@ return (
         </Arrow>
       </DropdownButton>
 
-      <ul>
+      <ul className={state.show ? "show" : ""}>
         {options.map((option) => createOption(option))}
       </ul>
     </DropdownContainer>
