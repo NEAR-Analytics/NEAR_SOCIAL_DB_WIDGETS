@@ -1,4 +1,4 @@
-const address = `${(context.accountId ?? "").replace(
+const address = `${(props.accountId ?? context.accountId ?? "").replace(
   ".near",
   ""
 )}@near.mailchain.com`;
@@ -165,7 +165,7 @@ const GRAY_COLOR = "hsla(0, 0%, 88%, 1)";
 const GREEN_COLOR = "hsla(131, 54%, 40%, 1)";
 
 return (
-  <div style={{ padding: "10px" }}>
+  <div style={{ padding: props.padding, margin: props.margin }}>
     <OverlayTrigger
       placement="top"
       overlay={
