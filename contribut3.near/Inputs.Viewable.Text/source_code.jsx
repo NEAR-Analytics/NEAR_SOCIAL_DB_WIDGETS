@@ -51,8 +51,6 @@ const Input = styled.input`
   align-items: center;
   padding: 0.5em 0.75em;
   gap: 0.5em;
-  width: 359px;
-  height: 36px;
   background: #ffffff;
   border: 1px solid #d0d5dd;
   box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
