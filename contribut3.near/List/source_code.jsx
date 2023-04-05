@@ -20,6 +20,15 @@ const loadMore = () => {
 
 const WidgetContainer = styled.div`
   margin: 0.5em 0;
+  width: 100%;
+
+  @media (min-width: 768px) {
+    width: 50%;
+  }
+
+  @media (min-width: 2560px) {
+    width: 33.333%;
+  }
 `;
 
 return (
