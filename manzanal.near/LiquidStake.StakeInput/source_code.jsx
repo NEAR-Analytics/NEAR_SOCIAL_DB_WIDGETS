@@ -12,9 +12,10 @@ if (!data) return "Loading...";
 State.init({
   amountInUsd: 0,
 });
-const onChange = (e) => {
-  props.onChange && props.onChange(e.target.value);
-};
+
+const getAmountInUsd = () =>
+  parseFloat(data.body.market_data.current_price.usd) *
+  parseFloat(props.value).toFixed(2);
 
 const Wrapper = styled.div`
   border: 0.8px solid #D7E0E4;
@@ -119,7 +120,7 @@ return (
         </MaxButton>
         <Input
           value={props.value}
-          onChange={onChange}
+          onChange={(e) => props.onChange(e.target.value)}
           type="text"
           class="form-control"
           placeholder="0"
