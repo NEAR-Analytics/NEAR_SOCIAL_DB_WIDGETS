@@ -8,6 +8,7 @@ return (
       src={`${ownerId}/widget/Project.Details`}
       props={{
         onSave: (project) => {
+          console.log({ project });
           State.update({ project: { ...state.project, ...project } });
           Near.call(
             ownerId,
