@@ -118,12 +118,21 @@ return (
                 src={nwSite + item.Thumbnail.url}
                 alt={news.Thumbnail.alternativeText}
               />
-              <div class="d-flex flex-wrap m-2 w-50">
-                <Text as="a" href={item.sourceUrl} target="_blank" bold>
+              <div class="d-flex flex-wrap ms-2 mt-0">
+                <Text
+                  style={{ marginTop: -2 }}
+                  as="a"
+                  href={item.sourceUrl}
+                  target="_blank"
+                  bold
+                >
                   {item.Title}
                 </Text>
               </div>
-              <div class="align-text-top d-flex flex-wrap m-2 float-end">
+              <div
+                style={{ minWidth: 40 }}
+                class="align-text-top d-flex flex-wrap m-2 float-end"
+              >
                 <Text small>{dateToDays(item.createdAt)} ago</Text>
               </div>
             </div>
