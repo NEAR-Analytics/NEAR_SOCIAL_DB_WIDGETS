@@ -9,6 +9,9 @@ var sortedData =
     : [];
 var finalData = {};
 
+const thisWidgetClassNames = props.allWidgetsClassNames.instance_time_edit;
+const thisWidgetInlineStyles = props.allWidgetsInlineStyles.instance_time_edit;
+
 const widgetOwner =
   "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
 
@@ -142,6 +145,7 @@ const getFormatedTime = (time) => {
 
   return formated;
 };
+
 State.init({
   hoveringElement: "",
   _account: "All",
@@ -149,126 +153,66 @@ State.init({
   sectionShown: "timeZoneSelector",
 });
 
-const flex_column = {
-  display: "flex",
-  flexDirection: "column",
-};
-
 const set_schedule = () => {
   State.update({ _time_zone: finalData.time_zone ?? "(UTC+00:00) UTC" });
 };
 return (
   <div
-    className="px-4"
-    style={{
-      backgroundColor: "white",
-      borderRadius: "28px",
-      margin: "2rem auto 1rem auto",
-      width: "60%",
-    }}
+    className={thisWidgetClassNames.generalContainer}
+    style={thisWidgetInlineStyles.generalContainer}
   >
-    <div className="w-100 d-flex flex-row justify-content-between align-items-center">
-      <h2
-        style={{
-          padding: "2rem",
-          margin: "2rem 0 0.5rem 0",
-          fontWeight: "700",
-        }}
-      >
+    <div className={thisWidgetClassNames.widgetHeaderContainer}>
+      <h2 style={thisWidgetInlineStyles.widgetHeaderTitle}>
         {tabs.NEW_SCHEDULE.text}
       </h2>
       <i
-        className="bi bi-x-lg"
-        style={{
-          right: "2rem",
-          top: "2rem",
-          cursor: "pointer",
-        }}
+        className={thisWidgetClassNames.closeWidgetIcon}
+        style={thisWidgetInlineStyles.closeWidgetIcon}
         onClick={() => {
           updateInstanceTimeState({ showAbortScheduleCreation: true });
         }}
       ></i>
     </div>
 
-    <div className="pt-4" style={{ margin: "0 auto" }}>
+    <div
+      className={thisWidgetClassNames.tabsContainer}
+      style={thisWidgetInlineStyles.tabsContainer}
+    >
       <span
         style={
           state.sectionShown == "timeZoneSelector"
-            ? {
-                ...styleUnderline,
-                color: "#353A40",
-                fontSize: "0.8rem",
-                userSelect: "none",
-                cursor: "pointer",
-                marginRight: "1rem",
-              }
-            : {
-                color: "#767B8E",
-                fontSize: "0.8rem",
-                userSelect: "none",
-                cursor: "pointer",
-                marginRight: "1rem",
-              }
+            ? thisWidgetInlineStyles.timeZoneActivated
+            : thisWidgetInlineStyles.timeZoneNotActivated
         }
         onClick={() => {
           State.update({ sectionShown: "timeZoneSelector" });
         }}
       >
-        <i className="bi bi-square-fill"></i> Time zone
+        <i className={thisWidgetClassNames.tabSelectedIcon}></i> Time zone
       </span>
 
       <span
         style={
           state.sectionShown == "makeSchedule"
-            ? {
-                ...styleUnderline,
-                color: "#353A40",
-                fontSize: "0.8rem",
-                userSelect: "none",
-                position: "relative",
-                cursor: "pointer",
-              }
-            : {
-                color: "#767B8E",
-                fontSize: "0.8rem",
-                position: "relative",
-                userSelect: "none",
-                cursor: "pointer",
-              }
+            ? thisWidgetInlineStyles.makeScheduleSelected
+            : thisWidgetInlineStyles.makeScheduleNotSelected
         }
         onClick={() => {
           State.update({ sectionShown: "makeSchedule" });
         }}
       >
-        <i className="bi bi-square-fill"></i>
+        <i className={thisWidgetClassNames.tabSelectedIcon}></i>
         Shedule
       </span>
     </div>
     {state.sectionShown == "timeZoneSelector" ? (
       <div className="pb-4">
-        <label
-          for="pollTitle"
-          style={{
-            fontSize: "0.8rem",
-            letterSpacing: "-0.01em",
-            color: "#474D55",
-            marginBottom: "0.3rem",
-          }}
-        >
+        <label for="pollTitle" style={thisWidgetInlineStyles.timeZoneLabel}>
           Select time zone:
         </label>
         <select
-          style={{
-            backgroundColor: "white",
-            padding: "0.5rem 1.5rem",
-            borderRadius: "0.8rem",
-            border: "1.5px solid #E1E9F0",
-            color: "#474D55",
-            letterSpacing: "-0.01em",
-            width: "50%",
-            display: "block",
-          }}
-          className="mb-4"
+          style={thisWidgetInlineStyles.timeZoneSelector}
+          className={thisWidgetClassNames.timeZoneSelector}
           name="zones"
           id="zones"
           value={state._time_zone}
@@ -280,30 +224,12 @@ return (
             <option value={zone}>{zone}</option>
           ))}
         </select>
-        <div className="d-flex flex-row-reverse justify-content-between">
+        <div className={thisWidgetClassNames.buttonsContainer}>
           <button
             style={
               state.hoveringElement == "continueButton"
-                ? {
-                    border: "2px solid black",
-                    color: "black",
-                    backgroundColor: "white",
-                    fontWeight: "500",
-                    fontSize: "1rem",
-                    margin: "0",
-                    padding: "0.3rem 1.5rem",
-                    borderRadius: "12px",
-                  }
-                : {
-                    border: "2px solid transparent",
-                    fontWeight: "500",
-                    fontSize: "1rem",
-                    margin: "0",
-                    padding: "0.3rem 1.5rem",
-                    backgroundColor: "#010A2D",
-                    borderRadius: "12px",
-                    color: "white",
-                  }
+                ? thisWidgetInlineStyles.buttonHovered
+                : thisWidgetInlineStyles.button
             }
             onMouseEnter={() => {
               State.update({ hoveringElement: "continueButton" });
@@ -328,24 +254,8 @@ return (
             }}
             style={
               state.hoveringElement == "cancelNewSchedule"
-                ? {
-                    border: "2px solid transparent",
-                    fontWeight: "500",
-                    fontSize: "1rem",
-                    padding: "0.3rem 1.5rem",
-                    backgroundColor: "#010A2D",
-                    borderRadius: "12px",
-                    color: "white",
-                  }
-                : {
-                    border: "2px solid black",
-                    color: "black",
-                    backgroundColor: "white",
-                    fontWeight: "500",
-                    fontSize: "1rem",
-                    padding: "0.3rem 1.5rem",
-                    borderRadius: "12px",
-                  }
+                ? thisWidgetInlineStyles.buttonHovered
+                : thisWidgetInlineStyles.button
             }
           >
             Cancel
@@ -353,7 +263,7 @@ return (
         </div>
       </div>
     ) : (
-      <div className="align-items-center pt-3 pb-4">
+      <div className={thisWidgetClassNames.instanceTimeSettingContainer}>
         <Widget
           src={`${widgetOwner}/widget/Instance_time_setting`}
           props={{
