@@ -97,21 +97,40 @@ const Container = styled.div`
   gap: 1.5em;
 `;
 
+const Filter = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1em;
+  }
+`;
+
 return (
   <Container>
     <Heading>
       <h1>Discover NEAR Horizon</h1>
       <h2>Explore projects, vendors, investors and contribution requests</h2>
     </Heading>
-    <div>
-      {contentSelector}
-    </div>
-    <div>
+    <div>{contentSelector}</div>
+    <Filter>
       <Widget
         src={`${ownerId}/widget/SearchInput`}
         props={{ search: props.search, update: props.update }}
       />
-    </div>
+      <div>
+        <Widget
+          src={`${ownerId}/widget/Filter`}
+          props={{ search: props.search, update: props.update }}
+        />
+      </div>
+    </Filter>
     <div>{content}</div>
   </Container>
 );
