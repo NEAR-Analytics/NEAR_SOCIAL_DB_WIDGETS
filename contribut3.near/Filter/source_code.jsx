@@ -126,7 +126,9 @@ return (
       <DropdownButton>
         {options.find((option) => option.id === selected).text}
       </DropdownButton>
-      <ul></ul>
+      <ul>
+        {options.map((option) => createOption(option))}
+      </ul>
     </DropdownContainer>
   </>
 )
