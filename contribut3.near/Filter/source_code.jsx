@@ -1,6 +1,6 @@
 const ownerId = "contribut3.near";
 const name = props.name ?? "Type";
-const options = props.options ?? [{ id: "option-1", text: "Option 1" }, [{ id: "option-2", text: "Option 2" }, [{ id: "option-2", text: "Option 2" }];
+const options = props.options ?? [{ id: "option-1", text: "Option 1" }, { id: "option-2", text: "Option 2" }, { id: "option-2", text: "Option 2" }];
 const selected = props.selected ?? options[0].id;
 
 const DropdownContainer = styled.div`
