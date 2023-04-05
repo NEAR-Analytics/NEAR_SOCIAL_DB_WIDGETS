@@ -390,6 +390,7 @@ return (
         canSwap,
         callTx,
         requestSignIn: props.requestSignIn,
+        noPool: state.estimate?.sig === "no_pool",
       }}
     />
   </Container>
