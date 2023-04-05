@@ -45,7 +45,6 @@ const LabelArea = styled.div`
 `;
 
 const Input = styled.input`
-  display: block;
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
