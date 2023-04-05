@@ -23,7 +23,7 @@ const ListContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  gap: 1em;
+  gap: .5em;
 `;
 
 const WidgetContainer = styled.div`
