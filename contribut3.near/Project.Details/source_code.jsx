@@ -1,3 +1,5 @@
+const ownerId = "contribut3.near";
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
