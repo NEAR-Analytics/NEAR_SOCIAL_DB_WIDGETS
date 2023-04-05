@@ -34,7 +34,9 @@ return (
           style={{
             display: "flex",
             flexDirection: "row",
+            flexWrap: "wrap",
             gap: 4,
+            margin: "0 4px",
           }}
         >
           {types.map((it) => (
