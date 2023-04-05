@@ -203,6 +203,9 @@ const allWidgetsInlineStyles = {
     showUserInfoInHeaderText: { margin: "0px", fontSize: "0.8rem" },
   },
   instance_time_card: {
+    widgetGeneralContainer: {
+      maxWidth: "80%",
+    },
     generalContainer: {
       width: "100%",
       margin: "2rem",
