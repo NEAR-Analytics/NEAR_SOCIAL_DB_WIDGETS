@@ -3,6 +3,7 @@ const label = props.label ?? "Input";
 const value = props.value ?? "";
 const link = props.link ?? "";
 const isLink = link !== "";
+const onSave = props.onSave ?? (() => { });
 
 State.init({
   value,
@@ -57,6 +58,16 @@ const Input = styled.input`
   border-radius: 4px;
 `;
 
+const SaveButton = styled.button`
+  display: ${({ show }) => show ? "flex" : "none"};
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: .5em 1em;
+  background: #00ec97;
+  border-radius: 50px;
+`;
+
 return (
   <Container>
     <LabelArea>
@@ -64,6 +75,8 @@ return (
       <EditButton onClick={() => State.update({ edit: !state.edit })}>
         {state.edit ? "Cancel" : "Edit"}
       </EditButton>
+
+      <SaveButton show={state.edit} onClick={OnSave}>Save</SaveButton>
     </LabelArea>
 
     {state.edit ? (
