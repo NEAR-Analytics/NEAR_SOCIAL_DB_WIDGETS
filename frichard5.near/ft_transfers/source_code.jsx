@@ -79,7 +79,6 @@ const GenericTable = (
   />
 );
 
-let transactions = [];
 const fetchTransfers = (offset) => {
   const nearTransfers = fetch(
     apiUrl + `?offset=${offset}&limit=${resPerPage}`,
