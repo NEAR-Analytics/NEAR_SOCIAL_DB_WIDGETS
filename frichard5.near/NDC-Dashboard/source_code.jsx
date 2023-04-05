@@ -3,6 +3,9 @@ const widgetProvider = "frichard5.near";
 const refUrl = "https://api.stats.ref.finance/api/ft";
 
 // Style
+const avenirFontFamily = fetch(
+  "https://fonts.cdnfonts.com/css/avenir-lt-std"
+).body;
 const theme = {
   main: "#FFD50D",
   secondaryPink: "#F29BC0",
@@ -12,11 +15,21 @@ const theme = {
 //    background: ${(props) => props.theme.secondaryBlue};
 
 const DashboardContainer = styled.div`
+  * {
+    font-family: 'avenir lt std';    
+  }
+  h2 {
+    font-weight: 750;
+  }
   padding: 28px;
   background: #e2e8f0;
   background-size: contain;
   background-repeat: no-repeat;
-  
+  ${avenirFontFamily}
+`;
+
+const Test = styled.h1`
+    font-family: Avenir Heavy;
 `;
 
 // Fetch
