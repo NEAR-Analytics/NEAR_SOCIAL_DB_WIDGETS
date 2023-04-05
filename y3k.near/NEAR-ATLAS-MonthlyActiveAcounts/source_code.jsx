@@ -41,14 +41,6 @@ const dates = data.map((entry) => entry["DAY"]);
 // logic part-2
 
 const stacked_options = {
-  plugins: {
-    title: {
-      display: true,
-      text: "",
-    },
-  },
-  responsive: true,
-  maintainAspectRatio: true,
   scales: {
     x: {
       stacked: true,
@@ -79,8 +71,8 @@ return (
   <Style>
     <div className="text-bg-dark container">
       {data !== null ? (
-        <div className="row">
-          <div className="col-12">
+        <div className="rounded-4 p-3 mb-4">
+          <div className="">
             <BarEl options={stacked_options} data={stacked_bar_data} />
           </div>
         </div>
