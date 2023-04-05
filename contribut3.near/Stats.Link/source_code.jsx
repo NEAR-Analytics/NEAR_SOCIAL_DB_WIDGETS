@@ -16,6 +16,11 @@ const Link = styled.a`
   line-height: 1em;
   text-align: center;
   color: #006ADC;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: .5em;
 `;
 
 const arrow = (
@@ -26,6 +31,6 @@ const arrow = (
 
 return (
   <Container>
-    <Link href="https://nearatlas.com/#/">Explore stats</Link>
+    <Link href="https://nearatlas.com/#/">Explore stats {arrow}</Link>
   </Container>
 );
