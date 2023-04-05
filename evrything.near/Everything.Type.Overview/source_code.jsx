@@ -31,7 +31,18 @@ return (
             gap: 4,
           }}
         >
-          <button className="text-lowercase">view type details</button>
+          <a
+            href={"/#/evrything.near/widget/Everything"}
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            <button className="text-lowercase">back</button>
+          </a>
+          <a
+            href={`/#/evrything.near/widget/Everything.Type.Details?type=${type}`}
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            <button className="text-lowercase">view type details</button>
+          </a>
           <button className="text-lowercase">create new</button>
         </div>
       </div>
