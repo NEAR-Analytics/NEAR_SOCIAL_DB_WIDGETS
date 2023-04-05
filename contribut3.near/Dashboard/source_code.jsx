@@ -97,19 +97,19 @@ const Container = styled.div`
   gap: 1.5em;
 `;
 
+const Filters = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`;
+
 const Filter = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-
-  div {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1em;
-  }
+  gap: 1em;
 `;
 
 return (
@@ -119,12 +119,12 @@ return (
       <h2>Explore projects, vendors, investors and contribution requests</h2>
     </Heading>
     <div>{contentSelector}</div>
-    <Filter>
+    <Filters>
       <Widget
         src={`${ownerId}/widget/SearchInput`}
         props={{ search: props.search, update: props.update }}
       />
-      <div>
+      <Filter>
         <Widget
           src={`${ownerId}/widget/Filter`}
           props={{
@@ -161,8 +161,8 @@ return (
             update: (id) => alert(id),
           }}
         />
-      </div>
-    </Filter>
+      </Filter>
+    </Filters>
     <div>{content}</div>
   </Container>
 );
