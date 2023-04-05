@@ -40,11 +40,13 @@ const WidgetContainer = styled.div`
 
 return (
   <InfiniteScroll loadMore={loadMore} hasMore={state.hasMore}>
-    {state.shown
-      .map((args, index) => (
-        <WidgetContainer key={index}>
-          {createItem(args)}
-        </WidgetContainer>
-      ))}
+    <ListContainer>
+      {state.shown
+        .map((args, index) => (
+          <WidgetContainer key={index}>
+            {createItem(args)}
+          </WidgetContainer>
+        ))}
+    </ListContainer>
   </InfiniteScroll>
 );
