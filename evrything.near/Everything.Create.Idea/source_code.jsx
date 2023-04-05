@@ -89,7 +89,7 @@ const createThing = () => {
             }),
           },
           index: {
-            et1: JSON.stringify({
+            tempeverything: JSON.stringify({
               key: "main",
               value: {
                 type: "everything.near/type/Idea",
