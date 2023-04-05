@@ -40,7 +40,7 @@ return (
         label: "Location",
         id: "location",
         value: "San Francisco, CA",
-        onSave: (website) => onSave({ geo }),
+        onSave: (geo) => onSave({ geo }),
       }}
     />
   </Container>
