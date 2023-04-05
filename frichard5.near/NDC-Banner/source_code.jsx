@@ -14,7 +14,7 @@ const Logo = styled.img`
 
 const Lines = styled.div`
     position: absolute;
-    top:24pxsssssssssssssssssssssssssssssssssssssssssss;
+    top:24px;
     left:0;
     width: 100%;
     height: 200px;
