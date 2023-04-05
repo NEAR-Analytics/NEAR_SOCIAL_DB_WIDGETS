@@ -126,7 +126,8 @@ return (
     </Heading>
     <Stats>
       <Widget
-        src={`${ownerId}/widget/Stats.Card`} props={{
+        src={`${ownerId}/widget/Stats.Card`}
+        props={{
           value: "1077",
           label: "Projects",
         }}
