@@ -1,4 +1,4 @@
-const value = props.value;
+let value = props.value;
 if (!props.onChange) {
   return "Cannot render stake input without onChange function!";
 }
@@ -20,6 +20,7 @@ const onChange = (e) => {
       parseFloat(data.body.market_data.current_price.usd) *
       parseFloat(e.target.value),
   });
+  value = parseFloat(e.target.value);
 };
 
 const Wrapper = styled.div`
@@ -124,7 +125,7 @@ return (
           Max
         </MaxButton>
         <Input
-          value={props.value}
+          value={value}
           onChange={onChange}
           type="text"
           class="form-control"
