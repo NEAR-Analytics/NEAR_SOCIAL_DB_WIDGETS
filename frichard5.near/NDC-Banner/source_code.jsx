@@ -25,7 +25,7 @@ const Lines = styled.div`
 
 return (
   <Banner role="banner">
-    <Logo src="https://ipfs.near.social/ipfs/bafkreihbisodby5rjawdzxqokdbqbrcskp2kayrqcos73smdba2svzciym" />
+    <Logo src="https://ipfs.near.social/ipfs/bafkreie4rfa63zedwnpbwm5lglqrwqhahcnf6slllqmq7sh46ngf5y4vsq" />
     <Lines src="https://ipfs.near.social/ipfs/bafybeifjsr4vz2266xw27t4uvlhelnixnbxozfkmr7c7zhpsnkttucrkli" />
   </Banner>
 );
