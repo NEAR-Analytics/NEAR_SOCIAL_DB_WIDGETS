@@ -34,5 +34,14 @@ return (
         onSave: (website) => onSave({ website }),
       }}
     />
+    <Widget
+      src={`${ownerId}/widget/Inputs.Viewable.Text`}
+      props={{
+        label: "Location",
+        id: "location",
+        value: "San Francisco, CA",
+        onSave: (website) => onSave({ geo }),
+      }}
+    />
   </Container>
 );
