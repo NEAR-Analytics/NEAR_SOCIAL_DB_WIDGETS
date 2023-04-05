@@ -22,13 +22,19 @@ const Tabs = styled.div`
 const Content = styled.div``;
 const TabButton = styled.button`
     background: ${(props) => props.theme.main};
+    
 `;
 
 let tabList = [];
 
 tabs.forEach((tab) => {
   tabList.push(
-    <TabButton onClick={tabSelect(tab.value)}>{tab.label}</TabButton>
+    <TabButton
+      onClick={tabSelect(tab.value)}
+      selected={tab.value === state.selectedTab}
+    >
+      {tab.label}
+    </TabButton>
   );
 });
 
