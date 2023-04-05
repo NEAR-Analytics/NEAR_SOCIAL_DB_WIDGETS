@@ -27,7 +27,7 @@ const Label = styled.label`
 
 const EditButton = styled.button`
   font-weight: 400;
-  font-size: .9em;
+  font-size: 0.9em;
   line-height: 1em;
   color: #006adc;
   background: none;
@@ -64,9 +64,23 @@ return (
   <Container>
     <LabelArea>
       <Label htmlFor={id}>{label}</Label>
-      <EditButton onClick={() => State.update({ edit: !state.edit })}>{state.edit ? "Cancel" : "Edit"}</EditButton>
+      <EditButton onClick={() => State.update({ edit: !state.edit })}>
+        {state.edit ? "Cancel" : "Edit"}
+      </EditButton>
     </LabelArea>
 
-    {state.edit ? (isLink ? <a href={link}>{value}</a> : value) : (<Input type={isLink ? "url" : "text"} value={state.value} onChange={(e) => State.update({ value: e.target.value })} />)}
+    {state.edit ? (
+      isLink ? (
+        <a href={link}>{value}</a>
+      ) : (
+        value
+      )
+    ) : (
+      <Input
+        type={isLink ? "url" : "text"}
+        value={state.value}
+        onChange={(e) => State.update({ value: e.target.value })}
+      />
+    )}
   </Container>
 );
