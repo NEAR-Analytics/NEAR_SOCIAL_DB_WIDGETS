@@ -111,6 +111,10 @@ const Wrapper = styled.div`
     align-items: center;
     background-color: #CEFF1A;
     padding: 32px;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+
   `;
 const Container = styled.div`
     border: 1px solid #c0c5c1;
@@ -194,6 +198,7 @@ const BannerButton = styled.a`
     padding-bottom: 8px;
    text-decoration: none;
     cursor: pointer;
+    reset: all;
   `;
 const BannerButtonText = styled.span`
     letter-spacing: 1px;
