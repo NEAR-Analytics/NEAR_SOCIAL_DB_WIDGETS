@@ -201,7 +201,7 @@ return props.manual ? (
     {props.headerElement}
     <Masonry
       breakpointCols={{ default: NUM_COLUMNS_LG, 800: NUM_COLUMNS_SM }}
-      className={{ width: "100%" }}
+      style={{ width: "100%" }}
     >
       {renderedItems}
     </Masonry>
