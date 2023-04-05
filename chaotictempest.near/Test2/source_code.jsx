@@ -26,7 +26,7 @@ const Avatar = styled.a`
 return (
   <Avatar
     href={profileUrl}
-    onMouseDown={(event) => {
+    onPointerUp={(event) => {
       console.log("event", event);
     }}
   >
