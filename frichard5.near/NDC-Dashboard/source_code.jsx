@@ -123,11 +123,20 @@ const Tabs = (
 const selectDao = ({ target: { value } }) => {
   State.update({ selectedDao: value });
 };
+console.log("azd", styled);
+const Test = styled.div`
+  width: 100px;
+  height: 100px;
+  background: ${(props) => console.log(props)};
+  top: 300px;
+  z-index: 10000;
+`;
 
 return (
   <>
-    <DashboardContainer theme={theme}>
+    <DashboardContainer>
       {Banner}
+      <Test />
       <select onChange={selectDao}>
         <option value="marketing.sputnik-dao.near">Marketing</option>
         <option value="creativesdao.sputnik-dao.near">Creative</option>
