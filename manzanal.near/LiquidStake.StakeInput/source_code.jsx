@@ -1,4 +1,3 @@
-let value = props.value;
 if (!props.onChange) {
   return "Cannot render stake input without onChange function!";
 }
@@ -15,12 +14,6 @@ State.init({
 });
 const onChange = (e) => {
   props.onChange && props.onChange(e.target.value);
-  State.update({
-    amountInUsd:
-      parseFloat(data.body.market_data.current_price.usd) *
-      parseFloat(e.target.value),
-  });
-  value = parseFloat(e.target.value);
 };
 
 const Wrapper = styled.div`
@@ -125,13 +118,17 @@ return (
           Max
         </MaxButton>
         <Input
-          value={value}
+          value={props.value}
           onChange={onChange}
           type="text"
           class="form-control"
           placeholder="0"
         />
-        <Usd>USD {state.amountInUsd || "0.00"}</Usd>
+        <Usd>
+          USD{" "}
+          {parseFloat(data.body.market_data.current_price.usd) *
+            parseFloat(props.value) || "0.00"}
+        </Usd>
       </Frame3>
     </Frame2>
   </Wrapper>
