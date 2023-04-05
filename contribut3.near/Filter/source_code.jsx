@@ -10,7 +10,7 @@ const selected = props.selected ?? options[0].id;
 const DropdownContainer = styled.div`
   position: relative;
 
-  li {
+  ul {
     --y-pos: 40px;
     z-index: 3;
     dislpay: block;
@@ -126,6 +126,7 @@ return (
       <DropdownButton>
         {options.find((option) => option.id === selected).text}
       </DropdownButton>
+      <ul></ul>
     </DropdownContainer>
   </>
 )
