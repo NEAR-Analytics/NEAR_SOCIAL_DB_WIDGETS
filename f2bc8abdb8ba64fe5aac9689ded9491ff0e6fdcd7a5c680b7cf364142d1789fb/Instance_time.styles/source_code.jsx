@@ -387,7 +387,7 @@ const allWidgetsClassNames = {
     textInHeader: "m-0 pt-3",
     cardsContainer: "row",
     cardGeneralContainer:
-      "col-xxl-3 col-xl-3 col-lg-4 col-md-10 col-sm-10 col-xs-10",
+      "col-xxl-3 col-xl-3 col-lg-4 col-md-8 col-sm-8 col-xs-8",
   },
 };
 
