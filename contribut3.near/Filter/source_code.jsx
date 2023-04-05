@@ -86,7 +86,7 @@ const arrowIcon = (
   >
     <path
       d="M1 1.5L6 6.5L11 1.5"
-      stroke="black"
+      stroke="#101828"
       stroke-width="1.66667"
       stroke-linecap="round"
       stroke-linejoin="round"
