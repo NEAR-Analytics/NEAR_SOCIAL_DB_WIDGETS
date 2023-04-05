@@ -43,7 +43,7 @@ const DropdownItem = styled.li`
   a {
     display: block;
     width: 100%;
-    clear
+    clear: both;
     padding: 1em;
     font-while: ${({ selected }) => (selected ? "600" : "400")};
     white-space: nowrap;
