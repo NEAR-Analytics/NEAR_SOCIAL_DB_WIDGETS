@@ -8,13 +8,15 @@ const theme = {
   secondaryPink: "#F29BC0",
   secondaryBlue: "#4498E0",
 };
+
 //    background: ${(props) => props.theme.secondaryBlue};
 
 const DashboardContainer = styled.div`
-    padding: 28px;
-    background: #e2e8f0;
-    background-size: contain;
-    background-repeat: no-repeat;
+  padding: 28px;
+  background: #e2e8f0;
+  background-size: contain;
+  background-repeat: no-repeat;
+  
 `;
 
 // Fetch
@@ -70,16 +72,19 @@ const selectDao = ({ target: { value } }) => {
 };
 
 return (
-  <DashboardContainer theme={theme}>
-    {Banner}
-    <select onChange={selectDao}>
-      <option value="marketing.sputnik-dao.near">Marketing</option>
-      <option value="creativesdao.sputnik-dao.near">Creative</option>
-      <option value="neardevgov.sputnik-dao.near">Gov</option>
-    </select>
-    {Balances}
-    {NearTransfers}
-    {FTransfers}
-    {ContractMetrics}
-  </DashboardContainer>
+  <>
+    <DashboardContainer theme={theme}>
+      {Banner}
+      <h1 style={{ fontFamily: "Avenir Heavy" }}>yyyy YYYYY</h1>
+      <select onChange={selectDao}>
+        <option value="marketing.sputnik-dao.near">Marketing</option>
+        <option value="creativesdao.sputnik-dao.near">Creative</option>
+        <option value="neardevgov.sputnik-dao.near">Gov</option>
+      </select>
+      {Balances}
+      {NearTransfers}
+      {FTransfers}
+      {ContractMetrics}
+    </DashboardContainer>
+  </>
 );
