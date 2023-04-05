@@ -50,7 +50,6 @@ const Input = styled.input`
   flex-direction: row;
   align-items: center;
   padding: 0.5em 0.75em;
-  padding-left: 2.25em;
   gap: 0.5em;
   width: 359px;
   height: 36px;
