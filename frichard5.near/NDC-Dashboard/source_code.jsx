@@ -123,7 +123,7 @@ const Tabs = (
 const selectDao = ({ target: { value } }) => {
   State.update({ selectedDao: value });
 };
-console.log("azd", styled);
+
 const Test = styled.div`
   width: 100px;
   height: 100px;
@@ -134,7 +134,7 @@ const Test = styled.div`
 
 return (
   <>
-    <DashboardContainer>
+    <DashboardContainer theme={theme}>
       {Banner}
       <Test />
       <select onChange={selectDao}>
