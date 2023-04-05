@@ -118,7 +118,7 @@ return (
                 src={nwSite + item.Thumbnail.url}
                 alt={news.Thumbnail.alternativeText}
               />
-              <div class="d-flex flex-wrap m-1 w-75">
+              <div class="d-flex flex-wrap m-2 w-50">
                 <Text as="a" href={item.sourceUrl} target="_blank" bold>
                   {item.Title}
                 </Text>
