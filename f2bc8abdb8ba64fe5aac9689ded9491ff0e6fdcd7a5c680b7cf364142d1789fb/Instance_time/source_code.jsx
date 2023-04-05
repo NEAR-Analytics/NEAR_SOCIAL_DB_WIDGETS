@@ -8,6 +8,9 @@ if (!profile) {
   return "Loading profile";
 }
 
+const thisWidgetInlineStyles = props.allWidgetsInlineStyles.instance_time;
+const thisWidgetClassNames = props.allWidgetsClassNames.instance_time;
+
 const widgetOwner =
   "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
 
@@ -58,20 +61,6 @@ function makeStringShorter(string, length) {
   return string;
 }
 
-const flex_column = {
-  display: "flex",
-  flexDirection: "column",
-};
-
-const comboBox = {
-  background: "rgb(230, 230, 230)",
-  color: "black",
-  borderRadius: "1rem",
-  padding: "1rem",
-  fontWeight: "500",
-  fontSize: "1rem",
-};
-
 function closeModalClickingOnTransparent() {
   return (e) => {
     e.target.id == "modal" &&
@@ -85,97 +74,101 @@ const renderAbortPollCreationModal = () => {
       className="modal"
       id="modal"
       style={
-        state.showAbortScheduleCreation && {
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          backgroundColor: "#7e7e7e70",
-          backdropFilter: "blur(4px)",
-        }
+        state.showAbortScheduleCreation &&
+        thisWidgetInlineStyles.renderAbortPollCreationModal.generalContainer
       }
       tabindex="-1"
       role="dialog"
       onClick={closeModalClickingOnTransparent()}
     >
       <div
-        className="modal-dialog"
-        style={{ width: "540px", borderRadius: "28px" }}
+        className={
+          thisWidgetClassNames.renderAbortPollCreationModal.modalDialogContainer
+        }
+        style={
+          thisWidgetInlineStyles.renderAbortPollCreationModal
+            .modalDialogContainer
+        }
         role="document"
       >
         <div
-          className="modal-content"
-          style={{ border: "none", borderRadius: "28px" }}
+          className={
+            thisWidgetClassNames.renderAbortPollCreationModal
+              .modalContentContainer
+          }
+          style={
+            thisWidgetInlineStyles.renderAbortPollCreationModal
+              .modalContentContainer
+          }
         >
           <div
-            className="modal-header flex-row-reverse"
-            style={{ padding: "0", margin: "0", border: "none" }}
+            className={
+              thisWidgetClassNames.renderAbortPollCreationModal.modalHeader
+            }
+            style={
+              thisWidgetInlineStyles.renderAbortPollCreationModal.modalHeader
+            }
           >
             <button
               type="button"
-              className="close"
-              style={{
-                border: "none",
-                backgroundColor: "transparent",
-                margin: "0.5rem 0.5rem 0px 0px",
-                borderRadius: "28px",
-                marginRight: "0.3rem",
-                padding: "0.3rem 0.7rem 0 0",
-              }}
+              className={
+                thisWidgetClassNames.renderAbortPollCreationModal.closeButton
+              }
+              style={
+                thisWidgetInlineStyles.renderAbortPollCreationModal.closeButton
+              }
               dataDismiss="modal"
               ariaLabel="Close"
               onClick={() => State.update({ showAbortScheduleCreation: false })}
             >
-              <i className="bi bi-x-lg"></i>
+              <i
+                className={
+                  thisWidgetClassNames.renderAbortPollCreationModal.closeIcon
+                }
+              ></i>
             </button>
           </div>
           <div
-            className="modal-body"
-            style={{
-              width: "90%",
-              borderRadius: "1rem",
-              margin: "0 auto",
-              padding: "0",
-            }}
+            className={
+              thisWidgetClassNames.renderAbortPollCreationModal.modalBody
+            }
+            style={
+              thisWidgetInlineStyles.renderAbortPollCreationModal.modalBody
+            }
           >
             <h3
-              style={{
-                fontWeight: "700",
-                fontSize: "1.5rem",
-                letterSpacing: "0.1px",
-                textAlign: "center",
-              }}
+              style={
+                thisWidgetInlineStyles.renderAbortPollCreationModal
+                  .discardChangesTitle
+              }
             >
               Discard changes
             </h3>
             <p
-              style={{
-                letterSpacing: "-0.01",
-                color: "#4B516A",
-                fontSize: "1rem",
-                textAlign: "center",
-              }}
+              style={
+                thisWidgetInlineStyles.renderAbortPollCreationModal
+                  .discardChangesText
+              }
             >
               If you leave now, you will lose all your changes
             </p>
           </div>
           <div
-            className="modal-footer"
-            style={{ border: "none", justifyContent: "space-around" }}
+            className={
+              thisWidgetClassNames.renderAbortPollCreationModal.modalFooter
+            }
+            style={
+              thisWidgetInlineStyles.renderAbortPollCreationModal.modalFooter
+            }
           >
             <button
               type="button"
               className="btn btn-secondary"
               data-dismiss="modal"
-              style={{
-                padding: "0.7rem",
-                borderRadius: "16px",
-                width: "45%",
-                backgroundColor: "white",
-                border: "1.5px solid #B0B3BE",
-                color: "#010A2D",
-                fontWeight: "700",
-                letterSpacing: "0.01em",
-              }}
+              style={
+                thisWidgetInlineStyles.renderAbortPollCreationModal
+                  .continueEditingButton
+              }
               onClick={() => State.update({ showAbortScheduleCreation: false })}
             >
               Continue editing
@@ -184,16 +177,10 @@ const renderAbortPollCreationModal = () => {
               type="button"
               className="btn btn-secondary"
               data-dismiss="modal"
-              style={{
-                padding: "0.7rem",
-                borderRadius: "16px",
-                width: "45%",
-                backgroundColor: "#FF4747",
-                border: "1.5px solid transparent",
-                color: "white",
-                fontWeight: "700",
-                letterSpacing: "0.01em",
-              }}
+              style={
+                thisWidgetInlineStyles.renderAbortPollCreationModal
+                  .discardChangesButton
+              }
               onClick={() => {
                 if (state.abortThroughAllExistingSchedule) {
                   State.update({
@@ -225,56 +212,28 @@ const updateInstanceTimeState = (object) => {
 };
 
 return (
-  <div
-    className="pb-5"
-    style={{
-      backgroundColor: "rgb(230, 230, 230)",
-      fontFamily: "Onest",
-      fontStyle: "normal",
-      borderRadius: "20px",
-    }}
-  >
-    <div className="d-flex flex-column">
+  <div className="pb-5" style={thisWidgetInlineStyles.generalContainer}>
+    <div className={thisWidgetClassNames.siteHeaderContainer}>
       <div
-        className="d-flex justify-content-between align-items-center px-4 py-3"
-        style={{
-          backgroundColor: "white",
-          boxShadow: "rgba(43, 68, 106, 0.04) 0px 4px 28px",
-        }}
+        className={thisWidgetClassNames.siteHeader}
+        style={thisWidgetInlineStyles.siteHeader}
       >
-        <div className="d-flex align-items-center">
-          <i className="bi bi-calendar-week-fill"></i>
-          <h3
-            style={{
-              margin: "0px 0.5rem",
-              color: "rgb(1, 10, 45)",
-              fontWeight: "700",
-              fontSize: "1.3rem",
-              letterSpacing: "0.1px",
-            }}
-          >
-            WeeklySchedule
-          </h3>
+        <div className={thisWidgetClassNames.instanceTimeLogoContainer}>
+          <i className={thisWidgetClassNames.logoIcon}></i>
+          <h3 style={thisWidgetInlineStyles.logoTitle}>WeeklySchedule</h3>
         </div>
         {state.tab != tabs.OPEN_SCHEDULE.id && (
           <div
-            className="w-100 d-flex justify-content-between"
-            style={{ margin: "0px 4rem" }}
+            className={thisWidgetClassNames.openScheduleGeneralContainer}
+            style={thisWidgetInlineStyles.openScheduleGeneralContainer}
           >
-            <div style={{ marginTop: "0.6rem" }}>
-              <div className="d-flex">
+            <div style={thisWidgetInlineStyles.openScheduleContainer}>
+              <div className={thisWidgetClassNames.tabsContainer}>
                 {Object.keys(tabs).map((tabKey) => {
                   const tab = tabs[tabKey];
                   if (tabKey == "ALL_SCHEDULE" || tabKey == "MY_SCHEDULE") {
                     return (
-                      <div
-                        style={{
-                          marginRight: "1.5rem",
-                          position: "relative",
-                          cursor: "pointer",
-                          userSelect: "none",
-                        }}
-                      >
+                      <div style={thisWidgetInlineStyles.tabContainer}>
                         <p
                           ariaCurrent="page"
                           onMouseEnter={() => {
@@ -296,26 +255,16 @@ return (
                                   showAbortScheduleCreation: true,
                                 });
                           }}
-                          style={{
-                            fontWeight: "500",
-                            fontSize: "1rem",
-                            margin: "0",
-                          }}
+                          style={thisWidgetInlineStyles.tabText}
                         >
                           {tab.text}
                         </p>
                         {(state.hoveringElement == tab.id ||
                           state.tab == tab.id) && (
                           <div
-                            style={{
-                              height: "0.2rem",
-                              width: "50%",
-                              position: "absolute",
-                              bottom: "-55%",
-                              left: "25%",
-                              backgroundColor: "#010A2D",
-                              borderRadius: "8px",
-                            }}
+                            style={
+                              thisWidgetInlineStyles.decorativeTabUnderline
+                            }
                           >
                             {/*Decorative Div, do not delete*/}
                           </div>
@@ -339,57 +288,47 @@ return (
               style={
                 state.hoveringElement == tabs.NEW_SCHEDULE.id ||
                 state.tab == tabs.NEW_SCHEDULE.id
-                  ? {
-                      border: "2px solid black",
-                      color: "black",
-                      backgroundColor: "white",
-                      fontWeight: "500",
-                      fontSize: "1rem",
-                      margin: "0",
-                      padding: "0.3rem 1.5rem",
-                      borderRadius: "12px",
-                    }
-                  : {
-                      border: "2px solid transparent",
-                      fontWeight: "500",
-                      fontSize: "1rem",
-                      margin: "0",
-                      padding: "0.3rem 1.5rem",
-                      backgroundColor: "#010A2D",
-                      borderRadius: "12px",
-                      color: "white",
-                    }
+                  ? thisWidgetInlineStyles.newScheduleButtonHovering
+                  : thisWidgetInlineStyles.newScheduleButton
               }
             >
               <i
-                className="bi bi-plus-lg"
+                className={thisWidgetClassNames.newScheduleButtonInnerIcon}
                 style={
                   state.hoveringElement == tabs.NEW_SCHEDULE.id ||
                   state.tab == tabs.NEW_SCHEDULE.id
-                    ? { color: "black" }
-                    : { color: "white" }
+                    ? thisWidgetInlineStyles.newScheduleButtonInnerIconHovered
+                    : thisWidgetInlineStyles.newScheduleButtonInnerIcon
                 }
               ></i>
               {tabs.NEW_SCHEDULE.text}
             </button>
           </div>
         )}
-        <div className="d-flex flex-column">
-          <p className="m-0" style={{ margin: "0px", fontSize: "0.8rem" }}>
+        <div className={thisWidgetClassNames.showUserInfoInHeader}>
+          <p
+            className="m-0"
+            style={thisWidgetInlineStyles.userInfoInHeaderText}
+          >
             {makeStringShorter(profile.name, 12)}
           </p>
-          <p className="m-0" style={{ margin: "0px", fontSize: "0.8rem" }}>
+          <p
+            className="m-0"
+            style={thisWidgetInlineStyles.userInfoInHeaderText}
+          >
             @{makeStringShorter(context.accountId, 12)}
           </p>
         </div>
       </div>
-      <div className="w-100 d-flex flex-row justify-content-between align-items-center"></div>
+      <div className={thisWidgetClassNames.decorativeDivInHeader}></div>
     </div>
-    <div className="align-items-center">
+    <div className={thisWidgetClassNames.bodyContainer}>
       {state.tab == tabs.OPEN_SCHEDULE.id ? (
         <Widget
           src={`${widgetOwner}/widget/Instance_time_card`}
           props={{
+            allWidgetsClassNames: props.allWidgetsClassNames,
+            allWidgetsInlineStyles: props.allWidgetsInlineStyles,
             accountId: state.userScheduleShown,
             tabs,
             prevTab,
@@ -401,6 +340,8 @@ return (
         <Widget
           src={`${widgetOwner}/widget/Instance_time_review`}
           props={{
+            allWidgetsClassNames: props.allWidgetsClassNames,
+            allWidgetsInlineStyles: props.allWidgetsInlineStyles,
             accountId:
               state.tab == tabs.ALL_SCHEDULE.id ? "All" : context.accountId,
             text:
@@ -417,7 +358,14 @@ return (
       ) : (
         <Widget
           src={`${widgetOwner}/widget/Instance_time_edit`}
-          props={{ updateInstanceTimeState, tabs, data, prevTab }}
+          props={{
+            updateInstanceTimeState,
+            tabs,
+            data,
+            prevTab,
+            allWidgetsClassNames: props.allWidgetsClassNames,
+            allWidgetsInlineStyles: props.allWidgetsInlineStyles,
+          }}
         />
       )}
     </div>
