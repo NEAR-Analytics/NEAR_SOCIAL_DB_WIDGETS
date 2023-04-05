@@ -256,13 +256,16 @@ const allWidgetsInlineStyles = {
     },
     titleInHeader: { margin: "2rem 0 0.5rem 0", fontWeight: "700" },
     textInHeader: { margin: "0px", fontSize: "0.8rem" },
+    cardsContainer: {
+      gap: "8%",
+    },
     cardGeneralContainer: {
       boxSizing: "border-box",
       boxShadow: "0px 8px 28px rgba(43, 68, 106, 0.05)",
       backgroundColor: "white",
       color: "black",
       borderRadius: "1rem",
-      margin: "8px",
+      margin: "1rem",
       cursor: "pointer",
       textDecoration: "none",
     },
@@ -272,7 +275,7 @@ const allWidgetsInlineStyles = {
       backgroundColor: "white",
       color: "black",
       borderRadius: "1rem",
-      margin: "8px",
+      margin: "1rem",
       cursor: "pointer",
       textDecoration: "none",
       disabled: true,
@@ -383,6 +386,8 @@ const allWidgetsClassNames = {
     widgetHeaderContainer: "d-flex justify-content-between",
     textInHeader: "m-0 pt-3",
     cardsContainer: "row",
+    cardGeneralContainer:
+      "col-xxl-3 col-xl-3 col-lg-4 col-md-10 col-sm-10 col-xs-10",
   },
 };
 
