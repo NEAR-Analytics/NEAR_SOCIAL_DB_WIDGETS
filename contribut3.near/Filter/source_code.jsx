@@ -119,6 +119,14 @@ const createOption = ({ id, text, href }) => (
   </DropdownItem>
 );
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+`
+
 return (
   <>
     <Label htmlFor={name}>{name}</Label>
@@ -126,6 +134,7 @@ return (
       <DropdownButton>
         {options.find((option) => option.id === selected).text}
       </DropdownButton>
+
       <ul>
         {options.map((option) => createOption(option))}
       </ul>
