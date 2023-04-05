@@ -3,11 +3,11 @@ const accountId = props.accountId;
 const gas = "300000000000000";
 
 const companySizeTiers = [
-  [1, 9], // Micro-businesses
-  [10, 49], // Small businesses
-  [50, 249], // Medium-sized businesses
-  [250, 999], // Large businesses
-  [1000, Infinity], // Enterprise businesses
+  "1-10 employees",
+  "11-50 employees",
+  "51-250 employees",
+  "251-1000 employees",
+  "1001+ employees",
 ];
 
 return (
