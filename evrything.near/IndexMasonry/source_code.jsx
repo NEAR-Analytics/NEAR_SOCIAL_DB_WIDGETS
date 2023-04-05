@@ -199,9 +199,16 @@ return props.manual ? (
     }
   >
     {props.headerElement}
-    <Masonry breakpointCols={{ default: NUM_COLUMNS_LG, 800: NUM_COLUMNS_SM }}>
+    <div
+      style={{
+        width: "100%",
+        display: "grid",
+        gap: 16,
+        gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+      }}
+    >
       {renderedItems}
-    </Masonry>
+    </div>
     {props.footerElement}
   </InfiniteScroll>
 );
