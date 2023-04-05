@@ -6,7 +6,7 @@ const delayedUnstakeFn = "unstake";
 const liquidUnstakeFn = "liquid_unstake";
 const YOCTO = 1000000000000000000000000;
 const GAS = "200000000000000";
-const balanceUrl = `https://api.pikespeak.ai/account/balance/${accountId}}`;
+const balanceUrl = `https://api.pikespeak.ai/account/balance/${accountId}`;
 const metricsUrl = "https://validators.narwallets.com/metrics_json";
 const publicApiKey = "36f2b87a-7ee6-40d8-80b9-5e68e587a5b5";
 
@@ -23,7 +23,7 @@ const fetchMetrics = fetch(metricsUrl, {
 });
 
 if (!fetchBalance && fetchMetrics) return "Loading...";
-console.log(fetchMetrics);
+console.log("balance", fetchBalance);
 
 initState({
   tab: "stake",
@@ -58,7 +58,7 @@ const onClickTab = (tab) => {
 
 const onClickMax = (tab) => {
   console.log("setting max balance", fetchBalance);
-  State.update({ amount: fetchBalance.body[0].amount });
+  State.update({ amount: parseFloat(fetchBalance.body[0].amount.toFixed(2)) });
 };
 
 const onChangeNearAmount = (value) => {
@@ -101,12 +101,18 @@ const propsData = {
     disabled: false,
     children: "Stake now",
   },
-  desktopNotification: {
-    informationFilled: informationFilled,
-    rewardsDistributedEvery24Hou: "Rewards distributed every 24 hours",
+  notification: {
+    message: "Rewards distributed every 24 hours",
   },
 };
-const Calculator = styled.div`
+const Wrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #CEFF1A;
+    padding: 32px;
+  `;
+const Container = styled.div`
     border: 1px solid #c0c5c1;
     border-radius: 16px;
     background-color: #ffffff;
@@ -115,11 +121,9 @@ const Calculator = styled.div`
     justify-content: center;
     align-items: center;
     row-gap: 32px;
-    padding-left: 32px;
-    padding-right: 32px;
-    padding-top: 32px;
-    padding-bottom: 32px;
-  `;
+    padding: 32px;
+`;
+
 const Frame = styled.div`
     display: flex;
     flex-direction: column;
@@ -135,44 +139,133 @@ const FrameButton = styled.div`
     border-radius: 1000px;
     margin-top: 24px;
 `;
+const FrameNotification = styled.div`
+    margin-top: 24px;
+`;
+const Banner = styled.div`
+    border-radius: 16px;
+    background-color: #f9fafb;
+    border: 0.8px solid #d7e0e4;
+    font-weight: 500;
+    font-size: 1.286rem;
+    line-height: 18px;
+    font-family: "Aeonik Fono", Arial;
+    color: #032131;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 88px;
+    padding: 32px;
+    margin-top: 32px;
+  `;
+const FrameBanner = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 8px;
+  `;
+const SecurityText = styled.span`
+    letter-spacing: 1px;
+    margin-top: 2px;
+  `;
+const BannerButtonWrapper = styled.div`
+    color: #032131;
+    font-size: 1.286rem;
+    font-weight: 500;
+    line-height: 18px;
+    font-family: "Aeonik Fono", Arial;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    column-gap: 8px;
+  `;
+const BannerButton = styled.a`
+    border-radius: 1000px;
+    background-color: #ffffff;
+    border: 2px solid #0c2246;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+   text-decoration: none;
+    cursor: pointer;
+  `;
+const BannerButtonText = styled.span`
+    letter-spacing: 1px;
+    margin-left: 1px;
+    margin-top: 10px;
+    margin-bottom: 9px;
+  `;
 return (
-  <Calculator>
-    <Frame>
-      {" "}
-      <Widget
-        src={`${ownerId}/widget/LiquidStake.Selector`}
-        props={{
-          active: state.tab,
-          ...propsData.stakingSelector,
-          onClickTab: onClickTab,
-        }}
-      />
-      <Widget
-        src={`${ownerId}/widget/LiquidStake.StakeInput`}
-        props={{
-          ...propsData.input,
-          value: state.amount,
-          onClickMax,
-          onChange: onChangeNearAmount,
-        }}
-      />
-      <Widget
-        src={`${ownerId}/widget/LiquidStake.StakeResult`}
-        props={{
-          ...propsData.input1,
-          amount: (
-            state.amount / parseFloat(fetchMetrics.body.st_near_price)
-          ).toFixed(2),
-        }}
-      />
-      <FrameButton>
-        <button
-          class="btn text-white"
-          type="button"
-          onClick={onSubmit}
-          {...propsData.stakeButton}
+  <Wrapper>
+    <Container>
+      <Frame>
+        <Widget
+          src={`${ownerId}/widget/LiquidStake.Selector`}
+          props={{
+            active: state.tab,
+            ...propsData.stakingSelector,
+            onClickTab: onClickTab,
+          }}
         />
-      </FrameButton>
-    </Frame>
-  </Calculator>
+        <FrameNotification>
+          <Widget
+            src={`${ownerId}/widget/LiquidStake.Notification`}
+            props={{
+              type: "info",
+              message: "Rewards distributed every 24 hours",
+              fontSize: "fs-5",
+            }}
+          />
+        </FrameNotification>
+        <Widget
+          src={`${ownerId}/widget/LiquidStake.StakeInput`}
+          props={{
+            ...propsData.input,
+            value: state.amount,
+            onClickMax,
+            onChange: onChangeNearAmount,
+          }}
+        />
+        <Widget
+          src={`${ownerId}/widget/LiquidStake.StakeResult`}
+          props={{
+            ...propsData.input1,
+            amount: (
+              state.amount / parseFloat(fetchMetrics.body.st_near_price)
+            ).toFixed(2),
+          }}
+        />
+        <FrameButton>
+          <button
+            class="btn text-white"
+            type="button"
+            onClick={onSubmit}
+            {...propsData.stakeButton}
+          />
+        </FrameButton>
+
+        <Banner className={props.className || ""}>
+          <FrameBanner>
+            <i class="bi bi-shield-shaded"></i>
+            <SecurityText>Security</SecurityText>
+          </FrameBanner>
+          <BannerButtonWrapper className={props.className || ""}>
+            <BannerButton
+              href="https://metapool.gitbook.io/master/security/audit-reports"
+              target="_blank"
+              rel="noopener"
+            >
+              <BannerButtonText>Read about our audited code</BannerButtonText>
+            </BannerButton>
+          </BannerButtonWrapper>
+        </Banner>
+      </Frame>
+    </Container>
+  </Wrapper>
 );
