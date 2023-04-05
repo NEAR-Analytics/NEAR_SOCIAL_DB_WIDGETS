@@ -2,6 +2,12 @@
 const widgetProvider = "frichard5.near";
 const refUrl = "https://api.stats.ref.finance/api/ft";
 
+// Initial state
+State.init({
+  selectedDao: "marketing.sputnik-dao.near",
+  selectedTab: "treasury",
+});
+
 // Style
 const avenirFontFamily = fetch(
   "https://fonts.cdnfonts.com/css/avenir-lt-std"
@@ -34,9 +40,6 @@ const Test = styled.h1`
 
 // Fetch
 const ftList = fetch(refUrl);
-State.init({
-  selectedDao: "marketing.sputnik-dao.near",
-});
 
 // Components
 const Banner = <Widget src={`${widgetProvider}/widget/NDC-Banner`} />;
@@ -74,6 +77,34 @@ const ContractMetrics = (
     src={`${widgetProvider}/widget/contract_metrics`}
     props={{
       account: state.selectedDao,
+      widgetProvider,
+    }}
+  />
+);
+
+const Tabs = (
+  <Widget
+    src={`${widgetProvider}/widget/NDC-Tabs`}
+    props={{
+      tabs: [
+        {
+          value: "money",
+          label: "Money",
+        },
+        {
+          value: "metrics",
+          label: "Metrics",
+        },
+        {
+          value: "proposals",
+          label: "Proposals",
+        },
+        {
+          value: "members",
+          label: "Members",
+        },
+      ],
+      tabSelect: (selectedTab) => State.update({ selectedTab }),
       widgetProvider,
     }}
   />
