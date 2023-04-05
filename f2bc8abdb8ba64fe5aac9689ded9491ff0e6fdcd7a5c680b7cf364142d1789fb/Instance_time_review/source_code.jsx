@@ -1,5 +1,9 @@
 const data = props.data;
 
+const thisWidgetClassNames = props.allWidgetsClassNames.instance_time_review;
+const thisWidgetInlineStyles =
+  props.allWidgetsInlineStyles.instance_time_review;
+
 const _account = props.accountId ?? "All";
 const tabs = props.tabs;
 const owner = context.accountId;
@@ -11,14 +15,6 @@ State.init({
   accounts: [],
 });
 
-const card = {
-  border: "1px solid black",
-  borderRadius: "5px",
-  textAlign: "center",
-  color: "white",
-  padding: "10px",
-  margin: "1rem",
-};
 const days = [
   "Monday",
   "Tuesday",
@@ -168,17 +164,15 @@ function makeStringShorter(string, length) {
 
 return (
   <div
-    className="px-4"
-    style={{
-      borderRadius: "3px",
-      backgroundColor: "rgb(230, 230, 230)",
-      width: "100%",
-      padding: "0.5rem",
-    }}
+    className={thisWidgetClassNames.generalContainer}
+    style={thisWidgetInlineStyles.generalContainer}
   >
-    <div className="d-flex justify-content-between">
-      <h2 style={{ margin: "2rem 0 0.5rem 0", fontWeight: "700" }}>{text}</h2>
-      <p className="m-0 pt-3" style={{ margin: "0px", fontSize: "0.8rem" }}>
+    <div className={thisWidgetClassNames.widgetHeaderContainer}>
+      <h2 style={thisWidgetInlineStyles.titleInHeader}>{text}</h2>
+      <p
+        className={thisWidgetClassNames.textInheader}
+        style={thisWidgetInlineStyles.textInheader}
+      >
         {`Your time is UTC ${getFormatedTime(
           new Date().getTimezoneOffset() / 60
         )} ${new Date()
@@ -189,12 +183,7 @@ return (
           .substring(4)}`}
       </p>
     </div>
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: " repeat(3, 1fr)",
-      }}
-    >
+    <div className={thisWidgetClassNames.cardsContainer}>
       {finalData
         ? finalData.map((d) => {
             if (_account == "All" || _account == d.accountId) {
@@ -205,17 +194,11 @@ return (
               }
               return (
                 <div
-                  style={{
-                    boxSizing: "border-box",
-                    boxShadow: "0px 8px 28px rgba(43, 68, 106, 0.05)",
-                    backgroundColor: "white",
-                    color: "black",
-                    borderRadius: "1rem",
-                    margin: "8px",
-                    cursor: "pointer",
-                    disable: context.accountId != d.accountId,
-                    textDecoration: "none",
-                  }}
+                  style={
+                    context.accountId != d.accountId
+                      ? thisWidgetInlineStyles.cardGeneralContainerDisabled
+                      : cardGeneralContainer
+                  }
                   onClick={() => {
                     updateInstanceTimeState({
                       userScheduleShown: d.accountId,
@@ -227,26 +210,11 @@ return (
                     });
                   }}
                 >
-                  <div
-                    style={{
-                      padding: "1rem",
-                    }}
-                  >
+                  <div style={thisWidgetInlineStyles.cardContainer}>
                     <div
-                      style={{
-                        paddingBottom: "0.5rem",
-                        borderBottom: "2px solid grey",
-                        display: "flex",
-                        flexDirection: "row",
-                      }}
+                      style={thisWidgetInlineStyles.cardHeaderGeneralContainer}
                     >
-                      <div
-                        style={{
-                          display: "flex",
-                          flexDirection: "column",
-                          alignItems: "center",
-                        }}
-                      >
+                      <div style={thisWidgetInlineStyles.cardHeaderUserInfo}>
                         <Widget
                           src="mob.near/widget/ProfileImage"
                           props={{
@@ -261,54 +229,27 @@ return (
                         />
                         <div>{profileName}</div>
                       </div>
-                      <div
-                        style={{
-                          paddingLeft: "0.5rem",
-                          display: "flex",
-                          flexDirection: "column",
-                          width: "100%",
-                        }}
-                      >
-                        <div
-                          style={{
-                            fontSize: "1.5rem",
-                            fontWeight: "800",
-                          }}
-                        >
+                      <div style={thisWidgetInlineStyles.cardBodyContainer}>
+                        <div style={thisWidgetInlineStyles.cardBodyUserInfo}>
                           {makeStringShorter(d.accountId, 12)}
                         </div>
                         <div
-                          style={{
-                            display: "flex",
-                            flexDirection: "row",
-                            alignItems: "center",
-                            justifyContent: "space-between",
-                          }}
+                          style={
+                            thisWidgetInlineStyles.cardBodyContentContainer
+                          }
                         >
                           <div>
                             <div
-                              style={{
-                                margin: "0.5rem 0rem",
-                              }}
+                              style={thisWidgetInlineStyles.contentSeparation}
                             >
                               <span
-                                style={{
-                                  backgroundColor: state.is_on[
+                                style={
+                                  state.is_on[
                                     state.accounts.indexOf(d.accountId)
                                   ]
-                                    ? "rgb(217, 252, 239)"
-                                    : "rgb(255, 229, 229)",
-                                  textAlign: "center",
-                                  borderRadius: "16px",
-                                  fontSize: "0.8rem",
-                                  color: state.is_on[
-                                    state.accounts.indexOf(d.accountId)
-                                  ]
-                                    ? "rgb(0, 179, 125)"
-                                    : "rgb(255, 71, 71)",
-                                  fontWeight: "500",
-                                  padding: "0.5rem 1rem",
-                                }}
+                                    ? thisWidgetInlineStyles.statusIndicationOn
+                                    : thisWidgetInlineStyles.statusIndicationOff
+                                }
                               >
                                 {state.is_on[
                                   state.accounts.indexOf(d.accountId)
@@ -324,50 +265,21 @@ return (
                     </div>
                     {d.value._data.map((week, index) => {
                       return (
-                        <div
-                          style={{
-                            paddingTop: "1rem",
-                            display: "flex",
-                            justifyContent: "space-between",
-                          }}
-                        >
-                          <div
-                            style={{
-                              fontSize: "1rem",
-                              fontWeight: "600",
-                            }}
-                          >{`${days[index]}`}</div>
-                          <div
-                            style={{
-                              display: "flex",
-                            }}
-                          >
+                        <div style={thisWidgetInlineStyles.valuesContainer}>
+                          <div style={thisWidgetInlineStyles.daysContainer}>
+                            {`${days[index]}`}
+                          </div>
+                          <div className="d-flex">
                             {week.on_off == "on" ? (
                               week.data.map((y) => (
-                                <p
-                                  style={{
-                                    display: "flex",
-                                    fontSize: "0.9rem",
-                                    paddingRight: "0.9rem",
-                                  }}
-                                >
+                                <p style={thisWidgetInlineStyles.timeContainer}>
                                   {getFormatedTime(y._from)}~
                                   {getFormatedTime(y._to)}
                                 </p>
                               ))
                             ) : (
                               <span
-                                style={{
-                                  backgroundColor: "#FFE5E5",
-                                  textAlign: "center",
-                                  borderRadius: "16px",
-                                  marginRight: "1rem",
-                                  fontSize: "0.8rem",
-                                  letterSpacing: "-0.025rem",
-                                  color: "#FF4747",
-                                  fontWeight: "500",
-                                  padding: "0.5rem 2rem",
-                                }}
+                                style={thisWidgetInlineStyles.offIndication}
                               >
                                 Off
                               </span>
