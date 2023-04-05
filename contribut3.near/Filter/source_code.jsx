@@ -9,6 +9,28 @@ const selected = props.selected ?? options[0].id;
 
 const DropdownContainer = styled.div`
   position: relative;
+
+  li {
+    --y-pos: 40px;
+    z-index: 3;
+    dislpay: block;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    list-style-type: none;
+    position: absolute;
+    inset: 0px 0px auto auto;
+    padding: 0px;
+    margin: 0px;
+    transform: translate(0px, var(--y-pos)) scale(0);
+    transition: transform 0.2s ease-in-out;
+    transform-origin: top right;
+    width: 100%;
+
+    &.show {
+      transform: translate(0px, var(--y-pos)) scale(1);
+    }
+  }
 `;
 
 const DropdownItem = styled.li`
