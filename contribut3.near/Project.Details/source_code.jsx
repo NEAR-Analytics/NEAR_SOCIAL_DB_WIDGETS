@@ -15,6 +15,7 @@ const Heading = styled.div`
   font-size: 1em;
   line-height: 1.4em;
   color: #000;
+  width: 100%;
 `;
 
 return (
