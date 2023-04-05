@@ -43,7 +43,12 @@ return (
           >
             <button className="text-lowercase">view type details</button>
           </a>
-          <button className="text-lowercase">create new</button>
+          <a
+            href={`/#/evrything.near/widget/Everything.Type.Create?type=${type}`}
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            <button className="text-lowercase">create new</button>
+          </a>
         </div>
       </div>
       <Widget
