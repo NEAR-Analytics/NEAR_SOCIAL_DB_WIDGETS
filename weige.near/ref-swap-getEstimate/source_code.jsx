@@ -59,8 +59,8 @@ const getSinglePoolEstimate = (tokenIn, tokenOut, pool, amountIn) => {
   };
 };
 
-const returnNull = () => {
-  loadRes({});
+const returnNull = (sig) => {
+  loadRes({ sig });
   return <div />;
 };
 
@@ -114,7 +114,7 @@ const poolThisPair = poolsThisPair.find((p) => p.token_account_ids.length > 2)
   : poolsThisPair[0];
 
 if (!poolThisPair) {
-  return returnNull();
+  return returnNull("no_pool");
 }
 
 if (poolThisPair.pool_kind === "SIMPLE_POOL") {
