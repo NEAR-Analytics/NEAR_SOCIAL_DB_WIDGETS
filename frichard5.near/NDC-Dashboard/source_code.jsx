@@ -75,7 +75,6 @@ return (
   <>
     <DashboardContainer theme={theme}>
       {Banner}
-      <h1 style={{ fontFamily: "Avenir Heavy" }}>yyyy YYYYY</h1>
       <select onChange={selectDao}>
         <option value="marketing.sputnik-dao.near">Marketing</option>
         <option value="creativesdao.sputnik-dao.near">Creative</option>
