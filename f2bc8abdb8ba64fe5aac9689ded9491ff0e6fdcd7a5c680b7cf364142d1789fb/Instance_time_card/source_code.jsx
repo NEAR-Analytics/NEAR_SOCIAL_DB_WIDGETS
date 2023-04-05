@@ -286,8 +286,6 @@ return (
                 src={`${widgetOwner}/widget/Instance_time_share`}
                 props={{
                   accountId,
-                  allWidgetsClassNames: props.allWidgetsClassNames,
-                  allWidgetsInlineStyles: props.allWidgetsInlineStyles,
                 }}
               />
             </div>
