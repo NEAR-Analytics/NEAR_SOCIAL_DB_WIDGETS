@@ -44,7 +44,7 @@ const DropdownItem = styled.li`
     display: block;
     width: 100%;
     clear: both;
-    padding: .75em 1em;
+    padding: 0.75em 1em;
     font-while: ${({ selected }) => (selected ? "600" : "400")};
     white-space: nowrap;
     text-decoration: none;
@@ -130,8 +130,8 @@ const Container = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: .5em;
-`
+  gap: 0.5em;
+`;
 
 return (
   <Container>
@@ -143,9 +143,7 @@ return (
         onBlur={() => State.update({ show: false })}
       >
         {options.find((option) => option.id === selected).text}
-        <Arrow className={state.show ? "show" : ""}>
-          {arrowIcon}
-        </Arrow>
+        <Arrow className={state.show ? "show" : ""}>{arrowIcon}</Arrow>
       </DropdownButton>
 
       <ul className={state.show ? "show" : ""}>
