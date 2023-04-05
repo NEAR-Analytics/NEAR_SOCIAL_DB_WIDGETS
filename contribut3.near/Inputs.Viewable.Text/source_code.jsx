@@ -3,7 +3,7 @@ const label = props.label ?? "Input";
 const value = props.value ?? "";
 const link = props.link ?? "";
 const isLink = link !== "";
-const onSave = props.onSave ?? (() => { });
+const onSave = props.onSave ?? (() => {});
 
 State.init({
   value,
@@ -59,17 +59,17 @@ const Input = styled.input`
 `;
 
 const SaveButton = styled.button`
-  display: ${({ show }) => show ? "flex" : "none"};
+  display: ${({ show }) => (show ? "flex" : "none")};
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: .5em 1em;
+  padding: 0.5em 1em;
   background: #00ec97;
   border-radius: 50px;
   border: none;
   font-style: normal;
   font-weight: 600;
-  font-size: .95em;
+  font-size: 0.95em;
   line-height: 1em;
   text-align: center;
   color: #11181c;
@@ -91,14 +91,14 @@ return (
           value={state.value}
           onChange={(e) => State.update({ value: e.target.value })}
         />
-        <SaveButton show={state.edit} onClick={() => onSave(state.value)}>Save</SaveButton>
+        <SaveButton show={state.edit} onClick={() => onSave(state.value)}>
+          Save
+        </SaveButton>
       </LabelArea>
+    ) : isLink ? (
+      <a href={link}>{value}</a>
     ) : (
-      isLink ? (
-        <a href={link}>{value}</a>
-      ) : (
-        value
-      )
+      value
     )}
   </Container>
 );
