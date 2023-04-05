@@ -22,7 +22,7 @@ return (
       >
         <Widget
           src="evrything.near/widget/H1"
-          props={{ text: type.split("/")[2] }}
+          props={{ text: type.split("/")[2] + "s" }}
         />
         <div
           style={{
