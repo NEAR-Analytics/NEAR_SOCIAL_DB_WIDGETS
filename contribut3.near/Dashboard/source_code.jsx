@@ -121,7 +121,7 @@ const Filter = styled.div`
 const Stats = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: stretch;
   justify-content: flex-start;
   gap: 0.5em;
 
