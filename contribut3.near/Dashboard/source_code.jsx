@@ -89,23 +89,29 @@ const Heading = styled.div`
   }
 `;
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 2em;
+`;
+
 return (
-  <div>
-    <div className="mb-3">
-      <Heading>
-        <h1>Discover NEAR Horizon</h1>
-        <h2>Explore projects, vendors, investors and contribution requests</h2>
-      </Heading>
-      <div className="d-flex flex-row justify-content-between">
-        {contentSelector}
-      </div>
-      <div className="mt-2">
-        <Widget
-          src={`${ownerId}/widget/SearchInput`}
-          props={{ search: props.search, update: props.update }}
-        />
-      </div>
+  <Container>
+    <Heading>
+      <h1>Discover NEAR Horizon</h1>
+      <h2>Explore projects, vendors, investors and contribution requests</h2>
+    </Heading>
+    <div>
+      {contentSelector}
+    </div>
+    <div>
+      <Widget
+        src={`${ownerId}/widget/SearchInput`}
+        props={{ search: props.search, update: props.update }}
+      />
     </div>
     <div className="px-3 pt-3">{content}</div>
-  </div>
+  </Container>
 );
