@@ -64,6 +64,7 @@ return (
   <Container>
     <LabelArea>
       <Label htmlFor={id}>{label}</Label>
+      <EditButton onClick={() => State.update({ edit: !state.edit })}>{state.edit ? "Cancel" : "Edit"}</EditButton>
     </LabelArea>
   </Container>
 );
