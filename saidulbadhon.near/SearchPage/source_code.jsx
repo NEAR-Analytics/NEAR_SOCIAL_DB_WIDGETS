@@ -94,6 +94,7 @@ return (
                 blockHeight: component.blockHeight,
                 theme: props.theme,
                 onDetailsUrlClick: props?.onDetailsUrlClick,
+                onCopyButtonClick: props?.onCopyButtonClick,
               }}
             />
           </div>
