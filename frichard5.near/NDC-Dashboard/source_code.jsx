@@ -5,7 +5,7 @@ const refUrl = "https://api.stats.ref.finance/api/ft";
 // Initial state
 State.init({
   selectedDao: "marketing.sputnik-dao.near",
-  selectedTab: "treasury",
+  selectedTab: "money",
 });
 
 // Style
@@ -34,8 +34,8 @@ const DashboardContainer = styled.div`
   ${avenirFontFamily}
 `;
 
-const Test = styled.h1`
-    font-family: Avenir Heavy;
+const WidgetsContainer = styled.div`
+    
 `;
 
 // Fetch
@@ -90,21 +90,31 @@ const Tabs = (
         {
           value: "money",
           label: "Money",
+          selected: true,
+          components: (
+            <WidgetsContainer>
+              {Balances}
+              {NearTransfers}
+              {FTransfers}
+            </WidgetsContainer>
+          ),
         },
         {
           value: "metrics",
           label: "Metrics",
+          components: <WidgetsContainer>{ContractMetrics}</WidgetsContainer>,
         },
         {
           value: "proposals",
           label: "Proposals",
+          components: <>No matching tab for {state.selectedTab}</>,
         },
         {
           value: "members",
           label: "Members",
+          components: <>No matching tab for {state.selectedTab}</>,
         },
       ],
-      tabSelect: (selectedTab) => State.update({ selectedTab }),
       widgetProvider,
     }}
   />
@@ -124,10 +134,7 @@ return (
         <option value="creativesdao.sputnik-dao.near">Creative</option>
         <option value="neardevgov.sputnik-dao.near">Gov</option>
       </select>
-      {Balances}
-      {NearTransfers}
-      {FTransfers}
-      {ContractMetrics}
+      {Tabs}
     </DashboardContainer>
   </>
 );
