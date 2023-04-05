@@ -13,7 +13,7 @@ const Value = styled.span`
   font-style: normal;
   font-weight: 700;
   font-size: 2em;
-  line-height: 2em;
+  line-height: 1em;
   text-align: center;
   color: #7269e1;
 `;
