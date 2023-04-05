@@ -18,8 +18,15 @@ const loadMore = () => {
   });
 };
 
+const ListContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1em;
+`;
+
 const WidgetContainer = styled.div`
-  margin: 0.5em 0;
   width: 100%;
 
   @media (min-width: 768px) {
