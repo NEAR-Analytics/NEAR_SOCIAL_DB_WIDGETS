@@ -15,7 +15,7 @@ const DropdownContainer = styled.div`
   position: relative;
 
   ul {
-    --y-pos: 40px;
+    --y-pos: 20px;
     z-index: 3;
     dislpay: block;
     background-color: white;
@@ -44,7 +44,7 @@ const DropdownItem = styled.li`
     display: block;
     width: 100%;
     clear: both;
-    padding: 1em;
+    padding: .75em 1em;
     font-while: ${({ selected }) => (selected ? "600" : "400")};
     white-space: nowrap;
     text-decoration: none;
