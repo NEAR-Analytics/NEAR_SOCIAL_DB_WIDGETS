@@ -24,7 +24,7 @@ const Link = styled.a`
 
   &:hover {
     svg {
-      transform: translateX(5px);
+      transform: translateX(5px) scale(1.1);
     }
   }
 `;
