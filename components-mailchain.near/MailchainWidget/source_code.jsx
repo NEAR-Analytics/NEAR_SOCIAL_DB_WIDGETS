@@ -217,7 +217,7 @@ return (
           target="_blank"
           style={{ color }}
         >
-          Send a web3 email to [{context.accountId}]
+          Send a web3 email to {context.accountId}
         </a>
         &nbsp;
         {showExternalLinkIcon && ExtenalLinkIcon}
