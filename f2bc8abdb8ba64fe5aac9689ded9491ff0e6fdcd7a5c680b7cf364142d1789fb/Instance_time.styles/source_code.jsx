@@ -76,6 +76,22 @@ const instanceTimeReviewCardStatusIndicationOff = {
   padding: "0.5rem 1rem",
 };
 
+const tabSelected = {
+  color: "#353A40",
+  fontSize: "0.8rem",
+  userSelect: "none",
+  cursor: "pointer",
+  marginRight: "1rem",
+};
+
+const tabNotSelected = {
+  color: "#767B8E",
+  fontSize: "0.8rem",
+  userSelect: "none",
+  cursor: "pointer",
+  marginRight: "1rem",
+};
+
 //===================================================================== End standard styles =============================================================================================
 
 //==================================================================== Start inline styles ==============================================================================================
@@ -268,6 +284,7 @@ const allWidgetsInlineStyles = {
       margin: "1rem",
       cursor: "pointer",
       textDecoration: "none",
+      maxWidth: "90%",
     },
     cardGeneralContainerDisabled: {
       boxSizing: "border-box",
@@ -278,6 +295,7 @@ const allWidgetsInlineStyles = {
       margin: "1rem",
       cursor: "pointer",
       textDecoration: "none",
+      maxWidth: "90%",
       disabled: true,
     },
     cardContainer: {
@@ -341,6 +359,47 @@ const allWidgetsInlineStyles = {
       padding: "0.5rem 2rem",
     },
   },
+  instance_time_edit: {
+    generalContainer: {
+      backgroundColor: "white",
+      borderRadius: "28px",
+      margin: "2rem auto 1rem auto",
+      width: "60%",
+    },
+    widgetHeaderTitle: {
+      padding: "2rem",
+      margin: "2rem 0 0.5rem 0",
+      fontWeight: "700",
+    },
+    closeWidgetIcon: {
+      right: "2rem",
+      top: "2rem",
+      cursor: "pointer",
+    },
+    tabsContainer: { margin: "0 auto" },
+    timeZoneActivated: tabSelected,
+    timeZoneNotActivated: tabNotSelected,
+    makeScheduleSelected: tabSelected,
+    makeScheduleNotSelected: tabNotSelected,
+    timeZoneLabel: {
+      fontSize: "0.8rem",
+      letterSpacing: "-0.01em",
+      color: "#474D55",
+      marginBottom: "0.3rem",
+    },
+    timeZoneSelector: {
+      backgroundColor: "white",
+      padding: "0.5rem 1.5rem",
+      borderRadius: "0.8rem",
+      border: "1.5px solid #E1E9F0",
+      color: "#474D55",
+      letterSpacing: "-0.01em",
+      width: "50%",
+      display: "block",
+    },
+    buttonHovered: standardButtonHoveringStyles,
+    button: standardButtonStyles,
+  },
 };
 
 //===================================================================== End inline styles ===============================================================================================
@@ -388,6 +447,17 @@ const allWidgetsClassNames = {
     cardsContainer: "row",
     cardGeneralContainer:
       "col-xxl-3 col-xl-3 col-lg-4 col-md-8 col-sm-8 col-xs-8",
+  },
+  instance_time_edit: {
+    generalContainer: "px-4",
+    widgetHeaderContainer:
+      "w-100 d-flex flex-row justify-content-between align-items-center",
+    closeWidgetIcon: "bi bi-x-lg",
+    tabsContainer: "pt-4",
+    tabSelectedIcon: "bi bi-square-fill",
+    timeZoneSelector: "mb-4",
+    buttonsContainer: "d-flex flex-row-reverse justify-content-between",
+    instanceTimeSettingContainer: "align-items-center pt-3 pb-4",
   },
 };
 
