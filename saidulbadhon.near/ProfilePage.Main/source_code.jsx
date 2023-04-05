@@ -30,7 +30,7 @@ const css = fetch(
   "https://raw.githubusercontent.com/cryptosynk/near-social-profile/main/css/mainLight.css"
 ).body;
 
-const theme = "light";
+const theme = props.theme.name;
 
 const Theme = styled.div`
   font-family: "Open Sans", sans-serif;
@@ -76,7 +76,7 @@ return (
         <div style={{ marginTop: 20 }} />
         <Widget
           src="zahidulislam.near/widget/Profile.Contributions"
-          props={{ theme: props.theme }}
+          props={{ theme: theme }}
         />
       </div>
     </div>
