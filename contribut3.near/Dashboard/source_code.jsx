@@ -165,7 +165,7 @@ return (
           label: "Raised",
         }}
       />
-      {/* <Widget src={`${ownerId}/widget/Stats.Link`} /> */}
+      <Widget src={`${ownerId}/widget/Stats.Link`} />
     </Stats>
     <div>{contentSelector}</div>
     <Filters>
