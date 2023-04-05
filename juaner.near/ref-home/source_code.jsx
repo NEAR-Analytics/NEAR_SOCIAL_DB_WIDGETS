@@ -150,6 +150,8 @@ const SwapContainer = styled.div`
 `;
 
 // svg icon end
+console.log("9999999999999-myname", props.myname);
+console.log("9999999999999-document", props.document);
 return (
   <Container>
     <MenuContainer>
