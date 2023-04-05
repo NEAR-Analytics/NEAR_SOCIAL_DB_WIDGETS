@@ -20,7 +20,10 @@ return (
           gap: 4,
         }}
       >
-        <Widget src="evrything.near/widget/H1" text={type.split("/")[2]} />
+        <Widget
+          src="evrything.near/widget/H1"
+          props={{ text: type.split("/")[2] }}
+        />
         <div
           style={{
             display: "flex",
