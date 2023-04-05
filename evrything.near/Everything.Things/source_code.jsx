@@ -18,6 +18,7 @@ const renderThing = (a) => {
     a.value.type === props.type ||
     props.type === "evrything.near/type/Everything"
   ) {
+    console.log(a.value.type);
     return (
       <Widget
         src={"evrything.near/widget/Everything.Summary.Thing"}
