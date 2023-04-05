@@ -73,12 +73,12 @@ const Logo = styled.div`
 const BottomSection = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 8px;
   box-sizing: border-box;
 `;
 
 const Button = styled.button`
-  background-color: ${props.theme.buttonColor}66;
+  background-color: ${props.theme.buttonColor};
   color: ${props.theme.buttonTextColor};
   width: 100%;
   height:30px;
@@ -104,8 +104,8 @@ const Button2 = styled.button`
   background-color: ${props.theme.buttonColor}22;
   color: ${props.theme.buttonColor};
   width: 100%;
-  height: 35px;
-  width: 35px;
+  height: 30px;
+  width: 30px;
   border-radius:4px;
 
   outline:none;
@@ -260,27 +260,26 @@ return (
       )}
     </TopSection>
 
-    {/*<BottomSection>
+    <BottomSection>
       <Button
         onClick={() =>
-          props?.onDetailsUrlClick(`${accountId}/widget/${widgetName}`)
+          props?.onCopyButtonClick(`${accountId}/widget/${widgetName}`)
         }
       >
-        <i class="bi bi-eye"></i>
+        <i class="bi bi-clipboard-check"></i>
       </Button>
 
-      </a>*/}
-    <a href={appUrl}>
-      <Button2
-        type="button"
-        data-toggle="tooltip"
-        data-placement="top"
-        title="Open Component"
-      >
-        <i class="bi bi-box-arrow-up-right"></i>
-        {/*Open*/}
-      </Button2>
-    </a>
-    {/*</BottomSection>*/}
+      <a href={appUrl}>
+        <Button2
+          type="button"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="Open Component"
+        >
+          <i class="bi bi-box-arrow-up-right"></i>
+          {/*Open*/}
+        </Button2>
+      </a>
+    </BottomSection>
   </MainContainer>
 );
