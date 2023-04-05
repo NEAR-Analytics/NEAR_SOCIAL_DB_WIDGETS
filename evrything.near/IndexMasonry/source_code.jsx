@@ -174,7 +174,7 @@ if (reverse) {
   items.reverse();
 }
 
-const renderedItems = items.map(cachedRenderItem);
+const renderedItems = items.map(renderItem);
 
 return props.manual ? (
   <>
