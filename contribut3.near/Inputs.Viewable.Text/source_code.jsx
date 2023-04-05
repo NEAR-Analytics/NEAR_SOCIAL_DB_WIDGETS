@@ -91,7 +91,7 @@ return (
           value={state.value}
           onChange={(e) => State.update({ value: e.target.value })}
         />
-        <SaveButton show={state.edit} onClick={OnSave}>Save</SaveButton>
+        <SaveButton show={state.edit} onClick={() => onSave(state.value)}>Save</SaveButton>
       </LabelArea>
     ) : (
       isLink ? (
