@@ -525,7 +525,9 @@ return (
               <Develop_TabButton active color="red10">
                 social
               </Develop_TabButton>
-              , <Develop_TabButton color="violet10">gaming</Develop_TabButton>,{" "}
+              {`, `}
+              <Develop_TabButton color="violet10">gaming</Develop_TabButton>
+              {`, `}
               <Develop_TabButton color="green10">finance</Develop_TabButton>
             </span>
           </Text>
