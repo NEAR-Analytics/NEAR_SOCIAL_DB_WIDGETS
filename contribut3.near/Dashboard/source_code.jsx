@@ -124,6 +124,12 @@ return (
       <h1>Discover NEAR Horizon</h1>
       <h2>Explore projects, vendors, investors and contribution requests</h2>
     </Heading>
+    <Stats>
+      <Widget src={`${ownerId}/widget/Stats.Card`} props={{
+        value: "1077",
+        label: "Projects",
+      }} />
+    </Stats>
     <div>{contentSelector}</div>
     <Filters>
       <Widget
