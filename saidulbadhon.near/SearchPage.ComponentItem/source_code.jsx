@@ -211,7 +211,29 @@ return (
             justifyContent: "flex-start",
           }}
         >
-          {tags.map((tag, index) => (
+          {tags.map((tag, index) => {
+            return (
+              index <= 1 && (
+                <p
+                  style={{
+                    marginBottom: 0,
+                    backgroundColor:
+                      props.theme.name === "dark"
+                        ? "rgba(255,255,255,.075)"
+                        : "rgba(0,0,0,.075)",
+                    color: props.theme.textColor,
+                    padding: "0px 3px",
+                    fontWeight: 500,
+                    borderRadius: 4,
+                    fontSize: 11,
+                  }}
+                >
+                  {makeUpperCase(tag)}
+                </p>
+              )
+            );
+          })}
+          {tags.length >= 2 && (
             <p
               style={{
                 marginBottom: 0,
@@ -220,15 +242,20 @@ return (
                     ? "rgba(255,255,255,.075)"
                     : "rgba(0,0,0,.075)",
                 color: props.theme.textColor,
-                padding: "4px 8px",
+                padding: "0px 3px",
                 fontWeight: 500,
                 borderRadius: 4,
-                fontSize: 12,
+                fontSize: 11,
               }}
+              title={tags?.map((element, index) => {
+                if (index >= 2) {
+                  return ` ${makeUpperCase(element)}`;
+                }
+              })}
             >
-              {makeUpperCase(tag)}
+              +{tags.length - 2} more
             </p>
-          ))}
+          )}
         </div>
       )}
     </TopSection>
