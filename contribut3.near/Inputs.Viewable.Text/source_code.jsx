@@ -66,5 +66,7 @@ return (
       <Label htmlFor={id}>{label}</Label>
       <EditButton onClick={() => State.update({ edit: !state.edit })}>{state.edit ? "Cancel" : "Edit"}</EditButton>
     </LabelArea>
+
+    {state.edit ? (isLink ? <a href={link}>{value}</a> : value) : (<Input type={isLink ? "url" : "text"} value={state.value} onChange={(e) => State.update({ value: e.target.value })} />)}
   </Container>
 );
