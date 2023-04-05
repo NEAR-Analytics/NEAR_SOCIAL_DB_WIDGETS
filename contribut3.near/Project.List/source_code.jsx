@@ -15,7 +15,7 @@ if (!state.itemsIsFetched) {
     false
   ).then((items) => State.update({ items, itemsIsFetched: true }));
 
-  return <>"Loading..."</>;
+  return <>Loading...</>;
 }
 
 return (
