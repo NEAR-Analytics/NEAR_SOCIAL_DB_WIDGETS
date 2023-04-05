@@ -210,7 +210,7 @@ return (
             />
           )}
         </div>
-        &nbsp; &nbsp;
+        {props.symbol !== "icon" && <>&nbsp; &nbsp;</>}
         <a
           href={mailchainUrl}
           style={{ textDecoration: linkunderline ? "underline" : "none" }}
