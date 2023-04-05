@@ -38,7 +38,12 @@ return (
           }}
         >
           {types.map((it) => (
-            <button className="text-lowercase">{it[0] + "s"}</button>
+            <a
+              href={`/#/evrything.near/widget/Everything.Type.Overview?type=evrything.near/type/${it[0]}`}
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              <button className="text-lowercase">{it[0] + "s"}</button>
+            </a>
           ))}
           <button className="text-lowercase">+</button>
         </div>
