@@ -185,21 +185,27 @@ return (
         @{accountId}
       </p>
 
-      <Widget
-        src="saidulbadhon.near/widget/SearchPage.ComponentItem.TimeAgo"
-        props={{
-          blockHeight: props.blockHeight,
-          keyPath: `${accountId}/widget/${widgetName}`,
-          style: {
-            color: props.theme.textColor3,
-            margin: 0,
-            fontSize: 11,
-            fontWeight: 400,
-          },
-          theme: props.theme,
-        }}
-      />
-
+      <div
+        style={{ cursor: "pointer" }}
+        onClick={() =>
+          props?.onDetailsUrlClick(`${accountId}/widget/${widgetName}`)
+        }
+      >
+        <Widget
+          src="saidulbadhon.near/widget/SearchPage.ComponentItem.TimeAgo"
+          props={{
+            blockHeight: props.blockHeight,
+            keyPath: `${accountId}/widget/${widgetName}`,
+            style: {
+              color: props.theme.textColor3,
+              margin: 0,
+              fontSize: 11,
+              fontWeight: 400,
+            },
+            theme: props.theme,
+          }}
+        />
+      </div>
       {tags.length > 0 && tags.length > 0 && (
         <div
           style={{
