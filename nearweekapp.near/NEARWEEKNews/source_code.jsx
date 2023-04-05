@@ -122,8 +122,7 @@ return (
                 <Text as="a" href={item.sourceUrl} target="_blank" bold>
                   {item.Title}
                 </Text>
-                <div class="clearfix">
-                  <br />
+                <div class="align-text-top d-flex flex-wrap m-2 float-end">
                   <Text small>{dateToDays(item.createdAt)} ago</Text>
                 </div>
               </div>
