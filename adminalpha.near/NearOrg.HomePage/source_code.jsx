@@ -280,19 +280,13 @@ const Develop_Preview = styled.div`
 
 const Stats = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: var(--medium-gap);
   padding: var(--medium-gap);
   text-align: center;
   background: var(--sand2);
 
-  @media (max-width: 1000px) {
-    gap: var(--large-gap);
-    padding: var(--large-gap);
-    grid-template-columns: 1fr 1fr;
-  }
-
-  @media (max-width: 600px) {
+  @media (max-width: 800px) {
     grid-template-columns: 1fr;
   }
 `;
@@ -607,7 +601,7 @@ return (
       <Stats>
         <div>
           <Text size="text-3xl" color="violet9" fontWeight="500">
-            0000
+            781
           </Text>
           <Text size="text-l" fontWeight="500">
             Active Developers
@@ -621,19 +615,9 @@ return (
             OS Components
           </Text>
         </div>
-
         <div>
           <Text size="text-3xl" color="violet9" fontWeight="500">
-            0000
-          </Text>
-          <Text size="text-l" fontWeight="500">
-            Applications
-          </Text>
-        </div>
-
-        <div>
-          <Text size="text-3xl" color="violet9" fontWeight="500">
-            00%
+            100%
           </Text>
           <Text size="text-l" fontWeight="500">
             Uptime
