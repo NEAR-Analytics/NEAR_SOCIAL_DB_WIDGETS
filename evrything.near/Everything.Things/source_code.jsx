@@ -35,10 +35,8 @@ const renderThing = (a) => {
 const typeFilter = props.type !== "evrything.near/type/Everything";
 
 return (
-  <div>
-    <Widget
-      src="evrything.near/widget/FilteredIndexMasonry"
-      props={{ index, renderItem: renderThing, type: typeFilter }}
-    />
-  </div>
+  <Widget
+    src="evrything.near/widget/FilteredIndexMasonry"
+    props={{ index, renderItem: renderThing, type: typeFilter }}
+  />
 );
