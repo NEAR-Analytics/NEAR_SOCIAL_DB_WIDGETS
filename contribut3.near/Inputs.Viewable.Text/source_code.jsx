@@ -67,7 +67,12 @@ const SaveButton = styled.button`
   background: #00ec97;
   border-radius: 50px;
   border: none;
-  color: #11181u;
+  font-style: normal;
+  font-weight: 600;
+  font-size: .95em;
+  line-height: 1em;
+  text-align: center;
+  color: #11181c;
 `;
 
 return (
