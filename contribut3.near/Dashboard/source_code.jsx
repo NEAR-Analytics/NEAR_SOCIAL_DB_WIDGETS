@@ -112,6 +112,6 @@ return (
         props={{ search: props.search, update: props.update }}
       />
     </div>
-    <div className="px-3 pt-3">{content}</div>
+    <div>{content}</div>
   </Container>
 );
