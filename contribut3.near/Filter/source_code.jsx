@@ -29,7 +29,7 @@ const DropdownContainer = styled.div`
     transform: translate(0px, var(--y-pos)) scale(0);
     transition: transform 0.2s ease-in-out;
     transform-origin: top right;
-    width: 100%;
+    width: fit-content;
 
     &.show {
       transform: translate(0px, var(--y-pos)) scale(1);
