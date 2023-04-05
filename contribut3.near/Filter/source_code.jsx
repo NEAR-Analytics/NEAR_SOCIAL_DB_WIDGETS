@@ -1,6 +1,6 @@
 const ownerId = "contribut3.near";
 const name = props.name ?? "Type";
-const options = props.options ?? [{ id: "option-1", text: "Option 1" }, { id: "option-2", text: "Option 2" }, { id: "option-2", text: "Option 2" }];
+const options = props.options ?? [{ id: "option-1", text: "Option 1", href: "#" }, { id: "option-2", text: "Option 2", href: "#" }, { id: "option-2", text: "Option 2", href: "#" }];
 const selected = props.selected ?? options[0].id;
 
 const DropdownContainer = styled.div`
@@ -85,8 +85,8 @@ const DropdownButton = styled.button`
   color: #101828;
 `;
 
-const createOption = ({ id, text }) => (
+const createOption = ({ id, text, href }) => (
   <DropdownItem key={id} selected={selected === id}>
-    <a>{text}</a>
+    <a href={href} onClick={() => props.update(id)}>{text}</a>
   </DropdownItem>
 );
