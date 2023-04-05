@@ -32,7 +32,39 @@ const social = {
       image:
         "https://ipfs.near.social/ipfs/bafkreifqzppapwceuwvecotf4uczonrc7gtvjqlmlxpy2hdo4hau3m6svm",
       description:
-        "An example viewer of the Canto's blockchain, CantoSwap viewer by Matt L",
+        "An example viewer of the Canto's blockchain, CantoSwap viewer",
+    },
+    {
+      key: 4,
+      name: "NEAR Atlas",
+      url: "https://nearatlas.com/",
+      image:
+        "https://ipfs.near.social/ipfs/bafkreia6etmuxr3xhhpoeqimcl2oyg5ovcsa25e4j4242hy44lk2q73udi",
+      description: "A viewer for NEAR Analytics",
+    },
+    {
+      key: 5,
+      name: "NEARPad",
+      url: "https://nearpad.dev/",
+      image:
+        "https://ipfs.near.social/ipfs/bafkreieqikc5u2kxsoeucpticpfeguuge45upykvzayl6rjwgee5e3yr3i",
+      description: "A gateway dedicated to developers",
+    },
+    {
+      key: 6,
+      name: "NEAR Genadrop",
+      url: "https://near.genadrop.io/",
+      image:
+        "https://ipfs.near.social/ipfs/bafkreien6yezqclnzmw5chayg75nygqewh62yttzomxgjhcgu4swtrr4ja",
+      description: "A gateway dedicated to NFTs on NEAR",
+    },
+    {
+      key: 7,
+      name: "Everything",
+      url: "https://temp.everything.dev/#/",
+      image:
+        "https://ipfs.near.social/ipfs/bafybeibfjlibj5bubf4sbwcis3wpmbmwhnpicsncniuzhe4ywpwp5muxqy",
+      description: "Everything. TBA",
     },
   ],
 };
