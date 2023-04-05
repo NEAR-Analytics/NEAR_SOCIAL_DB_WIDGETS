@@ -1,10 +1,35 @@
 //==================================================================== Start icons=======================================================================================================
 
 const closeIcon = "bi bi-x-lg";
+const instanceTimeIcon = "bi bi-calendar-week-fill";
+const newScheduleButtonInnerIcon = "bi bi-plus-lg";
+const closeWidgetIcon = "bi bi-x-lg";
+const tabSelectedIcon = "bi bi-square-fill";
 
 //===================================================================== End icons========================================================================================================
 
 //==================================================================== Start standard styles ============================================================================================
+
+const colors = {
+  color1: "#010A2D",
+  color2: "white",
+  color3: "rgb(1, 10, 45)",
+  green1: "rgb(217, 252, 239)",
+  green2: "rgb(0, 179, 125)",
+  green3: "#7e7e7e70",
+  red1: "rgb(255, 229, 229)",
+  red2: "rgb(255, 71, 71)",
+  red3: "#FF4747",
+  red4: "#FFE5E5",
+  grey1: "#353A40",
+  grey2: "#767B8E",
+  grey3: "#4B516A",
+  grey4: "#B0B3BE",
+  grey6: "#474D55",
+  grey5: "rgb(230, 230, 230)",
+  lightBlue: "#AAC8F7",
+  lightBlue2: "#E1E9F0",
+};
 
 const standardButtonStyles = {
   border: "2px solid transparent",
@@ -12,15 +37,15 @@ const standardButtonStyles = {
   fontSize: "1rem",
   margin: "0",
   padding: "0.3rem 1.5rem",
-  backgroundColor: "#010A2D",
+  backgroundColor: colors.color1,
   borderRadius: "12px",
-  color: "white",
+  color: colors.color2,
 };
 
 const standardButtonHoveringStyles = {
   border: "2px solid black",
   color: "black",
-  backgroundColor: "white",
+  backgroundColor: colors.color2,
   fontWeight: "500",
   fontSize: "1rem",
   margin: "0",
@@ -33,11 +58,11 @@ const scheduleStatusOn = {
   width: "3rem",
   marginRight: "1rem",
   letterSpacing: "-0.025rem",
-  backgroundColor: "rgb(217, 252, 239)",
+  backgroundColor: colors.statusOn,
   textAlign: "center",
   borderRadius: "16px",
   fontSize: "0.8rem",
-  color: "rgb(0, 179, 125)",
+  color: colors.green2,
   fontWeight: "500",
   padding: "0.5rem 1rem",
 };
@@ -47,37 +72,37 @@ const scheduleStatusOff = {
   width: "3rem",
   marginRight: "1rem",
   letterSpacing: "-0.025rem",
-  backgroundColor: "rgb(255, 229, 229)",
+  backgroundColor: colors.red1,
   textAlign: "center",
   borderRadius: "16px",
   fontSize: "0.8rem",
-  color: "rgb(255, 71, 71)",
+  color: colors.red2,
   fontWeight: "500",
   padding: "0.5rem 1rem",
 };
 
 const instanceTimeReviewCardStatusIndicationOn = {
-  backgroundColor: "rgb(217, 252, 239)",
+  backgroundColor: colors.statusOnBg,
   textAlign: "center",
   borderRadius: "16px",
   fontSize: "0.8rem",
-  color: "rgb(0, 179, 125)",
+  color: colors.green2,
   fontWeight: "500",
   padding: "0.5rem 1rem",
 };
 
 const instanceTimeReviewCardStatusIndicationOff = {
-  backgroundColor: "rgb(255, 229, 229)",
+  backgroundColor: colors.red1,
   textAlign: "center",
   borderRadius: "16px",
   fontSize: "0.8rem",
-  color: "rgb(255, 71, 71)",
+  color: colors.red2,
   fontWeight: "500",
   padding: "0.5rem 1rem",
 };
 
 const tabSelected = {
-  color: "#353A40",
+  color: colors.grey1,
   fontSize: "0.8rem",
   userSelect: "none",
   cursor: "pointer",
@@ -85,7 +110,7 @@ const tabSelected = {
 };
 
 const tabNotSelected = {
-  color: "#767B8E",
+  color: colors.grey2,
   fontSize: "0.8rem",
   userSelect: "none",
   cursor: "pointer",
@@ -103,7 +128,7 @@ const allWidgetsInlineStyles = {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#7e7e7e70",
+        backgroundColor: colors.green3,
         backdropFilter: "blur(4px)",
       },
       modalDialogContainer: { width: "540px", borderRadius: "28px" },
@@ -131,7 +156,7 @@ const allWidgetsInlineStyles = {
       },
       discardChangesText: {
         letterSpacing: "-0.01",
-        color: "#4B516A",
+        color: colors.grey3,
         fontSize: "1rem",
         textAlign: "center",
       },
@@ -140,9 +165,9 @@ const allWidgetsInlineStyles = {
         padding: "0.7rem",
         borderRadius: "16px",
         width: "45%",
-        backgroundColor: "white",
-        border: "1.5px solid #B0B3BE",
-        color: "#010A2D",
+        backgroundColor: colors.color2,
+        border: `1.5px solid ${colors.grey4}`,
+        color: colors.color1,
         fontWeight: "700",
         letterSpacing: "0.01em",
       },
@@ -150,26 +175,26 @@ const allWidgetsInlineStyles = {
         padding: "0.7rem",
         borderRadius: "16px",
         width: "45%",
-        backgroundColor: "#FF4747",
+        backgroundColor: colors.red3,
         border: "1.5px solid transparent",
-        color: "white",
+        color: colors.color2,
         fontWeight: "700",
         letterSpacing: "0.01em",
       },
     },
     generalContainer: {
-      backgroundColor: "rgb(230, 230, 230)",
+      backgroundColor: colors.grey5,
       fontFamily: "Onest",
       fontStyle: "normal",
       borderRadius: "20px",
     },
     siteHeader: {
-      backgroundColor: "white",
+      backgroundColor: colors.color2,
       boxShadow: "rgba(43, 68, 106, 0.04) 0px 4px 28px",
     },
     logoTitle: {
       margin: "0px 0.5rem",
-      color: "rgb(1, 10, 45)",
+      color: colors.logoTitleColor,
       fontWeight: "700",
       fontSize: "1.3rem",
       letterSpacing: "0.1px",
@@ -193,12 +218,12 @@ const allWidgetsInlineStyles = {
       position: "absolute",
       bottom: "-55%",
       left: "25%",
-      backgroundColor: "#010A2D",
+      backgroundColor: colors.color1,
       borderRadius: "8px",
     },
     newScheduleButton: standardButtonStyles,
     newScheduleButtonHovering: standardButtonHoveringStyles,
-    newScheduleButtonInnerIcon: { color: "white" },
+    newScheduleButtonInnerIcon: { color: colors.color2 },
     newScheduleButtonInnerIconHovered: { color: "black" },
     showUserInfoInHeaderText: { margin: "0px", fontSize: "0.8rem" },
   },
@@ -211,7 +236,7 @@ const allWidgetsInlineStyles = {
       margin: "2rem",
       padding: "0 2rem 1rem 2rem",
       borderRadius: "18px",
-      background: "white",
+      background: colors.color2,
       boxShadow: "0px 8px 28px rgba(43, 68, 106, 0.05)",
     },
     widgetTitle: {
@@ -232,7 +257,7 @@ const allWidgetsInlineStyles = {
     editScheduleButton: standardButtonStyles,
     instanceTimeTextDecorativeDiv: {
       height: "inherit",
-      backgroundColor: "#AAC8F7",
+      backgroundColor: colors.lightBlue,
       width: "0.5rem",
       minWidth: "5px",
       marginRight: "0.5rem",
@@ -242,7 +267,7 @@ const allWidgetsInlineStyles = {
       fontWeight: "700",
       fontSize: "1.5rem",
       letterSpacing: "0.1px",
-      color: "#010A2D",
+      color: colors.color1,
       wordWrap: "anywhere",
     },
     otherWidgetsContainer: {
@@ -269,7 +294,7 @@ const allWidgetsInlineStyles = {
   instance_time_review: {
     generalContainer: {
       borderRadius: "3px",
-      backgroundColor: "rgb(230, 230, 230)",
+      backgroundColor: colors.grey5,
       width: "100%",
       padding: "0.5rem",
     },
@@ -281,7 +306,7 @@ const allWidgetsInlineStyles = {
     cardGeneralContainer: {
       boxSizing: "border-box",
       boxShadow: "0px 8px 28px rgba(43, 68, 106, 0.05)",
-      backgroundColor: "white",
+      backgroundColor: colors.color2,
       color: "black",
       borderRadius: "1rem",
       margin: "1rem",
@@ -292,7 +317,7 @@ const allWidgetsInlineStyles = {
     cardGeneralContainerDisabled: {
       boxSizing: "border-box",
       boxShadow: "0px 8px 28px rgba(43, 68, 106, 0.05)",
-      backgroundColor: "white",
+      backgroundColor: colors.color2,
       color: "black",
       borderRadius: "1rem",
       margin: "1rem",
@@ -351,20 +376,20 @@ const allWidgetsInlineStyles = {
       paddingRight: "0.9rem",
     },
     offIndication: {
-      backgroundColor: "#FFE5E5",
+      backgroundColor: colors.red4,
       textAlign: "center",
       borderRadius: "16px",
       marginRight: "1rem",
       fontSize: "0.8rem",
       letterSpacing: "-0.025rem",
-      color: "#FF4747",
+      color: colors.red3,
       fontWeight: "500",
       padding: "0.5rem 2rem",
     },
   },
   instance_time_edit: {
     generalContainer: {
-      backgroundColor: "white",
+      backgroundColor: colors.color2,
       borderRadius: "28px",
       margin: "2rem auto 1rem auto",
       width: "60%",
@@ -387,15 +412,15 @@ const allWidgetsInlineStyles = {
     timeZoneLabel: {
       fontSize: "0.8rem",
       letterSpacing: "-0.01em",
-      color: "#474D55",
+      color: colors.timeZone,
       marginBottom: "0.3rem",
     },
     timeZoneSelector: {
-      backgroundColor: "white",
+      backgroundColor: colors.color2,
       padding: "0.5rem 1.5rem",
       borderRadius: "0.8rem",
-      border: "1.5px solid #E1E9F0",
-      color: "#474D55",
+      border: `1.5px solid ${colors.timeZoneBorder}`,
+      color: colors.timeZone,
       letterSpacing: "-0.01em",
       width: "50%",
       display: "block",
@@ -423,10 +448,10 @@ const allWidgetsClassNames = {
     siteHeaderContainer: "d-flex flex-column",
     siteHeader: "d-flex justify-content-between align-items-center px-4 py-3",
     instanceTimeLogoContainer: "d-flex align-items-center",
-    logoIcon: "bi bi-calendar-week-fill",
+    logoIcon: instanceTimeIcon,
     openScheduleGeneralContainer: "w-100 d-flex justify-content-between",
     tabsContainer: "d-flex",
-    newScheduleButtonInnerIcon: "bi bi-plus-lg",
+    newScheduleButtonInnerIcon: newScheduleButtonInnerIcon,
     showUserInfoInHeader: "d-flex flex-column",
     decorativeDivInHeader:
       "w-100 d-flex flex-row justify-content-between align-items-center",
@@ -455,9 +480,9 @@ const allWidgetsClassNames = {
     generalContainer: "px-4",
     widgetHeaderContainer:
       "w-100 d-flex flex-row justify-content-between align-items-center",
-    closeWidgetIcon: "bi bi-x-lg",
+    closeWidgetIcon: closeWidgetIcon,
     tabsContainer: "pt-4",
-    tabSelectedIcon: "bi bi-square-fill",
+    tabSelectedIcon: tabSelectedIcon,
     timeZoneSelector: "mb-4",
     buttonsContainer: "d-flex flex-row-reverse justify-content-between",
     instanceTimeSettingContainer: "align-items-center pt-3 pb-4",
