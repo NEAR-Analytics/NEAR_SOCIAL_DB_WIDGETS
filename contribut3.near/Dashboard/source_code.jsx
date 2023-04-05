@@ -123,8 +123,8 @@ const Stats = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  gap: .5em;
-  
+  gap: 0.5em;
+
   div {
     width: 20%;
   }
