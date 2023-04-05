@@ -25,8 +25,8 @@ const colors = {
   grey2: "#767B8E",
   grey3: "#4B516A",
   grey4: "#B0B3BE",
-  grey6: "#474D55",
   grey5: "rgb(230, 230, 230)",
+  grey6: "#474D55",
   lightBlue: "#AAC8F7",
   lightBlue2: "#E1E9F0",
 };
@@ -58,7 +58,7 @@ const scheduleStatusOn = {
   width: "3rem",
   marginRight: "1rem",
   letterSpacing: "-0.025rem",
-  backgroundColor: colors.statusOn,
+  backgroundColor: colors.green1,
   textAlign: "center",
   borderRadius: "16px",
   fontSize: "0.8rem",
@@ -82,7 +82,7 @@ const scheduleStatusOff = {
 };
 
 const instanceTimeReviewCardStatusIndicationOn = {
-  backgroundColor: colors.statusOnBg,
+  backgroundColor: colors.green1,
   textAlign: "center",
   borderRadius: "16px",
   fontSize: "0.8rem",
@@ -194,7 +194,7 @@ const allWidgetsInlineStyles = {
     },
     logoTitle: {
       margin: "0px 0.5rem",
-      color: colors.logoTitleColor,
+      color: colors.grey6,
       fontWeight: "700",
       fontSize: "1.3rem",
       letterSpacing: "0.1px",
@@ -412,15 +412,15 @@ const allWidgetsInlineStyles = {
     timeZoneLabel: {
       fontSize: "0.8rem",
       letterSpacing: "-0.01em",
-      color: colors.timeZone,
+      color: colors.grey6,
       marginBottom: "0.3rem",
     },
     timeZoneSelector: {
       backgroundColor: colors.color2,
       padding: "0.5rem 1.5rem",
       borderRadius: "0.8rem",
-      border: `1.5px solid ${colors.timeZoneBorder}`,
-      color: colors.timeZone,
+      border: `1.5px solid ${colors.lightBlue2}`,
+      color: colors.grey6,
       letterSpacing: "-0.01em",
       width: "50%",
       display: "block",
