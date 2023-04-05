@@ -137,13 +137,13 @@ return (
   <Container>
     <Label htmlFor={name}>{name}:</Label>
 
-    <DropdownContainer>
+    <DropdownContainer className={state.show ? "show" : ""}>
       <DropdownButton
         onClick={() => State.update({ show: !state.show })}
         onBlur={() => State.update({ show: false })}
       >
         {options.find((option) => option.id === selected).text}
-        <Arrow className={selected ? "show" : ""}>
+        <Arrow className={state.show ? "show" : ""}>
           {arrowIcon}
         </Arrow>
       </DropdownButton>
