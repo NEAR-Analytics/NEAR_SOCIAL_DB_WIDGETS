@@ -149,10 +149,6 @@ const SwapContainer = styled.div`
 
 `;
 console.log("55555555555-props", props);
-coonso.log(
-  "55555-55555-JSON.parse(props.documents)",
-  JSON.parse(props.documents)
-);
 // svg icon end
 return (
   <Container>
