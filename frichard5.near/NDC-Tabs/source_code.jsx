@@ -21,7 +21,10 @@ const Tabs = styled.div`
 `;
 const Content = styled.div``;
 const TabButton = styled.button`
-    background: ${(props) => props.theme.main};
+    background: ${(props) => {
+      console.log("PROPS", props);
+      return props.theme.main;
+    }};
     
 `;
 
