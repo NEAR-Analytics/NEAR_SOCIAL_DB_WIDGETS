@@ -94,7 +94,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: stretch;
   justify-content: flex-start;
-  gap: 2em;
+  gap: 1.5em;
 `;
 
 return (
