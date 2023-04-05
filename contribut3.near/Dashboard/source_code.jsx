@@ -1,6 +1,6 @@
 const ownerId = "contribut3.near";
 
-const availableContent = ["projects", "vendors", "investors", "requests"];
+const availableContent = ["projects", "vendors", "backers", "requests"];
 
 const getContent = (content) => {
   if (!content || !availableContent.includes(content)) {
