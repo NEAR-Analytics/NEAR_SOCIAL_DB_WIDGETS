@@ -134,7 +134,7 @@ return (
               { id: "not-verified", text: "Not verified", href: "#" },
             ],
             selected: "verified",
-            update: (id) => alert(id),
+            update: (id) => console.log(id),
           }}
         />
         <Widget
