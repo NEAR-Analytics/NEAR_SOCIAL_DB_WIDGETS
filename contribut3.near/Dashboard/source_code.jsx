@@ -43,19 +43,25 @@ const contentSelector = (
 const content = {
   projects: (
     <Widget
-      src={`${ownerId}/widget/EntityList`}
+      src={`${ownerId}/widget/Project.List`}
       props={{ search: props.search, update: props.update }}
     />
   ),
-  contributors: (
+  vendors: (
     <Widget
-      src={`${ownerId}/widget/ContributorList`}
+      src={`${ownerId}/widget/Vendor.List`}
+      props={{ search: props.search, update: props.update }}
+    />
+  ),
+  backers: (
+    <Widget
+      src={`${ownerId}/widget/Investor.List`}
       props={{ search: props.search, update: props.update }}
     />
   ),
   requests: (
     <Widget
-      src={`${ownerId}/widget/NeedList`}
+      src={`${ownerId}/widget/Request.List`}
       props={{ search: props.search, update: props.update }}
     />
   ),
