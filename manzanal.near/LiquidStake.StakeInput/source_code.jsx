@@ -124,7 +124,7 @@ return (
           Max
         </MaxButton>
         <Input
-          value={value}
+          value={props.value}
           onChange={onChange}
           type="text"
           class="form-control"
