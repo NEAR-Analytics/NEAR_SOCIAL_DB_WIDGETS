@@ -295,8 +295,6 @@ return (
             <Widget
               src={`${widgetOwner}/widget/ShowCurrentTime`}
               props={{
-                allWidgetsClassNames: props.allWidgetsClassNames,
-                allWidgetsInlineStyles: props.allWidgetsInlineStyles,
                 time_zone: finalData.time_zone,
                 style: {
                   display: "flex",
@@ -308,8 +306,6 @@ return (
         <Widget
           src={`${widgetOwner}/widget/Instance_time_schedule_card`}
           props={{
-            allWidgetsClassNames: props.allWidgetsClassNames,
-            allWidgetsInlineStyles: props.allWidgetsInlineStyles,
             schedule_data: finalData,
             style: {
               display: "flex",
