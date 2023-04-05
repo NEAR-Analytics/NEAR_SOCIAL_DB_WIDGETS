@@ -134,6 +134,9 @@ return (
     <DropdownContainer>
       <DropdownButton>
         {options.find((option) => option.id === selected).text}
+        <Arrow className={selected ? "show" : ""}>
+          {arrowIcon}
+        </Arrow>
       </DropdownButton>
 
       <ul>
