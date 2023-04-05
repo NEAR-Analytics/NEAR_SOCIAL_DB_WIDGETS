@@ -200,7 +200,10 @@ return (
       onMessage={onInterval}
     />
 
-    <div className={thisWidgetClassNames.widgetGeneralContainer}>
+    <div
+      className={thisWidgetClassNames.widgetGeneralContainer}
+      style={thisWidgetInlineStyle.widgetGeneralContainer}
+    >
       <div style={thisWidgetInlineStyles.generalContainer}>
         <div className={thisWidgetClassNames.widgetHeaderContainer}>
           <h2 style={thisWidgetInlineStyles.widgetTitle}>
