@@ -137,6 +137,30 @@ return (
             update: (id) => alert(id),
           }}
         />
+        <Widget
+          src={`${ownerId}/widget/Filter`}
+          props={{
+            name: "Status",
+            options: [
+              { id: "active", text: "Active", href: "#" },
+              { id: "not-active", text: "Not active", href: "#" },
+            ],
+            selected: "active",
+            update: (id) => alert(id),
+          }}
+        />
+        <Widget
+          src={`${ownerId}/widget/Filter`}
+          props={{
+            name: "Sort by",
+            options: [
+              { id: "name", text: "Name", href: "#" },
+              { id: "id", text: "Account ID", href: "#" },
+            ],
+            selected: "name",
+            update: (id) => alert(id),
+          }}
+        />
       </div>
     </Filter>
     <div>{content}</div>
