@@ -1,3 +1,4 @@
+const onSave = props.onSave ?? (() => { });
 const ownerId = "contribut3.near";
 
 const Container = styled.div`
@@ -30,6 +31,7 @@ return (
         id: "website",
         value: "layers.gg",
         link: "https://layers.gg",
+        onSave: (website) => onSave({ website }),
       }}
     />
   </Container>
