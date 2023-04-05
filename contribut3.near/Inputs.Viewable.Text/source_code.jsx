@@ -76,16 +76,17 @@ return (
       <EditButton onClick={() => State.update({ edit: !state.edit })}>
         {state.edit ? "Cancel" : "Edit"}
       </EditButton>
-
-      <SaveButton show={state.edit} onClick={OnSave}>Save</SaveButton>
     </LabelArea>
 
     {state.edit ? (
-      <Input
-        type={isLink ? "url" : "text"}
-        value={state.value}
-        onChange={(e) => State.update({ value: e.target.value })}
-      />
+      <LabelArea>
+        <Input
+          type={isLink ? "url" : "text"}
+          value={state.value}
+          onChange={(e) => State.update({ value: e.target.value })}
+        />
+        <SaveButton show={state.edit} onClick={OnSave}>Save</SaveButton>
+      </LabelArea>
     ) : (
       isLink ? (
         <a href={link}>{value}</a>
