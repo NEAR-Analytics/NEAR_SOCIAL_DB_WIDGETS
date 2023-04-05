@@ -21,6 +21,12 @@ const Link = styled.a`
   align-items: center;
   justify-content: center;
   gap: .5em;
+
+  &:hover {
+    svg {
+      transform: translateX(5px);
+    }
+  }
 `;
 
 const arrow = (
