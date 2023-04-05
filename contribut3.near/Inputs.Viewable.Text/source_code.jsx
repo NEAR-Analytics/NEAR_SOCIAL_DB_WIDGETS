@@ -67,6 +67,7 @@ const SaveButton = styled.button`
   background: #00ec97;
   border-radius: 50px;
   border: none;
+  color: #11181u;
 `;
 
 return (
