@@ -63,3 +63,30 @@ const arrowIcon = (
     />
   </svg>
 );
+
+const Label = styled.label`
+  font-style: normal;
+  font-weight: 600;
+  font-size: .95em;
+  line-height: 1.25em;
+  color: #344054;
+`;
+
+const DropdownButton = styled.button`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: .25em;
+  font-style: normal;
+  font-weight: 400;
+  font-size: .95em;
+  line-height: 1.25em;
+  color: #101828;
+`;
+
+const createOption = ({ id, text }) => (
+  <DropdownItem key={id} selected={selected === text}>
+    <a>{text}</a>
+  </DropdownItem>
+);
