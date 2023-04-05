@@ -107,6 +107,14 @@ const Text = styled.p`
       outline: none;
     }
   }
+
+  ${(p) =>
+    p.flex &&
+    `
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  `}
 `;
 
 const Flex = styled.div`
@@ -287,6 +295,16 @@ const Stats = styled.div`
   @media (max-width: 600px) {
     grid-template-columns: 1fr;
   }
+`;
+
+const Card = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 32px;
+  border-radius: 8px;
+  border: 1px solid var(--sand3);
 `;
 
 return (
@@ -772,6 +790,52 @@ return (
         Join a vibrant community of builders and innovators cultivating a more
         Open Web.
       </Text>
+    </Section>
+
+    <Section>
+      <Flex gap="var(--large-gap)" mobileStack>
+        <Card>
+          <Text size="text-xl" fontWeight="600" color="green8" flex>
+            <i className="ph-duotone ph-users-three" />
+            Community
+          </Text>
+          <Text>
+            Find the right people to help you on your journey across the
+            ecosystem.
+          </Text>
+          <Widget
+            src="adminalpha.near/widget/DS.Button"
+            props={{
+              href: "/#/adminalpha.near/widget/PeoplePage",
+              iconRight: "ph-bold ph-arrow-up-right",
+              label: "Explore Community",
+              variant: "secondary",
+              size: "large",
+            }}
+          />
+        </Card>
+
+        <Card>
+          <Text size="text-xl" fontWeight="600" color="red10" flex>
+            <i className="ph-duotone ph-calendar-blank" />
+            Events
+          </Text>
+          <Text>
+            Join us at conferences, meetups, and more as we gather across the
+            globe.
+          </Text>
+          <Widget
+            src="adminalpha.near/widget/DS.Button"
+            props={{
+              href: "/",
+              iconRight: "ph-bold ph-calendar-blank",
+              label: "All Events",
+              variant: "secondary",
+              size: "large",
+            }}
+          />
+        </Card>
+      </Flex>
     </Section>
   </Wrapper>
 );
