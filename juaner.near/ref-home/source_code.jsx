@@ -148,7 +148,7 @@ const SwapContainer = styled.div`
   top: 8%
 
 `;
-
+console.log("55555555555-props", props);
 // svg icon end
 return (
   <Container>
