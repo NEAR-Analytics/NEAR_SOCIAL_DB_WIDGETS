@@ -113,6 +113,8 @@ const DropdownButton = styled.button`
   font-size: 0.95em;
   line-height: 1.25em;
   color: #101828;
+  background-color: #fff;
+  border: none;
 `;
 
 const createOption = ({ id, text, href }) => (
