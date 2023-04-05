@@ -63,7 +63,6 @@ if (!type) {
 State.init({
   title: "",
   description: "",
-  thingId: null,
 });
 
 const createThing = () => {
@@ -82,36 +81,38 @@ const createThing = () => {
     }),
   }).then((res) => {
     if (res.body.data) {
-      State.update({
-        thingId: res.body.data.things.addIdea.entities[0].id,
-      });
+      Social.set(
+        {
+          thing: {
+            main: JSON.stringify({
+              thingId: res.body.data.things.addIdea.entities[0].id,
+            }),
+          },
+          index: {
+            et1: JSON.stringify({
+              key: "main",
+              value: {
+                type: "everything.near/type/Idea",
+              },
+            }),
+          },
+        },
+        {
+          force: true,
+          onCommit: () => {
+            response(request).send();
+          },
+          onCancel: () => {
+            response(request).send({ error: "the action was canceled" });
+          },
+        }
+      );
     }
   });
 };
 
-function composeData() {
-  const data = {
-    thing: {
-      main: JSON.stringify({ thingId: state.thingId }),
-    },
-    index: {
-      tempeverything: JSON.stringify({
-        key: "main",
-        value: {
-          type: typeStr,
-        },
-      }),
-    },
-  };
-  return data;
-}
-
 return (
   <>
-    <Header>
-      <Title>{typeStr.split("/")[2]}</Title>
-    </Header>
-
     <Form>
       <Input
         placeholder={"title"}
@@ -121,12 +122,8 @@ return (
         onInput={({ target }) => State.update({ description: target.value })}
         placeholder={"description, markdown supported"}
       />
-      {state.thingId}
       <ButtonRow>
         <Button onClick={createThing}>create</Button>
-        <CommitButton disabled={!state.title} force data={composeData}>
-          commit
-        </CommitButton>
       </ButtonRow>
     </Form>
   </>
