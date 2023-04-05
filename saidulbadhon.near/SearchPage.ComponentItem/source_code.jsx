@@ -268,6 +268,9 @@ return (
 
     <BottomSection>
       <Button
+        data-toggle="tooltip"
+        data-placement="top"
+        title="Copy Widget"
         onClick={() =>
           props?.onCopyButtonClick(`${accountId}/widget/${widgetName}`)
         }
