@@ -132,7 +132,7 @@ return (
       <div class="modal-body">
         <Widget
           src="juaner.near/widget/ref-market-supply-supply"
-          props={{ selectedTokenId, show }}
+          props={{ selectedTokenId, showModal: show }}
         />
       </div>
     </Modal>
