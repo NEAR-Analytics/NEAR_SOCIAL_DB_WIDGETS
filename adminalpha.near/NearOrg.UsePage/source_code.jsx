@@ -154,7 +154,7 @@ const Card = styled.div`
   gap: 24px;
   padding: 32px;
   border-radius: 8px;
-  border: 1px solid var(--sand3);
+  border: 1px solid var(--sand4);
   align-items: ${(p) => (p.center ? "center" : "flex-star")};
   justify-content: ${(p) => (p.center ? "center" : undefined)};
   text-align: ${(p) => (p.center ? "center" : undefined)};
@@ -166,8 +166,8 @@ return (
       <H1>Your first steps to becoming a Web3 citizen</H1>
     </Section>
 
-    <Section>
-      <Flex gap="var(--large-gap)" mobileStack>
+    <Section gap="24px">
+      <Flex gap="24px" mobileStack>
         <Card center>
           <i
             className="ph-duotone ph-user-circle-plus"
@@ -206,9 +206,8 @@ return (
           <Widget
             src="adminalpha.near/widget/DIG.Button"
             props={{
-              href: "https://awesomenear.com/projects",
-              target: "_blank",
-              iconRight: "ph-bold ph-arrow-up-right",
+              href: "#explore-dapps",
+              iconRight: "ph-bold ph-arrow-down",
               label: "Explore Now",
               variant: "primary",
               fill: "outline",
