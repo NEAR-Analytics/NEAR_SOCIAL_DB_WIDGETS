@@ -44,7 +44,7 @@ const SaveButton = styled.button`
 `;
 
 return (
-  <Widget src={`${ownerId}/widget/Inputs/Viewable`} props={{
+  <Widget src={`${ownerId}/widget/Inputs.Viewable`} props={{
     id,
     label,
     value,
