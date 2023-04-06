@@ -70,6 +70,13 @@ return (
         label: "Stage",
         id: "stage",
         value: "Pre-Seed",
+        options: [{ name: "Pre-Seed" }, { name: "Seed" },
+        { name: "Series A" },
+        { name: "Series B" },
+        { name: "Series C" },
+        { name: "Series D" },
+        { name: "Late Stage" },
+        { name: "IPO" }],
         onSave: (stage) => onSave({ stage }),
       }}
     />
