@@ -1,7 +1,7 @@
 const ownerId = "contribut3.near";
-const id = props.id ?? "select";
+const id = props.id ?? "tags";
 const label = props.label ?? "Input";
-const value = props.value ?? "";
+const value = props.value ?? [];
 const options = props.options ?? [];
 const onSave = props.onSave ?? (() => { });
 
