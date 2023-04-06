@@ -2,7 +2,7 @@ const ownerId = "contribut3.near";
 const id = props.id ?? "select";
 const label = props.label ?? "Input";
 const value = props.value ?? "";
-const options = ["sedam", "osam"];
+const options = props.options ?? [];
 const onSave = props.onSave ?? (() => { });
 
 const LabelArea = styled.div`
@@ -43,63 +43,26 @@ const SaveButton = styled.button`
   color: #11181c;
 `;
 
-console.log(value)
-
-const edit = (/* update, v */) => (
-  <LabelArea>
-    <Select.Root value={value} onValueChange={(s) => { console.log(s) }}>
-      <Select.Trigger>
-        <Select.Value />
-
-        <Select.Icon>
-          <svg
-            width="12"
-            height="8"
-            viewBox="0 0 12 8"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M1 1.5L6 6.5L11 1.5"
-              stroke="#000"
-              stroke-width="1.66667"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </Select.Icon>
-      </Select.Trigger>
-
-      <div style={{ transform: "translateY(1em)", width: "3em", height: "auto" }}>
-        <Select.Content>
-          <Select.Viewport>
-            {options.map((option) =>
-              <Select.Item key={option} value={option}>
-                <Select.ItemText>{option}</Select.ItemText>
-                <Select.ItemIndicator>
-                  -
-                </Select.ItemIndicator>
-              </Select.Item>
-            )}
-          </Select.Viewport>
-        </Select.Content>
-      </div>
-    </Select.Root>
-    <SaveButton onClick={() => onSave(v)}>Save</SaveButton>
-  </LabelArea>
+const edit = (update, v) => (
+  <Typeahead
+    id
+    labelKey="name"
+    onChange={update}
+    options
+    selected={v}
+    positionFixed
+  />
 );
 
-return edit(/* (s) => { console.log(s) }, value */);
-//
-// return (
-//   <Widget
-//     src={`${ownerId}/widget/Inputs.Viewable`}
-//     props={{
-//       id,
-//       label,
-//       value,
-//       edit: (update, v) => edit(update, v),
-//       view: isLink ? <a href={link}>{value}</a> : value,
-//     }}
-//   />
-// );
+return (
+  <Widget
+    src={`${ownerId}/widget/Inputs.Viewable`}
+    props={{
+      id,
+      label,
+      value,
+      edit,
+      view: isLink ? <a href={link}>{value}</a> : value,
+    }}
+  />
+);
