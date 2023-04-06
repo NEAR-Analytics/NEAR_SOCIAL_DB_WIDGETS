@@ -33,26 +33,26 @@ const Row = styled.div`
   justify-content: flex-start;
   gap: 0.25em;
 `;
-
-const pushUp = keyframes`
-  from {
-    transform: translateY(0);
-  }
-
-  to {
-    transform: translateY(-100%);
-  }
-`;
-
-const pullUp = keyframes`
-  from {
-    transform: translateY(100%);
-  }
-
-  to {
-    transform: translateY(0);
-  }
-`;
+//
+// const pushUp = keyframes`
+//   from {
+//     transform: translateY(0);
+//   }
+//
+//   to {
+//     transform: translateY(-100%);
+//   }
+// `;
+//
+// const pullUp = keyframes`
+//   from {
+//     transform: translateY(100%);
+//   }
+//
+//   to {
+//     transform: translateY(0);
+//   }
+// `;
 
 const EditButton = styled.button`
   font-weight: 400;
