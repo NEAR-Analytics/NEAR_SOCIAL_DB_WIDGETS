@@ -60,6 +60,10 @@ const EditButton = styled.button`
   }
 `;
 
+const EditButtonContainer = styled.div`
+  position: relative;
+`;
+
 return (
   <Container>
     <Row>
