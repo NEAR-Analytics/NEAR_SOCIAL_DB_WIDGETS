@@ -123,6 +123,7 @@ const tabNotSelected = {
 
 const allWidgetsInlineStyles = {
   instance_time: {
+    newShceduleButtonInMobileContainer: { backgroundColor: colors.color2 },
     renderAbortPollCreationModal: {
       generalContainer: {
         display: "flex",
