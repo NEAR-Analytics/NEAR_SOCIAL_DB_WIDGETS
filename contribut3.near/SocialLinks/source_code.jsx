@@ -172,6 +172,8 @@ const List = styled.ul`
   flex-direction: row;
   justify-content: between;
   align-items: center;
+  margin: 0;
+  padding: 0;
   gap: .25em;
 `;
 
