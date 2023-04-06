@@ -24,14 +24,6 @@ function makeUpperCase(sentence) {
   return words.join(" ");
 }
 
-console.log(
-  props.selectedItem,
-  " - ",
-  accountId + "/widget/" + widgetName,
-  " - ",
-  props.selectedItem === accountId + "/widget/" + widgetName
-);
-
 const MainContainer = styled.div`
   width: 100%;
 
