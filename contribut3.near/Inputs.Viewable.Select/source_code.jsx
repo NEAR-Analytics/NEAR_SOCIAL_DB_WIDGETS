@@ -2,7 +2,7 @@ const ownerId = "contribut3.near";
 const id = props.id ?? "select";
 const label = props.label ?? "Input";
 const value = props.value ?? "";
-const options = props.options ?? [];
+const options = ["sedam", "osam"];
 const onSave = props.onSave ?? (() => { });
 
 const LabelArea = styled.div`
@@ -42,8 +42,6 @@ const SaveButton = styled.button`
   text-align: center;
   color: #11181c;
 `;
-
-console.log(JSON.parse(options))
 
 const edit = (/* update, v */) => (
   <LabelArea>
