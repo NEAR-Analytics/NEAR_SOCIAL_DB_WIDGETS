@@ -90,19 +90,7 @@ return (
       id,
       label,
       value,
-      edit: (update, v) => (
-        <LabelArea>
-          <Input
-            id
-            type={isLink ? "url" : "text"}
-            value={v}
-            onChange={(e) => update(e.target.value)}
-          />
-          <SaveButton onClick={() => onSave(v)}>
-            Save
-          </SaveButton>
-        </LabelArea>
-      ),
+      edit,
       view: isLink ? <a href={link}>{value}</a> : value,
     }}
   />
