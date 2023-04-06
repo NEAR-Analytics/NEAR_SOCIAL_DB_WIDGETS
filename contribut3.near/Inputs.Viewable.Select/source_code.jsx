@@ -43,7 +43,7 @@ const SaveButton = styled.button`
   color: #11181c;
 `;
 
-console.log(options)
+console.log(JSON.parse(options))
 
 const edit = (/* update, v */) => (
   <LabelArea>
