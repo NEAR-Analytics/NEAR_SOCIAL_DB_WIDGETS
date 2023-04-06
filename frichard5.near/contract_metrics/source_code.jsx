@@ -8,9 +8,9 @@ const amountsFormatter = (prop) => {
     let tds = [];
     Object.keys(data[prop]).forEach((k) => {
       tds.push(
-        <td>
+        <>
           {data[prop][k]} {k}
-        </td>
+        </>
       );
     });
     return tds;
