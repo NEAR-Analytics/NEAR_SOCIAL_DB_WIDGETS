@@ -6,10 +6,10 @@ const TagItem = styled.span`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: .15em .5em;
-  gap: .15em;
-  background: #FFFFFF;
-  border: 1px solid #E6E8EB;
+  padding: 0.15em 0.5em;
+  gap: 0.15em;
+  background: #ffffff;
+  border: 1px solid #e6e8eb;
   border-radius: 6px;
   flex: none;
   order: 1;
@@ -17,6 +17,11 @@ const TagItem = styled.span`
 `;
 
 const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5em;
   max-width: 400px;
   overflow: hidden;
 `;
