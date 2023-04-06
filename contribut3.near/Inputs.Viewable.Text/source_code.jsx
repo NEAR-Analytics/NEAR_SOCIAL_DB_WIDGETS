@@ -28,7 +28,7 @@ const Input = styled.input`
 `;
 
 const SaveButton = styled.button`
-  display: ${({ show }) => (show ? "flex" : "none")};
+  display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
@@ -51,14 +51,14 @@ return (
       id,
       label,
       value,
-      edit: (update) => (
+      edit: (update, value) => (
         <LabelArea>
           <Input
             type={isLink ? "url" : "text"}
-            value={state.value}
+            value={value}
             onChange={(e) => update(e.target.value)}
           />
-          <SaveButton show={state.edit} onClick={() => onSave(state.value)}>
+          <SaveButton onClick={() => onSave(state.value)}>
             Save
           </SaveButton>
         </LabelArea>
