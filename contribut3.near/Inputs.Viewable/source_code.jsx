@@ -46,15 +46,15 @@ const EditButton = styled.button`
   overflow: hidden;
 
   &.hidden {
-    tranform: scaleX(0);
+    transform: scaleX(0);
   }
 
   &.left {
-    transition-origin: left;
+    transform-origin: left;
   }
 
   &.right {
-    transition-origin: right;
+    transform-origin: right;
   }
 `;
 
