@@ -50,6 +50,7 @@ return (
         label: "Integration",
         id: "integration",
         value: "Native",
+        options: [{ name: "Native" }, { name: "Multichain" }],
         onSave: (integration) => onSave({ integration }),
       }}
     />
@@ -59,6 +60,7 @@ return (
         label: "Development phase",
         id: "phase",
         value: "Testnet launched",
+        options: [{ name: "Testnet launched" }, { name: "Mainnet launched" }, { name: "In development" }, { name: "Concept" }],
         onSave: (phase) => onSave({ phase }),
       }}
     />
