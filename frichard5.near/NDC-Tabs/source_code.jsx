@@ -7,7 +7,6 @@ const tabs = props.tabs || [
   },
   { value: "tab2", label: "time", components: <>time content</> },
 ];
-const onChangeTab = props.onChangeTab;
 
 State.init({
   selectedTab: tabs.find((t) => t.selected).value || tabs[0].value,
@@ -15,7 +14,6 @@ State.init({
 
 const tabSelect = (selectedTab) => {
   return () => {
-    onChangeTab(selectedTab);
     State.update({ selectedTab });
   };
 };
