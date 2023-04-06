@@ -282,7 +282,10 @@ return (
           </div>
           <h2 style={thisWidgetInlineStyles.instanceTimeText}>Instance Time</h2>
         </div>
-        <div style={thisWidgetInlineStyles.otherWidgetsContainer}>
+        <div
+          style={thisWidgetInlineStyles.otherWidgetsContainer}
+          className={thisWidgetClassNames.otherWidgetsContainer}
+        >
           <div style={thisWidgetInlineStyles.instanceTimeShareGeneralContainer}>
             <div style={thisWidgetInlineStyles.instanceTimeShareContainer}>
               <Widget
