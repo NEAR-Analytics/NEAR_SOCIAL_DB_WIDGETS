@@ -16,6 +16,7 @@ State.init({
   params: {
     offset: 0,
   },
+  proposals: [],
 });
 
 const columns = [
