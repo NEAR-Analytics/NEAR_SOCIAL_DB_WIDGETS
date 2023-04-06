@@ -118,15 +118,13 @@ return (
       edit: (update, v) => (
         <>
           <LabelArea>
-            <InputContainer>
-              <Input
-                id
-                type="text"
-                value={v}
-                onChange={(e) => update(e.target.value)}
-                onBlur={() => validate(v)}
-              />
-            </InputContainer>
+            <Input
+              id
+              type="text"
+              value={v}
+              onChange={(e) => update(e.target.value)}
+              onBlur={() => validate(v)}
+            />
             <SaveButton valid={state.valid} onClick={() => state.valid && onSave(v)}>
               Save
             </SaveButton>
