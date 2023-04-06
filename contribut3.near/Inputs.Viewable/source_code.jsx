@@ -85,7 +85,7 @@ const EditButton = styled.button`
 return (
   <Container>
     <Row>
-      <Label htmlFor={id}>{label}</Label>
+      // <Label htmlFor={id}>{label}</Label>
       {state.edit ? (
         <EditButton
           onClick={() => State.update({ change: true })}
