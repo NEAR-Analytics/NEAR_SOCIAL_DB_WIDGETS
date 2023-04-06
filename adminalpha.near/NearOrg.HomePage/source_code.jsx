@@ -300,7 +300,7 @@ const Card = styled.div`
   gap: 24px;
   padding: 32px;
   border-radius: 8px;
-  border: 1px solid var(--sand3);
+  border: 1px solid var(--sand4);
 `;
 
 return (
