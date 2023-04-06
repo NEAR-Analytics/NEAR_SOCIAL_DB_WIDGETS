@@ -104,6 +104,10 @@ const SaveButton = styled.button`
   color: #11181c;
 `;
 
+const Error = styled.small`
+  color: red;
+`;
+
 return (
   <Widget
     src={`${ownerId}/widget/Inputs.Viewable`}
@@ -127,9 +131,9 @@ return (
               Save
             </SaveButton>
           </LabelArea>
-          <small>
+          <Error>
             {state.valid ? <></> : state.errorMessage}
-          </small>
+          </Error>
         </>
       ),
       view: isLink ? <a href={link}>{value}</a> : value,
