@@ -111,6 +111,15 @@ return (
       }}
     />
     <Widget
+      src={`${ownerId}/widget/Inputs.Viewable.Number`}
+      props={{
+        label: "Company size",
+        id: "size",
+        value: 10,
+        onSave: (team) => onSave({ team }),
+      }}
+    />
+    <Widget
       src={`${ownerId}/widget/Inputs.Viewable.Text`}
       props={{
         label: "Location",
