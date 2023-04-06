@@ -97,7 +97,6 @@ const {
   closeModal,
 } = props;
 const show = showModal && type == "burrow";
-console.log("子组件-子组件-子组件", props);
 return (
   <>
     <div class="title">You Borrowed</div>
