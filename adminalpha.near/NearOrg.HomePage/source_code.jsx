@@ -143,6 +143,7 @@ const Section = styled.div`
   align-items: ${(p) => (p.center ? "center" : undefined)};
   justify-content: ${(p) => (p.center ? "center" : undefined)};
   text-align: ${(p) => (p.center ? "center" : undefined)};
+  background: ${(p) => p.background};
 `;
 
 const LogoLink = styled.a`
