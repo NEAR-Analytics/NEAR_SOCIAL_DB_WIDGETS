@@ -12,6 +12,10 @@ const Table = styled.table`
       max-width: 130px;
       border-bottom: 1px solid rgb(81, 81, 81);
     }
+    img {
+      height: 15px;
+      width: 15px;
+    }
 `;
 
 const columns = props.columns || [
