@@ -22,7 +22,7 @@ const { title, nextPage, previousPage, offset, resPerPage } = props;
 
 const formatRow = (data, column) => {
   return column.formatter ? (
-    <td>column.formatter(data)</td>
+    <td>{column.formatter(data)}</td>
   ) : (
     <td>{data[column.id]}</td>
   );
