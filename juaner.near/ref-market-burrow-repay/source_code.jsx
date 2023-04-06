@@ -73,8 +73,14 @@ const expandToken = (value, decimals) => {
   return new Big(value).mul(new Big(10).pow(decimals));
 };
 const formatToken = (v) => Math.floor(v * 10_000) / 10_000;
-const { selectedTokenId, selectedTokenMeta } = props;
+const { selectedTokenId, selectedTokenMeta, showModal } = props;
 const { rewards, account, balances, amount, hasError, assets } = state;
+if (!showModal) {
+  State.update({
+    amount: "",
+    hasError: false,
+  });
+}
 const hasData = assets.length > 0 && rewards.length > 0 && account;
 /** base tool end */
 if (!accountId) {
