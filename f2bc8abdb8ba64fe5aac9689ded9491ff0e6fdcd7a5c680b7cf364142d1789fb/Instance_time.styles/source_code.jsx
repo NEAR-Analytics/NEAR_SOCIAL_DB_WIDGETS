@@ -394,6 +394,7 @@ const allWidgetsInlineStyles = {
       borderRadius: "28px",
       margin: "2rem auto 1rem auto",
       width: "60%",
+      minWidth: "85%",
     },
     widgetHeaderTitle: {
       padding: "2rem",
