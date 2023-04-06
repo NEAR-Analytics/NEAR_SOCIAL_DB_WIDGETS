@@ -54,6 +54,6 @@ return (
       </EditButton>
     </Row>
 
-    {state.edit ? edit : view}
+    {state.edit ? edit : view(state.value)}
   </Container>
 );
