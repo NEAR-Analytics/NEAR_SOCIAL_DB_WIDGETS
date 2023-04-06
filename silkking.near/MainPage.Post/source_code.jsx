@@ -8,7 +8,7 @@ const content = props.content;
 const accountId = content.accountId;
 const blockHeight = parseInt(content.blockHeight);
 
-const widgetOwner = props.widgetOwner;
+const widgetOwner = props.widgetOwner ?? context.accountId;
 
 State.init({
   displayCommentBox: false,
