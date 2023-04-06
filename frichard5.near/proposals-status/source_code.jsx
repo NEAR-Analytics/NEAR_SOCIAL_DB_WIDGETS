@@ -7,6 +7,12 @@ State.init({
   proposalsStatus: [],
 });
 
+const order = [
+  { proposal_type: 0 },
+  { Approved: 1 },
+  { Rejected: 2 },
+  { Expired: 3 },
+];
 const columns = state.proposalsStatus
   .reduce((acc, pS) => {
     Object.keys(pS).forEach((k) => {
@@ -19,8 +25,8 @@ const columns = state.proposalsStatus
     });
     return acc;
   }, [])
-  .sort((a, b) => a.id === "proposal_type");
-console.log(columns);
+  .sort((a, b) => order[a.id] - order[b.id]);
+
 const GenericTable = (
   <Widget
     src={`${widgetProvider}/widget/generic_table`}
