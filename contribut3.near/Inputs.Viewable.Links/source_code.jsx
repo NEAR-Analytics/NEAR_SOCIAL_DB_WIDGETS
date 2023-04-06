@@ -29,8 +29,8 @@ const supportedLinks = [
 
 const LabelArea = styled.div`
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
+  align-items: stretch;
   justify-content: flex-start;
   gap: 0.25em;
 `;
