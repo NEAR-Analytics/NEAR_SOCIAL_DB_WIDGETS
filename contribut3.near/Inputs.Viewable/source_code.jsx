@@ -68,12 +68,12 @@ const EditButton = styled.button`
     animation: ${pushUp} 0.2s ease-in-out backwards;
 
     &.reverse {
-      animation: ${pushUp} 0.2s ease-in-out 0.3s forwards;
+      animation: ${pushUp} 0.2s ease-in-out forwards;
     }
   }
 
   &.down {
-    animation: ${pullUp} 0.2s ease-in-out 0.3s forwards;
+    animation: ${pullUp} 0.2s ease-in-out forwards;
 
     &.reverse {
       animation: ${pullUp} 0.2s ease-in-out backwards;
