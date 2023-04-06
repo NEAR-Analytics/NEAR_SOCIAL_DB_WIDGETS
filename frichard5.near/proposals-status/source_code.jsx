@@ -18,7 +18,7 @@ const columns = state.proposalsStatus.reduce((acc, pS) => {
   });
   return acc;
 }, []);
-
+console.log(columns);
 const GenericTable = (
   <Widget
     src={`${widgetProvider}/widget/generic_table`}
