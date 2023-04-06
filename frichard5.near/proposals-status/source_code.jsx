@@ -36,8 +36,9 @@ const fetchTransfers = () => {
       "x-api-key": publicApiKey,
     },
   });
-  proposals.body && State.update({ proposalsStatus: proposalsStatus.body });
+  proposalsStatus.body &&
+    State.update({ proposalsStatus: proposalsStatus.body });
 };
 fetchTransfers();
-console.log(state.proposalsStatus, "uhuh");
+
 return <>{GenericTable}</>;
