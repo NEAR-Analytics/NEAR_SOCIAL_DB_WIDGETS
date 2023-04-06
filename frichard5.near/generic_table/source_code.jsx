@@ -5,12 +5,12 @@ const Table = styled.table`
     borderSpacing: 0px;
     fontSize: 14px;
     td {
-        textOverflow: ellipsis;
-        overflow: hidden;
-        whiteSpace: nowrap;
-        padding: 16px;
-        maxWidth: 130px;
-        borderBottom: 1px solid rgb(81, 81, 81);
+      text-overflow: ellipsis;
+      overflow: hidden;
+      whiteSpace: nowrap;
+      padding: 16px;
+      max-width: 130px;
+      borderBottom: 1px solid rgb(81, 81, 81);
     }
 `;
 
