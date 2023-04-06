@@ -40,6 +40,7 @@ return (
         label: "Category",
         id: "category",
         value: "Wallets",
+        options: [{ name: "Wallets" }, { name: "Games" }, { name: "Social" }, { name: "Other" }],
         onSave: (category) => onSave({ category }),
       }}
     />
