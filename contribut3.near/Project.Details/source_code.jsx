@@ -138,7 +138,7 @@ return (
       }}
     />
     <Widget
-      src={`${ownerId}/widget/Inputs.Viewable.Select`}
+      src={`${ownerId}/widget/Inputs.Viewable.Tags`}
       props={{
         label: "Tags",
         id: "tags",
