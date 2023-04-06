@@ -195,10 +195,14 @@ const SaveButton = styled.button`
 `;
 
 const edit = (update, v) => (
-  <LabelArea>
-    <Widget src={`${ownerId}/widget/Inputs.Social`} props={{ start: "https://github.com/", value: "petarvujovic98", update: (v) => { console.log(v) } }} />
-    <SaveButton onClick={() => onSave(v)}>Save</SaveButton>
-  </LabelArea>
+  supportedLinks
+    .filter(({ name }) => name in value)
+    .map(({ name, url, icon }) => (
+      <LabelArea>
+        <Widget src={`${ownerId}/widget/Inputs.Social`} props={{ start: url, value: value[name], update: (v) => { console.log(v) } }} />
+        <SaveButton onClick={() => onSave(v)}>Save</SaveButton>
+      </LabelArea>
+    ))
 );
 
 return (
