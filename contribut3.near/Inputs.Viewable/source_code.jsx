@@ -90,9 +90,9 @@ return (
         <EditButton
           onClick={() => State.update({ change: true })}
           className={`down ${state.change ? "reverse" : ""}`}
-          onAnimationEnd={() =>
-            State.update({ change: false, edit: !state.change })
-          }
+        // onAnimationEnd={() =>
+        //   State.update({ change: false, edit: !state.change })
+        // }
         >
           Cancel
         </EditButton>
@@ -100,9 +100,9 @@ return (
         <EditButton
           onClick={() => State.update({ change: true })}
           className={`up ${state.change ? "reverse" : ""}`}
-          onAnimationEnd={() =>
-            State.update({ change: false, edit: state.change })
-          }
+        // onAnimationEnd={() =>
+        //   State.update({ change: false, edit: state.change })
+        // }
         >
           Edit
         </EditButton>
