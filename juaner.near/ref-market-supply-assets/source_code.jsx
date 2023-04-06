@@ -243,7 +243,6 @@ function changeTab(tabName) {
 }
 const selectedToken = (selectedTokenId && assetsMap[selectedTokenId]) || {};
 const selectedTokenMeta = selectedToken.metadata || {};
-console.log("8888888888888-document", document);
 return (
   <Container>
     {/* load data */}
