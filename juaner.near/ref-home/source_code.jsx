@@ -154,9 +154,7 @@ if (props.documents) {
   console.log("555555555-props.documents", props.documents);
   const document = JSON.parse(props.documents);
   console.log("555555555-document", document);
-  // document.getElementById("market").addEventListener("click", function () {
-  //   console.log("我是第一个冒泡传递");
-  // });
+  document.getElementById("market");
 }
 // svg icon end
 return (
