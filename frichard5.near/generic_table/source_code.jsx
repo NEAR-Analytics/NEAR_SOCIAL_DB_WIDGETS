@@ -7,6 +7,8 @@ const Table = styled.table`
     borderCollapse: separate;
     borderSpacing: 0px;
     fontSize: 14px;
+    height: 200px;
+    overflow-y: scroll;
     td {
       text-overflow: ellipsis;
       overflow: hidden;
