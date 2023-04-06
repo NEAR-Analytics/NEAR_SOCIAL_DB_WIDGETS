@@ -3,6 +3,9 @@ const Container = styled.div`
     .table{
         margin:0;
     }
+    .noBorder{
+      border:none;
+    }
     .table thead tr{
         height:50px;
         border:hidden;
@@ -288,7 +291,7 @@ return (
     <div class="fw-bold text-white mt-3 font-18">
       <span class="text_green_color">Supply</span> Market
     </div>
-    <table class="table click">
+    <table class="table click noBorder">
       <thead>
         <tr>
           <th scope="col" width="25%">
