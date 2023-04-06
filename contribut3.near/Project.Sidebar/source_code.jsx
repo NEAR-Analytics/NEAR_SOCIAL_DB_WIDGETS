@@ -21,7 +21,7 @@ if (!state.projectIsFetched) {
     "get_project",
     { account_id: accountId },
     "final",
-    false,
+    false
   ).then((project) => State.update({ project, projectIsFetched: true }));
 
   return "Loading...";
@@ -33,11 +33,11 @@ return (
       src={`${ownerId}/widget/Project.Details`}
       props={{
         onSave: (project) => {
-          State.update({ project: { ...state.project, ...project } });
+          State.update({ project: { application: { ...state.project.application, ...project } } });
           Near.call(
             ownerId,
             "edit_project",
-            { account_id: accountId, project: { application: state.project } },
+            { account_id: accountId, project: state.project },
             gas,
             "0"
           );
