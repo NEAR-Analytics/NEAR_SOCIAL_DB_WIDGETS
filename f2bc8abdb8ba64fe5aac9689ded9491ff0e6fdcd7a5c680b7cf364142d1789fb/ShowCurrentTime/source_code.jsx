@@ -48,7 +48,7 @@ function onInterval() {
 return (
   <div>
     <div
-      className="d-lg-none"
+      className="d-none d-lg-block"
       style={{ display: "flex", flexDirection: "column" }}
     >
       {state.local_time && (
@@ -71,7 +71,7 @@ return (
       )}
     </div>
     <div
-      className="d-none d-lg-block"
+      className="d-lg-none"
       style={{ display: "flex", flexDirection: "column" }}
     >
       {state.local_time && (
