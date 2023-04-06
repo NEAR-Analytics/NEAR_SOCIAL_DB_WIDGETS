@@ -318,7 +318,7 @@ return (
 
       <Flex gap="24px" wrap="wrap" justifyContent="center">
         <Widget
-          src="adminalpha.near/widget/DS.Button"
+          src="adminalpha.near/widget/DIG.Button"
           props={{
             href: "/",
             iconLeft: "ph-duotone ph-user-plus",
@@ -328,7 +328,7 @@ return (
           }}
         />
         <Widget
-          src="adminalpha.near/widget/DS.Button"
+          src="adminalpha.near/widget/DIG.Button"
           props={{
             href: "/#/edit",
             iconLeft: "ph-duotone ph-code-block",
@@ -417,7 +417,7 @@ return (
             </Text>
           </ContentBlock_Text>
           <Widget
-            src="adminalpha.near/widget/DS.Button"
+            src="adminalpha.near/widget/DIG.Button"
             props={{
               href: "/",
               iconLeft: "ph-bold ph-fingerprint-simple",
@@ -455,7 +455,7 @@ return (
             </Text>
           </ContentBlock_Text>
           <Widget
-            src="adminalpha.near/widget/DS.Button"
+            src="adminalpha.near/widget/DIG.Button"
             props={{
               href: "https://docs.near.org/sdk/js/introduction",
               iconLeft: "ph-bold ph-book-open-text",
@@ -489,7 +489,7 @@ return (
             </Text>
           </ContentBlock_Text>
           <Widget
-            src="adminalpha.near/widget/DS.Button"
+            src="adminalpha.near/widget/DIG.Button"
             props={{
               href: "/",
               iconRight: "ph-bold ph-arrow-up-right",
@@ -560,7 +560,7 @@ return (
             </Text>
           </ContentBlock_Text>
           <Widget
-            src="adminalpha.near/widget/DS.Button"
+            src="adminalpha.near/widget/DIG.Button"
             props={{
               href: "/#/adminalpha.near/widget/ComponentsPage",
               iconRight: "ph-bold ph-arrow-up-right",
@@ -586,7 +586,7 @@ return (
             </Text>
           </ContentBlock_Text>
           <Widget
-            src="adminalpha.near/widget/DS.Button"
+            src="adminalpha.near/widget/DIG.Button"
             props={{
               href: "/#/edit/adminalpha.near/widget/NearOrg.HomePage",
               iconLeft: "ph-bold ph-git-fork",
@@ -667,7 +667,7 @@ return (
             </Text>
           </ContentBlock_Text>
           <Widget
-            src="adminalpha.near/widget/DS.Button"
+            src="adminalpha.near/widget/DIG.Button"
             props={{
               href: "/",
               iconLeft: "ph-duotone ph-play",
@@ -705,7 +705,7 @@ return (
             </Text>
           </ContentBlock_Text>
           <Widget
-            src="adminalpha.near/widget/DS.Button"
+            src="adminalpha.near/widget/DIG.Button"
             props={{
               href: "/",
               iconRight: "ph-bold ph-arrow-up-right",
@@ -739,7 +739,7 @@ return (
             </Text>
           </ContentBlock_Text>
           <Widget
-            src="adminalpha.near/widget/DS.Button"
+            src="adminalpha.near/widget/DIG.Button"
             props={{
               href: "/",
               iconLeft: "ph-bold ph-door-open",
@@ -792,7 +792,7 @@ return (
             ecosystem.
           </Text>
           <Widget
-            src="adminalpha.near/widget/DS.Button"
+            src="adminalpha.near/widget/DIG.Button"
             props={{
               href: "/#/adminalpha.near/widget/PeoplePage",
               iconRight: "ph-bold ph-arrow-up-right",
@@ -813,7 +813,7 @@ return (
             globe.
           </Text>
           <Widget
-            src="adminalpha.near/widget/DS.Button"
+            src="adminalpha.near/widget/DIG.Button"
             props={{
               href: "/",
               iconRight: "ph-bold ph-calendar-blank",
