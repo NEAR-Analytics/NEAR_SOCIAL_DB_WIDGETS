@@ -47,7 +47,10 @@ function onInterval() {
 
 return (
   <div>
-    <div style={{ display: "flex", flexDirection: "column" }}>
+    <div
+      className="d-lg-none"
+      style={{ display: "flex", flexDirection: "column" }}
+    >
       {state.local_time && (
         <div
           style={{
@@ -63,6 +66,27 @@ return (
             fontSize: font_big,
             display: "flex",
             justifyContent: "flex-end",
+          }}
+        >{`Your Time: ${state.user_time}`}</div>
+      )}
+    </div>
+    <div
+      className="d-none d-lg-block"
+      style={{ display: "flex", flexDirection: "column" }}
+    >
+      {state.local_time && (
+        <div
+          style={{
+            fontSize: font_big,
+            display: "flex",
+          }}
+        >{`Local Time: ${state.local_time}`}</div>
+      )}
+      {state.user_time && (
+        <div
+          style={{
+            fontSize: font_big,
+            display: "flex",
           }}
         >{`Your Time: ${state.user_time}`}</div>
       )}
