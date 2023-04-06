@@ -322,35 +322,37 @@ return (
       </div>
       <div className={thisWidgetClassNames.decorativeDivInHeader}></div>
 
-      <button
-        className={thisWidgetClassNames.newShceduleButtonInMobile}
-        onMouseEnter={() => {
-          State.update({ hoveringElement: tabs.NEW_SCHEDULE.id });
-        }}
-        onMouseLeave={() => {
-          State.update({ hoveringElement: "" });
-        }}
-        onClick={() => {
-          State.update({ tab: tabs.NEW_SCHEDULE.id });
-        }}
-        style={
-          state.hoveringElement == tabs.NEW_SCHEDULE.id ||
-          state.tab == tabs.NEW_SCHEDULE.id
-            ? thisWidgetInlineStyles.newScheduleButtonHovering
-            : thisWidgetInlineStyles.newScheduleButton
-        }
-      >
-        <i
-          className={thisWidgetClassNames.newScheduleButtonInnerIcon}
+      <div styles={thisWidgetInlineStyles.newShceduleButtonInMobileContainer}>
+        <button
+          className={thisWidgetClassNames.newShceduleButtonInMobile}
+          onMouseEnter={() => {
+            State.update({ hoveringElement: tabs.NEW_SCHEDULE.id });
+          }}
+          onMouseLeave={() => {
+            State.update({ hoveringElement: "" });
+          }}
+          onClick={() => {
+            State.update({ tab: tabs.NEW_SCHEDULE.id });
+          }}
           style={
             state.hoveringElement == tabs.NEW_SCHEDULE.id ||
             state.tab == tabs.NEW_SCHEDULE.id
-              ? thisWidgetInlineStyles.newScheduleButtonInnerIconHovered
-              : thisWidgetInlineStyles.newScheduleButtonInnerIcon
+              ? thisWidgetInlineStyles.newScheduleButtonHovering
+              : thisWidgetInlineStyles.newScheduleButton
           }
-        ></i>
-        {tabs.NEW_SCHEDULE.text}
-      </button>
+        >
+          <i
+            className={thisWidgetClassNames.newScheduleButtonInnerIcon}
+            style={
+              state.hoveringElement == tabs.NEW_SCHEDULE.id ||
+              state.tab == tabs.NEW_SCHEDULE.id
+                ? thisWidgetInlineStyles.newScheduleButtonInnerIconHovered
+                : thisWidgetInlineStyles.newScheduleButtonInnerIcon
+            }
+          ></i>
+          {tabs.NEW_SCHEDULE.text}
+        </button>
+      </div>
     </div>
 
     <div className={thisWidgetClassNames.bodyContainer}>
