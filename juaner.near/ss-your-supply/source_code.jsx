@@ -99,7 +99,7 @@ const show = showModal && type == "supply";
 return (
   <>
     <div class="title">You Supplied</div>
-    <table class="table">
+    <table class="table click">
       <thead>
         <tr>
           <th scope="col" width="25%">
