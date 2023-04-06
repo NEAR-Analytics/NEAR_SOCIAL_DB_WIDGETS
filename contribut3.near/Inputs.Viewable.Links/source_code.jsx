@@ -71,10 +71,9 @@ const SaveButton = styled.button`
 
 const edit = (update, v) => (
   supportedLinks
-    .filter(({ name }) => name in value)
     .map(({ name, url }) => (
       <LabelArea>
-        <Widget src={`${ownerId}/widget/Inputs.Social`} props={{ start: url, value: v[name], update: (s) => update({ ...v, [name]: s }) }} />
+        <Widget src={`${ownerId}/widget/Inputs.Social`} props={{ start: url, value: v[name] ?? "", update: (s) => update({ ...v, [name]: s }) }} />
         <SaveButton onClick={() => onSave(v)}>Save</SaveButton>
       </LabelArea>
     ))
