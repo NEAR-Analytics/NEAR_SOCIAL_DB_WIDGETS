@@ -34,7 +34,7 @@ const Container = styled.div`
 
 return (
   <Container>
-    <Start>{icon}</Start>
+    <Start>{start}</Start>
     <Input
       type="text"
       value={props.search}
