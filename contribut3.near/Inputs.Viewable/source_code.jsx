@@ -65,10 +65,10 @@ const EditButton = styled.button`
   transition: all 0.2s ease-in-out;
 
   &.up {
-    animation: ${pushUp} 0.2s ease-in-out forwards;
+    animation: ${pushUp} 0.2s ease-in-out backwards;
 
     &.reverse {
-      animation: ${pushUp} 0.2s ease-in-out 0.3s backwards;
+      animation: ${pushUp} 0.2s ease-in-out 0.3s forwards;
     }
   }
 
