@@ -57,7 +57,7 @@ return (
       label,
       value,
       edit,
-      view: <Widget src={`${ownerId}/widget/SocialLinks`} props={{ links: value }} />,
+      view: <Widget src={`${ownerId}/widget/SocialLinks`} props={{ links: {} }} />,
     }}
   />
 );
