@@ -25,7 +25,9 @@ const columns = state.proposalsStatus.reduce((acc, pS) => {
   });
   return acc;
 }, []);
-const orderedColumns = columns.sort((a, b) => order[a.id] - order[b.id]);
+const orderedColumns = columns.sort(
+  (a, b) => order[a.proposal_type] - order[b.proposal_type]
+);
 
 const GenericTable = (
   <Widget
