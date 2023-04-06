@@ -70,7 +70,6 @@ const Modal = styled.div`
   width:30rem;
   max-width: 95vw;
   max-height: 80vh;
-  min-height:300px;
   padding:10px 0 20px 0;
   animation:anishow 0.3s forwards ease-out;
   left:50%;
@@ -324,12 +323,10 @@ return (
           />
         </div>
         <div class="modal-body">
-          {showModal && (
-            <Widget
-              src="juaner.near/widget/ref-market-supply-supply"
-              props={{ selectedTokenId }}
-            />
-          )}
+          <Widget
+            src="juaner.near/widget/ref-market-supply-supply"
+            props={{ selectedTokenId, showModal }}
+          />
         </div>
       </Modal>
       <Backdrop
