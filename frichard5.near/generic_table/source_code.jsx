@@ -1,5 +1,9 @@
-const TableWrapper = styled.div`
+const MainWrapper = styled.div`
   margin: 40px 0px;
+`;
+
+const TableWrapper = styled.div`
+  height: 200px;
 `;
 const Table = styled.table`
     display: table;
@@ -45,16 +49,18 @@ data &&
   });
 
 return (
-  <TableWrapper>
+  <MainWrapper>
     {title && <h2>{title}</h2>}
-    <Table>
-      <tr>
-        {columns.map((c) => (
-          <th>{c.label}</th>
-        ))}
-      </tr>
-      {rows}
-    </Table>
+    <TableWrapper>
+      <Table>
+        <tr>
+          {columns.map((c) => (
+            <th>{c.label}</th>
+          ))}
+        </tr>
+        {rows}
+      </Table>
+    </TableWrapper>
     {nextPage && previousPage && resPerPage && (
       <div>
         {offset ? (
@@ -69,5 +75,5 @@ return (
         )}
       </div>
     )}
-  </TableWrapper>
+  </MainWrapper>
 );
