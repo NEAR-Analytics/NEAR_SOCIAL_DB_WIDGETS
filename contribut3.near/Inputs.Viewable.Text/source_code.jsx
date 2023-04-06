@@ -48,11 +48,11 @@ return (
     id,
     label,
     value,
-    edit: (<LabelArea>
+    edit: (update) => (<LabelArea>
       <Input
         type={isLink ? "url" : "text"}
         value={state.value}
-        onChange={(e) => State.update({ value: e.target.value })}
+        onChange={(e) => update(e.target.value)}
       />
       <SaveButton show={state.edit} onClick={() => onSave(state.value)}>
         Save
