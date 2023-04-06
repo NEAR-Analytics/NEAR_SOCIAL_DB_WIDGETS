@@ -74,7 +74,6 @@ const Modal = styled.div`
   width:30rem;
   max-width: 95vw;
   max-height: 80vh;
-  min-height:380px;
   padding:10px 0 20px 0;
   animation:anishow 0.3s forwards ease-out;
   left:50%;
