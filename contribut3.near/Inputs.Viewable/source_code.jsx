@@ -63,7 +63,7 @@ return (
     <Row>
       <Label htmlFor={id}>{label}</Label>
       <EditButton
-        onClick={() => State.update({ edit: true })}
+        onClick={() => State.update({ edit: false })}
         className={`left ${state.edit ? "" : "hidden"}`}
       >
         Cancel
