@@ -452,7 +452,7 @@ const allWidgetsClassNames = {
     openScheduleGeneralContainer:
       "w-100 d-none d-md-flex justify-content-between",
     tabsContainer: "d-flex",
-    newShceduleButtonInMobile: "d-md-none d-block",
+    newShceduleButtonInMobile: "d-md-none d-block mb-3",
     newScheduleButtonInnerIcon: newScheduleButtonInnerIcon,
     showUserInfoInHeader: "d-flex flex-column",
     decorativeDivInHeader:
