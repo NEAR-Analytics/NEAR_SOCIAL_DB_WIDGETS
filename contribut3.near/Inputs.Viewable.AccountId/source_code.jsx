@@ -6,6 +6,11 @@ const link = props.link ?? "";
 const isLink = link !== "";
 const onSave = props.onSave ?? (() => { });
 
+State.init({
+  valid: true,
+  errorMessage: <></>,
+})
+
 const LabelArea = styled.div`
   display: flex;
   flex-direction: row;
@@ -72,7 +77,7 @@ return (
               onBlur={() => validate(v)}
             />
             <small>
-              {state.valid ? null : state.errorMessage}
+              {state.valid ? <></> : state.errorMessage}
             </small>
           </InputContainer>
           <SaveButton valid={state.valid} onClick={() => state.valid && onSave(v)}>
