@@ -1,3 +1,11 @@
+const symbols = ["AAPL", "AMZN", "NVDA", "MSFT", "TSLA", "META", "JPM"];
+
+initState({
+  ticker: "AAPL",
+  d: "",
+  price: "",
+});
+
 const url = "https://yh-finance-complete.p.rapidapi.com/yhf?ticker=AAPL";
 
 const options = {
@@ -8,9 +16,25 @@ const options = {
   },
 };
 
+const handleProposal = () => {
+  if (!state.ticker) {
+    return;
+  }
+  let new_url =
+    "https://yh-finance-complete.p.rapidapi.com/yhf?ticker=" + state.ticker;
+  let new_data = fetch(new_url, options);
+  console.log(new_data);
+};
+
 const data = fetch(url, options);
 
 console.log(data);
+
+const onChangeSymbol = (ticker) => {
+  State.update({
+    ticker,
+  });
+};
 
 if (data !== null && data.ok === false) {
   return (
@@ -46,6 +70,16 @@ if (data !== null && data.ok === false) {
                 </small>
               </h1>
             </div>
+          </div>
+          <div>
+            <h3>Stock Symbol</h3>
+            <input
+              type="text"
+              onChange={(e) => onChangeSymbol(e.target.value)}
+            />
+          </div>
+          <div>
+            <button onClick={handleProposal}>Get Price</button>
           </div>
         </p>
       ) : (
