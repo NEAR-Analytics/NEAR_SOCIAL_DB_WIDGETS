@@ -3,7 +3,9 @@ const label = props.label ?? "Input";
 const value = props.value ?? "";
 const link = props.link ?? "";
 const isLink = link !== "";
-const onSave = props.onSave ?? (() => {});
+const onSave = props.onSave ?? (() => { });
+const view = props.view;
+const edit = props.edit;
 
 State.init({
   value,
@@ -37,7 +39,7 @@ const EditButton = styled.button`
   transition: all 0.2s ease-in-out;
 `;
 
-const LabelArea = styled.div`
+const Row = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -77,28 +79,15 @@ const SaveButton = styled.button`
 
 return (
   <Container>
-    <LabelArea>
+    <Row>
       <Label htmlFor={id}>{label}</Label>
       <EditButton onClick={() => State.update({ edit: !state.edit })}>
         {state.edit ? "Cancel" : "Edit"}
       </EditButton>
-    </LabelArea>
+    </Row>
 
     {state.edit ? (
-      <LabelArea>
-        <Input
-          type={isLink ? "url" : "text"}
-          value={state.value}
-          onChange={(e) => State.update({ value: e.target.value })}
-        />
-        <SaveButton show={state.edit} onClick={() => onSave(state.value)}>
-          Save
-        </SaveButton>
-      </LabelArea>
-    ) : isLink ? (
-      <a href={link}>{value}</a>
-    ) : (
-      value
-    )}
+      edit
+    ) : view}
   </Container>
 );
