@@ -65,7 +65,7 @@ return (
       label,
       value,
       edit,
-      view: isLink ? <a href={link}>{value}</a> : value,
+      view: value,
     }}
   />
 );
