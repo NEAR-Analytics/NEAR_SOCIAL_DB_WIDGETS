@@ -51,7 +51,7 @@ return (
         id: "integration",
         value: "Native",
         options: [{ name: "Native" }, { name: "Multichain" }],
-        onSave: (integration) => onSave({ integration }),
+        onSave: ({ name: integration }) => onSave({ integration }),
       }}
     />
     <Widget
@@ -61,7 +61,7 @@ return (
         id: "phase",
         value: "Testnet launched",
         options: [{ name: "Testnet launched" }, { name: "Mainnet launched" }, { name: "In development" }, { name: "Concept" }],
-        onSave: (phase) => onSave({ phase }),
+        onSave: ({ name: phase }) => onSave({ phase }),
       }}
     />
     <Widget
