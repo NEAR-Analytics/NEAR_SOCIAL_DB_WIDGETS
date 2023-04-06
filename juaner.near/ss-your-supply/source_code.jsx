@@ -1,4 +1,5 @@
 const { suppliedAssets } = props;
+console.log("9999999999999-suppliedAssets", suppliedAssets);
 return (
   <>
     <div class="title">You Supplied</div>
