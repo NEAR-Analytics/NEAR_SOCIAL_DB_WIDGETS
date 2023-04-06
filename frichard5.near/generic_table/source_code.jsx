@@ -4,6 +4,7 @@ const MainWrapper = styled.div`
 
 const TableWrapper = styled.div`
   height: 200px;
+  overflow: auto;
 `;
 const Table = styled.table`
     display: table;
