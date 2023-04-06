@@ -22,9 +22,7 @@ if (!state.projectIsFetched) {
     { account_id: accountId },
     "final",
     false,
-  ).then((project) => {
-    State.update({ project, projectIsFetched: true });
-  });
+  ).then((project) => State.update({ project, projectIsFetched: true }));
 }
 
 return (
