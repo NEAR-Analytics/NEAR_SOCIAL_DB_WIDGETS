@@ -45,7 +45,7 @@ const EditButton = styled.button`
   transition: all 0.2s ease-in-out;
   overflow: hidden;
   position: absolute;
-  inset: auto 0 auto auto;
+  inset: auto auto auto 0;
 
   &.hidden {
     transform: scaleX(0);
@@ -73,13 +73,13 @@ return (
       <EditButtonContainer>
         <EditButton
           onClick={() => State.update({ edit: false })}
-          className={`left ${state.edit ? "" : "hidden"}`}
+          className={`right ${state.edit ? "" : "hidden"}`}
         >
           Cancel
         </EditButton>
         <EditButton
           onClick={() => State.update({ edit: true })}
-          className={`right ${state.edit ? "hidden" : ""}`}
+          className={`left ${state.edit ? "hidden" : ""}`}
         >
           Edit
         </EditButton>
