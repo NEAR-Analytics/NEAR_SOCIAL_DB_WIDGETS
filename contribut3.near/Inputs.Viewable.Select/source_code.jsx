@@ -86,7 +86,7 @@ const edit = (update, v) => (
   </LabelArea>
 );
 
-return edit((s) => console.log(s), value);
+return edit((s) => { console.log(s) }, value);
 //
 // return (
 //   <Widget
