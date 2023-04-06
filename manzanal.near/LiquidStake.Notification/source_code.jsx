@@ -6,6 +6,18 @@ const alertProps = {
   danger: { alertType: "alert-danger", icon: "bi-exclamation-triangle" },
   success: { alertType: "alert-success", icon: "bi-check-circle" },
 }[props.type];
+
+const Button = styled.button`
+box-sizing: border-box;
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 8px 16px;
+background: #FFFFFF;
+border: 2px solid #0C2246;
+border-radius: 1000px;
+`;
 return (
   <div
     class={`${
@@ -15,5 +27,6 @@ return (
   >
     <i class={`bi ${alertProps.icon}`}></i>
     <div>{props.message}</div>
+    {props.button && <Button {...props.button} />}
   </div>
 );
