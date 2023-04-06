@@ -104,16 +104,6 @@ const SaveButton = styled.button`
   color: #11181c;
 `;
 
-const InputContainer = styled.div`
-  position: relative;
-  
-  small {
-    position: absolute;
-    inset: auto auto -1em 0;
-    color: red;
-  }
-`;
-
 return (
   <Widget
     src={`${ownerId}/widget/Inputs.Viewable`}
@@ -122,23 +112,25 @@ return (
       label,
       value,
       edit: (update, v) => (
-        <LabelArea>
-          <InputContainer>
-            <Input
-              id
-              type="text"
-              value={v}
-              onChange={(e) => update(e.target.value)}
-              onBlur={() => validate(v)}
-            />
-            <small>
-              {state.valid ? <></> : state.errorMessage}
-            </small>
-          </InputContainer>
-          <SaveButton valid={state.valid} onClick={() => state.valid && onSave(v)}>
-            Save
-          </SaveButton>
-        </LabelArea>
+        <>
+          <LabelArea>
+            <InputContainer>
+              <Input
+                id
+                type="text"
+                value={v}
+                onChange={(e) => update(e.target.value)}
+                onBlur={() => validate(v)}
+              />
+            </InputContainer>
+            <SaveButton valid={state.valid} onClick={() => state.valid && onSave(v)}>
+              Save
+            </SaveButton>
+          </LabelArea>
+          <small>
+            {state.valid ? <></> : state.errorMessage}
+          </small>
+        </>
       ),
       view: isLink ? <a href={link}>{value}</a> : value,
     }}
