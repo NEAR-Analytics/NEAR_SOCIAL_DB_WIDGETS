@@ -28,7 +28,6 @@ const DashboardContainer = styled.div`
     font-weight: 750;
   }
   padding: 28px;
-  background: #e2e8f0;
   background-size: contain;
   background-repeat: no-repeat;
   ${avenirFontFamily}
