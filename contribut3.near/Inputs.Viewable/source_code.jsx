@@ -86,6 +86,6 @@ return (
       </EditButtonContainer>
     </Row>
 
-    {state.edit ? edit((value) => { State.update({ value }); console.log(value) }, state.value) : view}
+    {state.edit ? edit((value) => State.update({ value }), state.value) : view}
   </Container>
 );
