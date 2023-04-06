@@ -9,9 +9,10 @@ State.init({
 
 const order = [
   { proposal_type: 0 },
-  { Approved: 1 },
-  { Rejected: 2 },
-  { Expired: 3 },
+  { InProgress: 1 },
+  { Approved: 2 },
+  { Rejected: 3 },
+  { Expired: 4 },
 ];
 const columns = state.proposalsStatus.reduce((acc, pS) => {
   Object.keys(pS).forEach((k) => {
