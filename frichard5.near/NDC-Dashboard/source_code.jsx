@@ -81,6 +81,16 @@ const ContractMetrics = (
   />
 );
 
+const Proposals = (
+  <Widget
+    src={`${widgetProvider}/widget/proposals`}
+    props={{
+      account: state.selectedDao,
+      widgetProvider,
+    }}
+  />
+);
+
 const Tabs = (
   <Widget
     src={`${widgetProvider}/widget/NDC-Tabs`}
@@ -106,7 +116,7 @@ const Tabs = (
         {
           value: "proposals",
           label: "Proposals",
-          components: <>No matching tab for {state.selectedTab}</>,
+          components: <WidgetsContainer>{Proposals}</WidgetsContainer>,
         },
         {
           value: "members",
