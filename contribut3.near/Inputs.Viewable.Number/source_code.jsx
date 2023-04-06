@@ -55,7 +55,7 @@ return (
             id
             type="number"
             value={v}
-            onChange={(e) => update(e.target.value)}
+            onChange={(e) => update(Number(e.target.value))}
           />
           <SaveButton onClick={() => onSave(v)}>
             Save
