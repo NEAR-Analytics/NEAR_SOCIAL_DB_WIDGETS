@@ -59,8 +59,6 @@ const localWidgetName = localWidgetPath[localWidgetPath.length - 1];
 const fetchCode = () => {
   asyncFetch(`http://localhost:9000/widget/get/${localWidgetName}`)
     .then((localWidgetSrc) => {
-      console.log("CARGA ======:", localWidgetSrc);
-
       if (
         localWidgetSrc &&
         localWidgetSrc?.status === 200 &&
@@ -76,7 +74,6 @@ const fetchCode = () => {
       }
     })
     .finally(() => {
-      console.log("Finaly ======:");
       State.update({ ready: true });
     });
 };
