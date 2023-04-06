@@ -58,7 +58,7 @@ return (
             value={value}
             onChange={(e) => update(e.target.value)}
           />
-          <SaveButton onClick={() => onSave(state.value)}>
+          <SaveButton onClick={() => onSave(value)}>
             Save
           </SaveButton>
         </LabelArea>
