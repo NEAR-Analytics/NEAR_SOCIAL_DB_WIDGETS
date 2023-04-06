@@ -65,7 +65,7 @@ return (
       label,
       value,
       edit,
-      view: value,
+      view: value[0].name,
     }}
   />
 );
