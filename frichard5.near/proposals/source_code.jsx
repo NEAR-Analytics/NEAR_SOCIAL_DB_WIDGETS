@@ -61,6 +61,16 @@ const GenericTable = (
   />
 );
 
+const ProposalStatus = (
+  <Widget
+    src={`${widgetProvider}/widget/proposals-status`}
+    props={{
+      account,
+      widgetProvider,
+    }}
+  />
+);
+
 const fetchTransfers = (params) => {
   const proposals = fetch(forgeUrl(apiUrl, params), {
     mode: "cors",
@@ -71,5 +81,10 @@ const fetchTransfers = (params) => {
   proposals.body && State.update({ proposals: proposals.body });
 };
 fetchTransfers(state.params);
-console.log("PROPOSALS", state.proposals);
-return <>{GenericTable}</>;
+
+return (
+  <>
+    {ProposalStatus}
+    {GenericTable}
+  </>
+);
