@@ -44,14 +44,17 @@ const SaveButton = styled.button`
 `;
 
 const edit = (update, v) => (
-  <Typeahead
-    id
-    labelKey="name"
-    onChange={update}
-    options={options}
-    selected={v}
-    positionFixed
-  />
+  <LabelArea>
+    <Typeahead
+      id
+      labelKey="name"
+      onChange={update}
+      options={options}
+      selected={v}
+      positionFixed
+    />
+    <SaveButton onClick={() => onSave(v)}>Save</SaveButton>
+  </LabelArea>
 );
 
 return (
