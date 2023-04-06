@@ -9,7 +9,7 @@ const Input = styled.input`
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 0.5em 0.75em;
+  padding: 0.5em 0.75em 0.5em 0.25em;
   gap: 0.5em;
   background: #ffffff;
   border: 1px solid #d0d5dd;
