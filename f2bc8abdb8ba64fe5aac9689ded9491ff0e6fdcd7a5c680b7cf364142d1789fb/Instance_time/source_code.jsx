@@ -191,7 +191,7 @@ const renderAbortPollCreationModal = () => {
                   });
                 } else {
                   State.update({
-                    tab: tabs.MY_SCHEDULE.id,
+                    tab: tabs.ALL_SCHEDULE.id,
                     hoveringElement: "",
                     showAbortScheduleCreation: false,
                   });
