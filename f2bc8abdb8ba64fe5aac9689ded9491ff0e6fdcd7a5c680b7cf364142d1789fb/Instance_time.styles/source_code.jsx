@@ -450,7 +450,7 @@ const allWidgetsClassNames = {
     instanceTimeLogoContainer: "d-flex align-items-center",
     logoIcon: instanceTimeIcon,
     openScheduleGeneralContainer:
-      "w-100 d-sm-none d-md-flex justify-content-between",
+      "w-100 d-none d-md-flex justify-content-between",
     tabsContainer: "d-flex",
     newScheduleButtonInnerIcon: newScheduleButtonInnerIcon,
     showUserInfoInHeader: "d-flex flex-column",
