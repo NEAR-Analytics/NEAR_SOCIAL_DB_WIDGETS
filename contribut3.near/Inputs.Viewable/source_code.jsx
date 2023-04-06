@@ -1,7 +1,6 @@
 const id = props.id ?? "text";
 const label = props.label ?? "Input";
 const value = props.value ?? "";
-const isLink = link !== "";
 const view = props.view;
 const edit = props.edit;
 
@@ -90,9 +89,9 @@ return (
         <EditButton
           onClick={() => State.update({ change: true })}
           className={`down ${state.change ? "reverse" : ""}`}
-        // onAnimationEnd={() =>
-        //   State.update({ change: false, edit: !state.change })
-        // }
+          onAnimationEnd={() =>
+            State.update({ change: false, edit: !state.change })
+          }
         >
           Cancel
         </EditButton>
@@ -100,9 +99,9 @@ return (
         <EditButton
           onClick={() => State.update({ change: true })}
           className={`up ${state.change ? "reverse" : ""}`}
-        // onAnimationEnd={() =>
-        //   State.update({ change: false, edit: state.change })
-        // }
+          onAnimationEnd={() =>
+            State.update({ change: false, edit: state.change })
+          }
         >
           Edit
         </EditButton>
