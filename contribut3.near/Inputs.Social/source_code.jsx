@@ -24,13 +24,12 @@ const Start = styled.div`
   align-items: center;
   justify-content: center;
   background: #d0d5dd;
-  height: 100%;
 `;
 
 const Container = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: stretch;
   justify-content: flex-start;
   gap: 0;
   padding: 0;
