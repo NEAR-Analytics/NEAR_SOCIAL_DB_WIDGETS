@@ -72,9 +72,15 @@ const expandToken = (value, decimals) => {
   return new Big(value).mul(new Big(10).pow(decimals));
 };
 const formatToken = (v) => Math.floor(v * 10_000) / 10_000;
-const selectedTokenId = props.selectedTokenId;
+const { showModal, selectedTokenId } = selectedTokenId;
 const { rewards, balances, amount, hasError, assets } = state;
 const hasData = assets.length > 0 && rewards.length > 0;
+if (!showModal) {
+  State.update({
+    amount: "",
+    hasError: false,
+  });
+}
 /** base tool end */
 if (!accountId) {
   return <Widget src="juaner.near/widget/ref_account-signin" />;
