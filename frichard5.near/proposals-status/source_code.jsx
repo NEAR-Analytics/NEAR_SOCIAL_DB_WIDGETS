@@ -3,15 +3,6 @@ const account = props.account || "marketing.sputnik-dao.near";
 const apiUrl = `https://api.pikespeak.ai/daos/proposals/status/${account}`;
 const publicApiKey = "36f2b87a-7ee6-40d8-80b9-5e68e587a5b5";
 
-const forgeUrl = (apiUrl, params) =>
-  apiUrl +
-  Object.keys(params).reduce(
-    (paramString, p) => paramString + `${p}=${params[p]}&`,
-    "?"
-  );
-
-const resPerPage = 10;
-
 State.init({
   proposalsStatus: [],
 });
@@ -38,8 +29,8 @@ const GenericTable = (
   />
 );
 
-const fetchTransfers = (params) => {
-  const proposalsStatus = fetch(forgeUrl(apiUrl, params), {
+const fetchTransfers = () => {
+  const proposalsStatus = fetch(apiUrl, {
     mode: "cors",
     headers: {
       "x-api-key": publicApiKey,
@@ -47,6 +38,6 @@ const fetchTransfers = (params) => {
   });
   proposals.body && State.update({ proposalsStatus: proposalsStatus.body });
 };
-fetchTransfers(state.params);
-
+fetchTransfers();
+console.log(state.proposalsStatus, "uhuh");
 return <>{GenericTable}</>;
