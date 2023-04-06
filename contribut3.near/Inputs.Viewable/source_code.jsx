@@ -43,6 +43,7 @@ const EditButton = styled.button`
   border: none;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+  overflow: hidden;
 
   &.hidden {
     tranform: scaleX(0);
