@@ -13,26 +13,25 @@ const order = [
   { Rejected: 2 },
   { Expired: 3 },
 ];
-const columns = state.proposalsStatus
-  .reduce((acc, pS) => {
-    Object.keys(pS).forEach((k) => {
-      if (!acc.find((c) => c.id === k)) {
-        acc.push({
-          id: k,
-          label: k === "proposal_type" ? "Type" : k,
-        });
-      }
-    });
-    return acc;
-  }, [])
-  .sort((a, b) => order[a.id] - order[b.id]);
+const columns = state.proposalsStatus.reduce((acc, pS) => {
+  Object.keys(pS).forEach((k) => {
+    if (!acc.find((c) => c.id === k)) {
+      acc.push({
+        id: k,
+        label: k === "proposal_type" ? "Type" : k,
+      });
+    }
+  });
+  return acc;
+}, []);
+const orderedColumns = columns.sort((a, b) => order[a.id] - order[b.id]);
 
 const GenericTable = (
   <Widget
     src={`${widgetProvider}/widget/generic_table`}
     props={{
       title: `Status stats`,
-      columns,
+      columns: orderedColumns,
       data: state.proposalsStatus,
     }}
   />
