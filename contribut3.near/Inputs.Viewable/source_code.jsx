@@ -63,6 +63,7 @@ const EditButton = styled.button`
 const EditButtonContainer = styled.div`
   position: relative;
   width: 4em;
+  height: 1em;
 `;
 
 return (
