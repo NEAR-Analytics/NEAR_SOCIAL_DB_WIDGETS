@@ -45,14 +45,45 @@ const Container = styled.div`
     .ml_4_ne{
         margin-left:-4px;
     }
-    .flex_center{
-      display:flex;
-      align-items:center;
+    .mt_25{
+      margin-top:25px;
     }
-    .modal-content{
-      background-color:#1A2E33;
-      border-radius:12px;
+    .mt-10{
+      margin-top:10px;
     }
+`;
+const Backdrop = styled.div`
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1001;
+`;
+
+const Modal = styled.div`
+  background-color:#1A2E33;
+  border-radius:12px;
+  position:fixed;
+  z-index:1002;
+  width:30rem;
+  max-width: 95vw;
+  max-height: 80vh;
+  padding:10px;
+  animation:anishow 0.3s forwards ease-out;
+  left:50%;
+  top:50%;
+  @keyframes anishow {
+    from {
+      opacity: 0;
+      transform:translate(-50%,-70%);
+    }
+    to {
+      opacity: 1;
+      transform:translate(-50%,-50%);
+    }
+  }
     .modal-header{
       display:flex;
       align-items:center;
@@ -60,15 +91,14 @@ const Container = styled.div`
       color:#fff;
       font-weight: 700;
       font-size: 18px;
-      border-bottom:2px solid rgba(48, 67, 82, 0.5)
+      padding:12px;
+      margin-bottom:16px;
+      border-bottom:2px solid rgba(48, 67, 82, 0.5);
     } 
     .modal-header .btn-close{
       position:absolute;
       right:28px;
       margin:0;
-    }
-    .modal-footer{
-      border:none;
     }
     .modal-body .tab{
       display:flex;
@@ -91,13 +121,7 @@ const Container = styled.div`
     .modal-body .tab span.active{
       background: #304352;
     }
-    .mt_25{
-      margin-top:25px;
-    }
-    .mt-10{
-      margin-top:10px;
-    }
-    .btn-close-custom{
+   .btn-close-custom{
       position:absolute;
       right:28px;
       width:12px;
@@ -105,6 +129,7 @@ const Container = styled.div`
       cursor:pointer;
     }
 `;
+
 /** base tool start  */
 const wnearbase64 =
   "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACMAAAAjCAYAAAAe2bNZAAAABmJLR0QA/wD/AP+gvaeTAAADvElEQVRYhbWYTUtjVxjH/9fRaFBaK3Q0ahCE3HTR0kWLL0g72nEh6NaAL+BivkIXHUpblWr9Ai78CIKgQqC1xYJNVnWwdiFCF9OS4CRRM2o7TRyw+XWRJk2uebuJ/uFC7jnP89xfzrnPOee5hmwIqJc0LOmxpA8keSW1SnpD0p+SLiT9JumZpF1Je4Zh3Nh5RiUQHcAKEMWeov/5td8FRBPwFZCwCWFVAvgCaKwWxAsc1ghh1RHwrl2QR8DlHYNk9BcwWinIMJC8J5CMEsDH5UDeAa7uGSSjC8DMfb6RA9Ik6WdJ79ma09r0q6R+wzBeS1JdTsdnhUACgYA8Ho8cDofGx8d1fn5u62mrq6tyuVwyTVPBYNDa/b6kT/NaSK8jBdPX4/EgKXsNDQ1xfX1d0Tz4/f48X9M0C5n9DTzMhVkpFjA3WOaam5srCxKPx+ns7LzlW0TLGZB6IGIHRhIrK0X5AZiZmSnoV0RRoF7AaKmguYFmZ2ezv+vq6tja2iros7m5iSSamppYWlqqBAZgRMA3lcJEo1Gmpqay9y0tLRwe5i/SZ2dntLe309bWxt7eHuFwuFKYrwX8UClMLBYjkUjQ19eXbevp6SEa/X//9Pl89Pb2cnx8DGAH5jsBf9iBATg5OaGrqyvbPjg4SDKZJBQKMTo6yunpadbfBsxzkd4rbMEAHBwc0NzcnO3z+XykUqlb/jZgrgTcVAMDsLGxgWEY2f7l5eVaYG6qHpmM5ufns/2GYbC+vl4tzJWA32uBSaVSTE9PZ22cTif7+/vVwDwX8H01MJFIhJGRESKRyK0Mc7vdRCIRuzDf1il9eLalo6MjDQwMqLu7Wx0dHXI6ndre3pbb7ZYkhcNhTUxMKJFI2An7TMBjOyOzu7tLa2srLpeLeDyeZ2vNsMnJSUKhUKUjM2xrb1pYWMDhcCAJv99f0N6aYdY9qoheAA8k2d+1nzx5Uuofsri4WHSDLaKl7GQB7RQ5z1iDud1uLi9Ln9WtGVYG5hXwdt7bA3xZyNI0zbx1ZGdnpyRIRslkkv7+/jwQr9dbyPTprVcZaKRAnRQIBDBNE5fLxdraWkUgGcViMcbGxmhoaMDr9RIMBq0mB4CjYG6RLtzuq16y6iXgKZnspAu4WsvZckoAH5UEyQEaAM7vCeSCcgVcASAT+OWOQQ4oNzUlgBqBz0mXE7XoFfCUYi+rTaiHwDLpldKOXgBLWNeRIjLKm+RBPZD0SNInkj5U+svVW5LelHQl6aXSX672Jf0o6SfDMP6pNP6/QZPF1Du0/sIAAAAASUVORK5CYII=";
@@ -161,6 +186,7 @@ const {
   hasError,
   assets,
   tabName,
+  showModal,
 } = state;
 const hasData = assets.length > 0 && rewards.length > 0 && account;
 /** base tool end */
@@ -212,8 +238,6 @@ const market_deposit_assets =
       });
     return (
       <tr
-        data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
         onClick={() => {
           handleSelect(token_id);
         }}
@@ -234,8 +258,14 @@ const handleSelect = (token_id) => {
     selectedTokenId: token_id,
     amount: "",
     hasError: false,
+    showModal: true,
   });
 };
+function closeModal() {
+  State.update({
+    showModal: false,
+  });
+}
 function changeTab(tabName) {
   State.update({
     tabName,
@@ -273,58 +303,35 @@ return (
       <tbody>{market_deposit_assets}</tbody>
     </table>
     {/* Modal*/}
-    <div
-      class="modal fade"
-      id="exampleModal"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <div class="flex_center">
-              <img
-                class="tokenIcon"
-                src={selectedTokenMeta.icon || wnearbase64}
-              />
-              {selectedTokenMeta.symbol}
-            </div>
+    <>
+      <Modal style={{ display: showModal ? "block" : "none" }}>
+        <div class="modal-header">
+          <div class="flex_center">
             <img
-              class="btn-close-custom"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-              src={closeButtonBase64}
+              class="tokenIcon"
+              src={selectedTokenMeta.icon || wnearbase64}
             />
+            {selectedTokenMeta.symbol}
           </div>
-          <div class="modal-body">
-            {/**<div class="tab">
-              <span
-                onClick={() => {
-                  changeTab("supply");
-                }}
-                class={`${tabName != "withdraw" ? "active" : ""}`}
-              >
-                Supply
-              </span>
-              
-              <span
-                onClick={() => {
-                  changeTab("withdraw");
-                }}
-                class={`${tabName == "withdraw" ? "active" : ""}`}
-              >
-                Withdraw
-              </span>
-            </div>
-            **/}
+          <img
+            class="btn-close-custom"
+            src={closeButtonBase64}
+            onClick={closeModal}
+          />
+        </div>
+        <div class="modal-body">
+          {showModal && (
             <Widget
               src="juaner.near/widget/ref-market-supply-supply"
-              props={{ selectedTokenId, amount, hasError }}
+              props={{ selectedTokenId }}
             />
-          </div>
+          )}
         </div>
-      </div>
-    </div>
+      </Modal>
+      <Backdrop
+        style={{ display: showModal ? "block" : "none" }}
+        onClick={closeModal}
+      ></Backdrop>
+    </>
   </Container>
 );
