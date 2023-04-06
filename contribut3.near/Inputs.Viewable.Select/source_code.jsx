@@ -43,12 +43,14 @@ const SaveButton = styled.button`
   color: #11181c;
 `;
 
+console.log(options)
+
 const edit = (/* update, v */) => (
   <LabelArea>
-    <Radix.Select.Root /* value={v} onValueChange={update} */>
-      <Radix.Select.Trigger>
-        <Radix.Select.Value />
-        <Radix.Select.Icon>
+    <Select.Root /* value={v} onValueChange={update} */>
+      <Select.Trigger>
+        <Select.Value />
+        <Select.Icon>
           <svg
             width="12"
             height="8"
@@ -64,24 +66,24 @@ const edit = (/* update, v */) => (
               stroke-linejoin="round"
             />
           </svg>
-        </Radix.Select.Icon>
-      </Radix.Select.Trigger>
+        </Select.Icon>
+      </Select.Trigger>
 
-      <Radix.Select.Portal>
-        <Radix.Select.Content>
-          <Radix.Select.Viewport>
+      <Select.Portal>
+        <Select.Content>
+          <Select.Viewport>
             {options.map((option) =>
-              <Radix.Select.Item key={option}>
-                <Radix.Select.ItemText>{option}</Radix.Select.ItemText>
-                <Radix.Select.ItemIndicator>
+              <Select.Item key={option}>
+                <Select.ItemText>{option}</Select.ItemText>
+                <Select.ItemIndicator>
                   "-"
-                </Radix.Select.ItemIndicator>
-              </Radix.Select.Item>
+                </Select.ItemIndicator>
+              </Select.Item>
             )}
-          </Radix.Select.Viewport>
-        </Radix.Select.Content>
-      </Radix.Select.Portal>
-    </Radix.Select.Root>
+          </Select.Viewport>
+        </Select.Content>
+      </Select.Portal>
+    </Select.Root>
     <SaveButton onClick={() => onSave(v)}>Save</SaveButton>
   </LabelArea>
 );
