@@ -39,8 +39,8 @@ const Container = styled.div`
       height: 16px;
       border-radius:100px;
     }
-    .text_red_color{
-      color:#FF6BA9;
+    .text_green_color{
+      color:#78FF9E;
     }
     .ml_4_ne{
         margin-left:-4px;
