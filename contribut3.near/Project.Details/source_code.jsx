@@ -65,6 +65,15 @@ return (
       }}
     />
     <Widget
+      src={`${ownerId}/widget/Inputs.Viewable.Number`}
+      props={{
+        label: "User base (MAA)",
+        id: "userbase",
+        value: 3500,
+        onSave: (userbase) => onSave({ userbase }),
+      }}
+    />
+    <Widget
       src={`${ownerId}/widget/Inputs.Viewable.Select`}
       props={{
         label: "Stage",
