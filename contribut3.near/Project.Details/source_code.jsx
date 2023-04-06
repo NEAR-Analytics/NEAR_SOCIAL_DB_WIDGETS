@@ -39,7 +39,7 @@ return (
       props={{
         label: "Links",
         id: "links",
-        value: { github: "near-horizon" },
+        value: { github: "near-horizon", twitter: "nearhorizon" },
         onSave: (links) => onSave({ links }),
       }}
     />
