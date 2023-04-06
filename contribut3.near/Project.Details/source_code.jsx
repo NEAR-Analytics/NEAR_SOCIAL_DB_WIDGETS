@@ -39,7 +39,7 @@ return (
       props={{
         label: "Category",
         id: "category",
-        value: "Wallets",
+        value: [{ name: "Wallets" }],
         options: [{ name: "Wallets" }, { name: "Games" }, { name: "Social" }, { name: "Other" }],
         onSave: ([{ name: category }]) => onSave({ category }),
       }}
