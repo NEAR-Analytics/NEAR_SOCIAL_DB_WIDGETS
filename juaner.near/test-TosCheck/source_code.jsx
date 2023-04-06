@@ -122,11 +122,9 @@ const showTos =
   agreementsForUser &&
   (!agreementsForUser.length ||
     agreementsForUser[agreementsForUser.length - 1].value < latestTosVersion);
-console.log("00000000000-00000000-targetComponent", targetComponent);
-console.log("00000000000-00000000-targetProps", targetProps);
 return (
   <div>
-    {true && (
+    {showTos && (
       <Backdrop className="d-flex">
         <Modal>
           <ModalContent>
