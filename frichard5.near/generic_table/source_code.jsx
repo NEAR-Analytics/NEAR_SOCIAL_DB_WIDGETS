@@ -3,7 +3,7 @@ const MainWrapper = styled.div`
 `;
 
 const TableWrapper = styled.div`
-  height: 400px;
+  max-height: 400px;
   overflow: auto;
 `;
 const Table = styled.table`
