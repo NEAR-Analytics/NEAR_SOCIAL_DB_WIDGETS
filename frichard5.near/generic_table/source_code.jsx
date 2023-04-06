@@ -10,7 +10,7 @@ const Table = styled.table`
       whiteSpace: nowrap;
       padding: 16px;
       max-width: 130px;
-      borderBottom: 1px solid rgb(81, 81, 81);
+      border-bottom: 1px solid rgb(81, 81, 81);
     }
 `;
 
