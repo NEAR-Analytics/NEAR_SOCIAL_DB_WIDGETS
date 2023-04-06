@@ -74,7 +74,7 @@ const edit = (update, v) => (
     .filter(({ name }) => name in value)
     .map(({ name, url }) => (
       <LabelArea>
-        <Widget src={`${ownerId}/widget/Inputs.Social`} props={{ start: url, value: value[name], update: (v) => { console.log(v) } }} />
+        <Widget src={`${ownerId}/widget/Inputs.Social`} props={{ start: url, value: value[name], update: (v) => update({ [name]: v }) }} />
         <SaveButton onClick={() => onSave(v)}>Save</SaveButton>
       </LabelArea>
     ))
