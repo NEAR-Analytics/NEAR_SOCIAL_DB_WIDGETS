@@ -93,7 +93,7 @@ return (
       id,
       label,
       value,
-      edit,
+      edit: (update, v) => edit(update, v),
       view: isLink ? <a href={link}>{value}</a> : value,
     }}
   />
