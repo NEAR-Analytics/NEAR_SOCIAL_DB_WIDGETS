@@ -202,7 +202,6 @@ const recomputeHealthFactor = (tokenId, amount) => {
       updatedToken,
     ];
   }
-  console.log(clonedAccount);
   const adjustedCollateralSum = getAdjustedSum("collateral", account);
   const adjustedBorrowedSum = getAdjustedSum(
     "borrowed",
