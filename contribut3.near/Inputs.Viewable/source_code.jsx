@@ -1,8 +1,8 @@
 const id = props.id ?? "text";
 const label = props.label ?? "Input";
 const value = props.value ?? "";
-const view = props.view;
-const edit = props.edit;
+const view = props.view ?? (() => <></>);
+const edit = props.edit ?? (() => <></>);
 
 State.init({
   value,
