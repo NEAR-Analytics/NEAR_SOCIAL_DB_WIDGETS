@@ -74,7 +74,7 @@ return (
               {state.valid ? null : state.errorMessage}
             </small>
           </InputContainer>
-          <SaveButton onClick={() => onSave(v)}>
+          <SaveButton onClick={() => state.valid && onSave(v)}>
             Save
           </SaveButton>
         </LabelArea>
