@@ -57,13 +57,11 @@ return (
       className="btn btn-outline-primary"
       onChange={filesOnChange}
     >
-      {state.file?.uploading ? (
-        <>{Loading} Uploading</>
-      ) : state.file && state.file.cid ? (
-        "Replace"
-      ) : (
-        "Upload a file"
-      )}
+      {state.file?.uploading
+        ? "Uploading"
+        : state.file && state.file.cid
+        ? "Replace"
+        : buttonText}
     </Files>
   </div>
 );
