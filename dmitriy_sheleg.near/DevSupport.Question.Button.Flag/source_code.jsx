@@ -24,11 +24,7 @@ const data = {
 };
 
 return (
-  <CommitButton
-    force
-    className={`ms-3 border-0 bg-white ${props.className}`}
-    data={data}
-  >
+  <CommitButton force className={props.className} data={data}>
     <i class="bi bi-exclamation-circle me-1" />
     <span>Report</span>
   </CommitButton>
