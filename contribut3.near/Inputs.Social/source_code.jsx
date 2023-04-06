@@ -16,6 +16,7 @@ const Input = styled.input`
   box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
+  flex-grow: 1;
 `;
 
 const Start = styled.div`
