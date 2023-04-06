@@ -70,10 +70,11 @@ const SaveButton = styled.button`
 `;
 
 const edit = (update, v) => (
-  <>{supportedLinks
-    .map(({ name, url }) => (
-      <Widget src={`${ownerId}/widget/Inputs.Social`} props={{ start: url, value: v[name] ?? "", update: (s) => update({ ...v, [name]: s }) }} />
-    ))}
+  <>
+    {supportedLinks
+      .map(({ name, url }) => (
+        <Widget src={`${ownerId}/widget/Inputs.Social`} props={{ start: url, value: v[name] ?? "", update: (s) => update({ ...v, [name]: s }) }} />
+      ))}
     <SaveButton onClick={() => onSave(v)}>Save</SaveButton>
   </>
 );
