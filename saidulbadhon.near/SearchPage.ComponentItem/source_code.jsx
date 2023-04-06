@@ -24,6 +24,12 @@ function makeUpperCase(sentence) {
   return words.join(" ");
 }
 
+console.log(
+  selectedItem,
+  accountId + "/widget/" + widgetName,
+  selectedItem === accountId + "/widget/" + widgetName
+);
+
 const MainContainer = styled.div`
   width: 100%;
 
