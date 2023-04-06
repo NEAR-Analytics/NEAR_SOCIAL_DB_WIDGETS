@@ -103,7 +103,6 @@ const Tabs = (
         {
           value: "money",
           label: "Money",
-          selected: true,
           components: (
             <WidgetsContainer>
               {Balances}
@@ -133,20 +132,30 @@ const Tabs = (
   />
 );
 
-// State function
 const selectDao = ({ target: { value } }) => {
   State.update({ selectedDao: value });
 };
+
+const Select = (
+  <Widget
+    src={`${widgetProvider}/widget/NDC-select`}
+    props={{
+      options: [
+        { value: "marketing.sputnik-dao.near", label: "Marketing" },
+        { value: "creativesdao.sputnik-dao.near", label: "Creative" },
+        { value: "neardevgov.sputnik-dao.near", label: "Gov" },
+      ],
+      selectedOption: state.selectedDao,
+      onChange: selectDao,
+    }}
+  />
+);
 
 return (
   <>
     <DashboardContainer theme={theme}>
       {Banner}
-      <select onChange={selectDao}>
-        <option value="marketing.sputnik-dao.near">Marketing</option>
-        <option value="creativesdao.sputnik-dao.near">Creative</option>
-        <option value="neardevgov.sputnik-dao.near">Gov</option>
-      </select>
+      {Select}
       {Tabs}
     </DashboardContainer>
   </>
