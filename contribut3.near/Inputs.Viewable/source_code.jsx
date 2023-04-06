@@ -44,7 +44,8 @@ const EditButton = styled.button`
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   overflow: hidden;
-  inset: auto  0 auto auto;
+  position: absolute;
+  inset: auto 0 auto auto;
 
   &.hidden {
     transform: scaleX(0);
