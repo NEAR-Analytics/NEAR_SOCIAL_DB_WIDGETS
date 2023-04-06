@@ -7,13 +7,13 @@ State.init({
   proposalsStatus: [],
 });
 
-const order = [
-  { proposal_type: 0 },
-  { InProgress: 1 },
-  { Approved: 2 },
-  { Rejected: 3 },
-  { Expired: 4 },
-];
+const order = {
+  proposal_type: 0,
+  InProgress: 1,
+  Approved: 2,
+  Rejected: 3,
+  Expired: 4,
+};
 const columns = state.proposalsStatus.reduce((acc, pS) => {
   Object.keys(pS).forEach((k) => {
     if (!acc.find((c) => c.id === k)) {
@@ -25,9 +25,7 @@ const columns = state.proposalsStatus.reduce((acc, pS) => {
   });
   return acc;
 }, []);
-const orderedColumns = columns.sort(
-  (a, b) => order[a.proposal_type] - order[b.proposal_type]
-);
+const orderedColumns = columns.sort((a, b) => order[a.id] - order[b.id]);
 
 const GenericTable = (
   <Widget
