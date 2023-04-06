@@ -7,17 +7,19 @@ State.init({
   proposalsStatus: [],
 });
 
-const columns = state.proposalsStatus.reduce((acc, pS) => {
-  Object.keys(pS).forEach((k) => {
-    if (!acc.find((c) => c.id === k)) {
-      acc.push({
-        id: k,
-        label: k,
-      });
-    }
-  });
-  return acc;
-}, []);
+const columns = state.proposalsStatus
+  .reduce((acc, pS) => {
+    Object.keys(pS).forEach((k) => {
+      if (!acc.find((c) => c.id === k)) {
+        acc.push({
+          id: k,
+          label: k === "proposal_type" ? "Type" : k,
+        });
+      }
+    });
+    return acc;
+  }, [])
+  .sort((a, b) => a.id === "proposal_type");
 console.log(columns);
 const GenericTable = (
   <Widget
