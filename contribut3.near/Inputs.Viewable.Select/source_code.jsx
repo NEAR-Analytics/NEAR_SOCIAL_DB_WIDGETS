@@ -43,9 +43,9 @@ const SaveButton = styled.button`
   color: #11181c;
 `;
 
-const edit = (update, v) => (
+const edit = (/* update, v */) => (
   <LabelArea>
-    <Select.Root value={v} onValueChange={update}>
+    <Select.Root /* value={v} onValueChange={update} */>
       <Select.Trigger>
         <Select.Value />
         <Select.Icon>
