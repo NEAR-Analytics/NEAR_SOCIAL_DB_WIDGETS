@@ -62,7 +62,7 @@ return (
           </SaveButton>
         </LabelArea>
       ),
-      view: Intl.NumberFormat("en", { notation: "compact" }).format(value),
+      view: value, // Intl.NumberFormat("en", { notation: "compact" }).format(value),
     }}
   />
 );
