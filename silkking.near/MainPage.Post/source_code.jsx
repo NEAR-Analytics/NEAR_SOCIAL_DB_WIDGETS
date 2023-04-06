@@ -1,11 +1,11 @@
-const content = props.content;
-const accountId = content.accountId;
-const blockHeight = parseInt(content.blockHeight);
-
-State.init({
-  displayCommentBox: false,
-  answer: "",
-});
+const accountId = props.accountId;
+const blockHeight =
+  props.blockHeight === "now" ? "now" : parseInt(props.blockHeight);
+const content =
+  props.content ??
+  JSON.parse(Social.get(`${accountId}/post/main`, blockHeight) ?? "null");
+const subscribe = !!props.subscribe;
+const raw = !!props.raw;
 
 const notifyAccountId = accountId;
 const item = {
@@ -16,156 +16,78 @@ const item = {
 
 const link = `#/mob.near/widget/MainPage.Post.Page?accountId=${accountId}&blockHeight=${blockHeight}`;
 
-const card = {
-  background: "linear-gradient(to right, #4deeea, #f000ff)",
-  border: "1px solid black",
-  borderRadius: "5px",
-  textAlign: "center",
-  color: "white",
-  padding: "10px",
-};
-
-const cardContent = {
-  display: "grid",
-  gridTemplateColumns: "3fr 1fr 1fr",
-};
-
-const headerStyles = {
-  display: "flex",
-  justifyContent: "center",
-};
-
-const startCommentTo = () => {
-  State.update({ displayCommentBox: true });
-};
-
-const RenderCommentInput = (blockHeight) => {
-  return state.displayCommentBox ? (
-    <div
-      style={{
-        margin: "10px 0px",
-      }}
-    >
-      <textarea
-        style={{
-          backgroundColor: "rgb(230, 230, 230)",
-          border: "1px solid #ced4da",
-          borderRadius: "0.375rem",
-          width: "50%",
-          verticalAlign: "middle",
-        }}
-        rows="2"
-        value={state.commentTextMap[blockHeight]}
-        onChange={(e) => {
-          State.update({ answer: e.target.value });
-        }}
+return (
+  <div className="border rounded-4 p-3 pb-1">
+    <Widget
+      src="mob.near/widget/MainPage.Post.Header"
+      props={{ accountId, blockHeight, link, postType: "post", flagItem: item }}
+    />
+    <div className="mt-3 text-break">
+      <Widget
+        src="mob.near/widget/MainPage.Post.Content"
+        props={{ content, raw }}
       />
-      <CommitButton
-        style={button}
-        data={{
-          index: {
-            kudo: JSON.stringify(
-              {
-                key: "commentAnswers",
-                value: {
-                  commentAnswer: state.answer,
-                  blockHeight,
-                },
-              },
-              undefined,
-              0
-            ),
-          },
-        }}
-        onCommit={() => {
-          let ctm = state.commentTextMap;
-          ctm[blockHeight] = "";
-          State.update({
-            commentTextMap: ctm,
-            reloadData: true,
-          });
-        }}
-      >
-        Comment
-      </CommitButton>
     </div>
-  ) : (
-    ""
-  );
-};
-
-/* START KudoBox */
-const RenderKudoBox = (d) => {
-  const text = `From @${d.accountId} Kudos ${d.value.answer} `;
-  const content = { text };
-  return (
-    <>
-      <div style={card}>
-        <div style={headerStyles}>
+    {blockHeight !== "now" && (
+      <div className="mt-1 d-flex justify-content-between">
+        <div className="me-4">
           <Widget
-            src="mob.near/widget/MainPage.Post.Header"
+            src="mob.near/widget/CommentButton"
             props={{
-              accountId,
-              blockHeight,
-              link,
-              postType: "post",
-              flagItem: item,
+              onClick: () =>
+                !state.showReply && State.update({ showReply: true }),
             }}
           />
+        </div>
+        <div className="me-4">
           <Widget
-            src="mob.near/widget/FollowButton"
-            props={{ accountId: d.accountId }}
+            src="mob.near/widget/RepostButton"
+            props={{
+              notifyAccountId,
+              item,
+            }}
           />
         </div>
-        <div className="mt-3 text-break" style={cardContent}>
+        <div className="me-4">
           <Widget
-            src="mob.near/widget/MainPage.Post.Content"
-            props={{ content, raw }}
+            src="mob.near/widget/LikeButton"
+            props={{
+              notifyAccountId,
+              item,
+            }}
           />
-          <a href={`${urlPrefix}${d.value.url}`} target="_blank">
-            {d.value.url}
-          </a>
-          <div>
-            <Widget
-              src="mob.near/widget/CommentButton"
-              props={{
-                onClick: startCommentTo,
-              }}
-            />
-          </div>
         </div>
         <div>
-          <CommitButton
-            data={{
-              index: {
-                kudo: JSON.stringify(
-                  {
-                    key: "upvote",
-                    value: {
-                      blockHeight: d.blockHeight,
-                    },
-                  },
-                  undefined,
-                  0
-                ),
-              },
-            }}
-          >
-            Upvote
-          </CommitButton>
-          <span>
-            {d.value.upvotes} {d.value.upvotes == 1 ? "upvote" : "upvotes"}
-          </span>
+          <Widget
+            src="mob.near/widget/MainPage.Post.ShareButton"
+            props={{ accountId, blockHeight, postType: "post" }}
+          />
         </div>
-        {RenderCommentInput(Number(d.blockHeight))}
       </div>
-
-      {
-        //RenderAllCommentAnswerBox(d)
-      }
-    </>
-  );
-};
-/* END KudoBox  */
-
-return <>{RenderKudoBox(props.content)}</>;
+    )}
+    <div className="mt-3 ps-5">
+      {state.showReply && (
+        <div className="mb-2">
+          <Widget
+            src="mob.near/widget/MainPage.Comment.Compose"
+            props={{
+              notifyAccountId,
+              item,
+              onComment: () => State.update({ showReply: false }),
+            }}
+          />
+        </div>
+      )}
+      <Widget
+        src="mob.near/widget/MainPage.Comment.Feed"
+        props={{
+          item,
+          highlightComment: props.highlightComment,
+          limit: props.commentsLimit,
+          subscribe,
+          raw,
+        }}
+      />
+    </div>
+  </div>
+);
