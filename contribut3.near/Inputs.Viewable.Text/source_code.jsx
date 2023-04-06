@@ -44,7 +44,7 @@ const SaveButton = styled.button`
   color: #11181c;
 `;
 
-return "";
+return <Widget src={`${ownerId}/widget/SearchInput`} />;
 
 // return (
 //   <Widget
