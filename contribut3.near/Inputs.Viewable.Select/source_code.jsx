@@ -70,7 +70,7 @@ const edit = (/* update, v */) => (
         </Select.Icon>
       </Select.Trigger>
 
-      <div style={{ top: "1em" }}>
+      <div style={{ transform: "translateY(1em)" }}>
         <Select.Content>
           <Select.Viewport>
             {options.map((option) =>
