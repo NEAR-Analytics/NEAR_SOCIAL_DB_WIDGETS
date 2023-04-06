@@ -35,6 +35,16 @@ return (
       }}
     />
     <Widget
+      src={`${ownerId}/widget/Inputs.Links`}
+      props={{
+        label: "Website",
+        id: "website",
+        value: "layers.gg",
+        link: "https://layers.gg",
+        onSave: (website) => onSave({ website }),
+      }}
+    />
+    <Widget
       src={`${ownerId}/widget/Inputs.Viewable.Select`}
       props={{
         label: "Category",
