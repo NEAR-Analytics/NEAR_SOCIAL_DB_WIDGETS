@@ -22,7 +22,7 @@ const getFormatedTime = (time) => {
 return (
   <>
     <div
-      className="p-3"
+      className="p-2"
       style={{
         position: "relative",
         border: "1.5px solid rgb(206, 212, 218)",
