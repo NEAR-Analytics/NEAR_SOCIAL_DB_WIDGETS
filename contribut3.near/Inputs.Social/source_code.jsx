@@ -24,7 +24,7 @@ const Start = styled.div`
   align-items: center;
   justify-content: center;
   background: #d0d5dd;
-  padding: 0.5em 0.75em 0.5em 0.25em;
+  padding: 0.5em 0.25em 0.5em 0.75em;
 `;
 
 const Container = styled.div`
