@@ -34,16 +34,6 @@ const Row = styled.div`
   gap: 0.25em;
 `;
 
-const fade = styled.keyframes`
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-`;
-
 const EditButton = styled.button`
   font-weight: 400;
   font-size: 0.9em;
@@ -54,20 +44,16 @@ const EditButton = styled.button`
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 
-  &.up {
-    animation: ${fade} 0.2s ease-in-out forwards;
-
-    &.reverse {
-      animation: ${fade} 0.2s ease-in-out backwards;
-    }
+  &.hidden {
+    tranform: scaleX(0);
   }
 
-  &.down {
-    animation: ${fade} 0.2s ease-in-out forwards;
+  &.left {
+    transition-origin: left;
+  }
 
-    &.reverse {
-      animation: ${fade} 0.2s ease-in-out backwards;
-    }
+  &.right {
+    transition-origin: right;
   }
 `;
 
@@ -76,20 +62,14 @@ return (
     <Row>
       <Label htmlFor={id}>{label}</Label>
       <EditButton
-        onClick={() => State.update({ change: true })}
-        className={`down ${state.change ? "reverse" : ""}`}
-        onAnimationEnd={() =>
-          State.update({ change: false, edit: !state.change })
-        }
+        onClick={() => State.update({ edit: true })}
+        className={`left ${state.edit ? "" : "hidden"}`}
       >
         Cancel
       </EditButton>
       <EditButton
-        onClick={() => State.update({ change: true })}
-        className={`up ${state.change ? "reverse" : ""}`}
-        onAnimationEnd={() =>
-          State.update({ change: false, edit: state.change })
-        }
+        onClick={() => State.update({ edit: true })}
+        className={`right ${state.edit ? "hidden" : ""}`}
       >
         Edit
       </EditButton>
