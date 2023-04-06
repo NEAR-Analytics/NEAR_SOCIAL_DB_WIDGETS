@@ -246,6 +246,7 @@ const market_burrow_assets =
           ></img>
         );
       });
+    console.log("000000-rewardTokensImg", rewardTokensImg);
     return (
       <tr
         onClick={() => {
@@ -257,7 +258,9 @@ const market_burrow_assets =
           {metadata.symbol}
         </td>
         <td>{toAPY(borrowApy)}%</td>
-        <td>{rewardTokensImg}</td>
+        <td class="text-white">
+          {rewardTokensImg.length == 0 ? "-" : rewardTokensImg}
+        </td>
         <td class="text-end">{liquidity}</td>
       </tr>
     );
