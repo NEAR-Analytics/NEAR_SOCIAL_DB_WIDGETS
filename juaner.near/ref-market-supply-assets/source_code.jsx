@@ -320,12 +320,12 @@ return (
           />
         </div>
         <div class="modal-body">
-          {showModal && (
+          {
             <Widget
               src="juaner.near/widget/ref-market-supply-supply"
               props={{ selectedTokenId }}
             />
-          )}
+          }
         </div>
       </Modal>
       <Backdrop
