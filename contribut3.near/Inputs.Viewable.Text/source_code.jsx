@@ -4,7 +4,7 @@ const label = props.label ?? "Input";
 const value = props.value ?? "";
 const link = props.link ?? "";
 const isLink = link !== "";
-const onSave = props.onSave ?? (() => { });
+const onSave = props.onSave ?? (() => {});
 
 const LabelArea = styled.div`
   display: flex;
@@ -45,24 +45,25 @@ const SaveButton = styled.button`
 `;
 
 return (
-  <Widget src={`${ownerId}/widget/Inputs.Viewable`} props={{
-    id,
-    label,
-    value,
-    edit: (update) => (<LabelArea>
-      <Input
-        type={isLink ? "url" : "text"}
-        value={state.value}
-        onChange={(e) => update(e.target.value)}
-      />
-      <SaveButton show={state.edit} onClick={() => onSave(state.value)}>
-        Save
-      </SaveButton>
-    </LabelArea>),
-    view: (value) => isLink ? (
-      <a href={link}>{value}</a>
-    ) : (
-      value
-    )
-  }} />
+  <Widget
+    src={`${ownerId}/widget/Inputs.Viewable`}
+    props={{
+      id,
+      label,
+      value,
+      edit: (update) => (
+        <LabelArea>
+          <Input
+            type={isLink ? "url" : "text"}
+            value={state.value}
+            onChange={(e) => update(e.target.value)}
+          />
+          <SaveButton show={state.edit} onClick={() => onSave(state.value)}>
+            Save
+          </SaveButton>
+        </LabelArea>
+      ),
+      view: (value) => (isLink ? <a href={link}>{value}</a> : value),
+    }}
+  />
 );
