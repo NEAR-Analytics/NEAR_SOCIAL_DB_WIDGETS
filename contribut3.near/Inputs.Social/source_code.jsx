@@ -37,9 +37,9 @@ return (
     <Start>{start}</Start>
     <Input
       type="text"
-      value={props.search}
+      value={value}
       placeholder="Search"
-      onChange={(e) => props.update({ search: e.target.value })}
+      onChange={(e) => update(e.target.value)}
     />
   </Container>
 );
