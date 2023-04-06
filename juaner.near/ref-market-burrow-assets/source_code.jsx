@@ -2,7 +2,6 @@ const Container = styled.div`
    background: #1A2E33;
     .table{
         margin:0;
-        border-bottom:2px solid rgba(48, 67, 82, 0.5);
     }
     .table thead tr{
         height:50px;
