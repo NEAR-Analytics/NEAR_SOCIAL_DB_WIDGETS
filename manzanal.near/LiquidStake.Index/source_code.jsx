@@ -1,6 +1,7 @@
+const network = props.network || "mainnet";
 const ownerId = "manzanal.near";
-const accountId = context.accountId;
 const metapoolContract = "meta-pool.near";
+const accountId = context.accountId;
 const depositAndStakeFn = "deposit_and_stake";
 const delayedUnstakeFn = "unstake";
 const liquidUnstakeFn = "liquid_unstake";
@@ -30,24 +31,24 @@ initState({
   amount: 0.0,
   result: 0,
 });
-const submitMethod = {
-  stake: depositAndStakeFn,
-  delayedUnstakeFn: delayedUnstakeFn,
-  fast: liquidUnstakeFn,
-}[state.tab];
+const feeBasisPoint = 30; // HARDCODED FOR NOW - in basis points
 
-const submitArgs = {
-  stake: {},
-  delayedUnstakeFn: { amount: state.amount * YOCTO },
+const getLiquidUnstakeFee = feeBasisPoint / 100;
+
+const submitProps = {
+  stake: { method: depositAndStakeFn, args: {} },
+  delayed: { method: delayedUnstakeFn, args: { amount: state.amount * YOCTO } },
   fast: {
-    st_near_to_burn: amount * YOCTO,
-    min_expected_near: amount * YOCTO, // REVIEW
+    method: liquidUnstakeFn,
+    args: {
+      st_near_to_burn: amount * YOCTO,
+      min_expected_near: amount * YOCTO, // REVIEW
+    },
   },
 }[state.tab];
 
 const onSubmit = () => {
-  const method = submitMethod;
-  const args = submitArgs;
+  const { method, args } = submitProps;
   const deposit = state.tab == "stake" ? state.amount * YOCTO : undefined;
   Near.call(metapoolContract, method, args, GAS, deposit);
 };
@@ -58,7 +59,7 @@ const onClickTab = (tab) => {
 
 const onClickMax = (tab) => {
   console.log("setting max balance", fetchBalance);
-  State.update({ amount: parseFloat(fetchBalance.body[0].amount.toFixed(2)) });
+  State.update({ amount: parseFloat(fetchBalance.body[0].amount).toFixed(2) });
 };
 
 const onChangeNearAmount = (value) => {
@@ -85,26 +86,82 @@ const propsData = {
       disabled: false,
     },
   },
-  input: {
-    title: "NEAR Amount",
+};
+const selectionPropsData = {
+  stake: {
+    input: {
+      title: "NEAR Amount",
+      token: "NEAR",
+    },
+    input1: {
+      token: "stNEAR",
+      title: "You’ll get",
+    },
     button: {
-      size: "lg",
-      children: "Max",
+      active: true,
+      disabled: false,
+      children: "Stake now",
+    },
+    notification: {
+      message: "Rewards distributed every 24 hours",
+      button: undefined,
     },
   },
-  input1: {
-    token: "stNEAR",
-    title: "You’ll get",
+  fast: {
+    input: {
+      title: "stNEAR Amount",
+      token: "stNEAR",
+    },
+    input1: {
+      token: "NEAR",
+      title: "You’ll get",
+    },
+    button: {
+      active: true,
+      disabled: false,
+      children: "Unstake",
+    },
+    notification: {
+      message: `Fee is ${getLiquidUnstakeFee}%`,
+      button: undefined,
+    },
   },
-  stakeButton: {
-    active: true,
-    disabled: false,
-    children: "Stake now",
+  delayed: {
+    input: {
+      title: "stNEAR Amount",
+      token: "stNEAR",
+    },
+    input1: {
+      token: "NEAR",
+      title: "You’ll get",
+    },
+    button: {
+      active: true,
+      disabled: false,
+      children: "Unstake",
+    },
+    notification: {
+      message: `Delayed unstake takes up to 6 days to complete`,
+      button: {
+        children: "Try fast",
+        onClick: () => {
+          State.update({ tab: "fast" });
+        },
+      },
+    },
   },
-  notification: {
-    message: "Rewards distributed every 24 hours",
-  },
-};
+}[state.tab];
+
+const resultAmount = {
+  stake: (state.amount / parseFloat(fetchMetrics.body.st_near_price)).toFixed(
+    2
+  ),
+  fast: (state.amount * parseFloat(fetchMetrics.body.st_near_price)) // REVIEW : include fee
+    .toFixed(2),
+  delayed: (state.amount * parseFloat(fetchMetrics.body.st_near_price)).toFixed(
+    2
+  ),
+}[state.tab];
 const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
@@ -206,6 +263,7 @@ const BannerButtonText = styled.span`
     margin-top: 10px;
     margin-bottom: 9px;
   `;
+
 return (
   <Wrapper>
     <Container>
@@ -223,7 +281,7 @@ return (
             src={`${ownerId}/widget/LiquidStake.Notification`}
             props={{
               type: "info",
-              message: "Rewards distributed every 24 hours",
+              ...selectionPropsData.notification,
               fontSize: "fs-5",
             }}
           />
@@ -231,7 +289,7 @@ return (
         <Widget
           src={`${ownerId}/widget/LiquidStake.StakeInput`}
           props={{
-            ...propsData.input,
+            ...selectionPropsData.input,
             value: state.amount,
             onClickMax,
             onChange: onChangeNearAmount,
@@ -240,10 +298,8 @@ return (
         <Widget
           src={`${ownerId}/widget/LiquidStake.StakeResult`}
           props={{
-            ...propsData.input1,
-            amount: (
-              state.amount / parseFloat(fetchMetrics.body.st_near_price)
-            ).toFixed(2),
+            ...selectionPropsData.input1,
+            amount: resultAmount,
           }}
         />
         <FrameButton>
@@ -251,10 +307,9 @@ return (
             class="btn text-white"
             type="button"
             onClick={onSubmit}
-            {...propsData.stakeButton}
+            {...selectionPropsData.button}
           />
         </FrameButton>
-
         <Banner className={props.className || ""}>
           <FrameBanner>
             <i class="bi bi-shield-shaded"></i>
