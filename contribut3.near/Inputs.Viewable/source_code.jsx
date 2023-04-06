@@ -81,36 +81,34 @@ const EditButton = styled.button`
     }
   }
 `;
-return "";
 
-// return (
-//   <Container>
-//
-//     {/* state.edit ? edit/* ((value) => State.update({value})) *//* : view(state.value) */}
-//   </Container>
-// );
+return (
+  <Container>
+    <Row>
+      <Label htmlFor={id}>{label}</Label>
+      {state.edit ? (
+        <EditButton
+          onClick={() => State.update({ change: true })}
+          className={`down ${state.change ? "reverse" : ""}`}
+          onAnimationEnd={() =>
+            State.update({ change: false, edit: !state.change })
+          }
+        >
+          Cancel
+        </EditButton>
+      ) : (
+        <EditButton
+          onClick={() => State.update({ change: true })}
+          className={`up ${state.change ? "reverse" : ""}`}
+          onAnimationEnd={() =>
+            State.update({ change: false, edit: state.change })
+          }
+        >
+          Edit
+        </EditButton>
+      )}
+    </Row>
 
-    // <Row>
-    //   <Label htmlFor={id}>{label}</Label>
-    //   {state.edit ? (
-    //     <EditButton
-    //       onClick={() => State.update({ change: true })}
-    //       className={`down ${state.change ? "reverse" : ""}`}
-    //       onAnimationEnd={() =>
-    //         State.update({ change: false, edit: !state.change })
-    //       }
-    //     >
-    //       Cancel
-    //     </EditButton>
-    //   ) : (
-    //     <EditButton
-    //       onClick={() => State.update({ change: true })}
-    //       className={`up ${state.change ? "reverse" : ""}`}
-    //       onAnimationEnd={() =>
-    //         State.update({ change: false, edit: state.change })
-    //       }
-    //     >
-    //       Edit
-    //     </EditButton>
-    //   )}
-    // </Row>
+    {state.edit ? edit((value) => State.update({ value })) : view(state.value)}
+  </Container>
+);
