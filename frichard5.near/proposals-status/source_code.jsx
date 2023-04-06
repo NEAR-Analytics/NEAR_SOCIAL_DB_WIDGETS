@@ -13,6 +13,8 @@ const order = {
   Approved: 2,
   Rejected: 3,
   Expired: 4,
+  Total: 5,
+  ApprovalRate: 6,
 };
 const columns = state.proposalsStatus.reduce((acc, pS) => {
   Object.keys(pS).forEach((k) => {
