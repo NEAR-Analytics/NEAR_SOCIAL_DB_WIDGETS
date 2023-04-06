@@ -3,7 +3,7 @@ const MainWrapper = styled.div`
 `;
 
 const TableWrapper = styled.div`
-  height: 200px;
+  height: 400px;
   overflow: auto;
 `;
 const Table = styled.table`
@@ -20,6 +20,10 @@ const Table = styled.table`
       padding: 16px;
       max-width: 130px;
       border-bottom: 1px solid rgb(81, 81, 81);
+    }
+    th {
+      position: sticky;
+      top: 0;
     }
     img {
       height: 15px;
