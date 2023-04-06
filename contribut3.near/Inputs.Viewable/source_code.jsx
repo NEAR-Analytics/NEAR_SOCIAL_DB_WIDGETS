@@ -81,13 +81,14 @@ const EditButton = styled.button`
     }
   }
 `;
+return "";
 
-return (
-  <Container>
-
-    {/* state.edit ? edit/* ((value) => State.update({value})) *//* : view(state.value) */}
-  </Container>
-);
+// return (
+//   <Container>
+//
+//     {/* state.edit ? edit/* ((value) => State.update({value})) *//* : view(state.value) */}
+//   </Container>
+// );
 
     // <Row>
     //   <Label htmlFor={id}>{label}</Label>
