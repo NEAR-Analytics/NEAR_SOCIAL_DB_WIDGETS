@@ -95,6 +95,7 @@ return (
                 theme: props.theme,
                 onDetailsUrlClick: props?.onDetailsUrlClick,
                 onCopyButtonClick: props?.onCopyButtonClick,
+                selectedItem: props.selectedItem,
               }}
             />
           </div>
