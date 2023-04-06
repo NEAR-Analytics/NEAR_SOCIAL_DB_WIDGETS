@@ -73,10 +73,10 @@ const EditButton = styled.button`
   }
 
   &.down {
-    animation: ${pullUp} 0.2s ease-in-out forwards;
+    animation: ${pullUp} 0.2s ease-in-out backwards;
 
     &.reverse {
-      animation: ${pullUp} 0.2s ease-in-out backwards;
+      animation: ${pullUp} 0.2s ease-in-out forwards;
     }
   }
 `;
