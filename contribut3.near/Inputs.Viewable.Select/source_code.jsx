@@ -69,7 +69,7 @@ const edit = (update, v) => (
     <Select.Portal>
       <Select.Content>
         <Select.Viewport>
-          {options.map((option) => (
+          {options.map((option) =>
             <Select.Item key={option}>
               <Select.ItemText>{option}</Select.ItemText>
               <Select.ItemIndicator>
