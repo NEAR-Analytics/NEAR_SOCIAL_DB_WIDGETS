@@ -109,6 +109,6 @@ return (
       )}
     </Row>
 
-    {state.edit ? edit : view(state.value)}
+    {state.edit ? edit(() : view(state.value)}
   </Container>
 );
