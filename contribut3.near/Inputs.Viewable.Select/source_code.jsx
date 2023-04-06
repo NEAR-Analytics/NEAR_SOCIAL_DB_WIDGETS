@@ -60,7 +60,7 @@ const edit = (/* update, v */) => (
           >
             <path
               d="M1 1.5L6 6.5L11 1.5"
-              stroke="white"
+              stroke="#000"
               stroke-width="1.66667"
               stroke-linecap="round"
               stroke-linejoin="round"
