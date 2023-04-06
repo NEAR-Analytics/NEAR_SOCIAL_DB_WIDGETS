@@ -14,8 +14,10 @@ State.init({
 });
 
 const tabSelect = (selectedTab) => {
-  onChangeTab(selectedTab);
-  return () => State.update({ selectedTab });
+  return () => {
+    onChangeTab(selectedTab);
+    State.update({ selectedTab });
+  };
 };
 const TabsContainer = styled.div``;
 const Tabs = styled.div`
