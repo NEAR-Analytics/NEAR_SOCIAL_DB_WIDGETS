@@ -37,11 +37,10 @@ return (
     <Widget
       src={`${ownerId}/widget/Inputs.Viewable.Links`}
       props={{
-        label: "Website",
-        id: "website",
-        value: "layers.gg",
-        link: "https://layers.gg",
-        onSave: (website) => onSave({ website }),
+        label: "Links",
+        id: "links",
+        value: { github: "near-horizon" },
+        onSave: (links) => onSave({ links }),
       }}
     />
     <Widget
