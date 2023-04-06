@@ -35,7 +35,7 @@ return (
       }}
     />
     <Widget
-      src={`${ownerId}/widget/Inputs.Links`}
+      src={`${ownerId}/widget/Inputs.Viewable.Links`}
       props={{
         label: "Website",
         id: "website",
