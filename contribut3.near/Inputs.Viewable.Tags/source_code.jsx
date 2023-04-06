@@ -52,6 +52,7 @@ const edit = (update, v) => (
       options={options}
       selected={v}
       positionFixed
+      multiple
     />
     <SaveButton onClick={() => onSave(v)}>Save</SaveButton>
   </LabelArea>
