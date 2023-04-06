@@ -305,6 +305,35 @@ return (
             </button>
           </div>
         )}
+        <button
+          className={thisWidgetClassNames.newShceduleButtonInMobile}
+          onMouseEnter={() => {
+            State.update({ hoveringElement: tabs.NEW_SCHEDULE.id });
+          }}
+          onMouseLeave={() => {
+            State.update({ hoveringElement: "" });
+          }}
+          onClick={() => {
+            State.update({ tab: tabs.NEW_SCHEDULE.id });
+          }}
+          style={
+            state.hoveringElement == tabs.NEW_SCHEDULE.id ||
+            state.tab == tabs.NEW_SCHEDULE.id
+              ? thisWidgetInlineStyles.newScheduleButtonHovering
+              : thisWidgetInlineStyles.newScheduleButton
+          }
+        >
+          <i
+            className={thisWidgetClassNames.newScheduleButtonInnerIcon}
+            style={
+              state.hoveringElement == tabs.NEW_SCHEDULE.id ||
+              state.tab == tabs.NEW_SCHEDULE.id
+                ? thisWidgetInlineStyles.newScheduleButtonInnerIconHovered
+                : thisWidgetInlineStyles.newScheduleButtonInnerIcon
+            }
+          ></i>
+          {tabs.NEW_SCHEDULE.text}
+        </button>
         <div className={thisWidgetClassNames.showUserInfoInHeader}>
           <p
             className="m-0"
