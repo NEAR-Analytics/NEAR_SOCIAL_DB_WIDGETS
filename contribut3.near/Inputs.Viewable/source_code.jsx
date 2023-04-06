@@ -69,7 +69,7 @@ return (
   <Container>
     <Row>
       <Label htmlFor={id}>{label}</Label>
-      <div>
+      <EditButtonContainer>
         <EditButton
           onClick={() => State.update({ edit: false })}
           className={`left ${state.edit ? "" : "hidden"}`}
@@ -82,7 +82,7 @@ return (
         >
           Edit
         </EditButton>
-      </div>
+      </EditButtonContainer>
     </Row>
 
     {state.edit ? edit((value) => State.update({ value })) : view(state.value)}
