@@ -1,6 +1,10 @@
 const updateInstanceTimeState = props.updateInstanceTimeState;
 const tabs = props.tabs;
 
+const thisWidgetInlineStyles =
+  props.allWidgetsInlineStyles.instance_time_setting;
+const thisWidgetClassNames = props.allWidgetsClassNames.instance_time_setting;
+
 const sortAndRemoveRepeated = (flag, data) => {
   var temp = data;
   if (flag) temp.push(0, 168);
@@ -74,33 +78,6 @@ State.init({
   hoveringElement: "",
 });
 
-const comboBox = (isActive) => {
-  let colors = isActive ? "rgb(53, 58, 64)" : "rgb(225, 233, 240)";
-  return {
-    backgroundColor: "white",
-    padding: "0.5rem 1.5rem",
-    borderRadius: "0.8rem",
-    border: `1.5px solid ${colors}`,
-    color: colors,
-    letterSpacing: "-0.01em",
-    borderRadius: "1rem",
-    padding: "1rem",
-  };
-};
-
-const table = {
-  display: "flex",
-  flex: "1",
-  alignItems: "center",
-  justifyContent: "center",
-  fontWeight: 600,
-};
-const flex_row = {
-  display: "flex",
-  flex: "1",
-  flexDirection: "row",
-  fontSize: "large",
-};
 const hours = [];
 const days = [
   "Monday",
@@ -198,10 +175,14 @@ const getData = () => {
 };
 const timeSelector = (f, index) => {
   return (
-    <div style={table}>
-      <div className="d-flex">
+    <div style={thisWidgetInlineStyles.table}>
+      <div className={thisWidgetClassNames.timeSelector}>
         <select
-          style={comboBox(state._is_on[index])}
+          style={
+            state._is_on[index]
+              ? thisWidgetInlineStyles.comboBoxActive
+              : thisWidgetInlineStyles.comboBoxInactive
+          }
           value={f ? state._from[index] : state._to[index]}
           disabled={!state._is_on[index]}
           onChange={(e) => {
@@ -213,12 +194,7 @@ const timeSelector = (f, index) => {
           ))}
         </select>
       </div>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
+      <div className={thisWidgetClassNames.caretsContainer}>
         <div
           onClick={() => {
             if (state._is_on[index]) {
@@ -228,11 +204,11 @@ const timeSelector = (f, index) => {
           }}
         >
           <i
-            className="bi-caret-up"
+            className={thisWidgetClassNames.caretUpIcon}
             style={
               state._is_on[index]
-                ? { color: "rgb(53, 58, 64)" }
-                : { color: "rgb(225, 233, 240)" }
+                ? thisWidgetInlineStyles.colorActive
+                : thisWidgetInlineStyles.colorInactive
             }
           ></i>
         </div>
@@ -245,11 +221,11 @@ const timeSelector = (f, index) => {
           }}
         >
           <i
-            className="bi-caret-down"
+            className={thisWidgetClassNames.caretDownIcon}
             style={
               state._is_on[index]
-                ? { color: "rgb(53, 58, 64)" }
-                : { color: "rgb(225, 233, 240)" }
+                ? thisWidgetInlineStyles.colorActive
+                : thisWidgetInlineStyles.colorInactive
             }
           ></i>
         </div>
@@ -262,154 +238,82 @@ return (
   <div>
     {context.accountId ? (
       <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-        }}
-        className="align-items-center"
+        style={thisWidgetInlineStyles.logedInGeneralContainer}
+        className={thisWidgetClassNames.logedInGeneralContainer}
       >
-        <div
-          style={{
-            width: "100%",
-            justifyContent: "center",
-            color: "black",
-            borderRadius: "1rem",
-            flexDirection: "column",
-          }}
-        >
+        <div style={thisWidgetInlineStyles.logedInSecondContainer}>
           <div
-            style={{
-              marginTop: "1rem",
-              justifyContent: "center",
-              width: "100%",
-              color: "black",
-              fontWeight: 400,
-              borderRadius: "1rem",
-              flexDirection: "column",
-            }}
+            style={thisWidgetInlineStyles.logedInThirdContainer}
+            className={thisWidgetInlineStyles.logedInThirdContainer}
           >
             <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-              }}
-              className="mt-3"
+              style={thisWidgetInlineStyles.headerContainer}
+              className={thisWidgetClassNames.headerContainer}
             >
+              <div style={thisWidgetInlineStyles.flex_row}>
+                {tbl_headers.map((header) => (
+                  <div style={thisWidgetInlineStyles.table}>{header}</div>
+                ))}
+              </div>
+            </div>
+            {days.map((day, index) => (
               <div
-                style={{
-                  display: "flex",
-                  background: "white",
-                  padding: "6px",
-                }}
+                className={thisWidgetClassNames.dayRow}
+                style={thisWidgetInlineStyles.dayRow}
               >
-                <div style={flex_row}>
-                  {tbl_headers.map((header) => (
-                    <div style={table}>{header}</div>
-                  ))}
+                <div style={thisWidgetInlineStyles.flex_row}>
+                  <div style={thisWidgetInlineStyles.table}>{day}</div>
+                  <div style={thisWidgetInlineStyles.table}>
+                    <div className="form-check form-switch">
+                      <input
+                        style={
+                          state._is_on[index]
+                            ? thisWidgetInlineStyles.inputActive
+                            : thisWidgetInlineStyles.inputInactive
+                        }
+                        className="form-check-input"
+                        type="checkbox"
+                        role="switch"
+                        checked={state._is_on[index]}
+                        id={day + index}
+                        key={day + index + state._is_on[index]}
+                        onChange={(e) => {
+                          let temp = state._is_on;
+                          temp[index] = !temp[index];
+                          State.update({ _is_on: temp });
+                          if (!e.target.value) {
+                            state._from[index] = "0";
+                            state._to[index] = "0";
+                            let error_temp = state._validate_error;
+                            State.update({
+                              _error_msg: `${(error_temp[index] = true)}`,
+                            });
+                            validate();
+                          }
+                        }}
+                      />
+                    </div>
+                  </div>
+                  {timeSelector(true, index)}
+                  {timeSelector(false, index)}
                 </div>
               </div>
-              {days.map((day, index) => (
-                <div
-                  className="mb-2"
-                  style={{
-                    display: "flex",
-                    background: "white",
-                    padding: "6px",
-                    backgroundColor: "white",
-                    padding: "0.5rem 1.5rem",
-                    borderRadius: "0.8rem",
-                    border: "1.5px solid rgb(225, 233, 240)",
-                    color: "rgb(71, 77, 85)",
-                    letterSpacing: "-0.01em",
-                    width: "100%",
-                  }}
-                >
-                  <div style={flex_row}>
-                    <div style={table}>{day}</div>
-                    <div style={table}>
-                      <div className="form-check form-switch">
-                        <input
-                          style={
-                            state._is_on[index]
-                              ? {
-                                  backgroundColor: "rgb(53, 58, 64)",
-                                  borderColor: "rgb(71, 77, 85)",
-                                }
-                              : {
-                                  backgroundColor: "white",
-                                  borderColor: "rgb(118, 123, 142)",
-                                }
-                          }
-                          className="form-check-input"
-                          type="checkbox"
-                          role="switch"
-                          checked={state._is_on[index]}
-                          id={day + index}
-                          key={day + index + state._is_on[index]}
-                          onChange={(e) => {
-                            let temp = state._is_on;
-                            temp[index] = !temp[index];
-                            State.update({ _is_on: temp });
-                            if (!e.target.value) {
-                              state._from[index] = "0";
-                              state._to[index] = "0";
-                              let error_temp = state._validate_error;
-                              State.update({
-                                _error_msg: `${(error_temp[index] = true)}`,
-                              });
-                              validate();
-                            }
-                          }}
-                        />
-                      </div>
-                    </div>
-                    {timeSelector(true, index)}
-                    {timeSelector(false, index)}
-                  </div>
-                </div>
-              ))}
-            </div>
+            ))}
           </div>
         </div>
-        <div
-          style={{
-            display: "flex",
-            flex: "1",
-            flexDirection: "row",
-            fontSize: "large",
-            color: "red",
-          }}
-        >
+        <div style={thisWidgetInlineStyles.showErrorContainer}>
           {days.map((day, index) => {
             return !state._validate_error[index] && `${day} `;
           })}
           {!state._validate_result && "time set wrong"}
         </div>
-        <div className="mt-3 w-100 d-flex flex-row-reverse justify-content-between">
+        <div className={thisWidgetClassNames.buttonsContainer}>
           {!state._sent ? (
             <CommitButton
               style={
                 state.hoveringElement == "saveButton"
-                  ? {
-                      border: "2px solid black",
-                      color: "black",
-                      backgroundColor: "white",
-                      fontWeight: "500",
-                      fontSize: "1rem",
-                      margin: "0",
-                      padding: "0.3rem 1.5rem",
-                      borderRadius: "12px",
-                    }
-                  : {
-                      border: "2px solid transparent",
-                      fontWeight: "500",
-                      fontSize: "1rem",
-                      margin: "0",
-                      padding: "0.3rem 1.5rem",
-                      backgroundColor: "#010A2D",
-                      borderRadius: "12px",
-                      color: "white",
-                    }
+                  ? thisWidgetInlineStyles.buttonHovered
+                  : thisWidgetInlineStyles.buttonStandard
               }
               onMouseEnter={() => {
                 State.update({ hoveringElement: "saveButton" });
@@ -432,26 +336,8 @@ return (
               }}
               style={
                 state.hoveringElement == "viewScheduels"
-                  ? {
-                      border: "2px solid black",
-                      color: "black",
-                      backgroundColor: "white",
-                      fontWeight: "500",
-                      fontSize: "1rem",
-                      margin: "0",
-                      padding: "0.3rem 1.5rem",
-                      borderRadius: "12px",
-                    }
-                  : {
-                      border: "2px solid transparent",
-                      fontWeight: "500",
-                      fontSize: "1rem",
-                      margin: "0",
-                      padding: "0.3rem 1.5rem",
-                      backgroundColor: "#010A2D",
-                      borderRadius: "12px",
-                      color: "white",
-                    }
+                  ? thisWidgetInlineStyles.buttonHovered
+                  : thisWidgetInlineStyles.buttonStandard
               }
               onMouseEnter={() => {
                 State.update({ hoveringElement: "viewScheduels" });
@@ -476,24 +362,8 @@ return (
             }}
             style={
               state.hoveringElement == "cancelNewSchedule"
-                ? {
-                    border: "2px solid transparent",
-                    fontWeight: "500",
-                    fontSize: "1rem",
-                    padding: "0.3rem 1.5rem",
-                    backgroundColor: "#010A2D",
-                    borderRadius: "12px",
-                    color: "white",
-                  }
-                : {
-                    border: "2px solid black",
-                    color: "black",
-                    backgroundColor: "white",
-                    fontWeight: "500",
-                    fontSize: "1rem",
-                    padding: "0.3rem 1.5rem",
-                    borderRadius: "12px",
-                  }
+                ? thisWidgetInlineStyles.buttonHovered
+                : thisWidgetInlineStyles.buttonStandard
             }
           >
             Cancel
