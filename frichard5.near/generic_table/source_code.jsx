@@ -1,3 +1,19 @@
+const Table = styled.table`
+    display: "table";
+    width: "100%";
+    borderCollapse: "separate";
+    borderSpacing: "0px";
+    fontSize: "14px";
+    td {
+        textOverflow: "ellipsis";
+        overflow: "hidden";
+        whiteSpace: "nowrap";
+        padding: "16px";
+        maxWidth: "130px";
+        borderBottom: "1px solid rgb(81, 81, 81)";
+    }
+`;
+
 const columns = props.columns || [
   { label: "props columns missing", id: "data" },
 ];
@@ -18,14 +34,14 @@ data &&
 return (
   <div>
     {title && <h2>{title}</h2>}
-    <table>
+    <Table>
       <tr>
         {columns.map((c) => (
           <th>{c.label}</th>
         ))}
       </tr>
       {rows}
-    </table>
+    </Table>
     {nextPage && previousPage && resPerPage && (
       <div>
         {offset ? (
