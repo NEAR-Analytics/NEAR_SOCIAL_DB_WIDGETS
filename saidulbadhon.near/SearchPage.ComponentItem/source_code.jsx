@@ -35,7 +35,11 @@ const MainContainer = styled.div`
   position: relative;
   padding: 8px 8px;
 
-  background-color: ${props.theme.backgroundColor};
+  background-color:  ${
+    selectedItem === accountId + "/widget/" + widgetName
+      ? props.theme.ui2
+      : props.theme.backgroundColor
+  };
   &:hover{
     background-color: ${props.theme.ui2};
     outline:none;
