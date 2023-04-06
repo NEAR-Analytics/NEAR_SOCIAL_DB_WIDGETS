@@ -23,6 +23,8 @@ if (!state.projectIsFetched) {
     "final",
     false,
   ).then((project) => State.update({ project, projectIsFetched: true }));
+
+  return "Loading...";
 }
 
 return (
