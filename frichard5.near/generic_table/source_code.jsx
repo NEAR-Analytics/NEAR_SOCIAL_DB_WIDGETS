@@ -1,3 +1,6 @@
+const TableWrapper = styled.div`
+  margin: 20px 0px;
+`;
 const Table = styled.table`
     display: table;
     width: 100%;
@@ -40,7 +43,7 @@ data &&
   });
 
 return (
-  <div>
+  <TableWrapper>
     {title && <h2>{title}</h2>}
     <Table>
       <tr>
@@ -64,5 +67,5 @@ return (
         )}
       </div>
     )}
-  </div>
+  </TableWrapper>
 );
