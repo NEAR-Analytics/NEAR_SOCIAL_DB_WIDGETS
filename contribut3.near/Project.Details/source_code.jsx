@@ -35,6 +35,42 @@ return (
       }}
     />
     <Widget
+      src={`${ownerId}/widget/Inputs.Viewable.Select`}
+      props={{
+        label: "Category",
+        id: "category",
+        value: "Wallets",
+        onSave: (category) => onSave({ category }),
+      }}
+    />
+    <Widget
+      src={`${ownerId}/widget/Inputs.Viewable.Select`}
+      props={{
+        label: "Integration",
+        id: "integration",
+        value: "Native",
+        onSave: (integration) => onSave({ integration }),
+      }}
+    />
+    <Widget
+      src={`${ownerId}/widget/Inputs.Viewable.Select`}
+      props={{
+        label: "Development phase",
+        id: "phase",
+        value: "Testnet launched",
+        onSave: (phase) => onSave({ phase }),
+      }}
+    />
+    <Widget
+      src={`${ownerId}/widget/Inputs.Viewable.Select`}
+      props={{
+        label: "Stage",
+        id: "stage",
+        value: "Pre-Seed",
+        onSave: (stage) => onSave({ stage }),
+      }}
+    />
+    <Widget
       src={`${ownerId}/widget/Inputs.Viewable.Text`}
       props={{
         label: "Location",
