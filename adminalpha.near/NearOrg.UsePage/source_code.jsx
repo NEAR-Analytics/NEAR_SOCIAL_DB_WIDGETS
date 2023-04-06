@@ -87,6 +87,7 @@ const Section = styled.div`
   align-items: ${(p) => (p.center ? "center" : undefined)};
   justify-content: ${(p) => (p.center ? "center" : undefined)};
   text-align: ${(p) => (p.center ? "center" : undefined)};
+  background: ${(p) => p.background};
 `;
 
 const Icon = styled.div`
@@ -158,6 +159,7 @@ const Card = styled.div`
   align-items: ${(p) => (p.center ? "center" : "flex-star")};
   justify-content: ${(p) => (p.center ? "center" : undefined)};
   text-align: ${(p) => (p.center ? "center" : undefined)};
+  background: var(--sand1);
 `;
 
 return (
@@ -166,7 +168,7 @@ return (
       <H1>Your first steps to becoming a Web3 citizen</H1>
     </Section>
 
-    <Section gap="24px">
+    <Section gap="24px" background="var(--sand2)">
       <Flex gap="24px" mobileStack>
         <Card center>
           <i
