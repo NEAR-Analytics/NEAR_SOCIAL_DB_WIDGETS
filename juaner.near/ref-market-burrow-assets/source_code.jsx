@@ -79,6 +79,7 @@ const Modal = styled.div`
   animation:anishow 0.3s forwards ease-out;
   left:50%;
   top:50%;
+  transform:translate(-50%,-50%);
   @keyframes anishow {
     from {
       opacity: 0;
@@ -343,18 +344,17 @@ return (
                 Repay
               </span>
             </div>
-            {showModal &&
-              (tabName == "repay" ? (
-                <Widget
-                  src="juaner.near/widget/ref-market-burrow-repay"
-                  props={{ selectedTokenId, selectedTokenMeta }}
-                />
-              ) : (
-                <Widget
-                  src="juaner.near/widget/ref-market-burrow-burrow"
-                  props={{ selectedTokenId }}
-                />
-              ))}
+            {tabName == "repay" ? (
+              <Widget
+                src="juaner.near/widget/ref-market-burrow-repay"
+                props={{ selectedTokenId, selectedTokenMeta, showModal }}
+              />
+            ) : (
+              <Widget
+                src="juaner.near/widget/ref-market-burrow-burrow"
+                props={{ selectedTokenId, showModal }}
+              />
+            )}
           </div>
         </div>
       </Modal>
