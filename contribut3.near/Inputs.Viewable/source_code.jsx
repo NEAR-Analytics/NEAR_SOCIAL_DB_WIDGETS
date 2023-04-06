@@ -34,23 +34,13 @@ const Row = styled.div`
   gap: 0.25em;
 `;
 
-const pushUp = styled.keyframes`
+const fade = styled.keyframes`
   from {
-    transform: translateY(0);
+    opacity: 0;
   }
 
   to {
-    transform: translateY(-100%);
-  }
-`;
-
-const pullUp = styled.keyframes`
-  from {
-    transform: translateY(100%);
-  }
-
-  to {
-    transform: translateY(0);
+    opacity: 1;
   }
 `;
 
@@ -65,18 +55,18 @@ const EditButton = styled.button`
   transition: all 0.2s ease-in-out;
 
   &.up {
-    animation: ${pushUp} 0.2s ease-in-out backwards;
+    animation: ${fade} 0.2s ease-in-out forwards;
 
     &.reverse {
-      animation: ${pushUp} 0.2s ease-in-out forwards;
+      animation: ${fade} 0.2s ease-in-out backwards;
     }
   }
 
   &.down {
-    animation: ${pullUp} 0.2s ease-in-out backwards;
+    animation: ${fade} 0.2s ease-in-out forwards;
 
     &.reverse {
-      animation: ${pullUp} 0.2s ease-in-out forwards;
+      animation: ${fade} 0.2s ease-in-out backwards;
     }
   }
 `;
