@@ -2,6 +2,7 @@ const accountId = props.accountId;
 const blockHeight = props.blockHeight;
 const adminContract = props.adminContract;
 const admins = props.admins || [];
+const text = props.text || "Delete";
 
 if (accountId === undefined || blockHeight === undefined) {
   return;
@@ -28,6 +29,6 @@ return (
     onClick={onClick}
   >
     <i class="bi bi-eye-slash" />
-    <span>{props.text}</span>
+    <span>{text}</span>
   </button>
 );
