@@ -45,6 +45,46 @@ const Row = styled.div`
   gap: 0.25em;
 `;
 
+const pushUp = keyframes`
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-100%);
+  }
+`;
+
+const pullUp = keyframes`
+  from {
+    transform: translateY(100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+`;
+
+const pushDown = keyframes`
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(100%);
+  }
+`;
+
+const pullDown = keyframes`
+  from {
+    transform: translateY(-100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+`;
+
 return (
   <Container>
     <Row>
