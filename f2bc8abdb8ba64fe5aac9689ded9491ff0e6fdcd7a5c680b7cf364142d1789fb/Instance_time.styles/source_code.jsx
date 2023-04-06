@@ -233,6 +233,7 @@ const allWidgetsInlineStyles = {
     },
     generalContainer: {
       width: "100%",
+      maxWidth: "85%",
       margin: "2rem",
       padding: "0 2rem 1rem 2rem",
       borderRadius: "18px",
