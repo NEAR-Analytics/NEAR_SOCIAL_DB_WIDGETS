@@ -113,7 +113,7 @@ const poolThisPair = poolsThisPair.find((p) => p.token_account_ids.length > 2)
   ? poolsThisPair.find((p) => p.token_account_ids.length > 2)
   : poolsThisPair[0];
 
-if (!poolThisPair) {
+if (!poolThisPair || poolThisPair.amounts.some((a) => Number(a) === 0)) {
   return returnNull("no_pool");
 }
 
