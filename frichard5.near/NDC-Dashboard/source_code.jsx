@@ -46,7 +46,10 @@ const Banner = <Widget src={`${widgetProvider}/widget/NDC-Banner`} />;
 const Balances = (
   <Widget
     src={`${widgetProvider}/widget/account_balance`}
-    props={{ account: state.selectedDao }}
+    props={{
+      account: state.selectedDao,
+      ftList: ftList.body && ftList.body,
+    }}
   />
 );
 
