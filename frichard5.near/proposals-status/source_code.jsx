@@ -48,5 +48,5 @@ const fetchTransfers = (params) => {
   proposals.body && State.update({ proposalsStatus: proposalsStatus.body });
 };
 fetchTransfers(state.params);
-console.log("PROPOSALS", state.proposals);
+
 return <>{GenericTable}</>;
