@@ -267,6 +267,8 @@ return (
         <Widget
           src={`${widgetOwner}/widget/Instance_time_setting`}
           props={{
+            allWidgetsInlineStyles: props.allWidgetsInlineStyles,
+            allWidgetsClassNames: props.allWidgetsClassNames,
             data: {
               schedule: finalData.schedule,
               time_zone: state._time_zone,
