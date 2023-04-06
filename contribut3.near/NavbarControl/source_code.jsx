@@ -35,10 +35,8 @@ const Navbar = styled.div`
 `;
 
 const LogoArea = styled.a`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  display: block;
+  height: 1.5em;
   padding: 0px;
   gap: 0.7em;
   font-style: normal;
