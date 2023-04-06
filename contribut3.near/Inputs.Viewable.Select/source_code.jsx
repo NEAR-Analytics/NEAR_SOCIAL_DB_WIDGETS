@@ -43,6 +43,8 @@ const SaveButton = styled.button`
   color: #11181c;
 `;
 
+console.log(value)
+
 const edit = (/* update, v */) => (
   <LabelArea>
     <Select.Root value={value} onValueChange={(s) => { console.log(s) }}>
