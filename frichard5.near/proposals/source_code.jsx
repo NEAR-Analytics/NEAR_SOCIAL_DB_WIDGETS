@@ -1,4 +1,4 @@
-const account = props.account || "foundation.near";
+const account = props.account || "marketing.sputnik-dao.near";
 const ftList = props.ftList;
 const apiUrl = `https://api.pikespeak.ai/daos/proposals/${account}`;
 const publicApiKey = "36f2b87a-7ee6-40d8-80b9-5e68e587a5b5";
@@ -25,6 +25,6 @@ const fetchTransfers = (params) => {
   });
   proposals.body && State.update({ proposals: proposals.body });
 };
-fetchTransfers(tate.params);
+fetchTransfers(state.params);
 console.log("PROPOSALS", state.proposals);
 return <div>Hello World</div>;
