@@ -71,7 +71,8 @@ return (
         id: "stage",
         value: "Pre-Seed",
         options: [
-          { name: "Pre-Seed" }, { name: "Seed" },
+          { name: "Pre-Seed" },
+          { name: "Seed" },
           { name: "Series A" },
           { name: "Series B" },
           { name: "Series C" },
