@@ -99,6 +99,7 @@ const Tabs = (
         {
           value: "money",
           label: "Money",
+          selected: true,
           components: (
             <WidgetsContainer>
               {Balances}
