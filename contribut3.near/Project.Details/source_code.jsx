@@ -78,7 +78,7 @@ return (
       props={{
         label: "Stage",
         id: "stage",
-        value: "Pre-Seed",
+        value: [{ name: "Pre-Seed" }],
         options: [
           { name: "Pre-Seed" },
           { name: "Seed" },
