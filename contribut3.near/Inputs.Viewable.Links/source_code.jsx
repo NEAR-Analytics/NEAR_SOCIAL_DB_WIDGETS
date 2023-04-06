@@ -72,20 +72,20 @@ const edit = (update, v) => (
         .map(({ name, url }) => (
           <Widget src={`${ownerId}/widget/Inputs.Social`} props={{ start: url, value: v[name] ?? "", update: (s) => update({ ...v, [name]: s }) }} />
         ))}
-      <LabelArea>
-        <SaveButton onClick={() => onSave(v)}>Save</SaveButton>
-      </>
-      );
+    </LabelArea>
+    <SaveButton onClick={() => onSave(v)}>Save</SaveButton>
+  </>
+);
 
-      return (
-      <Widget
-        src={`${ownerId}/widget/Inputs.Viewable`}
-        props={{
-          id,
-          label,
-          value,
-          edit,
-          view: <Widget src={`${ownerId}/widget/SocialLinks`} props={{ links: value }} />,
-        }}
-      />
-      );
+return (
+  <Widget
+    src={`${ownerId}/widget/Inputs.Viewable`}
+    props={{
+      id,
+      label,
+      value,
+      edit,
+      view: <Widget src={`${ownerId}/widget/SocialLinks`} props={{ links: value }} />,
+    }}
+  />
+);
