@@ -449,8 +449,10 @@ const allWidgetsClassNames = {
     siteHeader: "d-flex justify-content-between align-items-center px-4 py-3",
     instanceTimeLogoContainer: "d-flex align-items-center",
     logoIcon: instanceTimeIcon,
-    openScheduleGeneralContainer: "w-100 d-flex justify-content-between",
-    tabsContainer: "d-none d-md-flex",
+    openScheduleGeneralContainer:
+      "w-100 d-none d-md-flex justify-content-between",
+    tabsContainer: "d-flex",
+    newShceduleButtonInMobile: "d-none d-sm-block",
     newScheduleButtonInnerIcon: newScheduleButtonInnerIcon,
     showUserInfoInHeader: "d-flex flex-column",
     decorativeDivInHeader:
