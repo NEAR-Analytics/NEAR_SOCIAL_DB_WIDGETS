@@ -44,6 +44,7 @@ const EditButton = styled.button`
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   overflow: hidden;
+  inset: auto auto 0 auto;
 
   &.hidden {
     transform: scaleX(0);
@@ -62,18 +63,20 @@ return (
   <Container>
     <Row>
       <Label htmlFor={id}>{label}</Label>
-      <EditButton
-        onClick={() => State.update({ edit: false })}
-        className={`left ${state.edit ? "" : "hidden"}`}
-      >
-        Cancel
-      </EditButton>
-      <EditButton
-        onClick={() => State.update({ edit: true })}
-        className={`right ${state.edit ? "hidden" : ""}`}
-      >
-        Edit
-      </EditButton>
+      <div>
+        <EditButton
+          onClick={() => State.update({ edit: false })}
+          className={`left ${state.edit ? "" : "hidden"}`}
+        >
+          Cancel
+        </EditButton>
+        <EditButton
+          onClick={() => State.update({ edit: true })}
+          className={`right ${state.edit ? "hidden" : ""}`}
+        >
+          Edit
+        </EditButton>
+      </div>
     </Row>
 
     {state.edit ? edit((value) => State.update({ value })) : view(state.value)}
