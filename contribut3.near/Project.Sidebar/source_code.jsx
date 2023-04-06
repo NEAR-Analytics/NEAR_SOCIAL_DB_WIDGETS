@@ -16,7 +16,13 @@ State.init({
 });
 
 if (!state.projectIsFetched) {
-  Near.asyncView(ownerId, "get_project", { account_id: accountId }).then((project) => {
+  Near.asyncView(
+    ownerId,
+    "get_project",
+    { account_id: accountId },
+    "final",
+    false,
+  ).then((project) => {
     State.update({ project, projectIsFetched: true });
   });
 }
