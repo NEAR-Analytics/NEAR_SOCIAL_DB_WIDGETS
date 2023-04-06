@@ -5,6 +5,7 @@ const refUrl = "https://api.stats.ref.finance/api/ft";
 // Initial state
 State.init({
   selectedDao: "marketing.sputnik-dao.near",
+  selectedTab: "money",
 });
 
 // Style
@@ -103,6 +104,7 @@ const Tabs = (
         {
           value: "money",
           label: "Money",
+          //selected: state.selectedTab === "money",
           components: (
             <WidgetsContainer>
               {Balances}
@@ -114,16 +116,19 @@ const Tabs = (
         {
           value: "metrics",
           label: "Metrics",
+          //selected: state.selectedTab === "metrics",
           components: <WidgetsContainer>{ContractMetrics}</WidgetsContainer>,
         },
         {
           value: "proposals",
           label: "Proposals",
+          //selected: state.selectedTab === "proposals",
           components: <WidgetsContainer>{Proposals}</WidgetsContainer>,
         },
         {
           value: "members",
           label: "Members",
+          //selected: state.selectedTab === "members",
           components: <>No matching tab for {state.selectedTab}</>,
         },
       ],
