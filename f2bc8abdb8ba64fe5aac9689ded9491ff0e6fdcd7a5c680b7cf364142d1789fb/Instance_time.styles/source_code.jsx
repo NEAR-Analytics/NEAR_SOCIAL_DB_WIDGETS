@@ -274,7 +274,6 @@ const allWidgetsInlineStyles = {
     otherWidgetsContainer: {
       position: "relative",
       width: "max-content",
-      display: "flex",
       padding: `0.5rem 0.8rem`,
       width: "100%",
       justifyContent: "space-between",
@@ -461,6 +460,7 @@ const allWidgetsClassNames = {
   instance_time_card: {
     widgetGeneralContainer:
       "d-flex content-align-start justify-content-between",
+    otherWidgetsContainer: "d-flex flex-wrap",
     widgetHeaderContainer:
       "w-100 d-flex flex-row justify-content-between align-items-center",
     closeIcon: closeIcon,
