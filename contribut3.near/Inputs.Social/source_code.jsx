@@ -10,7 +10,7 @@ const Input = styled.input`
   flex-direction: row;
   align-items: center;
   padding: 0.5em 0.75em;
-  padding-left: ${start.length * 0.1}em;
+  padding-left: ${start.length - 1}ch;
   gap: 0.5em;
   background: #ffffff;
   border: 1px solid #d0d5dd;
@@ -21,11 +21,13 @@ const Input = styled.input`
 const Start = styled.div`
   position: absolute;
   inset: 0 auto 0 0;
+  padding: 0 1ch;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   background: #d0d5dd;
+  border-radius-left: 4px;
 `;
 
 const Container = styled.div`
