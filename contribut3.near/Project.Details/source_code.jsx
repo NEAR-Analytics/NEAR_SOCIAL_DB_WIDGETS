@@ -41,7 +41,7 @@ return (
         id: "category",
         value: "Wallets",
         options: [{ name: "Wallets" }, { name: "Games" }, { name: "Social" }, { name: "Other" }],
-        onSave: ({ name: category }) => onSave({ category }),
+        onSave: ([{ name: category }]) => onSave({ category }),
       }}
     />
     <Widget
@@ -51,7 +51,7 @@ return (
         id: "integration",
         value: "Native",
         options: [{ name: "Native" }, { name: "Multichain" }],
-        onSave: ({ name: integration }) => onSave({ integration }),
+        onSave: ([{ name: integration }]) => onSave({ integration }),
       }}
     />
     <Widget
@@ -61,7 +61,7 @@ return (
         id: "phase",
         value: "Testnet launched",
         options: [{ name: "Testnet launched" }, { name: "Mainnet launched" }, { name: "In development" }, { name: "Concept" }],
-        onSave: ({ name: phase }) => onSave({ phase }),
+        onSave: ([{ name: phase }]) => onSave({ phase }),
       }}
     />
     <Widget
@@ -80,7 +80,7 @@ return (
           { name: "Late Stage" },
           { name: "IPO" },
         ],
-        onSave: ({ name: stage }) => onSave({ stage }),
+        onSave: ([{ name: stage }]) => onSave({ stage }),
       }}
     />
     <Widget
