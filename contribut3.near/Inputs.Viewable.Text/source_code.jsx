@@ -3,39 +3,7 @@ const label = props.label ?? "Input";
 const value = props.value ?? "";
 const link = props.link ?? "";
 const isLink = link !== "";
-const onSave = props.onSave ?? (() => {});
-
-State.init({
-  value,
-  edit: false,
-});
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: 0.25em;
-`;
-
-const Label = styled.label`
-  font-style: normal;
-  font-weight: 600;
-  font-size: 0.95em;
-  line-height: 1em;
-  color: #11181c;
-`;
-
-const EditButton = styled.button`
-  font-weight: 400;
-  font-size: 0.9em;
-  line-height: 1em;
-  color: #006adc;
-  background: none;
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-`;
+const onSave = props.onSave ?? (() => { });
 
 const LabelArea = styled.div`
   display: flex;
@@ -76,29 +44,24 @@ const SaveButton = styled.button`
 `;
 
 return (
-  <Container>
-    <LabelArea>
-      <Label htmlFor={id}>{label}</Label>
-      <EditButton onClick={() => State.update({ edit: !state.edit })}>
-        {state.edit ? "Cancel" : "Edit"}
-      </EditButton>
-    </LabelArea>
-
-    {state.edit ? (
-      <LabelArea>
-        <Input
-          type={isLink ? "url" : "text"}
-          value={state.value}
-          onChange={(e) => State.update({ value: e.target.value })}
-        />
-        <SaveButton show={state.edit} onClick={() => onSave(state.value)}>
-          Save
-        </SaveButton>
-      </LabelArea>
-    ) : isLink ? (
+  <Widget src={`${ownerId}/widget/Inputs/Viewable`} props={{
+    id,
+    label,
+    value,
+    edit: (<LabelArea>
+      <Input
+        type={isLink ? "url" : "text"}
+        value={state.value}
+        onChange={(e) => State.update({ value: e.target.value })}
+      />
+      <SaveButton show={state.edit} onClick={() => onSave(state.value)}>
+        Save
+      </SaveButton>
+    </LabelArea>),
+    view: (value) => isLink ? (
       <a href={link}>{value}</a>
     ) : (
       value
-    )}
-  </Container>
+    )
+  }} />
 );
