@@ -322,7 +322,7 @@ return (
       </div>
       <div className={thisWidgetClassNames.decorativeDivInHeader}></div>
 
-      <div styles={thisWidgetInlineStyles.newShceduleButtonInMobileContainer}>
+      <div style={thisWidgetInlineStyles.newShceduleButtonInMobileContainer}>
         <button
           className={thisWidgetClassNames.newShceduleButtonInMobile}
           onMouseEnter={() => {
