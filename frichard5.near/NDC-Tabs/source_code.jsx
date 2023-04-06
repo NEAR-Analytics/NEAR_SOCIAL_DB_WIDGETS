@@ -21,11 +21,7 @@ const Tabs = styled.div`
 `;
 const Content = styled.div``;
 const TabButton = styled.button`
-    background: ${(props) => {
-      console.log("PROPS", props);
-      return props.theme.main;
-    }};
-    
+    background: ${(props) => (props.selected ? "red" : "blue")}; 
 `;
 
 let tabList = [];
