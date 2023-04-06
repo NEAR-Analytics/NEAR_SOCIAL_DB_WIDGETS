@@ -103,9 +103,15 @@ const nFormat = (num, digits) => {
     ? (num / item.value).toFixed(digits).replace(rx, "$1") + item.symbol
     : "0";
 };
-const selectedTokenId = props.selectedTokenId;
+const { showModal, selectedTokenId } = props;
 const { rewards, account, balances, amount, hasError, assets } = state;
 const hasData = assets.length > 0 && rewards.length > 0 && account;
+if (!showModal) {
+  State.update({
+    amount: "",
+    hasError: false,
+  });
+}
 /** base tool end */
 if (!accountId) {
   return <Widget src="juaner.near/widget/ref_account-signin" />;
