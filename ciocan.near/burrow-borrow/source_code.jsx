@@ -42,11 +42,12 @@ if (!account) return <div>loading...</div>;
 // https://github.com/burrowfdn/burrowland for detailed explanation
 function getAdjustedSum(type, account) {
   if (!assets) return B(1);
+
   return account[type]
     .map((assetInAccount) => {
       const asset = assets.find((a) => a.token_id === assetInAccount.token_id);
-
       const hasPrice = asset.price?.multiplier && asset.price?.decimals;
+
       const price = hasPrice
         ? B(asset.price.multiplier).div(B(10).pow(asset.price.decimals))
         : B(0);
@@ -65,7 +66,8 @@ function getAdjustedSum(type, account) {
             .div(MAX_RATIO)
             .toFixed();
     })
-    .reduce((sum, cur) => B(sum).plus(B(cur)).toFixed());
+    .reduce((sum, cur) => B(sum).plus(B(cur)), 1)
+    .toFixed();
 }
 
 const adjustedCollateralSum = getAdjustedSum("collateral", account);
@@ -112,7 +114,7 @@ const recomputeHealthFactor = (tokenId, amount) => {
       updatedToken,
     ];
   }
-  console.log(clonedAccount);
+
   const adjustedCollateralSum = getAdjustedSum("collateral", account);
   const adjustedBorrowedSum = getAdjustedSum(
     "borrowed",
