@@ -86,15 +86,17 @@ const edit = (update, v) => (
   </LabelArea>
 );
 
-return (
-  <Widget
-    src={`${ownerId}/widget/Inputs.Viewable`}
-    props={{
-      id,
-      label,
-      value,
-      edit: (update, v) => edit(update, v),
-      view: isLink ? <a href={link}>{value}</a> : value,
-    }}
-  />
-);
+return edit(console.log, value);
+//
+// return (
+//   <Widget
+//     src={`${ownerId}/widget/Inputs.Viewable`}
+//     props={{
+//       id,
+//       label,
+//       value,
+//       edit: (update, v) => edit(update, v),
+//       view: isLink ? <a href={link}>{value}</a> : value,
+//     }}
+//   />
+// );
