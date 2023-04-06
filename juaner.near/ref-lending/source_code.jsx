@@ -19,6 +19,12 @@ const Container = styled.div`
         margin:0;
         border-bottom:2px solid rgba(48, 67, 82, 0.5);
     }
+    .table.click tbody tr{
+      cursor:pointer;
+    }
+     .table.click tbody tr:hover{
+        background: rgba(0, 0, 0, 0.1);
+     }
     .table thead tr{
         height:50px;
         border:hidden;
@@ -126,8 +132,19 @@ const shrinkToken = (value, decimals, fixed) => {
   return new Big(value).div(new Big(10).pow(decimals)).toFixed(fixed);
 };
 // get all assets data from burrow contracts
-const { assets, rewards, account, balances, yourSuppliedUSD, yourBurrowedUSD } =
-  state;
+const {
+  assets,
+  rewards,
+  account,
+  balances,
+  yourSuppliedUSD,
+  yourBurrowedUSD,
+  selectedTokenId,
+  selectedTokenMeta,
+  type,
+  showModal,
+} = state;
+
 const hasData = assets.length > 0 && rewards.length > 0 && account;
 const rewardsMap = rewards
   ? rewards.reduce((acc, cur) => {
@@ -220,7 +237,11 @@ const suppliedAssets = hasData
       total_supplied_usd = total_supplied_usd.plus(usd);
 
       return (
-        <tr>
+        <tr
+          onClick={() => {
+            changeSelectedToken(asset, "supply");
+          }}
+        >
           <td>
             <img
               src={asset.metadata.icon || wnearbase64}
@@ -252,7 +273,11 @@ const borrowedAssets = hasData
       total_burrowed_usd = total_burrowed_usd.plus(usd);
 
       return (
-        <tr>
+        <tr
+          onClick={() => {
+            changeSelectedToken(asset, "burrow");
+          }}
+        >
           <td>
             <img
               src={asset.metadata.icon || wnearbase64}
@@ -282,6 +307,21 @@ if (total_burrowed_usd.gt(0)) {
     yourBurrowedUSD: total_burrowed_usd.lt(0.01)
       ? "<$0.01"
       : "$" + total_burrowed_usd.toFixed(2),
+  });
+}
+
+function changeSelectedToken(asset, type) {
+  const { token_id, metadata } = asset;
+  State.update({
+    selectedTokenId: token_id,
+    selectedTokenMeta: metadata,
+    type,
+    showModal: true,
+  });
+}
+function closeModal() {
+  State.update({
+    showModal: false,
   });
 }
 return (
@@ -336,46 +376,34 @@ return (
     {/* supply area */}
     <div class="box_tabel">
       {/*yours */}
-      <div class="title">You Supplied</div>
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col" width="25%">
-              Assets
-            </th>
-            <th scope="col" class="text-start" width="25%">
-              Supply APY
-            </th>
-            <th scope="col" class="text-start">
-              Balance
-            </th>
-          </tr>
-        </thead>
-        <tbody>{suppliedAssets}</tbody>
-      </table>
+      <Widget
+        src="juaner.near/widget/ss-your-supply"
+        props={{
+          suppliedAssets,
+          selectedTokenId,
+          selectedTokenMeta,
+          type,
+          showModal,
+          closeModal,
+        }}
+      />
       {/*market */}
       <Widget src="juaner.near/widget/ref-market-supply-assets" />
     </div>
     {/* burrow area */}
     <div class="box_tabel mt_16">
       {/* yours */}
-      <div class="title">You Borrowed</div>
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col" width="25%">
-              Assets
-            </th>
-            <th scope="col" class="text-start" width="25%">
-              Borrow APY
-            </th>
-            <th scope="col" class="text-start">
-              Balance
-            </th>
-          </tr>
-        </thead>
-        <tbody>{borrowedAssets}</tbody>
-      </table>
+      <Widget
+        src="juaner.near/widget/ss-your-burrow"
+        props={{
+          borrowedAssets,
+          selectedTokenId,
+          selectedTokenMeta,
+          type,
+          showModal,
+          closeModal,
+        }}
+      />
       {/*market */}
       <Widget src="juaner.near/widget/ref-market-burrow-assets" />
     </div>
