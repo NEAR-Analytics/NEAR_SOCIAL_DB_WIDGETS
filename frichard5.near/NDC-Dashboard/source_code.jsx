@@ -49,6 +49,7 @@ const Balances = (
     props={{
       account: state.selectedDao,
       ftList: ftList.body && ftList.body,
+      widgetProvider,
     }}
   />
 );
