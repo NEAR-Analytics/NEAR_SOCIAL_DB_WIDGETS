@@ -150,10 +150,10 @@ const SwapContainer = styled.div`
 `;
 console.log("55555555555-props", props);
 if (props.documents) {
-  const document = JSON.parse(props.documents);
-  document.getElementById("market").addEventListener("click", function () {
-    console.log("我是第一个冒泡传递");
-  });
+  // const document = JSON.parse(props.documents);
+  // document.getElementById("market").addEventListener("click", function () {
+  //   console.log("我是第一个冒泡传递");
+  // });
 }
 // svg icon end
 return (
