@@ -21,7 +21,7 @@ if (context.loading) {
 return (
   <button
     disabled={state.loading || dataLoading || !context.accountId}
-    className={props.className}
+    className={`btn ${props.className}`}
     onClick={onClick}
   >
     <i class="bi bi-check-circle me-1" />
