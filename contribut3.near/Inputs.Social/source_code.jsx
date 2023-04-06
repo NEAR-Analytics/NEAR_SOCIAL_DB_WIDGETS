@@ -14,7 +14,8 @@ const Input = styled.input`
   background: #ffffff;
   border: 1px solid #d0d5dd;
   box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
-  border-radius: 4px;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
 `;
 
 const Start = styled.div`
@@ -23,6 +24,7 @@ const Start = styled.div`
   align-items: center;
   justify-content: center;
   background: #d0d5dd;
+  height: 100%;
 `;
 
 const Container = styled.div`
