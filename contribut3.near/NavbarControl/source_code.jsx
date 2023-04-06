@@ -36,7 +36,7 @@ const Navbar = styled.div`
 
 const LogoArea = styled.a`
   display: block;
-  width: 10em;
+  width: 14em;
   padding: 0px;
   gap: 0.7em;
   font-style: normal;
