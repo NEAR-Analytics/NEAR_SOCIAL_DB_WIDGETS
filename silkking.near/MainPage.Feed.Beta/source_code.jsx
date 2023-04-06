@@ -17,6 +17,15 @@ const index = [
       accountId: props.accounts,
     },
   },
+  {
+    action: "repost",
+    key: "kudo",
+    options: {
+      limit: 10,
+      order: "desc",
+      accountId: props.accounts,
+    },
+  },
 ];
 
 const renderedPosts = {};
