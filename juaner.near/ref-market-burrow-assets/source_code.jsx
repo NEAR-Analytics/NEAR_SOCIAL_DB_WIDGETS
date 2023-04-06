@@ -49,10 +49,46 @@ const Container = styled.div`
       display:flex;
       align-items:center;
     }
-    .modal-content{
-      background-color:#1A2E33;
-      border-radius:12px;
+    .mt_25{
+      margin-top:25px;
     }
+    .mt-10{
+      margin-top:10px;
+    }
+`;
+const Backdrop = styled.div`
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1001;
+`;
+
+const Modal = styled.div`
+  background-color:#1A2E33;
+  border-radius:12px;
+  position:fixed;
+  z-index:1002;
+  width:30rem;
+  max-width: 95vw;
+  max-height: 80vh;
+  min-height:380px;
+  padding:10px 0 20px 0;
+  animation:anishow 0.3s forwards ease-out;
+  left:50%;
+  top:50%;
+  @keyframes anishow {
+    from {
+      opacity: 0;
+      transform:translate(-50%,-70%);
+    }
+    to {
+      opacity: 1;
+      transform:translate(-50%,-50%);
+    }
+  }
     .modal-header{
       display:flex;
       align-items:center;
@@ -60,15 +96,17 @@ const Container = styled.div`
       color:#fff;
       font-weight: 700;
       font-size: 18px;
-      border-bottom:2px solid rgba(48, 67, 82, 0.5)
+      padding:12px;
+      margin-bottom:16px;
+      border-bottom:2px solid rgba(48, 67, 82, 0.5);
     } 
     .modal-header .btn-close{
       position:absolute;
       right:28px;
       margin:0;
     }
-    .modal-footer{
-      border:none;
+    .modal-body {
+        padding:0 10px;
     }
     .modal-body .tab{
       display:flex;
@@ -91,13 +129,7 @@ const Container = styled.div`
     .modal-body .tab span.active{
       background: #304352;
     }
-    .mt_25{
-      margin-top:25px;
-    }
-    .mt-10{
-      margin-top:10px;
-    }
-    .btn-close-custom{
+   .btn-close-custom{
       position:absolute;
       right:28px;
       width:12px;
@@ -161,6 +193,7 @@ const {
   hasError,
   assets,
   tabName,
+  showModal,
 } = state;
 const hasData = assets.length > 0 && rewards.length > 0 && account;
 /** base tool end */
@@ -212,8 +245,6 @@ const market_burrow_assets =
       });
     return (
       <tr
-        data-bs-toggle="modal"
-        data-bs-target="#burrowModal"
         onClick={() => {
           handleSelect(token_id);
         }}
@@ -231,10 +262,14 @@ const market_burrow_assets =
 const handleSelect = (token_id) => {
   State.update({
     selectedTokenId: token_id,
-    amount: "",
-    hasError: false,
+    showModal: true,
   });
 };
+function closeModal() {
+  State.update({
+    showModal: false,
+  });
+}
 function changeTab(tabName) {
   State.update({
     tabName,
@@ -272,30 +307,23 @@ return (
       <tbody>{market_burrow_assets}</tbody>
     </table>
     {/* Modal*/}
-    <div
-      class="modal fade"
-      id="burrowModal"
-      tabindex="-1"
-      aria-labelledby="burrowModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <div class="flex_center">
-              <img
-                class="tokenIcon"
-                src={selectedTokenMeta.icon || wnearbase64}
-              />
-              {selectedTokenMeta.symbol}
-            </div>
+    <>
+      <Modal style={{ display: showModal ? "block" : "none" }}>
+        <div class="modal-header">
+          <div class="flex_center">
             <img
-              class="btn-close-custom"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-              src={closeButtonBase64}
+              class="tokenIcon"
+              src={selectedTokenMeta.icon || wnearbase64}
             />
+            {selectedTokenMeta.symbol}
           </div>
+          <img
+            class="btn-close-custom"
+            src={closeButtonBase64}
+            onClick={closeModal}
+          />
+        </div>
+        <div class="modal-body">
           <div class="modal-body">
             <div class="tab">
               <span
@@ -315,20 +343,25 @@ return (
                 Repay
               </span>
             </div>
-            {tabName == "repay" ? (
-              <Widget
-                src="juaner.near/widget/ref-market-burrow-repay"
-                props={{ selectedTokenId, selectedTokenMeta }}
-              />
-            ) : (
-              <Widget
-                src="juaner.near/widget/ref-market-burrow-burrow"
-                props={{ selectedTokenId }}
-              />
-            )}
+            {showModal &&
+              (tabName == "repay" ? (
+                <Widget
+                  src="juaner.near/widget/ref-market-burrow-repay"
+                  props={{ selectedTokenId, selectedTokenMeta }}
+                />
+              ) : (
+                <Widget
+                  src="juaner.near/widget/ref-market-burrow-burrow"
+                  props={{ selectedTokenId }}
+                />
+              ))}
           </div>
         </div>
-      </div>
-    </div>
+      </Modal>
+      <Backdrop
+        style={{ display: showModal ? "block" : "none" }}
+        onClick={closeModal}
+      ></Backdrop>
+    </>
   </Container>
 );
