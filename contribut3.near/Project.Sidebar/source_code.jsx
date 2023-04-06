@@ -10,6 +10,17 @@ const companySizeTiers = [
   "1001+ employees",
 ];
 
+State.init({
+  project: null,
+  projectIsFetched: false,
+});
+
+if (!state.projectIsFetched) {
+  Near.asyncView(ownerId, "get_project", { account_id: accountId }).then((project) => {
+    State.update({ project, projectIsFetched: true });
+  });
+}
+
 return (
   <>
     <Widget
