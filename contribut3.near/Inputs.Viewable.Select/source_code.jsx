@@ -45,7 +45,7 @@ const SaveButton = styled.button`
 
 const edit = (/* update, v */) => (
   <LabelArea>
-    <Select.Root /* value={v} onValueChange={update} */>
+    <Select.Root value={v} onValueChange={(s) => { console.log(s) }}>
       <Select.Trigger>
         <Select.Value />
         <Select.Icon>
