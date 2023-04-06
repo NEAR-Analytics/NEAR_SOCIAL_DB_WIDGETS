@@ -248,7 +248,6 @@ const market_burrow_assets =
           ></img>
         );
       });
-    console.log("000000-rewardTokensImg", rewardTokensImg);
     return (
       <tr
         onClick={() => {
