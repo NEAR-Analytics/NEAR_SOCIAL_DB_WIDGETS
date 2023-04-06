@@ -1,16 +1,16 @@
 const Table = styled.table`
-    display: "table";
-    width: "100%";
-    borderCollapse: "separate";
-    borderSpacing: "0px";
-    fontSize: "14px";
+    display: table;
+    width: 100%;
+    borderCollapse: separate;
+    borderSpacing: 0px;
+    fontSize: 14px;
     td {
-        textOverflow: "ellipsis";
-        overflow: "hidden";
-        whiteSpace: "nowrap";
-        padding: "16px";
-        maxWidth: "130px";
-        borderBottom: "1px solid rgb(81, 81, 81)";
+        textOverflow: ellipsis;
+        overflow: hidden;
+        whiteSpace: nowrap;
+        padding: 16px;
+        maxWidth: 130px;
+        borderBottom: 1px solid rgb(81, 81, 81);
     }
 `;
 
