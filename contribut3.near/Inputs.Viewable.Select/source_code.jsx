@@ -50,6 +50,7 @@ const edit = (/* update, v */) => (
     <Select.Root value={value} onValueChange={(s) => { console.log(s) }}>
       <Select.Trigger>
         <Select.Value />
+
         <Select.Icon>
           <svg
             width="12"
