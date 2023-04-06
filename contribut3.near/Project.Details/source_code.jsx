@@ -111,6 +111,24 @@ return (
       }}
     />
     <Widget
+      src={`${ownerId}/widget/Inputs.Viewable.AccountId`}
+      props={{
+        label: "CEO",
+        id: "ceo",
+        value: "petarvujovic.near",
+        onSave: (ceo) => onSave({ ceo }),
+      }}
+    />
+    <Widget
+      src={`${ownerId}/widget/Inputs.Viewable.AccountId`}
+      props={{
+        label: "CTO",
+        id: "cto",
+        value: "petarvujovic.near",
+        onSave: (cto) => onSave({ cto }),
+      }}
+    />
+    <Widget
       src={`${ownerId}/widget/Inputs.Viewable.Number`}
       props={{
         label: "Company size",
