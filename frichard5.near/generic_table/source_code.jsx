@@ -1,5 +1,5 @@
 const TableWrapper = styled.div`
-  margin: 20px 0px;
+  margin: 40px 0px;
 `;
 const Table = styled.table`
     display: table;
