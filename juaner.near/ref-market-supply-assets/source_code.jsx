@@ -71,7 +71,7 @@ const Modal = styled.div`
   max-width: 95vw;
   max-height: 80vh;
   min-height:300px;
-  padding:10px;
+  padding:10px 0;
   animation:anishow 0.3s forwards ease-out;
   left:50%;
   top:50%;
@@ -100,6 +100,9 @@ const Modal = styled.div`
       position:absolute;
       right:28px;
       margin:0;
+    }
+    .modal-body {
+        padding:0 10px;
     }
     .modal-body .tab{
       display:flex;
