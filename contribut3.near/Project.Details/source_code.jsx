@@ -80,7 +80,7 @@ return (
           { name: "Late Stage" },
           { name: "IPO" },
         ],
-        onSave: (stage) => onSave({ stage }),
+        onSave: ({ name: stage }) => onSave({ stage }),
       }}
     />
     <Widget
