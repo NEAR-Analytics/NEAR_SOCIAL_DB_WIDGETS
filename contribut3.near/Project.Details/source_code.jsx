@@ -49,7 +49,7 @@ return (
       props={{
         label: "Integration",
         id: "integration",
-        value: "Native",
+        value: [{ name: "Native" }],
         options: [{ name: "Native" }, { name: "Multichain" }],
         onSave: ([{ name: integration }]) => onSave({ integration }),
       }}
@@ -59,7 +59,7 @@ return (
       props={{
         label: "Development phase",
         id: "phase",
-        value: "Testnet launched",
+        value: [{ name: "Testnet launched" }],
         options: [{ name: "Testnet launched" }, { name: "Mainnet launched" }, { name: "In development" }, { name: "Concept" }],
         onSave: ([{ name: phase }]) => onSave({ phase }),
       }}
