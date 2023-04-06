@@ -70,18 +70,20 @@ const edit = (/* update, v */) => (
         </Select.Icon>
       </Select.Trigger>
 
-      <Select.Content>
-        <Select.Viewport>
-          {options.map((option) =>
-            <Select.Item key={option} value={option}>
-              <Select.ItemText>{option}</Select.ItemText>
-              <Select.ItemIndicator>
-                -
-              </Select.ItemIndicator>
-            </Select.Item>
-          )}
-        </Select.Viewport>
-      </Select.Content>
+      <div style={{ top: "1em" }}>
+        <Select.Content>
+          <Select.Viewport>
+            {options.map((option) =>
+              <Select.Item key={option} value={option}>
+                <Select.ItemText>{option}</Select.ItemText>
+                <Select.ItemIndicator>
+                  -
+                </Select.ItemIndicator>
+              </Select.Item>
+            )}
+          </Select.Viewport>
+        </Select.Content>
+      </div>
     </Select.Root>
     <SaveButton onClick={() => onSave(v)}>Save</SaveButton>
   </LabelArea>
