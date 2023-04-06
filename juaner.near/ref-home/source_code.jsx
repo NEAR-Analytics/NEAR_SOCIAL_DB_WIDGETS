@@ -148,14 +148,6 @@ const SwapContainer = styled.div`
   top: 8%
 
 `;
-console.log("55555555555-props", props);
-JSON.parse("{}");
-if (props.documents) {
-  console.log("555555555-props.documents", props.documents);
-  const document = JSON.parse(props.documents);
-  console.log("555555555-document", document);
-  document.getElementById("market");
-}
 // svg icon end
 return (
   <Container>
