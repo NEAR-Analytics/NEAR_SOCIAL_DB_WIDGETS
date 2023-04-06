@@ -31,7 +31,6 @@ return (
     */}
 
       <div class="col-12 ps-5">
-        {/* Title */}
         <Widget
           src="dmitriy_sheleg.near/widget/DevSupport.Discussion.Title"
           props={{ disabled: !context.accountId, onClick: toggleQuestion }}
