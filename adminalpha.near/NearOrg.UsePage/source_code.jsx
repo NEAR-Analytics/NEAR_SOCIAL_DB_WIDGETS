@@ -180,7 +180,7 @@ return (
             The account is your web3 identity and keeps all your assets
           </Text>
           <Widget
-            src="adminalpha.near/widget/DS.Button"
+            src="adminalpha.near/widget/DIG.Button"
             props={{
               href: "/#/adminalpha.near/widget/PeoplePage",
               iconRight: "ph-bold ph-arrow-up-right",
@@ -204,7 +204,7 @@ return (
             dApps are decentralized applications that use the blockchain
           </Text>
           <Widget
-            src="adminalpha.near/widget/DS.Button"
+            src="adminalpha.near/widget/DIG.Button"
             props={{
               href: "https://awesomenear.com/projects",
               target: "_blank",
@@ -228,7 +228,7 @@ return (
         </Text>
         <Text>Become a web3 citizen and help build a better world</Text>
         <Widget
-          src="adminalpha.near/widget/DS.Button"
+          src="adminalpha.near/widget/DIG.Button"
           props={{
             href: "#why-it-matters",
             iconRight: "ph-bold ph-arrow-down",
