@@ -44,16 +44,7 @@ const SaveButton = styled.button`
 
 const edit = (update, v) => (
   <LabelArea>
-    <Typeahead
-      id
-      labelKey="name"
-      onChange={update}
-      options={options}
-      selected={v}
-      positionFixed
-      multiple
-      allowNew
-    />
+    <Widget src={`${ownerId}/widget/Inputs.Social`} props={{ start: "https://github.com/", value: "petarvujovic98", update: (v) => { console.log(v) } }} />
     <SaveButton onClick={() => onSave(v)}>Save</SaveButton>
   </LabelArea>
 );
