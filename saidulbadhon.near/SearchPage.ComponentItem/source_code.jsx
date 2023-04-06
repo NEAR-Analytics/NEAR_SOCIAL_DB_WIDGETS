@@ -25,9 +25,11 @@ function makeUpperCase(sentence) {
 }
 
 console.log(
-  selectedItem,
+  props.selectedItem,
+  " - ",
   accountId + "/widget/" + widgetName,
-  selectedItem === accountId + "/widget/" + widgetName
+  " - ",
+  props.selectedItem === accountId + "/widget/" + widgetName
 );
 
 const MainContainer = styled.div`
@@ -42,7 +44,7 @@ const MainContainer = styled.div`
   padding: 8px 8px;
 
   background-color:  ${
-    selectedItem === accountId + "/widget/" + widgetName
+    props.selectedItem === accountId + "/widget/" + widgetName
       ? props.theme.ui2
       : props.theme.backgroundColor
   };
