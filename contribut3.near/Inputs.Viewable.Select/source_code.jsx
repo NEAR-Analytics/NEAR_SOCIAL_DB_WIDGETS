@@ -48,7 +48,7 @@ const edit = (update, v) => (
     id
     labelKey="name"
     onChange={update}
-    options
+    options={options}
     selected={v}
     positionFixed
   />
