@@ -51,6 +51,9 @@ const Container = styled.div`
     .mt-10{
       margin-top:10px;
     }
+    font-18{
+        font-size:18px;
+    }
 `;
 const Backdrop = styled.div`
   height: 100vh;
@@ -283,7 +286,7 @@ return (
       <Widget src="juaner.near/widget/ref_burrow-data" props={{ onLoad }} />
     )}
     {/* markets */}
-    <div class="fw-bold text-white mt-3">
+    <div class="fw-bold text-white mt-3 font-18">
       <span class="text_green_color">Supply</span> Market
     </div>
     <table class="table click">
