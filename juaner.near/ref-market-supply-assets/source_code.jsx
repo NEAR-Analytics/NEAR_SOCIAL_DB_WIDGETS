@@ -51,7 +51,7 @@ const Container = styled.div`
     .mt-10{
       margin-top:10px;
     }
-    font-18{
+    .font-18{
         font-size:18px;
     }
 `;
