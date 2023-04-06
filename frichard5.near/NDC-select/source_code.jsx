@@ -1,10 +1,10 @@
-const { options, selectedTab, onChange } = props;
+const { options, selectedOption, onChange } = props;
 
 const Options = [];
 
 options.forEach((o) => {
   Options.push(
-    <option value={o.value} selected={o.value === selectedTab}>
+    <option value={o.value} selected={o.value === selectedOption}>
       {o.label}
     </option>
   );
