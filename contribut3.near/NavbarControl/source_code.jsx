@@ -67,7 +67,7 @@ const logo = (
     href={`/#/${ownerId}/widget/Index`}
     onClick={() => props.update({ tab: "home", content: "", search: "" })}
   >
-    <></>NEAR Horizon
+    <Widget src={`${ownerId}/widget/Logo`} />NEAR Horizon
   </LogoArea>
 );
 
