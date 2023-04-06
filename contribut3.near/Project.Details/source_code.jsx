@@ -41,7 +41,7 @@ return (
         id: "category",
         value: "Wallets",
         options: [{ name: "Wallets" }, { name: "Games" }, { name: "Social" }, { name: "Other" }],
-        onSave: (category) => onSave({ category }),
+        onSave: ({ name: category }) => onSave({ category }),
       }}
     />
     <Widget
