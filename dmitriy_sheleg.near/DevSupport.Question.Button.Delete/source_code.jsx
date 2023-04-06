@@ -28,7 +28,7 @@ return (
     className={`btn ${props.className}`}
     onClick={onClick}
   >
-    <i class="bi bi-eye-slash" />
+    <i class="bi bi-eye-slash me-1" />
     <span>{text}</span>
   </button>
 );
