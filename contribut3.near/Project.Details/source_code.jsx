@@ -140,8 +140,8 @@ return (
     <Widget
       src={`${ownerId}/widget/Inputs.Viewable.Select`}
       props={{
-        label: "Stage",
-        id: "stage",
+        label: "Tags",
+        id: "tags",
         value: [
           { name: "defi" },
           { name: "exchange" },
@@ -154,7 +154,7 @@ return (
           { name: "staking" },
           { name: "farming" },
         ],
-        onSave: ([{ name: stage }]) => onSave({ stage }),
+        onSave: (tags) => onSave({ tags: tags.map(({ name }) => name) }),
       }}
     />
     <Widget
