@@ -69,12 +69,13 @@ return (
               type="text"
               value={v}
               onChange={(e) => update(e.target.value)}
+              onBlur={() => validate(v)}
             />
             <small>
               {state.valid ? null : state.errorMessage}
             </small>
           </InputContainer>
-          <SaveButton onClick={() => state.valid && onSave(v)}>
+          <SaveButton valid={state.valid} onClick={() => state.valid && onSave(v)}>
             Save
           </SaveButton>
         </LabelArea>
