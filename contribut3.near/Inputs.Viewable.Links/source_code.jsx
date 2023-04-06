@@ -25,10 +25,6 @@ const supportedLinks = [
     name: "youtube",
     url: "https://youtube.com/",
   },
-  {
-    name: "website",
-    url: "https://",
-  },
 ];
 
 const LabelArea = styled.div`
