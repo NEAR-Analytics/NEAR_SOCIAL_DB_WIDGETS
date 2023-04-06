@@ -44,26 +44,28 @@ const SaveButton = styled.button`
   color: #11181c;
 `;
 
-return (
-  <Widget
-    src={`${ownerId}/widget/Inputs.Viewable`}
-    props={{
-      id,
-      label,
-      value,
-      // edit: /* (update) => */ (
-      //   <LabelArea>
-      //     <Input
-      //       type={isLink ? "url" : "text"}
-      //       value={state.value}
-      //     // onChange={(e) => update(e.target.value)}
-      //     />
-      //     <SaveButton show={state.edit} onClick={() => onSave(state.value)}>
-      //       Save
-      //     </SaveButton>
-      //   </LabelArea>
-      // ),
-      // view: (value) => (isLink ? <a href={link}>{value}</a> : value),
-    }}
-  />
-);
+return "";
+
+// return (
+//   <Widget
+//     src={`${ownerId}/widget/Inputs.Viewable`}
+//     props={{
+//       id,
+//       label,
+//       value,
+//       // edit: /* (update) => */ (
+//       //   <LabelArea>
+//       //     <Input
+//       //       type={isLink ? "url" : "text"}
+//       //       value={state.value}
+//       //     // onChange={(e) => update(e.target.value)}
+//       //     />
+//       //     <SaveButton show={state.edit} onClick={() => onSave(state.value)}>
+//       //       Save
+//       //     </SaveButton>
+//       //   </LabelArea>
+//       // ),
+//       // view: (value) => (isLink ? <a href={link}>{value}</a> : value),
+//     }}
+//   />
+// );
