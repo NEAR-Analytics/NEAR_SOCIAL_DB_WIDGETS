@@ -56,9 +56,4 @@ const GenericTable = (
   />
 );
 
-return (
-  <>
-    <h2> Balances {props.account}</h2>
-    {GenericTable}
-  </>
-);
+return <>{GenericTable}</>;
