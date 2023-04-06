@@ -228,7 +228,6 @@ const market_burrow_assets =
       </tr>
     );
   });
-console.log("000000000000-market_burrow_assets", can_burrow_assets);
 const handleSelect = (token_id) => {
   State.update({
     selectedTokenId: token_id,
@@ -243,7 +242,6 @@ function changeTab(tabName) {
 }
 const selectedToken = (selectedTokenId && assetsMap[selectedTokenId]) || {};
 const selectedTokenMeta = selectedToken.metadata || {};
-console.log("888888888888888-selectedTokenMeta", selectedTokenMeta);
 return (
   <Container>
     {/* load data */}
