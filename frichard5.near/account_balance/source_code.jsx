@@ -49,7 +49,7 @@ const GenericTable = (
   <Widget
     src={`${widgetProvider}/widget/generic_table`}
     props={{
-      title: `Status stats`,
+      title: `Balances`,
       columns,
       data: state.balance,
     }}
