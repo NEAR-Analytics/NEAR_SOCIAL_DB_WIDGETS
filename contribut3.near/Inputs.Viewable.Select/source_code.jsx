@@ -72,7 +72,7 @@ const edit = (/* update, v */) => (
       <Select.Content>
         <Select.Viewport>
           {options.map((option) =>
-            <Select.Item key={option}>
+            <Select.Item key={option} value={option}>
               <Select.ItemText>{option}</Select.ItemText>
               <Select.ItemIndicator>
                 -
