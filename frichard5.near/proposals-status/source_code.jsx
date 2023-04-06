@@ -7,16 +7,17 @@ State.init({
   proposalsStatus: [],
 });
 
-const columns = [
-  {
-    id: "status",
-    label: "Status",
-  },
-  {
-    id: "count",
-    label: "Count",
-  },
-];
+const columns = state.proposalsStatus.reduce((acc, pS) => {
+  Object.keys(pS).forEach((k) => {
+    if (!acc.find((c) => c.id === k)) {
+      acc.push({
+        id: k,
+        label: k,
+      });
+    }
+  });
+  return acc;
+}, []);
 
 const GenericTable = (
   <Widget
