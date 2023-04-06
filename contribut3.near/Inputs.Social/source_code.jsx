@@ -48,7 +48,6 @@ return (
     <Input
       type="text"
       value={value}
-      placeholder="Search"
       onChange={(e) => update(e.target.value)}
     />
   </Container>
