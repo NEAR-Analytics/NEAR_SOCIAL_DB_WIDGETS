@@ -96,7 +96,6 @@ const {
   closeModal,
 } = props;
 const show = showModal && type == "supply";
-console.log("子组件-子组件-子组件", props);
 return (
   <>
     <div class="title">You Supplied</div>
