@@ -126,7 +126,7 @@ console.log("00000000000-00000000-targetComponent", targetComponent);
 console.log("00000000000-00000000-targetProps", targetProps);
 return (
   <div>
-    {showTos && (
+    {true && (
       <Backdrop className="d-flex">
         <Modal>
           <ModalContent>
