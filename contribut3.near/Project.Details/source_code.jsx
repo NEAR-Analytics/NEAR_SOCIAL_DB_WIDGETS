@@ -138,6 +138,26 @@ return (
       }}
     />
     <Widget
+      src={`${ownerId}/widget/Inputs.Viewable.Select`}
+      props={{
+        label: "Stage",
+        id: "stage",
+        value: [
+          { name: "defi" },
+          { name: "exchange" },
+          { name: "staking" },
+          { name: "farming" },
+        ],
+        options: [
+          { name: "defi" },
+          { name: "exchange" },
+          { name: "staking" },
+          { name: "farming" },
+        ],
+        onSave: ([{ name: stage }]) => onSave({ stage }),
+      }}
+    />
+    <Widget
       src={`${ownerId}/widget/Inputs.Viewable.Text`}
       props={{
         label: "Location",
