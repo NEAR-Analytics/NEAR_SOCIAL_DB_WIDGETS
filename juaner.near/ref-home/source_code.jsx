@@ -149,6 +149,12 @@ const SwapContainer = styled.div`
 
 `;
 console.log("55555555555-props", props);
+if (props.documents) {
+  const document = JSON.parse(props.documents);
+  document.getElementById("market").addEventListener("click", function () {
+    console.log("我是第一个冒泡传递");
+  });
+}
 // svg icon end
 return (
   <Container>
@@ -171,7 +177,7 @@ return (
         <span class="icon">{swapIcon}</span>
         Swap
       </div>
-      <div class="item disable">
+      <div class="item disable" id="market">
         <span class="icon">{marketIcon}</span>
         Markets
       </div>
