@@ -26,16 +26,6 @@ const expandToken = (value, decimals) => {
 
 const formatToken = (v) => Math.floor(v * 10_000) / 10_000;
 
-const power = (x, y) => {
-  if (y === 0) {
-    return 1;
-  } else if (y % 2 === 0) {
-    return power(x, parseInt(y / 2)) * power(x, parseInt(y / 2));
-  } else {
-    return x * power(x, parseInt(y / 2)) * power(x, parseInt(y / 2));
-  }
-};
-
 if (!accountId) {
   return <Widget src="ciocan.near/widget/account-signin" />;
 }
@@ -56,7 +46,8 @@ function getAdjustedSum(type, account) {
     .map((assetInAccount) => {
       const asset = assets.find((a) => a.token_id === assetInAccount.token_id);
 
-      const price = asset.price
+      const hasPrice = asset.price?.multiplier && asset.price?.decimals;
+      const price = hasPrice
         ? B(asset.price.multiplier).div(B(10).pow(asset.price.decimals))
         : B(0);
 
