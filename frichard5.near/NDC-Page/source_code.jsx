@@ -36,7 +36,7 @@ const DashboardContainer = styled.div`
         color: black !important;
     }
   }
-  ::-webkit-scrollbar {
+  *::-webkit-scrollbar {
     width: 8px;
     height: 8px;
   }
