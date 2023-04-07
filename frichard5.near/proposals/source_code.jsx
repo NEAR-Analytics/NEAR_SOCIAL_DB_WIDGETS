@@ -131,8 +131,8 @@ const selectType = (e) => {
   fetchProposal({
     limit: resPerPage,
     offset: 0,
-    proposal_type: state.type,
-    status: e.target.value,
+    proposal_type: e.target.value,
+    status: state.status,
   });
 };
 
