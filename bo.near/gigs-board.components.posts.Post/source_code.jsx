@@ -523,7 +523,7 @@ return (
     {linkToParent}
     {header}
     <div className="card-body">
-      {/* {searchKeywords} */}
+      {searchKeywords}
       {postLabels}
       {postTitle}
       {postExtra}
