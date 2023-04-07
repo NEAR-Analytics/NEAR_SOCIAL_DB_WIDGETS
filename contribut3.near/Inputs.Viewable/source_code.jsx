@@ -69,9 +69,9 @@ const EditButtonContainer = styled.div`
 `;
 
 return (
-  <Container>
+  <Container big={big}>
     <Row>
-      <Label htmlFor={id}>{label}</Label>
+      <Label htmlFor={id} big={big}>{label}</Label>
       <EditButtonContainer>
         <EditButton
           onClick={() => State.update({ edit: false })}
