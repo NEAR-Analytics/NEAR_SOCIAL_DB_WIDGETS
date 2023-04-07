@@ -71,7 +71,7 @@ const fetchTransfers = (params) => {
   });
   proposals.body && State.update({ proposals: proposals.body });
 };
-fetchTransfers(state.params);
+//fetchTransfers(state.params);
 
 console.log("PROPOSALS", state.proposals);
 
@@ -88,4 +88,8 @@ state.proposals.forEach((proposal) => {
   );
 });
 
-return <>{ProposalCards}</>;
+return (
+  <InfiniteScroll loadMore={fetchTransfers(state.params)} hasMore={true}>
+    {ProposalCards}
+  </InfiniteScroll>
+);
