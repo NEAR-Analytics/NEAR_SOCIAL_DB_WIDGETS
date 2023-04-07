@@ -49,25 +49,27 @@ function href(widgetName, linkProps) {
 }
 /* END_INCLUDE: "common.jsx" */
 
+function defaultRenderItem(postId, additionalProps = {}) {
+  // It is important to have a non-zero-height element as otherwise InfiniteScroll loads too many items on initial load
+  return (
+    <div style={{ minHeight: "150px" }}>
+      {widget(
+        `components.posts.Post`,
+        {
+          id: postId,
+          expandable: true,
+          defaultExpanded: false,
+          ...additionalProps,
+        },
+        postId
+      )}
+    </div>
+  );
+};
+
 const renderItem =
-  props.renderItem ??
-  function (postId, additionalProps = {}) {
-    // It is important to have a non-zero-height element as otherwise InfiniteScroll loads too many items on initial load
-    return (
-      <div style={{ minHeight: "150px" }}>
-        {widget(
-          `components.posts.Post`,
-          {
-            id: postId,
-            expandable: true,
-            defaultExpanded: false,
-            ...additionalProps,
-          },
-          postId
-        )}
-      </div>
-    );
-  };
+  props.renderItem ?? defaultRenderItem;
+
 const cachedRenderItem = (item, i) => {
   if (props.searchResult && props.searchResult.keywords[item]) {
     return renderItem(item, {
