@@ -31,6 +31,10 @@ const DashboardContainer = styled.div`
       background:rgba(255, 213, 13, 1);
       color: black;
     }
+    &:active {
+        background:rgba(255, 213, 13, 0.8);
+        color: black;
+    }
   }
 `;
 
