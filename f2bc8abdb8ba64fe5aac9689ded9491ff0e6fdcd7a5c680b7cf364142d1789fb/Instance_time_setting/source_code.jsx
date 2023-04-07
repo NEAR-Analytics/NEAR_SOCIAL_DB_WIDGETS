@@ -264,11 +264,7 @@ const renderDayRow = (day, index, size) => {
         >
           <div
             className={thisWidgetClassNames.infoAndTitleContainer}
-            style={
-              size == "big"
-                ? thisWidgetInlineStyles.infoAndTitleContainer
-                : thisWidgetInlineStyles.infoAndTitleContainerSmall
-            }
+            style={thisWidgetInlineStyles.infoAndTitleContainer}
           >
             <p
               className={thisWidgetClassNames.showInResponsive}
@@ -282,11 +278,7 @@ const renderDayRow = (day, index, size) => {
           </div>
           <div
             className={thisWidgetClassNames.infoAndTitleContainer}
-            style={
-              size == "big"
-                ? thisWidgetInlineStyles.infoAndTitleContainer
-                : thisWidgetInlineStyles.infoAndTitleContainerSmall
-            }
+            style={thisWidgetInlineStyles.infoAndTitleContainer}
           >
             <p
               className={thisWidgetClassNames.showInResponsive}
@@ -338,11 +330,7 @@ const renderDayRow = (day, index, size) => {
         >
           <div
             className={thisWidgetClassNames.infoAndTitleContainer}
-            style={
-              size == "big"
-                ? thisWidgetInlineStyles.infoAndTitleContainer
-                : thisWidgetInlineStyles.infoAndTitleContainerSmall
-            }
+            style={thisWidgetInlineStyles.infoAndTitleContainer}
           >
             <p
               className={thisWidgetClassNames.showInResponsive}
@@ -354,11 +342,7 @@ const renderDayRow = (day, index, size) => {
           </div>
           <div
             className={thisWidgetClassNames.infoAndTitleContainer}
-            style={
-              size == "big"
-                ? thisWidgetInlineStyles.infoAndTitleContainer
-                : thisWidgetInlineStyles.infoAndTitleContainerSmall
-            }
+            style={thisWidgetInlineStyles.infoAndTitleContainer}
           >
             <p
               className={thisWidgetClassNames.showInResponsive}
