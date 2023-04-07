@@ -518,6 +518,7 @@ const allWidgetsInlineStyles = {
     inputInactive: {
       backgroundColor: colors.color2,
       borderColor: colors.grey10,
+      cursor: "pointer",
     },
     showErrorContainer: {
       display: "flex",
