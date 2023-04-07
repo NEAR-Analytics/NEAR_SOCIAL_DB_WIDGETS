@@ -80,7 +80,7 @@ const timestamp = readableDate(
 const postSearchKeywords = props.searchKeywords ? (
   <div style={{ "font-family": "monospace" }} key="post-search-keywords">
     <span>Found keywords: </span>
-    {props.seachKeywords.map((label) => {
+    {props.searchKeywords.map((label) => {
       return <span class="badge text-bg-info me-1">{label}</span>;
     })}
   </div>
@@ -88,7 +88,7 @@ const postSearchKeywords = props.searchKeywords ? (
   <div key="post-search-keywords"></div>
 );
 
-const searchKeywords = props.seachKeywords ? (
+const searchKeywords = props.searchKeywords ? (
   <div class="mb-1" key="search-keywords">
     <small class="text-muted">{postSearchKeywords}</small>
   </div>
