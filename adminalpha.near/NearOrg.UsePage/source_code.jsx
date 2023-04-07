@@ -86,6 +86,10 @@ const Section = styled.div`
   justify-content: ${(p) => (p.center ? "center" : undefined)};
   text-align: ${(p) => (p.center ? "center" : undefined)};
   background: ${(p) => p.background};
+  box-shadow: ${(p) =>
+    p.background
+      ? `-1000px 0 0 ${p.background}, 1000px 0 0 ${p.background}`
+      : undefined};
 `;
 
 const Icon = styled.div`
