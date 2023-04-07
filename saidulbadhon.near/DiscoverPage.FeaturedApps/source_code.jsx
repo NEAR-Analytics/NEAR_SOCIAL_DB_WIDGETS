@@ -43,7 +43,7 @@ return (
       ))}
     </div>
     <div
-      className="carousel-inner rounded-4"
+      className="carousel-inner rounded-2"
       style={{
         background: "rgb(53,120,255)",
         backgroundImage:
