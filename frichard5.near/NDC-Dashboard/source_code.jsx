@@ -119,9 +119,9 @@ const Select = (
     src={`${widgetProvider}/widget/NDC-select`}
     props={{
       options: [
-        { value: "marketing.sputnik-dao.near", label: "Marketing" },
-        { value: "creativesdao.sputnik-dao.near", label: "Creative" },
-        { value: "neardevgov.sputnik-dao.near", label: "Gov" },
+        { value: "marketing.sputnik-dao.near", label: "Marketing DAO" },
+        { value: "creativesdao.sputnik-dao.near", label: "Creative DAO" },
+        { value: "neardevgov.sputnik-dao.near", label: "Gov DAO" },
       ],
       selectedOption: state.selectedDao,
       onChange: selectDao,
