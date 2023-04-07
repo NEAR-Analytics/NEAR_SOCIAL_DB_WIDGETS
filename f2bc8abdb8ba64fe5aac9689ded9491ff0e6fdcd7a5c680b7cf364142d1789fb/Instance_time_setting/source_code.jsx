@@ -175,7 +175,13 @@ const getData = () => {
 };
 const timeSelector = (f, index) => {
   return (
-    <div style={thisWidgetInlineStyles.timeSelectorContainer}>
+    <div
+      style={
+        state._is_on[index]
+          ? thisWidgetInlineStyles.timeSelectorContainerActive
+          : timeSelectorContainerInctive
+      }
+    >
       <div className={thisWidgetClassNames.timeSelector}>
         <select
           style={
