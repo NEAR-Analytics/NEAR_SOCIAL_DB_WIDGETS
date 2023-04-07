@@ -12,6 +12,7 @@ const LabelArea = styled.div`
   align-items: center;
   justify-content: flex-start;
   gap: 0.25em;
+  flex-wrap: wrap;
 `;
 
 const Input = styled.input`
@@ -54,13 +55,12 @@ return (
       edit: (update, v) => (
         <LabelArea>
           <Input
+            id
             type={isLink ? "url" : "text"}
             value={v}
             onChange={(e) => update(e.target.value)}
           />
-          <SaveButton onClick={() => onSave(v)}>
-            Save
-          </SaveButton>
+          <SaveButton onClick={() => onSave(v)}>Save</SaveButton>
         </LabelArea>
       ),
       view: isLink ? <a href={link}>{value}</a> : value,
