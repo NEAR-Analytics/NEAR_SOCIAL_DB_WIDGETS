@@ -203,7 +203,7 @@ return (
           />
           <Flex direction="column" gap="8px">
             <Text size="text-xl" fontWeight="600" color="sand12">
-              Set up your account
+              Your Account
             </Text>
             <Text>
               The account is your web3 identity and keeps all your assets
@@ -255,7 +255,7 @@ return (
           />
           <Flex direction="column" gap="8px">
             <Text size="text-xl" fontWeight="600" color="sand12">
-              Understand why
+              Understand
             </Text>
             <Text>Become a web3 citizen and help build a better world</Text>
           </Flex>
@@ -264,7 +264,7 @@ return (
             props={{
               href: "#why-it-matters",
               iconRight: "ph-bold ph-arrow-down",
-              label: "Explore Now",
+              label: "Learn More",
               variant: "primary",
               fill: "outline",
               size: "large",
