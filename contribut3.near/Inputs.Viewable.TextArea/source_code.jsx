@@ -53,6 +53,7 @@ return (
         <LabelArea>
           <Input
             id
+            rows={5}
             value={v}
             onChange={(e) => update(e.target.value)}
           />
