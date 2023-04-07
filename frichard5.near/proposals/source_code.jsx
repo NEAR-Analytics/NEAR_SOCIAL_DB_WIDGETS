@@ -126,7 +126,7 @@ state.proposals.forEach((proposal) => {
 });
 
 const selectType = (e) => {
-  State.update({ type: e.target.value, proposals: [] });
+  State.update({ type: e.target.value, proposals: [], offset: 0 });
   fetchProposal({
     limit: resPerPage,
     offset: 0,
