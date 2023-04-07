@@ -99,10 +99,10 @@ if (props.label) {
   postIds = Near.view(nearDevGovGigsContractAccountId, "get_posts_by_label", {
     label: props.label,
   });
-} else if (props.recency == "all") {
-  postIds = Near.view(nearDevGovGigsContractAccountId, "get_all_post_ids");
 } else if (props.searchResult) {
   postIds = props.searchResult.postIds;
+} else if (props.recency == "all") {
+  postIds = Near.view(nearDevGovGigsContractAccountId, "get_all_post_ids");
 } else {
   postIds = Near.view(nearDevGovGigsContractAccountId, "get_children_ids");
 }
