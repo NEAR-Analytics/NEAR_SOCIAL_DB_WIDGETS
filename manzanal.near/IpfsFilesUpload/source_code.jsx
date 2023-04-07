@@ -2,6 +2,8 @@ const fileAccept = props.fileAccept || "*";
 const fileIcon = props.fileIcon || "bi-file";
 const buttonText = props.buttonText || "Upload a file";
 
+if (!props.update) return "Update function is required";
+
 initState({
   uploading: false,
   files: [],
@@ -16,7 +18,6 @@ const filesOnChange = (files) => {
   });
   if (files?.length > 0) {
     files.map((file, index) => {
-      console.log("uploading file", file, index);
       const body = file;
       asyncFetch("https://ipfs.near.social/add", {
         method: "POST",
@@ -32,6 +33,7 @@ const filesOnChange = (files) => {
       });
     });
     State.update({ uploading: false });
+    props.update(state.files);
   } else {
     State.update({
       uploading: false,
@@ -43,12 +45,9 @@ const filesOnChange = (files) => {
 const onClickDelete = (index) => {
   const filesUpdated = state.files.filter((file) => file.index !== index);
   State.update({ files: filesUpdated });
-
-  console.log("files uodated", filesUpdated);
 };
 
 const filesUploaded = () => {
-  console.log("files", state.files);
   if (state.files.length > 0) {
     return state.files.map((file) => (
       <div class="d-flex flex-row gap-2 align-items-center">
