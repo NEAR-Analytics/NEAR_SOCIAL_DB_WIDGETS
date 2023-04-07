@@ -98,7 +98,7 @@ if (!state.proposals.length) {
   });
 }
 if (state.account != account) {
-  State.update({ proposals: [], account });
+  State.update({ proposals: [], account, offset: 0 });
 }
 
 const fetchMore = () => {
