@@ -11,6 +11,7 @@ const forgeUrl = (apiUrl, params) =>
   );
 
 const ProposalContainer = styled.div`
+  min-height: 100px
 `;
 
 const resPerPage = 10;
