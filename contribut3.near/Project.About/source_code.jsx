@@ -21,7 +21,6 @@ const Heading = styled.div`
   width: 100%;
 `;
 
-
 return (
   <Container>
     <Heading>About project</Heading>
