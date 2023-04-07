@@ -51,24 +51,28 @@ function href(widgetName, linkProps) {
 
 const renderItem =
   props.renderItem ??
-  ((postId, additionalProps={}) => (
+  function (postId, additionalProps = {}) {
     // It is important to have a non-zero-height element as otherwise InfiniteScroll loads too many items on initial load
-    <div style={{ minHeight: "150px" }}>
-      {widget(
-        `components.posts.Post`,
-        {
-          id: postId,
-          expandable: true,
-          defaultExpanded: false,
-          // ...additionalProps
-        },
-        postId
-      )}
-    </div>
-  ));
+    return (
+      <div style={{ minHeight: "150px" }}>
+        {widget(
+          `components.posts.Post`,
+          {
+            id: postId,
+            expandable: true,
+            defaultExpanded: false,
+            ...additionalProps,
+          },
+          postId
+        )}
+      </div>
+    );
+  };
 const cachedRenderItem = (item, i) => {
   if (props.searchResult && props.searchResult.keywords[item]) {
-    return renderItem(item, {searchKeywords: props.searchResult.keywords[item]})
+    return renderItem(item, {
+      searchKeywords: props.searchResult.keywords[item],
+    });
   }
 
   const key = JSON.stringify(item);
