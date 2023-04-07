@@ -24,7 +24,7 @@ const Label = styled.label`
   font-style: normal;
   font-weight: 600;
   font-size: ${({ big }) => big ? "1em" : "0.95em"};
-  line-height: 1em;
+  line-height: ${({ big }) => big ? "1.4em" : "1em"};
   color: #11181c;
 `;
 
