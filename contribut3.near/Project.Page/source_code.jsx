@@ -1,5 +1,15 @@
 const ownerId = "contribut3.near";
 
+const availableContent = ["overview", "requests", "people", "funding", "history", "graduation"];
+
+const getContent = (content) => {
+  if (!content || !availableContent.includes(content)) {
+    return "overview";
+  }
+
+  return content;
+};
+
 const ContentContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -30,6 +40,41 @@ const Sidebar = styled.div`
 return (
   <ContentContainer>
     <MainContent>
+      <Widget
+        src={`${ownerId}/widget/TabSelector`}
+        props={{
+          tab: "project",
+          content: getContent(props.content),
+          search: props.search,
+          update: props.update,
+          buttons: [
+            {
+              id: "overview",
+              text: "Overview",
+            },
+            {
+              id: "requests",
+              text: "Requests",
+            },
+            {
+              id: "people",
+              text: "People",
+            },
+            {
+              id: "funding",
+              text: "Funding",
+            },
+            {
+              id: "history",
+              text: "Work history",
+            },
+            {
+              id: "graduation",
+              text: "Graduation",
+            },
+          ],
+        }}
+      />
       <Widget
         src={`${ownerId}/widget/Project.About`}
         props={{
