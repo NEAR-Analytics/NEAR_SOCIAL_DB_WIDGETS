@@ -181,6 +181,10 @@ const UseCase = styled.div`
   grid-template-columns: 200px 1fr;
   gap: 32px;
   text-align: left;
+
+  @media (max-width: 800px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 return (
@@ -383,7 +387,7 @@ return (
         </Flex>
       </Card>
 
-      <Flex gap="16px">
+      <Flex gap="16px" wrap="wrap">
         <Widget
           src="adminalpha.near/widget/DIG.Button"
           props={{
@@ -468,7 +472,7 @@ return (
         </Card>
       </Flex>
 
-      <Flex gap="16px">
+      <Flex gap="16px" wrap="wrap">
         <Widget
           src="adminalpha.near/widget/DIG.Button"
           props={{
