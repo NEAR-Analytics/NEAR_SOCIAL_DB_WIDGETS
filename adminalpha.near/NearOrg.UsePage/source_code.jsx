@@ -331,27 +331,21 @@ return (
       </Flex>
 
       <Card center style={{ maxWidth: "694px" }}>
-        <CircleImg src="https://awesomenear-spaces.fra1.digitaloceanspaces.com/production/projects/ref-finance/ref-finance.jpg" />
+        <a href="https://www.ref.finance/" target="_blank">
+          <CircleImg src="https://awesomenear-spaces.fra1.digitaloceanspaces.com/production/projects/ref-finance/ref-finance.jpg" />
+        </a>
         <Flex direction="column" gap="8px">
           <Text size="text-xl" fontWeight="600" color="sand12">
             Putting community first in DeFi
           </Text>
           <Text>
-            Ref.Finance is a community-led, multi-purpose DeFi platform built on
-            NEAR Protocol.
+            <Text as="a" href="https://www.ref.finance/" target="_blank">
+              Ref.Finance
+            </Text>{" "}
+            is a community-led, multi-purpose DeFi platform built on NEAR
+            Protocol.
           </Text>
         </Flex>
-        <Widget
-          src="adminalpha.near/widget/DIG.Button"
-          props={{
-            href: "https://www.ref.finance/",
-            target: "_blank",
-            iconRight: "ph-bold ph-arrow-up-right",
-            label: "Learn More",
-            variant: "primary",
-            fill: "outline",
-          }}
-        />
       </Card>
 
       <Widget
