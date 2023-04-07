@@ -197,21 +197,21 @@ return (
 
     <Tabs>
       <TabsButton
-        href={`${detailsUrl}&tab=about`}
+        href={`/#/search?tab=about`}
         selected={state.selectedTab === "about"}
       >
         About
       </TabsButton>
 
       <TabsButton
-        href={`${detailsUrl}&tab=source`}
+        href={`/#/search?tab=source`}
         selected={state.selectedTab === "source"}
       >
         Source
       </TabsButton>
 
       <TabsButton
-        href={`${detailsUrl}&tab=history`}
+        href={`/#/search?tab=history`}
         selected={state.selectedTab === "history"}
       >
         History
