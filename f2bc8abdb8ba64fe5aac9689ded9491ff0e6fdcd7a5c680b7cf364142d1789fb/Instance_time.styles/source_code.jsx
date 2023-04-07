@@ -600,7 +600,7 @@ const allWidgetsClassNames = {
   },
   instance_time_setting: {
     timeSelector: "d-flex",
-    caretsContainer: "d-flex flex-column",
+    caretsContainer: "d-none d-lg-flex flex-column",
     caretUpIcon: caretUpIcon,
     caretDownIcon: caretDownIcon,
     logedInGeneralContainer: "align-items-center",
