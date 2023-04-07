@@ -132,7 +132,7 @@ const selectType = (e) => {
     limit: resPerPage,
     offset: 0,
     proposal_type: state.type,
-    status: state.status,
+    status: e.target.value,
   });
 };
 
@@ -178,7 +178,7 @@ const selectStatus = (e) => {
     limit: resPerPage,
     offset: 0,
     proposal_type: state.type,
-    status: state.status,
+    status: e.target.value,
   });
 };
 
