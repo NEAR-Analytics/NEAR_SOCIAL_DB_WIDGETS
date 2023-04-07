@@ -560,10 +560,6 @@ const allWidgetsInlineStyles = {
     infoAndTitleContainer: {
       width: "50%",
     },
-    infoAndTitleContainerSmall: {
-      width: "50%",
-      marginTop: "0.5rem",
-    },
     headerElement: {
       width: "25%",
       textAlign: "center",
