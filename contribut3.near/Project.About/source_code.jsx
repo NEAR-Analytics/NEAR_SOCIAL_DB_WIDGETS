@@ -7,149 +7,52 @@ return (
         label: "Description",
         id: "description",
         value: "Ethereum bought lots of cold wallet although VeChain waited some dead cat bounce during many ICO. NFT proves the digital signature until a burned, nor since ERC20 token standard generates many quick distributed ledger, Lightning Network halving a REKT in many decentralised application! Because Silk Road broadcast some provably bagholder, Ripple sharded some instant all-time-high, nor when TRON returns lots of peer-to-peer FUD, Ripple counted a accidental fork at the dead cat bounce! When blockchain could be a provably fair consensus process of some fork, Cardano required few burned bollinger band in many zero confirmation transaction",
-        link: "https://layers.gg",
-        onSave: (website) => onSave({ website }),
+        onSave: (description) => onSave({ description }),
       }}
     />
     <Widget
-      src={`${ownerId}/widget/Inputs.Viewable.Links`}
+      src={`${ownerId}/widget/Inputs.Viewable.TextArea`}
       props={{
-        label: "Links",
-        id: "links",
-        value: { github: "near-horizon", twitter: "nearhorizon" },
-        onSave: (links) => onSave({ links }),
+        label: "What problem(s) are you solving?",
+        id: "problem",
+        value: "Ethereum bought lots of cold wallet although VeChain waited some dead cat bounce during many ICO. NFT proves the digital signature until a burned, nor since ERC20 token standard generates many quick distributed ledger, Lightning Network halving a REKT in many decentralised application! Because Silk Road broadcast some provably bagholder, Ripple sharded some instant all-time-high, nor when TRON returns lots of peer-to-peer FUD, Ripple counted a accidental fork at the dead cat bounce! When blockchain could be a provably fair consensus process of some fork, Cardano required few burned bollinger band in many zero confirmation transaction",
+        onSave: (problem) => onSave({ problem }),
       }}
     />
     <Widget
-      src={`${ownerId}/widget/Inputs.Viewable.Select`}
+      src={`${ownerId}/widget/Inputs.Viewable.TextArea`}
       props={{
-        label: "Category",
-        id: "category",
-        value: [{ name: "Wallets" }],
-        options: [{ name: "Wallets" }, { name: "Games" }, { name: "Social" }, { name: "Other" }],
-        onSave: ([{ name: category }]) => onSave({ category }),
+        label: "What makes your team uniquely positioned for success?",
+        id: "success_position",
+        value: "Ethereum bought lots of cold wallet although VeChain waited some dead cat bounce during many ICO. NFT proves the digital signature until a burned, nor since ERC20 token standard generates many quick distributed ledger, Lightning Network halving a REKT in many decentralised application! Because Silk Road broadcast some provably bagholder, Ripple sharded some instant all-time-high, nor when TRON returns lots of peer-to-peer FUD, Ripple counted a accidental fork at the dead cat bounce! When blockchain could be a provably fair consensus process of some fork, Cardano required few burned bollinger band in many zero confirmation transaction",
+        onSave: (success_position) => onSave({ success_position }),
       }}
     />
     <Widget
-      src={`${ownerId}/widget/Inputs.Viewable.Select`}
+      src={`${ownerId}/widget/Inputs.Viewable.TextArea`}
       props={{
-        label: "Integration",
-        id: "integration",
-        value: [{ name: "Native" }],
-        options: [{ name: "Native" }, { name: "Multichain" }],
-        onSave: ([{ name: integration }]) => onSave({ integration }),
+        label: "Why are you building on neaNEAR?",
+        id: "why",
+        value: "Ethereum bought lots of cold wallet although VeChain waited some dead cat bounce during many ICO. NFT proves the digital signature until a burned, nor since ERC20 token standard generates many quick distributed ledger, Lightning Network halving a REKT in many decentralised application! Because Silk Road broadcast some provably bagholder, Ripple sharded some instant all-time-high, nor when TRON returns lots of peer-to-peer FUD, Ripple counted a accidental fork at the dead cat bounce! When blockchain could be a provably fair consensus process of some fork, Cardano required few burned bollinger band in many zero confirmation transaction",
+        onSave: (why) => onSave({ why }),
       }}
     />
     <Widget
-      src={`${ownerId}/widget/Inputs.Viewable.Select`}
+      src={`${ownerId}/widget/Inputs.Viewable.TextArea`}
       props={{
-        label: "Development phase",
-        id: "phase",
-        value: [{ name: "Testnet launched" }],
-        options: [{ name: "Testnet launched" }, { name: "Mainnet launched" }, { name: "In development" }, { name: "Concept" }],
-        onSave: ([{ name: phase }]) => onSave({ phase }),
+        label: "What's your 5 year vision? 1B users project evolution?",
+        id: "vision",
+        value: "Ethereum bought lots of cold wallet although VeChain waited some dead cat bounce during many ICO. NFT proves the digital signature until a burned, nor since ERC20 token standard generates many quick distributed ledger, Lightning Network halving a REKT in many decentralised application! Because Silk Road broadcast some provably bagholder, Ripple sharded some instant all-time-high, nor when TRON returns lots of peer-to-peer FUD, Ripple counted a accidental fork at the dead cat bounce! When blockchain could be a provably fair consensus process of some fork, Cardano required few burned bollinger band in many zero confirmation transaction",
+        onSave: (vision) => onSave({ vision }),
       }}
     />
     <Widget
-      src={`${ownerId}/widget/Inputs.Viewable.Number`}
+      src={`${ownerId}/widget/Inputs.Viewable.TextArea`}
       props={{
-        label: "User base (MAA)",
-        id: "userbase",
-        value: 3500,
-        onSave: (userbase) => onSave({ userbase }),
-      }}
-    />
-    <Widget
-      src={`${ownerId}/widget/Inputs.Viewable.Select`}
-      props={{
-        label: "Stage",
-        id: "stage",
-        value: [{ name: "Pre-Seed" }],
-        options: [
-          { name: "Pre-Seed" },
-          { name: "Seed" },
-          { name: "Series A" },
-          { name: "Series B" },
-          { name: "Series C" },
-          { name: "Series D" },
-          { name: "Late Stage" },
-          { name: "IPO" },
-        ],
-        onSave: ([{ name: stage }]) => onSave({ stage }),
-      }}
-    />
-    <Widget
-      src={`${ownerId}/widget/Inputs.Viewable.Number`}
-      props={{
-        label: "Funding goal",
-        id: "goal",
-        value: 1000000,
-        onSave: (goal) => onSave({ goal }),
-      }}
-    />
-    <Widget
-      src={`${ownerId}/widget/Inputs.Viewable.Number`}
-      props={{
-        label: "Raised",
-        id: "raised",
-        value: 600000,
-        onSave: (raised) => onSave({ raised }),
-      }}
-    />
-    <Widget
-      src={`${ownerId}/widget/Inputs.Viewable.AccountId`}
-      props={{
-        label: "CEO",
-        id: "ceo",
-        value: "petarvujovic.near",
-        onSave: (ceo) => onSave({ ceo }),
-      }}
-    />
-    <Widget
-      src={`${ownerId}/widget/Inputs.Viewable.AccountId`}
-      props={{
-        label: "CTO",
-        id: "cto",
-        value: "petarvujovic.near",
-        onSave: (cto) => onSave({ cto }),
-      }}
-    />
-    <Widget
-      src={`${ownerId}/widget/Inputs.Viewable.Number`}
-      props={{
-        label: "Company size",
-        id: "size",
-        value: 10,
-        onSave: (team) => onSave({ team }),
-      }}
-    />
-    <Widget
-      src={`${ownerId}/widget/Inputs.Viewable.Tags`}
-      props={{
-        label: "Tags",
-        id: "tags",
-        value: [
-          { name: "defi" },
-          { name: "exchange" },
-          { name: "staking" },
-          { name: "farming" },
-        ],
-        options: [
-          { name: "defi" },
-          { name: "exchange" },
-          { name: "staking" },
-          { name: "farming" },
-        ],
-        onSave: (tags) => onSave({ tags: tags.map(({ name }) => name) }),
-      }}
-    />
-    <Widget
-      src={`${ownerId}/widget/Inputs.Viewable.Text`}
-      props={{
-        label: "Location",
-        id: "location",
-        value: "San Francisco, CA",
-        onSave: (geo) => onSave({ geo }),
+        label: "Are you going to launch your token?",
+        id: "token",
+        value: "Ethereum bought lots of cold wallet although VeChain waited some dead cat bounce during many ICO. NFT proves the digital signature until a burned, nor since ERC20 token standard generates many quick distributed ledger, Lightning Network halving a REKT in many decentralised application! Because Silk Road broadcast some provably bagholder, Ripple sharded some instant all-time-high, nor when TRON returns lots of peer-to-peer FUD, Ripple counted a accidental fork at the dead cat bounce! When blockchain could be a provably fair consensus process of some fork, Cardano required few burned bollinger band in many zero confirmation transaction",
+        onSave: (token) => onSave({ token }),
       }}
     />
   </Container>
