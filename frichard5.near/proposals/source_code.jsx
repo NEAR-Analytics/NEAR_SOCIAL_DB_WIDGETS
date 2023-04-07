@@ -96,10 +96,11 @@ if (!state.proposals.length) {
     limit: resPerPage,
     offset: state.offset,
     proposal_type: state.type,
+    status: state.status,
   });
 }
 if (state.account != account) {
-  State.update({ proposals: [], account, offset: 0 });
+  //State.update({ proposals: [], account, offset: 0 });
 }
 
 const fetchMore = () => {
@@ -109,6 +110,7 @@ const fetchMore = () => {
       limit: resPerPage,
       offset: state.offset,
       proposal_type: state.type,
+      status: state.status,
     });
   }
 };
