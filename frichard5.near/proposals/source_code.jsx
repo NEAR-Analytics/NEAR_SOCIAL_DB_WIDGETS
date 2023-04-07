@@ -89,7 +89,7 @@ state.proposals.forEach((proposal) => {
 });
 
 return (
-  <InfiniteScroll loadMore={fetchTransfers(state.params)} hasMore={true}>
+  <InfiniteScroll loadMore={} hasMore={true}>
     {ProposalCards}
   </InfiniteScroll>
 );
