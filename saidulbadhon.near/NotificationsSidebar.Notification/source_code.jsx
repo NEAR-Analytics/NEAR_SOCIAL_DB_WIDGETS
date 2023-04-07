@@ -30,7 +30,6 @@ const supportedTypes = [
 
 const Wrapper = styled.div`
   display: flex;
-  flex-direction: column;
   align-items: center;
   gap: 24px;
   border: 1px solid #eceef0;
@@ -54,7 +53,6 @@ const Wrapper = styled.div`
     margin-left: auto;
   }
 
-  @media (max-width: 600px) {
     flex-direction: column;
     align-items: start;
     gap: 8px;
@@ -68,7 +66,6 @@ const Wrapper = styled.div`
     > *:last-child {
       margin-left: 0;
     }
-  }
 `;
 
 const Text = styled.p`
