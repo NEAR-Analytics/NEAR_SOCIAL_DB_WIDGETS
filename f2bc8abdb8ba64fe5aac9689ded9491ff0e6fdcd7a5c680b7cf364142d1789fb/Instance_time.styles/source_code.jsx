@@ -609,7 +609,8 @@ const allWidgetsClassNames = {
     dayContainer: "mb-2 d-flex",
     buttonsContainer:
       "mt-3 w-100 d-flex flex-row-reverse justify-content-between",
-    infoAndTitleContainer: "d-flex justify-content-center align-items-center",
+    infoAndTitleContainer:
+      "d-flex justify-content-center align-items-center flex-column",
     showInSmallerScreens: "d-lg-none",
   },
 };
