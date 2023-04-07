@@ -609,7 +609,7 @@ const allWidgetsClassNames = {
       "mt-3 w-100 d-flex flex-row-reverse justify-content-between",
     infoAndTitleContainer:
       "d-flex justify-content-center align-items-center flex-column",
-    showInMidAndBigScreens: "d-none d-md-block",
+    showInMidAndBigScreens: "d-none d-md-flex",
     showInResponsive: "d-lg-none",
     showInSmallerScreens: "d-md-none",
   },
