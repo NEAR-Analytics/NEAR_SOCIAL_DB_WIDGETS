@@ -258,13 +258,27 @@ return (
             </div>
             {days.map((day, index) => (
               <div
-                className={thisWidgetClassNames.dayRow}
-                style={thisWidgetInlineStyles.dayRow}
+                className={thisWidgetClassNames.dayContainer}
+                style={thisWidgetInlineStyles.dayContainer}
               >
                 <div style={thisWidgetInlineStyles.flex_row}>
-                  <div className={thisWidgetClassNames.rowFirstPart}>
-                    <div style={thisWidgetInlineStyles.table}>{day}</div>
-                    <div style={thisWidgetInlineStyles.table}>
+                  <div className={thisWidgetClassNames.infoAndTitleContainer}>
+                    <p
+                      classname={thisWidgetClassNames.showInSmallerScreens}
+                      style={thisWidgetInlineStyles.table}
+                    >
+                      {tbl_headers[0]}
+                    </p>
+                    <p style={thisWidgetInlineStyles.table}>{day}</p>
+                  </div>
+                  <div style={thisWidgetInlineStyles.table}>
+                    <div className={thisWidgetClassNames.infoAndTitleContainer}>
+                      <p
+                        classname={thisWidgetClassNames.showInSmallerScreens}
+                        style={thisWidgetInlineStyles.table}
+                      >
+                        {tbl_headers[1]}
+                      </p>
                       <div className="form-check form-switch">
                         <input
                           style={
@@ -296,8 +310,24 @@ return (
                       </div>
                     </div>
                   </div>
-                  {timeSelector(true, index)}
-                  {timeSelector(false, index)}
+                  <div className={thisWidgetClassNames.infoAndTitleContainer}>
+                    <p
+                      classname={thisWidgetClassNames.showInSmallerScreens}
+                      style={thisWidgetInlineStyles.table}
+                    >
+                      {tbl_headers[2]}
+                    </p>
+                    {timeSelector(true, index)}
+                  </div>
+                  <div className={thisWidgetClassNames.infoAndTitleContainer}>
+                    <p
+                      classname={thisWidgetClassNames.showInSmallerScreens}
+                      style={thisWidgetInlineStyles.table}
+                    >
+                      {tbl_headers[3]}
+                    </p>
+                    {timeSelector(false, index)}
+                  </div>
                 </div>
               </div>
             ))}
