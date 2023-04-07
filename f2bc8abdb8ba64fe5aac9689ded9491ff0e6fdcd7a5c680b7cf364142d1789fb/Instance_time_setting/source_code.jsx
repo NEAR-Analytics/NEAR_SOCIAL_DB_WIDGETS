@@ -264,7 +264,11 @@ const renderDayRow = (day, index, size) => {
         >
           <div
             className={thisWidgetClassNames.infoAndTitleContainer}
-            style={thisWidgetInlineStyles.infoAndTitleContainer}
+            style={
+              size == "big"
+                ? thisWidgetInlineStyles.infoAndTitleContainer
+                : thisWidgetInlineStyles.infoAndTitleContainerSmall
+            }
           >
             <p
               className={thisWidgetClassNames.showInResponsive}
@@ -272,13 +276,23 @@ const renderDayRow = (day, index, size) => {
             >
               {tbl_headers[0]}
             </p>
-            <p style={size == "big" ? thisWidgetInlineStyles.fontW600 : {}}>
+            <p
+              style={
+                size == "big"
+                  ? thisWidgetInlineStyles.fontW600
+                  : { margin: "0" }
+              }
+            >
               {day}
             </p>
           </div>
           <div
             className={thisWidgetClassNames.infoAndTitleContainer}
-            style={thisWidgetInlineStyles.infoAndTitleContainer}
+            style={
+              size == "big"
+                ? thisWidgetInlineStyles.infoAndTitleContainer
+                : thisWidgetInlineStyles.infoAndTitleContainerSmall
+            }
           >
             <p
               className={thisWidgetClassNames.showInResponsive}
@@ -330,7 +344,11 @@ const renderDayRow = (day, index, size) => {
         >
           <div
             className={thisWidgetClassNames.infoAndTitleContainer}
-            style={thisWidgetInlineStyles.infoAndTitleContainer}
+            style={
+              size == "big"
+                ? thisWidgetInlineStyles.infoAndTitleContainer
+                : thisWidgetInlineStyles.infoAndTitleContainerSmall
+            }
           >
             <p
               className={thisWidgetClassNames.showInResponsive}
@@ -342,7 +360,11 @@ const renderDayRow = (day, index, size) => {
           </div>
           <div
             className={thisWidgetClassNames.infoAndTitleContainer}
-            style={thisWidgetInlineStyles.infoAndTitleContainer}
+            style={
+              size == "big"
+                ? thisWidgetInlineStyles.infoAndTitleContainer
+                : thisWidgetInlineStyles.infoAndTitleContainerSmall
+            }
           >
             <p
               className={thisWidgetClassNames.showInResponsive}
