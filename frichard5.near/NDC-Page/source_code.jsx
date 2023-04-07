@@ -23,7 +23,7 @@ const DashboardContainer = styled.div`
   background-repeat: no-repeat;
   ${avenirFontFamily}
   button {
-    margin: 0 10px;
+    margin-left: 10px;
     color: black;
     background:rgba(255, 213, 13, 0.5);
     border: none;
