@@ -3,9 +3,9 @@ const Banner = styled.div`
     height: 200px;
 `;
 const Logo = styled.img`
-    width: 130px;
+    width: 80px;
     position: absolute;
-    top: 22px;
+    top: 120px;
     left: 50px;
     z-index: 1;
     border-radius: 50%;
