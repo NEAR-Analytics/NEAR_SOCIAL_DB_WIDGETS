@@ -613,7 +613,7 @@ const allWidgetsClassNames = {
     logedInGeneralContainer: "align-items-center",
     logedInThirdContainer: "d-flex flex-column",
     headerContainer: "d-none d-lg-flex",
-    dayContainer: "mb-2 d-flex",
+    dayContainer: "mb-2",
     buttonsContainer:
       "mt-3 w-100 d-flex flex-row-reverse justify-content-between",
     infoAndTitleContainer:
