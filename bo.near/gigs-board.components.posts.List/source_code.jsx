@@ -49,6 +49,8 @@ function href(widgetName, linkProps) {
 }
 /* END_INCLUDE: "common.jsx" */
 
+console.logs(props)
+
 function defaultRenderItem(postId, additionalProps) {
   if (!additionalProps) {
     additionalProps = {};
