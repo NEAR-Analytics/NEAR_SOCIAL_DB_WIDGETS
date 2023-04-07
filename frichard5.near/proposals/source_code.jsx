@@ -92,7 +92,7 @@ const fetchProposal = (params) => {
 if (!state.proposals.length) {
   fetchProposal({
     limit: resPerPage,
-    offset: state.offset,
+    offset: 0,
     proposal_type: state.type,
   });
 }
