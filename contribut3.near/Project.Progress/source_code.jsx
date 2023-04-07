@@ -7,6 +7,7 @@ const Container = styled.div`
   gap: .5em;
   background: #d9f4ff;
   border-radius: 8px;
+  width: 100%;
 `;
 
 const Row = styled.div`
@@ -16,6 +17,7 @@ const Row = styled.div`
   justify-content: flex-start;
   padding: 0px;
   gap: .5em;
+  width: 100%;
 `;
 
 const Label = styled.span`
