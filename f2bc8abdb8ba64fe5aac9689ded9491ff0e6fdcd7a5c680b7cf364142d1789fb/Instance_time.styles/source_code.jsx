@@ -598,7 +598,7 @@ const allWidgetsClassNames = {
     caretDownIcon: caretDownIcon,
     logedInGeneralContainer: "align-items-center",
     logedInThirdContainer: "d-flex flex-column",
-    headerContainer: "d-flex d-md-none d-sm-none",
+    headerContainer: "d-none d-lg-flex",
     dayRow: "mb-2 d-flex",
     rowFirstPart: "d-flex",
     buttonsContainer:
