@@ -5,7 +5,8 @@ const Select = styled.select`
   padding: 10px;
   font-size: 16px; 
   cursor: pointer;
-  background: #4498E0;
+  background: rgba(68, 152, 224, 0.7);
+  border-radius: 4px;
 `;
 
 const Option = styled.option`
