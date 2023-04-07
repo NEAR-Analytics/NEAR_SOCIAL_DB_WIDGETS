@@ -223,10 +223,10 @@ return (
         )}
       </ButtonLink>
 
-      <ButtonLink href={`${detailsUrl}&tab=source`}>
+      {/*<ButtonLink href={`${appUrl}&tab=source`}>
         <i className="bi bi-code-square"></i>
         View Source
-      </ButtonLink>
+      </ButtonLink>*/}
 
       <OverlayTrigger
         placement="top"
