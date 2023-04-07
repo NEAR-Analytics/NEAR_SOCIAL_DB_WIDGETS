@@ -13,7 +13,7 @@ const Name = styled.span`
   font-style: normal;
   font-weight: 700;
   font-size: 1.625em;
-  line-height: 2.5em;
+  // line-height: 2.5em;
   color: #101828;
 `;
 
