@@ -63,7 +63,7 @@ return (
           <SaveButton onClick={() => onSave(v)}>Save</SaveButton>
         </LabelArea>
       ),
-      view: isLink ? <a href={link}>{value}</a> : value,
+      view: <Widget src={`${ownerId}/widget/DescriptionArea`} props={{ description: value }} />,
     }}
   />
 );
