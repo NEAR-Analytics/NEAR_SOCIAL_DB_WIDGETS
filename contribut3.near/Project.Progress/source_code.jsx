@@ -18,7 +18,7 @@ const Row = styled.div`
   padding: 0px;
   gap: .5em;
   width: 100%;
-  height: 1em;
+  height: 1.4em;
 `;
 
 const Label = styled.span`
