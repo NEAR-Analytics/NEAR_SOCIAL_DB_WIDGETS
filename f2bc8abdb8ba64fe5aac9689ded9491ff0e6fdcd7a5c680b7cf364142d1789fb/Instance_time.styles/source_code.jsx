@@ -465,6 +465,9 @@ const allWidgetsInlineStyles = {
       justifyContent: "center",
       fontWeight: 600,
     },
+    fontW600: {
+      fontWeight: 600,
+    },
     flex_row: {
       display: "flex",
       flex: "1",
@@ -603,7 +606,7 @@ const allWidgetsClassNames = {
     buttonsContainer:
       "mt-3 w-100 d-flex flex-row-reverse justify-content-between",
     infoAndTitleContainer: "d-flex",
-    showInSmallerScreens: "d-none",
+    showInSmallerScreens: "d-lg-none",
   },
 };
 
