@@ -46,7 +46,7 @@ const Value = styled.div`
   font-style: normal;
   font-weight: 700;
   font-size: .75em;
-  line-height: 14em;
+  line-height: 1.4em;
   color: #11181c;
   width: 65%;
 `;
