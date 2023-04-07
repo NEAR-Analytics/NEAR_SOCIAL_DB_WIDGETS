@@ -5,6 +5,8 @@ const ProposalCard = styled.div`
   width: 80%;
   margin: 50px auto;
   box-shadow: 3px 2px 24px rgba(68, 152, 224, 0.3);
+  overflow: auto;
+  padding: 20px;
 `;
 
 const votes = proposal.proposal.votes;
