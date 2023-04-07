@@ -36,11 +36,11 @@ const Wrapper = styled.div`
   box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1),
     0px 1px 2px rgba(16, 24, 40, 0.06);
   padding: 12px;
-  border-radius: 12px;
+  border-radius: 4px;
   transition: background-color 200ms;
 
   &:hover {
-    background: #eefeef;
+    background: #f0f2f4;
   }
 
   > *:first-child {
