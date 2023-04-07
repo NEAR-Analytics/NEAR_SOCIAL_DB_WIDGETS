@@ -28,6 +28,7 @@ State.init({
   isLoading: false,
   type: "all",
   account: account,
+  status: "all",
 });
 
 const columns = [
@@ -131,6 +132,7 @@ const selectType = (e) => {
     limit: resPerPage,
     offset: 0,
     proposal_type: state.type,
+    status: state.status,
   });
 };
 
@@ -166,6 +168,40 @@ const SelectType = (
       options: typeOptions,
       selectedOption: state.type,
       onChange: selectType,
+    }}
+  />
+);
+
+const selectStatus = (e) => {
+  State.update({ status: e.target.value, proposals: [], offset: 0 });
+  fetchProposal({
+    limit: resPerPage,
+    offset: 0,
+    proposal_type: state.type,
+    status: state.status,
+  });
+};
+
+const statusOptions = [
+  "All",
+  "Rejected",
+  "InProgress",
+  "Expired",
+  "Approved",
+].map((t) => {
+  return {
+    value: t,
+    label: t,
+  };
+});
+
+const SelectStatus = (
+  <Widget
+    src={`${widgetProvider}/widget/NDC-select`}
+    props={{
+      options: statusOptions,
+      selectedOption: state.status,
+      onChange: selectStatus,
     }}
   />
 );
