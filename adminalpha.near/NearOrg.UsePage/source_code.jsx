@@ -387,7 +387,7 @@ return (
         </Flex>
       </Card>
 
-      <Flex gap="16px" wrap="wrap">
+      <Flex gap="16px" wrap="wrap" justifyContent="center">
         <Widget
           src="adminalpha.near/widget/DIG.Button"
           props={{
@@ -472,7 +472,7 @@ return (
         </Card>
       </Flex>
 
-      <Flex gap="16px" wrap="wrap">
+      <Flex gap="16px" wrap="wrap" justifyContent="center">
         <Widget
           src="adminalpha.near/widget/DIG.Button"
           props={{
