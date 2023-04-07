@@ -24,6 +24,7 @@ const Table = styled.table`
     th {
       position: sticky;
       top: 0;
+      background:white;
     }
     img {
       height: 15px;
