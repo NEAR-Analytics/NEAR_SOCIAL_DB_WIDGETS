@@ -37,6 +37,10 @@ const Pagination = styled.div`
   justify-content: flex-end;
   button {
     margin: 0 10px;
+    background:rgba(255, 213, 13, 0.5);
+    &:hover {
+      background:rgba(255, 213, 13, 1);
+    }
   }
 `;
 
