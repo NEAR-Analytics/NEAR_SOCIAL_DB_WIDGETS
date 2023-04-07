@@ -43,9 +43,17 @@ const Status = styled.div`
   }}
 `;
 
+const ProposalId = styled.div`
+  position: absolute;
+  top:20px;
+  left: 20px;
+  color:#8c8c8c;
+  font-size: 11px;
+`;
+
 return (
   <ProposalCard>
-    <div>Id: {proposal.proposal_id}</div>
+    <ProposalId>Proposal Id {proposal.proposal_id}</ProposalId>
     <div>Type: {proposal.proposal_type}</div>
     <div>Submission Time: {proposal.submission_time}</div>
     <div>Proposer: {proposal.proposal.proposer}</div>
