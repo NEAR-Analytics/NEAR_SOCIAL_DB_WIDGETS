@@ -715,7 +715,7 @@ return (
         </div>
       )}
     {
-      state.term && state.searchResult
+      state.term && state.term.length > 2 && state.searchResult
         ? widget("components.posts.List", {
             searchResult: {
               postIds: state.searchResult,
