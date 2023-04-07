@@ -22,6 +22,14 @@ const DashboardContainer = styled.div`
   background-size: contain;
   background-repeat: no-repeat;
   ${avenirFontFamily}
+  button {
+    margin: 0 10px;
+    color: black;
+    background:rgba(255, 213, 13, 0.5);
+    &:hover {
+      background:rgba(255, 213, 13, 1);
+    }
+  }
 `;
 
 const Banner = <Widget src={`${widgetProvider}/widget/NDC-Banner`} />;
