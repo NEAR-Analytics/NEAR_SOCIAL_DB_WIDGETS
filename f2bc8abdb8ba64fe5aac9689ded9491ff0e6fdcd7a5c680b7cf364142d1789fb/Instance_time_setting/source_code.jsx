@@ -269,7 +269,10 @@ const renderDayRow = (day, index, size) => {
               {tbl_headers[1]}
             </p>
 
-            <div className="form-check form-switch">
+            <div
+              className="form-check form-switch"
+              style={thisWidgetInlineStyles.inputContainer}
+            >
               <input
                 style={
                   state._is_on[index]
