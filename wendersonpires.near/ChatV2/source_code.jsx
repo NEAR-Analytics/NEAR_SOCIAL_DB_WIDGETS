@@ -21,7 +21,7 @@ const initialPayload = {
 };
 
 /**
- * Request Handlers.
+ * Request Handlers
  */
 const requestHandler = (request, response, Utils) => {
   switch (request.type) {
