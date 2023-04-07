@@ -17,7 +17,15 @@ const Header = styled.div`
   justify-content: space-between;
   gap: 1em;
   width: 100%;
-  `;
+`;
+
+const HeaderDetails = styled.div`
+  width: 80%;
+`;
+
+const HeaderProgress = styled.div`
+  width: 20%;
+`;
 
 const ContentContainer = styled.div`
   display: flex;
