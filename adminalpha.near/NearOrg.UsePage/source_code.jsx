@@ -161,6 +161,13 @@ const Card = styled.div`
   background: var(--sand1);
 `;
 
+const CircleImg = styled.img`
+  display: block;
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+`;
+
 return (
   <Wrapper>
     <Section center>
@@ -302,6 +309,59 @@ return (
           iconRight: "ph-bold ph-arrow-up-right",
           label: "Set up your account",
           variant: "affirmative",
+          size: "large",
+        }}
+      />
+    </Section>
+
+    <Section
+      gap="24px"
+      background="linear-gradient(to right, hsla(0, 0%, 100%, 0), var(--sand3), hsla(0, 0%, 100%, 0))"
+      id="explore-dapps"
+      center
+    >
+      <Flex direction="column" gap="16px">
+        <Text as="h2" size="text-3xl" color="sand12">
+          Explore dApps built on NEAR
+        </Text>
+        <Text size="text-l">
+          All these new paradigms are enabled and ensured by the core properties
+          of the blockchain.
+        </Text>
+      </Flex>
+
+      <Card center style={{ maxWidth: "694px" }}>
+        <CircleImg src="https://awesomenear-spaces.fra1.digitaloceanspaces.com/production/projects/ref-finance/ref-finance.jpg" />
+        <Flex direction="column" gap="8px">
+          <Text size="text-xl" fontWeight="600" color="sand12">
+            Putting community first in DeFi
+          </Text>
+          <Text>
+            Ref.Finance is a community-led, multi-purpose DeFi platform built on
+            NEAR Protocol.
+          </Text>
+        </Flex>
+        <Widget
+          src="adminalpha.near/widget/DIG.Button"
+          props={{
+            href: "https://www.ref.finance/",
+            target: "_blank",
+            iconRight: "ph-bold ph-arrow-up-right",
+            label: "Learn More",
+            variant: "primary",
+            fill: "outline",
+          }}
+        />
+      </Card>
+
+      <Widget
+        src="adminalpha.near/widget/DIG.Button"
+        props={{
+          href: "https://awesomenear.com/projects",
+          target: "_blank",
+          iconRight: "ph-bold ph-arrow-up-right",
+          label: "More dApps on AwesomeNEAR",
+          variant: "primary",
           size: "large",
         }}
       />
