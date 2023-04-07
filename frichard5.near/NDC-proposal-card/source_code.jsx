@@ -31,7 +31,7 @@ const Status = styled.div`
       case "Rejected":
         return "red";
       case "Approved":
-        return "green";
+        return "#13a36e";
       case "Expired":
         return "grey";
       case "InProgress":
