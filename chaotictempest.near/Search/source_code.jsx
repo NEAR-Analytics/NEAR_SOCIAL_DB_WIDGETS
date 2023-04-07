@@ -338,18 +338,23 @@ const onFacetClick = (facet) => {
 const onSearchResultClick = ({ searchPosition, objectID, eventName }) => {
   const position =
     searchPosition + state.currentPage * state.paginate.hitsPerPage;
-  // This will trigger the Insights widget:
-  State.update({
-    event: {
-      type: "clickedObjectIDsAfterSearch",
-      data: {
-        eventName,
-        userToken: userId.replace(".", "+"),
-        queryID: state.queryID,
-        objectIDs: [objectID],
-        positions: [position],
-      },
+  const event = {
+    type: "clickedObjectIDsAfterSearch",
+    data: {
+      eventName,
+      userToken: userId.replace(".", "+"),
+      queryID: state.queryID,
+      objectIDs: [objectID],
+      positions: [position],
+      timestamp: Date.now(),
     },
+  };
+
+  // Deferred due to State.update causing multiple clicks to be needed
+  // before the browser redirect to the page the user clicks on.
+  setTimeout(() => {
+    // This will trigger the Insights widget:
+    State.update({ event });
   });
 };
 
