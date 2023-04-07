@@ -37,7 +37,7 @@ const Wrapper = styled.div`
   padding: 12px;
   border-radius: 4px;
   transition: background-color 200ms;
-    background: ${props.theme.backgroundColor};
+    background: ${props.theme.ui};
 
 
   &:hover {
