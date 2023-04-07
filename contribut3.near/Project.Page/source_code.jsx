@@ -74,7 +74,12 @@ const Sidebar = styled.div`
 return (
   <Container>
     <Header>
-      <HeaderDetails />
+      <HeaderDetails>
+        <Widget
+          src={`${ownerId}/widget/Project.Icon`}
+          props={{ accountId: ownerId }}
+        />
+      </HeaderDetails>
       <HeaderProgress>
         <Widget
           src={`${ownerId}/widget/Project.Progress`}
