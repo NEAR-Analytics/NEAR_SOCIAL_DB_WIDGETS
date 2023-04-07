@@ -5,6 +5,8 @@ const thisWidgetInlineStyles =
   props.allWidgetsInlineStyles.instance_time_setting;
 const thisWidgetClassNames = props.allWidgetsClassNames.instance_time_setting;
 
+console.log(thisWidgetClassNames, thisWidgetInlineStyles);
+
 const sortAndRemoveRepeated = (flag, data) => {
   var temp = data;
   if (flag) temp.push(0, 168);
