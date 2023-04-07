@@ -33,7 +33,7 @@ const Status = styled.span`
       case "Expired":
         return "grey";
       case "InProgress":
-        return "pink";
+        return "orange";
     }
   }}
 `;
@@ -45,7 +45,7 @@ return (
     <div>Submission Time: {proposal.submission_time}</div>
     <div>Proposer: {proposal.proposal.proposer}</div>
     <div>
-      Status: <Status>{proposal.status}</Status>
+      Status: <Status status={proposal.status}>{proposal.status}</Status>
     </div>
     <p>{proposal.proposal.description}</p>
     <div>
