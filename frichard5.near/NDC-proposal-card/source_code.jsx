@@ -22,13 +22,31 @@ const voteList = votes
     })
   : "";
 
+const Status = styled.span`
+  font-weight: 700;
+  color: ${(props) => {
+    switch (props.status) {
+      case "Rejected":
+        return "red";
+      case "Approved":
+        return "green";
+      case "Expired":
+        return "grey";
+      case "InProgress":
+        return "pink";
+    }
+  }}
+`;
+
 return (
   <ProposalCard>
     <div>Id: {proposal.proposal_id}</div>
     <div>Type: {proposal.proposal_type}</div>
     <div>Submission Time: {proposal.submission_time}</div>
     <div>Proposer: {proposal.proposal.proposer}</div>
-    <div>Status: {proposal.status}</div>
+    <div>
+      Status: <Status>{proposal.status}</Status>
+    </div>
     <p>{proposal.proposal.description}</p>
     <div>
       Votes:
