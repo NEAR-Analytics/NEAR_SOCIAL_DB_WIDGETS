@@ -464,6 +464,7 @@ const allWidgetsInlineStyles = {
     },
     fontW600: {
       fontWeight: 600,
+      margin: "0",
     },
     colorActive: {
       color: colors.grey7,
