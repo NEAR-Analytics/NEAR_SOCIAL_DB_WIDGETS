@@ -16,15 +16,15 @@ const Container = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  gap: ${({ big }) => big ? ".625em" : ".25em"};
+  gap: ${({ big }) => (big ? ".625em" : ".25em")};
   width: 100%;
 `;
 
 const Label = styled.label`
   font-style: normal;
   font-weight: 600;
-  font-size: ${({ big }) => big ? "1em" : ".95em"};
-  line-height: ${({ big }) => big ? "1.4em" : "1em"};
+  font-size: ${({ big }) => (big ? "1em" : ".95em")};
+  line-height: ${({ big }) => (big ? "1.4em" : "1em")};
   color: #11181c;
 `;
 
@@ -71,7 +71,9 @@ const EditButtonContainer = styled.div`
 return (
   <Container big={big}>
     <Row>
-      <Label htmlFor={id} big={big}>{label}</Label>
+      <Label htmlFor={id} big={big}>
+        {label}
+      </Label>
       <EditButtonContainer>
         <EditButton
           onClick={() => State.update({ edit: false })}
