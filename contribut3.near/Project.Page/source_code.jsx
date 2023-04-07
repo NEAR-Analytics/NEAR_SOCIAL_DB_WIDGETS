@@ -76,7 +76,7 @@ return (
     <Header>
       <HeaderDetails>
         <Widget
-          src={`${ownerId}/widget/Project.Icon`}
+          src={`${ownerId}/widget/Project.HeaderDetails`}
           props={{ accountId: ownerId }}
         />
       </HeaderDetails>
