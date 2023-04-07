@@ -354,7 +354,7 @@ return (
           </Text>
         </Text>
 
-        <Flex direction="column" alignItems="flex-end" gap="16px">
+        <Flex direction="column" gap="16px">
           <Text>
             <b>Decentralized Finance, of DeFi,</b> lies at the core of the Web3
             movement. This sector leverages how tokens are valued and exchanged
@@ -420,7 +420,7 @@ return (
           </Text>
         </Text>
 
-        <Flex direction="column" alignItems="flex-end" gap="16px">
+        <Flex direction="column" gap="16px">
           <Text>
             <b>Non-Fungible Tokens</b> are unique digital assets that are
             fundamental to the idea of ownership in Web3. The assets you own are
