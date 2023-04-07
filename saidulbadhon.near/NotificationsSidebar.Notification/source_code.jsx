@@ -37,7 +37,7 @@ const Wrapper = styled.div`
   padding: 12px;
   border-radius: 4px;
   transition: background-color 200ms;
-    background: ${props.theme.ui};
+    backgroundColor: ${props.theme.ui};
 
 
   &:hover {
@@ -72,7 +72,7 @@ const Wrapper = styled.div`
 const Text = styled.p`
   margin: 0;
   line-height: 1.5rem;
-  color:${props.theme.textColor} !important;
+  color: ${props.theme.textColor}!important;
   font-weight: 400;
   font-size: ${(p) => (p.small ? "12px" : "14px")};
   overflow: ${(p) => (p.ellipsis ? "hidden" : "")};
@@ -82,12 +82,12 @@ const Text = styled.p`
 
   b {
     font-weight: 600;
-    color: #11181c;
+  color: ${props.theme.textColor}!important;
   }
 
   &[href] {
     font-weight: 600;
-    color: #006adc !important;
+  color: ${props.theme.textColor}!important;
     display: inline-flex;
     gap: 0.25rem;
 
