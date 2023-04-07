@@ -1,3 +1,3 @@
 const proposal = props.proposal;
 
-return <div>uh{proposal.id}</div>;
+return <div>{proposal.proposal_id}</div>;
