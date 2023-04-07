@@ -523,7 +523,7 @@ const allWidgetsInlineStyles = {
     },
     buttonStandard: standardButtonStyles,
     buttonHovered: standardButtonHoveringStyles,
-    dayFirstPartContainer: {
+    dayPartContainer: {
       display: "flex",
       width: "50%",
     },
