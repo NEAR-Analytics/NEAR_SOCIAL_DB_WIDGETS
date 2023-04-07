@@ -155,6 +155,10 @@ const ProposalInfiniteScroll = (
 return (
   <ProposalContainer>
     {SelectType}
-    {ProposalInfiniteScroll}
+    {state.proposals.length ? (
+      ProposalInfiniteScroll
+    ) : (
+      <div>No proposal found.</div>
+    )}
   </ProposalContainer>
 );
