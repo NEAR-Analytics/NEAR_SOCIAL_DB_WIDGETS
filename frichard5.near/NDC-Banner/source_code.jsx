@@ -1,6 +1,7 @@
 const Banner = styled.div`
     width: 100%;
     height: 200px;
+    margin-bottom: 35px;
 `;
 const Logo = styled.img`
     width: 80px;
