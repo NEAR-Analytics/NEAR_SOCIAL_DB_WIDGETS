@@ -4,10 +4,10 @@ const Banner = styled.div`
     margin-bottom: 35px;
 `;
 const Logo = styled.img`
-    width: 80px;
+    width: 100px;
     position: absolute;
     top: 120px;
-    left: 50px;
+    left: 60px;
     z-index: 1;
     border-radius: 50%;
     background: rgba(68, 152, 224, 0.75);
