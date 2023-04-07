@@ -167,7 +167,10 @@ return (
       <H1>Your first steps to becoming a Web3 citizen</H1>
     </Section>
 
-    <Section gap="24px" background="var(--sand2)">
+    <Section
+      gap="24px"
+      background="linear-gradient(to right, var(--sand1), var(--sand3), var(--sand1))"
+    >
       <Flex gap="24px" mobileStack>
         <Card center>
           <i
