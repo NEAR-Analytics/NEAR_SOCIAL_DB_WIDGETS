@@ -79,17 +79,13 @@ const Flex = styled.div`
 
 const Section = styled.div`
   display: flex;
-  padding: calc(var(--section-gap) / 2) 16px;
+  padding: calc(var(--section-gap) / 2) 24px;
   gap: ${(p) => p.gap ?? "var(--medium-gap)"};
   flex-direction: column;
   align-items: ${(p) => (p.center ? "center" : undefined)};
   justify-content: ${(p) => (p.center ? "center" : undefined)};
   text-align: ${(p) => (p.center ? "center" : undefined)};
   background: ${(p) => p.background};
-  box-shadow: ${(p) =>
-    p.background
-      ? `-1000px 0 0 ${p.background}, 1000px 0 0 ${p.background}`
-      : undefined};
 `;
 
 const Icon = styled.div`
