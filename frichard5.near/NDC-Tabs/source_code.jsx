@@ -28,6 +28,7 @@ const TabButton = styled.button`
     border: none; 
     border-radius: 4px;
     margin: 0 10px;
+    background: transparent;
     &:hover {
       background:rgba(255, 213, 13, 0.5);
     }
