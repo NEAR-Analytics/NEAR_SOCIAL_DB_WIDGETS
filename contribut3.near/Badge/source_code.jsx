@@ -15,7 +15,7 @@ const Container = styled.div`
   border-radius: 100px;
   font-style: normal;
   font-weight: 400;
-  font-size: .75em;
+  font-size: 0.75em;
   line-height: 1em;
   color: #475467;
 `;
