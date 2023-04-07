@@ -175,7 +175,7 @@ const getData = () => {
 };
 const timeSelector = (f, index) => {
   return (
-    <div style={thisWidgetInlineStyles.table}>
+    <div style={thisWidgetInlineStyles.fontW600}>
       <div className={thisWidgetClassNames.timeSelector}>
         <select
           style={
@@ -251,7 +251,7 @@ return (
               className={thisWidgetClassNames.headerContainer}
             >
               {tbl_headers.map((header) => (
-                <div style={thisWidgetInlineStyles.table}>{header}</div>
+                <div style={thisWidgetInlineStyles.fontW600}>{header}</div>
               ))}
             </div>
             {days.map((day, index) => (
@@ -266,45 +266,46 @@ return (
                   >
                     {tbl_headers[0]}
                   </p>
-                  <p style={thisWidgetInlineStyles.table}>{day}</p>
+                  <p style={thisWidgetInlineStyles.fontW600}>{day}</p>
                 </div>
-                <div style={thisWidgetInlineStyles.table}>
-                  <div className={thisWidgetClassNames.infoAndTitleContainer}>
-                    <p
-                      className={thisWidgetClassNames.showInSmallerScreens}
-                      style={thisWidgetInlineStyles.fontW600}
-                    >
-                      {tbl_headers[1]}
-                    </p>
-                    <div className="form-check form-switch">
-                      <input
-                        style={
-                          state._is_on[index]
-                            ? thisWidgetInlineStyles.inputActive
-                            : thisWidgetInlineStyles.inputInactive
+                <div
+                  style={thisWidgetInlineStyles.fontW600}
+                  className={thisWidgetClassNames.infoAndTitleContainer}
+                >
+                  <p
+                    className={thisWidgetClassNames.showInSmallerScreens}
+                    style={thisWidgetInlineStyles.fontW600}
+                  >
+                    {tbl_headers[1]}
+                  </p>
+                  <div className="form-check form-switch">
+                    <input
+                      style={
+                        state._is_on[index]
+                          ? thisWidgetInlineStyles.inputActive
+                          : thisWidgetInlineStyles.inputInactive
+                      }
+                      className="form-check-input"
+                      type="checkbox"
+                      role="switch"
+                      checked={state._is_on[index]}
+                      id={day + index}
+                      key={day + index + state._is_on[index]}
+                      onChange={(e) => {
+                        let temp = state._is_on;
+                        temp[index] = !temp[index];
+                        State.update({ _is_on: temp });
+                        if (!e.target.value) {
+                          state._from[index] = "0";
+                          state._to[index] = "0";
+                          let error_temp = state._validate_error;
+                          State.update({
+                            _error_msg: `${(error_temp[index] = true)}`,
+                          });
+                          validate();
                         }
-                        className="form-check-input"
-                        type="checkbox"
-                        role="switch"
-                        checked={state._is_on[index]}
-                        id={day + index}
-                        key={day + index + state._is_on[index]}
-                        onChange={(e) => {
-                          let temp = state._is_on;
-                          temp[index] = !temp[index];
-                          State.update({ _is_on: temp });
-                          if (!e.target.value) {
-                            state._from[index] = "0";
-                            state._to[index] = "0";
-                            let error_temp = state._validate_error;
-                            State.update({
-                              _error_msg: `${(error_temp[index] = true)}`,
-                            });
-                            validate();
-                          }
-                        }}
-                      />
-                    </div>
+                      }}
+                    />
                   </div>
                 </div>
                 <div className={thisWidgetClassNames.infoAndTitleContainer}>
