@@ -32,6 +32,7 @@ const HeaderDetails = styled.div`
 `;
 
 const HeaderProgress = styled.div`
+display: flex;
   width: 20%;
 `;
 
