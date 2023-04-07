@@ -11,8 +11,6 @@ const forgeUrl = (apiUrl, params) =>
   );
 
 const ProposalContainer = styled.div`
-
-  overflow: auto;
 `;
 
 const resPerPage = 10;
