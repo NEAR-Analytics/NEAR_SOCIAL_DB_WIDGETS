@@ -175,7 +175,7 @@ const getData = () => {
 };
 const timeSelector = (f, index) => {
   return (
-    <div style={thisWidgetInlineStyles.fontW600}>
+    <div style={thisWidgetInlineStyles.timeSelectorContainer}>
       <div className={thisWidgetClassNames.timeSelector}>
         <select
           style={
