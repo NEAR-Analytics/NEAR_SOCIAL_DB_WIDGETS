@@ -15,6 +15,7 @@ const resPerPage = 10;
 State.init({
   params: {
     offset: 0,
+    limit: resPerPage,
   },
   proposals: [],
 });
