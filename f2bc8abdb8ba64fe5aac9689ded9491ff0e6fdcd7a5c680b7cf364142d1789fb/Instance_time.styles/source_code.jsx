@@ -527,7 +527,9 @@ const allWidgetsInlineStyles = {
       display: "flex",
       width: "50%",
     },
-    infoAndTitleContainer: {},
+    infoAndTitleContainer: {
+      width: "50%",
+    },
     headerElement: {
       width: "25%",
       textAlign: "center",
