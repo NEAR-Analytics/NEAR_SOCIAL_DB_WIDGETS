@@ -36,6 +36,30 @@ const DashboardContainer = styled.div`
         color: black !important;
     }
   }
+  ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 3px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
 `;
 
 const Banner = <Widget src={`${widgetProvider}/widget/NDC-Banner`} />;
