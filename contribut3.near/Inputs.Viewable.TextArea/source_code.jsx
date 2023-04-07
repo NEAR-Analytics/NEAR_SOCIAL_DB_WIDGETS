@@ -49,7 +49,7 @@ const MarkdownText = styled.div`
   font-weight: 700;
   font-size: 1em;
   line-height: 1.5em;
-  color: #475467;
+  color: ##101828;
 `;
 
 return (
