@@ -97,6 +97,9 @@ if (!state.proposals.length) {
     proposal_type: state.type,
   });
 }
+if (state.account != account) {
+  State.update({ proposals: [], account });
+}
 
 const fetchMore = () => {
   if (!state.isLoading) {
