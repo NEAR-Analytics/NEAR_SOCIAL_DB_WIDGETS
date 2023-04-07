@@ -27,6 +27,7 @@ State.init({
   proposals: [],
   isLoading: false,
   type: "all",
+  account: account,
 });
 
 const columns = [
@@ -109,7 +110,7 @@ const fetchMore = () => {
 };
 
 const ProposalCards = [];
-console.log("state PROPOSALS", state.proposals);
+console.log("state PROPOSALS", state);
 state.proposals.forEach((proposal) => {
   ProposalCards.push(
     <Widget
