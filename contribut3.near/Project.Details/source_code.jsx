@@ -25,15 +25,6 @@ return (
   <Container>
     <Heading>Details</Heading>
     <Widget
-      src={`${ownerId}/widget/Inputs.Viewable.TextArea`}
-      props={{
-        label: "Test",
-        id: "test",
-        value: "test",
-        onSave: (test) => onSave({ test }),
-      }}
-    />
-    <Widget
       src={`${ownerId}/widget/Inputs.Viewable.Text`}
       props={{
         label: "Website",
