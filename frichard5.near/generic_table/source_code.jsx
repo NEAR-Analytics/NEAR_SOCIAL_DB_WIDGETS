@@ -32,6 +32,12 @@ const Table = styled.table`
     }
 `;
 
+const Pagination = styled.div`
+  button {
+    
+  }
+`;
+
 const columns = props.columns || [
   { label: "props columns missing", id: "data" },
 ];
@@ -67,7 +73,7 @@ return (
       </Table>
     </TableWrapper>
     {nextPage && previousPage && resPerPage && (
-      <div>
+      <Pagination>
         {offset ? (
           <button onClick={previousPage}>previous {resPerPage}</button>
         ) : (
@@ -78,7 +84,7 @@ return (
         ) : (
           ""
         )}
-      </div>
+      </Pagination>
     )}
   </MainWrapper>
 );
