@@ -179,7 +179,7 @@ const timeSelector = (f, index) => {
       style={
         state._is_on[index]
           ? thisWidgetInlineStyles.timeSelectorContainerActive
-          : timeSelectorContainerInctive
+          : timeSelectorContainerInactive
       }
     >
       <div className={thisWidgetClassNames.timeSelector}>
