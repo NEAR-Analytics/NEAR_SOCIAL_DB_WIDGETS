@@ -43,7 +43,7 @@ const renderItem = (item, i) => {
     <Widget
       src="saidulbadhon.near/widget/NotificationsSidebar.Notification"
       key={i}
-      props={item}
+      props={{ ...item, theme: props.theme }}
     />
   );
 };
