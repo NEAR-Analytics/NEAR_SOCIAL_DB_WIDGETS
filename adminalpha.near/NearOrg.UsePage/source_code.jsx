@@ -245,7 +245,12 @@ return (
     </Section>
 
     <Section id="why-it-matters">
-      <Text>Hello</Text>
+      <Text as="h2" size="text-3xl" color="sand12">
+        Set up your account
+      </Text>
+      <Text size="text-l">
+        You need a wallet to use the web3. Choose a wallet that fits your needs
+      </Text>
     </Section>
   </Wrapper>
 );
