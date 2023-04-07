@@ -4,12 +4,12 @@ const Select = styled.select`
   position: relative;
   border: none;
   padding: 7px;
-  font-size: 6px; 
+  font-size: 16px; 
   cursor: pointer;
   background: rgba(68, 152, 224, 0.7);
   border-radius: 4px;
   top: -31px;
-  left: -30px;
+  left: -40px;
 `;
 
 const Option = styled.option`
