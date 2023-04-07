@@ -264,7 +264,7 @@ return (
                 <div style={thisWidgetInlineStyles.flex_row}>
                   <div className={thisWidgetClassNames.infoAndTitleContainer}>
                     <p
-                      classname={thisWidgetClassNames.showInSmallerScreens}
+                      className={thisWidgetClassNames.showInSmallerScreens}
                       style={thisWidgetInlineStyles.fontW600}
                     >
                       {tbl_headers[0]}
@@ -274,7 +274,7 @@ return (
                   <div style={thisWidgetInlineStyles.table}>
                     <div className={thisWidgetClassNames.infoAndTitleContainer}>
                       <p
-                        classname={thisWidgetClassNames.showInSmallerScreens}
+                        className={thisWidgetClassNames.showInSmallerScreens}
                         style={thisWidgetInlineStyles.fontW600}
                       >
                         {tbl_headers[1]}
@@ -312,7 +312,7 @@ return (
                   </div>
                   <div className={thisWidgetClassNames.infoAndTitleContainer}>
                     <p
-                      classname={thisWidgetClassNames.showInSmallerScreens}
+                      className={thisWidgetClassNames.showInSmallerScreens}
                       style={thisWidgetInlineStyles.fontW600}
                     >
                       {tbl_headers[2]}
@@ -321,7 +321,7 @@ return (
                   </div>
                   <div className={thisWidgetClassNames.infoAndTitleContainer}>
                     <p
-                      classname={thisWidgetClassNames.showInSmallerScreens}
+                      className={thisWidgetClassNames.showInSmallerScreens}
                       style={thisWidgetInlineStyles.fontW600}
                     >
                       {tbl_headers[3]}
