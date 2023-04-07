@@ -45,7 +45,6 @@ const SaveButton = styled.button`
 `;
 
 const MarkdownText = styled.div`
-  font-style: normal;
   font-size: .95em;
   line-height: 1.25em;
 
