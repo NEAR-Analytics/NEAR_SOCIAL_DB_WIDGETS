@@ -27,12 +27,11 @@ const Sidebar = styled.div`
   width: 20%;
 `;
 
-return <ContentContainer>
+return (<ContentContainer>
   <MainContent>
-
     <Widget src={`${ownerId}/widget/Project.About`} props={{ onSave: (s) => { console.log(s) } }} />
   </MainContent>
   <Sidebar>
     <Widget src={`${ownerId}/widget/Project.Sidebar`} props={{ onSave: (s) => { console.log(s) } }} />
   </Sidebar>
-</ContentContainer>
+</ContentContainer>);
