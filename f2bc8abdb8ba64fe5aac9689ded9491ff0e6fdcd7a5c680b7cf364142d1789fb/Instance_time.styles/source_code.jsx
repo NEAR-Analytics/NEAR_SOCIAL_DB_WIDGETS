@@ -518,6 +518,13 @@ const allWidgetsInlineStyles = {
     },
     buttonStandard: standardButtonStyles,
     buttonHovered: standardButtonHoveringStyles,
+    infoAndTitleContainer: {
+      width: "25%",
+    },
+    headerElement: {
+      width: "25%",
+      fontWeight: 600,
+    },
   },
 };
 
