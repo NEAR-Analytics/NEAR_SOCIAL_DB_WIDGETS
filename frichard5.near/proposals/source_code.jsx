@@ -14,6 +14,11 @@ const ProposalContainer = styled.div`
   min-height: 100px
 `;
 
+const NoProposal = styled.div`
+  text-align: center;
+  margin-top: 100px;
+`;
+
 const resPerPage = 10;
 
 State.init({
@@ -158,7 +163,7 @@ return (
     {state.proposals.length ? (
       ProposalInfiniteScroll
     ) : (
-      <div>No proposal found.</div>
+      <NoProposal>No proposal found.</NoProposal>
     )}
   </ProposalContainer>
 );
