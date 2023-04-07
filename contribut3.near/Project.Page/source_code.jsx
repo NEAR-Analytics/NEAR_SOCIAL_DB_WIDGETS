@@ -10,6 +10,15 @@ const getContent = (content) => {
   return content;
 };
 
+const Header = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1em;
+  width: 100%;
+  `;
+
 const ContentContainer = styled.div`
   display: flex;
   flex-direction: row;
