@@ -5,8 +5,8 @@ const instanceTimeIcon = "bi bi-calendar-week-fill";
 const newScheduleButtonInnerIcon = "bi bi-plus-lg";
 const closeWidgetIcon = "bi bi-x-lg";
 const tabSelectedIcon = "bi bi-square-fill";
-const caretUpIcon = "bi-caret-up",
-const caretDownIcon = "bi-caret-down",
+const caretUpIcon = "bi-caret-up";
+const caretDownIcon = "bi-caret-down";
 
 //===================================================================== End icons========================================================================================================
 
@@ -600,7 +600,8 @@ const allWidgetsClassNames = {
     logedInThirdContainer: "d-flex flex-column",
     headerContainer: "d-flex d-md-none d-sm-none",
     dayRow: "mb-2 d-flex",
-    buttonsContainer: "mt-3 w-100 d-flex flex-row-reverse justify-content-between",
+    buttonsContainer:
+      "mt-3 w-100 d-flex flex-row-reverse justify-content-between",
   },
 };
 
