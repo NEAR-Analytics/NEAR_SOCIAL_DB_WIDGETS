@@ -1,6 +1,7 @@
 const proposal = props.proposal;
 
 const ProposalCard = styled.div`
+  position: relative;
   height: 300px;
   width: 80%;
   margin: 50px auto;
@@ -23,7 +24,10 @@ const voteList = votes
     })
   : "";
 
-const Status = styled.span`
+const Status = styled.div`
+  position: absolute;
+  top: 20px;
+  right: 20px;
   font-weight: 700;
   color: ${(props) => {
     switch (props.status) {
@@ -45,9 +49,7 @@ return (
     <div>Type: {proposal.proposal_type}</div>
     <div>Submission Time: {proposal.submission_time}</div>
     <div>Proposer: {proposal.proposal.proposer}</div>
-    <div>
-      Status: <Status status={proposal.status}>{proposal.status}</Status>
-    </div>
+    <Status status={proposal.status}>{proposal.status}</Status>
     <p>{proposal.proposal.description}</p>
     <div>
       Votes:
