@@ -20,6 +20,7 @@ const tabSelect = (selectedTab) => {
 const TabsContainer = styled.div``;
 const Tabs = styled.div`
     display:flex;
+    justify-items:flex-end;
 `;
 const Content = styled.div``;
 const TabButton = styled.button`
