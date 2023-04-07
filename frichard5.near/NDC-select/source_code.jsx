@@ -13,6 +13,8 @@ const Select = styled.select`
 `;
 
 const Option = styled.option`
+  padding: 7px;
+  font-size: 16px; 
 `;
 
 const Options = [];
