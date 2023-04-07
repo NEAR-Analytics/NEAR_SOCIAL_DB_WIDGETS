@@ -67,6 +67,10 @@ const Wrapper = styled.div`
     > *:last-child {
       margin-left: 0;
     }
+    div * {
+       color: ${props.theme.textColor}!important;
+   
+    }
 `;
 
 const Text = styled.p`
