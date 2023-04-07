@@ -26,8 +26,10 @@ const DashboardContainer = styled.div`
     margin: 0 10px;
     color: black;
     background:rgba(255, 213, 13, 0.5);
+    border: none;
     &:hover {
       background:rgba(255, 213, 13, 1);
+      color: black;
     }
   }
 `;
