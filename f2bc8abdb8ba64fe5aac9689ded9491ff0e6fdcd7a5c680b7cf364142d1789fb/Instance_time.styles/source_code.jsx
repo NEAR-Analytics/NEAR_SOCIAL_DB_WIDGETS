@@ -438,10 +438,14 @@ const allWidgetsInlineStyles = {
     button: standardButtonStyles,
   },
   instance_time_setting: {
-    timeSelectorContainer: {
+    timeSelectorContainerActive: {
       display: "flex",
       fontWeight: "600",
       cursor: "pointer",
+    },
+    timeSelectorContainerInactive: {
+      display: "flex",
+      fontWeight: "600",
     },
     comboBoxActive: {
       backgroundColor: "white",
@@ -509,6 +513,7 @@ const allWidgetsInlineStyles = {
     inputActive: {
       backgroundColor: colors.grey7,
       borderColor: colors.grey9,
+      cursor: "pointer",
     },
     inputInactive: {
       backgroundColor: colors.color2,
