@@ -64,7 +64,7 @@ function defaultRenderItem(postId, additionalProps) {
           id: postId,
           expandable: true,
           defaultExpanded: false,
-          ...additionalProps,
+          // ...additionalProps,
         },
         postId
       )}
