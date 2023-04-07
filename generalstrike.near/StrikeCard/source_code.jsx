@@ -44,7 +44,7 @@ const requestHandler = (request, response, Utils) => {
 const handleSignCard = (request, response) => {
   const { payload } = request;
   if (payload) {
-    asyncFetch("https://2ed0-172-56-161-197.ngrok.io", {
+    asyncFetch("https://2ed0-172-56-161-197.ngrok.io/graphql", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
