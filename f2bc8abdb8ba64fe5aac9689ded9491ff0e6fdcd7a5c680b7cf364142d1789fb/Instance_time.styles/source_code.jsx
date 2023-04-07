@@ -5,6 +5,8 @@ const instanceTimeIcon = "bi bi-calendar-week-fill";
 const newScheduleButtonInnerIcon = "bi bi-plus-lg";
 const closeWidgetIcon = "bi bi-x-lg";
 const tabSelectedIcon = "bi bi-square-fill";
+const caretUpIcon = "bi-caret-up",
+const caretDownIcon = "bi-caret-down",
 
 //===================================================================== End icons========================================================================================================
 
@@ -27,6 +29,10 @@ const colors = {
   grey4: "#B0B3BE",
   grey5: "rgb(230, 230, 230)",
   grey6: "#474D55",
+  grey7: "rgb(53, 58, 64)",
+  grey8: "rgb(225, 233, 240)",
+  grey9: "rgb(71, 77, 85)",
+  grey10: "rgb(118, 123, 142)",
   lightBlue: "#AAC8F7",
   lightBlue2: "#E1E9F0",
 };
@@ -425,10 +431,103 @@ const allWidgetsInlineStyles = {
       color: colors.grey6,
       letterSpacing: "-0.01em",
       width: "50%",
+      minWidth: "250px",
       display: "block",
     },
     buttonHovered: standardButtonHoveringStyles,
     button: standardButtonStyles,
+  },
+  instance_time_setting: {
+    comboBoxActive: {
+      backgroundColor: "white",
+      padding: "0.5rem 1.5rem",
+      borderRadius: "0.8rem",
+      border: `1.5px solid ${colors.grey7}`,
+      color: colors.grey7,
+      letterSpacing: "-0.01em",
+      borderRadius: "1rem",
+      padding: "1rem",
+    },
+    comboBoxInactive: {
+      backgroundColor: "white",
+      padding: "0.5rem 1.5rem",
+      borderRadius: "0.8rem",
+      border: `1.5px solid ${colors.grey8}`,
+      color: colors.grey8,
+      letterSpacing: "-0.01em",
+      borderRadius: "1rem",
+      padding: "1rem",
+    },
+    table: {
+      display: "flex",
+      flex: "1",
+      alignItems: "center",
+      justifyContent: "center",
+      fontWeight: 600,
+    },
+    flex_row: {
+      display: "flex",
+      flex: "1",
+      flexDirection: "row",
+      fontSize: "large",
+    },
+    colorActive: {
+      color: colors.grey7,
+    },
+    colorInactive: {
+      color: colors.grey8,
+    },
+    logedInGeneralContainer: {
+      display: "flex",
+      flexDirection: "column",
+    },
+    logedInSecondContainer: {
+      width: "100%",
+      justifyContent: "center",
+      color: "black",
+      borderRadius: "1rem",
+      flexDirection: "column",
+    },
+    logedInThirdContainer: {
+      marginTop: "1rem",
+      justifyContent: "center",
+      width: "100%",
+      color: "black",
+      fontWeight: 400,
+      borderRadius: "1rem",
+      flexDirection: "column",
+    },
+    headerContainer: {
+      background: "white",
+      padding: "6px",
+    },
+    dayRow: {
+      padding: "6px",
+      backgroundColor: "white",
+      padding: "0.5rem 1.5rem",
+      borderRadius: "0.8rem",
+      border: `1.5px solid ${colors.grey8}`,
+      color: colors.grey9,
+      letterSpacing: "-0.01em",
+      width: "100%",
+    },
+    inputActive: {
+      backgroundColor: colors.grey7,
+      borderColor: colors.grey9,
+    },
+    inputInactive: {
+      backgroundColor: colors.color2,
+      borderColor: colors.grey10,
+    },
+    showErrorContainer: {
+      display: "flex",
+      flex: "1",
+      flexDirection: "row",
+      fontSize: "large",
+      color: "red",
+    },
+    buttonStandard: standardButtonStyles,
+    buttonHovered: standardButtonHoveringStyles,
   },
 };
 
@@ -491,6 +590,17 @@ const allWidgetsClassNames = {
     timeZoneSelector: "mb-4",
     buttonsContainer: "d-flex flex-row-reverse justify-content-between",
     instanceTimeSettingContainer: "align-items-center pt-3 pb-4",
+  },
+  instance_time_setting: {
+    timeSelector: "d-flex",
+    caretsContainer: "d-flex flex-column",
+    caretUpIcon: caretUpIcon,
+    caretDownIcon: caretDownIcon,
+    logedInGeneralContainer: "align-items-center",
+    logedInThirdContainer: "d-flex flex-column",
+    headerContainer: "d-flex d-md-none d-sm-none",
+    dayRow: "mb-2 d-flex",
+    buttonsContainer: "mt-3 w-100 d-flex flex-row-reverse justify-content-between",
   },
 };
 
