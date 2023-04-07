@@ -1,3 +1,6 @@
+const name = props.name || context.accountId;
+const accountId = props.accountId || context.accountId;
+
 const Container = styled.div`
   display: flex;
   flex-direction: row;
@@ -21,3 +24,10 @@ const Account = styled.span`
   line-height: 1.4em;
   color: #687076;
 `;
+
+return (
+  <Container>
+    <Name>{name}</Name>
+    <Account>@{accountId}</Account>
+  </Container>
+);
