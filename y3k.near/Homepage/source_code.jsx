@@ -33,8 +33,8 @@ return (
           </div>
         )}
     </div>
-    <div class="text-center container">
-      <div class="container">
+    <div class="text-center">
+      <div class="">
         <div class="row  ">
           <h1 class="fw-light">Monthly Active Accounts</h1>
 
