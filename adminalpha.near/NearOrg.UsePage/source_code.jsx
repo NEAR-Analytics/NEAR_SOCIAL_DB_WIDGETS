@@ -11,13 +11,11 @@ const Wrapper = styled.div`
   --large-gap: 82px;
   --medium-gap: 48px;
   margin: calc(var(--body-top-padding) * -1) calc(var(--bs-gutter-x) * -.5) 0;
-  padding: calc(var(--section-gap) / 2) 0;
 
   @media (max-width: 900px) {
     --section-gap: 60px;
     --large-gap: 24px;
     --medium-gap: 16px;
-    padding-top: 0;
   }
 `;
 
