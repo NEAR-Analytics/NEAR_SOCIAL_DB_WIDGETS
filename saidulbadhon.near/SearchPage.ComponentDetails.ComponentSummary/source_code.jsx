@@ -203,7 +203,11 @@ return (
     )}
 
     <Actions>
-      <ButtonLink primary href={primaryActions[primaryAction].url}>
+      <ButtonLink
+        primary
+        href={primaryActions[primaryAction].url}
+        target="_blank"
+      >
         {primaryActions[primaryAction].display}
       </ButtonLink>
 
