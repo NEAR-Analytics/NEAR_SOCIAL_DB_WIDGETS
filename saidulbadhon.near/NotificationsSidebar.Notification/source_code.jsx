@@ -37,7 +37,7 @@ const Wrapper = styled.div`
   padding: 12px;
   border-radius: 4px;
   transition: background-color 200ms;
-    background: ${props.theme.ui};
+    background: ${props.theme.backgroundColor};
 
 
   &:hover {
@@ -72,7 +72,7 @@ const Wrapper = styled.div`
 const Text = styled.p`
   margin: 0;
   line-height: 1.5rem;
-  color: ${(p) => (p.bold ? "#11181C" : "#687076")} !important;
+  color:${props.theme.textColor} !important;
   font-weight: 400;
   font-size: ${(p) => (p.small ? "12px" : "14px")};
   overflow: ${(p) => (p.ellipsis ? "hidden" : "")};
