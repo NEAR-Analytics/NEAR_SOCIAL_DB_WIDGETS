@@ -26,7 +26,8 @@ const Container = styled.div`
   justify-content: flex-start;
   gap: 0.5em;
   max-width: 100%;
-  overflow: scroll;
+  overflow-x: scroll;
+  overflow-y: hidden;
 `;
 
 return (
