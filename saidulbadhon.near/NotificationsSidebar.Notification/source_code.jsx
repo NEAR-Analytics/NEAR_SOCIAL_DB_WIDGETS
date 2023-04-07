@@ -68,7 +68,7 @@ const Wrapper = styled.div`
       margin-left: 0;
     }
     div * {
-       color: ${props.theme.textColor}!important;
+       color: ${props.theme.textColor2};
    
     }
 `;
