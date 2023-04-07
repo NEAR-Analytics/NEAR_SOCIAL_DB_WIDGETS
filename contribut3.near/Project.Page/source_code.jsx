@@ -26,6 +26,7 @@ const MainContent = styled.div`
   justify-content: flex-start;
   gap: 1em;
   width: 80%;
+  padding-top: .1em;
 `;
 
 const Sidebar = styled.div`
