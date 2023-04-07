@@ -441,6 +441,7 @@ const allWidgetsInlineStyles = {
     timeSelectorContainer: {
       display: "flex",
       fontWeight: "600",
+      cursor: "pointer",
     },
     comboBoxActive: {
       backgroundColor: "white",
@@ -507,6 +508,7 @@ const allWidgetsInlineStyles = {
     inputActive: {
       backgroundColor: colors.grey7,
       borderColor: colors.grey9,
+      cursor: "pointer",
     },
     inputInactive: {
       backgroundColor: colors.color2,
