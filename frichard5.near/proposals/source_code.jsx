@@ -11,13 +11,14 @@ const forgeUrl = (apiUrl, params) =>
   );
 
 const ProposalContainer = styled.div`
-  height:100px;
+
   overflow: auto;
 `;
 
-const resPerPage = 10;
+const resPerPage = 50;
 
 State.init({
+  offset: 0,
   lastProposalFetch: [],
   proposals: [],
   isLoading: false,
@@ -66,30 +67,36 @@ const GenericTable = (
 );
 
 const fetchProposal = (params) => {
-  console.log("HUM PAGE", params);
-  State.update({ isLoading: true });
-  const proposals = fetch(forgeUrl(apiUrl, params), {
+  const proposals = asyncFetch(forgeUrl(apiUrl, params), {
     mode: "cors",
     headers: {
       "x-api-key": publicApiKey,
     },
-  });
-  const allProposals = [...state.proposals, ...proposals.body];
-  State.update({
-    lastProposalFetch: proposals.body,
-    proposals: allProposals,
-    isLoading: false,
+  }).then(({ err, body, ok }) => {
+    if (ok) {
+      const allProposals = [...state.proposals, ...body];
+      State.update({
+        lastProposalFetch: body,
+        proposals: allProposals,
+        isLoading: false,
+      });
+    }
   });
 };
 
+if (!state.proposals.length) {
+  fetchProposal({ limit: resPerPage, offset: state.offset });
+}
+
 const fetchMore = () => {
   if (!state.isLoading) {
-    State.update({ offset: state.offset + resPerPage });
+    State.update({ offset: state.offset + resPerPage, isLoading: true });
+    fetchProposal({ limit: resPerPage, offset: state.offset });
   }
 };
 
 const ProposalCards = [];
-console.log("STATPROPOSAL", state.proposals);
+
 state.proposals.forEach((proposal) => {
   ProposalCards.push(
     <Widget
@@ -105,9 +112,9 @@ const ProposalInfiniteScroll = (
   <Widget
     src={`${widgetProvider}/widget/proposals_scroll`}
     props={{
-      cards={ProposalCards},
-      fetchMore={fetchMore},
-      hasMore=false
+      cards: ProposalCards,
+      fetchMore: fetchMore,
+      hasMore: state.lastProposalFetch.length === resPerPage,
     }}
   />
 );
