@@ -259,81 +259,86 @@ return (
                 className={thisWidgetClassNames.dayContainer}
                 style={thisWidgetInlineStyles.dayContainer}
               >
-                <div
-                  className={thisWidgetClassNames.infoAndTitleContainer}
-                  style={thisWidgetInlineStyles.infoAndTitleContainer}
-                >
-                  <p
-                    className={thisWidgetClassNames.showInSmallerScreens}
-                    style={thisWidgetInlineStyles.fontW600}
+                <div style={thisWidgetInlineStyles.dayFirstPartContainer}>
+                  <div
+                    className={thisWidgetClassNames.infoAndTitleContainer}
+                    style={thisWidgetInlineStyles.infoAndTitleContainer}
                   >
-                    {tbl_headers[0]}
-                  </p>
-                  <p style={thisWidgetInlineStyles.fontW600}>{day}</p>
-                </div>
-                <div
-                  className={thisWidgetClassNames.infoAndTitleContainer}
-                  style={thisWidgetInlineStyles.infoAndTitleContainer}
-                >
-                  <p
-                    className={thisWidgetClassNames.showInSmallerScreens}
-                    style={thisWidgetInlineStyles.fontW600}
+                    <p
+                      className={thisWidgetClassNames.showInSmallerScreens}
+                      style={thisWidgetInlineStyles.fontW600}
+                    >
+                      {tbl_headers[0]}
+                    </p>
+                    <p style={thisWidgetInlineStyles.fontW600}>{day}</p>
+                  </div>
+                  <div
+                    className={thisWidgetClassNames.infoAndTitleContainer}
+                    style={thisWidgetInlineStyles.infoAndTitleContainer}
                   >
-                    {tbl_headers[1]}
-                  </p>
-                  <div className="form-check form-switch">
-                    <input
-                      style={
-                        state._is_on[index]
-                          ? thisWidgetInlineStyles.inputActive
-                          : thisWidgetInlineStyles.inputInactive
-                      }
-                      className="form-check-input"
-                      type="checkbox"
-                      role="switch"
-                      checked={state._is_on[index]}
-                      id={day + index}
-                      key={day + index + state._is_on[index]}
-                      onChange={(e) => {
-                        let temp = state._is_on;
-                        temp[index] = !temp[index];
-                        State.update({ _is_on: temp });
-                        if (!e.target.value) {
-                          state._from[index] = "0";
-                          state._to[index] = "0";
-                          let error_temp = state._validate_error;
-                          State.update({
-                            _error_msg: `${(error_temp[index] = true)}`,
-                          });
-                          validate();
+                    <p
+                      className={thisWidgetClassNames.showInSmallerScreens}
+                      style={thisWidgetInlineStyles.fontW600}
+                    >
+                      {tbl_headers[1]}
+                    </p>
+
+                    <div className="form-check form-switch">
+                      <input
+                        style={
+                          state._is_on[index]
+                            ? thisWidgetInlineStyles.inputActive
+                            : thisWidgetInlineStyles.inputInactive
                         }
-                      }}
-                    />
+                        className="form-check-input"
+                        type="checkbox"
+                        role="switch"
+                        checked={state._is_on[index]}
+                        id={day + index}
+                        key={day + index + state._is_on[index]}
+                        onChange={(e) => {
+                          let temp = state._is_on;
+                          temp[index] = !temp[index];
+                          State.update({ _is_on: temp });
+                          if (!e.target.value) {
+                            state._from[index] = "0";
+                            state._to[index] = "0";
+                            let error_temp = state._validate_error;
+                            State.update({
+                              _error_msg: `${(error_temp[index] = true)}`,
+                            });
+                            validate();
+                          }
+                        }}
+                      />
+                    </div>
                   </div>
                 </div>
-                <div
-                  className={thisWidgetClassNames.infoAndTitleContainer}
-                  style={thisWidgetInlineStyles.infoAndTitleContainer}
-                >
-                  <p
-                    className={thisWidgetClassNames.showInSmallerScreens}
-                    style={thisWidgetInlineStyles.fontW600}
+                <div style={thisWidgetInlineStyles.daySecontPartContainer}>
+                  <div
+                    className={thisWidgetClassNames.infoAndTitleContainer}
+                    style={thisWidgetInlineStyles.infoAndTitleContainer}
                   >
-                    {tbl_headers[2]}
-                  </p>
-                  {timeSelector(true, index)}
-                </div>
-                <div
-                  className={thisWidgetClassNames.infoAndTitleContainer}
-                  style={thisWidgetInlineStyles.infoAndTitleContainer}
-                >
-                  <p
-                    className={thisWidgetClassNames.showInSmallerScreens}
-                    style={thisWidgetInlineStyles.fontW600}
+                    <p
+                      className={thisWidgetClassNames.showInSmallerScreens}
+                      style={thisWidgetInlineStyles.fontW600}
+                    >
+                      {tbl_headers[2]}
+                    </p>
+                    {timeSelector(true, index)}
+                  </div>
+                  <div
+                    className={thisWidgetClassNames.infoAndTitleContainer}
+                    style={thisWidgetInlineStyles.infoAndTitleContainer}
                   >
-                    {tbl_headers[3]}
-                  </p>
-                  {timeSelector(false, index)}
+                    <p
+                      className={thisWidgetClassNames.showInSmallerScreens}
+                      style={thisWidgetInlineStyles.fontW600}
+                    >
+                      {tbl_headers[3]}
+                    </p>
+                    {timeSelector(false, index)}
+                  </div>
                 </div>
               </div>
             ))}
