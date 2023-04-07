@@ -20,6 +20,7 @@ return (
   <Container>
     <Widget src={`${ownerId}/widget/Project.Icon`} props={{ accountId: ownerId, size: "8em" }} />
     <Details>
+      <Widget src={`${ownerId}/widget/NameAndAccount`} props={{ accountId: ownerId }} />
     </Details>
   </Container>
 );
