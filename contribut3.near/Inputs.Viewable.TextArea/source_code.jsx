@@ -48,7 +48,7 @@ const MarkdownText = styled.div`
   font-style: normal;
   font-weight: 700;
   font-size: .95em;
-  line-height: 1.2em;
+  line-height: 1.25em;
   color: #101828;
 `;
 
