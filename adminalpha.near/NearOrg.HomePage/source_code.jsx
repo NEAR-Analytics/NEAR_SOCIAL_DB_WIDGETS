@@ -323,7 +323,7 @@ return (
         <Widget
           src="adminalpha.near/widget/DIG.Button"
           props={{
-            href: "/",
+            href: "#todo",
             iconLeft: "ph-duotone ph-user-plus",
             label: "Create Account",
             variant: "secondary",
@@ -333,7 +333,7 @@ return (
         <Widget
           src="adminalpha.near/widget/DIG.Button"
           props={{
-            href: "/#/edit",
+            href: "/edit",
             iconLeft: "ph-duotone ph-code-block",
             label: "Try It First",
             variant: "affirmative",
@@ -422,7 +422,7 @@ return (
           <Widget
             src="adminalpha.near/widget/DIG.Button"
             props={{
-              href: "/",
+              href: "#todo",
               iconLeft: "ph-bold ph-fingerprint-simple",
               label: "Try Fast Auth",
               variant: "secondary",
@@ -494,7 +494,7 @@ return (
           <Widget
             src="adminalpha.near/widget/DIG.Button"
             props={{
-              href: "/",
+              href: "#todo",
               iconRight: "ph-bold ph-arrow-up-right",
               label: "Learn More",
               variant: "secondary",
@@ -565,7 +565,7 @@ return (
           <Widget
             src="adminalpha.near/widget/DIG.Button"
             props={{
-              href: "/#/adminalpha.near/widget/ComponentsPage",
+              href: "/adminalpha.near/widget/ComponentsPage",
               iconRight: "ph-bold ph-arrow-up-right",
               label: "Explore Components",
               variant: "secondary",
@@ -591,7 +591,7 @@ return (
           <Widget
             src="adminalpha.near/widget/DIG.Button"
             props={{
-              href: "/#/edit/adminalpha.near/widget/NearOrg.HomePage",
+              href: "/edit/adminalpha.near/widget/NearOrg.HomePage",
               iconLeft: "ph-bold ph-git-fork",
               label: "Fork This Page",
               variant: "secondary",
@@ -672,7 +672,7 @@ return (
           <Widget
             src="adminalpha.near/widget/DIG.Button"
             props={{
-              href: "/",
+              href: "#todo",
               iconLeft: "ph-duotone ph-play",
               label: "Try It Out",
               variant: "secondary",
@@ -710,7 +710,7 @@ return (
           <Widget
             src="adminalpha.near/widget/DIG.Button"
             props={{
-              href: "/",
+              href: "#todo",
               iconRight: "ph-bold ph-arrow-up-right",
               label: "Learn More",
               variant: "secondary",
@@ -744,7 +744,7 @@ return (
           <Widget
             src="adminalpha.near/widget/DIG.Button"
             props={{
-              href: "/",
+              href: "#todo",
               iconLeft: "ph-bold ph-door-open",
               label: "Explore Gateways",
               variant: "secondary",
@@ -797,7 +797,7 @@ return (
           <Widget
             src="adminalpha.near/widget/DIG.Button"
             props={{
-              href: "/#/adminalpha.near/widget/PeoplePage",
+              href: "/adminalpha.near/widget/PeoplePage",
               iconRight: "ph-bold ph-arrow-up-right",
               label: "Explore Community",
               variant: "secondary",
