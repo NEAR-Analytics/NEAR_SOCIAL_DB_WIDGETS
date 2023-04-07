@@ -151,6 +151,7 @@ const Card = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
+  width: 100%;
   padding: 32px;
   border-radius: 8px;
   border: 1px solid var(--sand4);
