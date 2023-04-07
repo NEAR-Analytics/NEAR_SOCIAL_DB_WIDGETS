@@ -59,6 +59,13 @@ const Text = styled.p`
   `}
 `;
 
+const HR = styled.div`
+  width: 100%;
+  height: 1px;
+  background: var(--sand5);
+  margin: 24px 0;
+`;
+
 const Flex = styled.div`
   display: flex;
   gap: ${(p) => p.gap};
@@ -166,6 +173,13 @@ const CircleImg = styled.img`
   width: 40px;
   height: 40px;
   border-radius: 100%;
+`;
+
+const UseCase = styled.div`
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 32px;
+  text-align: left;
 `;
 
 return (
@@ -315,7 +329,6 @@ return (
     </Section>
 
     <Section
-      gap="24px"
       background="linear-gradient(to right, hsla(0, 0%, 100%, 0), var(--sand3), hsla(0, 0%, 100%, 0))"
       id="explore-dapps"
       center
@@ -330,7 +343,55 @@ return (
         </Text>
       </Flex>
 
-      <Card center style={{ maxWidth: "694px" }}>
+      <HR />
+
+      <UseCase>
+        <Text size="text-l" color="red10">
+          use case
+          <br />
+          <Text as="span" size="text-3xl" fontWeight="600" color="red10">
+            DeFi
+          </Text>
+        </Text>
+
+        <Flex direction="column" alignItems="flex-end" gap="16px">
+          <Text>
+            <b>Decentralized Finance, of DeFi,</b> lies at the core of the Web3
+            movement. This sector leverages how tokens are valued and exchanged
+            without the barriers to access as with traditional finance. It
+            illustrates the power of ownership by giving token holders complete
+            control of their assets, and allowing them pseudo-anonymity in how
+            they participate.
+          </Text>
+
+          <Flex gap="16px">
+            <Widget
+              src="adminalpha.near/widget/DIG.Button"
+              props={{
+                href: "#todo",
+                iconRight: "ph-bold ph-arrow-up-right",
+                label: "Learn about DeFi",
+                variant: "primary",
+                size: "small",
+              }}
+            />
+            <Widget
+              src="adminalpha.near/widget/DIG.Button"
+              props={{
+                href: "https://awesomenear.com/categories/defi",
+                target: "_blank",
+                iconRight: "ph-bold ph-arrow-up-right",
+                label: "Explore DeFi dApps",
+                variant: "primary",
+                fill: "outline",
+                size: "small",
+              }}
+            />
+          </Flex>
+        </Flex>
+      </UseCase>
+
+      <Card center>
         <a href="https://www.ref.finance/" target="_blank">
           <CircleImg src="https://awesomenear-spaces.fra1.digitaloceanspaces.com/production/projects/ref-finance/ref-finance.jpg" />
         </a>
@@ -348,17 +409,92 @@ return (
         </Flex>
       </Card>
 
-      <Widget
-        src="adminalpha.near/widget/DIG.Button"
-        props={{
-          href: "https://awesomenear.com/projects",
-          target: "_blank",
-          iconRight: "ph-bold ph-arrow-up-right",
-          label: "More dApps on AwesomeNEAR",
-          variant: "primary",
-          size: "large",
-        }}
-      />
+      <HR />
+
+      <UseCase>
+        <Text size="text-l" color="violet10">
+          use case
+          <br />
+          <Text as="span" size="text-3xl" fontWeight="600" color="violet10">
+            NFTs
+          </Text>
+        </Text>
+
+        <Flex direction="column" alignItems="flex-end" gap="16px">
+          <Text>
+            <b>Non-Fungible Tokens</b> are unique digital assets that are
+            fundamental to the idea of ownership in Web3. The assets you own are
+            recorded on the blockchain and are easily verifiable from anyone in
+            the world at any time. More importantly, they are immutable–no
+            authority can seize them. This powerful combination of transparency
+            and permanence, make NFTs a remarkable tool for various use cases
+            surrounding identity and ownership.
+          </Text>
+
+          <Flex gap="16px">
+            <Widget
+              src="adminalpha.near/widget/DIG.Button"
+              props={{
+                href: "#todo",
+                iconRight: "ph-bold ph-arrow-up-right",
+                label: "Learn about NFTs",
+                variant: "primary",
+                size: "small",
+              }}
+            />
+            <Widget
+              src="adminalpha.near/widget/DIG.Button"
+              props={{
+                href: "https://awesomenear.com/categories/nft",
+                target: "_blank",
+                iconRight: "ph-bold ph-arrow-up-right",
+                label: "Explore NFT dApps",
+                variant: "primary",
+                fill: "outline",
+                size: "small",
+              }}
+            />
+          </Flex>
+        </Flex>
+      </UseCase>
+
+      <Flex gap="24px" mobileStack>
+        <Card center>
+          <a href="https://www.seatlabnft.com/" target="_blank">
+            <CircleImg src="https://awesomenear-spaces.fra1.digitaloceanspaces.com/production/projects/seatlab-nft/seatlab-nft.jpg" />
+          </a>
+          <Flex direction="column" gap="8px">
+            <Text size="text-xl" fontWeight="600" color="sand12">
+              New, Fairer Ticketing with NFTs
+            </Text>
+            <Text>
+              <Text as="a" href="https://www.seatlabnft.com/" target="_blank">
+                Seatlab
+              </Text>{" "}
+              is an NFT event ticketing marketplace helping artists foster
+              closer connections with fans, eliminating fraud and reducing the
+              impact of scalping.
+            </Text>
+          </Flex>
+        </Card>
+
+        <Card center>
+          <a href="https://www.tamastream.io/" target="_blank">
+            <CircleImg src="https://awesomenear-spaces.fra1.digitaloceanspaces.com/production/projects/seatlab-nft/seatlab-nft.jpg" />
+          </a>
+          <Flex direction="column" gap="8px">
+            <Text size="text-xl" fontWeight="600" color="sand12">
+              Artists, Creators and Fans First. No Gatekeeping. No Advertising.
+            </Text>
+            <Text>
+              <Text as="a" href="https://www.tamastream.io/" target="_blank">
+                Tamago
+              </Text>{" "}
+              offers a platform for decentralized audio streaming.
+            </Text>
+          </Flex>
+        </Card>
+      </Flex>
     </Section>
   </Wrapper>
 );
