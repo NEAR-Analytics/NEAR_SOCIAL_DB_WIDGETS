@@ -24,11 +24,11 @@ const Tabs = styled.div`
 `;
 const Content = styled.div``;
 const TabButton = styled.button`
-    background: ${(props) => (props.selected ? "#FFD50D" : "transparent")};
+    background: ${(props) =>
+      props.selected ? "#FFD50D" : "transparent"} !important;
     border: none; 
     border-radius: 4px;
     margin: 0 10px;
-    background: transparent;
     &:hover {
       background:rgba(255, 213, 13, 0.5);
     }
