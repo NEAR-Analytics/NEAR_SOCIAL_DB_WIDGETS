@@ -10,6 +10,10 @@ const forgeUrl = (apiUrl, params) =>
     "?"
   );
 
+const ProposalContainer = styled.div`
+  height:100px;
+`;
+
 const resPerPage = 10;
 
 State.init({
@@ -89,7 +93,9 @@ state.proposals.forEach((proposal) => {
 });
 
 return (
-  <InfiniteScroll loadMore={} hasMore={true}>
-    {ProposalCards}
-  </InfiniteScroll>
+  <ProposalContainer>
+    <InfiniteScroll loadMore={fetchTransfers(state.params)} hasMore={true}>
+      {ProposalCards}
+    </InfiniteScroll>
+  </ProposalContainer>
 );
