@@ -355,7 +355,7 @@ const onSearchResultClick = ({ searchPosition, objectID, eventName }) => {
   setTimeout(() => {
     // This will trigger the Insights widget:
     State.update({ event });
-  });
+  }, 50);
 };
 
 return (
