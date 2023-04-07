@@ -37,8 +37,8 @@ const DashboardContainer = styled.div`
     }
   }
   *::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
   }
 
   *::-webkit-scrollbar-track {
@@ -46,13 +46,13 @@ const DashboardContainer = styled.div`
   }
 
   *::-webkit-scrollbar-thumb {
-    background: rgba(81, 81, 81, 0.9);
+    background: rgba(81, 81, 81, 0.3);
     border-radius: 3px;
   }
 
   
   *::-webkit-scrollbar-thumb:hover {
-    background: rgba(81, 81, 81, 0.6);;
+    background: rgba(81, 81, 81, 0.5);;
   }
 
   *::-webkit-scrollbar-corner {
