@@ -185,7 +185,7 @@ return (
   <Wrapper>
     <SummaryWrapper>
       <Widget
-        src="adminalpha.near/widget/ComponentSummary"
+        src="saidulbadhon.near/widget/SearchPage.ComponentDetails.ComponentSummary"
         props={{
           primaryAction: "open",
           size: "large",
