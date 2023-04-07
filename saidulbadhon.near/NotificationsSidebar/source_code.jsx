@@ -40,7 +40,11 @@ const renderItem = (item, i) => {
     Storage.set("lastBlockHeight", item.blockHeight);
   }
   return (
-    <Widget src="adminalpha.near/widget/Notification" key={i} props={item} />
+    <Widget
+      src="saidulbadhon.near/widget/NotificationsSidebar.Notification"
+      key={i}
+      props={item}
+    />
   );
 };
 
