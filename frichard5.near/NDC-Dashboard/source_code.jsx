@@ -85,9 +85,14 @@ const Tabs = (
     props={{
       tabs: [
         {
+          value: "proposals",
+          label: "Proposals",
+          selected: true,
+          components: <WidgetsContainer>{Proposals}</WidgetsContainer>,
+        },
+        {
           value: "money",
           label: "Money",
-          selected: true,
           components: (
             <WidgetsContainer>
               {Balances}
@@ -106,12 +111,6 @@ const Tabs = (
               {ContractMetrics}
             </WidgetsContainer>
           ),
-        },
-        {
-          value: "proposals",
-          label: "Proposals",
-          //selected: state.selectedTab === "proposals",
-          components: <WidgetsContainer>{Proposals}</WidgetsContainer>,
         },
         {
           value: "members",
