@@ -458,21 +458,8 @@ const allWidgetsInlineStyles = {
       borderRadius: "1rem",
       padding: "1rem",
     },
-    table: {
-      display: "flex",
-      flex: "1",
-      alignItems: "center",
-      justifyContent: "center",
-      fontWeight: 600,
-    },
     fontW600: {
       fontWeight: 600,
-    },
-    flex_row: {
-      display: "flex",
-      flex: "1",
-      flexDirection: "row",
-      fontSize: "large",
     },
     colorActive: {
       color: colors.grey7,
