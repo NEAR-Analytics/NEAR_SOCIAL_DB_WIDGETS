@@ -220,6 +220,7 @@ const ProposalInfiniteScroll = (
 return (
   <ProposalContainer>
     {SelectType}
+    {SelectStatus}
     {state.proposals.length ? (
       ProposalInfiniteScroll
     ) : (
