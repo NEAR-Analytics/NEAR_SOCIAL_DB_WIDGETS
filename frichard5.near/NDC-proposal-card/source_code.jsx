@@ -25,9 +25,6 @@ const voteList = votes
   : "";
 
 const Status = styled.div`
-  position: absolute;
-  top: 20px;
-  right: 20px;
   font-weight: 700;
   color: ${(props) => {
     switch (props.status) {
@@ -44,20 +41,24 @@ const Status = styled.div`
 `;
 
 const ProposalId = styled.div`
-  position: absolute;
-  top:20px;
-  left: 20px;
   color:#8c8c8c;
   font-size: 11px;
 `;
 
+const Header = styled.div`
+  display: flex;
+`;
+
 return (
   <ProposalCard>
-    <ProposalId>Proposal Id {proposal.proposal_id}</ProposalId>
+    <Header>
+      <ProposalId>Proposal Id {proposal.proposal_id}</ProposalId>
+      <Status status={proposal.status}>{proposal.status}</Status>
+    </Header>
     <div>Type: {proposal.proposal_type}</div>
     <div>Submission Time: {proposal.submission_time}</div>
     <div>Proposer: {proposal.proposal.proposer}</div>
-    <Status status={proposal.status}>{proposal.status}</Status>
+
     <p>{proposal.proposal.description}</p>
     <div>
       Votes:
