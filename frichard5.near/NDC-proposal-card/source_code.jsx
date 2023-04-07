@@ -1,1 +1,3 @@
-return <div>Hello World</div>;
+const proposal = props.proposal;
+
+return <div>{proposal.id}</div>;
