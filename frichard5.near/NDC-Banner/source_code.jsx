@@ -6,7 +6,7 @@ const Banner = styled.div`
 const Logo = styled.img`
     width: 100px;
     position: absolute;
-    top: 120px;
+    top: 110px;
     left: 60px;
     z-index: 1;
     border-radius: 50%;
