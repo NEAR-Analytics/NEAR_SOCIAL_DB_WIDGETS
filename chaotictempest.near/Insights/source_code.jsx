@@ -1,7 +1,7 @@
+const USER_TOKEN = props.userToken ?? "anonymous";
 const SEARCH_API_KEY = props.searchApiKey;
 const APPLICATION_ID = props.appId;
 const INDEX = props.index;
-const USER_TOKEN = props.userToken ?? "anonymous";
 const onChange =
   props.onChange ??
   ((resp) => {
@@ -12,21 +12,15 @@ const onChange =
 
 const code = `
 <script>
-var ALGOLIA_INSIGHTS_SRC = "https://cdn.jsdelivr.net/npm/search-insights@2.2.3";
-
-!function(e,a,t,n,s,i,c){e.AlgoliaAnalyticsObject=s,e[s]=e[s]||function(){
-(e[s].queue=e[s].queue||[]).push(arguments)},i=a.createElement(t),c=a.getElementsByTagName(t)[0],
+var ALGOLIA_INSIGHTS_SRC = "https://cdn.jsdelivr.net/npm/search-insights@2.4.0/dist/search-insights.min.js";
+!function(e,a,t,n,s,v,i,c){e.AlgoliaAnalyticsObject=s,e[s]=e[s]||function(){
+(e[s].queue=e[s].queue||[]).push(arguments)},e[s].version=(n.match("/@([^\/]+)\/?/") || [])[1],i=a.createElement(t),c=a.getElementsByTagName(t)[0],
 i.async=1,i.src=n,c.parentNode.insertBefore(i,c)
 }(window,document,"script",ALGOLIA_INSIGHTS_SRC,"aa");
-
-</script>
-<script>
-
 aa('init', {
   appId: '${APPLICATION_ID}',
   apiKey: '${SEARCH_API_KEY}',
 });
-aa('setUserToken', '${USER_TOKEN}');
 
 window.top.postMessage("loaded", "*");
 window.addEventListener("message", (message) => {
@@ -34,10 +28,14 @@ window.addEventListener("message", (message) => {
     return;
   }
 
-  console.log("event", message.data.event);
-  aa('clickedObjectIDsAfterSearch', message.data.event);
+  const { type, data } = message.data.event;
+  const result = aa(type, data);
+  message.source.postMessage({
+      result,
+      eventType: type,
+      eventData: data,
+  }, "*");
 }, false);
-
 </script>
 `;
 
