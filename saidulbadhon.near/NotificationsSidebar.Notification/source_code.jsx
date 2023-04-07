@@ -41,7 +41,7 @@ const Wrapper = styled.div`
 
 
   &:hover {
-    background: #f0f2f4;
+    background: #e9ebed;
   }
 
   > *:first-child {
