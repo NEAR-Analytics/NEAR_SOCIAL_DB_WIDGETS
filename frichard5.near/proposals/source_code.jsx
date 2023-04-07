@@ -15,7 +15,7 @@ const ProposalContainer = styled.div`
   overflow: auto;
 `;
 
-const resPerPage = 50;
+const resPerPage = 10;
 
 State.init({
   offset: 0,
@@ -96,7 +96,7 @@ const fetchMore = () => {
 };
 
 const ProposalCards = [];
-
+console.log("state PROPOSALS", state.proposals);
 state.proposals.forEach((proposal) => {
   ProposalCards.push(
     <Widget
