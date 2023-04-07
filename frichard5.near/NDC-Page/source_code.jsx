@@ -46,13 +46,13 @@ const DashboardContainer = styled.div`
   }
 
   *::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.12);
+    background: #F29BC0;
     border-radius: 3px;
   }
 
   
   *::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.08);
+    background: blue;
   }
 
   *::-webkit-scrollbar-corner {
