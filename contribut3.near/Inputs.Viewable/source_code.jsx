@@ -4,6 +4,7 @@ const value = props.value ?? "";
 const view = props.view ?? (() => <></>);
 const edit = props.edit ?? (() => <></>);
 const big = props.big ?? false;
+const noLabel = props.noLabel ?? false;
 
 State.init({
   value,
@@ -71,9 +72,10 @@ const EditButtonContainer = styled.div`
 return (
   <Container big={big}>
     <Row>
-      <Label htmlFor={id} big={big}>
-        {label}
-      </Label>
+      {noLabel ? view :
+        <Label htmlFor={id} big={big}>
+          {label}
+        </Label>}
       <EditButtonContainer>
         <EditButton
           onClick={() => State.update({ edit: false })}
