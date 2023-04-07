@@ -3,11 +3,11 @@ State.init({
   selectedTab: props.tab ?? "source",
 });
 
-if (props.tab && props.tab !== state.selectedTab) {
-  State.update({
-    selectedTab: props.tab,
-  });
-}
+// if (props.tab && props.tab !== state.selectedTab) {
+//   State.update({
+//     selectedTab: props.tab,
+//   });
+// }
 
 const src = props.src;
 const [accountId, widget, widgetName] = src.split("/");
@@ -197,21 +197,36 @@ return (
 
     <Tabs>
       <TabsButton
-        href={`/#/search?tab=about`}
+        style={{ cursor: "pointer" }}
+        onClick={() =>
+          State.update({
+            selectedTab: "about",
+          })
+        }
         selected={state.selectedTab === "about"}
       >
         About
       </TabsButton>
 
       <TabsButton
-        href={`/#/search?tab=source`}
+        style={{ cursor: "pointer" }}
+        onClick={() =>
+          State.update({
+            selectedTab: "source",
+          })
+        }
         selected={state.selectedTab === "source"}
       >
         Source
       </TabsButton>
 
       <TabsButton
-        href={`/#/search?tab=history`}
+        style={{ cursor: "pointer" }}
+        onClick={() =>
+          State.update({
+            selectedTab: "history",
+          })
+        }
         selected={state.selectedTab === "history"}
       >
         History
