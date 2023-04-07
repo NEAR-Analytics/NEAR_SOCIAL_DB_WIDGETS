@@ -447,7 +447,7 @@ const allWidgetsInlineStyles = {
       display: "flex",
       fontWeight: "600",
     },
-    comboBoxActive: {
+    comboBoxActiveBig: {
       backgroundColor: "white",
       padding: "0.5rem",
       borderRadius: "0.8rem",
@@ -457,9 +457,28 @@ const allWidgetsInlineStyles = {
       borderRadius: "1rem",
       cursor: "pointer",
     },
-    comboBoxInactive: {
+    comboBoxInactiveBig: {
       backgroundColor: "white",
       padding: "0.5rem",
+      borderRadius: "0.8rem",
+      border: `1.5px solid ${colors.grey8}`,
+      color: colors.grey8,
+      letterSpacing: "-0.01em",
+      borderRadius: "1rem",
+    },
+    comboBoxActiveSmall: {
+      backgroundColor: "white",
+      padding: "0",
+      borderRadius: "0.8rem",
+      border: `1.5px solid ${colors.grey7}`,
+      color: colors.grey7,
+      letterSpacing: "-0.01em",
+      borderRadius: "1rem",
+      cursor: "pointer",
+    },
+    comboBoxInactiveSmall: {
+      backgroundColor: "white",
+      padding: "0",
       borderRadius: "0.8rem",
       border: `1.5px solid ${colors.grey8}`,
       color: colors.grey8,
@@ -530,9 +549,13 @@ const allWidgetsInlineStyles = {
     },
     buttonStandard: standardButtonStyles,
     buttonHovered: standardButtonHoveringStyles,
-    dayPartContainer: {
+    dayPartContainerBig: {
       display: "flex",
       width: "50%",
+    },
+    dayPartContainerSmall: {
+      display: "flex",
+      width: "100%",
     },
     infoAndTitleContainer: {
       width: "50%",
