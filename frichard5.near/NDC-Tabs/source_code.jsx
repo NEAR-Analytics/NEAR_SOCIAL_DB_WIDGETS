@@ -27,6 +27,7 @@ const TabButton = styled.button`
     background: ${(props) => (props.selected ? "#FFD50D" : "transparent")};
     border: none; 
     border-radius: 4px;
+    margin: 0 20px;
     &:hover {
       background:rgba(255, 213, 13, 0.5);
     }
