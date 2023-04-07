@@ -94,7 +94,11 @@ if (!state.proposals.length) {
 const fetchMore = () => {
   if (!state.isLoading) {
     State.update({ offset: state.offset + resPerPage, isLoading: true });
-    fetchProposal({ limit: resPerPage, offset: state.offset });
+    fetchProposal({
+      limit: resPerPage,
+      offset: state.offset,
+      proposal_type: state.type,
+    });
   }
 };
 
