@@ -21,7 +21,6 @@ const Wrapper = styled.div`
 
 const H1 = styled.h1`
   font: var(--text-hero);
-  font-weight: 600;
   text-align: center;
   letter-spacing: -0.015em;
   color: var(--sand12);
@@ -30,6 +29,7 @@ const H1 = styled.h1`
 
   @media (max-width: 900px) {
     font: var(--text-2xl);
+    font-weight: 600;
   }
 `;
 
