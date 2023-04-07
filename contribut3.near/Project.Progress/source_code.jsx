@@ -55,7 +55,7 @@ return (
   <Container>
     <Row>
       <Label>Credits:</Label>
-      <Value>0 HHZN</Value>
+      <Value>0 NHZN</Value>
     </Row>
     <Row>
       <Label>Graduation:</Label>
