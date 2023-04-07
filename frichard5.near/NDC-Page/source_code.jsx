@@ -18,6 +18,7 @@ const DashboardContainer = styled.div`
   h2 {
     font-weight: 600;
     margin-left: -20px;
+    font-size: 26px;
   }
   padding: 28px;
   background-size: contain;
