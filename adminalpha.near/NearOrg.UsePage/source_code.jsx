@@ -79,7 +79,8 @@ const Flex = styled.div`
     `
     @media (max-width: 900px) {
       flex-direction: column;
-      gap: var(--section-gap);
+      gap: ${(p) =>
+        p.mobileStack === true ? "var(--section-gap)" : p.mobileStack};
     }
   `}
 `;
@@ -192,7 +193,7 @@ return (
       gap="24px"
       background="linear-gradient(to right, hsla(0, 0%, 100%, 0), var(--sand3), hsla(0, 0%, 100%, 0))"
     >
-      <Flex gap="24px" mobileStack>
+      <Flex gap="24px" mobileStack="24px">
         <Card center>
           <i
             className="ph-duotone ph-user-circle-plus"
@@ -276,7 +277,7 @@ return (
         </Text>
       </Flex>
 
-      <Flex gap="24px" mobileStack>
+      <Flex gap="24px" mobileStack="24px">
         <Card center>
           <i
             className="ph-duotone ph-wallet"
@@ -429,7 +430,7 @@ return (
         </Text>
       </UseCase>
 
-      <Flex gap="24px" mobileStack>
+      <Flex gap="24px" mobileStack="24px">
         <Card center>
           <a href="https://www.seatlabnft.com/" target="_blank">
             <CircleImg src="https://awesomenear-spaces.fra1.digitaloceanspaces.com/production/projects/seatlab-nft/seatlab-nft.jpg" />
