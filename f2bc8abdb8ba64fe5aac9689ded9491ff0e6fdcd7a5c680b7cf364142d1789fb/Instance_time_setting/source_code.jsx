@@ -173,7 +173,7 @@ const getData = () => {
     },
   };
 };
-const timeSelector = (f, index) => {
+const timeSelector = (f, index, size) => {
   return (
     <div
       style={
@@ -185,9 +185,13 @@ const timeSelector = (f, index) => {
       <div className={thisWidgetClassNames.timeSelector}>
         <select
           style={
-            state._is_on[index]
-              ? thisWidgetInlineStyles.comboBoxActive
-              : thisWidgetInlineStyles.comboBoxInactive
+            size == "big"
+              ? state._is_on[index]
+                ? thisWidgetInlineStyles.comboBoxActiveBig
+                : thisWidgetInlineStyles.comboBoxInactiveBig
+              : state._is_on[index]
+              ? thisWidgetInlineStyles.comboBoxActiveSmall
+              : thisWidgetInlineStyles.comboBoxInactiveSmall
           }
           value={f ? state._from[index] : state._to[index]}
           disabled={!state._is_on[index]}
@@ -251,7 +255,13 @@ const renderDayRow = (day, index, size) => {
         }`}
         style={thisWidgetInlineStyles.dayContainer}
       >
-        <div style={thisWidgetInlineStyles.dayPartContainer}>
+        <div
+          style={
+            size == "big"
+              ? thisWidgetInlineStyles.dayPartContainerBig
+              : thisWidgetInlineStyles.dayPartContainerSmall
+          }
+        >
           <div
             className={thisWidgetClassNames.infoAndTitleContainer}
             style={thisWidgetInlineStyles.infoAndTitleContainer}
@@ -309,7 +319,13 @@ const renderDayRow = (day, index, size) => {
             </div>
           </div>
         </div>
-        <div style={thisWidgetInlineStyles.dayPartContainer}>
+        <div
+          style={
+            size == "big"
+              ? thisWidgetInlineStyles.dayPartContainerBig
+              : thisWidgetInlineStyles.dayPartContainerSmall
+          }
+        >
           <div
             className={thisWidgetClassNames.infoAndTitleContainer}
             style={thisWidgetInlineStyles.infoAndTitleContainer}
@@ -320,7 +336,7 @@ const renderDayRow = (day, index, size) => {
             >
               {tbl_headers[2]}
             </p>
-            {timeSelector(true, index)}
+            {timeSelector(true, index, size)}
           </div>
           <div
             className={thisWidgetClassNames.infoAndTitleContainer}
@@ -332,7 +348,7 @@ const renderDayRow = (day, index, size) => {
             >
               {tbl_headers[3]}
             </p>
-            {timeSelector(false, index)}
+            {timeSelector(false, index, size)}
           </div>
         </div>
       </div>
