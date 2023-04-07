@@ -1,4 +1,4 @@
-const widgetContainer = "frichard5.near";
+const widgetProvider = "frichard5.near";
 // Style
 const avenirFontFamily = fetch(
   "https://fonts.cdnfonts.com/css/avenir-lt-std"
