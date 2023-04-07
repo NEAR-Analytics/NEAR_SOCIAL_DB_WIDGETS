@@ -1,5 +1,5 @@
-const name = props.name || context.accountId;
-const accountId = props.accountId || context.accountId;
+const name = props.name ?? context.accountId;
+const accountId = props.accountId ?? context.accountId;
 
 const Container = styled.div`
   display: flex;
