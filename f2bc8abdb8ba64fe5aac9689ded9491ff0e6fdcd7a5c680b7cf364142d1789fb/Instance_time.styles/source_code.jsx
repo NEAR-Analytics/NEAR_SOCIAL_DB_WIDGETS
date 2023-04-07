@@ -603,7 +603,7 @@ const allWidgetsClassNames = {
     buttonsContainer:
       "mt-3 w-100 d-flex flex-row-reverse justify-content-between",
     infoAndTitleContainer: "d-flex",
-    showInSmallerScreens: "d-lg-none",
+    showInSmallerScreens: "d-none",
   },
 };
 
