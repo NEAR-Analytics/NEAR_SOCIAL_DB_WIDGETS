@@ -299,6 +299,7 @@ const Card = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 24px;
+  width: 100%;
   padding: 32px;
   border-radius: 8px;
   border: 1px solid var(--sand4);
