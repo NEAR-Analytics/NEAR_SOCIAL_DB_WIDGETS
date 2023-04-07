@@ -29,13 +29,13 @@ const Status = styled.div`
   color: ${(props) => {
     switch (props.status) {
       case "Rejected":
-        return "red";
+        return "#ff5e03";
       case "Approved":
         return "#13a36e";
       case "Expired":
         return "grey";
       case "InProgress":
-        return "orange";
+        return "#ff8743";
     }
   }}
 `;
