@@ -272,7 +272,9 @@ const renderDayRow = (day, index, size) => {
             >
               {tbl_headers[0]}
             </p>
-            <p style={thisWidgetInlineStyles.fontW600}>{day}</p>
+            <p style={size == "big" ? thisWidgetInlineStyles.fontW600 : {}}>
+              {day}
+            </p>
           </div>
           <div
             className={thisWidgetClassNames.infoAndTitleContainer}
