@@ -169,7 +169,7 @@ return (
 
     <Section
       gap="24px"
-      background="linear-gradient(to right, hsla(0, 0%, 100%, 0), var(--sand3), hsla(0, 0%, 100%, 0)"
+      background="linear-gradient(to right, hsla(0, 0%, 100%, 0), var(--sand3), hsla(0, 0%, 100%, 0))"
     >
       <Flex gap="24px" mobileStack>
         <Card center>
@@ -186,8 +186,8 @@ return (
           <Widget
             src="adminalpha.near/widget/DIG.Button"
             props={{
-              href: "/#/adminalpha.near/widget/PeoplePage",
-              iconRight: "ph-bold ph-arrow-up-right",
+              href: "#set-up-account",
+              iconRight: "ph-bold ph-arrow-down",
               label: "Start Setup",
               variant: "primary",
               fill: "outline",
@@ -244,13 +244,67 @@ return (
       </Card>
     </Section>
 
-    <Section id="why-it-matters">
-      <Text as="h2" size="text-3xl" color="sand12">
-        Set up your account
-      </Text>
-      <Text size="text-l">
-        You need a wallet to use the web3. Choose a wallet that fits your needs
-      </Text>
+    <Section id="set-up-account" center>
+      <Flex direction="column" gap="16px">
+        <Text as="h2" size="text-3xl" color="sand12">
+          Set up your account
+        </Text>
+        <Text size="text-l">
+          You need a wallet to use the web3. Choose a wallet that fits your
+          needs.
+        </Text>
+      </Flex>
+
+      <Flex gap="24px" mobileStack>
+        <Card center>
+          <i
+            className="ph-duotone ph-wallet"
+            style={{ color: "var(--sand10)", fontSize: "32px" }}
+          />
+          <Text size="text-l" fontWeight="600" color="sand12">
+            1. Choose a wallet
+          </Text>
+          <Text>You need a wallet to create an account and use dApps</Text>
+        </Card>
+
+        <Card center>
+          <i
+            className="ph-duotone ph-user-circle-plus"
+            style={{ color: "var(--sand10)", fontSize: "32px" }}
+          />
+          <Text size="text-l" fontWeight="600" color="sand12">
+            2. Create your account
+          </Text>
+          <Text>
+            Use your wallet to create the account, and create a backup to keep
+            it safe
+          </Text>
+        </Card>
+
+        <Card center>
+          <i
+            className="ph-duotone ph-coins"
+            style={{ color: "var(--sand10)", fontSize: "32px" }}
+          />
+          <Text size="text-l" fontWeight="600" color="sand12">
+            3. Fund your account
+          </Text>
+          <Text>
+            You need some $NEAR tokens in your account for most dApps to work
+          </Text>
+        </Card>
+      </Flex>
+
+      <Widget
+        src="adminalpha.near/widget/DIG.Button"
+        props={{
+          href: "#todo",
+          iconRight: "ph-bold ph-arrow-up-right",
+          label: "Set up your account",
+          variant: "affirmative",
+          size: "large",
+        }}
+      />
     </Section>
   </Wrapper>
 );
