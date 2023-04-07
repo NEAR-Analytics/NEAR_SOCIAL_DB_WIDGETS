@@ -1,5 +1,4 @@
-const ownerId = "contribut3.near";
-const tempAccountId = "manzanal.near";
+const ownerId = "manzanal.near";
 
 State.init({
   // The entity to which to request a contribution.
@@ -42,6 +41,10 @@ const Heading3 = styled.div`
     line-height: 24px;
 `;
 
+const Title = styles.div`
+  border-bottom: 1px solid #ECEEF0;
+`;
+
 const renderEntity = (
   <div className="col-lg-12 mb-3">
     <label htmlFor="enity-id">Request as *</label>
@@ -55,7 +58,7 @@ const renderEntity = (
       positionFixed
       renderMenuItemChildren={(option, { text }) => (
         <Widget
-          src={`${tempAccountId}/widget/EntityOneLineProfile`}
+          src={`${ownerId}/widget/EntityOneLineProfile`}
           props={{
             accountId: option.name,
           }}
@@ -73,6 +76,23 @@ const renderDescription = (
         description: state.description,
         text: "Description",
         update: (description) => State.update({ description }),
+      }}
+    />
+  </div>
+);
+const onUpdateAttachFiles = (files) => {
+  console.log("Files update", files);
+  State.update({ files });
+};
+const renderAttachFiles = (
+  <div className="w-100 mb-3">
+    <Widget
+      src={`${ownerId}/widget/IpfsFilesUpload`}
+      props={{
+        fileAccept: "application/pdf",
+        fileIcon: "bi-file-earmark-pdf",
+        buttonText: "Upload a pfd",
+        update: onUpdateAttachFiles,
       }}
     />
   </div>
@@ -131,7 +151,7 @@ const renderTagSelection = (
 const renderPaymentTypeInput = (
   <div className="w-75 mb-3">
     <Widget
-      src={`${tempAccountId}/widget/PaymentTypeInput`}
+      src={`${ownerId}/widget/PaymentTypeInput`}
       props={{
         paymentType: state.paymentType,
         update: (paymentType) => State.update({ paymentType }),
@@ -144,7 +164,7 @@ const renderPaymentTypeInput = (
 const renderPaymentSourceInput = (
   <div className="w-75 mb-3">
     <Widget
-      src={`${tempAccountId}/widget/PaymentSourceInput`}
+      src={`${ownerId}/widget/PaymentSourceInput`}
       props={{
         paymentSource: state.paymentSource,
         update: (paymentSource) => State.update({ paymentSource }),
@@ -215,13 +235,15 @@ const renderDeadlineInput = (
 );
 return (
   <div className="row my-4 mx-12">
-    <div style={{ "border-bottom": "1px solid #ECEEF0" }} class="mb-3">
+    <Title class="mb-3">
       <Heading3>Request details</Heading3>
-    </div>
+    </Title>
+
     <div>
       {renderEntity}
       {renderTitle}
       {renderDescription}
+      {renderAttachFiles}
       {renderTagSelection}
       {renderRequestTypeInput}
       {renderPaymentTypeInput}
