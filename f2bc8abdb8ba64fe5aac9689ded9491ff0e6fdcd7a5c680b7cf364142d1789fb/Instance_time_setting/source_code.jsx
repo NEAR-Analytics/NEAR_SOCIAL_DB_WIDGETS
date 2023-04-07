@@ -259,7 +259,7 @@ return (
                 className={thisWidgetClassNames.dayContainer}
                 style={thisWidgetInlineStyles.dayContainer}
               >
-                <div style={thisWidgetInlineStyles.dayFirstPartContainer}>
+                <div style={thisWidgetInlineStyles.dayPartContainer}>
                   <div
                     className={thisWidgetClassNames.infoAndTitleContainer}
                     style={thisWidgetInlineStyles.infoAndTitleContainer}
@@ -314,7 +314,7 @@ return (
                     </div>
                   </div>
                 </div>
-                <div style={thisWidgetInlineStyles.daySecontPartContainer}>
+                <div style={thisWidgetInlineStyles.dayPartContainer}>
                   <div
                     className={thisWidgetClassNames.infoAndTitleContainer}
                     style={thisWidgetInlineStyles.infoAndTitleContainer}
