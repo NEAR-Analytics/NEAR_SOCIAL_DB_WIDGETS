@@ -194,10 +194,7 @@ return (
       <H1>Your first steps to becoming a Web3 citizen</H1>
     </Section>
 
-    <Section
-      gap="24px"
-      background="linear-gradient(to right, hsla(0, 0%, 100%, 0), var(--sand3), hsla(0, 0%, 100%, 0))"
-    >
+    <Section background="linear-gradient(to right, hsla(0, 0%, 100%, 0), var(--sand3), hsla(0, 0%, 100%, 0))">
       <Flex gap="24px" mobileStack="24px">
         <Card center>
           <i
@@ -250,31 +247,31 @@ return (
             }}
           />
         </Card>
-      </Flex>
 
-      <Card center>
-        <i
-          className="ph-duotone ph-globe-hemisphere-west"
-          style={{ color: "var(--violet8)", fontSize: "32px" }}
-        />
-        <Flex direction="column" gap="8px">
-          <Text size="text-xl" fontWeight="600" color="sand12">
-            Understand why it matters
-          </Text>
-          <Text>Become a web3 citizen and help build a better world</Text>
-        </Flex>
-        <Widget
-          src="adminalpha.near/widget/DIG.Button"
-          props={{
-            href: "#why-it-matters",
-            iconRight: "ph-bold ph-arrow-down",
-            label: "Explore Now",
-            variant: "primary",
-            fill: "outline",
-            size: "large",
-          }}
-        />
-      </Card>
+        <Card center>
+          <i
+            className="ph-duotone ph-globe-hemisphere-west"
+            style={{ color: "var(--violet8)", fontSize: "32px" }}
+          />
+          <Flex direction="column" gap="8px">
+            <Text size="text-xl" fontWeight="600" color="sand12">
+              Understand why it matters
+            </Text>
+            <Text>Become a web3 citizen and help build a better world</Text>
+          </Flex>
+          <Widget
+            src="adminalpha.near/widget/DIG.Button"
+            props={{
+              href: "#why-it-matters",
+              iconRight: "ph-bold ph-arrow-down",
+              label: "Explore Now",
+              variant: "primary",
+              fill: "outline",
+              size: "large",
+            }}
+          />
+        </Card>
+      </Flex>
     </Section>
 
     <Section id="set-up-account" center>
