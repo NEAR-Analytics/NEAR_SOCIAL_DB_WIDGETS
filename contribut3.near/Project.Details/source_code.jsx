@@ -49,7 +49,12 @@ return (
         label: "Category",
         id: "category",
         value: [{ name: "Wallets" }],
-        options: [{ name: "Wallets" }, { name: "Games" }, { name: "Social" }, { name: "Other" }],
+        options: [
+          { name: "Wallets" },
+          { name: "Games" },
+          { name: "Social" },
+          { name: "Other" },
+        ],
         onSave: ([{ name: category }]) => onSave({ category }),
       }}
     />
@@ -69,7 +74,12 @@ return (
         label: "Development phase",
         id: "phase",
         value: [{ name: "Testnet launched" }],
-        options: [{ name: "Testnet launched" }, { name: "Mainnet launched" }, { name: "In development" }, { name: "Concept" }],
+        options: [
+          { name: "Testnet launched" },
+          { name: "Mainnet launched" },
+          { name: "In development" },
+          { name: "Concept" },
+        ],
         onSave: ([{ name: phase }]) => onSave({ phase }),
       }}
     />
