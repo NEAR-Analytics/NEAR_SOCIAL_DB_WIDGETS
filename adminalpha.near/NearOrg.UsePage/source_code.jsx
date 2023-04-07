@@ -159,7 +159,7 @@ const ContentBlock_Text = styled.div`
 const Card = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: ${(p) => p.gap ?? "24px"};
   width: 100%;
   padding: 32px;
   border-radius: 8px;
@@ -289,7 +289,7 @@ return (
       </Flex>
 
       <Flex gap="24px" mobileStack="24px">
-        <Card center>
+        <Card center gap="12px">
           <i
             className="ph-duotone ph-wallet"
             style={{ color: "var(--sand10)", fontSize: "32px" }}
@@ -300,7 +300,7 @@ return (
           <Text>You need a wallet to create an account and use dApps</Text>
         </Card>
 
-        <Card center>
+        <Card center gap="12px">
           <i
             className="ph-duotone ph-user-circle-plus"
             style={{ color: "var(--sand10)", fontSize: "32px" }}
@@ -314,7 +314,7 @@ return (
           </Text>
         </Card>
 
-        <Card center>
+        <Card center gap="12px">
           <i
             className="ph-duotone ph-coins"
             style={{ color: "var(--sand10)", fontSize: "32px" }}
