@@ -3,6 +3,7 @@ const label = props.label ?? "Input";
 const value = props.value ?? "";
 const view = props.view ?? (() => <></>);
 const edit = props.edit ?? (() => <></>);
+const big = props.big ?? false;
 
 State.init({
   value,
@@ -22,7 +23,7 @@ const Container = styled.div`
 const Label = styled.label`
   font-style: normal;
   font-weight: 600;
-  font-size: 0.95em;
+  font-size: ${({ big }) => big ? "1em" : "0.95em"};
   line-height: 1em;
   color: #11181c;
 `;
