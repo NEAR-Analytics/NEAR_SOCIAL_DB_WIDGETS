@@ -59,6 +59,16 @@ const ContractMetrics = (
   />
 );
 
+const ProposalStatus = (
+  <Widget
+    src={`${widgetProvider}/widget/proposals-status`}
+    props={{
+      account,
+      widgetProvider,
+    }}
+  />
+);
+
 const Proposals = (
   <Widget
     src={`${widgetProvider}/widget/proposals`}
@@ -90,7 +100,12 @@ const Tabs = (
           value: "metrics",
           label: "Metrics",
           //selected: state.selectedTab === "metrics",
-          components: <WidgetsContainer>{ContractMetrics}</WidgetsContainer>,
+          components: (
+            <WidgetsContainer>
+              {ProposalStatus}
+              {ContractMetrics}
+            </WidgetsContainer>
+          ),
         },
         {
           value: "proposals",
