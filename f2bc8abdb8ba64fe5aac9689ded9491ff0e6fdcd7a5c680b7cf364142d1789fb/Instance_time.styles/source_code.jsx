@@ -444,7 +444,7 @@ const allWidgetsInlineStyles = {
     },
     comboBoxActive: {
       backgroundColor: "white",
-      padding: "0.5rem 1.5rem",
+      padding: "0.2rem 0.5rem",
       borderRadius: "0.8rem",
       border: `1.5px solid ${colors.grey7}`,
       color: colors.grey7,
