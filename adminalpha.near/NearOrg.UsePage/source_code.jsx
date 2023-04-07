@@ -165,7 +165,7 @@ const Card = styled.div`
   border: 1px solid var(--sand4);
   align-items: ${(p) => (p.center ? "center" : "flex-star")};
   justify-content: ${(p) => (p.center ? "center" : undefined)};
-  text-align: ${(p) => (p.center ? "center" : undefined)};
+  text-align: ${(p) => (p.center ? "center" : "left")};
   background: var(--sand1);
 `;
 
@@ -372,7 +372,7 @@ return (
         </Text>
       </UseCase>
 
-      <Card center>
+      <Card>
         <a href="https://www.ref.finance/" target="_blank">
           <CircleImg src="https://awesomenear-spaces.fra1.digitaloceanspaces.com/production/projects/ref-finance/ref-finance.jpg" />
         </a>
@@ -438,7 +438,7 @@ return (
       </UseCase>
 
       <Flex gap="24px" mobileStack="24px">
-        <Card center>
+        <Card>
           <a href="https://www.seatlabnft.com/" target="_blank">
             <CircleImg src="https://awesomenear-spaces.fra1.digitaloceanspaces.com/production/projects/seatlab-nft/seatlab-nft.jpg" />
           </a>
@@ -457,7 +457,7 @@ return (
           </Flex>
         </Card>
 
-        <Card center>
+        <Card>
           <a href="https://www.tamastream.io/" target="_blank">
             <CircleImg src="https://awesomenear-spaces.fra1.digitaloceanspaces.com/production/projects/seatlab-nft/seatlab-nft.jpg" />
           </a>
@@ -470,6 +470,91 @@ return (
                 Tamago
               </Text>{" "}
               offers a platform for decentralized audio streaming.
+            </Text>
+          </Flex>
+        </Card>
+      </Flex>
+
+      <Flex gap="16px" wrap="wrap" justifyContent="center">
+        <Widget
+          src="adminalpha.near/widget/DIG.Button"
+          props={{
+            href: "#todo",
+            iconRight: "ph-bold ph-arrow-up-right",
+            label: "Learn about NFTs",
+            variant: "primary",
+            size: "large",
+          }}
+        />
+        <Widget
+          src="adminalpha.near/widget/DIG.Button"
+          props={{
+            href: "https://awesomenear.com/categories/nft",
+            target: "_blank",
+            iconRight: "ph-bold ph-arrow-up-right",
+            label: "Explore NFT dApps",
+            variant: "primary",
+            fill: "outline",
+            size: "large",
+          }}
+        />
+      </Flex>
+
+      <HR />
+
+      <UseCase>
+        <Text size="text-l" color="cyan10">
+          use case
+          <br />
+          <Text as="span" size="text-3xl" fontWeight="600" color="cyan10">
+            Social
+          </Text>
+        </Text>
+
+        <Text>
+          <b>Community thrives in Web3,</b> and the projects helping users
+          freely interact and share information while maintaining ownership of
+          their data give a glimpse of how connection will evolve in the open
+          web.
+        </Text>
+      </UseCase>
+
+      <Flex gap="24px" mobileStack="24px">
+        <Card>
+          <a href="https://sweatco.in/" target="_blank">
+            <CircleImg src="https://awesomenear-spaces.fra1.digitaloceanspaces.com/production/projects/sweat-economy/sweat-economy.jpg" />
+          </a>
+          <Flex direction="column" gap="8px">
+            <Text size="text-xl" fontWeight="600" color="sand12">
+              Healthier planet. Healthier, wealthier you
+            </Text>
+            <Text>
+              <Text as="a" href="https://sweatco.in/" target="_blank">
+                Sweatcoin
+              </Text>{" "}
+              is a free app which rewards your daily steps with a new-generation
+              currency you can spend on cool products, donate to charity or
+              convert into SWEAT.
+            </Text>
+          </Flex>
+        </Card>
+
+        <Card>
+          <a href="https://blogchain.app/home" target="_blank">
+            <CircleImg src="https://awesomenear-spaces.fra1.digitaloceanspaces.com/production/projects/blogchain/blogchain.jpg" />
+          </a>
+          <Flex direction="column" gap="8px">
+            <Text size="text-xl" fontWeight="600" color="sand12">
+              Empowering writers both creatively and economically through
+              decentralization
+            </Text>
+            <Text>
+              <Text as="a" href="https://blogchain.app/home" target="_blank">
+                Blogchain App
+              </Text>{" "}
+              is a publishing platform created for independent writers,
+              providing them with a decentralized, censorship-resistant, and
+              user-friendly space to engage and grow their audience.
             </Text>
           </Flex>
         </Card>
