@@ -1,3 +1,27 @@
+const onSave = props.onSave ?? (() => { });
+const ownerId = "contribut3.near";
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 1em;
+  padding: 0.5em 0.2em;
+`;
+
+const Heading = styled.div`
+  padding-bottom: 0.5em;
+  border-bottom: 1px solid #eceef0;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.125em;
+  line-height: 1.5em;
+  color: #000;
+  width: 100%;
+`;
+
+
 return (
   <Container>
     <Heading>About project</Heading>
