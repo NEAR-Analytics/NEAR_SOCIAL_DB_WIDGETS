@@ -1,6 +1,6 @@
 return (
   <Container>
-    <Heading>Details</Heading>
+    <Heading>About project</Heading>
     <Widget
       src={`${ownerId}/widget/Inputs.Viewable.TextArea`}
       props={{
