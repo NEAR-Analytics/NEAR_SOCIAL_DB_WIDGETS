@@ -44,6 +44,5 @@ return (
         },
       }}
     />
-    <Widget src={`${ownerId}/widget/Project.Achievements`} />
   </>
 );
