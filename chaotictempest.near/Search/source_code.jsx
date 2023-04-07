@@ -10,6 +10,7 @@ const facets = props.facets ?? ["All", "Users", "Apps", "Components", "Posts"];
 const showHeader = props.showHeader ?? true;
 const showSearchBar = props.showSearchBar ?? true;
 const showPagination = props.showPagination ?? true;
+const userId = props.accountId ?? context.accountId;
 
 const componentsUrl = `/#/calebjacob.near/widget/ComponentsPage`;
 const peopleUrl = `/#/calebjacob.near/widget/PeoplePage`;
@@ -132,9 +133,10 @@ const writeStateTerm = (term) => {
 
 const profiles = (records) => {
   const profiles = [];
-  for (const record of records ?? []) {
+  for (const [i, record] of records ?? []) {
     profiles.push({
       accountId: record.author,
+      searchPosition: i,
     });
   }
   return profiles;
@@ -142,7 +144,7 @@ const profiles = (records) => {
 
 const posts = (content, postType) => {
   const posts = [];
-  for (const post of content || []) {
+  for (const [i, post] of content || []) {
     const accountId = post.author;
     const blockHeight = post.objectID.split("/").slice(-1)[0];
     const postContent = {
@@ -160,6 +162,7 @@ const posts = (content, postType) => {
       postContent,
       postType,
       headerStyling,
+      searchPosition: i,
     });
   }
   return posts;
@@ -167,13 +170,14 @@ const posts = (content, postType) => {
 
 const components = (records) => {
   const components = [];
-  for (const component of records || []) {
+  for (const [i, component] of records || []) {
     const idParts = component.objectID.split("/");
     const widgetName = idParts[idParts.length - 1];
     const accountId = component.author;
     components.push({
       accountId,
       widgetName,
+      searchPosition: i,
     });
   }
   return components;
@@ -181,7 +185,7 @@ const components = (records) => {
 
 const categorizeSearchHits = (rawResp) => {
   const results = {};
-  for (const result of rawResp.hits) {
+  for (const [i, result] of rawResp.hits?.entries()) {
     const { categories: categories_raw } = result;
     if (categories_raw.length > 1) {
       categories_raw.sort();
@@ -189,7 +193,7 @@ const categorizeSearchHits = (rawResp) => {
 
     const categories = categories_raw.join(", ");
     results[categories] = results[categories] || [];
-    results[categories].push(result);
+    results[categories].push([i + 1, result]);
   }
   return {
     results,
@@ -218,6 +222,7 @@ const fetchSearchHits = (query, { pageNumber, configs, optionalFilters }) => {
       "categories:post<score=1>",
       "categories:comment<score=0>",
     ],
+    clickAnalytics: true,
     ...configs,
   };
 
@@ -243,10 +248,12 @@ const updateSearchHits = debounce(({ term, pageNumber, configs }) => {
           posts(results["comment, post"], "comment")
         ),
       },
+      currentPage: 0,
       paginate: {
         hitsTotal,
         hitsPerPage,
       },
+      queryID: resp.body.queryID,
     });
   });
 });
@@ -328,6 +335,24 @@ const onFacetClick = (facet) => {
   });
 };
 
+const onSearchResultClick = ({ searchPosition, objectID, eventName }) => {
+  const position =
+    searchPosition + state.currentPage * state.paginate.hitsPerPage;
+  // This will trigger the Insights widget:
+  State.update({
+    event: {
+      type: "clickedObjectIDsAfterSearch",
+      data: {
+        eventName,
+        userToken: userId.replace(".", "+"),
+        queryID: state.queryID,
+        objectIDs: [objectID],
+        positions: [position],
+      },
+    },
+  });
+};
+
 return (
   <Wrapper>
     {showHeader && (
@@ -379,9 +404,15 @@ return (
           {state.search.profiles.map((profile, i) => (
             <Item key={profile.accountId}>
               <Widget
-                src="calebjacob.near/widget/AccountProfileCard"
+                src="chaotictempest.near/widget/AccountProfileCard"
                 props={{
                   accountId: profile.accountId,
+                  onClick: () =>
+                    onSearchResultClick({
+                      searchPosition: profile.searchPosition,
+                      objectID: `${profile.accountId}/profile`,
+                      eventName: "Clicked Profile After Search",
+                    }),
                 }}
               />
             </Item>
@@ -403,9 +434,15 @@ return (
           {state.search.components.map((component, i) => (
             <Item key={component.accountId + component.widgetName}>
               <Widget
-                src="calebjacob.near/widget/ComponentCard"
+                src="chaotictempest.near/widget/ComponentCard"
                 props={{
                   src: `${component.accountId}/widget/${component.widgetName}`,
+                  onClick: () =>
+                    onSearchResultClick({
+                      searchPosition: component.searchPosition,
+                      objectID: `${component.accountId}/widget/${component.widgetName}`,
+                      eventName: "Clicked Component After Search",
+                    }),
                 }}
               />
             </Item>
@@ -451,6 +488,18 @@ return (
           }}
         />
       )}
+
+    {!props.disableInsights && (
+      <Widget
+        src="chaotictempest.near/widget/Insights"
+        props={{
+          event: state.event,
+          searchApiKey: SEARCH_API_KEY,
+          appId: APPLICATION_ID,
+          index: INDEX,
+        }}
+      />
+    )}
 
     {props.debug && (
       <div>
