@@ -52,7 +52,12 @@ return (
   <Wrapper>
     <Widget
       src="adminalpha.near/widget/IndexFeed"
-      props={{ index, renderItem, moderatorAccount: "adminalpha.near" }}
+      props={{
+        index,
+        renderItem,
+        moderatorAccount: "adminalpha.near",
+        theme: props.theme,
+      }}
     />
   </Wrapper>
 );
