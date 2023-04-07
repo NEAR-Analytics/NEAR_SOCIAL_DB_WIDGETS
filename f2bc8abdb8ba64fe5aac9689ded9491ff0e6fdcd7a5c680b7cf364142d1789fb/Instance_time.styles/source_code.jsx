@@ -493,7 +493,7 @@ const allWidgetsInlineStyles = {
     },
     headerContainer: {
       background: "white",
-      padding: "6px",
+      padding: "0 1rem",
     },
     dayContainer: {
       padding: "6px",
