@@ -438,6 +438,10 @@ const allWidgetsInlineStyles = {
     button: standardButtonStyles,
   },
   instance_time_setting: {
+    timeSelectorContainer: {
+      display: "flex",
+      fontWeight: "600",
+    },
     comboBoxActive: {
       backgroundColor: "white",
       padding: "0.5rem 1.5rem",
