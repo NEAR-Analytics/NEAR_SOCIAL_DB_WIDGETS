@@ -51,6 +51,7 @@ return (
       id,
       label,
       value,
+      big: true,
       edit: (update, v) => (
         <LabelArea>
           <Input
@@ -59,9 +60,7 @@ return (
             value={v}
             onChange={(e) => update(e.target.value)}
           />
-          <SaveButton onClick={() => onSave(v)}>
-            Save
-          </SaveButton>
+          <SaveButton onClick={() => onSave(v)}>Save</SaveButton>
         </LabelArea>
       ),
       view: isLink ? <a href={link}>{value}</a> : value,
