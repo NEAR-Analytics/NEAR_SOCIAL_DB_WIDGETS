@@ -28,4 +28,9 @@ const Banner = <Widget src={`${widgetProvider}/widget/NDC-Banner`} />;
 
 const DashBoard = <Widget src={`${widgetProvider}/widget/NDC-Dashboard`} />;
 
-return <DashboardContainer theme={theme}>{Banner}</DashboardContainer>;
+return (
+  <DashboardContainer theme={theme}>
+    {Banner}
+    {DashBoard}
+  </DashboardContainer>
+);
