@@ -33,6 +33,8 @@ const Table = styled.table`
 `;
 
 const Pagination = styled.div`
+  display: flex;
+  justify-content: flex-end;
   button {
     
   }
