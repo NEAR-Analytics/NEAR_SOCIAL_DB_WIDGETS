@@ -125,11 +125,11 @@ const selectType = (e) => {
   State.update({ type: e.target.value, proposals: [] });
   fetchProposal({
     limit: resPerPage,
-    offset: state.offset,
+    offset: 0,
     proposal_type: state.type,
   });
 };
-console.log(state.type);
+
 const typeOptions = [
   "ChangePolicyUpdateParameters",
   "ChangePolicyUpdateDefaultVotePolicy",
