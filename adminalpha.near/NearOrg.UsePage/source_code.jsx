@@ -204,12 +204,14 @@ return (
             className="ph-duotone ph-user-circle-plus"
             style={{ color: "var(--violet8)", fontSize: "32px" }}
           />
-          <Text size="text-xl" fontWeight="600" color="sand12">
-            Set up your account
-          </Text>
-          <Text>
-            The account is your web3 identity and keeps all your assets
-          </Text>
+          <Flex direction="column" gap="8px">
+            <Text size="text-xl" fontWeight="600" color="sand12">
+              Set up your account
+            </Text>
+            <Text>
+              The account is your web3 identity and keeps all your assets
+            </Text>
+          </Flex>
           <Widget
             src="adminalpha.near/widget/DIG.Button"
             props={{
@@ -228,12 +230,14 @@ return (
             className="ph-duotone ph-squares-four"
             style={{ color: "var(--violet8)", fontSize: "32px" }}
           />
-          <Text size="text-xl" fontWeight="600" color="sand12">
-            Explore dApps
-          </Text>
-          <Text>
-            dApps are decentralized applications that use the blockchain
-          </Text>
+          <Flex direction="column" gap="8px">
+            <Text size="text-xl" fontWeight="600" color="sand12">
+              Explore dApps
+            </Text>
+            <Text>
+              dApps are decentralized applications that use the blockchain
+            </Text>
+          </Flex>
           <Widget
             src="adminalpha.near/widget/DIG.Button"
             props={{
@@ -253,10 +257,12 @@ return (
           className="ph-duotone ph-globe-hemisphere-west"
           style={{ color: "var(--violet8)", fontSize: "32px" }}
         />
-        <Text size="text-xl" fontWeight="600" color="sand12">
-          Understand why it matters
-        </Text>
-        <Text>Become a web3 citizen and help build a better world</Text>
+        <Flex direction="column" gap="8px">
+          <Text size="text-xl" fontWeight="600" color="sand12">
+            Understand why it matters
+          </Text>
+          <Text>Become a web3 citizen and help build a better world</Text>
+        </Flex>
         <Widget
           src="adminalpha.near/widget/DIG.Button"
           props={{
