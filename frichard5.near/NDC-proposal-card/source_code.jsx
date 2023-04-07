@@ -7,4 +7,29 @@ const ProposalCard = styled.div`
   box-shadow: 3px 2px 24px rgba(68, 152, 224, 0.3);
 `;
 
-return <ProposalCard>{proposal.proposal_id}</ProposalCard>;
+const votes = proposal.proposal.votes;
+
+const voteList = votes
+  ? Object.keys(votes).map((voter) => {
+      return (
+        <>
+          <span>{voter}:</span>
+          <span>{votes[voter]}</span>
+        </>
+      );
+    })
+  : "";
+
+return (
+  <ProposalCard>
+    <div>Id:{proposal.proposal_id}</div>
+    <div>Type:{proposal.type}</div>
+    <div>Proposer:{proposal.proposal.proposer}</div>
+    <div>Proposer:{proposal.status}</div>
+    <p>{proposal.proposal.description}</p>
+    <div>
+      Votes:
+      {voteList}
+    </div>
+  </ProposalCard>
+);
