@@ -3,10 +3,10 @@ const user = "humanman.near";
 const props = {
   bdBasics: [
     {
-      title: "Product Market Fit",
-      link: "https://forwardpartners.com/growth-playbooks/how-to-achieve-product-market-fit",
+      title: "Product Market Fit Survey",
+      link: "https://pmfsurvey.com/",
       description:
-        "No-nonsense guide to the product-market fit meaning, why it’s critical, and how to get it.",
+        "Free tool that helps you run the Sean Ellis test and measure your company’s product/market fit.",
       img: "",
       tags: ["business fundamentals", "essentials"],
     },
