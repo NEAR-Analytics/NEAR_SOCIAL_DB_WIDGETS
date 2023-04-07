@@ -711,11 +711,11 @@ return (
       state.term.toLowerCase().trim() !== state.processedQuery.join(" ") && (
         <div class="mb-2" style={{ "font-family": "monospace" }}>
           No results for {state.term}. Looking for
-          <strong>{state.processedQuery.join(" ")}</strong>
+          <strong>{state.processedQuery.join(" ")}</strong>:
         </div>
       )}
     {
-      state.searchResult
+      state.term && state.searchResult
         ? widget("components.posts.List", {
             searchResult: {
               postIds: state.searchResult,
