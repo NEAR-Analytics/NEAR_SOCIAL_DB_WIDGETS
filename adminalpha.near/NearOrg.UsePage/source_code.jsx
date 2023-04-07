@@ -165,7 +165,7 @@ const Card = styled.div`
   border: 1px solid var(--sand4);
   align-items: ${(p) => (p.center ? "center" : "flex-star")};
   justify-content: ${(p) => (p.center ? "center" : undefined)};
-  text-align: ${(p) => (p.center ? "center" : "left")};
+  text-align: ${(p) => (p.center ? "center" : undefined)};
   background: var(--sand1);
 `;
 
@@ -372,7 +372,7 @@ return (
         </Text>
       </UseCase>
 
-      <Card>
+      <Card center>
         <a href="https://www.ref.finance/" target="_blank">
           <CircleImg src="https://awesomenear-spaces.fra1.digitaloceanspaces.com/production/projects/ref-finance/ref-finance.jpg" />
         </a>
@@ -438,7 +438,7 @@ return (
       </UseCase>
 
       <Flex gap="24px" mobileStack="24px">
-        <Card>
+        <Card center>
           <a href="https://www.seatlabnft.com/" target="_blank">
             <CircleImg src="https://awesomenear-spaces.fra1.digitaloceanspaces.com/production/projects/seatlab-nft/seatlab-nft.jpg" />
           </a>
@@ -457,7 +457,7 @@ return (
           </Flex>
         </Card>
 
-        <Card>
+        <Card center>
           <a href="https://www.tamastream.io/" target="_blank">
             <CircleImg src="https://awesomenear-spaces.fra1.digitaloceanspaces.com/production/projects/seatlab-nft/seatlab-nft.jpg" />
           </a>
@@ -520,7 +520,7 @@ return (
       </UseCase>
 
       <Flex gap="24px" mobileStack="24px">
-        <Card>
+        <Card center>
           <a href="https://sweatco.in/" target="_blank">
             <CircleImg src="https://awesomenear-spaces.fra1.digitaloceanspaces.com/production/projects/sweat-economy/sweat-economy.jpg" />
           </a>
@@ -539,7 +539,7 @@ return (
           </Flex>
         </Card>
 
-        <Card>
+        <Card center>
           <a href="https://blogchain.app/home" target="_blank">
             <CircleImg src="https://awesomenear-spaces.fra1.digitaloceanspaces.com/production/projects/blogchain/blogchain.jpg" />
           </a>
