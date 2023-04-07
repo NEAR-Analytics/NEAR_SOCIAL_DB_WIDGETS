@@ -354,41 +354,14 @@ return (
           </Text>
         </Text>
 
-        <Flex direction="column" gap="16px">
-          <Text>
-            <b>Decentralized Finance, of DeFi,</b> lies at the core of the Web3
-            movement. This sector leverages how tokens are valued and exchanged
-            without the barriers to access as with traditional finance. It
-            illustrates the power of ownership by giving token holders complete
-            control of their assets, and allowing them pseudo-anonymity in how
-            they participate.
-          </Text>
-
-          <Flex gap="16px">
-            <Widget
-              src="adminalpha.near/widget/DIG.Button"
-              props={{
-                href: "#todo",
-                iconRight: "ph-bold ph-arrow-up-right",
-                label: "Learn about DeFi",
-                variant: "primary",
-                size: "small",
-              }}
-            />
-            <Widget
-              src="adminalpha.near/widget/DIG.Button"
-              props={{
-                href: "https://awesomenear.com/categories/defi",
-                target: "_blank",
-                iconRight: "ph-bold ph-arrow-up-right",
-                label: "Explore DeFi dApps",
-                variant: "primary",
-                fill: "outline",
-                size: "small",
-              }}
-            />
-          </Flex>
-        </Flex>
+        <Text>
+          <b>Decentralized Finance, of DeFi,</b> lies at the core of the Web3
+          movement. This sector leverages how tokens are valued and exchanged
+          without the barriers to access as with traditional finance. It
+          illustrates the power of ownership by giving token holders complete
+          control of their assets, and allowing them pseudo-anonymity in how
+          they participate.
+        </Text>
       </UseCase>
 
       <Card center>
@@ -409,6 +382,31 @@ return (
         </Flex>
       </Card>
 
+      <Flex gap="16px">
+        <Widget
+          src="adminalpha.near/widget/DIG.Button"
+          props={{
+            href: "#todo",
+            iconRight: "ph-bold ph-arrow-up-right",
+            label: "Learn about DeFi",
+            variant: "primary",
+            size: "large",
+          }}
+        />
+        <Widget
+          src="adminalpha.near/widget/DIG.Button"
+          props={{
+            href: "https://awesomenear.com/categories/defi",
+            target: "_blank",
+            iconRight: "ph-bold ph-arrow-up-right",
+            label: "Explore DeFi dApps",
+            variant: "primary",
+            fill: "outline",
+            size: "large",
+          }}
+        />
+      </Flex>
+
       <HR />
 
       <UseCase>
@@ -420,42 +418,15 @@ return (
           </Text>
         </Text>
 
-        <Flex direction="column" gap="16px">
-          <Text>
-            <b>Non-Fungible Tokens</b> are unique digital assets that are
-            fundamental to the idea of ownership in Web3. The assets you own are
-            recorded on the blockchain and are easily verifiable from anyone in
-            the world at any time. More importantly, they are immutable–no
-            authority can seize them. This powerful combination of transparency
-            and permanence, make NFTs a remarkable tool for various use cases
-            surrounding identity and ownership.
-          </Text>
-
-          <Flex gap="16px">
-            <Widget
-              src="adminalpha.near/widget/DIG.Button"
-              props={{
-                href: "#todo",
-                iconRight: "ph-bold ph-arrow-up-right",
-                label: "Learn about NFTs",
-                variant: "primary",
-                size: "small",
-              }}
-            />
-            <Widget
-              src="adminalpha.near/widget/DIG.Button"
-              props={{
-                href: "https://awesomenear.com/categories/nft",
-                target: "_blank",
-                iconRight: "ph-bold ph-arrow-up-right",
-                label: "Explore NFT dApps",
-                variant: "primary",
-                fill: "outline",
-                size: "small",
-              }}
-            />
-          </Flex>
-        </Flex>
+        <Text>
+          <b>Non-Fungible Tokens</b> are unique digital assets that are
+          fundamental to the idea of ownership in Web3. The assets you own are
+          recorded on the blockchain and are easily verifiable from anyone in
+          the world at any time. More importantly, they are immutable–no
+          authority can seize them. This powerful combination of transparency
+          and permanence, make NFTs a remarkable tool for various use cases
+          surrounding identity and ownership.
+        </Text>
       </UseCase>
 
       <Flex gap="24px" mobileStack>
@@ -494,6 +465,31 @@ return (
             </Text>
           </Flex>
         </Card>
+      </Flex>
+
+      <Flex gap="16px">
+        <Widget
+          src="adminalpha.near/widget/DIG.Button"
+          props={{
+            href: "#todo",
+            iconRight: "ph-bold ph-arrow-up-right",
+            label: "Learn about NFTs",
+            variant: "primary",
+            size: "large",
+          }}
+        />
+        <Widget
+          src="adminalpha.near/widget/DIG.Button"
+          props={{
+            href: "https://awesomenear.com/categories/nft",
+            target: "_blank",
+            iconRight: "ph-bold ph-arrow-up-right",
+            label: "Explore NFT dApps",
+            variant: "primary",
+            fill: "outline",
+            size: "large",
+          }}
+        />
       </Flex>
     </Section>
   </Wrapper>
