@@ -41,20 +41,21 @@ const DashboardContainer = styled.div`
     height: 8px;
   }
 
-  ::-webkit-scrollbar-track {
+  *::-webkit-scrollbar-track {
     background: transparent;
   }
 
-  ::-webkit-scrollbar-thumb {
+  *::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.12);
     border-radius: 3px;
   }
 
-  ::-webkit-scrollbar-thumb:hover {
+  
+  *::-webkit-scrollbar-thumb:hover {
     background: rgba(255, 255, 255, 0.08);
   }
 
-  ::-webkit-scrollbar-corner {
+  *::-webkit-scrollbar-corner {
     background-color: transparent;
   }
 `;
