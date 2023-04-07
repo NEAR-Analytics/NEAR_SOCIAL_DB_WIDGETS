@@ -16,7 +16,8 @@ const DashboardContainer = styled.div`
     font-family: 'avenir lt std';    
   }
   h2 {
-    font-weight: 750;
+    font-weight: 600;
+    margin-left: -20px;
   }
   padding: 28px;
   background-size: contain;
