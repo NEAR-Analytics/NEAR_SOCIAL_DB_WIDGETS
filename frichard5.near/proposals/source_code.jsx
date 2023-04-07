@@ -12,16 +12,15 @@ const forgeUrl = (apiUrl, params) =>
 
 const ProposalContainer = styled.div`
   height:100px;
+  overflow: auto;
 `;
 
 const resPerPage = 10;
 
 State.init({
-  params: {
-    offset: 0,
-    limit: resPerPage,
-  },
+  lastProposalFetch: [],
   proposals: [],
+  isLoading: false,
 });
 
 const columns = [
@@ -66,21 +65,31 @@ const GenericTable = (
   />
 );
 
-const fetchTransfers = (params) => {
+const fetchProposal = (params) => {
+  console.log("HUM PAGE", params);
+  State.update({ isLoading: true });
   const proposals = fetch(forgeUrl(apiUrl, params), {
     mode: "cors",
     headers: {
       "x-api-key": publicApiKey,
     },
   });
-  proposals.body && State.update({ proposals: proposals.body });
+  const allProposals = [...state.proposals, ...proposals.body];
+  State.update({
+    lastProposalFetch: proposals.body,
+    proposals: allProposals,
+    isLoading: false,
+  });
 };
-//fetchTransfers(state.params);
 
-console.log("PROPOSALS", state.proposals);
+const fetchMore = () => {
+  if (!state.isLoading) {
+    State.update({ offset: state.offset + resPerPage });
+  }
+};
 
 const ProposalCards = [];
-
+console.log("STATPROPOSAL", state.proposals);
 state.proposals.forEach((proposal) => {
   ProposalCards.push(
     <Widget
@@ -92,10 +101,15 @@ state.proposals.forEach((proposal) => {
   );
 });
 
-return (
-  <ProposalContainer>
-    <InfiniteScroll loadMore={fetchTransfers(state.params)} hasMore={true}>
-      {ProposalCards}
-    </InfiniteScroll>
-  </ProposalContainer>
+const ProposalInfiniteScroll = (
+  <Widget
+    src={`${widgetProvider}/widget/proposals_scroll`}
+    props={{
+      cards={ProposalCards},
+      fetchMore={fetchMore},
+      hasMore=false
+    }}
+  />
 );
+
+return <ProposalContainer>{ProposalInfiniteScroll}</ProposalContainer>;
