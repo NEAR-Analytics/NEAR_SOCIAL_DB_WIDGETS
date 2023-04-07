@@ -49,7 +49,10 @@ function href(widgetName, linkProps) {
 }
 /* END_INCLUDE: "common.jsx" */
 
-function defaultRenderItem(postId, additionalProps = {}) {
+function defaultRenderItem(postId, additionalProps) {
+  if (!additionalProps) {
+    additionalProps = {};
+  }
   // It is important to have a non-zero-height element as otherwise InfiniteScroll loads too many items on initial load
   return (
     <div style={{ minHeight: "150px" }}>
