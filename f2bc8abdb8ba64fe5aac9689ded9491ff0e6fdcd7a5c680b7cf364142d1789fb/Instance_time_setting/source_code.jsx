@@ -265,7 +265,7 @@ return (
                   <div className={thisWidgetClassNames.infoAndTitleContainer}>
                     <p
                       classname={thisWidgetClassNames.showInSmallerScreens}
-                      style={thisWidgetInlineStyles.table}
+                      style={thisWidgetInlineStyles.fontW600}
                     >
                       {tbl_headers[0]}
                     </p>
@@ -275,7 +275,7 @@ return (
                     <div className={thisWidgetClassNames.infoAndTitleContainer}>
                       <p
                         classname={thisWidgetClassNames.showInSmallerScreens}
-                        style={thisWidgetInlineStyles.table}
+                        style={thisWidgetInlineStyles.fontW600}
                       >
                         {tbl_headers[1]}
                       </p>
@@ -313,7 +313,7 @@ return (
                   <div className={thisWidgetClassNames.infoAndTitleContainer}>
                     <p
                       classname={thisWidgetClassNames.showInSmallerScreens}
-                      style={thisWidgetInlineStyles.table}
+                      style={thisWidgetInlineStyles.fontW600}
                     >
                       {tbl_headers[2]}
                     </p>
@@ -322,7 +322,7 @@ return (
                   <div className={thisWidgetClassNames.infoAndTitleContainer}>
                     <p
                       classname={thisWidgetClassNames.showInSmallerScreens}
-                      style={thisWidgetInlineStyles.table}
+                      style={thisWidgetInlineStyles.fontW600}
                     >
                       {tbl_headers[3]}
                     </p>
