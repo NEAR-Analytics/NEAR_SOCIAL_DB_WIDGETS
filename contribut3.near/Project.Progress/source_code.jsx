@@ -24,6 +24,7 @@ const Label = styled.span`
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: flex-start;
   padding: 0px;
   gap: .5em;
   font-style: normal;
@@ -37,7 +38,7 @@ const Label = styled.span`
 const Value = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   padding: 0px;
   gap: .5em;
