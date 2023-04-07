@@ -29,7 +29,7 @@ window.addEventListener("message", (message) => {
   }
 
   const { type, data } = message.data.event;
-  const result = aa(type, data);
+  // const result = aa(type, data);
   message.source.postMessage({
       result,
       eventType: type,
@@ -38,6 +38,8 @@ window.addEventListener("message", (message) => {
 }, false);
 </script>
 `;
+
+console.log("send event", props.event);
 
 return (
   <iframe
