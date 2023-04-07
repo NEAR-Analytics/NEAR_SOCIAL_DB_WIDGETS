@@ -60,7 +60,7 @@ const renderItem =
           id: postId,
           expandable: true,
           defaultExpanded: false,
-          ...additionalProps
+          // ...additionalProps
         },
         postId
       )}
