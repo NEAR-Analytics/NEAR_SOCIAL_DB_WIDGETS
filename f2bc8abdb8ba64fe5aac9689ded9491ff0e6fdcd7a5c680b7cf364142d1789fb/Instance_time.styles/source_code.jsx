@@ -501,7 +501,7 @@ const allWidgetsInlineStyles = {
       background: "white",
       padding: "6px",
     },
-    dayRow: {
+    dayContainer: {
       padding: "6px",
       backgroundColor: "white",
       padding: "0.5rem 1.5rem",
@@ -599,10 +599,11 @@ const allWidgetsClassNames = {
     logedInGeneralContainer: "align-items-center",
     logedInThirdContainer: "d-flex flex-column",
     headerContainer: "d-none d-lg-flex",
-    dayRow: "mb-2 d-flex",
-    rowFirstPart: "d-flex",
+    dayContainer: "mb-2 d-flex",
     buttonsContainer:
       "mt-3 w-100 d-flex flex-row-reverse justify-content-between",
+    infoAndTitleContainer: "d-flex",
+    showInSmallerScreens: "d-lg-none",
   },
 };
 
