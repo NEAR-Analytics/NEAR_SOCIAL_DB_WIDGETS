@@ -34,7 +34,7 @@ const TabButton = styled.button`
 `;
 
 let tabList = [];
-
+console.log("selctedState", state.selectedTab);
 tabs.forEach((tab) => {
   tabList.push(
     <TabButton
