@@ -23,7 +23,7 @@ const voteList = votes
 return (
   <ProposalCard>
     <div>Id:{proposal.proposal_id}</div>
-    <div>Type:{proposal.type}</div>
+    <div>Type:{proposal.proposal_type}</div>
     <div>Proposer:{proposal.proposal.proposer}</div>
     <div>Proposer:{proposal.status}</div>
     <p>{proposal.proposal.description}</p>
