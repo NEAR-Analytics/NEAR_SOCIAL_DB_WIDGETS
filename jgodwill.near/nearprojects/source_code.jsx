@@ -137,6 +137,7 @@ const Cards = styled.div`
 
 let content = !state.jsonData && "Sample";
 
+loadActualData();
 return (
   <div class="container-fluid">
     <h3 class="text-center">{content} Near Projects </h3>
