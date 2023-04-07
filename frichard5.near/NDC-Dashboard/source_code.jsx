@@ -116,7 +116,7 @@ const Tabs = (
           value: "members",
           label: "Members",
           //selected: state.selectedTab === "members",
-          components: <>No matching tab for {state.selectedTab}</>,
+          components: <>Coming soon</>,
         },
       ],
       widgetProvider,
