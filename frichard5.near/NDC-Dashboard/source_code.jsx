@@ -77,7 +77,7 @@ const Tabs = (
         {
           value: "money",
           label: "Money",
-          //selected: state.selectedTab === "money",
+          selected: true,
           components: (
             <WidgetsContainer>
               {Balances}
