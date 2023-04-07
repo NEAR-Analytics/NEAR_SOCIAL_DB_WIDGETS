@@ -30,7 +30,7 @@ return (
         label: "Test",
         id: "test",
         value: "test",
-        onSave: (website) => onSave({ website }),
+        onSave: (test) => onSave({ test }),
       }}
     />
     <Widget
