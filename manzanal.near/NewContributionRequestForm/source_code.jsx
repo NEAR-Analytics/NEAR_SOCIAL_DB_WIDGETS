@@ -41,7 +41,7 @@ const Heading3 = styled.div`
     line-height: 24px;
 `;
 
-const Title = styles.div`
+const Title = styled.div`
   border-bottom: 1px solid #ECEEF0;
 `;
 
@@ -91,7 +91,7 @@ const renderAttachFiles = (
       props={{
         fileAccept: "application/pdf",
         fileIcon: "bi-file-earmark-pdf",
-        buttonText: "Upload a pfd",
+        buttonText: "Upload pdf files",
         update: onUpdateAttachFiles,
       }}
     />
@@ -125,7 +125,7 @@ const renderTitle = (
   </div>
 );
 const renderTagSelection = (
-  <div className="mb-3" style={{ minHeight: "62px" }}>
+  <div className="mb-3">
     {metadata !== null ? (
       <Widget
         src={"mob.near/widget/MetadataEditor"}
