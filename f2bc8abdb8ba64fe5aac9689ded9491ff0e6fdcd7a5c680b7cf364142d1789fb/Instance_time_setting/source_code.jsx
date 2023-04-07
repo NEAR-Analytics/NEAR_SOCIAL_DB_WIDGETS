@@ -250,11 +250,9 @@ return (
               style={thisWidgetInlineStyles.headerContainer}
               className={thisWidgetClassNames.headerContainer}
             >
-              <div style={thisWidgetInlineStyles.flex_row}>
-                {tbl_headers.map((header) => (
-                  <div style={thisWidgetInlineStyles.table}>{header}</div>
-                ))}
-              </div>
+              {tbl_headers.map((header) => (
+                <div style={thisWidgetInlineStyles.table}>{header}</div>
+              ))}
             </div>
             {days.map((day, index) => (
               <div
