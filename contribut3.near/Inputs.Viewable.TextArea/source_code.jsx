@@ -44,6 +44,14 @@ const SaveButton = styled.button`
   color: #11181c;
 `;
 
+const MarkdownText = styled.div`
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1em;
+  line-height: 1.5em;
+  color: #475467;
+`;
+
 return (
   <Widget
     src={`${ownerId}/widget/Inputs.Viewable`}
@@ -64,7 +72,7 @@ return (
         </LabelArea>
       ),
       // view: <Widget src={`${ownerId}/widget/DescriptionArea`} props={{ description: value }} />,
-      view: <Markdown text={value} />,
+      view: <MarkdownText><Markdown text={value} /></MarkdownText>,
     }}
   />
 );
