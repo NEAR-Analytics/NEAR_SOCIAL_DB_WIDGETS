@@ -350,7 +350,7 @@ return (
         <div style={thisWidgetInlineStyles.logedInSecondContainer}>
           <div
             style={thisWidgetInlineStyles.logedInThirdContainer}
-            className={thisWidgetInlineStyles.logedInThirdContainer}
+            className={thisWidgetClassNames.logedInThirdContainer}
           >
             <div
               style={thisWidgetInlineStyles.headerContainer}
