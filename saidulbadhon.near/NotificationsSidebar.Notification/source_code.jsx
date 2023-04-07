@@ -32,7 +32,7 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 24px;
-  border: 1px solid #eceef0;
+  border: none || 1px solid #eceef0;
   box-shadow: none;
   padding: 12px;
   border-radius: 4px;
