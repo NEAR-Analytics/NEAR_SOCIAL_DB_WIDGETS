@@ -234,6 +234,8 @@ const timeSelector = (f, index) => {
   );
 };
 
+console.log(thisWidgetClassNames.showInSmallerScreens);
+
 return (
   <div>
     {context.accountId ? (
