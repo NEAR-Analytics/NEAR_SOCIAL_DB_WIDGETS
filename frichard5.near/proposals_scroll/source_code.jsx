@@ -1,3 +1,6 @@
 const { hasMore, fetchMore, cards } = props;
-console.log("CARDS", props);
-return <div>test {cards.length}</div>;
+return (
+  <InfiniteScroll loadMore={fetchMore} hasMore={hasMore} pageStart={0}>
+    {cards}
+  </InfiniteScroll>
+);
