@@ -130,16 +130,35 @@ const selectType = (e) => {
   });
 };
 console.log(state.type);
+const typeOptions = [
+  "ChangePolicyUpdateParameters",
+  "ChangePolicyUpdateDefaultVotePolicy",
+  "ChangePolicyRemoveRole",
+  "ChangePolicyAddOrUpdateRole",
+  "FactoryInfoUpdate",
+  "BountyDone",
+  "SetStakingContract",
+  "UpgradeRemote",
+  "UpgradeSelf",
+  "ChangePolicy",
+  "AddBounty",
+  "Vote",
+  "ChangeConfig",
+  "Transfer",
+  "FunctionCall",
+  "AddMemberToRole",
+  "RemoveMemberFromRole",
+].map((t) => {
+  return {
+    value: t,
+    label: t,
+  };
+});
 const SelectType = (
   <Widget
     src={`${widgetProvider}/widget/NDC-select`}
     props={{
-      options: [
-        { value: "All", label: "All" },
-        { value: "Transfer", label: "Transfer" },
-        { value: "FunctionCall", label: "Function Call" },
-        { value: "AddBounty", label: "Add Bounty" },
-      ],
+      options: typeOptions,
       selectedOption: state.type,
       onChange: selectType,
     }}
