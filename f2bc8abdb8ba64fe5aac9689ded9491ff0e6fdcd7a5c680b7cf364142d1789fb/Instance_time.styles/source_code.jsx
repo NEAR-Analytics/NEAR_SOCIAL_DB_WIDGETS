@@ -505,10 +505,10 @@ const allWidgetsInlineStyles = {
       letterSpacing: "-0.01em",
       width: "100%",
     },
+    inputContainer: { cursor: "pointer" },
     inputActive: {
       backgroundColor: colors.grey7,
       borderColor: colors.grey9,
-      cursor: "pointer",
     },
     inputInactive: {
       backgroundColor: colors.color2,
