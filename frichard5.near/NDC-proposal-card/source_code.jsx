@@ -51,11 +51,18 @@ const Header = styled.div`
   justify-content: space-between;
 `;
 
+const Proposer = style.div`
+
+`;
+
+const type = styled.div`
+`;
+
 return (
   <ProposalCard>
     <Header>
-      <ProposalId>Proposal Id {proposal.proposal_id}</ProposalId>
       <Status status={proposal.status}>{proposal.status}</Status>
+      <ProposalId>Proposal Id {proposal.proposal_id}</ProposalId>
     </Header>
     <div>Type: {proposal.proposal_type}</div>
     <div>Submission Time: {proposal.submission_time}</div>
