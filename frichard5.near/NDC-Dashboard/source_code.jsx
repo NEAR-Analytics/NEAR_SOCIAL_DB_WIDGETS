@@ -1,5 +1,5 @@
 // Constants
-const widgetProvider = "frichard5.near";
+const widgetProvider = props.widgetProvider;
 const refUrl = "https://api.stats.ref.finance/api/ft";
 
 // Initial state
@@ -7,31 +7,6 @@ State.init({
   selectedDao: "marketing.sputnik-dao.near",
   selectedTab: "money",
 });
-
-// Style
-const avenirFontFamily = fetch(
-  "https://fonts.cdnfonts.com/css/avenir-lt-std"
-).body;
-const theme = {
-  main: "#FFD50D",
-  secondaryPink: "#F29BC0",
-  secondaryBlue: "#4498E0",
-};
-
-//    background: ${(props) => props.theme.secondaryBlue};
-
-const DashboardContainer = styled.div`
-  * {
-    font-family: 'avenir lt std';    
-  }
-  h2 {
-    font-weight: 750;
-  }
-  padding: 28px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  ${avenirFontFamily}
-`;
 
 const WidgetsContainer = styled.div`
     
@@ -41,7 +16,6 @@ const WidgetsContainer = styled.div`
 const ftList = fetch(refUrl);
 
 // Components
-const Banner = <Widget src={`${widgetProvider}/widget/NDC-Banner`} />;
 
 const Balances = (
   <Widget
@@ -157,10 +131,7 @@ const Select = (
 
 return (
   <>
-    <DashboardContainer theme={theme}>
-      {Banner}
-      {Select}
-      {Tabs}
-    </DashboardContainer>
+    {Select}
+    {Tabs}
   </>
 );
