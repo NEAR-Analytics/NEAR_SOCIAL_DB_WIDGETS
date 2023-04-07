@@ -169,7 +169,7 @@ return (
 
     <Section
       gap="24px"
-      background="linear-gradient(to right, var(--sand1), var(--sand3), var(--sand1))"
+      background="linear-gradient(to right, hsla(0, 0%, 100%, 0), var(--sand3), hsla(0, 0%, 100%, 0)"
     >
       <Flex gap="24px" mobileStack>
         <Card center>
