@@ -255,7 +255,7 @@ return (
           />
           <Flex direction="column" gap="8px">
             <Text size="text-xl" fontWeight="600" color="sand12">
-              Understand why it matters
+              Understand why
             </Text>
             <Text>Become a web3 citizen and help build a better world</Text>
           </Flex>
