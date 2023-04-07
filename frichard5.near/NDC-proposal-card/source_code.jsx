@@ -66,7 +66,7 @@ return (
     </Header>
     <div>Type: {proposal.proposal_type}</div>
     <div>Submission Time: {proposal.submission_time}</div>
-    <div>Proposer: {proposal.proposal.proposer}</div>
+    <Proposer>{proposal.proposal.proposer}</Proposer>
 
     <p>{proposal.proposal.description}</p>
     <div>
