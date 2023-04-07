@@ -8,6 +8,7 @@ const Select = styled.select`
 `;
 
 const Option = styled.option`
+  color :red;
   &:hover {
     background:red;
   }
