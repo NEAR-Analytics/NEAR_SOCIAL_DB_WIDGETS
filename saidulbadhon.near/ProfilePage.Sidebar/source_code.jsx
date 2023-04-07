@@ -73,16 +73,15 @@ return (
         </div>
       </div>
 
-      <p
+      <Markdown
         style={{
           textAlign: "center",
           color: props.theme.textColor,
           fontWeight: 400,
           fontSize: "1rem",
         }}
-      >
-        {profile?.description}
-      </p>
+        text={profile?.description}
+      />
     </div>
 
     {state.showEditProfile ? (
