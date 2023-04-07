@@ -455,6 +455,7 @@ const allWidgetsInlineStyles = {
       color: colors.grey7,
       letterSpacing: "-0.01em",
       borderRadius: "1rem",
+      cursor: "pointer",
     },
     comboBoxInactive: {
       backgroundColor: "white",
