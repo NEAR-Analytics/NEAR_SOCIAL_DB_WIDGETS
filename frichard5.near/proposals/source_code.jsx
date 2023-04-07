@@ -131,23 +131,24 @@ const selectType = (e) => {
 };
 
 const typeOptions = [
+  "All",
+  "Transfer",
+  "Vote",
+  "FunctionCall",
+  "AddBounty",
+  "BountyDone",
+  "AddMemberToRole",
+  "RemoveMemberFromRole",
+  "ChangeConfig",
+  "ChangePolicy",
   "ChangePolicyUpdateParameters",
   "ChangePolicyUpdateDefaultVotePolicy",
   "ChangePolicyRemoveRole",
   "ChangePolicyAddOrUpdateRole",
   "FactoryInfoUpdate",
-  "BountyDone",
   "SetStakingContract",
   "UpgradeRemote",
   "UpgradeSelf",
-  "ChangePolicy",
-  "AddBounty",
-  "Vote",
-  "ChangeConfig",
-  "Transfer",
-  "FunctionCall",
-  "AddMemberToRole",
-  "RemoveMemberFromRole",
 ].map((t) => {
   return {
     value: t,
