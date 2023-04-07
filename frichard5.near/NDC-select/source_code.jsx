@@ -5,7 +5,10 @@ const Select = styled.select`
   padding: 10px;
   font-size: 16px; 
   cursor: pointer; 
-  option:hover {
+`;
+
+const Option = styled.option`
+  &:hover {
     background:red;
   }
 `;
@@ -14,9 +17,9 @@ const Options = [];
 
 options.forEach((o) => {
   Options.push(
-    <option value={o.value} selected={o.value === selectedOption}>
+    <Option value={o.value} selected={o.value === selectedOption}>
       {o.label}
-    </option>
+    </Option>
   );
 });
 
