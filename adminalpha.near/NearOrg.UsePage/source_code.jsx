@@ -253,7 +253,7 @@ return (
 
     <Section id="set-up-account" center>
       <Flex direction="column" gap="16px">
-        <Text as="h2" size="text-3xl" color="sand12">
+        <Text as="h2" size="text-3xl" fontWeight="600" color="sand12">
           Set up your account
         </Text>
         <Text size="text-l">
@@ -321,7 +321,7 @@ return (
       center
     >
       <Flex direction="column" gap="16px">
-        <Text as="h2" size="text-3xl" color="sand12">
+        <Text as="h2" size="text-3xl" color="sand12" fontWeight="600">
           Explore dApps built on NEAR
         </Text>
         <Text size="text-l">
