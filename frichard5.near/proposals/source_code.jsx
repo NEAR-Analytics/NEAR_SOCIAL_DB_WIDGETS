@@ -22,6 +22,7 @@ State.init({
   lastProposalFetch: [],
   proposals: [],
   isLoading: false,
+  type: "all",
 });
 
 const columns = [
@@ -85,7 +86,11 @@ const fetchProposal = (params) => {
 };
 
 if (!state.proposals.length) {
-  fetchProposal({ limit: resPerPage, offset: state.offset });
+  fetchProposal({
+    limit: resPerPage,
+    offset: state.offset,
+    proposal_type: state.type,
+  });
 }
 
 const fetchMore = () => {
@@ -108,6 +113,31 @@ state.proposals.forEach((proposal) => {
   );
 });
 
+const selectType = (e) => {
+  State.update({ type: e.target.value, proposals: [] });
+  fetchProposal({
+    limit: resPerPage,
+    offset: state.offset,
+    proposal_type: state.type,
+  });
+};
+console.log(state.type);
+const SelectType = (
+  <Widget
+    src={`${widgetProvider}/widget/NDC-select`}
+    props={{
+      options: [
+        { value: "All", label: "All" },
+        { value: "Transfer", label: "Transfer" },
+        { value: "FunctionCall", label: "Function Call" },
+        { value: "AddBounty", label: "Add Bounty" },
+      ],
+      selectedOption: state.type,
+      onChange: selectType,
+    }}
+  />
+);
+
 const ProposalInfiniteScroll = (
   <Widget
     src={`${widgetProvider}/widget/proposals_scroll`}
@@ -119,4 +149,9 @@ const ProposalInfiniteScroll = (
   />
 );
 
-return <ProposalContainer>{ProposalInfiniteScroll}</ProposalContainer>;
+return (
+  <ProposalContainer>
+    {SelectType}
+    {ProposalInfiniteScroll}
+  </ProposalContainer>
+);
