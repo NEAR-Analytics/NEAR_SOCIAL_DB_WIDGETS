@@ -64,7 +64,7 @@ function defaultRenderItem(postId, additionalProps) {
           id: postId,
           expandable: true,
           defaultExpanded: false,
-          // ...additionalProps,
+          ...additionalProps,
         },
         postId
       )}
@@ -85,7 +85,7 @@ const cachedRenderItem = (item, i) => {
   const key = JSON.stringify(item);
 
   if (!(key in state.cachedItems)) {
-    state.cachedItems[key] = renderItem(item, i);
+    state.cachedItems[key] = renderItem(item);
     State.update();
   }
   return state.cachedItems[key];
