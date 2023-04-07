@@ -12,7 +12,7 @@ const metadata = data || {};
 const tags = Object.keys(metadata.tags || {});
 const appUrl = `/#/components/${src}`;
 const detailsUrl = `/#/editor/${src}`;
-const shareUrl = `https://alpha.near.org${detailsUrl}`;
+const shareUrl = `https://nearpad.dev/#/components/${detailsUrl}`;
 const size = props.size || "large";
 
 const primaryActions = {
