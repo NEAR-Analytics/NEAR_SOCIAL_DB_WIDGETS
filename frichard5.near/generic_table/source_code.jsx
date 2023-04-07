@@ -35,7 +35,10 @@ const Table = styled.table`
 const Pagination = styled.div`
   display: flex;
   justify-content: flex-end;
-  
+  margin-top: 10px;
+  button {
+    height: 30px;
+  }
 `;
 
 const columns = props.columns || [
