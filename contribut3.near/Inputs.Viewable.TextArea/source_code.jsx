@@ -64,7 +64,7 @@ return (
         </LabelArea>
       ),
       // view: <Widget src={`${ownerId}/widget/DescriptionArea`} props={{ description: value }} />,
-      view: <Markdown text={description} />,
+      view: <Markdown text={value} />,
     }}
   />
 );
