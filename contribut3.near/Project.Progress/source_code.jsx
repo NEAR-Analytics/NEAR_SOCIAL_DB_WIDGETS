@@ -29,6 +29,7 @@ const Label = styled.span`
   font-size: .75em;
   line-height: 1em;
   color: #11181c;
+  width: 30%;
 `;
 
 const Value = styled.div`
@@ -43,6 +44,7 @@ const Value = styled.div`
   font-size: .75em;
   line-height: 14em;
   color: #11181c;
+  width: 70%;
 `;
 
 return (
@@ -60,4 +62,4 @@ return (
       <Value>60%</Value>
     </Row>
   </Container>
-)
+);
