@@ -20,4 +20,4 @@ options.forEach((o) => {
   );
 });
 
-return <select onChange={onChange}>{Options}</select>;
+return <Select onChange={onChange}>{Options}</Select>;
