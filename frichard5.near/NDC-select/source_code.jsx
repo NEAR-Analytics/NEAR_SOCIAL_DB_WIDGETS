@@ -4,14 +4,11 @@ const Select = styled.select`
   border: none;
   padding: 10px;
   font-size: 16px; 
-  cursor: pointer; 
+  cursor: pointer;
+  background: #4498E0;
 `;
 
 const Option = styled.option`
-  color :red;
-  &:hover {
-    background:red;
-  }
 `;
 
 const Options = [];
