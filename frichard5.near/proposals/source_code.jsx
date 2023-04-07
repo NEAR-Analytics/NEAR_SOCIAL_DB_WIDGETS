@@ -72,4 +72,19 @@ const fetchTransfers = (params) => {
 };
 fetchTransfers(state.params);
 
-return <>{GenericTable}</>;
+console.log("PROPOSALS", state.proposals);
+
+const ProposalCards = [];
+
+state.proposals.forEach((proposal) => {
+  ProposalCards.push(
+    <Widget
+      src={`${widgetProvider}/widget/NDC-proposal-card`}
+      props={{
+        proposal,
+      }}
+    />
+  );
+});
+
+return <>{ProposalCards}</>;
