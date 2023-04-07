@@ -18,6 +18,7 @@ const Input = styled.textarea`
   flex-direction: row;
   align-items: center;
   padding: 0.5em 0.75em;
+  width: 100%;
   gap: 0.5em;
   background: #ffffff;
   border: 1px solid #d0d5dd;
