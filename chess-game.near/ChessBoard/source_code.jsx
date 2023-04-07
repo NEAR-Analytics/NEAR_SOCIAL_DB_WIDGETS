@@ -8,7 +8,7 @@ const assets = {
     bp: "https://raw.githubusercontent.com/nikfrank/react-chess-pieces/master/src/p-black.svg",
     wp: "https://raw.githubusercontent.com/nikfrank/react-chess-pieces/master/src/P-white.svg",
     bn: "https://raw.githubusercontent.com/nikfrank/react-chess-pieces/master/src/n-black.svg",
-    wn: "https://raw.githubusercontent.com/nikfrank/react-chess-pieces/master/src/n-white.svg",
+    wn: "https://raw.githubusercontent.com/nikfrank/react-chess-pieces/master/src/N-white.svg",
     bb: "https://raw.githubusercontent.com/nikfrank/react-chess-pieces/master/src/b-black.svg",
     wb: "https://raw.githubusercontent.com/nikfrank/react-chess-pieces/master/src/B-white.svg",
     br: "https://raw.githubusercontent.com/nikfrank/react-chess-pieces/master/src/r-black.svg",
