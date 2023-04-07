@@ -298,12 +298,14 @@ const Stats = styled.div`
 const Card = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 24px;
+  gap: ${(p) => p.gap ?? "24px"};
   width: 100%;
   padding: 32px;
   border-radius: 8px;
   border: 1px solid var(--sand4);
+  align-items: ${(p) => (p.center ? "center" : "flex-star")};
+  justify-content: ${(p) => (p.center ? "center" : undefined)};
+  text-align: ${(p) => (p.center ? "center" : "left")};
   background: var(--sand1);
 `;
 
