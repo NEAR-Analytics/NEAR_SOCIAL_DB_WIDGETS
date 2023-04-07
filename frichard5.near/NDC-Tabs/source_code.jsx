@@ -24,7 +24,7 @@ const Tabs = styled.div`
 `;
 const Content = styled.div``;
 const TabButton = styled.button`
-    background: ${(props) => (props.selected ? "red" : "blue")}; 
+    background: ${(props) => (props.selected ? "#FFD50D" : "blue")}; 
 `;
 
 let tabList = [];
