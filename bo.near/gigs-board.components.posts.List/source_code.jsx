@@ -216,6 +216,7 @@ const fetchMore =
 
 const items = state.items ? state.items.slice(0, state.displayCount) : [];
 
+console.log(items)
 const renderedItems = items.map(cachedRenderItem);
 
 return (
