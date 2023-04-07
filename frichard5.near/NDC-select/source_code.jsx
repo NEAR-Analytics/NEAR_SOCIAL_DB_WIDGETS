@@ -3,11 +3,13 @@ const { options, selectedOption, onChange } = props;
 const Select = styled.select`
   position: relative;
   border: none;
-  padding: 10px;
-  font-size: 20px; 
+  padding: 7px;
+  font-size: 6px; 
   cursor: pointer;
   background: rgba(68, 152, 224, 0.7);
   border-radius: 4px;
+  top: -31px;
+  left: -30px;
 `;
 
 const Option = styled.option`
