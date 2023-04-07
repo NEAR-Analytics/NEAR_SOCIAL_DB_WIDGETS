@@ -37,11 +37,11 @@ const Wrapper = styled.div`
   padding: 12px;
   border-radius: 4px;
   transition: background-color 200ms;
-    background: #FFFfff;
+    background: ${props.theme.ui};
 
 
   &:hover {
-    background: #e9ebed;
+    background: ${props.theme.ui2};
   }
 
   > *:first-child {
