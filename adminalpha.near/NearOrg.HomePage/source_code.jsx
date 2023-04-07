@@ -72,8 +72,8 @@ const Wrapper = styled.div`
 
   @media (max-width: 900px) {
     --section-gap: 60px;
-    --large-gap: 24px;
-    --medium-gap: 16px;
+    --large-gap: 48px;
+    --medium-gap: 24px;
     padding-top: 0;
   }
 `;
