@@ -33,11 +33,12 @@ const Wrapper = styled.div`
   align-items: center;
   gap: 24px;
   border: 1px solid #eceef0;
-  box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1),
-    0px 1px 2px rgba(16, 24, 40, 0.06);
+  box-shadow: none;
   padding: 12px;
   border-radius: 4px;
   transition: background-color 200ms;
+    background: #FFFfff;
+
 
   &:hover {
     background: #f0f2f4;
