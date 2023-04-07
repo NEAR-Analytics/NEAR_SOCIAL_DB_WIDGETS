@@ -251,7 +251,7 @@ return (
               className={thisWidgetClassNames.headerContainer}
             >
               {tbl_headers.map((header) => (
-                <div style={thisWidgetInlineStyles.fontW600}>{header}</div>
+                <div style={thisWidgetInlineStyles.headerElement}>{header}</div>
               ))}
             </div>
             {days.map((day, index) => (
@@ -259,7 +259,10 @@ return (
                 className={thisWidgetClassNames.dayContainer}
                 style={thisWidgetInlineStyles.dayContainer}
               >
-                <div className={thisWidgetClassNames.infoAndTitleContainer}>
+                <div
+                  className={thisWidgetClassNames.infoAndTitleContainer}
+                  style={thisWidgetInlineStyles.infoAndTitleContainer}
+                >
                   <p
                     className={thisWidgetClassNames.showInSmallerScreens}
                     style={thisWidgetInlineStyles.fontW600}
@@ -269,8 +272,8 @@ return (
                   <p style={thisWidgetInlineStyles.fontW600}>{day}</p>
                 </div>
                 <div
-                  style={thisWidgetInlineStyles.fontW600}
                   className={thisWidgetClassNames.infoAndTitleContainer}
+                  style={thisWidgetInlineStyles.infoAndTitleContainer}
                 >
                   <p
                     className={thisWidgetClassNames.showInSmallerScreens}
@@ -308,7 +311,10 @@ return (
                     />
                   </div>
                 </div>
-                <div className={thisWidgetClassNames.infoAndTitleContainer}>
+                <div
+                  className={thisWidgetClassNames.infoAndTitleContainer}
+                  style={thisWidgetInlineStyles.infoAndTitleContainer}
+                >
                   <p
                     className={thisWidgetClassNames.showInSmallerScreens}
                     style={thisWidgetInlineStyles.fontW600}
@@ -317,7 +323,10 @@ return (
                   </p>
                   {timeSelector(true, index)}
                 </div>
-                <div className={thisWidgetClassNames.infoAndTitleContainer}>
+                <div
+                  className={thisWidgetClassNames.infoAndTitleContainer}
+                  style={thisWidgetInlineStyles.infoAndTitleContainer}
+                >
                   <p
                     className={thisWidgetClassNames.showInSmallerScreens}
                     style={thisWidgetInlineStyles.fontW600}
