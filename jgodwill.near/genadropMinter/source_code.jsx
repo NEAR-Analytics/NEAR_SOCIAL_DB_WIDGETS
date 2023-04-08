@@ -137,8 +137,8 @@ border-radius: .7em;
 
 const ImageCard = styled.div`
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-  width: 85%;
   max-width: 500px;
+  height:500px;
 `;
 
 const Input = styled.input`
@@ -175,7 +175,7 @@ const TextArea = styled.textarea`
   }
 `;
 return (
-  <Main className="vh-100">
+  <Main className="vh-100 overflow-scroll">
     {state.image.cid ? (
       <div>
         <Heading className="text-center fs-2">Mint NFT on genadrop</Heading>
