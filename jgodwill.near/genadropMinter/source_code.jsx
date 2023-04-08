@@ -20,7 +20,7 @@ function Toaster({ message }) {
   }, 3000);
 
   return (
-    visible && (
+    showAlert && (
       <Toast>
         <p>{message}</p>
       </Toast>
