@@ -11,61 +11,78 @@ if (profile === null) {
   return "Loading";
 }
 
+function Toaster({ message }) {
+  // Hide the toast after 3 seconds
+  setTimeout(() => {
+    State.update({
+      showAlert: false,
+    });
+  }, 3000);
+
+  return (
+    visible && (
+      <Toast>
+        <p>{message}</p>
+      </Toast>
+    )
+  );
+}
+
 const handleMint = () => {
   // if (!(state.title && state.description && state.image.cid)) {
   //   return;
   // }
   if (!accountId) {
-    const toast = new bootstrap.Toast(toastLiveExample);
-
-    toast.show();
-    State.update({
-      showAlert: true,
+    Toaster({ message: "Please log in before continuing" });
+  } else if (!state.title) {
+    Toaster({ message: "Please enter a title before continuing" });
+  } else if (!state.description) {
+    Toaster({ message: "Please enter a description before continuing" });
+  } else {
+    const metadata = {
+      name: state.title,
+      description: state.description,
+      properties: [],
+      image: `ipfs://${state.image.cid}`,
+    };
+    console.log("come", metadata);
+    asyncFetch("https://ipfs.near.social/add", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+      },
+      body: metadata,
+    }).then((res) => {
+      console.log("GO ON SOUN", res);
+      const cid = res.body.cid;
+      const gas = 200000000000000;
+      const deposit = 10000000000000000000000;
+      Near.call([
+        {
+          contractName: "genadrop-contract.nftgen.near",
+          methodName: "nft_mint",
+          args: {
+            token_id: `${Date.now()}`,
+            metadata: {
+              title: state.title,
+              description: state.description,
+              media: `https://ipfs.io/ipfs/${state.image.cid}`,
+              reference: `ipfs://${cid}`,
+            },
+            receiver_id: accountId,
+          },
+          gas: gas,
+          deposit: deposit,
+        },
+      ]);
     });
   }
-  const metadata = {
-    name: state.title,
-    description: state.description,
-    properties: [],
-    image: `ipfs://${state.image.cid}`,
-  };
-  console.log("come", metadata);
-  asyncFetch("https://ipfs.near.social/add", {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-    },
-    body: metadata,
-  }).then((res) => {
-    console.log("GO ON SOUN", res);
-    const cid = res.body.cid;
-    const gas = 200000000000000;
-    const deposit = 10000000000000000000000;
-    Near.call([
-      {
-        contractName: "genadrop-contract.nftgen.near",
-        methodName: "nft_mint",
-        args: {
-          token_id: `${Date.now()}`,
-          metadata: {
-            title: state.title,
-            description: state.description,
-            media: `https://ipfs.io/ipfs/${state.image.cid}`,
-            reference: `ipfs://${cid}`,
-          },
-          receiver_id: accountId,
-        },
-        gas: gas,
-        deposit: deposit,
-      },
-    ]);
-  });
 };
 
 initState({
   title: "",
   description: "",
-  showAlert: false,
+  showAlert: true,
 });
 
 const onChangeTitle = (title) => {
@@ -120,6 +137,17 @@ const Heading = styled.p`
   width:60%;
   text-align: center;
   font-family: "SF Pro Display",sans-serif;
+`;
+
+const Toast = styled.div`
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #333;
+  color: #fff;
+  padding: 16px;
+  border-radius: 8px;
+  z-index: 100;
 `;
 
 const Elipse = styled.div`
@@ -211,7 +239,6 @@ return (
             Title:
             <Input
               type="text"
-              required
               onChange={(e) => onChangeTitle(e.target.value)}
             />
           </Card>
@@ -219,7 +246,6 @@ return (
             Description:
             <TextArea
               type="text"
-              required
               onChange={(e) => onChangeDesc(e.target.value)}
             />
           </Card>
