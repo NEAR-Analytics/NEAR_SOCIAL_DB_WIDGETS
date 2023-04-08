@@ -560,30 +560,18 @@ return (
         </Card>
       </Flex>
 
-      <Flex gap="16px" wrap="wrap" justifyContent="center">
-        <Widget
-          src="adminalpha.near/widget/DIG.Button"
-          props={{
-            href: "#todo",
-            iconRight: "ph-bold ph-arrow-up-right",
-            label: "Learn about NFTs",
-            variant: "primary",
-            size: "large",
-          }}
-        />
-        <Widget
-          src="adminalpha.near/widget/DIG.Button"
-          props={{
-            href: "https://awesomenear.com/categories/nft",
-            target: "_blank",
-            iconRight: "ph-bold ph-arrow-up-right",
-            label: "Explore NFT dApps",
-            variant: "primary",
-            fill: "outline",
-            size: "large",
-          }}
-        />
-      </Flex>
+      <Widget
+        src="adminalpha.near/widget/DIG.Button"
+        props={{
+          href: "https://awesomenear.com/categories/social",
+          target: "_blank",
+          iconRight: "ph-bold ph-arrow-up-right",
+          label: "Explore Social dApps",
+          variant: "primary",
+          fill: "outline",
+          size: "large",
+        }}
+      />
     </Section>
   </Wrapper>
 );
