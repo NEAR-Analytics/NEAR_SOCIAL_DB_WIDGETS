@@ -11,36 +11,43 @@ if (profile === null) {
   return "Loading";
 }
 
-function Toaster({ message }) {
-  // Hide the toast after 3 seconds
-  setTimeout(() => {
-    State.update({
-      showAlert: false,
-    });
-  }, 3000);
-
-  return (
-    showAlert && (
-      <Toast>
-        <p>{message}</p>
-      </Toast>
-    )
-  );
-}
-
 const handleMint = () => {
   // if (!(state.title && state.description && state.image.cid)) {
   //   return;
   // }
   if (!accountId) {
     console.log("Please login");
-    Toaster({ message: "Please log in before continuing" });
+    State.update({
+      showAlert: true,
+      toastMessage: "Please log in before continuing",
+    });
+    setTimeout(() => {
+      State.update({
+        showAlert: false,
+      });
+    }, 3000);
   } else if (!state.title) {
     console.log("Please Enter title");
-    Toaster({ message: "Please enter a title before continuing" });
+    State.update({
+      showAlert: true,
+      toastMessage: "Please enter a title before continuing",
+    });
+    setTimeout(() => {
+      State.update({
+        showAlert: false,
+      });
+    }, 3000);
   } else if (!state.description) {
-    Toaster({ message: "Please enter a description before continuing" });
     console.log("Please Enter desc");
+    State.update({
+      showAlert: true,
+      toastMessage: "Please enter a description before continuing",
+    });
+    setTimeout(() => {
+      State.update({
+        showAlert: false,
+      });
+    }, 3000);
   } else {
     const metadata = {
       name: state.title,
@@ -85,7 +92,8 @@ const handleMint = () => {
 initState({
   title: "",
   description: "",
-  showAlert: true,
+  showAlert: false,
+  toastMessage: "",
 });
 
 const onChangeTitle = (title) => {
@@ -219,7 +227,7 @@ return (
   <Main className="container-fluid">
     {!accountId && <p>Please sign in with NEAR wallet</p>}
     <Heading className="text-center fs-2 fw-bold">Mint NFT on genadrop</Heading>
-    {state.image.cid ? (
+    {!state.image.cid ? (
       <div>
         <Card className="d-flex flex-column align-items-center">
           <ImageCard>
@@ -291,6 +299,10 @@ return (
         </ImageUploadCard>
       </div>
     )}
-    {Toaster}
+    {state.showAlert && (
+      <Toast>
+        <p>{state.toastMessage}</p>
+      </Toast>
+    )}
   </Main>
 );
