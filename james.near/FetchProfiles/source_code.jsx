@@ -1,17 +1,18 @@
 const data = fetch(
-  "https://api.exm.dev/read/4CbuDUBSiWTKmzq8e5NNFnwqR2Pt5wsuIOXHyvhHzBw",
-  {
-    subscribe: true,
-    method: "GET",
-    headers: {
-      Accept: "*/*",
-    },
-  }
+  "https://api.exm.dev/read/4CbuDUBSiWTKmzq8e5NNFnwqR2Pt5wsuIOXHyvhHzBw"
 );
 
 console.log(data);
 
-if (data !== null && data.ok === false) {
+const profiles = data.profiles;
+
+console.log("Profiles data:", profiles);
+
+const firstProfile = profiles[0];
+const firstProfileNickname = firstProfile.nickname;
+const firstProfileBio = firstProfile.bio;
+
+if (data !== null) {
   return (
     <div className="text-bg-light rounded-4 p-3 mb-3">
       <p>ERROR: NO DATA</p>
@@ -24,44 +25,46 @@ if (data !== null && data.ok === false) {
         <div>
           <div class="p-2">
             <h2>Profiles Data</h2>
-            <h3>{data.profiles.nickname}</h3>
-            <p>{data.profiles.address}</p>
+            <h3>{firstProfileNickname}</h3>
+            <p>{profiles.address}</p>
           </div>
           <div class="p-2">
-            <p>{data.read.profiles.bio}</p>
+            <p>{profiles.bio}</p>
           </div>
           <div class="p-2">
             Avatar
-            <p>{data.profiles.avatar}</p>
+            <p>{profiles.avatar}</p>
           </div>
           <div class="p-2">
             Websites
-            <p>{data.profiles.websites}</p>
+            <p>{profiles.websites}</p>
           </div>
           <div class="p-2">
             Socials
-            <p>{data.profiles.socials}</p>
+            <p>{profiles.socials}</p>
           </div>
+          /*
           <div class="p-2">
             Admin
-            <p>{data.profiles.admin}</p>
+            <p>{admin}</p>
           </div>
           <div class="p-2">
             Signature Message
-            <p>{data.profiles.sig_message}</p>
+            <p>{sig_message}</p>
           </div>
           <div class="p-2">
             Molecule
-            <p>{data.ar_molecule}</p>
+            <p>{ar_molecule}</p>
           </div>
           <div class="p-2">
             Volume
-            <p>{data.signatures}</p>
+            <p>{signatures}</p>
           </div>
           <div class="p-2">
             Supported Socials
-            <p>{data.supported_socials}</p>
+            <p>{supported_socials}</p>
           </div>
+          */
         </div>
       ) : (
         <div>Loading ...</div>
