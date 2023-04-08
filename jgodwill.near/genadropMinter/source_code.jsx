@@ -192,8 +192,13 @@ border-radius: .7em;
 
 const ImageCard = styled.div`
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-  max-width: 500px;
   height:500px;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 1rem;
+  &>img{
+  object-fit: contain;
+  }
 `;
 
 const Input = styled.input`
@@ -224,9 +229,6 @@ const TextArea = styled.textarea`
   color: #525c76;
   :focus{
     border:1px solid #0d99ff;
-  }
-  ::placeholder {
-    color: palevioletred;
   }
 `;
 return (
