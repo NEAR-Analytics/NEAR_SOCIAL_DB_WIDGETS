@@ -176,9 +176,9 @@ const TextArea = styled.textarea`
 `;
 return (
   <Main className="container-fluid">
+    <Heading className="text-center fs-2 fw-bold">Mint NFT on genadrop</Heading>
     {state.image.cid ? (
       <div>
-        <Heading className="text-center fs-2">Mint NFT on genadrop</Heading>
         <Card className="d-flex flex-column align-items-center">
           <ImageCard>
             <img
