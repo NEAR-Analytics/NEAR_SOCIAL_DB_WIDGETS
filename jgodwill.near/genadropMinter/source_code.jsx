@@ -87,22 +87,22 @@ const Main = styled.div`
   font-family: "SF Pro Display",sans-serif;
 `;
 
-const handleDrop = (event) => {
-  event.preventDefault();
+// const handleDrop = (event) => {
+//   event.preventDefault();
 
-  const file = event.dataTransfer.files[0];
-  const reader = new FileReader();
+//   const file = event.dataTransfer.files[0];
+//   const reader = new FileReader();
 
-  reader.onloadend = () => {
-    this.setState({
-      file: file,
-      previewUrl: reader.result,
-      showPreview: true,
-    });
-  };
+//   reader.onloadend = () => {
+//     this.setState({
+//       file: file,
+//       previewUrl: reader.result,
+//       showPreview: true,
+//     });
+//   };
 
-  reader.readAsDataURL(file);
-};
+//   reader.readAsDataURL(file);
+// };
 
 const Heading = styled.p`
   margin: 10px auto 10px auto;
@@ -176,7 +176,7 @@ const TextArea = styled.textarea`
 `;
 return (
   <Main className="vh-100">
-    {!state.image.cid ? (
+    {state.image.cid ? (
       <div>
         <Heading className="text-center fs-2">Mint NFT on genadrop</Heading>
         <Card className="d-flex flex-column align-items-center">
