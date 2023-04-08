@@ -33,11 +33,11 @@ const handleMint = () => {
   //   return;
   // }
   if (!accountId) {
-    Toaster({ message: "Please log in before continuing" });
     console.log("Please login");
+    Toaster({ message: "Please log in before continuing" });
   } else if (!state.title) {
-    Toaster({ message: "Please enter a title before continuing" });
     console.log("Please Enter title");
+    Toaster({ message: "Please enter a title before continuing" });
   } else if (!state.description) {
     Toaster({ message: "Please enter a description before continuing" });
     console.log("Please Enter desc");
@@ -113,6 +113,7 @@ align-items: center;
   text-align: center;
 `;
 const Main = styled.div`
+position:relative;
   font-family: "SF Pro Display",sans-serif;
 `;
 
@@ -143,7 +144,7 @@ const Heading = styled.p`
 `;
 
 const Toast = styled.div`
-  position: fixed;
+  position: absolute;
   top: 20px;
   right: 20px;
   background-color: #333;
@@ -218,7 +219,7 @@ return (
   <Main className="container-fluid">
     {!accountId && <p>Please sign in with NEAR wallet</p>}
     <Heading className="text-center fs-2 fw-bold">Mint NFT on genadrop</Heading>
-    {!state.image.cid ? (
+    {state.image.cid ? (
       <div>
         <Card className="d-flex flex-column align-items-center">
           <ImageCard>
@@ -290,5 +291,6 @@ return (
         </ImageUploadCard>
       </div>
     )}
+    {Toaster}
   </Main>
 );
