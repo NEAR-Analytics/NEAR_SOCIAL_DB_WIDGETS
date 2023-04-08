@@ -155,7 +155,7 @@ const Toast = styled.div`
   position: absolute;
   top: 20px;
   right: 20px;
-  background-color: #333;
+  background-color: red;
   color: #fff;
   padding: 16px;
   border-radius: 8px;
