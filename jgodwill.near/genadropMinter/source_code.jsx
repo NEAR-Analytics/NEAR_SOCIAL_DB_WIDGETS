@@ -202,6 +202,7 @@ return (
             Title:
             <Input
               type="text"
+              required
               onChange={(e) => onChangeTitle(e.target.value)}
             />
           </Card>
@@ -209,6 +210,7 @@ return (
             Description:
             <TextArea
               type="text"
+              required
               onChange={(e) => onChangeDesc(e.target.value)}
             />
           </Card>
