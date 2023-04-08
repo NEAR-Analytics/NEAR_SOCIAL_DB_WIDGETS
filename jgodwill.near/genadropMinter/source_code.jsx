@@ -157,7 +157,7 @@ const Toast = styled.div`
   align-items: center;
   justify-content: center;
   align-conten: center;
-  top: 40px;
+  bottom: 60px;
   right: 20px;
   background-color: red;
   color: #fff;
