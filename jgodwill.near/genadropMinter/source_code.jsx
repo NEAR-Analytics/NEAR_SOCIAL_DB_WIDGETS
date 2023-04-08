@@ -132,7 +132,7 @@ padding: 1em;
 border: 1px solid #e5e8eb;
 gap: 2em;
 margin: 10px auto;
-border-radius: 1em;
+border-radius: .7em;
 `;
 
 const ImageCard = styled.div`
@@ -140,10 +140,45 @@ const ImageCard = styled.div`
   width: 85%;
   max-width: 500px;
 `;
+
+const Input = styled.input`
+  display: block;
+  padding:.5em;
+  width:100%;
+  border: 1px solid #e5e8eb;
+  border-radius: 10px;
+  outline: none;
+  background: #f4f5f6;
+  color: #525c76;
+  :focus{
+    border:1px solid #0d99ff;
+  }
+  ::placeholder {
+    color: palevioletred;
+  }
+`;
+
+const TextArea = styled.textarea`
+  display: block;
+  padding:.5em;
+  width:100%;
+  border: 1px solid #e5e8eb;
+  border-radius: 10px;
+  outline: none;
+  background: #f4f5f6;
+  color: #525c76;
+  :focus{
+    border:1px solid #0d99ff;
+  }
+  ::placeholder {
+    color: palevioletred;
+  }
+`;
 return (
   <Main className="vh-100">
-    {state.image.cid ? (
+    {!state.image.cid ? (
       <div>
+        <Heading className="text-center fs-2">Mint NFT on genadrop</Heading>
         <Card className="d-flex flex-column align-items-center">
           <ImageCard>
             <img
@@ -162,18 +197,21 @@ return (
           </div>
         </Card>
         <Card>
-          <div>Mint NFT on genadrop</div>
-          <div>
+          <h5>Asset Detials</h5>
+          <Card>
             Title:
-            <input
+            <Input
               type="text"
               onChange={(e) => onChangeTitle(e.target.value)}
             />
-          </div>
-          <div>
+          </Card>
+          <Card>
             Description:
-            <input type="text" onChange={(e) => onChangeDesc(e.target.value)} />
-          </div>
+            <TextArea
+              type="text"
+              onChange={(e) => onChangeDesc(e.target.value)}
+            />
+          </Card>
         </Card>
         <div className="d-flex justify-content-center mb-2">
           <button onClick={handleMint}>Mint</button>
