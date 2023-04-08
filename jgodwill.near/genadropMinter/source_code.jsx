@@ -1,8 +1,8 @@
 let accountId = context.accountId;
 
-if (!accountId) {
-  return "Please sign in with NEAR wallet";
-}
+// if (!accountId) {
+//   return "Please sign in with NEAR wallet";
+// }
 
 const profile = socialGetr(`${accountId}/profile`);
 
@@ -221,10 +221,7 @@ return (
       </div>
     ) : (
       <div>
-        <Heading>
-          Upload an image to create NFTs on any of our supported blockchains
-          super fast!
-        </Heading>
+        <Heading>Upload an image to create an NFT on NEAR</Heading>
         <ImageUploadCard className="flex-grow-1">
           <Elipse />
           <IpfsImageUpload
