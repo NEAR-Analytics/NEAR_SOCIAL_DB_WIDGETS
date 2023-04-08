@@ -80,7 +80,7 @@ align-items: center;
   border-radius: 1rem;
   box-shadow: 4px 4px 20px 6px rgba(0,0,0,.2);
   margin:30px auto;
-  padding:1rem;
+  padding:1.5rem;
   text-align: center;
 `;
 const Main = styled.div`
@@ -104,13 +104,13 @@ const handleDrop = (event) => {
   reader.readAsDataURL(file);
 };
 
-const Heading = styled.h3`
+const Heading = styled.p`
   margin: 10px auto 10px auto;
   font-size: 1em;
-  font-weight: 600;
-  color:#0f1d40if;
+  color:#0f1d40;
   width:60%;
   text-align: center;
+  font-family: "SF Pro Display",sans-serif;
 `;
 
 const Elipse = styled.div`
@@ -126,35 +126,56 @@ color: #525c76;
 line-height:1.rem;
 margin: 3px;
 `;
+
+const Card = styled.div`
+padding: 1em;
+border: 1px solid #e5e8eb;
+gap: 2em;
+margin: 10px auto;
+border-radius: 1em;
+`;
+
+const ImageCard = styled.div`
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  width: 85%;
+  max-width: 500px;
+`;
 return (
   <Main className="vh-100">
     {state.image.cid ? (
       <div>
-        <div>Mint NFT on genadrop</div>
-        <div>
-          Title:
-          <input type="text" onChange={(e) => onChangeTitle(e.target.value)} />
-        </div>
-        <div>
-          Description:
-          <input type="text" onChange={(e) => onChangeDesc(e.target.value)} />
-        </div>
-        <div>Preview</div>
-        <div>
-          <img
-            src={`https://ipfs.io/ipfs/` + state.image.cid}
-            alt="uploaded image"
-            width="400"
-            height="300"
-          />
-        </div>
-        <div>
-          <IpfsImageUpload
-            image={state.image}
-            className="btn btn-outline-secondary border-0 rounded-3"
-          />
-        </div>
-        <div>
+        <Card className="d-flex flex-column align-items-center">
+          <ImageCard>
+            <img
+              src={`https://ipfs.io/ipfs/` + state.image.cid}
+              alt="uploaded image"
+              width="100%"
+              height="100%"
+              className="rounded-3"
+            />
+          </ImageCard>
+          <div>
+            <IpfsImageUpload
+              image={state.image}
+              className="btn btn-outline-primary border-0 rounded-3"
+            />
+          </div>
+        </Card>
+        <Card>
+          <div>Mint NFT on genadrop</div>
+          <div>
+            Title:
+            <input
+              type="text"
+              onChange={(e) => onChangeTitle(e.target.value)}
+            />
+          </div>
+          <div>
+            Description:
+            <input type="text" onChange={(e) => onChangeDesc(e.target.value)} />
+          </div>
+        </Card>
+        <div className="d-flex justify-content-center mb-2">
           <button onClick={handleMint}>Mint</button>
         </div>
       </div>
