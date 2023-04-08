@@ -175,7 +175,7 @@ const TextArea = styled.textarea`
   }
 `;
 return (
-  <Main className="vh-100 overflow-scroll">
+  <Main className="container-fluid">
     {state.image.cid ? (
       <div>
         <Heading className="text-center fs-2">Mint NFT on genadrop</Heading>
