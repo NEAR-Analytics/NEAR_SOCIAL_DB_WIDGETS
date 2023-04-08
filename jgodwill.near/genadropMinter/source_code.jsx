@@ -34,10 +34,13 @@ const handleMint = () => {
   // }
   if (!accountId) {
     Toaster({ message: "Please log in before continuing" });
+    console.log("Please login");
   } else if (!state.title) {
     Toaster({ message: "Please enter a title before continuing" });
+    console.log("Please Enter title");
   } else if (!state.description) {
     Toaster({ message: "Please enter a description before continuing" });
+    console.log("Please Enter desc");
   } else {
     const metadata = {
       name: state.title,
@@ -213,6 +216,7 @@ const TextArea = styled.textarea`
 `;
 return (
   <Main className="container-fluid">
+    {!accountId && <p>Please sign in with NEAR wallet</p>}
     <Heading className="text-center fs-2 fw-bold">Mint NFT on genadrop</Heading>
     {!state.image.cid ? (
       <div>
@@ -254,38 +258,11 @@ return (
           <button
             type="button"
             className="btn btn-primary"
-            id="liveToastBtn"
             onClick={handleMint}
           >
             Mint
           </button>
         </div>
-        {showAlert && (
-          <div class="toast-container position-fixed bottom-0 end-0 p-3">
-            <div
-              id="liveToast"
-              class="toast"
-              role="alert"
-              aria-live="assertive"
-              aria-atomic="true"
-            >
-              <div class="toast-header">
-                <img src="..." class="rounded me-2" alt="..." />
-                <strong class="me-auto">Bootstrap</strong>
-                <small>11 mins ago</small>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="toast"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="toast-body">
-                Hello, world! This is a toast message.
-              </div>
-            </div>
-          </div>
-        )}
       </div>
     ) : (
       <div>
