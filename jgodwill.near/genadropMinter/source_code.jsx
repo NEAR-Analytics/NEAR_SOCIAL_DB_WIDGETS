@@ -71,34 +71,71 @@ const onChangeDesc = (description) => {
   });
 };
 
+const ImageUploadCard = styled.div`
+display:flex;
+flex-flow: column nowrap;
+align-items: center;
+  width:80%;
+  border: 2px dashed #0d99ff;
+  border-radius: 1rem;
+  box-shadow: 4px 4px 45px 4px rgba(0,0,0,.2);
+  margin:0 auto;
+  padding:1rem;
+`;
+const Main = styled.div`
+  font-family: "SF Pro Display",sans-serif;
+`;
+
 return (
-  <div>
-    <div>Mint NFT on genadrop</div>
-    <div>
-      Title:
-      <input type="text" onChange={(e) => onChangeTitle(e.target.value)} />
-    </div>
-    <div>
-      Description:
-      <input type="text" onChange={(e) => onChangeDesc(e.target.value)} />
-    </div>
-    <div className="flex-grow-1">
-      <IpfsImageUpload
-        image={state.image}
-        className="btn btn-outline-secondary border-0 rounded-3"
-      />
-    </div>
-    <div>Preview</div>
-    <div>
-      <img
-        src={`https://ipfs.io/ipfs/` + state.image.cid}
-        alt="uploaded image"
-        width="400"
-        height="300"
-      />
-    </div>
-    <div>
-      <button onClick={handleMint}>Mint</button>
-    </div>
-  </div>
+  <Main className="vh-100">
+    {state.image.cid ? (
+      <div>
+        <div>Mint NFT on genadrop</div>
+        <div>
+          Title:
+          <input type="text" onChange={(e) => onChangeTitle(e.target.value)} />
+        </div>
+        <div>
+          Description:
+          <input type="text" onChange={(e) => onChangeDesc(e.target.value)} />
+        </div>
+        <div>Preview</div>
+        <div>
+          <img
+            src={`https://ipfs.io/ipfs/` + state.image.cid}
+            alt="uploaded image"
+            width="400"
+            height="300"
+          />
+        </div>
+        <IpfsImageUpload
+          image={state.image}
+          className="btn btn-outline-secondary border-0 rounded-3"
+        />
+        <div>
+          <button onClick={handleMint}>Mint</button>
+        </div>
+      </div>
+    ) : (
+      <div>
+        <h3>
+          Upload a image to create NFTs on any of our supported blockchains
+          super fast!
+        </h3>
+        <ImageUploadCard className="flex-grow-1">
+          <IpfsImageUpload
+            image={state.image}
+            className="btn btn-outline-secondary border-0 rounded-3"
+          />
+          <div>
+            <div>Drag and Drop your image file here</div>
+            <p>
+              We support .jpg, .jpeg, .png, .webp, .gif files and deploy to Near
+            </p>
+            <p>Max file size: 20mb</p>
+          </div>
+        </ImageUploadCard>
+      </div>
+    )}
+  </Main>
 );
