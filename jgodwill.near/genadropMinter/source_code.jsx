@@ -12,9 +12,9 @@ if (profile === null) {
 }
 
 const handleMint = () => {
-  if (!(state.title && state.description && state.image.cid)) {
-    return;
-  }
+  // if (!(state.title && state.description && state.image.cid)) {
+  //   return;
+  // }
   if (!accountId) {
     const toast = new bootstrap.Toast(toastLiveExample);
 
