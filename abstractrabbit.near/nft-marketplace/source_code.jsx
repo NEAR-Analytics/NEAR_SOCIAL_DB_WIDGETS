@@ -1,14 +1,6 @@
 const accountId = props.accountId || context.accountId;
 const contracts = props.contracts ||
-  context.contracts || [
-    "asac.near",
-    "mrbrownproject.near",
-    "spin-nft-contract.near",
-    "citizen.bodega-lab.near",
-    "ff.nekotoken.near",
-    "abstractrabbit.near",
-    "x.paras.near",
-  ];
+  context.contracts || ["x.paras.near", "abstractrabbit.near"];
 const marketId = "simple.market.mintbase1.near";
 
 const AFFILIATE_ACCOUNT = props.affiliateAccount || "abstractrabbit.near";
