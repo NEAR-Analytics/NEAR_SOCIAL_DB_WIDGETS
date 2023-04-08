@@ -78,14 +78,54 @@ align-items: center;
   width:80%;
   border: 2px dashed #0d99ff;
   border-radius: 1rem;
-  box-shadow: 4px 4px 45px 4px rgba(0,0,0,.2);
-  margin:0 auto;
+  box-shadow: 4px 4px 20px 6px rgba(0,0,0,.2);
+  margin:30px auto;
   padding:1rem;
+  text-align: center;
 `;
 const Main = styled.div`
   font-family: "SF Pro Display",sans-serif;
 `;
 
+const handleDrop = (event) => {
+  event.preventDefault();
+
+  const file = event.dataTransfer.files[0];
+  const reader = new FileReader();
+
+  reader.onloadend = () => {
+    this.setState({
+      file: file,
+      previewUrl: reader.result,
+      showPreview: true,
+    });
+  };
+
+  reader.readAsDataURL(file);
+};
+
+const Heading = styled.h3`
+  margin: 10px auto 10px auto;
+  font-size: 1em;
+  font-weight: 600;
+  color:#0f1d40if;
+  width:60%;
+  text-align: center;
+`;
+
+const Elipse = styled.div`
+background-color:#eff3f9;
+height: 100px;
+width: 100px;
+border-radius: 50%;
+`;
+
+const Text = styled.p`
+font-size: .9rem;
+color: #525c76;
+line-height:1.rem;
+margin: 3px;
+`;
 return (
   <Main className="vh-100">
     {state.image.cid ? (
@@ -108,31 +148,41 @@ return (
             height="300"
           />
         </div>
-        <IpfsImageUpload
-          image={state.image}
-          className="btn btn-outline-secondary border-0 rounded-3"
-        />
+        <div>
+          <IpfsImageUpload
+            image={state.image}
+            className="btn btn-outline-secondary border-0 rounded-3"
+          />
+        </div>
         <div>
           <button onClick={handleMint}>Mint</button>
         </div>
       </div>
     ) : (
       <div>
-        <h3>
-          Upload a image to create NFTs on any of our supported blockchains
+        <Heading>
+          Upload an image to create NFTs on any of our supported blockchains
           super fast!
-        </h3>
+        </Heading>
         <ImageUploadCard className="flex-grow-1">
+          <Elipse />
           <IpfsImageUpload
             image={state.image}
-            className="btn btn-outline-secondary border-0 rounded-3"
+            className="btn text-decoration-none link-primary pe-auto"
           />
           <div>
-            <div>Drag and Drop your image file here</div>
-            <p>
+            {
+              //   <Heading
+              //   onDrop={handleDrop}
+              //   onDragOver={(event) => event.preventDefault()}
+              // >
+              //   Drag and Drop your image file here
+              // </Heading>
+            }
+            <Text>
               We support .jpg, .jpeg, .png, .webp, .gif files and deploy to Near
-            </p>
-            <p>Max file size: 20mb</p>
+            </Text>
+            <Text>Max file size: 20mb</Text>
           </div>
         </ImageUploadCard>
       </div>
