@@ -192,7 +192,8 @@ border-radius: .7em;
 
 const ImageCard = styled.div`
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-  height:500px;
+  height:fit-content;
+  max-height:500px;
   width: 90%;
   max-width: 500px;
   border-radius: 1rem;
