@@ -7,6 +7,7 @@ const contracts = props.contracts ||
     "citizen.bodega-lab.near",
     "ff.nekotoken.near",
     "abstractrabbit.near",
+    "x.paras.near",
   ];
 const marketId = "simple.market.mintbase1.near";
 
@@ -22,7 +23,7 @@ const data = fetch("https://graph.mintbase.xyz", {
   body: JSON.stringify({
     query: `
       query MyQuery($contracts: [String]) {
-        mb_views_active_listings_by_contract(limit: 100, order_by: {created_at: desc}, where: {market_id: {_eq: "simple.market.mintbase1.near"}, nft_contract_id: {_in: $contracts}}) {
+        mb_views_active_listings_by_contract(limit: 100, order_by: {created_at: desc}, where: {market_id: {_eq: "simple.market.mintbase1.near, par"}, nft_contract_id: {_in: $contracts}}) {
             listed_by
             created_at
             price
