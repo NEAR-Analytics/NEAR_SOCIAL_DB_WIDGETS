@@ -52,6 +52,6 @@ return (
         props.setMessage(m);
       }}
     />
-    <Markdown text={props.message} />
+    {/*<Markdown text={props.message} />*/}
   </div>
 );
