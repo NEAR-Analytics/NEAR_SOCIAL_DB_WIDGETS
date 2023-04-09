@@ -41,19 +41,26 @@ return (
         >
           {types.map((it) => (
             <a
-              href={`/#/evrything.near/widget/Everything.Type.Overview?type=evrything.near/type/${it[0]}`}
+              href={`/#/evrything.near/widget/Everything.Type.Overview?type=${accountId}/type/${it[0]}`}
               style={{ textDecoration: "none", color: "inherit" }}
             >
               <button className="text-lowercase">{it[0] + "s"}</button>
             </a>
           ))}
-          <button className="text-lowercase">+</button>
+          {context.accountId === accountId ? ( // currently thinking the button should only show if you are able to create types in domain
+            <a
+              href={`/#/evrything.near/widget/Everything.Create.Type`} // this could get way more intense
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              <button className="text-lowercase">+</button>
+            </a>
+          ) : null}
         </div>
       </div>
       <Widget
         src={"evrything.near/widget/Everything.Things"}
         props={{
-          type: "evrything.near/type/Everything",
+          type: `${accountId}/type/Everything`,
         }}
       />
     </div>
