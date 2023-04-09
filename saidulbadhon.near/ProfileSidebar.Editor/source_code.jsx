@@ -113,9 +113,35 @@ return (
 
     <div style={styles.inputContainer}>
       <p style={styles.inputLabel}>Description:</p>
-      {/*<input style={styles.input} type="text" value={state.description} /> */}
+      <textarea
+        className="form-control"
+        rows="7"
+        style={styles.input}
+        type="text"
+        onInput={(event) => {
+          State.update({ description: event.target.value });
+        }}
+        value={state.description}
+        // {state.description}
 
-      <Widget
+        //           <textarea
+        //             placeholder="#ABC @borderlesscommunity.near"
+
+        //             function textareaInputHandler(value) {
+        //   const showAccountAutocomplete = /@[\w][^\s]*$/.test(value);
+        //   State.update({ text: value, showAccountAutocomplete });
+        // }
+
+        //             onInput={(event) => textareaInputHandler(event.target.value)}
+        //             onKeyUp={(event) => {
+        //               if (event.key === "Escape") {
+        //                 State.update({ showAccountAutocomplete: false });
+        //               }
+        //             }}
+        //             value={state.text}
+        //           />
+      />
+      {/*<Widget
         src="saidulbadhon.near/widget/ProfileSidebar.MarkdownEditor"
         props={{
           message: state.description,
@@ -123,8 +149,12 @@ return (
             console.log("E : ", e);
             state.description = e;
           },
+          //   setMessage: (e) => {
+          //     console.log("E : ", e);
+          //     state.description = e;
+          //   },
         }}
-      />
+      />*/}
     </div>
 
     <div style={styles.inputContainer}>
