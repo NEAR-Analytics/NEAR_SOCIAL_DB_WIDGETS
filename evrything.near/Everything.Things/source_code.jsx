@@ -5,7 +5,7 @@ if (!type) {
 }
 
 const index = {
-  action: "ev02", // this could work as a sort of "domain"...
+  action: "tempeverything", // this could work as a sort of "domain"... ev02
   key: "main",
   options: {
     limit: 10,
