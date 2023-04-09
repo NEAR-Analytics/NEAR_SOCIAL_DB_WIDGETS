@@ -1,6 +1,6 @@
 const initialText = "# Hello World\n\n";
 State.init({
-  m: props.message,
+  m: initialText,
 });
 
 const code = `
