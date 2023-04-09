@@ -118,7 +118,9 @@ return (
       <Widget
         src="saidulbadhon.near/widget/ProfileSidebar.MarkdownEditor"
         props={{
-          message: (e) => {
+          description: state.description,
+          setMessage: (e) => {
+            console.log("E : ", e);
             state.description = e;
           },
         }}
