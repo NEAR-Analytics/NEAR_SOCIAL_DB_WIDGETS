@@ -19,10 +19,14 @@ const renderThing = (a) => {
     props.type === "evrything.near/type/Everything"
   ) {
     // check for modification
+    // see Everything.View.Thing to see the delete function
+    // but since we can't actually delete the data,
+    // we will check if this blockheight has been modified/hid
     const mod = JSON.parse(
       Social.get(`${a.accountId}/modification/${a.blockHeight}`) || "null"
     );
-    if (mod && mod.action === "DELETE") {
+    // if it has been modified with a hide, then return null
+    if (mod && mod.action === "HIDE") {
       return null;
     }
     return (
