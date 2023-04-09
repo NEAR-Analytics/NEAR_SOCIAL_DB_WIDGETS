@@ -57,7 +57,7 @@ return (
         </div>
       </div>
 
-      <div style={{ color: props.theme.textColor }}>
+      <div style={{ color: props.theme.textColor, wordBreak: "break-all" }}>
         <Markdown
           style={{
             textAlign: "center",
