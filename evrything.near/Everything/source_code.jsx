@@ -36,7 +36,7 @@ return (
           flexDirection: "column",
           alignItems: "center",
           gap: 4,
-          marginTop: 240,
+          marginTop: 160,
         }}
       >
         <H1>{text}</H1>
