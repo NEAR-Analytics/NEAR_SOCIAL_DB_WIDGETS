@@ -1,11 +1,12 @@
 const type = props.type;
+const domain = props.domain || "everything";
 
 if (!type) {
   return "props.type is not defined";
 }
 
 const index = {
-  action: "tempeverything", // this could work as a sort of "domain"... ev02
+  action: domain, // this could work as a sort of "domain"... ev02
   key: "main",
   options: {
     limit: 10,
@@ -14,10 +15,7 @@ const index = {
 };
 
 const renderThing = (a) => {
-  if (
-    a.value.type === props.type ||
-    props.type === "evrything.near/type/Everything"
-  ) {
+  if (a.value.type === type || type === "evrything.near/type/Everything") {
     // check for modification
     // see Everything.View.Thing to see the delete function
     // but since we can't actually delete the data,
@@ -42,11 +40,9 @@ const renderThing = (a) => {
   }
 };
 
-const typeFilter = props.type !== "evrything.near/type/Everything";
-
 return (
   <Widget
     src="evrything.near/widget/FilteredIndexMasonry"
-    props={{ index, renderItem: renderThing, type: typeFilter }}
+    props={{ index, renderItem: renderThing }}
   />
 );
