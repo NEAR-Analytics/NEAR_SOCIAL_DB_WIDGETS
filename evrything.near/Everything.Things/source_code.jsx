@@ -5,7 +5,7 @@ if (!type) {
 }
 
 const index = {
-  action: "everythingv0", // this could work as a sort of "domain"... ev02
+  action: "ev02", // this could work as a sort of "domain"... ev02
   key: "main",
   options: {
     limit: 10,
@@ -18,7 +18,7 @@ const renderThing = (a) => {
     a.value.type === props.type ||
     props.type === "evrything.near/type/Everything"
   ) {
-    console.log(a.value.type);
+    // check for modification
     return (
       <Widget
         src={"evrything.near/widget/Everything.Summary.Thing"}
