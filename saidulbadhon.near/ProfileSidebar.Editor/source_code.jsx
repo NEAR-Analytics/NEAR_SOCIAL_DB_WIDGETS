@@ -117,7 +117,11 @@ return (
 
       <Widget
         src="saidulbadhon.near/widget/ProfileSidebar.MarkdownEditor"
-        props={{ message: state.description }}
+        props={{
+          message: (e) => {
+            state.description = e;
+          },
+        }}
       />
     </div>
 
