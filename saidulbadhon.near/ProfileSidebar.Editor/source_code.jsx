@@ -113,7 +113,12 @@ return (
 
     <div style={styles.inputContainer}>
       <p style={styles.inputLabel}>Description:</p>
-      <input style={styles.input} type="text" value={state.description} />
+      {/*<input style={styles.input} type="text" value={state.description} /> */}
+
+      <Widget
+        src="saidulbadhon.near/widget/ProfileSidebar.MarkdownEditor"
+        props={{ message: state.description }}
+      />
     </div>
 
     <div style={styles.inputContainer}>
