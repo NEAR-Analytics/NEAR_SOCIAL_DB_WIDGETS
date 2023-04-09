@@ -1,4 +1,13 @@
 const accountId = props.accountId || "evrything.near";
+const font = props.font || "Times New Roman";
+const text = props.text || "everything";
+
+const H1 = styled.h1`
+    font-family: ${font}, Times, serif;
+    font-size: 4em;
+    line-height: 1.25;
+    font-weight: 400;
+`;
 
 const types = Social.keys(`${accountId}/type/*`, "final", {
   return_type: "BlockHeight",
@@ -27,9 +36,10 @@ return (
           flexDirection: "column",
           alignItems: "center",
           gap: 4,
+          marginTop: 240,
         }}
       >
-        <Widget src="evrything.near/widget/H1" />
+        <H1>{text}</H1>
         <div
           style={{
             display: "flex",
