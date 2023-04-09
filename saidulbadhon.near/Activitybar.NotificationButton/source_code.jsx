@@ -91,7 +91,7 @@ return (
       />
       <path
         d="M9.33331 18V18.75C9.33331 19.5456 9.64938 20.3087 10.212 20.8713C10.7746 21.4339 11.5377 21.75 12.3333 21.75C13.129 21.75 13.892 21.4339 14.4546 20.8713C15.0172 20.3087 15.3333 19.5456 15.3333 18.75V18"
-        stroke={props.theme.textColor4}
+        stroke={props.theme.textColor3}
         stroke-width="2"
         stroke-linecap="round"
         stroke-linejoin="round"
