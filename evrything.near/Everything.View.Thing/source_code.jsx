@@ -22,12 +22,13 @@ const content = JSON.parse(
   Social.get(`${accountId}/thing/main`, blockHeight) ?? "null"
 );
 
-const deleteThing = () => {
+const hideThing = () => {
+  // this will hide from ALL domains... how can this be selective?
   Social.set(
     {
       modification: {
         [blockHeight]: {
-          "": JSON.stringify({ action: "DELETE" }),
+          "": JSON.stringify({ action: "HIDE" }),
         },
       },
     },
@@ -41,7 +42,7 @@ return (
   <ThingContainer>
     {context.accountId === accountId ? (
       <Toolbar>
-        <Icon onClick={deleteThing}>Delete</Icon>
+        <Icon onClick={hideThing}>Hide</Icon>
       </Toolbar>
     ) : null}
 
