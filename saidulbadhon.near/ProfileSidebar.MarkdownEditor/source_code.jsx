@@ -48,7 +48,9 @@ return (
       srcDoc={code}
       message={initialText}
       // onMessage={(m) => State.update({ m })}
-      onMessage={(m) => (props.message = m)}
+      onMessage={(m) => {
+        props.message = m;
+      }}
     />
     <Markdown text={props.message} />
   </div>
