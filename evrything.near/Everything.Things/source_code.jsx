@@ -5,7 +5,7 @@ if (!type) {
 }
 
 const index = {
-  action: "ev02", // this could work as a sort of "domain"... ev02
+  action: "tempeverything", // this could work as a sort of "domain"... ev02
   key: "main",
   options: {
     limit: 10,
@@ -19,6 +19,12 @@ const renderThing = (a) => {
     props.type === "evrything.near/type/Everything"
   ) {
     // check for modification
+    const mod = JSON.parse(
+      Social.get(`${a.accountId}/modification/${a.blockHeight}`) || "null"
+    );
+    if (mod && mod.action === "DELETE") {
+      return null;
+    }
     return (
       <Widget
         src={"evrything.near/widget/Everything.Summary.Thing"}
