@@ -1,7 +1,7 @@
-// const initialText = "# Hello World\n\n";
-// State.init({
-//   m: initialText,
-// });
+const initialText = "# Hello World\n\n";
+State.init({
+  m: initialText,
+});
 
 const code = `
 <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
@@ -46,7 +46,7 @@ return (
       className="w-100"
       style={{ height: "300px" }}
       srcDoc={code}
-      message={props.message}
+      message={props.message || state.m}
       // onMessage={(m) => State.update({ m })}
       onMessage={(m) => {
         props.setMessage(m);
