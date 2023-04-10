@@ -138,7 +138,7 @@ const Flex = styled.div`
 
 const Section = styled.div`
   display: flex;
-  padding: calc(var(--section-gap) / 2) var(--section-gap);
+  padding: calc(var(--section-gap) / 2);
   gap: ${(p) => p.gap ?? "var(--medium-gap)"};
   flex-direction: column;
   align-items: ${(p) => (p.center ? "center" : undefined)};
