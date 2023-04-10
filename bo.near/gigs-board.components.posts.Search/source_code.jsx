@@ -633,10 +633,10 @@ const updateInput = (term) => {
 };
 
 const handleKeyDown = (e) => {
-  if (e.key === 'Enter') {
-    State.update({loading: true});
-    computeResults(state.term);
-  }
+  // if (e.key === 'Enter') {
+  //   State.update({loading: true});
+  //   computeResults(state.term);
+  // }
 }
 
 const getSearchResultsKeywordsFor = (postId) => {
