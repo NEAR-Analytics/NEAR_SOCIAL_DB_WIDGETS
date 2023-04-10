@@ -578,11 +578,11 @@ return (
       id="why-it-matters"
       background="linear-gradient( 132.69deg, #02042f 39.58%, #dc5656 76.56%, #dca656 99.48% );"
       style={{
-        paddingLeft: "var(--section-gap)",
-        paddingRight: "var(--section-gap)",
+        padding: "var(--section-gap) var(--large-gap)",
       }}
+      gap="var(--section-gap)"
     >
-      <Flex direction="column" gap="16px" style={{ textAlign: "center" }}>
+      <Flex direction="column" gap="12px" style={{ textAlign: "center" }}>
         <Text as="h2" size="text-3xl" fontWeight="600" color="white">
           Why it matters
         </Text>
@@ -591,9 +591,9 @@ return (
         </Text>
       </Flex>
 
-      <Flex gap="24px" mobileStack="24px" alignItems="center">
+      <Flex gap="var(--large-gap)" mobileStack="24px" alignItems="center">
         <Flex
-          gap="16px"
+          gap="12px"
           direction="column"
           alignItems="flex-start"
           style={{ width: "100%" }}
@@ -627,7 +627,7 @@ return (
           }}
         />
 
-        <Flex gap="16px" direction="column" style={{ width: "100%" }}>
+        <Flex gap="12px" direction="column" style={{ width: "100%" }}>
           <Text size="text-l" fontWeight="600" color="white">
             We need a more inclusive, open and fair future
           </Text>
