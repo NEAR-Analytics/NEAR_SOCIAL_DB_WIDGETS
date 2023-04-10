@@ -73,7 +73,7 @@ return (
       value,
       onChange,
       validate,
-      error: state.error,
+      error: state.errorMessage,
     }}
   />
 );
