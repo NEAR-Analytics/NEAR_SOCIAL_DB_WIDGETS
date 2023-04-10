@@ -64,6 +64,7 @@ const HR = styled.div`
   width: 100%;
   height: 1px;
   background: var(--sand5);
+  margin: var(--medium-gap) 0;
 `;
 
 const Flex = styled.div`
