@@ -60,7 +60,15 @@ const Placeholder = styled.span`
   color: #a0a3a8;
 `;
 
-const Content = styled.div``;
+const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0.5em 0.75em;
+  gap: 0.5em;
+  width: 100%;
+`;
 
 return (
   <Container>
