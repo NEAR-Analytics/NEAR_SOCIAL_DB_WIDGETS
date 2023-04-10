@@ -62,7 +62,7 @@ State.init({
   tags: [],
   website: "",
   geo: "",
-  team: 0,
+  team: null,
 });
 
 return (
