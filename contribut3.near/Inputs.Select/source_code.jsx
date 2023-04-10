@@ -21,11 +21,11 @@ return (
       </Select.Icon>
     </Select.Trigger>
 
-    <Select.Content>
+    <Select.Content position="popper" sideOffset={5}>
       <Select.Viewport>
         {props.options.map(({ text, value }) => (
-          <Select.Item>
-            <Select.ItemText value={value}>{text}</Select.ItemText>
+          <Select.Item value={value}>
+            <Select.ItemText>{text}</Select.ItemText>
             <Select.ItemIndicator>
               <svg
                 width="15"
