@@ -3,6 +3,7 @@ const font = props.font || "Times New Roman"; // custom font for H1
 const type = props.type || "everything"; // selected type
 const text = props.text || type.toLowerCase(); // text for H1
 const view = props.view || "THINGS";
+const domain = props.domain || "everything"; // where to index data from
 
 const H1 = styled.h1`
   font-family: ${font}, Times, serif;
@@ -100,6 +101,7 @@ const renderView = () => {
           src={"evrything.near/widget/Everything.Things"}
           props={{
             type: `${accountId}/type/${state.type}`,
+            domain,
           }}
         />
       );
