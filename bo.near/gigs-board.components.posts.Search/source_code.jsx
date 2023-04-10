@@ -626,19 +626,13 @@ const computeResults = (term) => {
   console.log("search time: ", end - start);
 };
 
-const updateInput = (term) => {
-  State.update({
-    term,
-  });
-};
-
 const handleKeydown = (e) => {
   if (e.key === 'Enter') {
     State.update({loading: true});
     computeResults(state.term);
   } else if (e.key === 'Backspace') {
     State.update({term: state.term ? state.term.slice(0, state.term.length-1) : ''})
-  } else {
+  } else if (+e.which >= 48 && +e.which <=90) {
     State.update({term: state.term ? state.term+e.key: e.key})
   }
 }
@@ -695,7 +689,7 @@ return (
         }}
         className="form-control"
         value={state.term ?? ""}
-        onChange={(e) => updateInput(e.target.value)}
+        /* onChange doesn't work with onKeydown in near-social viewer, has to simulate key change in handleKeydown */
         onKeyDown={handleKeydown}
         placeholder={props.placeholder ?? `Search Posts`}
       />
