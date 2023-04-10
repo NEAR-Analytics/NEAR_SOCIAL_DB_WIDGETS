@@ -68,6 +68,7 @@ const data = fetch("https://monkfish-app-ginhc.ondigitalocean.app/graphql", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
+    "X-Everything": "simple",
   },
   body: JSON.stringify({
     query:
