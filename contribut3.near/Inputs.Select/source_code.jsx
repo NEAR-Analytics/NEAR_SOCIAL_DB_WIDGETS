@@ -62,10 +62,10 @@ const Placeholder = styled.span`
 
 const scaleOut = styled.keyframes`
   from {
-    transform: scale(0);
+    transform: scaleY(0);
   }
   to {
-    transform: scale(1);
+    transform: scaleY(1);
   }
 `;
 
