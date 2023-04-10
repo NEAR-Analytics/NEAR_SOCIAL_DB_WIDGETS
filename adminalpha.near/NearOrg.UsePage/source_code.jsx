@@ -382,7 +382,7 @@ return (
         </Text>
       </UseCase>
 
-      <Card center>
+      <Card>
         <a href="https://www.ref.finance/" target="_blank">
           <CircleImg src="https://awesomenear-spaces.fra1.digitaloceanspaces.com/production/projects/ref-finance/ref-finance.jpg" />
         </a>
@@ -448,7 +448,7 @@ return (
       </UseCase>
 
       <Flex gap="24px" mobileStack="24px">
-        <Card center>
+        <Card>
           <a href="https://www.seatlabnft.com/" target="_blank">
             <CircleImg src="https://awesomenear-spaces.fra1.digitaloceanspaces.com/production/projects/seatlab-nft/seatlab-nft.jpg" />
           </a>
@@ -467,7 +467,7 @@ return (
           </Flex>
         </Card>
 
-        <Card center>
+        <Card>
           <a href="https://www.tamastream.io/" target="_blank">
             <CircleImg src="https://awesomenear-spaces.fra1.digitaloceanspaces.com/production/projects/seatlab-nft/seatlab-nft.jpg" />
           </a>
@@ -530,7 +530,7 @@ return (
       </UseCase>
 
       <Flex gap="24px" mobileStack="24px">
-        <Card center>
+        <Card>
           <a href="https://sweatco.in/" target="_blank">
             <CircleImg src="https://awesomenear-spaces.fra1.digitaloceanspaces.com/production/projects/sweat-economy/sweat-economy.jpg" />
           </a>
@@ -549,7 +549,7 @@ return (
           </Flex>
         </Card>
 
-        <Card center>
+        <Card>
           <a href="https://blogchain.app/home" target="_blank">
             <CircleImg src="https://awesomenear-spaces.fra1.digitaloceanspaces.com/production/projects/blogchain/blogchain.jpg" />
           </a>
@@ -786,7 +786,7 @@ return (
       </Flex>
 
       <Flex gap="24px" mobileStack="24px">
-        <Card center>
+        <Card>
           <CircleImg src="https://awesomenear-spaces.fra1.digitaloceanspaces.com/production/projects/mynearwallet/mynearwallet.jpg" />
           <Flex direction="column" gap="8px">
             <Text size="text-xl" fontWeight="600" color="sand12">
@@ -810,7 +810,7 @@ return (
           />
         </Card>
 
-        <Card center>
+        <Card>
           <a href="https://fewfar.com/" target="_blank">
             <CircleImg src="https://awesomenear-spaces.fra1.digitaloceanspaces.com/production/projects/few-and-far/few-and-far.jpg" />
           </a>
@@ -932,7 +932,7 @@ return (
       </Flex>
 
       <Flex gap="24px" mobileStack="24px">
-        <Card center>
+        <Card>
           <a href="https://youminter.com/" target="_blank">
             <CircleImg src="https://awesomenear-spaces.fra1.digitaloceanspaces.com/production/projects/youminter/youminter.jpg" />
           </a>
@@ -958,7 +958,7 @@ return (
           />
         </Card>
 
-        <Card center>
+        <Card>
           <a href="https://www.niche.club/" target="_blank">
             <CircleImg src="https://awesomenear-spaces.fra1.digitaloceanspaces.com/production/projects/niche/niche.jpg" />
           </a>
@@ -1085,7 +1085,7 @@ return (
       </Flex>
 
       <Flex gap="24px" mobileStack="24px">
-        <Card center>
+        <Card>
           <a href="https://nearweek.com/" target="_blank">
             <CircleImg src="https://awesomenear-spaces.fra1.digitaloceanspaces.com/production/projects/nearweek/nearweek.jpg" />
           </a>
@@ -1112,7 +1112,7 @@ return (
           />
         </Card>
 
-        <Card center>
+        <Card>
           <a href="https://sweateconomy.com/" target="_blank">
             <CircleImg src="https://awesomenear-spaces.fra1.digitaloceanspaces.com/production/projects/sweat-economy/sweat-economy.jpg" />
           </a>
