@@ -108,7 +108,7 @@ return (
           props={{ accountId: ownerId }}
         />
         <CTARow>
-          <Widget src={`${ownerId}/widget/Button.Green`} props={{ onClick: () => Near.call(ownerId, "apply_for_program", { account_id: accountId },) }} />
+          <Widget src={`${ownerId}/widget/Button.Green`} props={{ onClick: () => Near.call(ownerId, "apply_for_program", { account_id: accountId }), text: <>{plusIcon}Apply to accelerator</> }} />
         </CTARow>
       </HeaderDetails>
       <HeaderProgress>
