@@ -577,6 +577,10 @@ return (
     <Section
       id="why-it-matters"
       background="linear-gradient( 132.69deg, #02042f 39.58%, #dc5656 76.56%, #dca656 99.48% );"
+      style={{
+        paddingLeft: "var(--section-gap)",
+        paddingRight: "var(--section-gap)",
+      }}
     >
       <Flex direction="column" gap="16px" style={{ textAlign: "center" }}>
         <Text as="h2" size="text-3xl" fontWeight="600" color="white">
