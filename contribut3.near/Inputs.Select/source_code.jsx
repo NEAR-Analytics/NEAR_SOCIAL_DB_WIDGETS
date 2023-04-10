@@ -158,14 +158,7 @@ return (
           <Select.Viewport asChild={true}>
             <Viewport>
               {props.options.map(({ text, value }) => (
-                <Select.Item value={value} asChild={true} onClick={(e) => {
-                  e.preventDefault();
-                  setTimeout(() => {
-                    console.log("here");
-                    console.log(e);
-                    e.click();
-                  }, 200);
-                }}>
+                <Select.Item value={value} asChild={true}>
                   <Item>
                     <Select.ItemText>{text}</Select.ItemText>
                     <Select.ItemIndicator>
