@@ -5,7 +5,7 @@ const onChange = props.onChange ?? (() => { });
 const validate = props.validate ?? (() => { });
 const error = props.error ?? "";
 
-const Contner = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
