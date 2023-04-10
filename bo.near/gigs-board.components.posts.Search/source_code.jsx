@@ -632,11 +632,9 @@ const updateInput = (term) => {
   });
 };
 
-const handleKeyDown = (e) => {
-  // if (e.key === 'Enter') {
-  //   State.update({loading: true});
-  //   computeResults(state.term);
-  // }
+const handleSubmit = () => {
+  State.update({loading: true});
+  computeResults(state.term);
 }
 
 const getSearchResultsKeywordsFor = (postId) => {
@@ -684,6 +682,7 @@ return (
           <div>🔍</div>
         )}
       </div>
+      <form onSubmit={handleSubmit}>
       <input
         type="search"
         style={{
@@ -692,9 +691,10 @@ return (
         className="form-control"
         value={state.term ?? ""}
         onChange={(e) => updateInput(e.target.value)}
-        onKeyPress={handleKeyDown}
         placeholder={props.placeholder ?? `Search Posts`}
       />
+      <button type="submit" class="btn btn-primary ms-2">Search</button>
+      </form>
     </div>
     {state.processedQuery &&
       state.processedQuery.length > 0 &&
