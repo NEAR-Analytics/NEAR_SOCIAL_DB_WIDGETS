@@ -1,9 +1,5 @@
-const type = props.type;
+const type = props.type || "everything";
 const domain = props.domain || "everything";
-
-if (!type) {
-  return "props.type is not defined";
-}
 
 const index = {
   action: domain, // this could work as a sort of "domain"... ev02
@@ -15,7 +11,7 @@ const index = {
 };
 
 const renderThing = (a) => {
-  if (a.value.type === type || type === "evrything.near/type/Everything") {
+  if (type === "everything" || a.value.type === type) {
     // check for modification
     // see Everything.View.Thing to see the delete function
     // but since we can't actually delete the data,
