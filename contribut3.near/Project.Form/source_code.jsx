@@ -74,6 +74,15 @@ return (
           onChange: (name) => State.update({ name }),
         }}
       />
+      <Widget
+        src={`${ownerId}/widget/Inputs.AccountId`}
+        props={{
+          label: "NEAR Account *",
+          placeholder: "layers.near",
+          value: state.accountId,
+          onChange: (accountId) => State.update({ accountId }),
+        }}
+      />
     </Form>
   </Container>
 );
