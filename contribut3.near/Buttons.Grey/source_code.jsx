@@ -15,3 +15,5 @@ const Button = styled.button`
   line-height: 1em;
   text-align: center;
 `;
+
+return <Button onClick={props.onClick}>{props.text}</Button>;
