@@ -1,17 +1,5 @@
 /*
 
-TUTORIAL
-
-Build your own decentralized frontend!
-
-Step 1: Fork this widget [done]
-
-Step 2: Review code and follow INSTRUCTIONS
-
-Step 3: Complete exercises and save!
-
-Feel free to rename this widget and edit any of the metadata.
-
 INSTRUCTIONS
 
 We're using a tag property to filter widgets on the page.
@@ -247,6 +235,23 @@ return (
     <Text>
       <h3>Featured Tutorials</h3>
       <p>Below are walkthroughs of the page building experience.</p>
+      <div className="mb-2 mt-2">
+        <h5>
+          Step 1:
+          <a href="/#/edit/hack.near/widget/ForkThis">
+            fork this widget
+          </a> and{" "}
+          <a href="/#/mob.near/widget/WidgetSource?src=hack.near/widget/ForkThis">
+            review code
+          </a>
+        </h5>
+        <h5>Step 2: follow INSTRUCTIONS in the comments</h5>
+        <h5>Step 3: complete exercises and save</h5>
+      </div>
+      <div className="mb-2 mt-2">
+        <h4>Earn rewards by creating a post:</h4>
+        <Widget src="hack.near/widget/Page.Compose" />
+      </div>
     </Text>
 
     <Items>
