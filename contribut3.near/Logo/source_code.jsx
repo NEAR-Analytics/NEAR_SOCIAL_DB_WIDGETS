@@ -42,4 +42,4 @@ const iconOnly = (
   </svg>
 );
 
-return full ? fullIcon : iconOnly;
+return full;
