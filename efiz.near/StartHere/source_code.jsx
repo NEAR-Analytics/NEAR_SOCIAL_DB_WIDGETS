@@ -45,7 +45,7 @@ return (
     props={{
       src: "evrything-docs.near/widget/Everything.View.Document",
       accountId: "evrything.near",
-      blockHeight: 89268687,
+      blockHeight: "89268687",
     }}
   />
 );
