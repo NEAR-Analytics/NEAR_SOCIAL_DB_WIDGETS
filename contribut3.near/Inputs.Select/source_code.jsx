@@ -73,6 +73,16 @@ const Content = styled.div`
   background: #ffffff;
 `;
 
+const Viewport = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0;
+  gap: 0.5em;
+  width: 100%;
+`;
+
 const Item = styled.div`
   display: flex;
   flex-direction: row;
