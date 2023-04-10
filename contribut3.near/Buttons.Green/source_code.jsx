@@ -3,7 +3,7 @@ const Button = styled.button`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 0.5em 1em;
+  padding: 0.75em 1em;
   gap: 0.5em;
   border: none;
   border-radius: 50px;
