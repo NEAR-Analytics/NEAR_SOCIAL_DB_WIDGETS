@@ -2,6 +2,7 @@ const accountId = props.accountId || "evrything.near"; // which account's Types 
 const font = props.font || "Times New Roman"; // custom font for H1
 const type = props.type || "everything"; // selected type
 const text = props.text || type.toLowerCase(); // text for H1
+const view = props.view || "THINGS";
 
 const H1 = styled.h1`
   font-family: ${font}, Times, serif;
@@ -35,7 +36,7 @@ const ButtonRow = styled.div`
 `;
 
 const Button = styled.button`
-    text-transform: lowercase !important;
+  text-transform: lowercase !important;
 `;
 
 const types = Social.keys(`${accountId}/type/*`, "final", {
@@ -48,6 +49,7 @@ types = Object.entries(types[accountId].type ?? {});
 State.init({
   title: text,
   type: type,
+  selectedTab: view,
 });
 
 const handleSelectType = (typeName) => {
@@ -61,6 +63,45 @@ const handleSelectType = (typeName) => {
       title: typeName.toLowerCase() + "s",
       type: `${accountId}/type/${typeName}`,
     });
+  }
+};
+
+const handleTypeDetails = () => {
+  State.update({
+    selectedTab: "DETAILS",
+  });
+};
+
+const handleTypeCreate = () => {
+  State.update({
+    selectedTab: "CREATE",
+  });
+};
+
+const renderView = () => {
+  switch (state.selectedTab) {
+    case "DETAILS":
+      return <div>Type details : ${state.type}</div>;
+    case "CREATE":
+      return (
+        <Widget
+          src={`${accountId}/widget/Everything.Create.${
+            state.type.split("/")[2]
+          }`}
+          props={{
+            type,
+          }}
+        />
+      );
+    default:
+      return (
+        <Widget
+          src={"evrything.near/widget/Everything.Things"}
+          props={{
+            type: `${accountId}/type/${state.type}`,
+          }}
+        />
+      );
   }
 };
 
@@ -91,12 +132,9 @@ return (
               <Button onClick={() => handleSelectType("everything")}>
                 back
               </Button>
-              <a
-                href={`/#/evrything.near/widget/Everything.Type.Details?type=${accountId}/type/${state.type}`}
-                style={{ textDecoration: "none", color: "inherit" }}
-              >
-                <Button>view type details</Button>
-              </a>
+              <Button onClick={() => handleTypeDetails()}>
+                view type details
+              </Button>
               <a
                 href={`/#/evrything.near/widget/Everything.Type.Create?type=${accountId}/type/${state.type}`}
                 style={{ textDecoration: "none", color: "inherit" }}
@@ -107,12 +145,7 @@ return (
           )}
         </ButtonRow>
       </Controller>
-      <Widget
-        src={"evrything.near/widget/Everything.Things"}
-        props={{
-          type: `${accountId}/type/${state.type}`,
-        }}
-      />
+      {renderView()}
     </Container>
   </>
 );
