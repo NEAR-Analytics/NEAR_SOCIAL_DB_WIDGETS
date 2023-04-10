@@ -85,7 +85,7 @@ return (
       renderToken={(option, props, index) => {
         console.log({ option, props });
         return (
-          <Item key={index}>{option.name}</Item>
+          <Item key={index} {...props}>{option.name}</Item>
         );
       }}
       positionFixed
