@@ -632,7 +632,7 @@ const handleKeydown = (e) => {
     computeResults(state.term);
   } else if (e.key === 'Backspace') {
     State.update({term: state.term ? state.term.slice(0, state.term.length-1) : ''})
-  } else if (+e.which >= 48 && +e.which <=90) {
+  } else if (+e.keyCode >= 48 && +e.keyCode <=90) {
     State.update({term: state.term ? state.term+e.key: e.key})
   }
 }
