@@ -1,6 +1,7 @@
 const accountId = props.accountId || "evrything.near";
 const font = props.font || "Times New Roman";
-const text = props.text || "everything";
+const type = props.type || "Everything";
+const text = props.text || type.toLowerCase();
 
 const H1 = styled.h1`
   font-family: ${font}, Times, serif;
@@ -18,7 +19,7 @@ types = Object.entries(types[accountId].type ?? {});
 
 State.init({
   title: text,
-  type: "Everything",
+  type: type,
 });
 
 const handleSelectType = (typeName) => {
