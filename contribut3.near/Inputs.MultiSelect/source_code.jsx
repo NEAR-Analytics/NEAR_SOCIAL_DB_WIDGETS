@@ -41,6 +41,7 @@ const Error = styled.span`
 `;
 
 const Input = styled.input`
+  position: relative;
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
