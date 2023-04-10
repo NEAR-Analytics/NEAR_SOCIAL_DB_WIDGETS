@@ -83,6 +83,16 @@ const Flex = styled.div`
         p.mobileStack === true ? "var(--section-gap)" : p.mobileStack};
     }
   `}
+
+  ${(p) =>
+    p.tabletStack &&
+    `
+    @media (max-width: 1050px) {
+      flex-direction: column;
+      gap: ${(p) =>
+        p.tabletStack === true ? "var(--section-gap)" : p.tabletStack};
+    }
+  `}
 `;
 
 const Section = styled.div`
@@ -591,7 +601,11 @@ return (
         </Text>
       </Flex>
 
-      <Flex gap="var(--large-gap)" mobileStack="24px" alignItems="center">
+      <Flex
+        gap="var(--large-gap)"
+        tabletStack="var(--large-gap)"
+        alignItems="center"
+      >
         <Flex
           gap="12px"
           direction="column"
@@ -623,7 +637,7 @@ return (
           src="https://near.org/wp-content/themes/near-21/assets/img/relaunch/use-world.png"
           style={{
             display: "block",
-            width: "250px",
+            width: "300px",
           }}
         />
 
