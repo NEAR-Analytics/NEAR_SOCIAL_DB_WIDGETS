@@ -68,6 +68,7 @@ const Content = styled.div`
   padding: 0.5em 0.75em;
   gap: 0.5em;
   width: 100%;
+  border: 1px solid #d0d5dd;
 `;
 
 const Item = styled.div`
