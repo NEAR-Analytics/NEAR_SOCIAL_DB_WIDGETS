@@ -358,6 +358,24 @@ return (
           />
         </div>
         <div class="modal-body">
+          <div class="tab">
+            <span
+              onClick={() => {
+                changeTab("supply");
+              }}
+              class={`${tabName != "withdraw" ? "active" : ""}`}
+            >
+              Supply
+            </span>
+            <span
+              onClick={() => {
+                changeTab("withdraw");
+              }}
+              class={`${tabName == "withdraw" ? "active" : ""}`}
+            >
+              Withdraw
+            </span>
+          </div>
           <Widget
             src="juaner.near/widget/ref-market-supply-supply"
             props={{ selectedTokenId, showModal }}
