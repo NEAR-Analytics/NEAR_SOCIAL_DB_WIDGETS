@@ -1,5 +1,54 @@
+/*
+
+TUTORIAL
+
+Build your own decentralized frontend!
+
+First, we have to get the accountId for the challenge.
+
+Notice how it checks props, and if that is null or undefined,
+it returns user's accountId from the page context.
+
+This helps anyone build experiences on the page.
+
+*/
+
 const accountId = props.accountId ?? context.accountId;
+
+/*
+
+We're also using a tag property to filter widgets on the page.
+
+You can change the default tag from "guide" to anything.
+
+*/
+
 const tag = props.tag ?? "guide";
+
+/*
+
+Defining variables is fun and easy!
+
+This pageUrl helps buttons and links work across gateways.
+
+*/
+
+const pageUrl = "/#/edit/hack.near/widget/ForkThis";
+
+/*
+
+Review the following code section if you are interested in tag filtering.
+
+- initializes the keys variable to a string consisting of accountId (if it exists) or "*" and "/widget/*". This value is used later to fetch widget data.
+- checks if a tag value exists. If it does, the code fetches tagged widgets based on accountId and tag.
+- maps over the widget data to create an array of keys, consisting of the accountId, widgetName, and blockHeight of each widget.
+- fetches the data associated with the keys from the previous step. If the data is not found, the function returns "Loading...". If the data is found, the processData function is called to sort the widget data based on block height.
+- maps over the sorted widget data to create a list of widgets to render. Each widget is wrapped in an <a> tag with a URL corresponding to the widget's accountId and widgetName. The renderTag and renderItem functions are used to render each tag and widget.
+- checks if the data has changed since the last time it was fetched. If it has, the State.update function is called to update the state with the new data and processed widget items.
+
+No need to make any changes here.
+
+*/
 
 let keys = `${accountId ?? "*"}/widget/*`;
 
@@ -77,6 +126,16 @@ if (JSON.stringify(data) !== JSON.stringify(state.data || {})) {
     allItems: processData(data),
   });
 }
+
+/*
+
+Here are a few styled components for you.
+
+These allow using CSS in your JavaScript!
+
+Learn more: https://styled-components.com
+
+*/
 
 const Wrapper = styled.div`
   display: flex;
@@ -162,6 +221,16 @@ const Items = styled.div`
 
 const Item = styled.div``;
 
+/*
+
+Last, but certainly not least, is the display.
+
+Feel free to make any edits you like!
+
+Adjust your featured section by updating the widget paths.
+
+*/
+
 return (
   <Wrapper>
     <Header>
@@ -174,6 +243,9 @@ return (
           .slice(0, props.limit ? parseInt(props.limit) : 999)
           .map(renderItem)}
       </div>
+      <Button href={pageUrl}>
+        Getting Started: Fork this Page Demo Widget
+      </Button>
     </Header>
 
     <Text>
