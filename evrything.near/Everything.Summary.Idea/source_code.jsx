@@ -122,9 +122,9 @@ return (
       </Icon>
       <Body>
         <Content>
-          <Title>{data.name}</Title>
+          <Title>{data.title}</Title>
           <Preview>
-            <Markdown text={data.description.md} />
+            <Markdown text={data.description} />
           </Preview>
         </Content>
         <Caption>{formatDate(data.creationDate)}</Caption>
