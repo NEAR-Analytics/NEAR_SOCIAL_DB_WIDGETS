@@ -626,7 +626,14 @@ const computeResults = (term) => {
   console.log("search time: ", end - start);
 };
 
+const updateInput = (term) => {
+  console.log('on change')
+  State.update({term})
+}
+
 const handleKeydown = (e) => {
+  console.log('on keydown')
+  
   console.log(e)
   if (e.key === 'Enter') {
     State.update({loading: true});
@@ -691,6 +698,7 @@ return (
         className="form-control"
         value={state.term ?? ""}
         /* onChange doesn't work with onKeydown in near-social viewer, has to simulate key change in handleKeydown */
+        onChange={(e) => updateInput(e.target.value)}
         onKeyDown={handleKeydown}
         placeholder={props.placeholder ?? `Search Posts`}
       />
