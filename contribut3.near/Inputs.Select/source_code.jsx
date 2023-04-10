@@ -20,5 +20,10 @@ return (
         </svg>
       </Select.Icon>
     </Select.Trigger>
+
+    <Select.Content>
+      <Select.Viewport>
+      </Select.Viewport>
+    </Select.Content>
   </Select.Root>
 );
