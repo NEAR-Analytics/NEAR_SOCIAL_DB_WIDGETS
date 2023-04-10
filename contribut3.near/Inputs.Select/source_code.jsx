@@ -100,7 +100,7 @@ const Item = styled.button`
   }
 
   &:hover {
-    background: #f5f7fa;
+    background: #d0d5dd;
   }
 `;
 
