@@ -5,7 +5,7 @@ const onChange = props.onChange ?? (() => { });
 const validate = props.validate ?? (() => { });
 const error = props.error ?? "";
 
-const Continer = styled.div`
+const Contner = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -81,9 +81,11 @@ return (
       onChange={onChange}
       options={options}
       selected={value}
-      renderMenuItemChildren={(option, props, index) => (
-        <Item 
-      )}
+      renderMenuItemChildren={(option, props, index) => {
+        return (
+          <Item key={index}>{option.name}</Item>
+        )
+      }}
       positionFixed
       multiple
       allowNew
