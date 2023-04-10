@@ -91,6 +91,8 @@ const Item = styled.button`
   gap: 0.5em;
   width: 100%;
   cursor: pointer;
+  background: transparent;
+  border: none;
   
   &:nth-child(n + 1) {
     border-top: 1px solid #d0d5dd;
