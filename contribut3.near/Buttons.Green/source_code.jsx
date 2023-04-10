@@ -5,8 +5,8 @@ const Button = styled.button`
   align-items: center;
   padding: 0.5em 1em;
   gap: 0.5em;
+  border: none;
   border-radius: 50px;
-  border-color: none;
   background: #00ec97;
   color: #11181c;
   font-style: normal;
