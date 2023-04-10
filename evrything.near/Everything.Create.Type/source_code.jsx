@@ -1,11 +1,5 @@
+// Repository: https://github.com/near-everything/type-creator
 const externalAppUrl = "https://type-creator.vercel.app/";
-
-/**
- * Request Handlers - Backend.
- *
- * - request: payload sent by External App
- *
- * - response: method to send const externalAppUrl = "https://strike-card.vercel.app/";
 
 /**
  * Initial Path (optional but recommended)
