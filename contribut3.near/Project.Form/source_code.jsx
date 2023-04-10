@@ -59,6 +59,7 @@ State.init({
   dev: null,
   tagline: "",
   description: "",
+  tags: [],
 });
 
 return (
