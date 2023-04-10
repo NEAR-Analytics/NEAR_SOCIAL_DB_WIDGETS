@@ -239,14 +239,14 @@ return (
         <h5>
           Step 1:
           <a href="/#/edit/hack.near/widget/ForkThis">
-            fork this widget
+            Fork this widget
           </a> and{" "}
           <a href="/#/mob.near/widget/WidgetSource?src=hack.near/widget/ForkThis">
             review code
           </a>
         </h5>
-        <h5>Step 2: follow INSTRUCTIONS in the comments</h5>
-        <h5>Step 3: complete exercises and save</h5>
+        <h5>Step 2: Follow INSTRUCTIONS in the comments</h5>
+        <h5>Step 3: Complete exercises and save</h5>
       </div>
       <div className="mb-2 mt-2">
         <h4>Earn rewards by creating a post:</h4>
