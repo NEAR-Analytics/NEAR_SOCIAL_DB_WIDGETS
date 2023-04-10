@@ -5,7 +5,7 @@ const onChange = props.onChange ?? (() => { });
 const validate = props.validate ?? (() => { });
 const error = props.error ?? "";
 
-const Container = styled.div`
+const Continer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -54,6 +54,24 @@ const Input = styled.input`
   width: 100%;
 `;
 
+const Item = styled.span`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  padding: 0.25em 0.5em;
+  background: #f2f4f7;
+  border: 1px solid #d0d5dd;
+  border-radius: 3px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: .95em;
+  line-height: 1.25em;
+  text-align: center;
+  color: #344054;
+`;
+
 return (
   <Container>
     <Label>{label}</Label>
@@ -63,6 +81,9 @@ return (
       onChange={onChange}
       options={options}
       selected={value}
+      renderMenuItemChildren={(option, props, index) => (
+        <Item 
+      )}
       positionFixed
       multiple
       allowNew
