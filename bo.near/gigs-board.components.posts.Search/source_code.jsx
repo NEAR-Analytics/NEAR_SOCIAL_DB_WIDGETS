@@ -627,6 +627,7 @@ const computeResults = (term) => {
 };
 
 const handleKeydown = (e) => {
+  console.log(e)
   if (e.key === 'Enter') {
     State.update({loading: true});
     computeResults(state.term);
