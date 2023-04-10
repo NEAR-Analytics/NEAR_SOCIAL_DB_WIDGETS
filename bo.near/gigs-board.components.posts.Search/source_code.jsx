@@ -633,7 +633,7 @@ const updateInput = (term) => {
 
 const handleKeydown = (e) => {
   console.log('on keydown')
-  
+  e.preventDefault();
   console.log(e)
   if (e.key === 'Enter') {
     State.update({loading: true});
