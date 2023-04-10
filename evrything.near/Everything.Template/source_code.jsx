@@ -2,7 +2,7 @@ const accountId = props.accountId || "evrything.near"; // which account's Types 
 const font = props.font || "Times New Roman"; // custom font for H1
 const type = props.type || "everything"; // selected type
 const text = props.text || type.toLowerCase(); // text for H1
-const view = props.view || "THINGS";
+const view = props.view || null;
 const domain = props.domain || "everything"; // where to index data from
 
 const H1 = styled.h1`
@@ -10,6 +10,7 @@ const H1 = styled.h1`
   font-size: 4em;
   line-height: 1.25;
   font-weight: 400;
+  cursor: pointer;
 `;
 
 const Container = styled.div`
@@ -81,6 +82,12 @@ const handleTypeCreate = () => {
   });
 };
 
+const handleViewThings = () => {
+  State.update({
+    selectedTab: "THINGS",
+  });
+};
+
 const renderView = () => {
   switch (state.selectedTab) {
     case "DETAILS":
@@ -118,6 +125,8 @@ const renderView = () => {
           }}
         />
       );
+    default:
+      return null;
   }
 };
 
@@ -125,7 +134,7 @@ return (
   <>
     <Container>
       <Controller>
-        <H1>{state.title}</H1>
+        <H1 onClick={() => handleViewThings()}>{state.title}</H1>
         <ButtonRow>
           {state.type === "everything" ? (
             <>
