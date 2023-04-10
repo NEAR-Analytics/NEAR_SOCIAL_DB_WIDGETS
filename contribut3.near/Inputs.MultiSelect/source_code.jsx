@@ -71,6 +71,11 @@ const Item = styled.span`
   line-height: 1.25em;
   text-align: center;
   color: #344054;
+  cursor: pointer;
+
+  svg {
+    cursor: pointer;
+  }
 `;
 
 return (
