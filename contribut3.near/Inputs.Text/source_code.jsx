@@ -28,3 +28,15 @@ const Input = styled.input`
   border-radius: 4px;
   color: #101828;
 `;
+
+return (
+  <Container>
+    <Label>{props.label}</Label>
+    <Input
+      type="text"
+      placeholder={props.placeholder}
+      value={props.value}
+      onChange={({ target: { value } }) => props.onChange(value)}
+    />
+  </Container>
+);
