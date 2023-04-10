@@ -82,7 +82,7 @@ return (
       options={options}
       selected={value}
       renderMenuItemChildren={(option, props, index) => {
-        console.log({ option, props })
+        console.log({ option, props });
         return (
           <Item key={index}>{option.name}</Item>
         );
@@ -90,13 +90,6 @@ return (
       positionFixed
       multiple
       allowNew
-    />
-    <Input
-      type="text"
-      placeholder={placeholder}
-      value={value}
-      onChange={({ target: { value } }) => onChange(value)}
-      onBlur={() => validate()}
     />
     <Error className={error ? "show" : ""}>{error}</Error>
   </Container>
