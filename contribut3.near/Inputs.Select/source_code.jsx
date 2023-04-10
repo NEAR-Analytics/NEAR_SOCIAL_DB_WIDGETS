@@ -101,6 +101,7 @@ const Item = styled.button`
 
   &:hover {
     background: #d0d5dd;
+    boder: none;
   }
 `;
 
