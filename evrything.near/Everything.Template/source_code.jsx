@@ -95,7 +95,7 @@ const renderView = () => {
           }}
         />
       );
-    default:
+    case "THINGS":
       return (
         <Widget
           src={"evrything.near/widget/Everything.Things"}
@@ -104,7 +104,7 @@ const renderView = () => {
               state.type === "everything"
                 ? "everything"
                 : `${accountId}/type/${state.type}`,
-            domain: domain,
+            domain,
           }}
         />
       );
