@@ -82,9 +82,10 @@ return (
       options={options}
       selected={value}
       renderMenuItemChildren={(option, props, index) => {
+        console.log({ option, props })
         return (
           <Item key={index}>{option.name}</Item>
-        )
+        );
       }}
       positionFixed
       multiple
