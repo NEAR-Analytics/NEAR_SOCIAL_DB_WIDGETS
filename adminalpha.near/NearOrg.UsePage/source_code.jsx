@@ -474,7 +474,7 @@ return (
 
         <Card>
           <a href="https://www.tamastream.io/" target="_blank">
-            <CircleImg src="https://awesomenear-spaces.fra1.digitaloceanspaces.com/production/projects/seatlab-nft/seatlab-nft.jpg" />
+            <CircleImg src="https://awesomenear-spaces.fra1.digitaloceanspaces.com/production/projects/tamago/tamago.jpg" />
           </a>
           <Flex direction="column" gap="8px">
             <Text size="text-xl" fontWeight="600" color="sand12">
