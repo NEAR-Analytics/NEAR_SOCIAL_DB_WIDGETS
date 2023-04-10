@@ -58,7 +58,7 @@ return (
     <Widget
       src="mob.near/widget/Common.Compose"
       props={{
-        placeholder: "Pleas use our communitag: #builders",
+        placeholder: "Please use our communitag: #builders",
         onChange: state.onChange,
         onHelper: ({ extractMentionNotifications, extractHashtags }) => {
           State.update({ extractMentionNotifications, extractHashtags });
