@@ -713,7 +713,7 @@ return (
           <strong>{state.processedQuery.join(" ")}</strong>:
         </div>
       )}
-    {state.term && state.term.length > 2 && state.searchResult
+    {state.term && state.term.length > 1 && state.searchResult
       ? widget("components.posts.List", {
           searchResult: {
             postIds: state.searchResult,
