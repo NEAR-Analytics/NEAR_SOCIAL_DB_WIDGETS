@@ -55,6 +55,8 @@ State.init({
   name: "",
   accountId: "",
   category: null,
+  integration: null,
+  dev: null,
 });
 
 return (
@@ -111,8 +113,8 @@ return (
           label: "Development phase *",
           placeholder: "Testnet launched",
           options: [{ text: "Testnet launched", value: "testnet" }, { text: "Mainnet launched", value: "mainnet" }, { text: "In development", value: "development" }],
-          value: state.integration,
-          onChange: (integration) => State.update({ integration }),
+          value: state.dev,
+          onChange: (dev) => State.update({ dev }),
         }}
       />
     </Form>
