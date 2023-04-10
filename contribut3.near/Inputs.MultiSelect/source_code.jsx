@@ -79,15 +79,15 @@ return (
     <Typeahead
       id
       labelKey="name"
-      onChange={(selected) => { console.log(selected) }}
+      onChange={onChange}
       options={[{ name: "test" }, { name: "test2" }]}
       selected={value}
-      // renderToken={(option, props, index) => {
-      //   console.log({ option, props });
-      //   return (
-      //     <Item key={index}>{option.name}</Item>
-      //   );
-      // }}
+      renderToken={(option, props, index) => {
+        console.log({ option, props });
+        return (
+          <Item key={index}>{option.name}</Item>
+        );
+      }}
       positionFixed
       multiple
       allowNew
