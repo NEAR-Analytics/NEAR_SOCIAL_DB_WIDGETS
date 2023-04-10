@@ -100,8 +100,11 @@ const renderView = () => {
         <Widget
           src={"evrything.near/widget/Everything.Things"}
           props={{
-            type: `${accountId}/type/${state.type}`,
-            domain,
+            type:
+              state.type === "everything"
+                ? "everything"
+                : `${accountId}/type/${state.type}`,
+            domain: domain,
           }}
         />
       );
