@@ -117,6 +117,15 @@ return (
           onChange: (dev) => State.update({ dev }),
         }}
       />
+      <Widget
+        src={`${ownerId}/widget/Inputs.Text`}
+        props={{
+          label: "Tagline",
+          placeholder: "Simple solutions for complex tasks",
+          value: state.tagline,
+          onChange: (tagline) => State.update({ tagline }),
+        }}
+      />
     </Form>
   </Container>
 );
