@@ -88,8 +88,8 @@ return (
       <Widget
         src={`${ownerId}/widget/Inputs.Select`}
         props={{
-          label: "NEAR Account *",
-          placeholder: "layers.near",
+          label: "Category *",
+          placeholder: "Wallets",
           options: [{ text: "Wallets", value: "wallets" }, { text: "Games", value: "games" }],
           value: state.category,
           onChange: (category) => State.update({ category }),
