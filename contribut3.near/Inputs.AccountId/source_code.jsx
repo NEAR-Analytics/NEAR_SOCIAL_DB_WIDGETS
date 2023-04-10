@@ -72,7 +72,7 @@ return (
       placeholder,
       value,
       onChange,
-      validate,
+      validate: () => validate(value),
       error: state.errorMessage,
     }}
   />
