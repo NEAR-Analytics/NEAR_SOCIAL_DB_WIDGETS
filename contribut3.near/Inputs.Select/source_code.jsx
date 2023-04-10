@@ -69,6 +69,7 @@ const Content = styled.div`
   gap: 0.5em;
   width: 100%;
   border: 1px solid #d0d5dd;
+  border-radius: 4px;
 `;
 
 const Item = styled.div`
