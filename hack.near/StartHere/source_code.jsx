@@ -29,7 +29,7 @@ Step-by-step Process:
 
 1: Navigate to the ForkThis widget, and fork it!
 
-2: Rename and remix that component however you wish.
+2: Remix / rename that component however you wish.
 
 3: Save your work on the blockchain operating system.
 
@@ -41,7 +41,7 @@ Have you done all of the steps above?
 
 */
 
-return <Widget src={`${accountId}/widget/ForkThis`} />;
+return <Widget src="hack.near/widget/ForkThis" />;
 
 /*
 
