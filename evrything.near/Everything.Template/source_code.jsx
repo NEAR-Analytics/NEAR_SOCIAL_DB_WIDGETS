@@ -63,7 +63,8 @@ const handleSelectType = (typeName) => {
   } else {
     State.update({
       title: typeName.toLowerCase() + "s",
-      type: `${accountId}/type/${typeName}`,
+      type: typeName,
+      selectedTab: "THINGS",
     });
   }
 };
