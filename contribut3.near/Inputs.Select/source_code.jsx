@@ -19,5 +19,6 @@ return (
           />
         </svg>
       </Select.Icon>
+    </Select.Trigger>
   </Select.Root>
 );
