@@ -70,7 +70,15 @@ const Content = styled.div`
   width: 100%;
 `;
 
-const Item = styled.div``;
+const Item = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5em 0.75em;
+  gap: 0.5em;
+  width: 100%;
+`;
 
 return (
   <Container>
