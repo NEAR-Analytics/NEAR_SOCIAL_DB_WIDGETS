@@ -460,7 +460,7 @@ const spellcheckQueryProcessing = (query, dictionary) => {
     if (!dictionary.hasOwnProperty(word)) {
       let closestMatch = undefined;
       let closestDistance = word.length;
-      let allowedDistance = Math.min(word.length - 1, 3);
+      let allowedDistance = Math.min(word.length - 1, 2);
       // Iterate over each word in the dictionary
       if (word.length > 1) {
         for (let j = 0; j < dictionaryArray.length; j++) {
