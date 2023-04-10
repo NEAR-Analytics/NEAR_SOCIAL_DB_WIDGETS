@@ -57,7 +57,7 @@ const Input = styled.div`
 `;
 
 const Placeholder = styled.span`
-  color: #d0d5dd;
+  color: #a0a3a8;
 `;
 
 return (
