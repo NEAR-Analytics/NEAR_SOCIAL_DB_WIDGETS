@@ -26,7 +26,7 @@ console.log(imageSrc);
 
 const ImageCircle = styled.img`
   background: #fafafa;
-  border: 3px solid #eceef0;
+  // border: 3px solid #eceef0;
   border-radius: 8px;
   object-fit: cover;
   width: 100%;
