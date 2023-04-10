@@ -9,8 +9,6 @@ First, we have to get the accountId for the challenge.
 Notice how it checks props, and if that is null or undefined,
 it returns user's accountId from the page context.
 
-This helps anyone build experiences on the page.
-
 */
 
 const accountId = props.accountId ?? context.accountId;
