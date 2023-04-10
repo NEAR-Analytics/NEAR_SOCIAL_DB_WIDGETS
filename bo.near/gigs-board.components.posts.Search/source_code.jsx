@@ -264,7 +264,7 @@ function stemmer(value) {
   let result = value.toLowerCase();
 
   // Exit early.
-  if (result.length < 3) {
+  if (result.length < 2) {
     return result;
   }
 
