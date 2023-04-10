@@ -95,6 +95,26 @@ return (
           onChange: (category) => State.update({ category }),
         }}
       />
+      <Widget
+        src={`${ownerId}/widget/Inputs.Select`}
+        props={{
+          label: "Integration with NEAR *",
+          placeholder: "Native",
+          options: [{ text: "Native", value: "native" }, { text: "Multichain", value: "multichain" }],
+          value: state.integration,
+          onChange: (integration) => State.update({ integration }),
+        }}
+      />
+      <Widget
+        src={`${ownerId}/widget/Inputs.Select`}
+        props={{
+          label: "Development phase *",
+          placeholder: "Testnet launched",
+          options: [{ text: "Testnet launched", value: "testnet" }, { text: "Mainnet launched", value: "mainnet" }, { text: "In development", value: "development" }],
+          value: state.integration,
+          onChange: (integration) => State.update({ integration }),
+        }}
+      />
     </Form>
   </Container>
 );
