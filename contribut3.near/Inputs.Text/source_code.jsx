@@ -27,6 +27,7 @@ const Input = styled.input`
   box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
   border-radius: 4px;
   color: #101828;
+  width: 100%;
 `;
 
 return (
