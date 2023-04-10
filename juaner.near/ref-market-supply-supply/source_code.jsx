@@ -59,10 +59,14 @@ const Container = styled.div`
       opacity:0.3;
       cursor: not-allowed;
     }
+    
 `;
 /** base tool start  */
 let BURROW_CONTRACT = "contract.main.burrow.near";
 let accountId = context.accountId;
+let MAX_RATIO = 10_000;
+let B = Big();
+B.DP = 60; // set precision to 60 decimals
 const toAPY = (v) => Math.round(v * 100) / 100;
 const clone = (o) => JSON.parse(JSON.stringify(o));
 const shrinkToken = (value, decimals) => {
@@ -73,7 +77,16 @@ const expandToken = (value, decimals) => {
 };
 const formatToken = (v) => Math.floor(v * 10_000) / 10_000;
 const { showModal, selectedTokenId } = props;
-const { rewards, balances, amount, hasError, assets } = state;
+const {
+  rewards,
+  balances,
+  account: burrowAccount,
+  amount,
+  hasError,
+  assets,
+  cfButtonStatus,
+  newHealthFactor,
+} = state;
 const hasData = assets.length > 0 && rewards.length > 0;
 if (!showModal) {
   State.update({
@@ -112,6 +125,7 @@ const b = account.body.result.amount;
 const nearBalance = shrinkToken(b || "0", 24).toFixed(2);
 let vailableBalance = 0;
 let apy = 0;
+let cf = "-";
 const getBalance = (asset) => {
   if (!asset) return 0;
   const { token_id, accountBalance, metadata } = asset;
@@ -131,6 +145,7 @@ if (selectedTokenId && assets) {
   vailableBalance =
     selectedTokenId === "NEAR" ? nearBalance : getBalance(asset);
   apy = getApy(asset);
+  cf = asset.config.volatility_ratio / 100;
 }
 const storageBurrow = Near.view(BURROW_CONTRACT, "storage_balance_of", {
   account_id: accountId,
@@ -142,19 +157,14 @@ const storageToken = selectedTokenId
     })
   : null;
 
-const handleSelect = (e) => {
-  State.update({
-    selectedTokenId: e.target.value,
-    amount: "",
-    hasError: false,
-  });
-};
-
 const handleAmount = (e) => {
+  const amount = Number(e.target.value);
+  const b = recomputeHealthFactor(selectedTokenId, amount);
   State.update({
     amount: Number(e.target.value),
     selectedTokenId,
     hasError: false,
+    newHealthFactor: recomputeHealthFactor(selectedTokenId, amount),
   });
 };
 
@@ -184,9 +194,10 @@ const handleDeposit = () => {
     metadata.decimals + config.extra_decimals
   ).toFixed();
 
-  const collateralMsg = config.can_use_as_collateral
-    ? `{"Execute":{"actions":[{"IncreaseCollateral":{"token_id": "${token_id}","max_amount":"${collateralAmount}"}}]}}`
-    : "";
+  const collateralMsg =
+    config.can_use_as_collateral && cfButtonStatus
+      ? `{"Execute":{"actions":[{"IncreaseCollateral":{"token_id": "${token_id}","max_amount":"${collateralAmount}"}}]}}`
+      : "";
 
   const transactions = [];
 
@@ -242,12 +253,102 @@ const handleDepositNear = (amount) => {
       args: {
         receiver_id: BURROW_CONTRACT,
         amount: amountDecimal,
-        msg: `{"Execute":{"actions":[{"IncreaseCollateral":{"token_id":"wrap.near","max_amount":"${amountDecimal}"}}]}}`,
+        msg: cfButtonStatus
+          ? `{"Execute":{"actions":[{"IncreaseCollateral":{"token_id":"wrap.near","max_amount":"${amountDecimal}"}}]}}`
+          : "",
       },
     },
   ]);
 };
+function getAdjustedSum(type, burrowAccount) {
+  if (!assets || !burrowAccount || burrowAccount[type].length == 0) return B(1);
+  return burrowAccount[type]
+    .map((assetInAccount) => {
+      const asset = assets.find((a) => a.token_id === assetInAccount.token_id);
+
+      const price = asset.price
+        ? B(asset.price.multiplier).div(B(10).pow(asset.price.decimals))
+        : B(0);
+
+      const pricedBalance = B(assetInAccount.balance)
+        .div(expandToken(1, asset.config.extra_decimals))
+        .mul(price);
+
+      return type === "borrowed"
+        ? pricedBalance
+            .div(asset.config.volatility_ratio)
+            .mul(MAX_RATIO)
+            .toFixed()
+        : pricedBalance
+            .mul(asset.config.volatility_ratio)
+            .div(MAX_RATIO)
+            .toFixed();
+    })
+    .reduce((sum, cur) => B(sum).plus(B(cur)).toFixed());
+}
+
+const adjustedCollateralSum = getAdjustedSum("collateral", burrowAccount);
+const adjustedBorrowedSum = getAdjustedSum("borrowed", burrowAccount);
+
+function getHealthFactor() {
+  const healthFactor = B(adjustedCollateralSum)
+    .div(B(adjustedBorrowedSum))
+    .mul(100)
+    .toFixed(0);
+  return Number(healthFactor) < MAX_RATIO ? healthFactor : MAX_RATIO;
+}
+const healthFactor = getHealthFactor();
 /** logic end */
+function switchButtonStatus() {
+  cfButtonStatus;
+  State.update({
+    cfButtonStatus: !cfButtonStatus,
+  });
+}
+const recomputeHealthFactor = (tokenId, amount) => {
+  if (!tokenId || !amount || !assets) return null;
+  const asset = assets.find((a) => a.token_id === tokenId);
+  const decimals = asset.metadata.decimals + asset.config.extra_decimals;
+  const accountCollateralAsset = burrowAccount.collateral.find(
+    (a) => a.token_id === tokenId
+  );
+
+  const newBalance = expandToken(amount, decimals)
+    .plus(B(accountCollateralAsset?.balance || 0))
+    .toFixed();
+
+  const clonedAccount = clone(burrowAccount);
+
+  const updatedToken = {
+    token_id: tokenId,
+    balance: newBalance,
+    shares: newBalance,
+    apr: "0",
+  };
+
+  if (clonedAccount?.collateral.length === 0) {
+    clonedAccount.collateral = updatedToken;
+  } else if (!accountCollateralAsset) {
+    clonedAccount.collateral.push(updatedToken);
+  } else {
+    clonedAccount.collateral = [
+      ...clonedAccount.collateral.filter((a) => a.token_id !== tokenId),
+      updatedToken,
+    ];
+  }
+  const adjustedCollateralSum = getAdjustedSum(
+    "collateral",
+    amount === 0 ? burrowAccount : clonedAccount
+  );
+  const adjustedBorrowedSum = getAdjustedSum("borrowed", burrowAccount);
+
+  const newHealthFactor = B(adjustedCollateralSum)
+    .div(B(adjustedBorrowedSum))
+    .mul(100)
+    .toFixed(0);
+
+  return Number(newHealthFactor) < MAX_RATIO ? newHealthFactor : MAX_RATIO;
+};
 return (
   <Container>
     {/* load data */}
@@ -267,6 +368,26 @@ return (
       <div class="template mt_25">
         <span class="title">Supply APY</span>
         <span class="value">{apy}%</span>
+      </div>
+      <div class="template mt_25">
+        <span class="title">Health Factor</span>
+        <span class="value">
+          {newHealthFactor && cfButtonStatus ? newHealthFactor : healthFactor}%
+        </span>
+      </div>
+      <div class="template mt_25">
+        <span class="title">Collateral Factor</span>
+        <div class="flex-center">
+          <span class="value">{cf}%</span>
+          <div
+            class={`switchButton ${
+              cfButtonStatus ? "justify-end" : "justify-start"
+            }`}
+            onClick={switchButtonStatus}
+          >
+            <label class="whiteBall"></label>
+          </div>
+        </div>
       </div>
       <div
         class={`greenButton mt_25 ${Number(amount) ? "" : "disabled"}`}
