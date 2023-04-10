@@ -4,12 +4,13 @@ TUTORIAL
 
 Build your own decentralized frontend!
 
-First, we have to get the accountId for the challenge.
+Step 1: Fork this widget [done]
 
-Notice how it checks props, and if that is null or undefined,
-it returns user's accountId from the page context.
+Step 2: Review code and follow INSTRUCTIONS
 
-This helps anyone build experiences on the page.
+Step 3: Complete exercises and save!
+
+Feel free to rename this widget and edit any of the metadata.
 
 */
 
@@ -17,9 +18,17 @@ const accountId = props.accountId ?? context.accountId;
 
 /*
 
+^ First, we have to get the accountId.
+
 We're also using a tag property to filter widgets on the page.
 
-You can change the default tag from "guide" to anything.
+INSTRUCTIONS
+
+--> Change the default tag from "guide" to anything!
+
+`Render Preview` to check if any widgets have your tag.
+
+Here are some you can use: #dev, #page, #app
 
 */
 
@@ -27,14 +36,13 @@ const tag = props.tag ?? "guide";
 
 /*
 
-Review the following code section if you are interested in tag filtering.
+Review the following code if you are interested in tag filtering.
 
-- initializes the keys variable to a string consisting of accountId (if it exists) or "*" and "/widget/*". This value is used later to fetch widget data.
-- checks if a tag value exists. If it does, the code fetches tagged widgets based on accountId and tag.
-- maps over the widget data to create an array of keys, consisting of the accountId, widgetName, and blockHeight of each widget.
-- fetches the data associated with the keys from the previous step. If the data is not found, the function returns "Loading...". If the data is found, the processData function is called to sort the widget data based on block height.
-- maps over the sorted widget data to create a list of widgets to render. Each widget is wrapped in an <a> tag with a URL corresponding to the widget's accountId and widgetName. The renderTag and renderItem functions are used to render each tag and widget.
-- checks if the data has changed since the last time it was fetched. If it has, the State.update function is called to update the state with the new data and processed widget items.
+- maps over widget data to create an array of keys,
+(consisting of accountId, widgetName, and blockHeight)
+- calls processData function to sort widgets by blockHeight
+- maps over sorted widget data to create a list of items to render
+- renderTag / renderItem functions are used for each tag / widget
 
 No need to make any changes here.
 
@@ -213,7 +221,17 @@ Last, but certainly not least, is the display.
 
 Feel free to make any edits you like!
 
-Adjust your featured section by updating the widget paths.
+INSTRUCTIONS
+
+1. Update <Text> with the <b>#tag</b> you input above.
+
+2. Edit <Button href="URL" > with your own link.
+
+3. Adjust featured section by updating the widget paths.
+
+    --> Choose your favorite widgets!
+
+Don't forget to save!
 
 */
 
