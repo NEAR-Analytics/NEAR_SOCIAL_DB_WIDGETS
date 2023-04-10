@@ -55,13 +55,13 @@ const handleCreateType = (request, response) => {
         },
         widget: {
           [`Everything.Summary.${payload.name}`]: {
-            "": `return (<p>Go configure your <a href="/#/edit/${accountId}/widget/Everything.Summary.${payload.name}">summary widget</a>!);`,
+            "": `return (<p>Go configure your <a href="/#/edit/${accountId}/widget/Everything.Summary.${payload.name}">summary widget</a>!</p>);`,
           },
           [`Everything.View.${payload.name}`]: {
-            "": `return (<p>Go configure your <a href="/#/edit/${accountId}/widget/Everything.View.${payload.name}">view widget</a>!);`,
+            "": `return (<p>Go configure your <a href="/#/edit/${accountId}/widget/Everything.View.${payload.name}">view widget</a>!</p>);`,
           },
           [`Everything.Create.${payload.name}`]: {
-            "": `return (<p>Go configure your <a href="/#/edit/${accountId}/widget/Everything.Create.${payload.name}">create widget</a>!);`,
+            "": `return (<p>Go configure your <a href="/#/edit/${accountId}/widget/Everything.Create.${payload.name}">create widget</a>!</p>);`,
           },
         },
       },
