@@ -80,7 +80,7 @@ const Sidebar = styled.div`
   width: 20%;
 `;
 
-const plusIcon = (
+const circledPlus = (
   <svg
     width="18"
     height="18"
@@ -102,6 +102,12 @@ const plusIcon = (
         <rect width="18" height="18" fill="white" />
       </clipPath>
     </defs>
+  </svg>
+);
+
+const plus = (
+  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M9 3.75V14.25M3.75 9H14.25" stroke="#006ADC" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round" />
   </svg>
 );
 
@@ -128,7 +134,14 @@ return (
                 Near.call(ownerId, "apply_for_program", {
                   account_id: accountId,
                 }),
-              text: <>{plusIcon}Apply to accelerator</>,
+              text: <>{circledPlus}Apply to accelerator</>,
+            }}
+          />
+          <Widget
+            src={`${ownerId}/widget/Buttons.Grey`}
+            props={{
+              onClick: () => { console.log("clicked") },
+              text: <>{plus}Create request</>,
             }}
           />
         </CTARow>
