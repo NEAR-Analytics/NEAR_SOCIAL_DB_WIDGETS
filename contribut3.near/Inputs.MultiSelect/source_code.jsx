@@ -82,7 +82,7 @@ return (
       onChange={onChange}
       options={options}
       selected={value}
-      renderMenuItemChildren={(option, props, index) => {
+      renderToken={(option, props, index) => {
         console.log({ option, props });
         return (
           <Item key={index}>{option.name}</Item>
