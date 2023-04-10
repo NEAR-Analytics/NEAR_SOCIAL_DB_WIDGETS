@@ -461,7 +461,7 @@ const spellcheckQueryProcessing = (query, dictionary) => {
       let closestDistance = word.length;
       let allowedDistance = Math.min(word.length - 1, 3);
       // Iterate over each word in the dictionary
-      if (word.length > 2) {
+      if (word.length > 1) {
         for (let j = 0; j < dictionaryArray.length; j++) {
           let dictWord = dictionaryArray[j];
           let distance = levenshteinDistance(word, dictWord, allowedDistance);
@@ -491,7 +491,7 @@ const fillDictionaryWith = (dict, text, id) => {
       word += char.toLowerCase();
     } else if (word.length > 0) {
       const processedWord = applySynonym(stemmer(word));
-      if (processedWord.length > 2 && !isStopWord(processedWord)) {
+      if (processedWord.length > 1 && !isStopWord(processedWord)) {
         const oldValue = dict[processedWord] || [];
         dict[processedWord] = [...oldValue, id];
       }
@@ -499,7 +499,7 @@ const fillDictionaryWith = (dict, text, id) => {
     }
   }
   const processedWord = applySynonym(stemmer(word));
-  if (processedWord.length > 2 && !isStopWord(processedWord)) {
+  if (processedWord.length > 1 && !isStopWord(processedWord)) {
     const oldValue = dict[stemmer(processedWord)] || [];
     dict[stemmer(processedWord)] = [...oldValue, id];
   }
