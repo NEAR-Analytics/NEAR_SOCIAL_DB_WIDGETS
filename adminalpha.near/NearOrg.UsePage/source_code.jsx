@@ -573,5 +573,65 @@ return (
         }}
       />
     </Section>
+
+    <Section
+      id="why-it-matters"
+      background="linear-gradient( 132.69deg, #02042f 39.58%, #dc5656 76.56%, #dca656 99.48% );"
+    >
+      <Flex direction="column" gap="16px" style={{ textAlign: "center" }}>
+        <Text as="h2" size="text-3xl" fontWeight="600" color="white">
+          Why it matters
+        </Text>
+        <Text size="text-l" color="white">
+          Our world is in urgent need of change
+        </Text>
+      </Flex>
+
+      <Flex gap="24px" mobileStack="24px" alignItems="center">
+        <Flex
+          gap="16px"
+          direction="column"
+          alignItems="flex-start"
+          style={{ width: "100%" }}
+        >
+          <Text size="text-l" fontWeight="600" color="white">
+            Today, our world is in crisis
+          </Text>
+          <Text color="white">
+            From climate change, to the increasing centralisation of power, the
+            existential threat of a global collapse demands global action in
+            every sector of society.
+          </Text>
+          <Widget
+            src="adminalpha.near/widget/DIG.Button"
+            props={{
+              href: "#todo",
+              iconRight: "ph-bold ph-arrow-up-right",
+              label: "Learn More",
+              variant: "primary",
+              fill: "outline",
+              size: "small",
+            }}
+          />
+        </Flex>
+
+        <img
+          src="https://near.org/wp-content/themes/near-21/assets/img/relaunch/use-world.png"
+          style={{
+            display: "block",
+            width: "250px",
+          }}
+        />
+
+        <Flex gap="16px" direction="column" style={{ width: "100%" }}>
+          <Text size="text-l" fontWeight="600" color="white">
+            We need a more inclusive, open and fair future
+          </Text>
+          <Text color="white">
+            You can be part of this change. Become a Web3 citizen.
+          </Text>
+        </Flex>
+      </Flex>
+    </Section>
   </Wrapper>
 );
