@@ -696,7 +696,7 @@ return (
         className="form-control"
         value={state.term ?? ""}
         /* onChange doesn't trigger at all when onKeydown is set on near-social viewer, has to simulate key change in handleKeydown */
-        onTextChange={(e) => updateInput(e.target.value)}
+        onChange={(e) => updateInput(e.target.value)}
         // onKeyDown={handleKeydown}
         placeholder={props.placeholder ?? `Search Posts`}
       />
