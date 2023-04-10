@@ -136,6 +136,10 @@ const Modal = styled.div`
       height:12px;
       cursor:pointer;
     }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+    }
 `;
 
 /** base tool start  */
