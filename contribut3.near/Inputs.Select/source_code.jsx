@@ -70,8 +70,7 @@ const Content = styled.div`
   width: 100%;
   border: 1px solid #d0d5dd;
   border-radius: 4px;
-
-  transform-origin: top left;
+  background: #ffffff;
 `;
 
 const Item = styled.div`
