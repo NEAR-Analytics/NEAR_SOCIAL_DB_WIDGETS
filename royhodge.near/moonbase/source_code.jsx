@@ -1,10 +1,7 @@
-const ownerId =
-  "3f165cfc842dd839a00c78d2e7470857ae98e640dc303f0070b3b3d606bd9e4b";
+const ownerId = "royhodge.near";
 
 const creditId = `credits.${ownerId}`;
-let accountId =
-  props.accountId ||
-  "3f165cfc842dd839a00c78d2e7470857ae98e640dc303f0070b3b3d606bd9e4b";
+let accountId = props.accountId || "royhodge.near";
 let profile = socialGetr(`${accountId}/profile`);
 const contracts = [
   "dev-1680714992236-65898712788505",
