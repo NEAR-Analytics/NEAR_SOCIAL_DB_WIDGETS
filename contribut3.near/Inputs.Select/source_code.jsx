@@ -76,7 +76,7 @@ return (
     <Select.Root onValueChange={(value) => onChange(options.find((option) => option.value === value))}>
       <Select.Trigger asChild={true}>
         <Input>
-          <Select.Value aria-label={value} placeholder={<Placeholder>{placeholder}</Placeholder>} />
+          <Select.Value aria-label={value.value} placeholder={<Placeholder>{placeholder}</Placeholder>} />
           <Select.Icon>
             <svg
               width="12"
