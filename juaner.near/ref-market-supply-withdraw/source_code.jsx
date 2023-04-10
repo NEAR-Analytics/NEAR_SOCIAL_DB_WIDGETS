@@ -75,6 +75,9 @@ const Container = styled.div`
     .checkButton.active{
         background-color:#304352;
     }
+    .mt-15{
+        margin-top:15px;
+    }
 `;
 /** base tool start  */
 let BURROW_CONTRACT = "contract.main.burrow.near";
@@ -380,7 +383,7 @@ return (
           Amount greater than available
         </p>
       )}
-      <div class="flex-center">
+      <div class="flex-center mt-15">
         <span class="checkButton active">25%</span>
         <span class="checkButton">50%</span>
         <span class="checkButton">75%</span>
