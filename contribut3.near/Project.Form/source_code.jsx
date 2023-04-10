@@ -48,6 +48,7 @@ const FormHeader = styled.h3`
   font-size: 1.125em;
   line-height: 1.25em;
   color: #000000;
+  width: 100%;
 `;
 
 State.init({
