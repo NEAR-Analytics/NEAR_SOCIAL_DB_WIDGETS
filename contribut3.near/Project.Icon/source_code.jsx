@@ -22,6 +22,7 @@ const url =
     : image.url) || "https://thewiki.io/static/media/sasha_anon.6ba19561.png";
 
 const imageSrc = `https://i.near.social/thumbnail/${url}`;
+console.log(imageSrc);
 
 const ImageCircle = styled.img`
   background: #fafafa;
