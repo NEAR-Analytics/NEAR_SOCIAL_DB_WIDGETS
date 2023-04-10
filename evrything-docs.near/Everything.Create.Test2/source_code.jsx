@@ -1,0 +1,1 @@
+return (<p>Go configure your <a href="/#/edit/evrything-docs.near/widget/Everything.Create.Test2">create widget</a>!</p>);
