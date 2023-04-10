@@ -581,21 +581,6 @@ const getProcessedPostsCached = () => {
   return useCache(() => buildPostsIndex(), "processedPostsCached");
 };
 
-if (!state.interval) {
-  let termStorage = "";
-  Storage.privateSet("term", "");
-  setInterval(() => {
-    const currentInput = Storage.privateGet("term");
-    if (currentInput !== termStorage) {
-      termStorage = currentInput;
-      computeResults(termStorage);
-    }
-  }, 1500);
-  State.update({
-    interval: true,
-  });
-}
-
 const computeResults = (term) => {
   const start = new Date().getTime();
   const processedPostsCached = useCache(
@@ -642,12 +627,17 @@ const computeResults = (term) => {
 };
 
 const updateInput = (term) => {
-  Storage.privateSet("term", term);
   State.update({
     term,
-    loading: true,
   });
 };
+
+const handleKeyDown = (e) => {
+  if (e.key === 'Enter') {
+    State.update({loading: true});
+    computeResults(state.term);
+  }
+}
 
 const getSearchResultsKeywordsFor = (postId) => {
   const index = getProcessedPostsCached().index;
@@ -702,6 +692,7 @@ return (
         className="form-control"
         value={state.term ?? ""}
         onChange={(e) => updateInput(e.target.value)}
+        onKeyDown={handleKeyDown}
         placeholder={props.placeholder ?? `Search Posts`}
       />
     </div>
