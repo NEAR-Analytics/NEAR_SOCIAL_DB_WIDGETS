@@ -90,6 +90,10 @@ const Item = styled.div`
   padding: 0.5em 0.75em;
   gap: 0.5em;
   width: 100%;
+  
+  &:nth-child(n + 1) {
+    border-top: 1px solid #d0d5dd;
+  }
 `;
 
 return (
