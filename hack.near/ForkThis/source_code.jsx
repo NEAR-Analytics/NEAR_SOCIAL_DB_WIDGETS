@@ -240,7 +240,7 @@ return (
     <Header>
       <H1>All Guides</H1>
       <Text>
-        These particular widgets are tagged with: <b>#guide</b>
+        These particular widgets are tagged with: <b>#app</b>
       </Text>
       <div className="d-flex flex-wrap gap-1 my-3">
         {state.allItems
@@ -261,7 +261,7 @@ return (
       <Item>
         <Widget
           src="adminalpha.near/widget/ComponentCard"
-          props={{ src: "hack.near/widget/StartHere" }}
+          props={{ src: "hack.near/widget/ForkThis" }}
         />
       </Item>
       <Item>
