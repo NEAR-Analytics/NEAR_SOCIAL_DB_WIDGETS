@@ -260,11 +260,6 @@ const step4 =
  */
 // eslint-disable-next-line complexity
 function stemmer(value) {
-  // not fuzzy upper case word, they are usually abbreviations, e.g. MNW
-  if (value.toUpperCase() === value) {
-    return value;
-  }
-
   let result = value.toLowerCase();
 
   // Exit early.
