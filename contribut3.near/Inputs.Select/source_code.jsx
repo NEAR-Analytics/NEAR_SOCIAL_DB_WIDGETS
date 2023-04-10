@@ -65,7 +65,7 @@ const Content = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  padding: 0.5em 0.75em;
+  padding: 0;
   gap: 0.5em;
   width: 100%;
   border: 1px solid #d0d5dd;
