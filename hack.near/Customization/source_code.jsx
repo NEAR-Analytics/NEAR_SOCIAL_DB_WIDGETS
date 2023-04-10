@@ -49,7 +49,7 @@ return (
     {context.accountId && (
       <a
         key="edit"
-        href={"#/hack.near/widget/PageBuilder"}
+        href={"#/hack.near/widget/Page.Editor"}
         className="edit-link position-absolute top-0 end-0 link-secondary me-2 mt-1"
       >
         <i class="bi bi-pencil" /> Edit Page
