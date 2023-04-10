@@ -56,13 +56,17 @@ const Input = styled.div`
   width: 60%;
 `;
 
+const Placeholder = styled.span`
+  color: #d0d5dd;
+`;
+
 return (
   <Container>
     <Label>{label}</Label>
     <Select.Root onValueChange={(value) => onChange(options.find((option) => option.value === value))}>
       <Select.Trigger asChild={true}>
         <Input>
-          <Select.Value aria-label={value} placeholder={placeholder} />
+          <Select.Value aria-label={value} placeholder={<Placeholder>placeholder</Placeholder>} />
           <Select.Icon>
             <svg
               width="12"
