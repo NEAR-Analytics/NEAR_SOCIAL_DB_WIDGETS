@@ -380,10 +380,17 @@ return (
               Withdraw
             </span>
           </div>
-          <Widget
-            src="juaner.near/widget/ref-market-supply-supply"
-            props={{ selectedTokenId, showModal }}
-          />
+          {tabName == "withdraw" ? (
+            <Widget
+              src="juaner.near/widget/ref-market-supply-withdraw"
+              props={{ selectedTokenId, showModal }}
+            />
+          ) : (
+            <Widget
+              src="juaner.near/widget/ref-market-supply-supply"
+              props={{ selectedTokenId, showModal }}
+            />
+          )}
         </div>
       </Modal>
       <Backdrop
