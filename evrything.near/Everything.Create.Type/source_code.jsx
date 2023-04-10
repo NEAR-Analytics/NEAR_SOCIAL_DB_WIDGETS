@@ -1,4 +1,4 @@
-const externalAppUrl = "https://d6f119538fc5.ngrok.app/";
+const externalAppUrl = "https://type-creator.vercel.app/";
 
 /**
  * Request Handlers - Backend.
