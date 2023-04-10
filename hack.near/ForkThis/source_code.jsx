@@ -248,6 +248,7 @@ return (
         <h5>Step 2: Follow INSTRUCTIONS in the comments</h5>
         <h5>Step 3: Complete exercises and save</h5>
       </div>
+      <br />
       <div className="mb-2 mt-2">
         <h4>Earn rewards by creating a post:</h4>
         <Widget src="hack.near/widget/Page.Compose" />
