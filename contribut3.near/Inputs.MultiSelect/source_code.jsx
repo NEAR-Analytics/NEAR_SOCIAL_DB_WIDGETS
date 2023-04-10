@@ -88,7 +88,12 @@ return (
       options={options}
       selected={value}
       renderInput={({ inputRef, referenceElementRef, ...inputProps }) => (
-        <Input ref={(input) => { inputRef(input); referenceElementRef(input); }} />
+        <Input
+          {...inputProps}
+          ref={(input) => {
+            inputRef(input);
+            referenceElementRef(input);
+          }} />
       )}
       positionFixed
       multiple
