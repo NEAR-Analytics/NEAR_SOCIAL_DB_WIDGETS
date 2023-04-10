@@ -180,7 +180,6 @@ const synonyms = {
   tweet: "twitter",
   paid: "pai",
   src: "sourc",
-  zk: "zkp",
 };
 
 const applySynonym = (word) => {
