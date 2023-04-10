@@ -103,6 +103,10 @@ const Item = styled.button`
     background: #d0d5dd;
     boder: none;
   }
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 return (
