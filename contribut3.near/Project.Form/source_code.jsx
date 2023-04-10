@@ -137,6 +137,16 @@ return (
           onChange: (description) => State.update({ description }),
         }}
       />
+      <Widget
+        src={`${ownerId}/widget/Inputs.MultiSelect`}
+        props={{
+          label: "Tags",
+          placeholder: "Add tags",
+          options: [{ text: "Wallets", value: "wallets" }, { text: "Games", value: "games" }],
+          value: state.tags,
+          onChange: (tags) => State.update({ tags }),
+        }}
+      />
     </Form>
   </Container>
 );
