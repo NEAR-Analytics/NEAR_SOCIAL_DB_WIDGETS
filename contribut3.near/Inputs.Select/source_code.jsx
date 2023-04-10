@@ -111,7 +111,7 @@ return (
         </Input>
       </Select.Trigger>
 
-      <Select.Content asChild={true} position="popper" sideOffset={5}>
+      <Select.Content asChild={true}>
         <Content>
           <Select.Viewport>
             {props.options.map(({ text, value }) => (
