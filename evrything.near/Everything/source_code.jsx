@@ -5,6 +5,8 @@ return (
       accountId: "evrything.near",
       font: "Times New Roman",
       type: "everything",
+      text: "everything",
+      domain: "everything",
     }}
   />
 );
