@@ -12,7 +12,6 @@ State.init({
 });
 
 const validate = () => {
-
   if (typeof value !== "string") {
     State.update({
       valid: false,
@@ -43,7 +42,7 @@ const validate = () => {
       errorMessage: (
         <>
           Account ID must follow the rules specified{" "}
-          <a href="https://nomicon.io/DataStructures/Account#account-id-rules">
+          <a href="https://nomicon.io/DataStructures/Account#account-id-rules" target="_blank">
             here
           </a>
           !
