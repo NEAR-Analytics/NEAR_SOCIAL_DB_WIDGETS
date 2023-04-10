@@ -12,17 +12,9 @@ Step 3: Complete exercises and save!
 
 Feel free to rename this widget and edit any of the metadata.
 
-*/
-
-const accountId = props.accountId ?? context.accountId;
-
-/*
-
-^ First, we have to get the accountId.
-
-We're also using a tag property to filter widgets on the page.
-
 INSTRUCTIONS
+
+We're using a tag property to filter widgets on the page.
 
 --> Change the default tag from "guide" to anything!
 
