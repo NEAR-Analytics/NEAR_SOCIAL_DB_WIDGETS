@@ -116,6 +116,7 @@ const CTARow = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
+  gap: .75em;
 `;
 
 return (
