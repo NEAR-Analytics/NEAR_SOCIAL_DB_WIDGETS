@@ -180,7 +180,6 @@ const synonyms = {
   tweet: "twitter",
   paid: "pai",
   src: "sourc",
-  mnw: 'mnw'
 };
 
 const applySynonym = (word) => {
@@ -264,7 +263,7 @@ function stemmer(value) {
   let result = value.toLowerCase();
 
   // Exit early.
-  if (result.length < 2) {
+  if (result.length < 3) {
     return result;
   }
 
@@ -460,9 +459,9 @@ const spellcheckQueryProcessing = (query, dictionary) => {
     if (!dictionary.hasOwnProperty(word)) {
       let closestMatch = undefined;
       let closestDistance = word.length;
-      let allowedDistance = Math.min(word.length - 1, 2);
+      let allowedDistance = Math.min(word.length - 1, 3);
       // Iterate over each word in the dictionary
-      if (word.length > 1) {
+      if (word.length > 2) {
         for (let j = 0; j < dictionaryArray.length; j++) {
           let dictWord = dictionaryArray[j];
           let distance = levenshteinDistance(word, dictWord, allowedDistance);
@@ -492,7 +491,7 @@ const fillDictionaryWith = (dict, text, id) => {
       word += char.toLowerCase();
     } else if (word.length > 0) {
       const processedWord = applySynonym(stemmer(word));
-      if (processedWord.length > 1 && !isStopWord(processedWord)) {
+      if (processedWord.length > 2 && !isStopWord(processedWord)) {
         const oldValue = dict[processedWord] || [];
         dict[processedWord] = [...oldValue, id];
       }
@@ -500,7 +499,7 @@ const fillDictionaryWith = (dict, text, id) => {
     }
   }
   const processedWord = applySynonym(stemmer(word));
-  if (processedWord.length > 1 && !isStopWord(processedWord)) {
+  if (processedWord.length > 2 && !isStopWord(processedWord)) {
     const oldValue = dict[stemmer(processedWord)] || [];
     dict[stemmer(processedWord)] = [...oldValue, id];
   }
@@ -714,7 +713,7 @@ return (
           <strong>{state.processedQuery.join(" ")}</strong>:
         </div>
       )}
-    {state.term && state.term.length > 1 && state.searchResult
+    {state.term && state.term.length > 2 && state.searchResult
       ? widget("components.posts.List", {
           searchResult: {
             postIds: state.searchResult,
