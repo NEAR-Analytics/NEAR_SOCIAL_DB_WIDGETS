@@ -84,6 +84,16 @@ return (
           onChange: (accountId) => State.update({ accountId }),
         }}
       />
+      <Widget
+        src={`${ownerId}/widget/Inputs.AccountId`}
+        props={{
+          label: "NEAR Account *",
+          placeholder: "layers.near",
+          options: [{ text: "Wallets", value: "wallets" }, { text: "Games", value: "games" }],
+          value: state.category,
+          onChange: (category) => State.update({ category }),
+        }}
+      />
     </Form>
   </Container>
 );
