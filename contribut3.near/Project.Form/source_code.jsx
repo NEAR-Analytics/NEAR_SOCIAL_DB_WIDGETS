@@ -142,7 +142,7 @@ return (
         props={{
           label: "Tags",
           placeholder: "Add tags",
-          options: [{ text: "Wallets", value: "wallets" }, { text: "Games", value: "games" }],
+          options: [{ name: "wallets" }, { name: "games" }],
           value: state.tags,
           onChange: (tags) => State.update({ tags }),
         }}
