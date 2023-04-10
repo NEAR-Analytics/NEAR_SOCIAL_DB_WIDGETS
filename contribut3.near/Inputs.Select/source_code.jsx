@@ -82,7 +82,7 @@ const Viewport = styled.div`
   width: 100%;
 `;
 
-const Item = styled.div`
+const Item = styled.button`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -90,9 +90,14 @@ const Item = styled.div`
   padding: 0.5em 0.75em;
   gap: 0.5em;
   width: 100%;
+  cursor: pointer;
   
   &:nth-child(n + 1) {
     border-top: 1px solid #d0d5dd;
+  }
+
+  &:hover {
+    background: #f5f7fa;
   }
 `;
 
