@@ -2,6 +2,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  justify-content: flex-start;
   padding: 0px;
   gap: .45em;
   width: 100%;
