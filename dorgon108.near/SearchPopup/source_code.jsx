@@ -1,4 +1,3 @@
-// Constants
 const SEARCH_API_KEY = props.searchApiKey ?? "0e42c01107b8f555a41bcc0fa7f2a4df";
 const APPLICATION_ID = props.appId ?? "B6PI9UKKJT";
 const INDEX = props.index ?? "prod_near-social-feed";
@@ -11,9 +10,10 @@ const facets = props.facets ?? ["All", "Users", "Apps", "Components", "Posts"];
 const showHeader = props.showHeader ?? true;
 const showSearchBar = props.showSearchBar ?? true;
 const showPagination = props.showPagination ?? true;
-// Update context to include the user account id
 const userId = props.accountId ?? context.accountId;
 
+const componentsUrl = `/#/calebjacob.near/widget/ComponentsPage`;
+const peopleUrl = `/#/calebjacob.near/widget/PeoplePage`;
 // Styling Specifications
 const Wrapper = styled.div`
   display: flex;
@@ -114,7 +114,7 @@ const Item = styled.div``;
 
 return (
   <Wrapper>
-    {props.showSearchBar && (
+    {showSearchBar && (
       <Search>
         <Widget
           src="chaotictempest.near/widget/SearchPill"
@@ -147,7 +147,7 @@ return (
       <Group>
         <GroupHeader>
           <H3>People</H3>
-          <Text as="a" href={props.peopleUrl} small>
+          <Text as="a" href={peopleUrl} small>
             View All
           </Text>
         </GroupHeader>
@@ -177,7 +177,7 @@ return (
       <Group>
         <GroupHeader>
           <H3>Components</H3>
-          <Text as="a" href={props.componentsUrl} small>
+          <Text as="a" href={componentsUrl} small>
             View All
           </Text>
         </GroupHeader>
@@ -245,13 +245,12 @@ return (
       <Widget
         src="chaotictempest.near/widget/Insights"
         props={{
-          event: props.state.event,
+          event: state.event,
           searchApiKey: SEARCH_API_KEY,
           appId: APPLICATION_ID,
           index: INDEX,
         }}
       />
     )}
-    <div>{props.dog}</div>
   </Wrapper>
 );
