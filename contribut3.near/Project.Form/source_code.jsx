@@ -88,7 +88,7 @@ return (
       <Widget
         src={`${ownerId}/widget/Inputs.Select`}
         props={{
-          label: "Category *",
+          label: "Project category *",
           placeholder: "Wallets",
           options: [{ text: "Wallets", value: "wallets" }, { text: "Games", value: "games" }],
           value: state.category,
