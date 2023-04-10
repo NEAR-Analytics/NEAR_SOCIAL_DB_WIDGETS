@@ -1,5 +1,6 @@
 // Repository: https://github.com/near-everything/type-creator
 const externalAppUrl = "https://type-creator.vercel.app/";
+const accountId = context.accountId;
 
 /**
  * Initial Path (optional but recommended)
@@ -42,7 +43,14 @@ const handleCreateType = (request, response) => {
       {
         type: {
           [payload.name]: {
-            "": JSON.stringify({ properties: payload.properties }),
+            "": JSON.stringify({
+              properties: payload.properties,
+              widgets: {
+                summary: `${accountId}/widget/Everything.Summary.${payload.name}`,
+                view: `${accountId}/widget/Everything.View.${payload.name}`,
+                create: `${accountId}/widget/Everything.Create.${payload.name}`,
+              },
+            }),
           },
         },
       },
