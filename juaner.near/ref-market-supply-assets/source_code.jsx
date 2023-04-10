@@ -226,13 +226,33 @@ const can_deposit_assets = assets && assets.filter((a) => a.config.can_deposit);
 const market_deposit_assets =
   can_deposit_assets &&
   can_deposit_assets.map((asset) => {
-    const { token_id, metadata } = asset;
+    const { token_id, metadata, price, config } = asset;
     const r = rewards.find((a) => a.token_id === asset.token_id);
     const depositApy = r.apyBase + r.apyRewardTvl + r.apyReward;
-    const liquidity = nFormat(asset.availableLiquidity, 2);
     const hasRewards = rewardsMap[token_id] && assetsMap[token_id];
     const rewardMap = hasRewards && rewardsMap[token_id];
     const rewardTokens = rewardMap && rewardMap.rewardTokens;
+    const token_usd_price = price && price.usd;
+    const { volatility_ratio, extra_decimals } = config;
+    const availableLiquidity_usd = nFormat(
+      B(asset.availableLiquidity || 0)
+        .mul(token_usd_price || 0)
+        .toNumber(),
+      2
+    );
+    const totalLiquidity = B(asset.supplied.balance || 0)
+      .plus(asset.reserved)
+      .toFixed();
+    const decimals = metadata.decimals + extra_decimals;
+    const totalLiquidity_shrink = shrinkToken(totalLiquidity, decimals);
+
+    const totalLiquidity_usd = nFormat(
+      B(totalLiquidity_shrink || 0)
+        .mul(token_usd_price || 0)
+        .toNumber(),
+      2
+    );
+
     const rewardTokensImg =
       rewardTokens &&
       rewardTokens.map((token_id, index) => {
@@ -244,6 +264,8 @@ const market_deposit_assets =
           ></img>
         );
       });
+
+    const cf = volatility_ratio / 100;
     return (
       <tr
         onClick={() => {
@@ -256,7 +278,9 @@ const market_deposit_assets =
         </td>
         <td>{toAPY(depositApy)}%</td>
         <td>{rewardTokensImg}</td>
-        <td class="text-end">{liquidity}</td>
+        <td>${totalLiquidity_usd}</td>
+        <td>${availableLiquidity_usd}</td>
+        <td class="text-end">{cf}%</td>
       </tr>
     );
   });
@@ -294,17 +318,23 @@ return (
     <table class="table click noBorder">
       <thead>
         <tr>
-          <th scope="col" width="25%">
+          <th scope="col" width="20%">
             Assets
           </th>
-          <th scope="col" class="text-start" width="25%">
+          <th scope="col" class="text-start" width="15%">
             APY
           </th>
-          <th scope="col" class="text-start" width="25%">
+          <th scope="col" class="text-start" width="15%">
             Rewards
           </th>
+          <th scope="col" class="text-start" width="15%">
+            Total Supply
+          </th>
+          <th scope="col" class="text-start" width="15%">
+            Available Supply
+          </th>
           <th scope="col" class="text-end">
-            Total Liquidity
+            C.F.
           </th>
         </tr>
       </thead>
