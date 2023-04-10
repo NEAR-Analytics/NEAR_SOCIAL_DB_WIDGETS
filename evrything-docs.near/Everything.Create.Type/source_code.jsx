@@ -61,7 +61,7 @@ const handleCreateType = (request, response) => {
             "": `return (<p>Go configure your <a href="/#/edit/${accountId}/widget/Everything.View.${payload.name}">view widget</a>!);`,
           },
           [`${accountId}/widget/Everything.Create.${payload.name}`]: {
-            "": `return (<p>Go configure your <a href="/#/edit/${accountId}/widget/Everything.Create.${payload.name}">view widget</a>!);`,
+            "": `return (<p>Go configure your <a href="/#/edit/${accountId}/widget/Everything.Create.${payload.name}">create widget</a>!);`,
           },
         },
       },
