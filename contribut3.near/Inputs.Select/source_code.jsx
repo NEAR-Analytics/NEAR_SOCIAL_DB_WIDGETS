@@ -79,7 +79,6 @@ const Viewport = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
   padding: 0;
-  gap: 0.5em;
   width: 100%;
 `;
 
