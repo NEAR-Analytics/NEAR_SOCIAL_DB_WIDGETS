@@ -60,6 +60,9 @@ State.init({
   tagline: "",
   description: "",
   tags: [],
+  website: "",
+  geo: "",
+  team: 0,
 });
 
 return (
@@ -164,6 +167,15 @@ return (
           placeholder: "San Fancisco, CA",
           value: state.geo,
           onChange: (geo) => State.update({ geo }),
+        }}
+      />
+      <Widget
+        src={`${ownerId}/widget/Inputs.Number`}
+        props={{
+          label: "Team size",
+          placeholder: 10,
+          value: state.team,
+          onChange: (team) => State.update({ team }),
         }}
       />
     </Form>
