@@ -273,7 +273,7 @@ return (
       <Item>
         <Widget
           src="adminalpha.near/widget/ComponentCard"
-          props={{ src: "hack.near/widget/SocialPosts" }}
+          props={{ src: "hack.near/widget/Hashtag.Feed" }}
         />
       </Item>
     </Items>
