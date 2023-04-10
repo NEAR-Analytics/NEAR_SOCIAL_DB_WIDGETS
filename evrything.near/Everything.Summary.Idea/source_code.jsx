@@ -72,7 +72,7 @@ const data = fetch("https://monkfish-app-ginhc.ondigitalocean.app/graphql", {
   },
   body: JSON.stringify({
     query:
-      "query findIdeaById($is: ID) { findIdeas(id: {is: $is}) { name, description { md } } }",
+      "query findIdeaById($is: ID) { findIdeas(id: {is: $is}) { name, description { md }, creationDate } }",
     variables: {
       thingId: thingId,
     },
@@ -123,9 +123,9 @@ return (
       </Icon>
       <Body>
         <Content>
-          <Title>{data.title}</Title>
+          <Title>{data.name}</Title>
           <Preview>
-            <Markdown text={data.description} />
+            <Markdown text={data.description.md} />
           </Preview>
         </Content>
         <Caption>{formatDate(data.creationDate)}</Caption>
