@@ -27,16 +27,6 @@ const tag = props.tag ?? "guide";
 
 /*
 
-Defining variables is fun and easy!
-
-This pageUrl helps buttons and links work across gateways.
-
-*/
-
-const pageUrl = "/#/edit/hack.near/widget/ForkThis";
-
-/*
-
 Review the following code section if you are interested in tag filtering.
 
 - initializes the keys variable to a string consisting of accountId (if it exists) or "*" and "/widget/*". This value is used later to fetch widget data.
@@ -185,31 +175,27 @@ const Text = styled.p`
   }
 `;
 
-const Button = styled.button`
+const Button = styled.a`
   display: block;
   width: 100%;
   padding: 8px;
   height: 32px;
-  background: #fbfcfd;
-  border: 1px solid #d7dbdf;
+  background: #FBFCFD;
+  border: 1px solid #D7DBDF;
   border-radius: 50px;
   font-weight: 600;
   font-size: 12px;
   line-height: 15px;
   text-align: center;
   cursor: pointer;
-  color: #11181c !important;
+  color: #11181C !important;
   margin: 0;
 
   &:hover,
   &:focus {
-    background: #ecedee;
+    background: #ECEDEE;
     text-decoration: none;
     outline: none;
-  }
-
-  span {
-    color: #687076 !important;
   }
 `;
 
@@ -243,7 +229,7 @@ return (
           .slice(0, props.limit ? parseInt(props.limit) : 999)
           .map(renderItem)}
       </div>
-      <Button href={pageUrl}>
+      <Button href="/#/edit/hack.near/widget/ForkThis" target="_blank">
         Getting Started: Fork this Page Demo Widget
       </Button>
     </Header>
