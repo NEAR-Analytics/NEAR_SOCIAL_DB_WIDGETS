@@ -1,4 +1,5 @@
 const ownerId = "contribut3.near";
+const accountId = props.accountId ?? context.accountId;
 
 const availableContent = [
   "overview",
@@ -91,6 +92,13 @@ const plusIcon = (
   </svg>
 );
 
+const CTARow = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+`;
+
 return (
   <Container>
     <Header>
@@ -99,6 +107,9 @@ return (
           src={`${ownerId}/widget/Project.HeaderDetails`}
           props={{ accountId: ownerId }}
         />
+        <CTARow>
+          <Widget src={`${ownerId}/widget/Button.Green`} props={{ onClick: () => Near.call(ownerId, "apply_for_program", { account_id: accountId },) }} />
+        </CTARow>
       </HeaderDetails>
       <HeaderProgress>
         <Widget src={`${ownerId}/widget/Project.Progress`} props={{}} />
