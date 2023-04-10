@@ -627,21 +627,21 @@ const computeResults = (term) => {
 };
 
 const updateInput = (term) => {
-  State.update({term});
-}
+  State.update({
+    term,
+  });
+};
 
 const handleKeydown = (e) => {
-  if (e.key === "Enter") {
-    State.update({ loading: true });
+  if (e.key === 'Enter') {
+    State.update({loading: true});
     computeResults(state.term);
-  } else if (e.key === "Backspace") {
-    State.update({
-      term: state.term ? state.term.slice(0, state.term.length - 1) : "",
-    });
+  } else if (e.key === 'Backspace') {
+    State.update({term: state.term ? state.term.slice(0, state.term.length-1) : ''})
   } else {
-    State.update({ term: state.term ? state.term + e.key : "" });
+    State.update({term: state.term ? state.term+e.key: ''})
   }
-};
+}
 
 const getSearchResultsKeywordsFor = (postId) => {
   const index = getProcessedPostsCached().index;
