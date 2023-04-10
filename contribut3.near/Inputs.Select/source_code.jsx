@@ -45,6 +45,7 @@ const Input = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
   padding: 0.5em 0.75em;
   gap: 0.5em;
   background: #ffffff;
