@@ -3,17 +3,17 @@ const label = props.label ?? "Account ID";
 const placeholder = props.placeholder ?? "Enter your account ID";
 const value = props.value ?? "";
 const onChange = props.onChange ?? (() => { });
+const accountIdRegex =
+  /^(([a-z\d]+[\-_])*[a-z\d]+\.)*([a-z\d]+[\-_])*[a-z\d]+$/;
 
 State.init({
   valid: true,
   errorMessage: <></>,
 });
 
-const validate = (accountId) => {
-  const accountIdRegex =
-    /^(([a-z\d]+[\-_])*[a-z\d]+\.)*([a-z\d]+[\-_])*[a-z\d]+$/;
+const validate = () => {
 
-  if (typeof accountId !== "string") {
+  if (typeof value !== "string") {
     State.update({
       valid: false,
       errorMessage: "Account ID must be a text value!",
@@ -21,7 +21,7 @@ const validate = (accountId) => {
     return;
   }
 
-  if (accountId.length < 2) {
+  if (value.length < 2) {
     State.update({
       valid: false,
       errorMessage: "Account ID must be at least 2 characters long!",
@@ -29,7 +29,7 @@ const validate = (accountId) => {
     return;
   }
 
-  if (accountId.length > 64) {
+  if (value.length > 64) {
     State.update({
       valid: false,
       errorMessage: "Account ID must be at most 64 characters long!",
@@ -37,7 +37,7 @@ const validate = (accountId) => {
     return;
   }
 
-  if (!accountIdRegex.test(accountId)) {
+  if (!accountIdRegex.test(value)) {
     State.update({
       valid: false,
       errorMessage: (
@@ -53,7 +53,7 @@ const validate = (accountId) => {
     return;
   }
 
-  // if (forbiddenIds.has(accountId)) {
+  // if (forbiddenIds.has(value)) {
   //   State.update({
   //     valid: false,
   //     errorMessage: "This account ID has already been used!",
@@ -72,7 +72,7 @@ return (
       placeholder,
       value,
       onChange,
-      validate: () => validate(value),
+      validate,
       error: state.errorMessage,
     }}
   />
