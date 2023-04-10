@@ -39,7 +39,7 @@ const Container = styled.div`
       color: #344054;
 
       &> button {
-        color: #98A2B3;
+        color: #98a2b3;
       }
     }
   }
