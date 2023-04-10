@@ -79,7 +79,7 @@ return (
     <Typeahead
       id
       labelKey="name"
-      onChange={onChange}
+      onChange={(selected) => { console.log(selected) }}
       options={[{ name: "test" }, { name: "test2" }]}
       selected={value}
       // renderToken={(option, props, index) => {
