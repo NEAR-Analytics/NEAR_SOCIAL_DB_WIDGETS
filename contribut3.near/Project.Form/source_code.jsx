@@ -86,7 +86,7 @@ return (
         }}
       />
       <Widget
-        src={`${ownerId}/widget/Inputs.AccountId`}
+        src={`${ownerId}/widget/Inputs.Select`}
         props={{
           label: "NEAR Account *",
           placeholder: "layers.near",
