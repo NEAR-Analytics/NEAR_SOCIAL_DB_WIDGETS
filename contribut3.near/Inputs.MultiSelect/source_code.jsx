@@ -90,6 +90,7 @@ return (
     <Label>{label}</Label>
     <Typeahead
       id
+      placeholder={placeholder}
       labelKey="name"
       onChange={onChange}
       options={options}
