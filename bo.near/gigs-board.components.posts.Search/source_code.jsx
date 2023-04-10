@@ -633,14 +633,12 @@ const updateInput = (term) => {
 
 const handleKeydown = (e) => {
   console.log('on keydown')
-  e.preventDefault();
-  console.log(e)
   if (e.key === 'Enter') {
     State.update({loading: true});
     computeResults(state.term);
   } else if (e.key === 'Backspace') {
     State.update({term: state.term ? state.term.slice(0, state.term.length-1) : ''})
-  } else if (+e.keyCode >= 48 && +e.keyCode <=90) {
+  } else if (/^[a-zA-Z0-9]$/.test(e.key)) {
     State.update({term: state.term ? state.term+e.key: e.key})
   }
 }
@@ -697,7 +695,7 @@ return (
         }}
         className="form-control"
         value={state.term ?? ""}
-        /* onChange doesn't work with onKeydown in near-social viewer, has to simulate key change in handleKeydown */
+        /* onChange doesn't trigger at all when onKeydown is set on near-social viewer, has to simulate key change in handleKeydown */
         onChange={(e) => updateInput(e.target.value)}
         onKeyDown={handleKeydown}
         placeholder={props.placeholder ?? `Search Posts`}
