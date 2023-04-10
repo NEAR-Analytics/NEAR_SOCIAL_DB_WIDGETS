@@ -91,16 +91,6 @@ return (
         }}
       />
       <Widget
-        src={`${ownerId}/widget/Inputs.MultiSelect`}
-        props={{
-          label: "Tags",
-          placeholder: "Add tags",
-          options: [{ name: "wallets" }, { name: "games" }],
-          value: state.tags,
-          onChange: (tags) => State.update({ tags }),
-        }}
-      />
-      <Widget
         src={`${ownerId}/widget/Inputs.Select`}
         props={{
           label: "Project category *",
@@ -146,6 +136,34 @@ return (
           placeholder: "Crypto ipsum bitcoin ethereum dogecoin litecoin. Holo stacks fantom kava flow algorand. Gala dogecoin gala XRP binance flow. Algorand polygon bancor arweave avalanche. Holo kadena telcoin kusama BitTorrent flow holo velas horizen. TerraUSD helium filecoin terra shiba-inu. Serum algorand horizen kava flow maker telcoin algorand enjin. Dai bitcoin.",
           value: state.description,
           onChange: (description) => State.update({ description }),
+        }}
+      />
+      <Widget
+        src={`${ownerId}/widget/Inputs.MultiSelect`}
+        props={{
+          label: "Tags",
+          placeholder: "Add tags",
+          options: [{ name: "wallets" }, { name: "games" }],
+          value: state.tags,
+          onChange: (tags) => State.update({ tags }),
+        }}
+      />
+      <Widget
+        src={`${ownerId}/widget/Inputs.Text`}
+        props={{
+          label: "Website",
+          placeholder: "https://layers.app",
+          value: state.website,
+          onChange: (website) => State.update({ website }),
+        }}
+      />
+      <Widget
+        src={`${ownerId}/widget/Inputs.Text`}
+        props={{
+          label: "Location",
+          placeholder: "San Fancisco, CA",
+          value: state.geo,
+          onChange: (geo) => State.update({ geo }),
         }}
       />
     </Form>
