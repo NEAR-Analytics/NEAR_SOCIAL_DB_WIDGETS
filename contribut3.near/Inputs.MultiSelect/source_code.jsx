@@ -38,12 +38,8 @@ const Container = styled.div`
       text-align: center;
       color: #344054;
 
-      &> div {
-        
-      }
-
       &> button {
-        
+        color: #98A2B3;
       }
     }
   }
