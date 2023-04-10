@@ -71,6 +71,7 @@ const Content = styled.div`
   border: 1px solid #d0d5dd;
   border-radius: 4px;
   background: #ffffff;
+  transition: all 0.3s ease-in-out;
 `;
 
 const Viewport = styled.div`
