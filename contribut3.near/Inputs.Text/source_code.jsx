@@ -57,7 +57,6 @@ const Input = styled.input`
 return (
   <Container>
     <Label>{label}</Label>
-    <Error className={error ? "show" : ""}>{error}</Error>
     <Input
       type="text"
       placeholder={placeholder}
@@ -65,5 +64,6 @@ return (
       onChange={({ target: { value } }) => onChange(value)}
       onBlur={() => validate()}
     />
+    <Error className={error ? "show" : ""}>{error}</Error>
   </Container>
 );
