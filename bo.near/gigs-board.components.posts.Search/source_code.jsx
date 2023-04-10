@@ -692,6 +692,7 @@ return (
         className="form-control"
         value={state.term ?? ""}
         onChange={(e) => updateInput(e.target.value)}
+        onKeyPress={handleKeyDown}
         placeholder={props.placeholder ?? `Search Posts`}
       />
     </div>
