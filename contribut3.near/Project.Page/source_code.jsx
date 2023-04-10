@@ -77,6 +77,7 @@ const Sidebar = styled.div`
   gap: 1em;
   width: 20%;
 `;
+
 const plusIcon = (
   <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
     <g clip-path="url(#clip0_1624_38049)">
