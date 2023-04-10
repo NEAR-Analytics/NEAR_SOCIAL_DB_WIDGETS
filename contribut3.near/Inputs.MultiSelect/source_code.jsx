@@ -15,7 +15,9 @@ const Container = styled.div`
   gap: 0.45em;
   width: 100%;
 
-  typeahead {}
+  .typeahead {
+    width: 100%;
+  }
 `;
 
 const Label = styled.label`
