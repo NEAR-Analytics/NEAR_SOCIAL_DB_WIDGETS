@@ -626,22 +626,18 @@ const computeResults = (term) => {
   console.log("search time: ", end - start);
 };
 
-const updateInput = (term) => {
-  State.update({
-    term,
-  });
-};
-
 const handleKeydown = (e) => {
-  if (e.key === 'Enter') {
-    State.update({loading: true});
+  if (e.key === "Enter") {
+    State.update({ loading: true });
     computeResults(state.term);
-  } else if (e.key === 'Backspace') {
-    State.update({term: state.term ? state.term.slice(0, state.term.length-1) : ''})
+  } else if (e.key === "Backspace") {
+    State.update({
+      term: state.term ? state.term.slice(0, state.term.length - 1) : "",
+    });
   } else {
-    State.update({term: state.term+e.key})
+    State.update({ term: state.term ? state.term + e.key : "" });
   }
-}
+};
 
 const getSearchResultsKeywordsFor = (postId) => {
   const index = getProcessedPostsCached().index;
@@ -695,7 +691,7 @@ return (
         }}
         className="form-control"
         value={state.term ?? ""}
-        onChange={(e) => updateInput(e.target.value)}
+        /* onKeydown doesn't work with onChange in near-social viewer, has to simulate key change in handleKeydown */
         onKeyDown={handleKeydown}
         placeholder={props.placeholder ?? `Search Posts`}
       />
