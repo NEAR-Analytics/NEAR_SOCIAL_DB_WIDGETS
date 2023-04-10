@@ -881,7 +881,7 @@ return (
 
     <Section id="interact-freely" center>
       <Flex direction="column" gap="16px" alignItems="center">
-        <Icon color="cyan11" backgroundColor="cyan3" borderColor="cyan5">
+        <Icon color="cyan10" backgroundColor="cyan4" borderColor="cyan5">
           <i className="ph-duotone ph-graph" />
         </Icon>
 
@@ -1011,5 +1011,165 @@ return (
         </Card>
       </Flex>
     </Section>
+
+    <Section
+      id="fair-economies"
+      background="linear-gradient(to right, hsla(0, 0%, 100%, 0), var(--sand3), hsla(0, 0%, 100%, 0))"
+      center
+    >
+      <Flex direction="column" gap="16px" alignItems="center">
+        <Icon color="red8" backgroundColor="red3" borderColor="red5">
+          <i className="ph-duotone ph-circles-three-plus" />
+        </Icon>
+
+        <Text as="h2" size="text-3xl" fontWeight="600" color="sand12">
+          Participate in fair economies
+        </Text>
+        <Text size="text-l">
+          New models distribute value and incentivize positive behavior
+        </Text>
+      </Flex>
+
+      <Flex gap="24px" mobileStack="24px">
+        <Card gap="12px">
+          <Text size="text-l" fontWeight="600" color="sand12">
+            The Problem
+          </Text>
+          <Text>
+            Today, social media shows us content that “keeps us on the hook” to
+            maximize their ad revenues. Many say this is a large contributor to
+            the increased divide in our society. Web2 services are usually free
+            for users – but real product on these platforms are the users’ data,
+            behavior and attention that is sold, usually to advertising
+            companies. The platform owner as middlemen is reaping large profits
+            from this, users do not get a share of the value created besides the
+            free service itself.
+          </Text>
+        </Card>
+
+        <Card gap="12px">
+          <Text size="text-l" fontWeight="600" color="sand12">
+            The Solution
+          </Text>
+          <Text>
+            In Web3 economies, everyone gets their fair share, and incentives
+            are fully transparent. Thereby, any collective can build its own
+            functioning economy, and any person with internet access has the
+            ability to participate. When the value creation and transfer within
+            an economy is determined by rules on the blockchain, this cuts out
+            the middleman that is controlling and monetizing today’s centralized
+            platform. The result is an economic model (a.k.a. Tokenomics) that
+            the community of users agree on.
+          </Text>
+        </Card>
+      </Flex>
+
+      <Card gap="12px">
+        <Text size="text-l" fontWeight="600" color="red8" flex>
+          <i className="ph-duotone ph-warning"></i>A word of caution: Do your
+          own research
+        </Text>
+        <Text>
+          Not all economic models are sustainable: Some Web3 projects misuse
+          incentives to maximize growth of their platform, and this can lead to
+          unstable systems that result in crashes like the Terra/Luna/Anker
+          case. Be diligent and careful before putting your money into projects.
+        </Text>
+      </Card>
+
+      <Flex direction="column" gap="8px" alignItems="center">
+        <Text as="h3" size="text-2xl" fontWeight="600" color="sand12">
+          How you can participate in fair economies…
+        </Text>
+        <Text size="text-l">…with dApps available today</Text>
+      </Flex>
+
+      <Flex gap="24px" mobileStack="24px">
+        <Card center>
+          <a href="https://nearweek.com/" target="_blank">
+            <CircleImg src="https://awesomenear-spaces.fra1.digitaloceanspaces.com/production/projects/nearweek/nearweek.jpg" />
+          </a>
+          <Flex direction="column" gap="8px">
+            <Text size="text-xl" fontWeight="600" color="sand12">
+              NEARWEEK
+            </Text>
+            <Text>
+              Anyone can suggest news articles on the blockchain, there is a
+              voting process to select the articles to be published and the
+              authors of the articles get compensated when published
+            </Text>
+          </Flex>
+          <Widget
+            src="adminalpha.near/widget/DIG.Button"
+            props={{
+              href: "https://nearweek.com/",
+              target: "_blank",
+              iconRight: "ph-bold ph-arrow-up-right",
+              label: "Choose a Wallet",
+              variant: "primary",
+              fill: "outline",
+            }}
+          />
+        </Card>
+
+        <Card center>
+          <a href="https://sweateconomy.com/" target="_blank">
+            <CircleImg src="https://awesomenear-spaces.fra1.digitaloceanspaces.com/production/projects/sweat-economy/sweat-economy.jpg" />
+          </a>
+          <Flex direction="column" gap="8px">
+            <Text size="text-xl" fontWeight="600" color="sand12">
+              Sweat Economy
+            </Text>
+            <Text>
+              The SweatCoin app rewards your daily steps with a new-generation
+              currency you can spend on cool products, donate to charity or
+              convert into SWEAT.
+            </Text>
+          </Flex>
+          <Widget
+            src="adminalpha.near/widget/DIG.Button"
+            props={{
+              href: "https://sweateconomy.com/",
+              target: "_blank",
+              iconRight: "ph-bold ph-arrow-up-right",
+              label: "Explore Sweat Economy",
+              variant: "primary",
+              fill: "outline",
+            }}
+          />
+        </Card>
+      </Flex>
+
+      <Text as="h3" size="text-2xl" fontWeight="600" color="sand12">
+        …once Web3 is fully built out
+      </Text>
+
+      <Flex gap="24px" mobileStack="24px">
+        <Card gap="12px">
+          <Text size="text-l" fontWeight="600" color="sand12">
+            Gig economies without the corporate middlemen
+          </Text>
+          <Text>
+            Web3 rideshare apps and the gig economy will give service providers
+            the lion share of the revenue they created and more flexibility,
+            while passengers pay less for those services.
+          </Text>
+        </Card>
+
+        <Card gap="12px">
+          <Text size="text-l" fontWeight="600" color="sand12">
+            Education revolution
+          </Text>
+          <Text>
+            Accredited education and the Learn2Earn economy will be available to
+            everyone, giving educators more autonomy and better pay while
+            providing students with high-quality education without a mountain of
+            debt.
+          </Text>
+        </Card>
+      </Flex>
+    </Section>
+
+    <Section></Section>
   </Wrapper>
 );
