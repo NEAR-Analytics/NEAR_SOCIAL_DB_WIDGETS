@@ -15,7 +15,8 @@ const Container = styled.div`
   gap: 0.45em;
   width: 100%;
 
-  .typeahead > div {
+  .typeahead  {
+   &> div {
     width: 100%;
     padding: 0.5em 0.75em;
     background: #ffffff;
@@ -23,7 +24,7 @@ const Container = styled.div`
     box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
     border-radius: 4px;
     color: #101828;
-  }
+  }}
 `;
 
 const Label = styled.label`
