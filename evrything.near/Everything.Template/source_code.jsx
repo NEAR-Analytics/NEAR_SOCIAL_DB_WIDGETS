@@ -86,14 +86,25 @@ const renderView = () => {
     case "DETAILS":
       return <div>Type details : ${state.type}</div>;
     case "CREATE":
-      return (
-        <Widget
-          src={`${accountId}/widget/Everything.Create.${state.type}`}
-          props={{
-            type,
-          }}
-        />
-      );
+      if (state.type === "everything") {
+        return (
+          <Widget
+            src={`${accountId}/widget/Everything.Create.Type`}
+            props={{
+              type,
+            }}
+          />
+        );
+      } else {
+        return (
+          <Widget
+            src={`${accountId}/widget/Everything.Create.${state.type}`}
+            props={{
+              type,
+            }}
+          />
+        );
+      }
     case "THINGS":
       return (
         <Widget
@@ -124,12 +135,7 @@ return (
                 </Button>
               ))}
               {context.accountId === accountId ? ( // currently thinking the button should only show if you are able to create types in domain
-                <a
-                  href={`/#/evrything.near/widget/Everything.Create.Type`} // this could get way more intense
-                  style={{ textDecoration: "none", color: "inherit" }}
-                >
-                  <Button>+</Button>
-                </a>
+                <Button onClick={() => handleTypeCreate()}>+</Button>
               ) : null}
             </>
           ) : (
