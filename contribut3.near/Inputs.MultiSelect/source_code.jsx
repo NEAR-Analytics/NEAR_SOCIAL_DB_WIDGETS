@@ -16,8 +16,9 @@ const Container = styled.div`
   width: 100%;
 
   .typeahead  {
+    width: 100%;
+
     &> div {
-      width: 100%;
       padding: 0.5em 0.75em;
       background: #ffffff;
       border: 1px solid #d0d5dd;
