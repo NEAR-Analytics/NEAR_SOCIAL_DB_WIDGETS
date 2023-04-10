@@ -26,6 +26,26 @@ const Container = styled.div`
       border-radius: 4px;
       color: #101828;
     }
+
+    .rbt-token {
+      background: #f2f4f7;
+      border: 1px solid #d0d5dd;
+      border-radius: 3px;
+      font-style: normal;
+      font-weight: 500;
+      font-size: .95em;
+      line-height: 1.25em;
+      text-align: center;
+      color: #344054;
+
+      &> div {
+        
+      }
+
+      &> button {
+        
+      }
+    }
   }
 `;
 
