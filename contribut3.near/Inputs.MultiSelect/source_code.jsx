@@ -15,7 +15,7 @@ const Container = styled.div`
   gap: 0.45em;
   width: 100%;
 
-  .typeahead {
+  .typeahead > div {
     width: 100%;
     padding: 0.5em 0.75em;
     background: #ffffff;
