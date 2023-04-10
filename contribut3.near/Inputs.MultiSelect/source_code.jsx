@@ -14,6 +14,8 @@ const Container = styled.div`
   padding: 0px;
   gap: 0.45em;
   width: 100%;
+
+  typeahead {}
 `;
 
 const Label = styled.label`
