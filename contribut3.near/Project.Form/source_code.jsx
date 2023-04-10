@@ -54,6 +54,7 @@ const FormHeader = styled.h3`
 State.init({
   name: "",
   accountId: "",
+  category: null,
 });
 
 return (
