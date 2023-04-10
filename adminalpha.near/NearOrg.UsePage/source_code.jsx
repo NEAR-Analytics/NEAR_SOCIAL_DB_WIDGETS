@@ -113,7 +113,7 @@ const Icon = styled.div`
   border-radius: 100%;
   align-items: center;
   justify-content: center;
-  color: 1px solid ${(p) => `var(--${p.color})` ?? "var(--sand10)"};
+  color: ${(p) => `var(--${p.color})` ?? "var(--sand10)"};
   background: ${(p) => `var(--${p.backgroundColor})` ?? "var(--sand3)"};
   border: 1px solid ${(p) => `var(--${p.borderColor})` ?? "var(--sand5)"};
 
@@ -175,7 +175,7 @@ const Card = styled.div`
   border: 1px solid var(--sand4);
   align-items: ${(p) => (p.center ? "center" : "flex-star")};
   justify-content: ${(p) => (p.center ? "center" : undefined)};
-  text-align: ${(p) => (p.center ? "center" : undefined)};
+  text-align: ${(p) => (p.center ? "center" : "left")};
   background: var(--sand1);
 `;
 
@@ -652,8 +652,8 @@ return (
       </Flex>
     </Section>
 
-    <Section center>
-      <Flex direction="column" gap="16px">
+    <Section>
+      <Flex direction="column" gap="16px" style={{ textAlign: "center" }}>
         <Text as="h2" size="text-3xl" fontWeight="600" color="sand12">
           How Web3 on NEAR empowers you
         </Text>
@@ -724,6 +724,290 @@ return (
               fill: "outline",
             }}
           />
+        </Card>
+      </Flex>
+    </Section>
+
+    <Section
+      id="regain-ownership"
+      background="linear-gradient(to right, hsla(0, 0%, 100%, 0), var(--sand3), hsla(0, 0%, 100%, 0))"
+      center
+    >
+      <Flex direction="column" gap="16px" alignItems="center">
+        <Icon color="violet11" backgroundColor="violet3" borderColor="violet5">
+          <i className="ph-duotone ph-user-circle" />
+        </Icon>
+
+        <Text as="h2" size="text-3xl" fontWeight="600" color="sand12">
+          Regain Ownership
+        </Text>
+        <Text size="text-l">
+          Take control of your assets, data and identity
+        </Text>
+      </Flex>
+
+      <Flex gap="24px" mobileStack="24px">
+        <Card gap="12px">
+          <Text size="text-l" fontWeight="600" color="sand12">
+            The Problem
+          </Text>
+          <Text>
+            On web2 platforms like Facebook, you need to hand over control of
+            your data and identity to these platforms. And they can harvest all
+            this data any way they like. They manipulate you to maximize
+            monetization. They control what content is on top of your feed and
+            what content gets silenced/censored. You don’t really own assets on
+            the platform, as they can arbitrarily decide to change the rules
+            etc. – Whether it is a blue checkmark on a social network or a
+            precious armor in an online game.
+          </Text>
+        </Card>
+
+        <Card gap="12px">
+          <Text size="text-l" fontWeight="600" color="sand12">
+            The Solution
+          </Text>
+          <Text>
+            In web3, you can stay in full control of your assets while using
+            dApps – nobody can suddenly take them away from you.
+            Blockchain-based apps are completely transparent, you can see what
+            happens with your data and how the assets you give control over will
+            be used. Nobody has the power to suddenly change the rules, censor
+            data or take assets away.
+          </Text>
+        </Card>
+      </Flex>
+
+      <Flex direction="column" gap="8px" alignItems="center">
+        <Text as="h3" size="text-2xl" fontWeight="600" color="sand12">
+          How you can regain Ownership…
+        </Text>
+        <Text size="text-l">…with dApps available today</Text>
+      </Flex>
+
+      <Flex gap="24px" mobileStack="24px">
+        <Card center>
+          <CircleImg src="https://awesomenear-spaces.fra1.digitaloceanspaces.com/production/projects/mynearwallet/mynearwallet.jpg" />
+          <Flex direction="column" gap="8px">
+            <Text size="text-xl" fontWeight="600" color="sand12">
+              Non-custodial Wallets
+            </Text>
+            <Text>
+              Wallets (like MyNearWallet) give you (and only you) complete
+              control over your tokens, NFTs and other assets you own on the
+              NEAR network
+            </Text>
+          </Flex>
+          <Widget
+            src="adminalpha.near/widget/DIG.Button"
+            props={{
+              href: "#todo",
+              iconRight: "ph-bold ph-arrow-right",
+              label: "Choose a Wallet",
+              variant: "primary",
+              fill: "outline",
+            }}
+          />
+        </Card>
+
+        <Card center>
+          <a href="https://fewfar.com/" target="_blank">
+            <CircleImg src="https://awesomenear-spaces.fra1.digitaloceanspaces.com/production/projects/few-and-far/few-and-far.jpg" />
+          </a>
+          <Flex direction="column" gap="8px">
+            <Text size="text-xl" fontWeight="600" color="sand12">
+              Few & Far
+            </Text>
+            <Text>
+              Few and Far enables creators to launch and monetize NFTs and for
+              buyers and sellers to securely custody assets and hold
+              self-sovereign identities.
+            </Text>
+          </Flex>
+          <Widget
+            src="adminalpha.near/widget/DIG.Button"
+            props={{
+              href: "https://fewfar.com/",
+              target: "_blank",
+              iconRight: "ph-bold ph-arrow-up-right",
+              label: "Explore Few & Far",
+              variant: "primary",
+              fill: "outline",
+            }}
+          />
+        </Card>
+      </Flex>
+
+      <Text as="h3" size="text-2xl" fontWeight="600" color="sand12">
+        …once Web3 is fully built out
+      </Text>
+
+      <Flex gap="24px" mobileStack="24px">
+        <Card gap="12px">
+          <Text size="text-l" fontWeight="600" color="sand12">
+            Self-sovereign identity
+          </Text>
+          <Text>
+            You will only need to reveal what is necessary about your
+            information to use a certain service. You control all aspects of
+            your identity and who gets access to which part of it when
+          </Text>
+        </Card>
+
+        <Card gap="12px">
+          <Text size="text-l" fontWeight="600" color="sand12">
+            Blockchain-based registries of real-world assets
+          </Text>
+          <Text>
+            Will enable the owner to exercise full control of their ownership.
+            Selling a real estate for instance would not require a notary or any
+            other legal process.
+          </Text>
+        </Card>
+      </Flex>
+
+      <Widget
+        src="adminalpha.near/widget/DIG.Button"
+        props={{
+          href: "#todo",
+          iconRight: "ph-bold ph-arrow-right",
+          label: "Learn More",
+          variant: "primary",
+          fill: "outline",
+          size: "large",
+        }}
+      />
+    </Section>
+
+    <Section id="interact-freely" center>
+      <Flex direction="column" gap="16px" alignItems="center">
+        <Icon color="cyan11" backgroundColor="cyan3" borderColor="cyan5">
+          <i className="ph-duotone ph-graph" />
+        </Icon>
+
+        <Text as="h2" size="text-3xl" fontWeight="600" color="sand12">
+          Interact freely
+        </Text>
+        <Text size="text-l">
+          Exchange information and values without being manipulated or
+          controlled
+        </Text>
+      </Flex>
+
+      <Flex gap="24px" mobileStack="24px">
+        <Card gap="12px">
+          <Text size="text-l" fontWeight="600" color="sand12">
+            The Problem
+          </Text>
+          <Text>
+            Our interactions and relationships are increasingly surveilled.
+            Content can get censored and money transfers blocked. The big social
+            media platforms have total control over your interactions. The
+            result: Censorship of messages, nontransparent
+            filtering/prioritization of content, lock-in (you cannot take your
+            social graph with you). Current financial systems disenfranchise the
+            poorest and most vulnerable in the world.
+          </Text>
+        </Card>
+
+        <Card gap="12px">
+          <Text size="text-l" fontWeight="600" color="sand12">
+            The Solution
+          </Text>
+          <Text>
+            In Web3, all interactions and value transfers can happen
+            permissionlessly and cannot be censored or manipulated. With the
+            blockchain, we can create financial and social platforms that are
+            open to everyone. This enables freedom of speech in social
+            communities as well as providing financial sovereignty.
+          </Text>
+        </Card>
+      </Flex>
+
+      <Flex direction="column" gap="8px" alignItems="center">
+        <Text as="h3" size="text-2xl" fontWeight="600" color="sand12">
+          How you can interact freely…
+        </Text>
+        <Text size="text-l">…with dApps available today</Text>
+      </Flex>
+
+      <Flex gap="24px" mobileStack="24px">
+        <Card center>
+          <a href="https://youminter.com/" target="_blank">
+            <CircleImg src="https://awesomenear-spaces.fra1.digitaloceanspaces.com/production/projects/youminter/youminter.jpg" />
+          </a>
+          <Flex direction="column" gap="8px">
+            <Text size="text-xl" fontWeight="600" color="sand12">
+              YouMinter
+            </Text>
+            <Text>
+              Community-owned social platform delivering NFTs feeds to your
+              mobile device, and rewards users who actively participate.
+            </Text>
+          </Flex>
+          <Widget
+            src="adminalpha.near/widget/DIG.Button"
+            props={{
+              href: "https://youminter.com/",
+              target: "_blank",
+              iconRight: "ph-bold ph-arrow-up-right",
+              label: "Explore YouMinter",
+              variant: "primary",
+              fill: "outline",
+            }}
+          />
+        </Card>
+
+        <Card center>
+          <a href="https://www.niche.club/" target="_blank">
+            <CircleImg src="https://awesomenear-spaces.fra1.digitaloceanspaces.com/production/projects/niche/niche.jpg" />
+          </a>
+          <Flex direction="column" gap="8px">
+            <Text size="text-xl" fontWeight="600" color="sand12">
+              Niche
+            </Text>
+            <Text>
+              A social app like Instagram that leverages web3. Take a photo and
+              mint it as NFT with one click, share and sell it however you like.
+            </Text>
+          </Flex>
+          <Widget
+            src="adminalpha.near/widget/DIG.Button"
+            props={{
+              href: "https://www.niche.club/",
+              target: "_blank",
+              iconRight: "ph-bold ph-arrow-up-right",
+              label: "Explore Few & Far",
+              variant: "primary",
+              fill: "outline",
+            }}
+          />
+        </Card>
+      </Flex>
+
+      <Text as="h3" size="text-2xl" fontWeight="600" color="sand12">
+        …once Web3 is fully built out
+      </Text>
+
+      <Flex gap="24px" mobileStack="24px">
+        <Card gap="12px">
+          <Text size="text-l" fontWeight="600" color="sand12">
+            One global social network, many clients
+          </Text>
+          <Text>
+            Imagine having your own universal social graph that you can use for
+            identity verification, apps, loans, credit scoring, and more.
+          </Text>
+        </Card>
+
+        <Card gap="12px">
+          <Text size="text-l" fontWeight="600" color="sand12">
+            New ways to get support for your passion
+          </Text>
+          <Text>
+            Rather than donating to the causes you champion, allow others to
+            invest in your efforts. The better you do, the better they do.
+          </Text>
         </Card>
       </Flex>
     </Section>
