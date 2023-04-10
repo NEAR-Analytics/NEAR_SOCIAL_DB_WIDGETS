@@ -57,10 +57,12 @@ State.init({
 
 return (
   <Container>
-    <Header>Create new project</Header>
-    <SubHeader>
-      Crypto ipsum bitcoin ethereum dogecoin litecoin. Ethereum kadena polkadot ICON BitTorrent. Crypto ipsum bitcoin ethereum dogecoin litecoin. Ethereum kadena
-    </SubHeader>
+    <div>
+      <Header>Create new project</Header>
+      <SubHeader>
+        Crypto ipsum bitcoin ethereum dogecoin litecoin. Ethereum kadena polkadot ICON BitTorrent. Crypto ipsum bitcoin ethereum dogecoin litecoin. Ethereum kadena
+      </SubHeader>
+    </div>
     <Form>
       <FormHeader>General</FormHeader>
       <Widget
