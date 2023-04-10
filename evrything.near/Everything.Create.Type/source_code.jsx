@@ -53,6 +53,17 @@ const handleCreateType = (request, response) => {
             }),
           },
         },
+        widget: {
+          [`${accountId}/widget/Everything.Summary.${payload.name}`]: {
+            "": `return (<p>Go configure your <a href="/#/edit/${accountId}/widget/Everything.Summary.${payload.name}">summary widget</a>!);`,
+          },
+          [`${accountId}/widget/Everything.View.${payload.name}`]: {
+            "": `return (<p>Go configure your <a href="/#/edit/${accountId}/widget/Everything.View.${payload.name}">view widget</a>!);`,
+          },
+          [`${accountId}/widget/Everything.Create.${payload.name}`]: {
+            "": `return (<p>Go configure your <a href="/#/edit/${accountId}/widget/Everything.Create.${payload.name}">view widget</a>!);`,
+          },
+        },
       },
       {
         force: true,
