@@ -159,7 +159,12 @@ return (
             <Viewport>
               {props.options.map(({ text, value }) => (
                 <Select.Item value={value} asChild={true}>
-                  <Item>
+                  <Item onClick={(e) => {
+                    e.preventDefault();
+                    setTimeout(() => {
+                      e.click();
+                    }, 200);
+                  }}>
                     <Select.ItemText>{text}</Select.ItemText>
                     <Select.ItemIndicator>
                       <svg
