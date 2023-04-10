@@ -1,3 +1,8 @@
+const label = props.label ?? "Label";
+const placeholder = props.placeholder ?? "Placeholder";
+const value = props.value ?? "";
+const onChange = props.onChange ?? (() => { });
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -33,12 +38,12 @@ const Input = styled.input`
 
 return (
   <Container>
-    <Label>{props.label}</Label>
+    <Label>{label}</Label>
     <Input
       type="text"
-      placeholder={props.placeholder}
-      value={props.value}
-      onChange={({ target: { value } }) => props.onChange(value)}
+      placeholder={placeholder}
+      value={value}
+      onChange={({ target: { value } }) => onChange(value)}
     />
   </Container>
 );
