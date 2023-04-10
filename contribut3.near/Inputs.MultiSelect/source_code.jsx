@@ -18,6 +18,11 @@ const Container = styled.div`
   .typeahead {
     width: 100%;
     padding: 0.5em 0.75em;
+    background: #ffffff;
+    border: 1px solid #d0d5dd;
+    box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+    border-radius: 4px;
+    color: #101828;
   }
 `;
 
