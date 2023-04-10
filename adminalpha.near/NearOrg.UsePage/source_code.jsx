@@ -97,13 +97,18 @@ const Flex = styled.div`
 
 const Section = styled.div`
   display: flex;
-  padding: calc(var(--section-gap) / 2) 24px;
+  padding: calc(var(--section-gap) / 2) var(--section-gap);
   gap: ${(p) => p.gap ?? "var(--medium-gap)"};
   flex-direction: column;
   align-items: ${(p) => (p.center ? "center" : undefined)};
   justify-content: ${(p) => (p.center ? "center" : undefined)};
   text-align: ${(p) => (p.center ? "center" : undefined)};
   background: ${(p) => p.background};
+
+  @media (max-width: 900px) {
+    padding-left: var(--medium-gap);
+    padding-right: var(--medium-gap);
+  }
 `;
 
 const Icon = styled.div`
@@ -382,7 +387,7 @@ return (
         </Text>
       </UseCase>
 
-      <Card>
+      <Card center>
         <a href="https://www.ref.finance/" target="_blank">
           <CircleImg src="https://awesomenear-spaces.fra1.digitaloceanspaces.com/production/projects/ref-finance/ref-finance.jpg" />
         </a>
@@ -865,18 +870,6 @@ return (
           </Text>
         </Card>
       </Flex>
-
-      <Widget
-        src="adminalpha.near/widget/DIG.Button"
-        props={{
-          href: "#todo",
-          iconRight: "ph-bold ph-arrow-right",
-          label: "Learn More",
-          variant: "primary",
-          fill: "outline",
-          size: "large",
-        }}
-      />
     </Section>
 
     <Section id="interact-freely" center>
