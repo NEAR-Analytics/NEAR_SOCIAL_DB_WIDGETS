@@ -40,6 +40,7 @@ const HeaderDetails = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
+  gap: 1em;
   width: 80%;
 `;
 
