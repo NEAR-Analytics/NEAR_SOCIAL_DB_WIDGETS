@@ -7,16 +7,12 @@ const Container = styled.div`
       color: #7E8A93;
       padding:0 15px 0 15px;
       border:none;
-      outline:none;
       margin-bottom:8px;
     }
     .content input:focus{
       outline:none;
     }
-    input::-webkit-outer-spin-button,
-    input::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-    }
+ 
     .content .balance {
       font-size:12px;
       color:#4B6778;
@@ -59,7 +55,41 @@ const Container = styled.div`
       opacity:0.3;
       cursor: not-allowed;
     }
-    
+    .switchButton{
+      display:flex;
+      align-items:center;
+      width: 36px;
+      height: 20px;
+      border-radius: 14px;
+      padding:2px 3px;
+      cursor:pointer;
+      margin-left:8px;
+    }
+    .justify-end {
+      background: #00C6A2;
+    }
+    .justify-start {
+      background: #ccc;
+    }
+    .switchButton .whiteBall {
+      width:15px;
+      height:15px;
+      background: #FFFFFF;
+      box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5);
+      border-radius:100px;
+      transition: all 100ms ease-out;
+      cursor:pointer;
+    }
+    .justify-end .whiteBall{
+      margin-left:14px;
+    }
+    .justify-start .whiteBall{
+      margin-left:2px;
+    }
+    .flex-center{
+      display:flex;
+      align-items:center;
+    }
 `;
 /** base tool start  */
 let BURROW_CONTRACT = "contract.main.burrow.near";
