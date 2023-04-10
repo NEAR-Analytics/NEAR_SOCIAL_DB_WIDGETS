@@ -651,5 +651,81 @@ return (
         </Flex>
       </Flex>
     </Section>
+
+    <Section center>
+      <Flex direction="column" gap="16px">
+        <Text as="h2" size="text-3xl" fontWeight="600" color="sand12">
+          How Web3 on NEAR empowers you
+        </Text>
+        <Text size="text-l">
+          The basis for an inclusive, fair and open world
+        </Text>
+      </Flex>
+
+      <Flex gap="24px" mobileStack="24px">
+        <Card gap="12px" center>
+          <i
+            className="ph-duotone ph-user-circle"
+            style={{ color: "var(--violet8)", fontSize: "32px" }}
+          />
+          <Text size="text-l" fontWeight="600" color="sand12">
+            Regain ownership
+          </Text>
+          <Text>Your assets, your data, your identity</Text>
+          <Widget
+            src="adminalpha.near/widget/DIG.Button"
+            props={{
+              href: "#regain-ownership",
+              iconRight: "ph-bold ph-arrow-down",
+              label: "Learn More",
+              variant: "primary",
+              fill: "outline",
+            }}
+          />
+        </Card>
+
+        <Card gap="12px" center>
+          <i
+            className="ph-duotone ph-graph"
+            style={{ color: "var(--cyan10)", fontSize: "32px" }}
+          />
+          <Text size="text-l" fontWeight="600" color="sand12">
+            Interact freely
+          </Text>
+          <Text>Free flow of values and information</Text>
+          <Widget
+            src="adminalpha.near/widget/DIG.Button"
+            props={{
+              href: "#interact-freely",
+              iconRight: "ph-bold ph-arrow-down",
+              label: "Learn More",
+              variant: "primary",
+              fill: "outline",
+            }}
+          />
+        </Card>
+
+        <Card gap="12px" center>
+          <i
+            className="ph-duotone ph-circles-three-plus"
+            style={{ color: "var(--red8)", fontSize: "32px" }}
+          />
+          <Text size="text-l" fontWeight="600" color="sand12">
+            Participate in fair economies
+          </Text>
+          <Text>Value is distributed through transparent and fair rules</Text>
+          <Widget
+            src="adminalpha.near/widget/DIG.Button"
+            props={{
+              href: "#fair-economies",
+              iconRight: "ph-bold ph-arrow-down",
+              label: "Learn More",
+              variant: "primary",
+              fill: "outline",
+            }}
+          />
+        </Card>
+      </Flex>
+    </Section>
   </Wrapper>
 );
