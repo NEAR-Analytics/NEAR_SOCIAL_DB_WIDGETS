@@ -206,7 +206,7 @@ const usersarea = (
       | Signed up with widget | Signed up with External App | | EVM Address
     </Heading>
     <BodyArea>
-      <img src={profile.image.url} />
+      <img src={profile.image.url} width="50" height="50" />
       <span>{profile.name}</span>
       <span>(@{accountId})</span>
       <span>{state.accounts}</span>
