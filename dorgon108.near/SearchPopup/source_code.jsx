@@ -110,11 +110,23 @@ const Items = styled.div`
   gap: 12px;
 `;
 
+console.log(props.resetSearchHits);
+
 const Item = styled.div``;
 
 return (
   <Wrapper>
-    {props.showSearchBar && <Search></Search>}
+    {props.showSearchBar && (
+      <Search>
+        <Widget
+          src="chaotictempest.near/widget/SearchPill"
+          props={{
+            onChange: props.onSearchChange,
+            term: props.term,
+          }}
+        />
+      </Search>
+    )}
 
     {state.search && (
       <Facets>
