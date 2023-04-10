@@ -60,14 +60,17 @@ return (
     <SubHeader>
       Crypto ipsum bitcoin ethereum dogecoin litecoin. Ethereum kadena polkadot ICON BitTorrent. Crypto ipsum bitcoin ethereum dogecoin litecoin. Ethereum kadena
     </SubHeader>
-    <Widget
-      src={`${ownerId}/widget/Inputs.Text`}
-      props={{
-        label: "Project name *",
-        placeholder: "Layers",
-        value: state.name,
-        onChange: (name) => State.update({ name }),
-      }}
-    />
+    <Form>
+      <FormHeader>General</FormHeader>
+      <Widget
+        src={`${ownerId}/widget/Inputs.Text`}
+        props={{
+          label: "Project name *",
+          placeholder: "Layers",
+          value: state.name,
+          onChange: (name) => State.update({ name }),
+        }}
+      />
+    </Form>
   </Container>
 );
