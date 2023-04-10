@@ -40,7 +40,7 @@ const Error = styled.span`
   }
 `;
 
-const Input = styled.input`
+const Input = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
@@ -60,7 +60,7 @@ return (
     <Label>{label}</Label>
     <Select.Root onValueChange={(value) => onChange(options.find((option) => option.value === value))}>
       <Select.Trigger>
-        <Select.Value />
+        <Select.Value aria-label={value} />
         <Select.Icon>
           <svg
             width="12"
