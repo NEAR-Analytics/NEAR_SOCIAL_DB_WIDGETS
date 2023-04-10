@@ -6,6 +6,7 @@ return (
       font: "Times New Roman", // select a web safe font
       text: "documentation", // main title
       domain: "everything-docs", // domain data should be saved to
+      view: "THINGS",
     }}
   />
 );
