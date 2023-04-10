@@ -1,7 +1,7 @@
 const size = props.size ?? 128;
 const ratio = 128 / 111;
 const height = size * ratio;
-const full = props.full ?? false;
+const full = props.full ?? true;
 
 const fullLogo = (
   <svg width="209" height="30" viewBox="0 0 209 30" fill="none" xmlns="http://www.w3.org/2000/svg">
