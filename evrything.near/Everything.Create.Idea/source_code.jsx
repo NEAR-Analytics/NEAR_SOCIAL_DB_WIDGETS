@@ -1,130 +1,104 @@
-const ERROR_WIDGET = "evrything.near/widget/Everything.Error";
+// Repository: https://github.com/near-everything/idea-creator
+const externalAppUrl = "https://idea-creator-seven.vercel.app/";
 
-const Header = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-`;
+/**
+ * Initial Path (optional but recommended)
+ */
+const path = props.path;
+/**
+ * Initial view height (optional but recommended)
+ */
+const initialViewHeight = 500;
+const initialPayload = {};
 
-const Title = styled.div`
-  font-size: 24px;
-  line-height: 33.6px;
-`;
+/**
+ * Request Handlers - Backend.
+ *
+ * - request: payload sent by External App
+ *
+ * - response: method to send the answer back to the External App
+ *
+ * - utils: Utils features like
+ *      - promisify: (caller, resolve, reject)
+ *      There's no Promisse for some features yet, So this is util for when you need to get cached data using DiscoveryAPI, e.g:
+ *      utils.promisify(() => Social.getr(`${context.accountId}/profile`), (res) => console.log(res), (err) => console.log(err))
+ *
+ * @param {{type: string, payload: {}}} request request with payload sent by External App
+ * @param {(request) => {send: () => void}} response send the answer back to the External App
+ * @param {{promisify:(caller: () => void, resolve: (data) => void, reject: (error) => void)}} utils Utils features like
+ */
+const requestHandler = (request, response, Utils) => {
+  switch (request.type) {
+    case "create-idea":
+      handleCreateIdea(request, response);
+      break;
+  }
+};
 
-const Form = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-`;
-
-const Input = styled.input`
-  width: 100%;
-`;
-
-const TextArea = styled.textarea`
-  width: 100%;
-`;
-
-const ButtonRow = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 4px;
-`;
-
-const Button = styled.button`
-  padding: 8px 20px;
-  max-width: 90px;
-`;
-
-const Caption = styled.div`
-  font-size: 12px;
-  line-height: 15.6px;
-  color: #a6a6a6;
-`;
-
-const typeStr = "evrything.near/type/Idea";
-
-const type = Type.get(typeStr);
-// const type = props.type;
-
-if (!type) {
-  return (
-    <Widget
-      src={ERROR_WIDGET}
-      props={{
-        message: `provided type: "${props.type}" is not valid.`,
-      }}
-    />
-  );
-}
-
-State.init({
-  title: "",
-  description: "",
-});
-
-const createThing = () => {
-  asyncFetch("https://monkfish-app-ginhc.ondigitalocean.app/graphql", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      query:
-        "mutation CreateIdea($type: String, $title: String) { things { create(name: $type) { message } addIdea(name: $title) { entities { id } } } }",
-      variables: {
-        type: typeStr,
-        title: state.title,
+const handleCreateIdea = (request, response) => {
+  const { payload } = request;
+  if (payload) {
+    asyncFetch("https://monkfish-app-ginhc.ondigitalocean.app/graphql", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Everything": "simple",
       },
-    }),
-  }).then((res) => {
-    if (res.body.data) {
-      Social.set(
-        {
-          thing: {
-            main: JSON.stringify({
-              thingId: res.body.data.things.addIdea.entities[0].id,
-            }),
+      body: JSON.stringify({
+        query:
+          "mutation createIdea($title: String, $description: String) { ideas { create(name: $title) { entities { id } } appendContentToDescription(value: $description) { entities { id   } } } }",
+        variables: payload,
+      }),
+    }).then((res) => {
+      if (res.body.errors) {
+        response(request).send(res.body.errors);
+      } else {
+        Social.set(
+          {
+            thing: {
+              main: JSON.stringify({
+                thingId: res.body.data.ideas.create.entities[0].id,
+              }),
+            },
+            index: {
+              everything: JSON.stringify({
+                key: "main",
+                value: {
+                  type: "evrything.near/type/Idea",
+                },
+              }),
+            },
           },
-          index: {
-            ev02: JSON.stringify({
-              key: "main",
-              value: {
-                type: "evrything.near/type/Idea",
-              },
-            }),
-          },
-        },
-        {
-          force: true,
-          onCommit: () => {
-            response(request).send();
-          },
-          onCancel: () => {
-            response(request).send({ error: "the action was canceled" });
-          },
-        }
-      );
-    }
+          {
+            force: true,
+            onCommit: () => {
+              response(request).send({ success: true });
+            },
+            onCancel: () => {
+              response(request).send({ error: "the action was canceled" });
+            },
+          }
+        );
+        response(request).send(res.body.data);
+      }
+    });
+    return;
+  }
+  // Error
+  response(request).send({
+    error: "idea must be provided",
   });
 };
 
 return (
-  <>
-    <Form>
-      <Input
-        placeholder={"title"}
-        onChange={({ target }) => State.update({ title: target.value })}
-      />
-      <TextArea
-        onInput={({ target }) => State.update({ description: target.value })}
-        placeholder={"description, markdown supported"}
-      />
-      <ButtonRow>
-        <Button onClick={createThing}>create</Button>
-      </ButtonRow>
-    </Form>
-  </>
+  <Widget
+    src={"wendersonpires.near/widget/NearSocialBridgeCore"}
+    props={{
+      externalAppUrl,
+      path,
+      initialViewHeight,
+      initialPayload,
+      requestHandler,
+    }}
+  />
 );
