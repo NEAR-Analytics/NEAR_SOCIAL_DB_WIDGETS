@@ -88,9 +88,7 @@ const renderView = () => {
     case "CREATE":
       return (
         <Widget
-          src={`${accountId}/widget/Everything.Create.${
-            state.type.split("/")[2]
-          }`}
+          src={`${accountId}/widget/Everything.Create.${state.type}`}
           props={{
             type,
           }}
