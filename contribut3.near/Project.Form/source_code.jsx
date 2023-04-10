@@ -53,6 +53,7 @@ const FormHeader = styled.h3`
 
 State.init({
   name: "",
+  accountId: "",
 });
 
 return (
