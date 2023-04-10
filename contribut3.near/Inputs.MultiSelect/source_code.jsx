@@ -55,29 +55,6 @@ const Input = styled.input`
   width: 100%;
 `;
 
-const Item = styled.span`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5em;
-  padding: 0.25em 0.5em;
-  background: #f2f4f7;
-  border: 1px solid #d0d5dd;
-  border-radius: 3px;
-  font-style: normal;
-  font-weight: 500;
-  font-size: .95em;
-  line-height: 1.25em;
-  text-align: center;
-  color: #344054;
-  cursor: pointer;
-
-  svg {
-    cursor: pointer;
-  }
-`;
-
 return (
   <Container>
     <Label>{label}</Label>
@@ -89,6 +66,7 @@ return (
       selected={value}
       renderInput={({ inputRef, referenceElementRef, ...inputProps }) => (
         <Input
+          type="text"
           {...inputProps}
           ref={(input) => {
             inputRef(input);
