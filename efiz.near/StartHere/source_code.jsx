@@ -40,12 +40,14 @@ Have you done all of the steps above?
 */
 
 return (
-  <a
-    src="https://temp.everything.dev/#/evrything.near/widget/Everything.View.Thing?src=evrything-docs.near/widget/Everything.View.Document&accountId=evrything.near&blockHeight=89268687"
-    style={{ cursor: "pointer" }}
-  >
-    Click here
-  </a>
+  <Widget
+    src="evrything.near/widget/Everything.View.Thing"
+    props={{
+      src: "evrything-docs.near/widget/Everything.View.Document",
+      accountId: "evrything.near",
+      blockHeight: 89268687,
+    }}
+  />
 );
 
 /*
