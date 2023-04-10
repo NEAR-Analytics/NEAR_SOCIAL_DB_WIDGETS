@@ -67,7 +67,7 @@ const Content = styled.div`
   justify-content: flex-start;
   padding: 0;
   gap: 0.5em;
-  width: 100%;
+  width: 10em;
   border: 1px solid #d0d5dd;
   border-radius: 4px;
 `;
