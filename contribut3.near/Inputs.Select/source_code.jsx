@@ -162,6 +162,7 @@ return (
                   <Item onClick={(e) => {
                     e.preventDefault();
                     setTimeout(() => {
+                      console.log("here")
                       e.click();
                     }, 200);
                   }}>
