@@ -57,6 +57,7 @@ const handleSelectType = (typeName) => {
     State.update({
       title: text,
       type: "everything",
+      selectedTab: "THINGS",
     });
   } else {
     State.update({
@@ -135,12 +136,7 @@ return (
               <Button onClick={() => handleTypeDetails()}>
                 view type details
               </Button>
-              <a
-                href={`/#/evrything.near/widget/Everything.Type.Create?type=${accountId}/type/${state.type}`}
-                style={{ textDecoration: "none", color: "inherit" }}
-              >
-                <Button>create new</Button>
-              </a>
+              <Button onClick={() => handleTypeCreate()}>create new</Button>
             </>
           )}
         </ButtonRow>
