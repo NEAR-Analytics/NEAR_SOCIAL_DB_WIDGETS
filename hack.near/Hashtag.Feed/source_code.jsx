@@ -1,4 +1,4 @@
-const hashtag = props.hashtag ?? "builders";
+const hashtag = props.hashtag ?? "dev";
 
 const index = {
   action: "hashtag",
