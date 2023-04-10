@@ -93,6 +93,7 @@ const Item = styled.button`
   cursor: pointer;
   background: transparent;
   border: none;
+  transition: background 0.3s ease-in-out;
   
   &:nth-child(n + 1) {
     border-top: 1px solid #d0d5dd;
