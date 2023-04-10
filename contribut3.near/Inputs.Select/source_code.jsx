@@ -23,9 +23,9 @@ return (
 
     <Select.Content>
       <Select.Viewport>
-        {props.options.map(({}) => (
+        {props.options.map(({ text, value }) => (
           <Select.Item>
-            <Select.ItemText></Select.ItemText>
+            <Select.ItemText value={value}>{text}</Select.ItemText>
             <Select.ItemIndicator>
               <svg
                 width="15"
