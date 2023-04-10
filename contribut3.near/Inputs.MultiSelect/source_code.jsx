@@ -87,6 +87,9 @@ return (
       onChange={onChange}
       options={options}
       selected={value}
+      renderInput={({ inputRef, referenceElementRef, ...inputProps }) => (
+        <Input ref={(input) => { inputRef(input); referenceElementRef(input); }} />
+      )}
       positionFixed
       multiple
       allowNew
