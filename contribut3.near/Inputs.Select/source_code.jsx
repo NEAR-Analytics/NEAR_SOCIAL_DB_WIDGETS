@@ -60,6 +60,15 @@ const Placeholder = styled.span`
   color: #a0a3a8;
 `;
 
+const scaleOut = styled.keyframes`
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+`;
+
 const Content = styled.div`
   display: flex;
   flex-direction: column;
@@ -71,6 +80,14 @@ const Content = styled.div`
   border: 1px solid #d0d5dd;
   border-radius: 4px;
   background: #ffffff;
+
+  &[data-state="open"] {
+    animation: ${scaleOut} 0.2s ease-in-out;
+  }
+
+  &[data-state="closed"] {
+    animation: ${scaleOut} 0.2s ease-in-out reverse;
+  }
 `;
 
 const Viewport = styled.div`
