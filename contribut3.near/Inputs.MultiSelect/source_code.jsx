@@ -80,7 +80,7 @@ return (
       id
       labelKey="name"
       onChange={onChange}
-      options={options}
+      options={[{ name: "test" }, { name: "test2" }]}
       selected={value}
       renderToken={(option, props, index) => {
         console.log({ option, props });
