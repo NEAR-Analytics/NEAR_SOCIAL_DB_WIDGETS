@@ -57,6 +57,8 @@ State.init({
   category: null,
   integration: null,
   dev: null,
+  tagline: "",
+  description: "",
 });
 
 return (
@@ -124,6 +126,15 @@ return (
           placeholder: "Simple solutions for complex tasks",
           value: state.tagline,
           onChange: (tagline) => State.update({ tagline }),
+        }}
+      />
+      <Widget
+        src={`${ownerId}/widget/Inputs.TextArea`}
+        props={{
+          label: "Description",
+          placeholder: "Crypto ipsum bitcoin ethereum dogecoin litecoin. Holo stacks fantom kava flow algorand. Gala dogecoin gala XRP binance flow. Algorand polygon bancor arweave avalanche. Holo kadena telcoin kusama BitTorrent flow holo velas horizen. TerraUSD helium filecoin terra shiba-inu. Serum algorand horizen kava flow maker telcoin algorand enjin. Dai bitcoin.",
+          value: state.description,
+          onChange: (description) => State.update({ description }),
         }}
       />
     </Form>
