@@ -1,11 +1,15 @@
 const accountId = context.accountId;
 
-const defaultPage = "hack.near/widget/StartHere";
+if (!accountId) {
+  return "Please connect your NEAR account :)";
+}
+
+const defaultPage = "hack.near/widget/ForkThis";
 
 const page = Social.get(`${accountId}/settings/near.social/page`);
 
 if (page === null) {
-  return "Loading";
+  return "Loading...";
 }
 
 State.init({
@@ -17,18 +21,22 @@ const resetPage = () => {
   State.update();
 };
 
+const yourPageUrl = `${accountId}.social`;
+
 return (
   <div>
-    <div className="mb-2">
+    <div>
       <h4>Edit Your Page</h4>
-      <p className="mb-2">Default widget path:</p>
+      <p className="mb-2 mt-2">Abbreviated URL</p>
+      <input disabled value={yourPageUrl} onChange={null} />
+      <p className="mb-2 mt-2">Default widget path:</p>
       <input type="text" value={state.page} placeholder={defaultPage} />
     </div>
-    <div className="mb-2">
+    <div className="mb-2 mt-3">
       <CommitButton
         data={{ settings: { "near.social": { page: state.page } } }}
       >
-        Save Your Page
+        Save
       </CommitButton>
       {state.page !== defaultPage && (
         <button className="btn btn-outline-primary ms-2" onClick={resetPage}>
