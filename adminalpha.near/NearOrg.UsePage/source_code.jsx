@@ -1098,7 +1098,7 @@ return (
               href: "https://nearweek.com/",
               target: "_blank",
               iconRight: "ph-bold ph-arrow-up-right",
-              label: "Choose a Wallet",
+              label: "Read crowd-sourced news",
               variant: "primary",
               fill: "outline",
             }}
