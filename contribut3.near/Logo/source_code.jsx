@@ -33,6 +33,20 @@ const full = (
   </svg>
 );
 
+const iconOnly = (
+  <svg width="31" height="30" viewBox="0 0 31 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0.990234" y="0.00195312" width="29.0189" height="29.0189" rx="6" fill="url(#paint0_linear_1624_47475)" />
+    <path d="M9.78386 29.021C5.38706 29.4606 1.86961 28.5813 1.42993 26.3829L15.4742 7.96094L9.78386 29.021Z" fill="white" />
+    <path d="M29.1298 26.8225C27.6008 28.8808 25.6124 29.4606 21.2156 29.021C21.1271 28.7425 20.8943 27.6343 20.7843 27.2086L15.4774 7.96094L29.1298 26.8225Z" fill="white" />
+    <defs>
+      <linearGradient id="paint0_linear_1624_47475" x1="15.5366" y1="29.0209" x2="26.0957" y2="-11.4062" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#07B5FF" />
+        <stop offset="1" stop-color="#72FFF7" />
+      </linearGradient>
+    </defs>
+  </svg>
+);
+
 return (
   <Logo
     id="Layer_1"
