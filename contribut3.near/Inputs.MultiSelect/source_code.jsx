@@ -65,6 +65,7 @@ return (
       onChange={onChange}
       options={options}
       selected={value}
+      className="typeahead"
       positionFixed
       multiple
       allowNew
