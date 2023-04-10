@@ -22,6 +22,8 @@ function widget(widgetName, widgetProps, key) {
   );
 }
 
+const [searchWord, setUpWord] = useState('');
+
 function href(widgetName, linkProps) {
   linkProps = { ...linkProps };
   if (props.nearDevGovGigsContractAccountId) {
