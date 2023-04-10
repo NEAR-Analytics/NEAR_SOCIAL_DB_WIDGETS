@@ -52,10 +52,11 @@ const data = fetch("https://monkfish-app-ginhc.ondigitalocean.app/graphql", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
+    "X-Everything": "simple",
   },
   body: JSON.stringify({
     query:
-      "query findIdeaByThingId($thingId: ID) { findIdeas(id: {is: $thingId}) { name, description { md }, creationDate } }",
+      "query findIdeaById($is: ID) { findIdeas(id: {is: $is}) { name, description { md }, creationDate } }",
     variables: {
       thingId: thingId,
     },
