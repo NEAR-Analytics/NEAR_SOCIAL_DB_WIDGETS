@@ -59,7 +59,7 @@ return (
   <Container>
     <Label>{label}</Label>
     <Select.Root onValueChange={(value) => onChange(options.find((option) => option.value === value))}>
-      <Select.Trigger>
+      <Select.Trigger asChild={true}>
         <Input>
           <Select.Value aria-label={value} />
           <Select.Icon>
