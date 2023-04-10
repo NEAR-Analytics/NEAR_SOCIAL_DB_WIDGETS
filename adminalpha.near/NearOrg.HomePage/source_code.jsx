@@ -171,7 +171,7 @@ const Icon = styled.div`
   border-radius: 100%;
   align-items: center;
   justify-content: center;
-  color: 1px solid ${(p) => `var(--${p.color})` ?? "var(--sand10)"};
+  color: ${(p) => `var(--${p.color})` ?? "var(--sand10)"};
   background: ${(p) => `var(--${p.backgroundColor})` ?? "var(--sand3)"};
   border: 1px solid ${(p) => `var(--${p.borderColor})` ?? "var(--sand5)"};
 
