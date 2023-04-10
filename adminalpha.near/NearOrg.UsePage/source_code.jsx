@@ -970,7 +970,7 @@ return (
               href: "https://www.niche.club/",
               target: "_blank",
               iconRight: "ph-bold ph-arrow-up-right",
-              label: "Explore Few & Far",
+              label: "Explore Niche",
               variant: "primary",
               fill: "outline",
             }}
