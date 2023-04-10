@@ -96,7 +96,7 @@ const renderView = () => {
       if (state.type === "everything") {
         return (
           <Widget
-            src={`${accountId}/widget/Everything.Create.Type`}
+            src={`evrything.near/widget/Everything.Create.Type`}
             props={{
               type,
             }}
