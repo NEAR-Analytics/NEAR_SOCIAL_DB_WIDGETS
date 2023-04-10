@@ -13,7 +13,7 @@ const data = fetch(
 
 const Wrapper = styled.div`
   display: grid;
-  gap: 24px;
+  gap: 2px;
 `;
 
 const H2 = styled.h2`
@@ -132,12 +132,11 @@ return (
               <div
                 style={{ minWidth: 40 }}
                 class="align-text-bottom d-flex flex-wrap m-2 float-end"
-              >
-                <Text style={{ marginTop: 25 }} small>
-                  {dateToDays(item.createdAt)} ago
-                </Text>
-              </div>
+              ></div>
             </div>
+            <Text style={{ marginBottom: 10 }} small>
+              {dateToDays(item.createdAt)} ago
+            </Text>
           </>
         ))}
 
