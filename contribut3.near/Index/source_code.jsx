@@ -143,7 +143,7 @@ const Content = styled.div`
 return (
   <div>
     <Widget src={`${ownerId}/widget/NavbarControl`} props={{ update }} />
-    <div className="d-flex flex-row position-relative">
+    <Content>
       <Sidebar show={state.tab !== "create-project"}>
         <Widget
           src={`${ownerId}/widget/Sidebar`}
@@ -151,6 +151,6 @@ return (
         />
       </Sidebar>
       <ContentContainer>{tabContent}</ContentContainer>
-    </div>
+    </Content>
   </div>
 );
