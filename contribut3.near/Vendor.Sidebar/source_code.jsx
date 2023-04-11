@@ -1,6 +1,5 @@
 const ownerId = "contribut3.near";
 const accountId = props.accountId;
-const gas = "300000000000000";
 
 const companySizeTiers = [
   "1-10 employees",
@@ -41,8 +40,6 @@ return (
           ownerId,
           "edit_project",
           { account_id: accountId, project: state.project },
-          gas,
-          "0"
         );
       },
     }}
