@@ -30,7 +30,7 @@ return (
         id: "description",
         value:
           "Ethereum bought lots of cold wallet although VeChain waited some dead cat bounce during many ICO. NFT proves the digital signature until a burned, nor since ERC20 token standard generates many quick distributed ledger, Lightning Network halving a REKT in many decentralised application! Because Silk Road broadcast some provably bagholder, Ripple sharded some instant all-time-high, nor when TRON returns lots of peer-to-peer FUD, Ripple counted a accidental fork at the dead cat bounce! When blockchain could be a provably fair consensus process of some fork, Cardano required few burned bollinger band in many zero confirmation transaction",
-        onSave: (description) => onSave({ description }),
+        onSave: (description) => Near.call("social.near", "set", { data: { [accountId]: { profile: { description } } } }),
       }}
     />
     <Widget
