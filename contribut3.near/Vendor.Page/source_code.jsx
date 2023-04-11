@@ -144,20 +144,21 @@ return (
             search: props.search,
             update: props.update,
             accountId,
+            tabs: [
+                {
+          id: "overview",
+          text: "Overview",
+        
               {
-                id: "overview",
-                text: "Overview",
-              },
+          id: "contracts",
+          text: "Contracts",
+        
               {
-                id: "contracts",
-                text: "Contracts",
-              },
-              {
-                id: "history",
-                text: "Work history",
-              },
+          id: "history",
+          text: "Work history",
+        
             ],
-          }}
+        
         />
         {content}
       </MainContent>
