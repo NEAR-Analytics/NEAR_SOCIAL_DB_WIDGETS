@@ -121,8 +121,6 @@ const DropdownList = styled.ul`
   inset: 0px 0px auto auto;
   padding: 0px;
   margin: 0px;
-  transform:  scale(0);
-  transition: transform 0.2s ease-in-out;
   transform-origin: top right;
   min-width: 10em;
   width: 100%;
