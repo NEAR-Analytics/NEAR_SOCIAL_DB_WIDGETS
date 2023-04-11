@@ -112,7 +112,17 @@ const Items = styled.div`
 
 const Item = styled.div``;
 
-console.log("the log says", props.hi);
+const onSearchChangeFun = props.onSearchChange;
+const termVal = props.term;
+const facetsVal= props.facets,
+const onFacetClickFun= props.onFacetClick,
+const defaultFacetVal= props.facets[0],
+const onSearchResultClickFun=props.onSearchResultClick
+const onSearchResultClickFun=props.onSearchResultClick
+const onPageChangeFun=props.onPageChange
+const disableInsightsFun=props.disableInsights
+
+
 
 return (
   <Wrapper>
@@ -121,8 +131,8 @@ return (
         <Widget
           src="chaotictempest.near/widget/SearchPill"
           props={{
-            onChange: props.onSearchChange,
-            term: props.term,
+            onChange: onSearchChange,
+            term: termVal,
           }}
         />
       </Search>
@@ -133,9 +143,9 @@ return (
         <Widget
           src="chaotictempest.near/widget/Facets"
           props={{
-            facets: props.facets,
-            onFacetClick: props.onFacetClick,
-            defaultFacet: props.facets[0],
+            facets: facetsVal,
+            onFacetClick: onFacetClickFun,
+            defaultFacet: defaultFacetVal,
           }}
         />
       </Facets>
@@ -162,7 +172,7 @@ return (
                 props={{
                   accountId: profile.accountId,
                   onClick: () =>
-                    props.onSearchResultClick({
+                    onSearchResultClickFun({
                       searchPosition: profile.searchPosition,
                       objectID: `${profile.accountId}/profile`,
                       eventName: "Clicked Profile After Search",
@@ -192,7 +202,7 @@ return (
                 props={{
                   src: `${component.accountId}/widget/${component.widgetName}`,
                   onClick: () =>
-                    props.onSearchResultClick({
+                    onSearchResultClickFun({
                       searchPosition: component.searchPosition,
                       objectID: `${component.accountId}/widget/${component.widgetName}`,
                       eventName: "Clicked Component After Search",
@@ -238,12 +248,12 @@ return (
           props={{
             totalCount: state.paginate.hitsTotal,
             pageSize: state.paginate.hitsPerPage,
-            onPageChange: props.onPageChange,
+            onPageChange: onPageChangeFun,
           }}
         />
       )}
 
-    {!props.disableInsights && (
+    {!disableInsightsFun && (
       <Widget
         src="chaotictempest.near/widget/Insights"
         props={{
