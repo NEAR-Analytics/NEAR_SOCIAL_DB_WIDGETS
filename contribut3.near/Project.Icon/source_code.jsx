@@ -8,10 +8,14 @@ State.init({
 });
 
 if (!state.profileIsFetched) {
-  const profile = Social.get(`${accountId}/profile/**`, "final", {
-    subscribe: false,
-  });
-  State.update({ profile, profileIsFetched: true });
+  Near.asyncView(
+    "social.near",
+    "getr",
+    { keys: [`${accountId}/profile`] },
+    "final",
+    false
+  ).then((profile) => State.update({ profile, profileIsFetched: true }));
+  return "Loading...";
 }
 
 const fullName = state.profile.name || state.profile.name || accountId;
@@ -22,7 +26,6 @@ const url =
     : image.url) || "https://thewiki.io/static/media/sasha_anon.6ba19561.png";
 
 const imageSrc = `https://i.near.social/thumbnail/${url}`;
-console.log(imageSrc);
 
 const ImageCircle = styled.img`
   background: #fafafa;
