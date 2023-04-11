@@ -197,7 +197,7 @@ const NavItem = styled.a`
   margin: 0.25em 0;
   font-style: normal;
   font-weight: 600;
-  font-size: .8em;
+  font-size: 0.8em;
   line-height: 1em;
   color: #3a3f42;
   border-radius: 5px;
@@ -208,7 +208,7 @@ const NavItem = styled.a`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: .5em;
+  gap: 0.5em;
 
   &:hover {
     color: #667085;
@@ -232,7 +232,7 @@ const CountIndicator = styled.div`
 const navItem = ({ text, icon, id, count }) => (
   <NavItem
     selected={id === props.tab}
-    href={`/#/${ownerId}/widget/Index?tab=${id}`}
+    href={`/${ownerId}/widget/Index?tab=${id}`}
     onClick={() => props.update({ tab: id, content: "", search: "" })}
   >
     {icon}
