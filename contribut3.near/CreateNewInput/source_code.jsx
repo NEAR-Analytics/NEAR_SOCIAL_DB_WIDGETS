@@ -149,11 +149,9 @@ const MenuText = styled.span`
 `;
 
 return (
-  <DropdownMenu.Root asChild={true}>
+  <DropdownMenu.Root asChild={true} onOpenChange={(show) => State.update({ show })} open={state.show}>
     <DropdownMenu.Trigger asChild={true}>
       <MenuIcon
-        onClick={() => State.update({ show: !state.show })}
-        onBlur={() => State.update({ show: false })}
       >
         {icon}
         <MenuText>Create new...</MenuText>
