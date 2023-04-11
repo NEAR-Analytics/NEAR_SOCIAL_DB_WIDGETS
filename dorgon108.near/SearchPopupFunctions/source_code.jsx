@@ -365,11 +365,11 @@ const onSearchResultClick = ({ searchPosition, objectID, eventName }) => {
   }, 50);
 };
 
-if (props.term !== state.exterm) {
+if ("dog" !== state.exterm) {
   State.update({
-    exterm: props.term,
+    exterm: "dog",
   });
-  onSearchChange({ term: props.term });
+  onSearchChange({ term: "dog" });
 }
 return (
   <Wrapper>
