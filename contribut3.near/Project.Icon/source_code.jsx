@@ -10,8 +10,8 @@ State.init({
 if (!state.profileIsFetched) {
   Near.asyncView(
     "social.near",
-    "getr",
-    { keys: [`${accountId}/profile`] },
+    "get",
+    { keys: [`${accountId}/profile/**`] },
     "final",
     false
   ).then((profile) => State.update({ profile, profileIsFetched: true }));
