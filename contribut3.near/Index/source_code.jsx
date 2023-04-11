@@ -11,22 +11,6 @@ State.init({
   cid: props.cid,
 });
 
-const isModerator = Near.view(
-  ownerId,
-  "check_is_owner",
-  { account_id: context.accountId },
-  "final",
-  false
-);
-
-const isContributor = Near.view(
-  ownerId,
-  "check_is_vendor",
-  { account_id: context.accountId },
-  "final",
-  false
-);
-
 const update = (state) => State.update(state);
 
 const tabContent = {
