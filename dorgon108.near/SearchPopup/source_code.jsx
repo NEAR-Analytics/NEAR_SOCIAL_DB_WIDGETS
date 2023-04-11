@@ -51,7 +51,7 @@ function logConditionals() {
   );
   console.log("!disableInsightsFun:", !disableInsightsFun);
   console.log("child state is:", state.search);
-
+  console.log(props.Wrapper);
   const Wrapper = props.Wrapper;
 }
 return (
