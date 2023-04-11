@@ -136,7 +136,7 @@ return (
                     {
                       text: "Invite to contribute",
                       icon: "bi-person-plus",
-                      href: `/#/${ownerId}/widget/Index?tab=create&content=invite&accountId=${accountId}`,
+                      href: `/${ownerId}/widget/Index?tab=create&content=invite&accountId=${accountId}`,
                       onClick: () =>
                         props.update({
                           tab: "create",
