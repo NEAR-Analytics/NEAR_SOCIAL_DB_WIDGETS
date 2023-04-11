@@ -120,7 +120,7 @@ const DropdownList = styled.ul`
   padding: 0px;
   margin: 0px;
   transform-origin: top right;
-  width: 100%;
+  width: 147px;
 
   &[data-state="open"] {
     animation: ${scaleOut} 0.2s ease-in-out;
