@@ -11,7 +11,7 @@ State.init({
 
 const contributor = Near.view(
   ownerId,
-  "get_contributor",
+  "get_vendor",
   { account_id: accountId },
   "final"
 );
