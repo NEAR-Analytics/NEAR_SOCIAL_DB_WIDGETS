@@ -6,15 +6,15 @@ State.init({
   profileIsFetched: false,
 });
 
-// if (!state.profileIsFetched) {
-//   Near.asyncView(
-//     "social.near",
-//     "get",
-//     { keys: [`${accountId}/profile/**`] },
-//     "final",
-//     false
-//   ).then((profile) => State.update({ profile: profile[accountId].profile, profileIsFetched: true }));
-// }
+if (!state.profileIsFetched) {
+  Near.asyncView(
+    "social.near",
+    "get",
+    { keys: [`${accountId}/profile/**`] },
+    "final",
+    false
+  ).then((profile) => State.update({ profile: profile[accountId].profile, profileIsFetched: true }));
+}
 
 const Container = styled.div`
   display: flex;
