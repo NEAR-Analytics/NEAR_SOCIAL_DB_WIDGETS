@@ -208,6 +208,7 @@ return (
             onSave: (s) => {
               console.log(s);
             },
+            accountId: props.accountId,
           }}
         />
       </MainContent>
