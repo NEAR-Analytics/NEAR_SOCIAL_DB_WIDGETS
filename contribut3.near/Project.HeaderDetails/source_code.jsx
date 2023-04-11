@@ -1,6 +1,21 @@
 const ownerId = "contribut3.near";
 const accountId = props.accountId ?? context.accountId;
 
+State.init({
+  profile: null,
+  profileIsFetched: false,
+});
+
+if (!state.profileIsFetched) {
+  Near.asyncView(
+    "social.near",
+    "getr",
+    { keys: [`${accountId}/profile`] },
+    "final",
+    false
+  ).then((profile) => State.update({ profile, profileIsFetched: true }));
+}
+
 const Container = styled.div`
   display: flex;
   flex-direction: row;
@@ -21,12 +36,12 @@ return (
   <Container>
     <Widget
       src={`${ownerId}/widget/Project.Icon`}
-      props={{ accountId: ownerId, size: "8em" }}
+      props={{ accountId, size: "8em" }}
     />
     <Details>
       <Widget
         src={`${ownerId}/widget/NameAndAccount`}
-        props={{ accountId: ownerId, name: "NEAR Horizon" }}
+        props={{ accountId, name: state.profile.name }}
       />
       <Widget
         src={`${ownerId}/widget/Inputs.Viewable.OneLiner`}
@@ -41,7 +56,12 @@ return (
       />
       <Widget
         src={`${ownerId}/widget/BadgeList`}
-        props={{ badges: [{ value: "Verified" }, { value: "Fundraiser", color: "#62ebe4" }] }}
+        props={{
+          badges: [
+            { value: "Verified" },
+            { value: "Fundraiser", color: "#62ebe4" },
+          ],
+        }}
       />
     </Details>
   </Container>
