@@ -152,7 +152,7 @@ return (
                 Near.call(ownerId, "apply_for_program", {
                   account_id: accountId,
                 }),
-              text: <>{circledPlus}Apply to accelerator</>,
+              text: <>{circledPlus}Request contribution</>,
             }}
           />
           <Widget
