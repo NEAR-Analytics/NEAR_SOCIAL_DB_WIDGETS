@@ -14,6 +14,7 @@ if (!state.profileIsFetched) {
     "final",
     false
   ).then((profile) => State.update({ profile: profile[accountId].profile, profileIsFetched: true }));
+  return <>Loading...</>;
 }
 
 const Container = styled.div`
