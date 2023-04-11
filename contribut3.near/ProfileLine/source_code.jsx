@@ -39,6 +39,7 @@ if (!state.profileFetched) {
     "final",
     false
   ).then((profile) => State.update({ profile, profileFetched: true }));
+  return <>Loading...</>;
 }
 
 const fullName = state.profile.name || state.data.application.name || accountId;
