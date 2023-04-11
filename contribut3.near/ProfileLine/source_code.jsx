@@ -24,7 +24,7 @@ State.init({
 if (!state.fetched) {
   Near.asyncView(
     ownerId,
-    isEntity ? "get_entity" : "get_contributor",
+    isEntity ? "get_project" : "get_vendor",
     { account_id: accountId },
     "final",
     false
