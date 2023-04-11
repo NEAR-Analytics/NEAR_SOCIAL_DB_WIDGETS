@@ -253,7 +253,9 @@ return (
             pageSize: state.paginate.hitsPerPage,
             onPageChange: onPageChangeFun,
           }}
-        />
+        >
+          Hi
+        </Widget>
       )}
 
     {!disableInsightsFun && (
