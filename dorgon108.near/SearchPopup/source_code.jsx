@@ -112,7 +112,13 @@ const Items = styled.div`
 
 const Item = styled.div``;
 
-const onSearchChangeFun = props.onSearchChange;
+const onSearchChange = ({ term }) => {
+  console.log("search change");
+  writeStateTerm(term);
+  updateSearchHits({ term, pageNumber: INITIAL_PAGE });
+};
+
+const onSearchChangeFun = onSearchChange;
 const termVal = props.term;
 const facetsVal = props.facets;
 const onFacetClickFun = props.onFacetClick;
