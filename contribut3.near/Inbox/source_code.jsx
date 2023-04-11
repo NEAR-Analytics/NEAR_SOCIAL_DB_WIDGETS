@@ -18,7 +18,7 @@ State.init({
 if (state.proposalsCount === null) {
   Near.asyncView(
     ownerId,
-    "get_admin_contribution_requests",
+    "get_admin_proposals",
     { account_id: context.accountId },
     "final",
     false
