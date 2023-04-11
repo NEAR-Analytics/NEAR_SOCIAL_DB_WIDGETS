@@ -1,4 +1,3 @@
-// Constants
 const SEARCH_API_KEY = props.searchApiKey ?? "0e42c01107b8f555a41bcc0fa7f2a4df";
 const APPLICATION_ID = props.appId ?? "B6PI9UKKJT";
 const INDEX = props.index ?? "prod_near-social-feed";
@@ -11,8 +10,10 @@ const facets = props.facets ?? ["All", "Users", "Apps", "Components", "Posts"];
 const showHeader = props.showHeader ?? true;
 const showSearchBar = props.showSearchBar ?? true;
 const showPagination = props.showPagination ?? true;
-// Update context to include the user account id
 const userId = props.accountId ?? context.accountId;
+
+const componentsUrl = `/#/calebjacob.near/widget/ComponentsPage`;
+const peopleUrl = `/#/calebjacob.near/widget/PeoplePage`;
 
 // Reset Search Results
 const resetSearcheHits = () => {
@@ -264,11 +265,17 @@ const onSearchResultClick = ({ searchPosition, objectID, eventName }) => {
   }, 50);
 };
 
+const sayHi = () => {
+  console.log("dor says hi");
+};
+
 return (
   <div>
     <Widget
       src="dorgon108.near/widget/SearchPopup"
+      hi="hi"
       props={{
+        sayHi: sayHi,
         resetSearchHits: resetSearcheHits,
         writeStateTerm: writeStateTerm,
         profiles: profiles,
