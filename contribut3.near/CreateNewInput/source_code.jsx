@@ -101,6 +101,15 @@ const createNewButton = ({ id, text, icon }) => (
   </DropdownMenu.Item>
 );
 
+const scaleOut = styled.keyframes`
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+`;
+
 const DropdownList = styled.ul`
   --y-pos: 40px;
   z-index: 3;
@@ -119,8 +128,12 @@ const DropdownList = styled.ul`
   min-width: 10em;
   width: 100%;
 
-  &.show {
-    transform: translate(0px, var(--y-pos)) scale(1);
+  &[data-state="open"] {
+    animation: ${scaleOut} 0.2s ease-in-out;
+  }
+
+  &[data-state="closed"] {
+    animation: ${scaleOut} 0.2s ease-in-out reverse;
   }
 `;
 
