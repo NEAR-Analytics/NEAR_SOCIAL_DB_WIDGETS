@@ -52,6 +52,6 @@ const ImageContainer = styled.div`
 
 return (
   <ImageContainer title={`${fullName} @${accountId}`} size={size}>
-    <ImageCircle src={imageSrc} alt="profile image" />
+    <ImageCircle src={imageSrc} isEntity={isEntity} alt="profile image" />
   </ImageContainer>
 );
