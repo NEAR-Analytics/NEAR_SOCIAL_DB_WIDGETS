@@ -120,6 +120,18 @@ const CTARow = styled.div`
   gap: 0.75em;
 `;
 
+const content = {
+  overview: <Widget
+    src={`${ownerId}/widget/Vendor.About`}
+    props={{
+      onSave: (s) => {
+        console.log(s);
+      },
+      accountId: props.accountId,
+    }}
+  />
+}[getContent(props.content)];
+
 return (
   <Container>
     <Header>
@@ -176,15 +188,7 @@ return (
             ],
           }}
         />
-        <Widget
-          src={`${ownerId}/widget/Vendor.About`}
-          props={{
-            onSave: (s) => {
-              console.log(s);
-            },
-            accountId: props.accountId,
-          }}
-        />
+        {content}
       </MainContent>
       <Sidebar>
         <Widget
