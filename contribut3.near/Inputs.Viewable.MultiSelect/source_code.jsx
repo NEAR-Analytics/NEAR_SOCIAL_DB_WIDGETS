@@ -65,7 +65,7 @@ return (
       label,
       value,
       edit,
-      view: value[0].name,
+      view: value.map(({ name }) => name).join(","),
     }}
   />
 );
