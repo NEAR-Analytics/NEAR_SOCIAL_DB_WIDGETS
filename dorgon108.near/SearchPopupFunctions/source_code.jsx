@@ -15,8 +15,11 @@ const userId = props.accountId ?? context.accountId;
 const componentsUrl = `/#/calebjacob.near/widget/ComponentsPage`;
 const peopleUrl = `/#/calebjacob.near/widget/PeoplePage`;
 
+//*********SEARCH FUNCTIONS ******** */
+
 // Reset Search Results
 const resetSearcheHits = () => {
+  console.log("reset search");
   State.update({
     currentPage: 0,
     search: undefined,
@@ -27,6 +30,7 @@ const resetSearcheHits = () => {
 
 // updates search params as the user enters in a search value
 const writeStateTerm = (term) => {
+  console.log("write term");
   State.update({
     term,
   });
