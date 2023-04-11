@@ -82,7 +82,7 @@ const tabContent = {
       }}
     />
   ),
-  create: (
+  "create-project": (
     <Widget
       src={`${ownerId}/widget/CreatePage`}
       props={{
@@ -131,12 +131,10 @@ return (
     <Widget src={`${ownerId}/widget/NavbarControl`} props={{ update }} />
     <div className="d-flex flex-row position-relative">
       <div className="d-flex flex-row position-sticky top-0">
-        <div className="flex-grow-1">
-          <Widget
-            src={`${ownerId}/widget/Sidebar`}
-            props={{ tab: state.tab, update }}
-          />
-        </div>
+        <Widget
+          src={`${ownerId}/widget/Sidebar`}
+          props={{ tab: state.tab, update }}
+        />
       </div>
       <ContentContainer>{tabContent}</ContentContainer>
     </div>
