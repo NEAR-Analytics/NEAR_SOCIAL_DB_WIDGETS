@@ -168,7 +168,7 @@ return (
         <Input
           id
           type={isLink ? "url" : "text"}
-          value={v}
+          value={state.value}
           onChange={(e) => State.update({ value: e.target.value })}
         />
         <SaveButton onClick={() => onSave(state.value)}>Save</SaveButton>
