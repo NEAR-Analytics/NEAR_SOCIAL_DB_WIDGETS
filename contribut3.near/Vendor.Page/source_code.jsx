@@ -121,7 +121,7 @@ return (
                 Near.call(ownerId, "apply_for_program", {
                   account_id: accountId,
                 }),
-              text: <>{circledPlus}Request contribution</>,
+              text: <>{personPlus}Request contribution</>,
             }}
           />
           <Widget
@@ -130,7 +130,7 @@ return (
               onClick: () => {
                 console.log("clicked");
               },
-              text: <>{plus}Contact</>,
+              text: <>{chat}Contact</>,
             }}
           />
         </CTARow>
