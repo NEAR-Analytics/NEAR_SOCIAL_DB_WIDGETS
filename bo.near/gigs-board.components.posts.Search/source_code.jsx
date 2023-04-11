@@ -22,8 +22,6 @@ function widget(widgetName, widgetProps, key) {
   );
 }
 
-const [searchWord, setUpWord] = useState('');
-
 function href(widgetName, linkProps) {
   linkProps = { ...linkProps };
   if (props.nearDevGovGigsContractAccountId) {
@@ -583,6 +581,21 @@ const getProcessedPostsCached = () => {
   return useCache(() => buildPostsIndex(), "processedPostsCached");
 };
 
+if (!state.interval) {
+  let termStorage = "";
+  Storage.privateSet("term", "");
+  setInterval(() => {
+    const currentInput = Storage.privateGet("term");
+    if (currentInput !== termStorage) {
+      termStorage = currentInput;
+      computeResults(termStorage);
+    }
+  }, 1500);
+  State.update({
+    interval: true,
+  });
+}
+
 const computeResults = (term) => {
   const start = new Date().getTime();
   const processedPostsCached = useCache(
@@ -629,21 +642,12 @@ const computeResults = (term) => {
 };
 
 const updateInput = (term) => {
-  console.log('on change')
-  State.update({term})
-}
-
-const handleKeydown = (e) => {
-  console.log('on keydown')
-  if (e.key === 'Enter') {
-    State.update({loading: true});
-    computeResults(state.term);
-  } else if (e.key === 'Backspace') {
-    State.update({term: state.term ? state.term.slice(0, state.term.length-1) : ''})
-  } else if (/^[a-zA-Z0-9]$/.test(e.key)) {
-    State.update({term: state.term ? state.term+e.key: e.key})
-  }
-}
+  Storage.privateSet("term", term);
+  State.update({
+    term,
+    loading: true,
+  });
+};
 
 const getSearchResultsKeywordsFor = (postId) => {
   const index = getProcessedPostsCached().index;
@@ -697,10 +701,7 @@ return (
         }}
         className="form-control"
         value={state.term ?? ""}
-        /* onChange doesn't trigger at all when onKeydown is set on near-social viewer, has to simulate key change in handleKeydown */
-        onKeyDown={handleKeydown}
         onChange={(e) => updateInput(e.target.value)}
-
         placeholder={props.placeholder ?? `Search Posts`}
       />
     </div>
