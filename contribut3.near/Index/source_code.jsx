@@ -127,14 +127,14 @@ const Content = styled.div`
 return (
   <div>
     <Widget src={`${ownerId}/widget/NavbarControl`} props={{ update }} />
-    <div className="d-flex flex-row position-relative">
-      <div className="d-flex flex-row position-sticky top-0">
+    <Content>
+      <Sidebar show={state.tab !== "createproject"}>
         <Widget
           src={`${ownerId}/widget/Sidebar`}
           props={{ tab: state.tab, update }}
         />
-      </div>
+      </Sidebar>
       <ContentContainer>{tabContent}</ContentContainer>
-    </div>
+    </Content>
   </div>
 );
