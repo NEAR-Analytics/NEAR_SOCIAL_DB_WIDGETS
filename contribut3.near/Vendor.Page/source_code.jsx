@@ -145,20 +145,20 @@ return (
             update: props.update,
             accountId,
             tabs: [
-                {
-          id: "overview",
-          text: "Overview",
-        
               {
-          id: "contracts",
-          text: "Contracts",
-        
+                id: "overview",
+                text: "Overview",
+              },
               {
-          id: "history",
-          text: "Work history",
-        
+            id: "contracts",
+        text: "Contracts",
+              },
+              {
+        id: "history",
+        text: "Work history",
+              },
             ],
-        
+          }}
         />
         {content}
       </MainContent>
