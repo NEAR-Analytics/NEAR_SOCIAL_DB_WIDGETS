@@ -157,7 +157,7 @@ return (
     ) : noLabel ? (
       <></>
     ) : (
-      view
+      isLink ? <a href={link}>{value}</a> : value
     )}
   </Container>
 );
