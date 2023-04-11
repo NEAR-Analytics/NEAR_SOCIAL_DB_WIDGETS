@@ -24,7 +24,7 @@ const onLoad = (data) => {
   State.update(data);
 };
 
-const handleRepay = (selectedTokenId, borrowed) => {
+const handleRepay = (selectedTokenId, borrowed, type) => {
   const asset = assets.find((a) => a.token_id === selectedTokenId);
 
   const repayTemplate = {
@@ -45,39 +45,44 @@ const handleRepay = (selectedTokenId, borrowed) => {
 
   console.log(borrowed, asset);
 
-  const expandedAmount = expandToken(
-    //new Big("1").div(new Big(10).pow(asset.metadata.decimals)).toFixed(),
-    //asset.metadata.decimals + asset.config.extra_decimals
-    borrowed,
-    asset.metadata.decimals
-  );
+  const expandedAmount = //expandToken(
+    new Big(borrowed)
+      .div(new Big(10).pow(asset.config.extra_decimals))
+      .mul(new Big(1).add(new Big(30).div(new Big(365).mul(24).mul(60))));
 
-  const repayTransaction = {
-    //contractName: "priceoracle.near",
-    //methodName: "oracle_call",
+  let repayTransaction;
+  if (type === "supply") {
+    repayTransaction = {
+      contractName: BURROW_CONTRACT,
+      methodName: "execute",
 
-    //contractName: selectedTokenId,
-    //methodName: "ft_transfer_call",
-
-    contractName: BURROW_CONTRACT,
-    methodName: "execute",
-
-    deposit: new Big("1").toFixed(),
-    gas: "300000000000000",
-    args: {
-      receiver_id: BURROW_CONTRACT,
-      //amount: expandedAmount.toFixed(0),
-      //msg: JSON.stringify(repayTemplate),
-
-      actions: [
-        {
-          Repay: {
-            token_id: selectedTokenId,
+      deposit: new Big("1").toFixed(),
+      gas: "300000000000000",
+      args: {
+        receiver_id: BURROW_CONTRACT,
+        actions: [
+          {
+            Repay: {
+              token_id: selectedTokenId,
+            },
           },
-        },
-      ],
-    },
-  };
+        ],
+      },
+    };
+  } else if (type === "wallet") {
+    repayTransaction = {
+      contractName: selectedTokenId,
+      methodName: "ft_transfer_call",
+
+      deposit: new Big("1").toFixed(),
+      gas: "300000000000000",
+      args: {
+        receiver_id: BURROW_CONTRACT,
+        amount: expandedAmount.toFixed(0),
+        msg: JSON.stringify(repayTemplate),
+      },
+    };
+  }
 
   const transactions = [];
   transactions.push(repayTransaction);
@@ -87,7 +92,7 @@ const handleRepay = (selectedTokenId, borrowed) => {
 const depositedAssets = hasData
   ? new Set([
       ...account.supplied.map((a) => a.token_id),
-      ...account.collateral.map((a) => a.token_id),
+      //...account.collateral.map((a) => a.token_id),
     ])
   : new Set();
 
@@ -110,15 +115,16 @@ const suppliedAssets = hasData
         ? Number(shrinkToken(supplied.balance, decimals))
         : 0;
 
+      /*
       const collateral = account.collateral.find(
         (c) => c.token_id === depositedTokenId
       );
 
       const collateralBalance = collateral
         ? Number(shrinkToken(collateral.balance, decimals))
-        : 0;
+        : 0;*/
 
-      const totalBalance = depositedBalance + collateralBalance;
+      const totalBalance = depositedBalance; // + collateralBalance;
       deposits[depositedTokenId] = totalBalance;
       const usd = totalBalance * asset.price.usd;
       const icon = asset.metadata.icon ?? NEAR_LOGO;
@@ -169,10 +175,22 @@ const borrowedAssets = hasData
             <button
               disabled={borrowedMinusDepositedBalance > 0}
               onClick={() => {
-                handleRepay(borrowedAsset.token_id, borrowedAsset.balance);
+                handleRepay(borrowedAsset.token_id, 0, "supply");
               }}
             >
-              Repay
+              Repay from supplied
+            </button>
+
+            <button
+              onClick={() => {
+                handleRepay(
+                  borrowedAsset.token_id,
+                  borrowedAsset.balance,
+                  "wallet"
+                );
+              }}
+            >
+              Repay from wallet
             </button>
           </td>
         </tr>
@@ -185,33 +203,34 @@ return (
     {!hasData && (
       <Widget src="ciocan.near/widget/burrow-data" props={{ onLoad }} />
     )}
-
     {false && (
-      <table class="table">
-        <thead>
-          <tr
-            style={{
-              color: "rgba(0, 0, 0, 0.4)",
-            }}
-          >
-            <th scope="col">Deposited Assets</th>
-            {showAPY && (
+      <>
+        <table class="table">
+          <thead>
+            <tr
+              style={{
+                color: "rgba(0, 0, 0, 0.4)",
+              }}
+            >
+              <th scope="col">Deposited Assets</th>
+              {showAPY && (
+                <th scope="col" class="text-end">
+                  APY
+                </th>
+              )}
               <th scope="col" class="text-end">
-                APY
+                Deposited
               </th>
-            )}
-            <th scope="col" class="text-end">
-              Deposited
-            </th>
-            <th scope="col" class="text-end">
-              $
-            </th>
-          </tr>
-        </thead>
-        <tbody>{suppliedAssets}</tbody>
-      </table>
+              <th scope="col" class="text-end">
+                $
+              </th>
+            </tr>
+          </thead>
+          <tbody>{suppliedAssets}</tbody>
+        </table>
+      </>
     )}
-
+    <h3>Repay Burrow debts without oracle calls</h3>
     <table class="table">
       <thead>
         <tr
@@ -232,7 +251,7 @@ return (
             $
           </th>
           <th scope="col" class="text-end">
-            Deposited
+            Supplied
           </th>
           <th scope="col" class="text-end">
             Action
@@ -241,5 +260,21 @@ return (
       </thead>
       <tbody>{borrowedAssets}</tbody>
     </table>
+    <p class="text-secondary">
+      <small>
+        <span class="fw-bolder">Repay from supplied</span> feature spends only
+        supplied assets, not collateral.
+      </small>
+    </p>
+    <p class="text-secondary fs-6">
+      <small>
+        <span class="fw-bolder">Repay from wallet</span> feature adds requires
+        FT token on your wallet. Since the debt is constantly growing, this
+        feature slightly increases the deposit to compensate for the delay
+        during which the transaction takes place. It is assumed that the
+        transaction will be completed no later than 30 minutes after loading
+        this page.
+      </small>
+    </p>
   </div>
 );
