@@ -10,10 +10,10 @@ State.init({
   hasMore: true,
 });
 
-if (state.invites.length === 0) {
+if (state.items.length === 0) {
   Near.asyncView(
     ownerId,
-    accountId ? "get_entity_invites" : "get_contributor_invites",
+    accountId ? "get_project_invites" : "get_vendor_invites",
     { account_id: props.accountId ?? context.accountId },
     "final",
     false
