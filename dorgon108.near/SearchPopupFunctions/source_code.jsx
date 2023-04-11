@@ -30,7 +30,8 @@ const resetSearcheHits = () => {
 
 // updates search params as the user enters in a search value
 const writeStateTerm = (term) => {
-  console.log("write term");
+  console.log("write term", term);
+  console.log("write state", state.term);
   State.update({
     term,
   });
@@ -39,8 +40,6 @@ const writeStateTerm = (term) => {
     resetSearcheHits();
   }
 };
-
-writeStateTerm("dorgon");
 
 // creates an array of profiles
 const profiles = (records) => {
@@ -51,6 +50,7 @@ const profiles = (records) => {
       searchPosition: i,
     });
   }
+  console.log("profiles are", profiles);
   return profiles;
 };
 
@@ -288,6 +288,9 @@ return (
         onFacetClick: onFacetClick,
         onSearchResultClick: onSearchResultClick,
         facets: facets,
+        search: state.search,
+        paginate: state.paginate,
+        eventprop: state.event,
       }}
     />
   </div>
