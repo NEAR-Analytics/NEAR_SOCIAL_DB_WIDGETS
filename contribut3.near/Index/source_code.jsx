@@ -84,7 +84,7 @@ const tabContent = {
   ),
   "create-project": (
     <Widget
-      src={`${ownerId}/widget/CreatePage`}
+      src={`${ownerId}/widget/Project.Form`}
       props={{
         search: state.search,
         content: state.content,
