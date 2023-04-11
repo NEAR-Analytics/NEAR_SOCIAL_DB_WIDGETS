@@ -283,7 +283,7 @@ return (
       <Widget
         src="chaotictempest.near/widget/Insights"
         props={{
-          event: props.eventprop,
+          event: state.event,
           searchApiKey: SEARCH_API_KEY,
           appId: APPLICATION_ID,
           index: INDEX,
