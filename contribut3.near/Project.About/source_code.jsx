@@ -1,5 +1,6 @@
 const onSave = props.onSave ?? (() => { });
 const ownerId = "contribut3.near";
+const accountId = props.accountId;
 
 const Container = styled.div`
   display: flex;
