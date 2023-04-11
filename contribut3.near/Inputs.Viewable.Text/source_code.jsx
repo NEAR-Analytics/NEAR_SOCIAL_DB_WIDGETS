@@ -67,17 +67,7 @@ const SaveButton = styled.button`
 //     }}
 //   />
 // );
-const edit = (update, v) => (
-  <LabelArea>
-    <Input
-      id
-      type={isLink ? "url" : "text"}
-      value={v}
-      onChange={(e) => update(e.target.value)}
-    />
-    <SaveButton onClick={() => onSave(v)}>Save</SaveButton>
-  </LabelArea>
-);
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -136,6 +126,10 @@ const EditButtonContainer = styled.div`
 `;
 
 const noLabel = false;
+State.init({
+  edit: false,
+  value,
+})
 
 return (
   <Container big={false}>
