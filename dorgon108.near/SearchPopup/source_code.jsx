@@ -114,7 +114,7 @@ const Item = styled.div``;
 
 const onSearchChange = ({ term }) => {
   console.log("search change");
-  writeStateTerm(term);
+  props.writeStateTerm(term);
   updateSearchHits({ term, pageNumber: INITIAL_PAGE });
 };
 
