@@ -167,6 +167,7 @@ const updateSearchHits = debounce(({ term, pageNumber, configs }) => {
       },
       queryID: resp.body.queryID,
     });
+    console.log("state is:", state.search);
   });
 });
 
