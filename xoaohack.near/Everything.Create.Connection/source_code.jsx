@@ -1,0 +1,1 @@
+return (<p>Go configure your <a href="/#/edit/xoaohack.near/widget/Everything.Create.Connection">create widget</a>!</p>);
