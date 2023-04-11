@@ -53,51 +53,10 @@ return (
     <Widget
       src={`${ownerId}/widget/Inputs.Viewable.TextArea`}
       props={{
-        label: "What problem(s) are you solving?",
-        id: "problem",
-        value:
-          "Ethereum bought lots of cold wallet although VeChain waited some dead cat bounce during many ICO. NFT proves the digital signature until a burned, nor since ERC20 token standard generates many quick distributed ledger, Lightning Network halving a REKT in many decentralised application! Because Silk Road broadcast some provably bagholder, Ripple sharded some instant all-time-high, nor when TRON returns lots of peer-to-peer FUD, Ripple counted a accidental fork at the dead cat bounce! When blockchain could be a provably fair consensus process of some fork, Cardano required few burned bollinger band in many zero confirmation transaction",
-        onSave: (problem) => onSave({ problem }),
-      }}
-    />
-    <Widget
-      src={`${ownerId}/widget/Inputs.Viewable.TextArea`}
-      props={{
-        label: "What makes your team uniquely positioned for success?",
-        id: "success_position",
-        value:
-          "Ethereum bought lots of cold wallet although VeChain waited some dead cat bounce during many ICO. NFT proves the digital signature until a burned, nor since ERC20 token standard generates many quick distributed ledger, Lightning Network halving a REKT in many decentralised application! Because Silk Road broadcast some provably bagholder, Ripple sharded some instant all-time-high, nor when TRON returns lots of peer-to-peer FUD, Ripple counted a accidental fork at the dead cat bounce! When blockchain could be a provably fair consensus process of some fork, Cardano required few burned bollinger band in many zero confirmation transaction",
-        onSave: (success_position) => onSave({ success_position }),
-      }}
-    />
-    <Widget
-      src={`${ownerId}/widget/Inputs.Viewable.TextArea`}
-      props={{
-        label: "Why are you building on neaNEAR?",
-        id: "why",
-        value:
-          "Ethereum bought lots of cold wallet although VeChain waited some dead cat bounce during many ICO. NFT proves the digital signature until a burned, nor since ERC20 token standard generates many quick distributed ledger, Lightning Network halving a REKT in many decentralised application! Because Silk Road broadcast some provably bagholder, Ripple sharded some instant all-time-high, nor when TRON returns lots of peer-to-peer FUD, Ripple counted a accidental fork at the dead cat bounce! When blockchain could be a provably fair consensus process of some fork, Cardano required few burned bollinger band in many zero confirmation transaction",
-        onSave: (why) => onSave({ why }),
-      }}
-    />
-    <Widget
-      src={`${ownerId}/widget/Inputs.Viewable.TextArea`}
-      props={{
-        label: "What's your 5 year vision? 1B users project evolution?",
-        id: "vision",
-        value:
-          "Ethereum bought lots of cold wallet although VeChain waited some dead cat bounce during many ICO. NFT proves the digital signature until a burned, nor since ERC20 token standard generates many quick distributed ledger, Lightning Network halving a REKT in many decentralised application! Because Silk Road broadcast some provably bagholder, Ripple sharded some instant all-time-high, nor when TRON returns lots of peer-to-peer FUD, Ripple counted a accidental fork at the dead cat bounce! When blockchain could be a provably fair consensus process of some fork, Cardano required few burned bollinger band in many zero confirmation transaction",
-        onSave: (vision) => onSave({ vision }),
-      }}
-    />
-    <Widget
-      src={`${ownerId}/widget/Inputs.Viewable.TextArea`}
-      props={{
-        label: "Are you going to launch your token?",
-        id: "token",
-        value:
-          "Ethereum bought lots of cold wallet although VeChain waited some dead cat bounce during many ICO. NFT proves the digital signature until a burned, nor since ERC20 token standard generates many quick distributed ledger, Lightning Network halving a REKT in many decentralised application! Because Silk Road broadcast some provably bagholder, Ripple sharded some instant all-time-high, nor when TRON returns lots of peer-to-peer FUD, Ripple counted a accidental fork at the dead cat bounce! When blockchain could be a provably fair consensus process of some fork, Cardano required few burned bollinger band in many zero confirmation transaction",
-        onSave: (token) => onSave({ token }),
+        label: "Skills and services",
+        id: "services",
+        value: state.services,
+        onSave: (services) => Near.call("social.near", "set", { data: { [accountId]: { profile: { services } } } }),
       }}
     />
   </Container>
