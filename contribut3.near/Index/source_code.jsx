@@ -82,7 +82,7 @@ const tabContent = {
       }}
     />
   ),
-  "create-project": (
+  "createproject": (
     <Widget
       src={`${ownerId}/widget/Project.Form`}
       props={{
