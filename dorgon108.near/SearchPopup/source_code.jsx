@@ -179,7 +179,7 @@ return (
       <H2>No matches were found for "{state.term}".</H2>
     )}
 
-    {state.search?.profiles.length > 0 && (
+    {props.search?.profiles.length > 0 && (
       <Group>
         <GroupHeader>
           <H3>People</H3>
@@ -189,7 +189,7 @@ return (
         </GroupHeader>
 
         <Items>
-          {props.search?.profiles.map((profile, i) => (
+          {state.search.profiles.map((profile, i) => (
             <Item key={profile.accountId}>
               <Widget
                 src="chaotictempest.near/widget/AccountProfileCard"
@@ -209,7 +209,7 @@ return (
       </Group>
     )}
 
-    {props.search?.components.length > 0 && (
+    {state.search?.components.length > 0 && (
       <Group>
         <GroupHeader>
           <H3>Components</H3>
@@ -219,7 +219,7 @@ return (
         </GroupHeader>
 
         <Items>
-          {props.search.components.map((component, i) => (
+          {state.search.components.map((component, i) => (
             <Item key={component.accountId + component.widgetName}>
               <Widget
                 src="chaotictempest.near/widget/ComponentCard"
@@ -239,7 +239,7 @@ return (
       </Group>
     )}
 
-    {props.search?.postsAndComments.length > 0 && (
+    {state.search?.postsAndComments.length > 0 && (
       <Group>
         <GroupHeader>
           <H3>Posts and Comments</H3>
@@ -265,8 +265,8 @@ return (
     )}
 
     {showPagination &&
-      props.paginate &&
-      props.paginate.hitsTotal > props.paginate.hitsPerPage && (
+      state.paginate &&
+      state.paginate.hitsTotal > state.paginate.hitsPerPage && (
         <Widget
           src="chaotictempest.near/widget/Paginate"
           props={{
