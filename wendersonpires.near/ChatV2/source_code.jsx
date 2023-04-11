@@ -13,15 +13,21 @@ const APP_INDEX_KEY = "widget-chatv2-dev";
  * App setup
  */
 const externalAppUrl = "https://near-test-app.web.app/";
+
 const path = props.path;
 const initialViewHeight = 740;
 const initialPayload = {
-  mainDomain: "https://alpha.near.org",
+  mainChatURL: "https://alpha.near.org/wendersonpires.near/widget/ChatV2",
   room: props.room, // starts with this room
 };
 
+State.init({
+  showShareModal: false,
+  clipboardText: "",
+});
+
 /**
- * Request Handlers
+ * Request Handlers.
  */
 const requestHandler = (request, response, Utils) => {
   switch (request.type) {
@@ -171,10 +177,9 @@ const getRoomsListHandler = (request, response, Utils) => {
 
 const setClipboardTextHandler = (request, response) => {
   if (request.payload.text) {
-    // limited by VM (not working for now) - wip
-    clipboard.writeText(request.payload.text);
+    State.update({ clipboardText: request.payload.text, showShareModal: true });
   }
-  response(request).send({});
+  response(request).send({ util: "oi" });
 };
 
 // Helpers
@@ -192,15 +197,37 @@ const fetchRooms = () => {
 };
 // Helpers END
 
+/**
+ * Close the Share Chat Room modal after clicking on copy
+ */
+const onCopy = () => {
+  State.update({ clipboardText: "", showShareModal: false });
+};
+
 return (
-  <Widget
-    src={"wendersonpires.near/widget/NearSocialBridgeCore"}
-    props={{
-      externalAppUrl,
-      path,
-      initialViewHeight,
-      initialPayload,
-      requestHandler,
-    }}
-  />
+  <div>
+    <Widget
+      src="wendersonpires.near/widget/NearSocialBridgeCore"
+      props={{
+        externalAppUrl,
+        path,
+        initialViewHeight,
+        initialPayload,
+        requestHandler,
+      }}
+    />
+    {state.showShareModal && (
+      <Widget
+        src="wendersonpires.near/widget/NSLVWidget"
+        props={{
+          src: "wendersonpires.near/widget/CopyToClipboardModal",
+          srcProps: {
+            description: "Click on the button below to copy the Chat Room Link",
+            text: state.clipboardText,
+            onCopy,
+          },
+        }}
+      />
+    )}
+  </div>
 );
