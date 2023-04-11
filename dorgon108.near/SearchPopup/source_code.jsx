@@ -112,7 +112,8 @@ const Items = styled.div`
 
 const Item = styled.div``;
 
-props.sayHi();
+console.log("the log says", props.hi);
+
 return (
   <Wrapper>
     {showSearchBar && (
