@@ -148,7 +148,7 @@ return (
                     {
                       text: "View details",
                       icon: "bi-info-circle",
-                      href: `/#/${ownerId}/widget/Index?tab=contributor&accountId=${accountId}`,
+                      href: `/${ownerId}/widget/Index?tab=contributor&accountId=${accountId}`,
                       onClick: () =>
                         props.update({
                           tab: "contributor",
