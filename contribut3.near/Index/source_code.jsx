@@ -20,26 +20,9 @@ const tabContent = {
       props={{ content: state.content, search: state.search, update }}
     />
   ),
-  contributor: (
-    <Widget
-      src={`${ownerId}/widget/Profile`}
-      props={{
-        content: state.content,
-        search: state.search,
-        accountId: state.accountId,
-        update,
-      }}
-    />
-  ),
   inbox: (
     <Widget
       src={`${ownerId}/widget/Inbox`}
-      props={{ content: state.content, search: state.search, update }}
-    />
-  ),
-  entities: (
-    <Widget
-      src={`${ownerId}/widget/ManageEntities`}
       props={{ content: state.content, search: state.search, update }}
     />
   ),
@@ -65,18 +48,6 @@ const tabContent = {
       }}
     />
   ),
-  need: (
-    <Widget
-      src={`${ownerId}/widget/NeedPage`}
-      props={{
-        accountId: state.accountId,
-        cid: state.cid,
-        search: state.search,
-        content: state.content,
-        update,
-      }}
-    />
-  ),
   createproject: (
     <Widget
       src={`${ownerId}/widget/Project.Form`}
@@ -86,27 +57,6 @@ const tabContent = {
         accountId: props.accountId,
         kind: state.kind,
         cid: state.cid,
-        update,
-      }}
-    />
-  ),
-  contributions: (
-    <Widget
-      src={`${ownerId}/widget/ContributionsPage`}
-      props={{
-        search: state.search,
-        content: state.content,
-        update,
-      }}
-    />
-  ),
-  contribution: (
-    <Widget
-      src={`${ownerId}/widget/ContributionPage`}
-      props={{
-        entityId: state.entityId,
-        contributorId: state.contributorId,
-        search: state.search,
         update,
       }}
     />
