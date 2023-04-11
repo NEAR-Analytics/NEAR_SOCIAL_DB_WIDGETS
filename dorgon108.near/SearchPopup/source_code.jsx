@@ -114,15 +114,12 @@ const Item = styled.div``;
 
 const onSearchChangeFun = props.onSearchChange;
 const termVal = props.term;
-const facetsVal= props.facets,
-const onFacetClickFun= props.onFacetClick,
-const defaultFacetVal= props.facets[0],
-const onSearchResultClickFun=props.onSearchResultClick
-const onSearchResultClickFun=props.onSearchResultClick
-const onPageChangeFun=props.onPageChange
-const disableInsightsFun=props.disableInsights
-
-
+const facetsVal = props.facets;
+const onFacetClickFun = props.onFacetClick;
+const defaultFacetVal = props.facets[0];
+const onSearchResultClickFun = props.onSearchResultClick;
+const onPageChangeFun = props.onPageChange;
+const disableInsightsFun = props.disableInsights;
 
 return (
   <Wrapper>
