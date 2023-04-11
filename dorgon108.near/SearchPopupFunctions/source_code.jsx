@@ -171,12 +171,6 @@ const updateSearchHits = debounce(({ term, pageNumber, configs }) => {
   });
 });
 
-const onSearchChange = ({ term }) => {
-  console.log("search change");
-  writeStateTerm(term);
-  updateSearchHits({ term, pageNumber: INITIAL_PAGE });
-};
-
 const onPageChange = (pageNumber) => {
   const algoliaPageNumber = pageNumber - 1;
   if (algoliaPageNumber === state.currentPage) {
