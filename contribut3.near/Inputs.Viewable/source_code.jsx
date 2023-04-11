@@ -69,7 +69,7 @@ const EditButtonContainer = styled.div`
 `;
 
 return (
-  <Container >
+  <Container>
     <Row>
       {noLabel ? (
         view
