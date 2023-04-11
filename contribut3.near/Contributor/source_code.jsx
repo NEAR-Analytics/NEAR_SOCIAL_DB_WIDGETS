@@ -17,7 +17,7 @@ State.init({
 if (!state.contributorFetched) {
   Near.asyncView(
     ownerId,
-    "get_contributor",
+    "get_vendor",
     { account_id: accountId },
     "final",
     false
