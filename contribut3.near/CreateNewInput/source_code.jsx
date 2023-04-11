@@ -140,6 +140,7 @@ const MenuIcon = styled.button`
 
 const DropdownContainer = styled.div`
   position: relative;
+  z-index: 3;
 `;
 
 const MenuText = styled.span`
