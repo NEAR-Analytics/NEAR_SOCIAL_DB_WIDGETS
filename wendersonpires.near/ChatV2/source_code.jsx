@@ -179,7 +179,7 @@ const setClipboardTextHandler = (request, response) => {
   if (request.payload.text) {
     State.update({ clipboardText: request.payload.text, showShareModal: true });
   }
-  response(request).send({ util: "oi" });
+  response(request).send({});
 };
 
 // Helpers
