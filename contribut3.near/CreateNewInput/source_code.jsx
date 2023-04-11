@@ -159,7 +159,7 @@ return (
       </MenuIcon>
     </DropdownMenu.Trigger>
 
-    <DropdownMenu.Content asChild={true}>
+    <DropdownMenu.Content asChild={true} forceMount={true}>
       <DropdownList className={state.show ? "show" : ""}>
         {createNewButton({
           id: "createproject",
