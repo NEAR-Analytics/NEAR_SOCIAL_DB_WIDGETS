@@ -7,11 +7,13 @@ const ThingContainer = styled.div`
 const Toolbar = styled.div`
   display: flex;
   justify-content: flex-end;
-  align-items: center;
+  align-items: baseline;
+  gap: 8px;
 `;
 
-const Icon = styled.div`
+const Icon = styled.button`
   cursor: pointer;
+  text-transform: lowercase !important;
 `;
 
 const src = props.src;
@@ -40,11 +42,12 @@ const hideThing = () => {
 
 return (
   <ThingContainer>
-    {context.accountId === accountId ? (
-      <Toolbar>
+    <Toolbar>
+      <p>thing created by : {accountId}</p>
+      {context.accountId === accountId ? (
         <Icon onClick={hideThing}>Hide</Icon>
-      </Toolbar>
-    ) : null}
+      ) : null}
+    </Toolbar>
 
     <Widget
       src={src}
