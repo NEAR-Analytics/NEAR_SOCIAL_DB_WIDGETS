@@ -72,7 +72,7 @@ const Error = styled.span`
 
 return (
   <Container>
-    <Label>{label}</Label>
+    {props.noLabel ? <></> : <Label>{label}</Label>}
     <Typeahead
       id
       placeholder={placeholder}
