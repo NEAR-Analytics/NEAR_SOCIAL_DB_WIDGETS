@@ -192,7 +192,7 @@ return (
         props={{
           label: "Website",
           id: "website",
-          value: "layers.gg",
+          value: state.website,
           link: "https://layers.gg",
           onSave: (website) => State.update({ website }),
         }}
