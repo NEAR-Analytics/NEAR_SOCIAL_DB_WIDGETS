@@ -13,7 +13,7 @@ State.init({
 
 const isModerator = Near.view(
   ownerId,
-  "check_is_moderator",
+  "check_is_admin",
   { account_id: context.accountId },
   "final",
   false
@@ -21,7 +21,7 @@ const isModerator = Near.view(
 
 const isContributor = Near.view(
   ownerId,
-  "check_is_contributor",
+  "check_is_vendor",
   { account_id: context.accountId },
   "final",
   false
@@ -82,7 +82,7 @@ const tabContent = {
       }}
     />
   ),
-  "createproject": (
+  createproject: (
     <Widget
       src={`${ownerId}/widget/Project.Form`}
       props={{
