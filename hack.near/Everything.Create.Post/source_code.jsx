@@ -61,7 +61,7 @@ const handleCreatePost = (request, response) => {
               }),
             },
             index: {
-              everything: JSON.stringify({
+              abc: JSON.stringify({
                 key: "main",
                 value: {
                   type: "hack.near/type/Post",
