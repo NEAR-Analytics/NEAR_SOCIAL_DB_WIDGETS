@@ -138,12 +138,12 @@ const EditButtonContainer = styled.div`
 const noLabel = false;
 
 return (
-  <Container big={big}>
+  <Container big={false}>
     <Row>
       {noLabel ? (
         view
       ) : (
-        <Label htmlFor={id} big={big}>
+        <Label htmlFor={id} big={false}>
           {label}
         </Label>
       )}
