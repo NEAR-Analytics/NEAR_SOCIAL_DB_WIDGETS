@@ -192,13 +192,52 @@ return (
           src={`${ownerId}/widget/Buttons.Green`}
           props={{
             onClick: () => {
-              Near.call([{
-                contractName: "social.near",
-                methodName: "set",
-                args: {
-                  data: { [state.accountId]: { name: state.name, tagline: state.tagline, description: state.description, tags: state.tags.map((acc, { name }) => Object.assign(acc, { [name]: "" }), {}), } }
+              Near.call([
+                {
+                  contractName: "social.near",
+                  methodName: "set",
+                  args: {
+                    data: {
+                      [state.accountId]: {
+                        profile: {
+                          name: state.name,
+                          tagline: state.tagline,
+                          description: state.description,
+                          tags: state.tags.map(
+                            (acc, { name }) => Object.assign(acc, { [name]: "" }),
+                            {}
+                          ),
+                          linktree: {
+                            ...state.socials,
+                            website: state.website,
+                          },
+                          category: state.category,
+                          team: state.team,
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  contractName: ownerId,
+                  methodName: "add_project",
+                  args: { account_id: state.accountId },
+                },
+                {
+                  contractName: ownerId,
+                  methodName: "edit_project",
+                  args: {
+                    account_id: state.accountId,
+                    project: {
+                      application: {
+                        integration: state.integration,
+                        stage: state.dev,
+                        geo: state.geo,
+                      }
+                    }
+                  }
                 }
-              }])
+              ])
             },
             text: <>
               <svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
