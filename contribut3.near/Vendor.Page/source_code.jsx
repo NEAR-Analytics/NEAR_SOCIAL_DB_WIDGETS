@@ -146,7 +146,6 @@ return (
             search: props.search,
             update: props.update,
             accountId,
-            buttons: [
               {
                 id: "overview",
                 text: "Overview",
