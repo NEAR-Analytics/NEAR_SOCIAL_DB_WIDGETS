@@ -129,7 +129,9 @@ const content = {
       },
       accountId: props.accountId,
     }}
-  />
+  />,
+  contracts: <Widget src={`${ownerId}/widget/Vendor.Contracts`} props={{ accountId: props.accountId }} />,
+  history: <Widget src={`${ownerId}/widget/Vendor.History`} props={{ accountId: props.accountId }} />,
 }[getContent(props.content)];
 
 return (
