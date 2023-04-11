@@ -53,9 +53,9 @@ function logConditionals() {
   console.log("child state is:", state.search);
 }
 return (
-  <props.wrapper>
+  <props.Wrapper>
     {showSearchBar && (
-      <props.search>
+      <props.Search>
         <Widget
           src="chaotictempest.near/widget/SearchPill"
           props={{
@@ -63,11 +63,11 @@ return (
             term: termVal,
           }}
         />
-      </props.search>
+      </props.Search>
     )}
 
     {state.search && (
-      <props.facets>
+      <props.Facets>
         <props.Widget
           src="chaotictempest.near/widget/Facets"
           props={{
@@ -76,27 +76,27 @@ return (
             defaultFacet: defaultFacetVal,
           }}
         />
-      </props.facets>
+      </props.Facets>
     )}
 
     {logConditionals()}
 
     {state.paginate?.hitsTotal == 0 && (
-      <props.h2>No matches were found for "{state.term}".</props.h2>
+      <props.H2>No matches were found for "{state.term}".</props.H2>
     )}
 
     {state.search?.profiles.length > 0 && (
-      <props.group>
-        <props.groupheader>
-          <props.h3>People</props.h3>
-          <props.text as="a" href={peopleUrl} small>
+      <props.Group>
+        <props.GroupHeader>
+          <props.H3>People</props.H3>
+          <props.Text as="a" href={peopleUrl} small>
             View All
-          </props.text>
-        </props.groupheader>
+          </props.Text>
+        </props.GroupHeader>
 
-        <props.items>
+        <props.Items>
           {state.search.profiles.map((profile, i) => (
-            <props.item key={profile.accountId}>
+            <props.Item key={profile.accountId}>
               <props.Widget
                 src="chaotictempest.near/widget/AccountProfileCard"
                 props={{
@@ -109,24 +109,24 @@ return (
                     }),
                 }}
               />
-            </props.item>
+            </props.Item>
           ))}
-        </props.items>
-      </props.group>
+        </props.Items>
+      </props.Group>
     )}
 
     {state.search?.components.length > 0 && (
-      <props.group>
-        <props.groupheader>
-          <props.h3>Components</props.h3>
-          <props.text as="a" href={componentsUrl} small>
+      <props.Group>
+        <props.GroupHeader>
+          <props.H3>Components</props.H3>
+          <props.Text as="a" href={componentsUrl} small>
             View All
-          </props.text>
-        </props.groupheader>
+          </props.Text>
+        </props.GroupHeader>
 
-        <props.items>
+        <props.Items>
           {state.search.components.map((component, i) => (
-            <props.item key={component.accountId + component.widgetName}>
+            <props.Item key={component.accountId + component.widgetName}>
               <props.Widget
                 src="chaotictempest.near/widget/ComponentCard"
                 props={{
@@ -139,21 +139,21 @@ return (
                     }),
                 }}
               />
-            </props.item>
+            </props.Item>
           ))}
-        </props.items>
-      </props.group>
+        </props.Items>
+      </props.Group>
     )}
 
     {state.search?.postsAndComments.length > 0 && (
-      <props.group>
-        <props.groupheader>
-          <props.h3>Posts and Comments</props.h3>
-        </props.groupheader>
+      <props.Group>
+        <props.GroupHeader>
+          <props.H3>Posts and Comments</props.H3>
+        </props.GroupHeader>
 
-        <props.items>
+        <props.Items>
           {state.search.postsAndComments.map((post, i) => (
-            <props.item
+            <props.Item
               key={`${post.accountId}/${post.postType}/${post.blockHeight}`}
             >
               <props.Widget
@@ -164,10 +164,10 @@ return (
                   content: post.postContent,
                 }}
               />
-            </props.item>
+            </props.Item>
           ))}
-        </props.items>
-      </props.group>
+        </props.Items>
+      </props.Group>
     )}
 
     {showPagination &&
@@ -196,5 +196,5 @@ return (
         }}
       />
     )}
-  </props.wrapper>
+  </props.Wrapper>
 );
