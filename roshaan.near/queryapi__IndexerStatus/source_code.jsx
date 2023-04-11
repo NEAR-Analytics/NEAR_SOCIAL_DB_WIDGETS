@@ -98,8 +98,6 @@ State.init({
   indexer_resPage: 0,
   logsPage: 0,
   statePage: 0,
-  latest_block_height: Near.block("final").header.height,
-  indexerToNetworkTipGap: 0,
 });
 
 function fetchGraphQL(operationsDoc, operationName, variables) {
@@ -163,6 +161,7 @@ const logsDoc = `
 const indexerStateDoc = `
   query IndexerState($offset: Int) {
     indexer_state(limit: ${LIMIT}, offset: $offset, where: {function_name: {_eq: "${accountId}/${indexer_name}"}}) {
+      status
       function_name
       current_block_height
     }
@@ -199,16 +198,13 @@ fetchGraphQL(logsDoc, "QueryLogs", {
 });
 
 fetchGraphQL(indexerStateDoc, "IndexerState", {
-  offset: state.statePage * LIMIT,
+  offset: 0,
 }).then((result) => {
   if (result.status === 200) {
     if (result.body.data.indexer_state.length == 1) {
       State.update({
         state: result.body.data.indexer_state,
         stateCount: result.body.data.indexer_state_aggregate.aggregate.count,
-        indexerToNetworkTipGap:
-          state.latest_block_height -
-          Number(result.body.data.indexer_state[0].current_block_height),
       });
     }
   }
@@ -334,6 +330,7 @@ return (
                 <tr>
                   <th>Function Name</th>
                   <th>Current Block Height</th>
+                  <th>Status</th>
                 </tr>
               </thead>
               <tbody>
@@ -341,6 +338,7 @@ return (
                   <tr>
                     <TableElement>{x.function_name}</TableElement>
                     <td>{x.current_block_height}</td>
+                    <TableElement>{x.status}</TableElement>
                   </tr>
                 ))}
               </tbody>
