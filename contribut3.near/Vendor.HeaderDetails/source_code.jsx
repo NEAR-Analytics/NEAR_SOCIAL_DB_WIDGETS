@@ -48,12 +48,11 @@ return (
           id: "name",
           accountId,
           onSave: (name) => {
-            const args = { data: {} };
-            if (accountId === context.accountId) {
-              args.data.profile = { name };
-            } else {
-              args.data[accountId] = { profile: { name } };
-            }
+            const args = {
+              data: {
+                [accountId]: { profile: { name } },
+              }
+            };
             Near.call({ contractName: "social.near", methodName: "set", args, deposit });
           }
         }}
