@@ -127,8 +127,36 @@ const onSearchResultClickFun = props.onSearchResultClick;
 const onPageChangeFun = props.onPageChange;
 const disableInsightsFun = props.disableInsights;
 
+function logConditionals() {
+  console.log("showSearchBar:", showSearchBar);
+  console.log("state.search:", state.search);
+  console.log(
+    "state.paginate?.hitsTotal === 0:",
+    state.paginate?.hitsTotal === 0
+  );
+  console.log(
+    "state.search?.profiles.length > 0:",
+    state.search?.profiles.length > 0
+  );
+  console.log(
+    "state.search?.components.length > 0:",
+    state.search?.components.length > 0
+  );
+  console.log(
+    "state.search?.postsAndComments.length > 0:",
+    state.search?.postsAndComments.length > 0
+  );
+  console.log(
+    "showPagination && state.paginate && state.paginate.hitsTotal > state.paginate.hitsPerPage:",
+    showPagination &&
+      state.paginate &&
+      state.paginate.hitsTotal > state.paginate.hitsPerPage
+  );
+  console.log("!disableInsightsFun:", !disableInsightsFun);
+}
 return (
   <Wrapper>
+    {logConditionals()}
     {showSearchBar && (
       <Search>
         <Widget
