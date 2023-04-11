@@ -48,6 +48,7 @@ const edit = (update, v) => (
   <LabelArea>
     <Widget src={`${ownerId}/widget/Inputs.MultiSelect`} props={{
       id,
+      noLabel: true,
       value: v,
       options,
       onChange: update,
