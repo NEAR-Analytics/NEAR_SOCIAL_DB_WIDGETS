@@ -13,7 +13,7 @@ State.init({
 
 const isModerator = Near.view(
   ownerId,
-  "check_is_admin",
+  "check_is_owner",
   { account_id: context.accountId },
   "final",
   false
