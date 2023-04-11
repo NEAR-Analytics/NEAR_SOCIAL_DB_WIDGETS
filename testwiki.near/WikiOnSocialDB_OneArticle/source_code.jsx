@@ -6,7 +6,7 @@ if (!accountId) {
   return "No account ID";
 }
 
-const authorsWhiteList = ["eugenewolf507.near"];
+const authorsWhiteList = ["neardigitalcollective.near"];
 
 const doesUserCanEditArticle = () =>
   authorsWhiteList.some((val) => val === accountId);
