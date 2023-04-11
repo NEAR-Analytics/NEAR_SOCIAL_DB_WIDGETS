@@ -32,7 +32,7 @@ const Details = styled.div`
   gap: 0.5em;
 `;
 
-const deposit = "1000000000000000000000000";
+const deposit = "1000000000000000000000";
 
 return (
   <Container>
@@ -64,12 +64,11 @@ return (
           value: state.profile.tagline,
           id: "tagline",
           onSave: (tagline) => {
-            const args = { data: {} };
-            if (accountId === context.accountId) {
-              args.data.profile = { tagline };
-            } else {
-              args.data[accountId] = { profile: { tagline } };
-            }
+            const args = {
+              data: {
+                [accountId]: { profile: { tagline } },
+              }
+            };
             Near.call({ contractName: "social.near", methodName: "set", args, deposit });
           }
         }}
