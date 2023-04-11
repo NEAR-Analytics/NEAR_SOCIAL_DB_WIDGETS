@@ -1,1 +1,5 @@
-return <div className="iframe-initialized">H</div>;
+return (
+  <div>
+    <Widget src="andyh.near/widget/RenderTestChild" />
+  </div>
+);
