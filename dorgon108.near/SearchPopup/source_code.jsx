@@ -14,6 +14,7 @@ const userId = props.accountId ?? context.accountId;
 
 const componentsUrl = `/#/calebjacob.near/widget/ComponentsPage`;
 const peopleUrl = `/#/calebjacob.near/widget/PeoplePage`;
+
 // Styling Specifications
 const Wrapper = styled.div`
   display: flex;
@@ -112,49 +113,274 @@ const Items = styled.div`
 
 const Item = styled.div``;
 
-const onSearchChange = ({ term }) => {
-  console.log("search change");
-  props.writeStateTerm(term);
-  props.updateSearchHits({ term, pageNumber: INITIAL_PAGE });
+//*********SEARCH FUNCTIONS ******** */
+
+// Reset Search Results
+const resetSearcheHits = () => {
+  State.update({
+    currentPage: 0,
+    search: undefined,
+    paginate: undefined,
+    facet: undefined,
+  });
 };
 
-const onSearchChangeFun = onSearchChange;
-const termVal = props.term;
-const facetsVal = props.facets;
-const onFacetClickFun = props.onFacetClick;
-const defaultFacetVal = props.facets[0];
-const onSearchResultClickFun = props.onSearchResultClick;
-const onPageChangeFun = props.onPageChange;
-const disableInsightsFun = props.disableInsights;
+// updates search params as the user enters in a search value
+const writeStateTerm = (term) => {
+  State.update({
+    term,
+  });
 
-function logConditionals() {
-  console.log("showSearchBar:", showSearchBar);
-  console.log("state.search:", state.search);
-  console.log("paginate?", state.paginate?.hitsTotal === 0);
-  console.log("state.search?.profiles:", state.search?.profiles.length > 0);
-  console.log("state.search?", state.search?.components.length > 0);
-  console.log(
-    "state.search?.postsAndComment",
-    state.search?.postsAndComments.length > 0
-  );
-  console.log(
-    "showPagination && state.paginate && state.paginate.hitsTotal > state.paginate.hitsPerPage:",
-    showPagination &&
-      state.paginate &&
-      state.paginate.hitsTotal > state.paginate.hitsPerPage
-  );
-  console.log("!disableInsightsFun:", !disableInsightsFun);
-  console.log("child state is:", state.search);
-}
+  if (term === "") {
+    resetSearcheHits();
+  }
+};
+
+// creates an array of profiles
+const profiles = (records) => {
+  const profiles = [];
+  for (const [i, record] of records ?? []) {
+    profiles.push({
+      accountId: record.author,
+      searchPosition: i,
+    });
+  }
+  return profiles;
+};
+
+// creates an array of objects that provide the details of the loaded posts
+const posts = (content, postType) => {
+  const posts = [];
+  for (const [i, post] of content || []) {
+    const accountId = post.author;
+    const blockHeight = post.objectID.split("/").slice(-1)[0];
+    const postContent = {
+      type: "md",
+      text: post.content,
+    };
+    const headerStyling =
+      postType === "post"
+        ? "border rounded-4 p-3 pb-1"
+        : "pt-3 border-top pb-2";
+
+    posts.push({
+      accountId,
+      blockHeight,
+      postContent,
+      postType,
+      headerStyling,
+      searchPosition: i,
+    });
+  }
+  return posts;
+};
+
+// creates an array of components
+const components = (records) => {
+  const components = [];
+  for (const [i, component] of records || []) {
+    const idParts = component.objectID.split("/");
+    const widgetName = idParts[idParts.length - 1];
+    const accountId = component.author;
+    components.push({
+      accountId,
+      widgetName,
+      searchPosition: i,
+    });
+  }
+  return components;
+};
+
+const categorizeSearchHits = (rawResp) => {
+  const results = {};
+  for (const [i, result] of rawResp.hits?.entries()) {
+    const { categories: categories_raw } = result;
+    if (categories_raw.length > 1) {
+      categories_raw.sort();
+    }
+
+    const categories = categories_raw.join(", ");
+    results[categories] = results[categories] || [];
+    results[categories].push([i + 1, result]);
+  }
+  return {
+    results,
+    hitsTotal: rawResp.nbHits,
+    hitsPerPage: rawResp.hitsPerPage,
+  };
+};
+
+const debounce = (callable, timeout) => {
+  return (args) => {
+    clearTimeout(state.timer);
+    State.update({
+      timer: setTimeout(() => callable(args), timeout ?? 50),
+    });
+  };
+};
+
+const fetchSearchHits = (query, { pageNumber, configs, optionalFilters }) => {
+  configs = configs ?? configsPerFacet(state.facet);
+  let body = {
+    query,
+    page: pageNumber ?? 0,
+    optionalFilters: optionalFilters ?? [
+      "categories:profile<score=3>",
+      "categories:widget<score=2>",
+      "categories:post<score=1>",
+      "categories:comment<score=0>",
+    ],
+    clickAnalytics: true,
+    ...configs,
+  };
+  return asyncFetch(API_URL, {
+    body: JSON.stringify(body),
+    headers: {
+      "Content-Type": "application/json; charset=UTF-8",
+      "X-Algolia-Api-Key": SEARCH_API_KEY,
+      "X-Algolia-Application-Id": APPLICATION_ID,
+    },
+    method: "POST",
+  });
+};
+
+const updateSearchHits = debounce(({ term, pageNumber, configs }) => {
+  fetchSearchHits(term, { pageNumber, configs }).then((resp) => {
+    const { results, hitsTotal, hitsPerPage } = categorizeSearchHits(resp.body);
+    State.update({
+      search: {
+        profiles: profiles(results["profile"]),
+        components: components(results["widget"]),
+        postsAndComments: posts(results["post"], "post").concat(
+          posts(results["comment, post"], "comment")
+        ),
+      },
+      currentPage: 0,
+      paginate: {
+        hitsTotal,
+        hitsPerPage,
+      },
+      queryID: resp.body.queryID,
+    });
+  });
+});
+
+const onSearchChange = ({ term }) => {
+  writeStateTerm(term);
+  updateSearchHits({ term, pageNumber: INITIAL_PAGE });
+};
+
+const onPageChange = (pageNumber) => {
+  const algoliaPageNumber = pageNumber - 1;
+  if (algoliaPageNumber === state.currentPage) {
+    console.log(`Selected the same page number as before: ${pageNumber}`);
+    return;
+  }
+  // Need to clear out old search data otherwise we'll get multiple entries
+  // from the previous pages as well. Seems to be cache issue on near.social.
+  State.update({
+    search: undefined,
+    currentPage: algoliaPageNumber,
+  });
+  updateSearchHits({ term: state.term, pageNumber: algoliaPageNumber });
+};
+
+const FACET_TO_CATEGORY = {
+  Users: "profile",
+  Apps: "app",
+  Components: "widget",
+  Posts: "post",
+};
+
+const searchFilters = (facet) => {
+  const category = FACET_TO_CATEGORY[facet];
+  let filters = category ? `categories:${category}` : undefined;
+  if (category === "post") {
+    filters = `(${filters} OR categories:comment)`;
+  }
+  if (category === "app") {
+    filters = `(${filters} OR tags:app)`;
+  }
+  if (filters) {
+    filters = `${filters} AND `;
+  }
+  filters = `${filters}NOT author:hypefairy.near AND NOT _tags:hidden`;
+
+  return filters;
+};
+
+const restrictSearchable = (facet) => {
+  const category = FACET_TO_CATEGORY[facet];
+  let restrictSearchableAttrs = undefined;
+  if (category === "post") {
+    // Only the content should be searchable when the posts facet is selected.
+    restrictSearchableAttrs = ["content"];
+  }
+  return restrictSearchableAttrs;
+};
+
+const configsPerFacet = (facet) => {
+  return {
+    filters: searchFilters(facet),
+    restrictSearchableAttributes: restrictSearchable(facet),
+  };
+};
+
+const onFacetClick = (facet) => {
+  if (facet === state.facet) {
+    console.log("Clicked the same facet");
+    return;
+  }
+
+  State.update({
+    facet,
+  });
+
+  updateSearchHits({
+    term: state.term,
+    configs: configsPerFacet(facet),
+  });
+};
+
+const onSearchResultClick = ({ searchPosition, objectID, eventName }) => {
+  const position =
+    searchPosition + state.currentPage * state.paginate.hitsPerPage;
+  const event = {
+    type: "clickedObjectIDsAfterSearch",
+    data: {
+      eventName,
+      userToken: userId.replace(".", "+"),
+      queryID: state.queryID,
+      objectIDs: [objectID],
+      positions: [position],
+      timestamp: Date.now(),
+    },
+  };
+
+  // Deferred due to State.update causing multiple clicks to be needed
+  // before the browser redirect to the page the user clicks on.
+  setTimeout(() => {
+    // This will trigger the Insights widget:
+    State.update({ event });
+  }, 50);
+};
+
 return (
   <Wrapper>
+    {showHeader && (
+      <Header>
+        <H1>Search</H1>
+        <H2>Explore and find everything on the Blockchain Operating System</H2>
+      </Header>
+    )}
+
     {showSearchBar && (
       <Search>
         <Widget
           src="chaotictempest.near/widget/SearchPill"
           props={{
             onChange: onSearchChange,
-            term: termVal,
+            term: props.term,
           }}
         />
       </Search>
@@ -165,15 +391,13 @@ return (
         <Widget
           src="chaotictempest.near/widget/Facets"
           props={{
-            facets: facetsVal,
-            onFacetClick: onFacetClickFun,
-            defaultFacet: defaultFacetVal,
+            facets,
+            onFacetClick,
+            defaultFacet: facets[0],
           }}
         />
       </Facets>
     )}
-
-    {logConditionals()}
 
     {state.paginate?.hitsTotal == 0 && (
       <H2>No matches were found for "{state.term}".</H2>
@@ -196,7 +420,7 @@ return (
                 props={{
                   accountId: profile.accountId,
                   onClick: () =>
-                    onSearchResultClickFun({
+                    onSearchResultClick({
                       searchPosition: profile.searchPosition,
                       objectID: `${profile.accountId}/profile`,
                       eventName: "Clicked Profile After Search",
@@ -226,7 +450,7 @@ return (
                 props={{
                   src: `${component.accountId}/widget/${component.widgetName}`,
                   onClick: () =>
-                    onSearchResultClickFun({
+                    onSearchResultClick({
                       searchPosition: component.searchPosition,
                       objectID: `${component.accountId}/widget/${component.widgetName}`,
                       eventName: "Clicked Component After Search",
@@ -272,14 +496,12 @@ return (
           props={{
             totalCount: state.paginate.hitsTotal,
             pageSize: state.paginate.hitsPerPage,
-            onPageChange: onPageChangeFun,
+            onPageChange,
           }}
-        >
-          Hi
-        </Widget>
+        />
       )}
 
-    {!disableInsightsFun && (
+    {!props.disableInsights && (
       <Widget
         src="chaotictempest.near/widget/Insights"
         props={{
