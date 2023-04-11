@@ -282,7 +282,7 @@ return (
       icon: about,
       id: "help",
     })}
-    <NavItem href="/#/">
+    <NavItem href="/">
       <svg
         width="24"
         height="25"
