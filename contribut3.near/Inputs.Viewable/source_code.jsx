@@ -74,7 +74,7 @@ const EditButtonContainer = styled.div`
 `;
 
 return (
-  <Container >
+  <Container className={big ? "big" : ""}>
     <Row>
       {noLabel ? (
         view
