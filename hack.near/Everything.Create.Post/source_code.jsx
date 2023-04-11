@@ -1,5 +1,5 @@
 // Repository: https://github.com/near-everything/idea-creator
-const externalAppUrl = "https://idea-creator-seven.vercel.app";
+const externalAppUrl = "https://post-creator.vercel.app";
 
 /**
  * Initial Path (optional but recommended)
@@ -29,7 +29,7 @@ const initialPayload = {};
  */
 const requestHandler = (request, response, Utils) => {
   switch (request.type) {
-    case "create-post":
+    case "create-thing":
       handleCreatePost(request, response);
       break;
   }
