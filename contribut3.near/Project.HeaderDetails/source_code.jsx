@@ -13,7 +13,7 @@ if (!state.profileIsFetched) {
     { keys: [`${accountId}/profile`] },
     "final",
     false
-  ).then((profile) => State.update({ profile, profileIsFetched: true }));
+  ).then((profile) => State.update({ profile: profile[accountId].profile, profileIsFetched: true }));
 }
 
 const Container = styled.div`
