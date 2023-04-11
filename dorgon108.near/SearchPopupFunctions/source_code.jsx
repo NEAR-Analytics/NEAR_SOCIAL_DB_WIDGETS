@@ -265,10 +265,6 @@ const onSearchResultClick = ({ searchPosition, objectID, eventName }) => {
   }, 50);
 };
 
-const sayHi = () => {
-  console.log("dor says hi");
-};
-
 return (
   <div>
     <Widget
