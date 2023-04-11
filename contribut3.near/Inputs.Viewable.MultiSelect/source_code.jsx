@@ -48,7 +48,6 @@ const edit = (update, v) => (
   <LabelArea>
     <Widget src={`${ownerId}/widget/Inputs.MultiSelect`} props={{
       id,
-      label,
       value: v,
       options,
       onChange: update,
@@ -65,7 +64,7 @@ return (
       label,
       value,
       edit,
-      view: value.map(({ name }) => name).join(","),
+      view: value.map(({ name }) => name).join(", "),
     }}
   />
 );
