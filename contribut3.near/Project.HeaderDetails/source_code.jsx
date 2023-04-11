@@ -41,7 +41,7 @@ return (
     <Details>
       <Widget
         src={`${ownerId}/widget/NameAndAccount`}
-        props={{ accountId, name: state.profile.name }}
+        props={{ accountId, name: state.profile.name ?? accountId }}
       />
       <Widget
         src={`${ownerId}/widget/Inputs.Viewable.OneLiner`}
