@@ -75,15 +75,15 @@ if (!state.proposalsCountFetched) {
 }
 
 if (!state.invitesCountFetched) {
-  Near.asyncView(
-    ownerId,
-    "get_entity_invites",
-    { account_id: accountId },
-    "final",
-    false
-  ).then((invites) =>
-    State.update({ invitesCount: invites.length, invitesCountFetched: true })
-  );
+  // Near.asyncView(
+  //   ownerId,
+  //   "get_entity_invites",
+  //   { account_id: accountId },
+  //   "final",
+  //   false
+  // ).then((invites) =>
+  //   State.update({ invitesCount: invites.length, invitesCountFetched: true })
+  // );
 }
 
 if (!state.isContributorFetched) {
