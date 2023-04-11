@@ -103,10 +103,10 @@ const createNewButton = ({ id, text, icon }) => (
 
 const scaleOut = styled.keyframes`
   from {
-    transform:  scaleY(0);
+    transform: scaleY(0);
   }
   to {
-    transform:  scaleY(1);
+    transform: scaleY(1);
   }
 `;
 
@@ -120,7 +120,6 @@ const DropdownList = styled.ul`
   padding: 0px;
   margin: 0px;
   transform-origin: top right;
-  min-width: 10em;
   width: 100%;
 
   &[data-state="open"] {
