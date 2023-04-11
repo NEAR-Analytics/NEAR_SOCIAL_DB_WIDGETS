@@ -12,7 +12,7 @@ return (
       </div>
     </div>
     <Widget
-      src="evrything.near/widget/Everything.Template"
+      src="hack.near/widget/Everything.Template"
       props={{
         accountId: accountId,
         font: "Courier",
