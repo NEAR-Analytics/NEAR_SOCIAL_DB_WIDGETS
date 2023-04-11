@@ -130,20 +130,11 @@ const disableInsightsFun = props.disableInsights;
 function logConditionals() {
   console.log("showSearchBar:", showSearchBar);
   console.log("state.search:", state.search);
+  console.log("paginate?", state.paginate?.hitsTotal === 0);
+  console.log("state.search?.profiles:", state.search?.profiles.length > 0);
+  console.log("state.search?", state.search?.components.length > 0);
   console.log(
-    "state.paginate?.hitsTotal === 0:",
-    state.paginate?.hitsTotal === 0
-  );
-  console.log(
-    "state.search?.profiles.length > 0:",
-    state.search?.profiles.length > 0
-  );
-  console.log(
-    "state.search?.components.length > 0:",
-    state.search?.components.length > 0
-  );
-  console.log(
-    "state.search?.postsAndComments.length > 0:",
+    "state.search?.postsAndComment",
     state.search?.postsAndComments.length > 0
   );
   console.log(
@@ -153,6 +144,7 @@ function logConditionals() {
       state.paginate.hitsTotal > state.paginate.hitsPerPage
   );
   console.log("!disableInsightsFun:", !disableInsightsFun);
+  console.log(state);
 }
 return (
   <Wrapper>
