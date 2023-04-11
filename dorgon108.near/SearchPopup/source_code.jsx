@@ -112,6 +112,7 @@ const Items = styled.div`
 
 const Item = styled.div``;
 
+props.sayHi();
 return (
   <Wrapper>
     {showSearchBar && (
@@ -228,7 +229,7 @@ return (
       </Group>
     )}
 
-    {props.showPagination &&
+    {showPagination &&
       state.paginate &&
       state.paginate.hitsTotal > state.paginate.hitsPerPage && (
         <Widget
