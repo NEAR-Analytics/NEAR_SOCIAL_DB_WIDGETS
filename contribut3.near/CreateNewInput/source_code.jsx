@@ -117,8 +117,6 @@ const DropdownList = styled.ul`
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 5px;
   list-style-type: none;
-  position: absolute;
-  inset: 0px 0px auto auto;
   padding: 0px;
   margin: 0px;
   transform-origin: top right;
