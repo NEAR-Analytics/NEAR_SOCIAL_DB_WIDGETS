@@ -37,8 +37,8 @@ if (!state.descriptionIsFetched) {
     { keys: [`${accountId}/profile/description`] },
     "final",
     false
-  ).then((description) =>
-    State.update({ description, descriptionIsFetched: true })
+  ).then((data) =>
+    State.update({ description: data[accountId].profile.description, descriptionIsFetched: true })
   );
 }
 
