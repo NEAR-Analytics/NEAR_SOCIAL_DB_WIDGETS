@@ -148,7 +148,6 @@ function logConditionals() {
 }
 return (
   <Wrapper>
-    {logConditionals()}
     {showSearchBar && (
       <Search>
         <Widget
