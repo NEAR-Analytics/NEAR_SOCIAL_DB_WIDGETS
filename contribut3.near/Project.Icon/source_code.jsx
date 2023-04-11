@@ -18,8 +18,6 @@ if (!state.profileIsFetched) {
   return "Loading...";
 }
 
-console.log(state.profile)
-
 const fullName = state.profile.name || state.profile.name || accountId;
 const image = state.profile.image;
 const url =
