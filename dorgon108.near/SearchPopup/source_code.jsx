@@ -148,7 +148,6 @@ function logConditionals() {
 }
 return (
   <Wrapper>
-    {logConditionals()}
     {showSearchBar && (
       <Search>
         <Widget
@@ -173,6 +172,8 @@ return (
         />
       </Facets>
     )}
+
+    {logConditionals()}
 
     {state.paginate?.hitsTotal == 0 && (
       <H2>No matches were found for "{state.term}".</H2>
