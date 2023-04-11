@@ -70,7 +70,7 @@ const EditButtonContainer = styled.div`
 `;
 
 return (
-  <Container big={big}>
+  <div>
     <Row>
       {noLabel ? (
         view
@@ -95,6 +95,12 @@ return (
       </EditButtonContainer>
     </Row>
 
-    {state.edit ? edit((value) => State.update({ value }), state.value) : noLabel ? <></> : view}
-  </Container>
+    {state.edit ? (
+      edit((value) => State.update({ value }), state.value)
+    ) : noLabel ? (
+      <></>
+    ) : (
+      view
+    )}
+  </div>
 );
