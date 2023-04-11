@@ -18,7 +18,7 @@ const contributor = Near.view(
 
 const contributions = Near.view(
   ownerId,
-  "get_contributor_contributions",
+  "get_vendor_contributions",
   { account_id: accountId },
   "final"
 );
