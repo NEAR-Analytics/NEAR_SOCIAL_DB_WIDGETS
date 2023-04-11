@@ -145,8 +145,6 @@ const suppliedAssets = hasData
     })
   : undefined;
 
-console.log(account.borrowed);
-
 // get portfolio borrowed assets
 const borrowedAssets = hasData
   ? account.borrowed.map((borrowedAsset) => {
@@ -201,6 +199,18 @@ const borrowedAssets = hasData
       );
     })
   : undefined;
+
+console.log(account.borrowed, borrowedAssets);
+
+if (!borrowedAssets.length) {
+  borrowedAssets = (
+    <tr>
+      <td colspan="5" class="text-center">
+        [No borrowed assets]
+      </td>
+    </tr>
+  );
+}
 
 return (
   <div>
