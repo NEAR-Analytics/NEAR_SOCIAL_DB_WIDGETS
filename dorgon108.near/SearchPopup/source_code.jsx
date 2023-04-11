@@ -179,7 +179,7 @@ return (
       <H2>No matches were found for "{state.term}".</H2>
     )}
 
-    {props.search?.profiles.length > 0 && (
+    {state.search?.profiles.length > 0 && (
       <Group>
         <GroupHeader>
           <H3>People</H3>
