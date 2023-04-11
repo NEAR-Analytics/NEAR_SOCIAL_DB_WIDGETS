@@ -103,10 +103,10 @@ const createNewButton = ({ id, text, icon }) => (
 
 const scaleOut = styled.keyframes`
   from {
-    transform: translate(0px, 0px) scaleY(0);
+    transform:  scaleY(0);
   }
   to {
-    transform: translate(0px, 40px) scaleY(1);
+    transform:  scaleY(1);
   }
 `;
 
