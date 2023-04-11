@@ -40,7 +40,7 @@ if (!state.descriptionIsFetched) {
 
 return (
   <Container>
-    <Heading>About project</Heading>
+    <Heading>About vendor</Heading>
     <Widget
       src={`${ownerId}/widget/Inputs.Viewable.TextArea`}
       props={{
