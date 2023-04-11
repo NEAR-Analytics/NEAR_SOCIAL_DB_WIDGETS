@@ -116,6 +116,7 @@ const DropdownList = styled.ul`
   transform: translate(0px, var(--y-pos)) scale(0);
   transition: transform 0.2s ease-in-out;
   transform-origin: top right;
+  min-width: 10em;
   width: 100%;
 
   &.show {
@@ -151,8 +152,7 @@ const MenuText = styled.span`
 return (
   <DropdownMenu.Root asChild={true} onOpenChange={(show) => State.update({ show })} open={state.show}>
     <DropdownMenu.Trigger asChild={true}>
-      <MenuIcon
-      >
+      <MenuIcon>
         {icon}
         <MenuText>Create new...</MenuText>
         <Arrow className={state.show ? "show" : ""}>{arrowIcon}</Arrow>
