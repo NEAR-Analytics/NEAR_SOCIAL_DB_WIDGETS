@@ -42,7 +42,7 @@ return (
       <Widget
         src={`${ownerId}/widget/Inputs.Viewable.NameAndAccount`}
         props={{
-          value: state.profile.name,
+          value: "",
           id: "name",
           accountId,
           onSave: (name) =>
