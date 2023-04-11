@@ -26,6 +26,8 @@ const content = JSON.parse(
 
 const hideThing = () => {
   // this will hide from ALL domains... how can this be selective?
+  // and it only works if hidden by the account...
+  // maybe the "owner" account could have moderation abilities
   Social.set(
     {
       modification: {
