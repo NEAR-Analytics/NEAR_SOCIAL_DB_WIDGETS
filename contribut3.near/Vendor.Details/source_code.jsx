@@ -103,7 +103,9 @@ return (
         id: "stage",
         value: [{ name: "Short-term work", id: "short" }, { name: "Long-term work", id: "long" }, { name: "Full-time job", id: "full" }],
         options: [
-          { name: "Short-term work", id: "short" }, { name: "Long-term work", id: "long" }, { name: "Full-time job", id: "full" }
+          { name: "Short-term work", id: "short" },
+          { name: "Long-term work", id: "long" },
+          { name: "Full-time job", id: "full" }
         ],
         onSave: ([{ name: stage }]) => onSave({ stage }),
       }}
