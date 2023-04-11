@@ -131,6 +131,20 @@ const CTARow = styled.div`
   gap: 0.75em;
 `;
 
+const content = {
+  overview: <Widget src={`${ownerId}/widget/Project.About`} props={{
+    onSave: (s) => {
+      console.log(s);
+    },
+    accountId: props.accountId,
+  }} />,
+  requests: <Widget src={`${ownerId}/widget/Project.Requests`} props={{ accountId: props.accountId }} />,
+  people: <Widget src={`${ownerId}/widget/Project.People`} props={{ accountId: props.accountId }} />,
+  funding: <Widget src={`${ownerId}/widget/Project.Funding`} props={{ accountId: props.accountId }} />,
+  history: <Widget src={`${ownerId}/widget/Project.History`} props={{ accountId: props.accountId }} />,
+  graduation: <Widget src={`${ownerId}/widget/Project.Graduation`} props={{ accountId: props.accountId }} />,
+}[getContent(props.content)];
+
 return (
   <Container>
     <Header>
