@@ -32,7 +32,7 @@ const Details = styled.div`
   gap: 0.5em;
 `;
 
-const deposit = "1000000000000000000000";
+const deposit = "000000000000000000000";
 
 return (
   <Container>
