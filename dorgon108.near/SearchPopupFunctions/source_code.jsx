@@ -365,6 +365,12 @@ const onSearchResultClick = ({ searchPosition, objectID, eventName }) => {
   }, 50);
 };
 
+if (props.term !== state.exterm) {
+  State.update({
+    exterm: props.term,
+  });
+  onSearchChange({ term: props.term });
+}
 return (
   <Wrapper>
     {state.search && (
