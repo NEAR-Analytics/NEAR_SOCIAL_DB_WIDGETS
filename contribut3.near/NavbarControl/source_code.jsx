@@ -63,7 +63,7 @@ const ActionArea = styled.div`
 
 const logo = (
   <LogoArea
-    href={`/#/${ownerId}/widget/Index`}
+    href={`/${ownerId}/widget/Index`}
     onClick={() => props.update({ tab: "home", content: "", search: "" })}
   >
     <Widget src={`${ownerId}/widget/Logo`} />
