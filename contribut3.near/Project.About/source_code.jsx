@@ -21,6 +21,21 @@ const Heading = styled.div`
   width: 100%;
 `;
 
+State.init({
+  description: "",
+  descriptionIsFetched: false,
+});
+
+if (!state.descriptionIsFetched) {
+  Near.asyncView(
+    "social.near",
+    "get",
+    { keys: [`${accountId}/profile/description`] },
+    "final",
+    false,
+  ).then((data) => State.update({ description: data[accountId].profile.description, descriptionIsFetched: true }));
+}
+
 return (
   <Container>
     <Heading>About project</Heading>
