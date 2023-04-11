@@ -44,6 +44,7 @@ return (
         props={{
           value: state.profile.name,
           id: "name",
+          accountId,
           onSave: (name) =>
             Near.call("social.near", "set", {
               data: { [accountId]: { profile: { name } } },
