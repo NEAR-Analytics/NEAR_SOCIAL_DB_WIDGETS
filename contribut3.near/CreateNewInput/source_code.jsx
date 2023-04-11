@@ -88,15 +88,17 @@ const DropdownLi = styled.li`
 `;
 
 const createNewButton = ({ id, text, icon }) => (
-  <DropdownLi>
-    <DropdownItem
-      href={`/${ownerId}/widget/Index?tab=${id}`}
-      onClick={() => props.update({ tab: id, content: "" })}
-    >
-      <i className={icon} />
-      <span>{text}</span>
-    </DropdownItem>
-  </DropdownLi>
+  <DropdownMenu.Item asChild={true}>
+    <DropdownLi>
+      <DropdownItem
+        href={`/${ownerId}/widget/Index?tab=${id}`}
+        onClick={() => props.update({ tab: id, content: "" })}
+      >
+        <i className={icon} />
+        <span>{text}</span>
+      </DropdownItem>
+    </DropdownLi>
+  </DropdownMenu.Item>
 );
 
 const DropdownList = styled.ul`
@@ -147,30 +149,34 @@ const MenuText = styled.span`
 `;
 
 return (
-  <DropdownContainer>
-    <MenuIcon
-      onClick={() => State.update({ show: !state.show })}
-      onBlur={() => State.update({ show: false })}
-    >
-      {icon}
-      <MenuText>Create new...</MenuText>
-      <Arrow className={state.show ? "show" : ""}>{arrowIcon}</Arrow>
-    </MenuIcon>
+  <DropdownMenu.Root asChild={true}>
+    <DropdownMenu.Trigger asChild={true}>
+      <MenuIcon
+        onClick={() => State.update({ show: !state.show })}
+        onBlur={() => State.update({ show: false })}
+      >
+        {icon}
+        <MenuText>Create new...</MenuText>
+        <Arrow className={state.show ? "show" : ""}>{arrowIcon}</Arrow>
+      </MenuIcon>
+    </DropdownMenu.Trigger>
 
-    <DropdownList className={state.show ? "show" : ""}>
-      {createNewButton({
-        id: "createproject",
-        text: "Project",
-        icon: "bi-boxes",
-      })}
-      <li>
-        <DropdownDivider />
-      </li>
-      {createNewButton({
-        id: "createvendor",
-        text: "Vendor",
-        icon: "bi-diagram-2",
-      })}
-    </DropdownList>
-  </DropdownContainer>
+    <DropdownMenu.Content asChild={true}>
+      <DropdownList className={state.show ? "show" : ""}>
+        {createNewButton({
+          id: "createproject",
+          text: "Project",
+          icon: "bi-boxes",
+        })}
+        <li>
+          <DropdownDivider />
+        </li>
+        {createNewButton({
+          id: "createvendor",
+          text: "Vendor",
+          icon: "bi-diagram-2",
+        })}
+      </DropdownList>
+    </DropdownMenu.Content>
+  </DropdownMenu.Root>
 );
