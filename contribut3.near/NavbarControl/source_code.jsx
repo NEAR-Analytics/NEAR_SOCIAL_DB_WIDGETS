@@ -17,6 +17,7 @@ if (!state.creditsIsFetched) {
 }
 
 const Navbar = styled.div`
+  z-index: 2;
   display: flex;
   flex-direction: row;
   align-items: center;
