@@ -13,6 +13,11 @@ State.init({
 });
 
 const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
 `;
 
 const Label = styled.label`
@@ -64,15 +69,7 @@ const EditButtonContainer = styled.div`
 `;
 
 return (
-  <div style={{
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "flex-start",
-    justifyContent: "flex-start",
-    gap: big ? ".625em" : ".25em",
-    width: "100%",
-
-  }}>
+  <Container >
     <Row>
       {noLabel ? (
         view
@@ -104,5 +101,5 @@ return (
     ) : (
       view
     )}
-  </div>
+  </Container>
 );
