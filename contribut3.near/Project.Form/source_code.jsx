@@ -187,16 +187,6 @@ return (
           onChange: (geo) => State.update({ geo }),
         }}
       />
-      <Widget
-        src={`${ownerId}/widget/Inputs.Viewable.Text`}
-        props={{
-          label: "Website",
-          id: "website",
-          value: state.website,
-          link: "https://layers.gg",
-          onSave: (website) => State.update({ website }),
-        }}
-      />
       <FormFooter>
         <Widget
           src={`${ownerId}/widget/Buttons.Green`}
