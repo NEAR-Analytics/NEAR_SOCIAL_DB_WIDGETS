@@ -99,60 +99,15 @@ return (
     <Widget
       src={`${ownerId}/widget/Inputs.Viewable.MultiSelect`}
       props={{
-        label: "Stage",
-        id: "stage",
+        label: "Available for",
+        id: "work",
         value: [{ name: "Short-term work", id: "short" }, { name: "Long-term work", id: "long" }, { name: "Full-time job", id: "full" }],
         options: [
           { name: "Short-term work", id: "short" },
           { name: "Long-term work", id: "long" },
           { name: "Full-time job", id: "full" }
         ],
-        onSave: ([{ name: stage }]) => onSave({ stage }),
-      }}
-    />
-    <Widget
-      src={`${ownerId}/widget/Inputs.Viewable.Number`}
-      props={{
-        label: "Funding goal",
-        id: "goal",
-        value: 1000000,
-        onSave: (goal) => onSave({ goal }),
-      }}
-    />
-    <Widget
-      src={`${ownerId}/widget/Inputs.Viewable.Number`}
-      props={{
-        label: "Raised",
-        id: "raised",
-        value: 600000,
-        onSave: (raised) => onSave({ raised }),
-      }}
-    />
-    <Widget
-      src={`${ownerId}/widget/Inputs.Viewable.AccountId`}
-      props={{
-        label: "CEO",
-        id: "ceo",
-        value: "petarvujovic.near",
-        onSave: (ceo) => onSave({ ceo }),
-      }}
-    />
-    <Widget
-      src={`${ownerId}/widget/Inputs.Viewable.AccountId`}
-      props={{
-        label: "CTO",
-        id: "cto",
-        value: "petarvujovic.near",
-        onSave: (cto) => onSave({ cto }),
-      }}
-    />
-    <Widget
-      src={`${ownerId}/widget/Inputs.Viewable.Number`}
-      props={{
-        label: "Company size",
-        id: "size",
-        value: 10,
-        onSave: (team) => onSave({ team }),
+        onSave: (work) => onSave({ work: work.reduce((acc, { id }) => Object.assign(acc, { [id]: "" }), {}) }),
       }}
     />
     <Widget
