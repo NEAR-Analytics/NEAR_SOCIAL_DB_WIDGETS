@@ -134,6 +134,8 @@ const content = {
   history: <Widget src={`${ownerId}/widget/Vendor.History`} props={{ accountId: props.accountId }} />,
 }[getContent(props.content)];
 
+console.log("here")
+
 return (
   <Container>
     <Header>
