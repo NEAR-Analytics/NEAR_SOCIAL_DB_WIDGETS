@@ -28,7 +28,7 @@ if (state.proposalsCount === null) {
 if (state.invitesCount === null) {
   Near.asyncView(
     ownerId,
-    "get_contributor_invites",
+    "get_vendor",
     { account_id: context.accountId },
     "final",
     false
