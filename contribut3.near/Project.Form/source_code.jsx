@@ -7,6 +7,7 @@ const Container = styled.div`
   justify-content: center;
   width: 100%;
   gap: 3em;
+  padding-bottom: 3em;
 `;
 
 const Header = styled.h1`
