@@ -132,13 +132,39 @@ State.init({
 })
 
 return (
-  <LabelArea>
-    <Input
-      id
-      type={isLink ? "url" : "text"}
-      value={state.value}
-      onChange={(e) => State.update({ value: e.target.value })}
-    />
-    <SaveButton onClick={() => onSave(state.value)}>Save</SaveButton>
-  </LabelArea>
+  <Container big={false}>
+    <Row>
+      {noLabel ? (
+        view
+      ) : (
+        <Label htmlFor={id} big={false}>
+          {label}
+        </Label>
+      )}
+      <EditButtonContainer>
+        <EditButton
+          onClick={() => State.update({ edit: false })}
+          className={`right ${state.edit ? "" : "hidden"}`}
+        >
+          Cancel
+        </EditButton>
+        <EditButton
+          onClick={() => State.update({ edit: true })}
+          className={`left ${state.edit ? "hidden" : ""}`}
+        >
+          Edit
+        </EditButton>
+      </EditButtonContainer>
+    </Row>
+
+    <LabelArea>
+      <Input
+        id
+        type={isLink ? "url" : "text"}
+        value={state.value}
+        onChange={(e) => State.update({ value: e.target.value })}
+      />
+      <SaveButton onClick={() => onSave(state.value)}>Save</SaveButton>
+    </LabelArea>
+  </Container>
 );
