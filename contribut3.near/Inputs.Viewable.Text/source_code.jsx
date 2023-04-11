@@ -164,7 +164,15 @@ return (
     </Row>
 
     {state.edit ? (
-      edit((value) => State.update({ value }), state.value)
+      <LabelArea>
+        <Input
+          id
+          type={isLink ? "url" : "text"}
+          value={v}
+          onChange={(e) => State.update({ value: e.target.value })}
+        />
+        <SaveButton onClick={() => onSave(state.value)}>Save</SaveButton>
+      </LabelArea>
     ) : noLabel ? (
       <></>
     ) : (
