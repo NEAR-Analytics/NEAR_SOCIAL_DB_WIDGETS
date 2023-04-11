@@ -97,7 +97,7 @@ return (
                     {
                       text: "Propose contribution",
                       icon: "bi-person-up",
-                      href: `/#/${ownerId}/widget/Index?tab=create&content=proposal&accountId=${accountId}`,
+                      href: `/${ownerId}/widget/Index?tab=create&content=proposal&accountId=${accountId}`,
                       onClick: () =>
                         props.update({
                           tab: "create",
