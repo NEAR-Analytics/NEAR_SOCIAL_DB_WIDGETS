@@ -159,7 +159,7 @@ return (
 
     <DropdownList className={state.show ? "show" : ""}>
       {createNewButton({
-        id: "create-project",
+        id: "createproject",
         text: "Project",
         icon: "bi-boxes",
       })}
@@ -167,7 +167,7 @@ return (
         <DropdownDivider />
       </li>
       {createNewButton({
-        id: "create-vendor",
+        id: "createvendor",
         text: "Vendor",
         icon: "bi-diagram-2",
       })}
