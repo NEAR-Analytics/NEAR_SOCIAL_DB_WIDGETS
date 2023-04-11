@@ -132,7 +132,7 @@ State.init({
 })
 
 return (
-  <Container big={false}>
+  <div>
     <Row>
       {noLabel ? (
         view
@@ -166,5 +166,5 @@ return (
       />
       <SaveButton onClick={() => onSave(state.value)}>Save</SaveButton>
     </LabelArea>
-  </Container>
+  </div>
 );
