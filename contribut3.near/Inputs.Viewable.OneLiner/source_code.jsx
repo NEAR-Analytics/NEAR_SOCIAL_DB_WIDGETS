@@ -60,6 +60,7 @@ return (
             value={v}
             onChange={(e) => update(e.target.value)}
           />
+          <CommitButton data={{ profile: { tagline: value } }}>Save</CommitButton>
           <SaveButton onClick={() => onSave(v)}>Save</SaveButton>
         </LabelArea>
       ),
