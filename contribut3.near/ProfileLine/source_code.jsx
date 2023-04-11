@@ -38,7 +38,7 @@ if (!state.profileFetched) {
   State.update({ profile, profileFetched: true });
 }
 
-const fullName = state.profile.name || state.data.name || accountId;
+const fullName = state.profile.name || state.data.application.name || accountId;
 const href = `/${ownerId}/widget/Index?tab=${isEntity ? "entity" : "contributor"
   }&accountId=${accountId}`;
 
