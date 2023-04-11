@@ -166,30 +166,18 @@ return (
                 text: "Overview",
               },
               {
-                id: "requests",
-                text: "Requests",
-              },
-              {
-                id: "people",
-                text: "People",
-              },
-              {
-                id: "funding",
-                text: "Funding",
+                id: "contracts",
+                text: "Contracts",
               },
               {
                 id: "history",
                 text: "Work history",
               },
-              {
-                id: "graduation",
-                text: "Graduation",
-              },
             ],
           }}
         />
         <Widget
-          src={`${ownerId}/widget/Project.About`}
+          src={`${ownerId}/widget/Vendor.About`}
           props={{
             onSave: (s) => {
               console.log(s);
@@ -200,7 +188,7 @@ return (
       </MainContent>
       <Sidebar>
         <Widget
-          src={`${ownerId}/widget/Project.Sidebar`}
+          src={`${ownerId}/widget/Vendor.Sidebar`}
           props={{
             accountId: "contribut3.near",
             onSave: (s) => {
