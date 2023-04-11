@@ -45,10 +45,14 @@ const handleRepay = (selectedTokenId, borrowed, type) => {
 
   console.log(borrowed, asset);
 
-  const expandedAmount = //expandToken(
+  let expandedAmount = //expandToken(
     new Big(borrowed)
       .div(new Big(10).pow(asset.config.extra_decimals))
       .mul(new Big(1).add(new Big(30).div(new Big(365).mul(24).mul(60))));
+
+  if (expandedAmount.toFixed(0) == "0") {
+    expandedAmount = new Big(1);
+  }
 
   let repayTransaction;
   if (type === "supply") {
