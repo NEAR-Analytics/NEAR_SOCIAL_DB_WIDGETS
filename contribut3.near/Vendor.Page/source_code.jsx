@@ -96,7 +96,7 @@ const content = {
       onSave: (s) => {
         console.log(s);
       },
-      accountId: props.accountId,
+      accountId,
     }}
   />,
   contracts: <Widget src={`${ownerId}/widget/Vendor.Contracts`} props={{ accountId: props.accountId }} />,
