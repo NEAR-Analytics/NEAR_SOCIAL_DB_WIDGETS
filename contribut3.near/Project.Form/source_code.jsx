@@ -60,8 +60,6 @@ const FormFooter = styled.div`
   width: 100%;
 `;
 
-console.log(context);
-
 State.init({
   name: "",
   accountId: "",
