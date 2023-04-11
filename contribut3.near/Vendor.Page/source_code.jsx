@@ -141,7 +141,7 @@ return (
         <Widget
           src={`${ownerId}/widget/TabSelector`}
           props={{
-            tab: "project",
+            tab: "vendor",
             content: getContent(props.content),
             search: props.search,
             update: props.update,
