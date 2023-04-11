@@ -144,7 +144,7 @@ function logConditionals() {
       state.paginate.hitsTotal > state.paginate.hitsPerPage
   );
   console.log("!disableInsightsFun:", !disableInsightsFun);
-  console.log("child state is:", props.search);
+  console.log("child state is:", state.search);
 }
 return (
   <Wrapper>
