@@ -21,6 +21,7 @@ return (
       src="https://nearhorizonassets.s3.amazonaws.com/landing_basic_features_optimized.gif"
     />
     <br />
+    <br />
     <p>
       Here you can create a new project, manage your existing projects, update
       your profile, check your inbox, and more. These options are available in
