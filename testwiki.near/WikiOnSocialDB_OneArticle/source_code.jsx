@@ -1,10 +1,15 @@
 const addressForArticles = "wikiTest2Article";
 const addressForComments = "wikiTest2Comment";
-const authorForWidget = "testwiki.near";
+const authorForWidget = "eugenewolf507.near";
 const accountId = props.accountId ?? context.accountId;
 if (!accountId) {
   return "No account ID";
 }
+
+const authorsWhiteList = ["eugenewolf507.near"];
+
+const doesUserCanEditArticle = () =>
+  authorsWhiteList.some((val) => val === accountId);
 
 const lastEditor = props.lastEditor;
 const blockHeight =
@@ -91,17 +96,19 @@ return (
     />
     <div>
       <h4>Article: {state.article.articleId}</h4>
-      <button
-        onClick={() => {
-          State.update({
-            ...state,
-            editArticle: true,
-            note: state.article.body,
-          });
-        }}
-      >
-        Edit Article
-      </button>
+      {doesUserCanEditArticle() && (
+        <button
+          onClick={() => {
+            State.update({
+              ...state,
+              editArticle: true,
+              note: state.article.body,
+            });
+          }}
+        >
+          Edit Article
+        </button>
+      )}
       {/* === BUTTON - EDIT ARTICLE === */}
       {state.editArticle && (
         <>
@@ -181,7 +188,7 @@ return (
       {state.viewHistory && (
         <div className="mt-3 ps-5">
           <Widget
-            src={`${authorForWidget}/widget/WikiOnSocialDB_History`}
+            src={`${authorForWidget}/widget/WikiOnSocialDB_History.History`}
             props={{
               articleId: state.article.articleId,
               resultArticles,
