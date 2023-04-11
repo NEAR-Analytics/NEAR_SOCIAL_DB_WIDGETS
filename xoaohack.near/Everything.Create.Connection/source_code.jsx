@@ -30,13 +30,13 @@ const initialPayload = {};
  */
 const requestHandler = (request, response, Utils) => {
   switch (request.type) {
-    case "create-type":
-      handleCreateType(request, response);
+    case "create-thing":
+      handleCreateThing(request, response);
       break;
   }
 };
 
-const handleCreateType = (request, response) => {
+const handleCreateThing = (request, response) => {
   const { payload } = request;
   if (payload) {
     Social.set(
