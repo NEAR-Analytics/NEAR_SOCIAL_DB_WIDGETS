@@ -86,7 +86,7 @@ const Footer = styled.a`
 
 const footer = (
   <Footer
-    href={`/${ownerId}/widget/Index?tab=entity&accountId=${accountId}`}
+    href={`/${ownerId}/widget/Index?tab=project&accountId=${accountId}`}
     onClick={() =>
       props.update({
         tab: "project",
