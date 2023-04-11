@@ -48,7 +48,7 @@ return (
     src={`${ownerId}/widget/Inputs.Viewable`}
     props={{
       id,
-      label,
+      label: "",
       value,
       edit: (update, v) => (
         <LabelArea>
