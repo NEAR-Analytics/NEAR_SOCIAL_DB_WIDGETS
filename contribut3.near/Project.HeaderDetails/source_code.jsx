@@ -40,6 +40,17 @@ return (
     />
     <Details>
       <Widget
+        src={`${ownerId}/widget/Inputs.Viewable.NameAndAccount`}
+        props={{
+          value: state.profile.name,
+          id: "name",
+          onSave: (name) =>
+            Near.call("social.near", "set", {
+              data: { [accountId]: { profile: { name } } },
+            }),
+        }}
+      />
+      <Widget
         src={`${ownerId}/widget/NameAndAccount`}
         props={{ accountId, name: state.profile.name ?? accountId }}
       />
