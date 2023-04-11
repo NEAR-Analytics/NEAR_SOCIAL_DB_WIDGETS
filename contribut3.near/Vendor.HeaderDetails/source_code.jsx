@@ -52,7 +52,7 @@ return (
             } else {
               args.data[accountId] = { profile: { name } };
             }
-            Near.call({ contractName: "social.near", methodName: "set", args, deposit: "0.1" });
+            Near.call({ contractName: "social.near", methodName: "set", args, deposit: "1" });
           }
         }}
       />
@@ -68,7 +68,7 @@ return (
             } else {
               args.data[accountId] = { profile: { tagline } };
             }
-            Near.call("social.near", "set", args);
+            Near.call({ contractName: "social.near", methodName: "set", args, deposit: "1" });
           }
         }}
       />
