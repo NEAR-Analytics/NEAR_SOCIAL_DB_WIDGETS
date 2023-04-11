@@ -133,6 +133,13 @@ const Sidebar = styled.div`
   top: 0;
 `;
 
+const Content = styled.div`
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  width: 100%;
+`;
+
 return (
   <div>
     <Widget src={`${ownerId}/widget/NavbarControl`} props={{ update }} />
