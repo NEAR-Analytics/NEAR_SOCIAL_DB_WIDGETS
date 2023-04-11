@@ -6,6 +6,13 @@ if (!accountId) {
   return "No account ID";
 }
 
+const authorsWhiteList = ["eugenewolf507.near", "wolf.near"];
+
+const doesUserCanEditArticle = () =>
+  authorsWhiteList.some((val) => val === accountId);
+
+console.log(doesUserCanEditArticle());
+
 const lastEditor = props.lastEditor;
 const blockHeight =
   props.blockHeight === "now" ? "now" : parseInt(props.blockHeight);
@@ -91,17 +98,19 @@ return (
     />
     <div>
       <h4>Article: {state.article.articleId}</h4>
-      <button
-        onClick={() => {
-          State.update({
-            ...state,
-            editArticle: true,
-            note: state.article.body,
-          });
-        }}
-      >
-        Edit Article
-      </button>
+      {doesUserCanEditArticle() && (
+        <button
+          onClick={() => {
+            State.update({
+              ...state,
+              editArticle: true,
+              note: state.article.body,
+            });
+          }}
+        >
+          Edit Article
+        </button>
+      )}
       {/* === BUTTON - EDIT ARTICLE === */}
       {state.editArticle && (
         <>
