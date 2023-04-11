@@ -51,9 +51,11 @@ function logConditionals() {
   );
   console.log("!disableInsightsFun:", !disableInsightsFun);
   console.log("child state is:", state.search);
+
+  const Wrapper = props.Wrapper;
 }
 return (
-  <props.Wrapper>
+  <Wrapper>
     {showSearchBar && (
       <props.Search>
         <Widget
@@ -196,5 +198,5 @@ return (
         }}
       />
     )}
-  </props.Wrapper>
+  </Wrapper>
 );
