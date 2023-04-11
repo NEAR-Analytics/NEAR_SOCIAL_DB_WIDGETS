@@ -365,6 +365,13 @@ const onSearchResultClick = ({ searchPosition, objectID, eventName }) => {
   }, 50);
 };
 
+if (state.exterm !== "dog") {
+  State.update({
+    exterm: "dog",
+  });
+  onSearchChange({ term: "dog" });
+}
+
 return (
   <Wrapper>
     {showHeader && (
