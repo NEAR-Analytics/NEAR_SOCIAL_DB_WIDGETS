@@ -126,16 +126,23 @@ const ContentContainer = styled.div`
   padding: 2.5em 1.5em;
 `;
 
+const Sidebar = styled.div`
+  display: ${({ show }) => show ? "flex" : "none"};
+  flex-direction: row;
+  position: sticky;
+  top: 0;
+`;
+
 return (
   <div>
     <Widget src={`${ownerId}/widget/NavbarControl`} props={{ update }} />
     <div className="d-flex flex-row position-relative">
-      <div className="d-flex flex-row position-sticky top-0">
+      <Sidebar show={state.tab !== "create-project"}>
         <Widget
           src={`${ownerId}/widget/Sidebar`}
           props={{ tab: state.tab, update }}
         />
-      </div>
+      </Sidebar>
       <ContentContainer>{tabContent}</ContentContainer>
     </div>
   </div>
