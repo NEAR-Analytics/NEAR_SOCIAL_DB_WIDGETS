@@ -106,8 +106,20 @@ const circledPlus = (
 );
 
 const plus = (
-  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M9 3.75V14.25M3.75 9H14.25" stroke="#006ADC" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round" />
+  <svg
+    width="18"
+    height="18"
+    viewBox="0 0 18 18"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M9 3.75V14.25M3.75 9H14.25"
+      stroke="#006ADC"
+      stroke-width="1.66667"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
   </svg>
 );
 
@@ -116,7 +128,7 @@ const CTARow = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  gap: .75em;
+  gap: 0.75em;
 `;
 
 return (
@@ -125,7 +137,7 @@ return (
       <HeaderDetails>
         <Widget
           src={`${ownerId}/widget/Project.HeaderDetails`}
-          props={{ accountId: ownerId }}
+          props={{ accountId: props.accountId }}
         />
         <CTARow>
           <Widget
@@ -141,7 +153,9 @@ return (
           <Widget
             src={`${ownerId}/widget/Buttons.Grey`}
             props={{
-              onClick: () => { console.log("clicked") },
+              onClick: () => {
+                console.log("clicked");
+              },
               text: <>{plus}Create request</>,
             }}
           />
