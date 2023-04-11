@@ -65,6 +65,8 @@ if (thingId === null) {
   );
 }
 
+console.log(thingId);
+
 const data = fetch("https://monkfish-app-ginhc.ondigitalocean.app/graphql", {
   method: "POST",
   headers: {
@@ -73,7 +75,7 @@ const data = fetch("https://monkfish-app-ginhc.ondigitalocean.app/graphql", {
   },
   body: JSON.stringify({
     query:
-      "query findDocumentById($is: ID) { findDocuments(id: {is: $is}) { name, description { md }, creationDate } }",
+      "query findDocumentById($is: String) { findDocuments(id: {is: $is}) { name, description { md }, creationDate } }",
     variables: {
       thingId: thingId,
     },
