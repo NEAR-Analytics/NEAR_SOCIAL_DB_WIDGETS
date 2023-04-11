@@ -52,21 +52,32 @@ const SaveButton = styled.button`
 //       id,
 //       label,
 //       value,
-//       edit: (update, v) => (
-//         <LabelArea>
-//           <Input
-//             id
-//             type={isLink ? "url" : "text"}
-//             value={v}
-//             onChange={(e) => update(e.target.value)}
-//           />
-//           <SaveButton onClick={() => onSave(v)}>Save</SaveButton>
-//         </LabelArea>
-//       ),
+// edit: (update, v) => (
+//   <LabelArea>
+//     <Input
+//       id
+//       type={isLink ? "url" : "text"}
+//       value={v}
+//       onChange={(e) => update(e.target.value)}
+//     />
+//     <SaveButton onClick={() => onSave(v)}>Save</SaveButton>
+//   </LabelArea>
+// ),
 //       view: isLink ? <a href={link}>{value}</a> : value,
 //     }}
 //   />
 // );
+const edit = (update, v) => (
+  <LabelArea>
+    <Input
+      id
+      type={isLink ? "url" : "text"}
+      value={v}
+      onChange={(e) => update(e.target.value)}
+    />
+    <SaveButton onClick={() => onSave(v)}>Save</SaveButton>
+  </LabelArea>
+);
 const Container = styled.div`
   display: flex;
   flex-direction: column;
