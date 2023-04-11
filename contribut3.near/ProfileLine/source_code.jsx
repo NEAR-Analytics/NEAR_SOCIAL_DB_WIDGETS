@@ -39,7 +39,7 @@ if (!state.profileFetched) {
 }
 
 const fullName = state.profile.name || state.data.application.name || accountId;
-const href = `/${ownerId}/widget/Index?tab=${isEntity ? "entity" : "contributor"
+const href = `/${ownerId}/widget/Index?tab=${isEntity ? "project" : "vendor"
   }&accountId=${accountId}`;
 
 const ImageContainer = styled.div`
