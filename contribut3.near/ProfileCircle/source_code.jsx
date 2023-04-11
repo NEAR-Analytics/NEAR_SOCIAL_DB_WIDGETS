@@ -21,10 +21,14 @@ if (!state.fetched) {
 }
 
 if (!state.profileFetched) {
-  const profile = Social.get(`${accountId}/profile/**`, "final", {
-    subscribe: false,
-  });
-  State.update({ profile, profileFetched: true });
+  Near.asyncView(
+    "social.near",
+    "get",
+    { keys: [`${accountId}/profile/**`] },
+    "final",
+    false
+  ).then((profile) => State.update({ profile: profile[accountId].profile, profileFetched: true }));
+  return <>Loading...</>;
 }
 
 const fullName = state.profile.name || state.data.name || accountId;
