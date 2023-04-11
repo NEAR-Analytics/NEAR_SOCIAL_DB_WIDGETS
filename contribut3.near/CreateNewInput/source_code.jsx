@@ -87,12 +87,12 @@ const DropdownLi = styled.li`
   z-index: 3;
 `;
 
-const createNewButton = ({ id, text, icon, kind }) => (
+const createNewButton = ({ id, text, icon }) => (
   <DropdownLi>
     <DropdownItem
       href={`/#/${ownerId}/widget/Index?tab=create&content=${id}${kind ? "&kind=" + kind : ""
         }`}
-      onClick={() => props.update({ tab: "create", content: id, kind })}
+      onClick={() => props.update({ tab: id, content: "" })}
     >
       <i className={icon} />
       <span>{text}</span>
@@ -160,7 +160,7 @@ return (
 
     <DropdownList className={state.show ? "show" : ""}>
       {createNewButton({
-        id: "project",
+        id: "create-project",
         text: "Project",
         icon: "bi-boxes",
       })}
@@ -168,7 +168,7 @@ return (
         <DropdownDivider />
       </li>
       {createNewButton({
-        id: "vendor",
+        id: "create-vendor",
         text: "Vendor",
         icon: "bi-diagram-2",
       })}
