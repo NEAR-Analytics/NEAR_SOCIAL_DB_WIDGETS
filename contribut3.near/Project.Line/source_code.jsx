@@ -3,6 +3,7 @@ const accountId = props.accountId ?? context.accountId;
 const size = props.size ?? "1em";
 
 State.init({
+  accountId,
   name: "",
   nameIsFetched: false,
 });
@@ -53,6 +54,6 @@ return (
       props={{ accountId, size }}
     />
     <Name>{state.name}</Name>
-    <AccountId>@{accountId}</AccountId>
+    <AccountId>@{state.accountId}</AccountId>
   </Container>
 );
