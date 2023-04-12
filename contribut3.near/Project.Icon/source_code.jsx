@@ -1,8 +1,8 @@
 const ownerId = "contribut3.near";
-const accountId = props.accountId || context.accountId;
 const size = props.size ?? "1.5em";
 
 State.init({
+  accountId: props.accountId || context.accountId,
   profile: null,
   profileIsFetched: false,
 });
@@ -11,14 +11,19 @@ if (!state.profileIsFetched) {
   Near.asyncView(
     "social.near",
     "get",
-    { keys: [`${accountId}/profile/**`] },
+    { keys: [`${state.accountId}/profile/**`] },
     "final",
     false
-  ).then((profile) => State.update({ profile: profile[accountId].profile, profileIsFetched: true }));
+  ).then((profile) =>
+    State.update({
+      profile: profile[state.accountId].profile,
+      profileIsFetched: true,
+    })
+  );
   return "Loading...";
 }
 
-const fullName = state.profile.name || state.profile.name || accountId;
+const fullName = state.profile.name || state.profile.name || state.accountId;
 const image = state.profile.image;
 const url =
   (image.ipfs_cid
