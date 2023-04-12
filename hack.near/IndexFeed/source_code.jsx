@@ -1,8 +1,4 @@
 // Widget based on mob.near/widget/IndexFeed
-// Masonry components requires everything vm
-
-const NUM_COLUMNS_SM = 1;
-const NUM_COLUMNS_LG = 3;
 
 const index = props.index;
 if (!index) {
