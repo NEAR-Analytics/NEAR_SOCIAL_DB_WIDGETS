@@ -5,6 +5,7 @@ const view = props.view ?? (() => <></>);
 const edit = props.edit ?? (() => <></>);
 const big = props.big ?? false;
 const noLabel = props.noLabel ?? false;
+const canEdit = props.canEdit ?? false;
 
 State.init({
   value,
@@ -17,7 +18,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  gap: .25em;
+  gap: 0.25em;
   width: 100%;
 
   &.big {
@@ -83,23 +84,25 @@ return (
           {label}
         </Label>
       )}
-      <EditButtonContainer>
-        <EditButton
-          onClick={() => State.update({ edit: false })}
-          className={`right ${state.edit ? "" : "hidden"}`}
-        >
-          Cancel
-        </EditButton>
-        <EditButton
-          onClick={() => State.update({ edit: true })}
-          className={`left ${state.edit ? "hidden" : ""}`}
-        >
-          Edit
-        </EditButton>
-      </EditButtonContainer>
+      {canEdit &&
+        <EditButtonContainer>
+          <EditButton
+            onClick={() => State.update({ edit: false })}
+            className={`right ${state.edit ? "" : "hidden"}`}
+          >
+            Cancel
+          </EditButton>
+          <EditButton
+            onClick={() => State.update({ edit: true })}
+            className={`left ${state.edit ? "hidden" : ""}`}
+          >
+            Edit
+          </EditButton>
+        </EditButtonContainer>
+      }
     </Row>
 
-    {state.edit ? (
+    {state.edit && canEdit ? (
       edit((value) => State.update({ value }), state.value)
     ) : noLabel ? (
       <></>
