@@ -55,6 +55,6 @@ return (
       props={{ accountId, size }}
     />
     <Name>{state.name}</Name>
-    <AccountId>@{state.accountId}</AccountId>
+    <AccountId>@{accountId}</AccountId>
   </Container>
 );
