@@ -28,6 +28,7 @@ const Header = styled.div`
 
 const CloseButton = styled.button`
   border: none;
+  background: none;
   color: #7e868c;
 `;
 
