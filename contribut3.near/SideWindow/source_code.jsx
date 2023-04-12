@@ -38,6 +38,7 @@ const CloseButton = styled.button`
   border: none;
   background: none;
   color: #7e868c;
+  transform: translate(1em, -1em);
 `;
 
 const slideIn = styled.keyframes`
