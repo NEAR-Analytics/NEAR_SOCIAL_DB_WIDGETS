@@ -1604,8 +1604,6 @@ return (
                     variant: "primary",
                     fill: "outline",
                     size: "large",
-                    as: "a",
-                    target: "_blank",
                   }}
                 />
               )}
