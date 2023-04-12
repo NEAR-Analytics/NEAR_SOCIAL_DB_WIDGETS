@@ -63,10 +63,11 @@ if (!state.projectsIsFetched) {
   ).then((projects) => {
     State.update({
       projects: projects.map((accountId) => ({
-        text: <Widget
-          src={`${ownerId}/widget/Project.Line`}
-          props={{ accountId, size: "1em" }}
-        />,
+        // text: <Widget
+        //   src={`${ownerId}/widget/Project.Line`}
+        //   props={{ accountId, size: "1em" }}
+        // />,
+        text: createProjectLine(accountId),
         value: accountId,
       })),
       projectsIsFetched: true
@@ -112,7 +113,7 @@ return (
             false,
           ).then((requests) => State.update({
             requests: requests.map(([accountId, cid]) => ({
-              name: createProjectLine(accountId),
+              name: <Widget src={`${ownerId}/widget/Request.Line`} props={{ accountId, cid, size: "1em" }} />,
               value: cid,
             })),
             requestsIsFetched: true
