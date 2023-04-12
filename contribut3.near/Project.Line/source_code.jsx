@@ -3,7 +3,6 @@ const accountId = props.accountId ?? context.accountId;
 const size = props.size ?? "1em";
 
 State.init({
-  accountId,
   name: "",
   nameIsFetched: false,
 });
