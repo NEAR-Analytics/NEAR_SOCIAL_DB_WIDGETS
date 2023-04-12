@@ -1,9 +1,5 @@
 const ownerId = "contribut3.near";
 
-State.init({
-  message: "",
-});
-
 const body = (
   <>
     <Widget
@@ -39,7 +35,6 @@ const body = (
         onChange: (message) => State.update({ message }),
       }}
     />
-    <textarea />
   </>
 );
 
