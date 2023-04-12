@@ -69,7 +69,7 @@ if (!state.projectsIsFetched) {
           props={{ accountId, size: "1em" }}
         />,
         // text: createProjectLine(accountId),
-        text: accountId,
+        // text: accountId,
         value: accountId,
       })),
       projectsIsFetched: true
