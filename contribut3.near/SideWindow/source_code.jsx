@@ -42,7 +42,7 @@ const slideIn = styled.keyframes`
 
 const Content = styled.div`
   position: fixed;
-  inset: 0 0 0 auto;
+  inset: 74px 0 0 auto;
   padding: 1.5em 2em 2em;
   gap: .625em;
   isolation: isolate;
