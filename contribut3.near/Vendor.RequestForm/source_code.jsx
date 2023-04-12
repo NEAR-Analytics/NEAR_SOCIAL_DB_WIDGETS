@@ -20,8 +20,8 @@ if (!state.projectsIsFetched) {
   ).then((projects) => {
     State.update({
       projects: projects.map((accountId) => ({
-        // name: <Widget src={`${ownerId}/widget/Project.Line`} props={{ accountId, size: "1em" }} />,
-        name: accountId,
+        text: <Widget src={`${ownerId}/widget/Project.Line`} props={{ accountId, size: "1em" }} />,
+        // text: accountId,
         value: accountId,
       })), projectsIsFetched: true
     })
