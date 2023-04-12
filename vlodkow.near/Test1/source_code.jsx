@@ -7,7 +7,7 @@ const onChange = ({ target }) => {
 
 return (
   <>
-    <div class="container border border-info p-3 text-center min-vw-100">
+    <div class="container border border-info p-2 text-center">
       <h1>Hello World! {user_account}</h1>
       <hr />
       {user_account && (
