@@ -1,5 +1,9 @@
 const ownerId = "contribut3.near";
 
+State.init({
+  message: "",
+});
+
 const body = (
   <>
     <Widget
@@ -31,10 +35,8 @@ const body = (
       props={{
         label: "Message",
         placeholder: "Describe the contribution you would like to request",
-        value: "",
-        onChange: (e) => {
-          console.log(e);
-        }
+        value: state.message,
+        onChange: (message) => State.update({ message }),
       }}
     />
   </>
