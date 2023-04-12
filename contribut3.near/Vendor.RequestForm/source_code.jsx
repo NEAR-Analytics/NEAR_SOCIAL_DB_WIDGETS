@@ -1,5 +1,48 @@
 const ownerId = "contribut3.near";
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.25em;
+
+  img {
+    vertical-align: top;
+  }
+`;
+
+const Name = styled.div`
+  font-style: normal;
+  font-weight: 600;
+  font-size: .95em;
+  line-height: 1em;
+  color: #101828;
+`;
+
+const AccountId = styled.div`
+  font-style: normal;
+  font-weight: 400;
+  font-size: .75em;
+  line-height: 1em;
+  color: #7e868c;
+`;
+
+const createProjectLine = (accountId) => {
+  const name = Social.get(`${accountId}/profile/name`);
+
+  return (
+    <Container>
+      <Widget
+        src={`${ownerId}/widget/Project.Icon`}
+        props={{ accountId, size }}
+      />
+      <Name>{name}</Name>
+      <AccountId>@{accountId}</AccountId>
+    </Container>
+  );
+};
+
 State.init({
   requestId: [],
   message: "",
@@ -27,7 +70,7 @@ if (!state.projectsIsFetched) {
         value: accountId,
       })),
       projectsIsFetched: true
-    })
+    });
   });
   return <>Loading...</>;
 }
