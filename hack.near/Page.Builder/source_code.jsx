@@ -5,7 +5,7 @@ return (
         <div className="d-flex justify-content-end">
           <a
             href={
-              "/#/https://temp.everything.dev/#/evrything.near/widget/Everything.View.Thing?src=evrything-docs.near/widget/Everything.View.Document&accountId=evrything.near&blockHeight=89268687"
+              "https://temp.everything.dev/#/evrything.near/widget/Everything.View.Thing?src=evrything-docs.near/widget/Everything.View.Document&accountId=evrything.near&blockHeight=89268687"
             }
           >
             docs
