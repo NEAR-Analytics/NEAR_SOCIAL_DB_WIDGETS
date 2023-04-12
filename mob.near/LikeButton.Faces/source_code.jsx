@@ -35,9 +35,9 @@ const Faces = styled.span`
     display: inline-block;
     position:relative;
     margin: -0.1em;
-    height: 1.5em;
-    width: 1.5em;
-    min-width: 1.5em;
+    height: 1em;
+    width: 1em;
+    min-width: 1em;
     vertical-align: top;
     img {
         object-fit: cover;
@@ -48,11 +48,17 @@ const Faces = styled.span`
   }
 `;
 
+const Others = styled.span`
+  &:hover {
+    color: white !important;
+  }
+`;
+
 const numLikes = likes.length - limit;
 
 return (
   <>
-    <Faces>
+    <Faces className="ms-1">
       {renderFaces.map((accountId, i) => (
         <a
           key={i}
@@ -106,7 +112,7 @@ return (
           </Tooltip>
         }
       >
-        <span className="text-muted ms-1">
+        <span className="ms-1 small">
           and {numLikes} other{numLikes === 1 ? "" : "s"}
         </span>
       </OverlayTrigger>
