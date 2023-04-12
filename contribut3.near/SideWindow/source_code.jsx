@@ -45,7 +45,6 @@ const Content = styled.div`
   padding: 1.5em 2em 2em;
   gap: .625em;
   isolation: isolate;
-  position: relative;
   animation: ${slideIn} 200ms ease-out;
   overflow-y: scroll;
 `;
