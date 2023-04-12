@@ -237,7 +237,8 @@ function computeAdjustMaxAmount() {
   const collateralBalance = new B(accountCollateralAsset?.balance || 0);
   const collateral = Number(shrinkToken(collateralBalance.toFixed(), decimals));
   const availableBalance = B(supplied).plus(collateral).toFixed();
-  return [availableBalance, collateral];
+  const availableBalance$ = assetPrice.mul(availableBalance).toFixed();
+  return [availableBalance, availableBalance$, collateral];
 }
 function decimalMax(a, b) {
   a = new B(a);
@@ -250,7 +251,8 @@ function decimalMin(a, b) {
   b = new B(b);
   return a.lt(b) ? a : b;
 }
-const [availableBalance, remainBalance] = computeAdjustMaxAmount();
+const [availableBalance, availableBalance$, remainBalance] =
+  computeAdjustMaxAmount();
 return (
   <Container>
     {/* load data */}
@@ -263,7 +265,7 @@ return (
         props={{
           handleAmount,
           balance: availableBalance,
-          balance$: "100",
+          balance$: availableBalance$,
         }}
       />
       {hasError && (
