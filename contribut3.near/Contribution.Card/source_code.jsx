@@ -65,10 +65,7 @@ const body = (
       />
       <Completed>{completedDateString}</Completed>
     </Row>
-    <Widget
-      src={`${ownerId}/widget/DescriptionArea`}
-      props={{ description: state.description }}
-    />
+    <Feedback>"{feedback}"</Feedback>
   </>
 );
 
