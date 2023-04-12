@@ -21,6 +21,9 @@ const Container = styled.div`
       cursor:pointer;
       text-decoration:underline;
     }
+    .balance:hover{
+        color:#fff;
+    }
 
     input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button {
