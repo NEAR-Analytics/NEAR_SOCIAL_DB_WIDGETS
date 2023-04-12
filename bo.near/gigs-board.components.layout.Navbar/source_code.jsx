@@ -101,12 +101,11 @@ return (
           >
             <i class="bi bi-question-lg"></i>          
           </button>
-          <ul class="dropdown-menu dropdown-menu-right">
+          <ul class="dropdown-menu dropdown-menu-end">
             <li>
               <a
                 target="_blank"
                 class="dropdown-item"
-                data-bs-toggle="collapse"
                 href="https://github.com/near/devgigsboard-widgets/issues/new?assignees=&labels=bug&template=bug_report.md&title="
               >
                 Report a bug
@@ -116,7 +115,6 @@ return (
               <a
                 target="_blank"
                 class="dropdown-item"
-                data-bs-toggle="collapse"
                 href="https://github.com/near/devgigsboard-widgets/issues/new?assignees=&labels=enhancement&template=feature-request.md&title="
               >
                 Suggest an improvement
