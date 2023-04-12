@@ -30,7 +30,7 @@ const AccountId = styled.div`
 
 const createProjectLine = (accountId) => {
   const name = Social.get(`${accountId}/profile/name`);
-  console.log(name);
+  console.log("called");
 
   return (
     <Container>
