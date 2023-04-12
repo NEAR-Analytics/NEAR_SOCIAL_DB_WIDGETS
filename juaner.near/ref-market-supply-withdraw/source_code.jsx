@@ -1,4 +1,5 @@
 const Container = styled.div`
+    background-color:black;
     .content input{
       background: #152528;
       border-radius: 12px;
@@ -38,6 +39,12 @@ const Container = styled.div`
     .mt-10{
       margin-top:10px;
     }
+
+    .flex-center{
+      display:flex;
+      align-items:center;
+
+    }
     .greenButton{
       display:flex;
       align-items:center;
@@ -54,11 +61,6 @@ const Container = styled.div`
     .disabled{
       opacity:0.3;
       cursor: not-allowed;
-    }
-    .flex-center{
-      display:flex;
-      align-items:center;
-
     }
     .checkButton{
        flex-grow:1;
@@ -81,10 +83,12 @@ const Container = styled.div`
 `;
 /** base tool start  */
 let BURROW_CONTRACT = "contract.main.burrow.near";
+let ORACLE_CONTRACT = "priceoracle.near";
 let accountId = context.accountId;
 let MAX_RATIO = 10_000;
 let B = Big();
 B.DP = 60; // set precision to 60 decimals
+const NO_STORAGE_DEPOSIT_CONTRACTS = ["aurora", "meta-pool.near"];
 const toAPY = (v) => Math.round(v * 100) / 100;
 const clone = (o) => JSON.parse(JSON.stringify(o));
 const shrinkToken = (value, decimals) => {
@@ -98,7 +102,7 @@ const { showModal, selectedTokenId } = props;
 const {
   rewards,
   balances,
-  account: burrowAccount,
+  account,
   amount,
   hasError,
   assets,
@@ -119,38 +123,9 @@ if (!accountId) {
 const onLoad = (data) => {
   State.update(data);
 };
-const account = fetch("https://rpc.mainnet.near.org", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
-    jsonrpc: "2.0",
-    id: "dontcare",
-    method: "query",
-    params: {
-      request_type: "view_account",
-      finality: "final",
-      account_id: accountId,
-    },
-  }),
-});
-if (!account) {
-  return null;
-}
 /** logic start */
-const b = account.body.result.amount;
-const nearBalance = shrinkToken(b || "0", 24).toFixed(2);
-let vailableBalance = 0;
 let apy = 0;
 let cf = "-";
-const getBalance = (asset) => {
-  if (!asset) return 0;
-  const { token_id, accountBalance, metadata } = asset;
-  return formatToken(
-    shrinkToken(accountBalance, metadata.decimals).toFixed()
-  ).toString();
-};
 const getApy = (asset) => {
   if (!asset && !rewards) return 0;
   const r = rewards.find((a) => a.token_id === asset.token_id);
@@ -160,14 +135,9 @@ const getApy = (asset) => {
 if (selectedTokenId && assets) {
   const token = selectedTokenId === "NEAR" ? "wrap.near" : selectedTokenId;
   const asset = assets.find((a) => a.token_id === token);
-  vailableBalance =
-    selectedTokenId === "NEAR" ? nearBalance : getBalance(asset);
   apy = getApy(asset);
   cf = asset.config.volatility_ratio / 100;
 }
-const storageBurrow = Near.view(BURROW_CONTRACT, "storage_balance_of", {
-  account_id: accountId,
-});
 
 const storageToken = selectedTokenId
   ? Near.view(selectedTokenId, "storage_balance_of", {
@@ -177,111 +147,19 @@ const storageToken = selectedTokenId
 
 const handleAmount = (e) => {
   const amount = Number(e.target.value);
-  const b = recomputeHealthFactor(selectedTokenId, amount);
+  const newHF = recomputeHealthFactor(selectedTokenId, amount);
   State.update({
     amount: Number(e.target.value),
     selectedTokenId,
     hasError: false,
-    newHealthFactor: recomputeHealthFactor(selectedTokenId, amount),
+    newHealthFactor: newHF,
   });
 };
 
-const handleDeposit = () => {
-  if (!selectedTokenId || !amount || hasError) return;
-
-  if (selectedTokenId === "NEAR") {
-    handleDepositNear(amount);
-    return;
-  }
-
-  const asset = assets.find((a) => a.token_id === selectedTokenId);
-  const { token_id, accountBalance, metadata, config } = asset;
-
-  const balance = formatToken(
-    shrinkToken(accountBalance, metadata.decimals).toFixed()
-  );
-
-  if (amount > balance) {
-    State.update({ selectedTokenId, amount, hasError: true });
-    return;
-  }
-
-  const expandedAmount = expandToken(amount, metadata.decimals).toFixed();
-  const collateralAmount = expandToken(
-    amount,
-    metadata.decimals + config.extra_decimals
-  ).toFixed();
-
-  const collateralMsg =
-    config.can_use_as_collateral && cfButtonStatus
-      ? `{"Execute":{"actions":[{"IncreaseCollateral":{"token_id": "${token_id}","max_amount":"${collateralAmount}"}}]}}`
-      : "";
-
-  const transactions = [];
-
-  const depositTransaction = {
-    contractName: token_id,
-    methodName: "ft_transfer_call",
-    deposit: new Big("1").toFixed(),
-    gas: expandToken(300, 12),
-    args: {
-      receiver_id: BURROW_CONTRACT,
-      amount: expandedAmount,
-      msg: collateralMsg,
-    },
-  };
-
-  if (storageToken?.available === "0" || !storageToken?.available) {
-    transactions.push({
-      contractName: token_id,
-      methodName: "storage_deposit",
-      deposit: expandToken(0.25, 24).toFixed(),
-    });
-  }
-
-  if (storageBurrow?.available === "0" || !storageBurrow?.available) {
-    transactions.push({
-      contractName: BURROW_CONTRACT,
-      methodName: "storage_deposit",
-      deposit: expandToken(0.25, 24).toFixed(),
-      gas: expandToken(140, 12),
-    });
-  }
-
-  transactions.push(depositTransaction);
-
-  Near.call(transactions);
-};
-
-const handleDepositNear = (amount) => {
-  const amountDecimal = expandToken(amount, 24).toFixed();
-
-  Near.call([
-    {
-      contractName: "wrap.near",
-      methodName: "near_deposit",
-      deposit: amountDecimal,
-      gas: expandToken(300, 12),
-    },
-    {
-      contractName: "wrap.near",
-      methodName: "ft_transfer_call",
-      deposit: new Big("1").toFixed(),
-      gas: expandToken(300, 12),
-      args: {
-        receiver_id: BURROW_CONTRACT,
-        amount: amountDecimal,
-        msg: cfButtonStatus
-          ? `{"Execute":{"actions":[{"IncreaseCollateral":{"token_id":"wrap.near","max_amount":"${amountDecimal}"}}]}}`
-          : "",
-      },
-    },
-  ]);
-};
 /** logic end */
-function getAdjustedSum(type, burrowAccount) {
-  if (!assets || !burrowAccount || burrowAccount[type].length == 0) return B(1);
-  return burrowAccount[type]
+function getAdjustedSum(type, account) {
+  if (!assets || !account || account[type].length == 0) return B(1);
+  return account[type]
     .map((assetInAccount) => {
       const asset = assets.find((a) => a.token_id === assetInAccount.token_id);
 
@@ -305,9 +183,8 @@ function getAdjustedSum(type, burrowAccount) {
     })
     .reduce((sum, cur) => B(sum).plus(B(cur)).toFixed());
 }
-
-const adjustedCollateralSum = getAdjustedSum("collateral", burrowAccount);
-const adjustedBorrowedSum = getAdjustedSum("borrowed", burrowAccount);
+const adjustedCollateralSum = getAdjustedSum("collateral", account);
+const adjustedBorrowedSum = getAdjustedSum("borrowed", account);
 
 function getHealthFactor() {
   const healthFactor = B(adjustedCollateralSum)
@@ -317,25 +194,26 @@ function getHealthFactor() {
   return Number(healthFactor) < MAX_RATIO ? healthFactor : MAX_RATIO;
 }
 const healthFactor = getHealthFactor();
-function switchButtonStatus() {
-  cfButtonStatus;
-  State.update({
-    cfButtonStatus: !cfButtonStatus,
-  });
-}
+
 const recomputeHealthFactor = (tokenId, amount) => {
   if (!tokenId || !amount || !assets) return null;
   const asset = assets.find((a) => a.token_id === tokenId);
   const decimals = asset.metadata.decimals + asset.config.extra_decimals;
-  const accountCollateralAsset = burrowAccount.collateral.find(
+  const accountCollateralAsset = account.collateral.find(
     (a) => a.token_id === tokenId
   );
+  const accountSuppliedAsset = account.supplied.find(
+    (a) => a.token_id === tokenId
+  );
+  const collateralBalance = B(accountCollateralAsset?.balance || 0);
+  const suppliedBalance = B(accountSuppliedAsset?.balance || 0);
+  const amountDecimal = expandToken(amount || 0, decimals);
 
-  const newBalance = expandToken(amount, decimals)
-    .plus(B(accountCollateralAsset?.balance || 0))
-    .toFixed();
-
-  const clonedAccount = clone(burrowAccount);
+  const newBalance = decimalMin(
+    collateralBalance.toFixed(),
+    collateralBalance.plus(suppliedBalance).minus(amountDecimal).toFixed()
+  ).toFixed();
+  const clonedAccount = clone(account);
 
   const updatedToken = {
     token_id: tokenId,
@@ -356,9 +234,9 @@ const recomputeHealthFactor = (tokenId, amount) => {
   }
   const adjustedCollateralSum = getAdjustedSum(
     "collateral",
-    amount === 0 ? burrowAccount : clonedAccount
+    amount === 0 ? account : clonedAccount
   );
-  const adjustedBorrowedSum = getAdjustedSum("borrowed", burrowAccount);
+  const adjustedBorrowedSum = getAdjustedSum("borrowed", account);
 
   const newHealthFactor = B(adjustedCollateralSum)
     .div(B(adjustedBorrowedSum))
@@ -367,6 +245,65 @@ const recomputeHealthFactor = (tokenId, amount) => {
 
   return Number(newHealthFactor) < MAX_RATIO ? newHealthFactor : MAX_RATIO;
 };
+function computeWithdrawMaxAmount() {
+  if (!assets || !selectedTokenId || !account) return "0";
+  const asset = assets.find((a) => a.token_id === selectedTokenId);
+  const { metadata, config } = asset;
+  const decimals = metadata.decimals + config.extra_decimals;
+  const assetPrice = asset.price
+    ? B(asset.price.multiplier).div(B(10).pow(asset.price.decimals))
+    : B(0);
+  const accountSuppliedAsset = account.supplied.find(
+    (a) => a.token_id === selectedTokenId
+  );
+  const suppliedBalance = new B(accountSuppliedAsset?.balance || 0);
+  const supplied = Number(shrinkToken(suppliedBalance.toFixed(), decimals));
+
+  const accountCollateralAsset = account.collateral.find(
+    (a) => a.token_id === selectedTokenId
+  );
+  const collateralBalance = new B(accountCollateralAsset?.balance || 0);
+  const collateral = Number(shrinkToken(collateralBalance.toFixed(), decimals));
+  let maxAmount = suppliedBalance;
+  if (collateralBalance.gt(0)) {
+    const adjustedPricedDiff = decimalMax(
+      0,
+      B(adjustedCollateralSum).sub(adjustedBorrowedSum).toFixed()
+    );
+    const safeAdjustedPricedDiff = adjustedPricedDiff.mul(999).div(1000);
+
+    const safePricedDiff = safeAdjustedPricedDiff
+      .div(asset.config.volatility_ratio)
+      .mul(10000);
+    const safeDiff = safePricedDiff
+      .div(assetPrice)
+      .mul(expandToken(1, asset.config.extra_decimals))
+      .toFixed(0);
+    maxAmount = maxAmount.add(
+      decimalMin(safeDiff, collateralBalance.toFixed()).toFixed()
+    );
+    const { metadata, config } = asset;
+    const decimals = metadata.decimals + config.extra_decimals;
+    maxAmount = shrinkToken(maxAmount.toFixed(), decimals);
+  }
+  const remain = Math.abs(
+    Math.min(collateral, collateral + supplied - (amount || 0))
+  );
+  const remainBalance = B(remain).toFixed(4);
+  return [maxAmount.toFixed(), remainBalance];
+}
+function decimalMax(a, b) {
+  a = new B(a);
+  b = new B(b);
+  return a.gt(b) ? a : b;
+}
+
+function decimalMin(a, b) {
+  a = new B(a);
+  b = new B(b);
+  return a.lt(b) ? a : b;
+}
+const [availableBalance, remainBalance] = computeWithdrawMaxAmount();
 return (
   <Container>
     {/* load data */}
@@ -376,39 +313,47 @@ return (
     <div class="content">
       <input type="number" value={amount} onChange={handleAmount} />
       {selectedTokenId && (
-        <span class="balance">Balance: {vailableBalance}</span>
+        <span class="balance">Balance: {availableBalance}</span>
       )}
       {hasError && (
         <p class="alert alert-danger mt-10" role="alert">
           Amount greater than available
         </p>
       )}
-      <div class="flex-center mt-15">
+      {/*<div class="flex-center mt-15">
         <span class="checkButton active">25%</span>
         <span class="checkButton">50%</span>
         <span class="checkButton">75%</span>
         <span class="checkButton">100%</span>
-      </div>
+      </div>*/}
       <div class="template mt_25">
         <span class="title">Supply APY</span>
-        <span class="value">-</span>
+        <span class="value">{apy || "-"}%</span>
       </div>
       <div class="template mt_25">
         <span class="title">Health Factor</span>
         <span class="value">
-          {newHealthFactor && cfButtonStatus ? newHealthFactor : healthFactor}%
+          {newHealthFactor ? newHealthFactor : healthFactor}%
         </span>
       </div>
       <div class="template mt_25">
         <span class="title">Remaining Collateral</span>
-        <span class="value">-</span>
+        <span class="value">{remainBalance || "-"}</span>
       </div>
-      <div
-        class={`greenButton mt_25 ${Number(amount) ? "" : "disabled"}`}
-        onClick={handleDeposit}
-      >
-        Withdraw
-      </div>
+      <Widget
+        src="juaner.near/widget/ref-withdraw-button"
+        props={{
+          onLoad,
+          selectedTokenId,
+          amount,
+          hasError,
+          account,
+          onLoad,
+          assets,
+          availableBalance,
+          storageToken,
+        }}
+      />
     </div>
   </Container>
 );
