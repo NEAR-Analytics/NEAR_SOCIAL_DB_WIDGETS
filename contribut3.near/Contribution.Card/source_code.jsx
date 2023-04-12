@@ -2,6 +2,7 @@ const ownerId = "contribut3.near";
 const projectId = props.projectId;
 const vendorId = props.vendorId;
 const cid = props.cid;
+const isVendorView = props.isVendorView ?? false;
 
 State.init({
   contribution: null,
@@ -19,16 +20,51 @@ if (!state.contributionIsFetched) {
   return <>Loading...</>;
 }
 
+const Row = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+`;
+
+const completedDate = new Date(Number(state.contribution.status.Completed));
+const completedDateString = `Completed ${completedDate.toLocaleDateString()}`;
+
+const Completed = styled.span`
+  font-style: normal;
+  font-weight: 400;
+  font-size: .75em;
+  line-height: 1em;
+  color: #11181c;
+`;
+
+const feedback = isVendorView ? state.contribution.project_feedback : state.contribution.vendor_feedback;
+
+const Feedback = styled.p`
+  font-style: italic;
+  font-weight: 400;
+  font-size: .95em;
+  line-height: 1.5em;
+  color: #11181c;
+  border-left: 6px solid #00ec97;
+  padding-left: .625em;
+`;
+
 const body = (
   <>
-    <Widget
-      src={`${ownerId}/widget/ProfileLine`}
-      props={{
-        accountId,
-        imageSize: "3em",
-        update: props.update,
-      }}
-    />
+    <Row>
+      <Widget
+        src={`${ownerId}/widget/ProfileLine`}
+        props={{
+          accountId: isVendorView ? projectId : vendorId,
+          imageSize: "2em",
+          update: props.update,
+          isEntity: isVendorView,
+        }}
+      />
+      <Completed>{completedDateString}</Completed>
+    </Row>
     <Widget
       src={`${ownerId}/widget/DescriptionArea`}
       props={{ description: state.description }}
