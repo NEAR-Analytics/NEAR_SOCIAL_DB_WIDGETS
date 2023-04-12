@@ -21,6 +21,9 @@ const body = (
           },
         ],
         value: "1",
+        onChange: (e) => {
+          console.log(e);
+        }
       }}
     />
   </>
@@ -32,5 +35,6 @@ return <Widget
     title: "Request a contribution",
     description: "Request a contribution from this vendor",
     trigger: <>{personPlus}Request contribution</>,
+    children: body,
   }}
 />
