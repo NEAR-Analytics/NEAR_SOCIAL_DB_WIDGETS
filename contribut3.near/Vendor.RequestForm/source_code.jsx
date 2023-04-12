@@ -25,7 +25,8 @@ if (!state.projectsIsFetched) {
           props={{ accountId, size: "1em" }}
         />,
         value: accountId,
-      })), projectsIsFetched: true
+      })),
+      projectsIsFetched: true
     })
   });
   return <>Loading...</>;
