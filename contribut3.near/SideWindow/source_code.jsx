@@ -47,6 +47,8 @@ const Content = styled.div`
   isolation: isolate;
   animation: ${slideIn} 200ms ease-out;
   overflow-y: scroll;
+  background: #fff;
+  z-index: 10;
 `;
 
 const Button = styled.button`
