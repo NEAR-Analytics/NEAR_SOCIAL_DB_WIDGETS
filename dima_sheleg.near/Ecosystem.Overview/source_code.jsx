@@ -440,7 +440,7 @@ return (
       <StickyNav>
         <Flex gap="16px" alignItems="center">
           {navLinks.map((nav) => (
-            <Text key={nav.href} as="a" href={`${widgetLink}/#${nav.href}`}>
+            <Text key={nav.href} as="a" href={`#${nav.href}`}>
               {nav.name}
             </Text>
           ))}
