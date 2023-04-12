@@ -263,7 +263,7 @@ const updateSearchHits = debounce(({ term, pageNumber, configs }) => {
       queryID: resp.body.queryID,
     });
   });
-});
+}, 300);
 
 const onSearchChange = ({ term }) => {
   writeStateTerm(term);
