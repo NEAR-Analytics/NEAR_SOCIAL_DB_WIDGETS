@@ -101,11 +101,11 @@ return (
           >
             <i class="bi bi-question-lg"></i>          
           </button>
-          <ul class="dropdown-menu">
+          <ul class="dropdown-menu dropdown-menu-right">
             <li>
               <a
                 target="_blank"
-                class="dropdown-item dropdown-menu-right"
+                class="dropdown-item"
                 data-bs-toggle="collapse"
                 href="https://github.com/near/devgigsboard-widgets/issues/new?assignees=&labels=bug&template=bug_report.md&title="
               >
@@ -115,7 +115,7 @@ return (
             <li>
               <a
                 target="_blank"
-                class="dropdown-item dropdown-menu-right"
+                class="dropdown-item"
                 data-bs-toggle="collapse"
                 href="https://github.com/near/devgigsboard-widgets/issues/new?assignees=&labels=enhancement&template=feature-request.md&title="
               >
