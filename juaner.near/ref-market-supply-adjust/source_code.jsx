@@ -1,24 +1,5 @@
 const Container = styled.div`
-    .content input{
-      background: #152528;
-      border-radius: 12px;
-      height: 55px;
-      font-size:20px;
-      color: #7E8A93;
-      padding:0 15px 0 15px;
-      border:none;
-      margin-bottom:8px;
-    }
-    .content input:focus{
-      outline:none;
-    }
- 
-    .content .balance {
-      font-size:12px;
-      color:#4B6778;
-      margin-left:6px;
-    }
-    .template{
+   .template{
       display:flex;
       align-items:center;
       justify-content:space-between;
@@ -139,11 +120,11 @@ if (selectedTokenId && assets) {
   apy = getApy(asset);
   cf = asset.config.volatility_ratio / 100;
 }
-const handleAmount = (e) => {
-  const amount = Number(e.target.value);
+const handleAmount = (value) => {
+  const amount = Number(value);
   const [newHF, hFErrorStatus] = recomputeHealthFactor(selectedTokenId, amount);
   State.update({
-    amount: Number(e.target.value),
+    amount,
     selectedTokenId,
     hasError: false,
     newHealthFactor: newHF,
@@ -277,10 +258,14 @@ return (
       <Widget src="juaner.near/widget/ref_burrow-data" props={{ onLoad }} />
     )}
     <div class="content">
-      <input type="number" value={amount} onChange={handleAmount} />
-      {selectedTokenId && (
-        <span class="balance">Balance: {availableBalance}</span>
-      )}
+      <Widget
+        src="juaner.near/widget/ref-input-box"
+        props={{
+          handleAmount,
+          balance: availableBalance,
+          balance$: "100",
+        }}
+      />
       {hasError && (
         <p class="alert alert-danger mt-10" role="alert">
           Amount greater than available
