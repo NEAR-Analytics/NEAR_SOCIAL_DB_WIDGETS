@@ -45,8 +45,6 @@ const Form = styled.div`
   gap: 1em;
 `;
 
-// const
-
 return (
   <Form>
     <Widget
