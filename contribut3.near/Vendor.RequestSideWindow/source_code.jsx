@@ -26,6 +26,17 @@ const body = (
         }
       }}
     />
+    <Widget
+      src={`${ownerId}/widget/Inputs.TextArea`}
+      props={{
+        label: "Message",
+        placeholder: "Describe the contribution you would like to request",
+        value: "",
+        onChange: (e) => {
+          console.log(e);
+        }
+      }}
+    />
   </>
 );
 
