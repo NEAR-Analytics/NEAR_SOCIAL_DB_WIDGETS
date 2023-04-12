@@ -35,7 +35,7 @@ const createProjectLine = (accountId) => {
     <Container>
       <Widget
         src={`${ownerId}/widget/Project.Icon`}
-        props={{ accountId, size }}
+        props={{ accountId, size: "1em" }}
       />
       <Name>{name}</Name>
       <AccountId>@{accountId}</AccountId>
