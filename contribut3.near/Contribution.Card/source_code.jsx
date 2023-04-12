@@ -19,18 +19,6 @@ if (!state.contributionIsFetched) {
   return <>Loading...</>;
 }
 
-if (!state.descriptionIsFetched) {
-  Near.asyncView(
-    "social.near",
-    "get",
-    { keys: [`${accountId}/profile/description`] },
-    "final",
-    false
-  ).then((description) =>
-    State.update({ description, descriptionIsFetched: true })
-  );
-}
-
 const body = (
   <>
     <Widget
