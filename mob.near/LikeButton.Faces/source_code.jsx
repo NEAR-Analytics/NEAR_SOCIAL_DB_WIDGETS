@@ -82,7 +82,7 @@ return (
     ) : (
       ""
     )}
-    <Faces className="ms-1">
+    <Faces className="ms-2">
       {renderFaces.map((accountId, i) => (
         <a
           key={i}
