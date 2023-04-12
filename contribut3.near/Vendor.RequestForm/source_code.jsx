@@ -62,9 +62,9 @@ return (
             "final",
             false,
           ).then((requests) => State.update({
-            requests: requests.map((request) => ({
-              name: <Widget src={`${ownerId}/widget/Request.Line`} props={{ request, size: "1em" }} />,
-              value: request,
+            requests: requests.map(([accountId, cid]) => ({
+              name: <Widget src={`${ownerId}/widget/Request.Line`} props={{ accountId, cid, size: "1em" }} />,
+              value: cid,
             })),
             requestsIsFetched: true
           }));
