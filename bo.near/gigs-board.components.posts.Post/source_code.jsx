@@ -271,7 +271,7 @@ const onLike = () => {
 
 const btnCreatorWidget = (postType, icon, name, desc) => {
   return (
-    <li>
+    <li class="py-1">
       <a
         class="dropdown-item text-decoration-none d-flex align-items-center lh-sm"
         style={{ color: "rgb(55,109,137)" }}
