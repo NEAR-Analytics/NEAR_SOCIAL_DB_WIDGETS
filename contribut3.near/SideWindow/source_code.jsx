@@ -17,6 +17,7 @@ const Overlay = styled.div`
   inset: 0;
   background: rgba(0, 0, 0, 0.5);
   animation: ${fadeIn} 200ms ease-out;
+  z-index: 10;
 `;
 
 const Header = styled.div`
