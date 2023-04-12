@@ -112,7 +112,7 @@ return (
             false,
           ).then((requests) => State.update({
             requests: requests.map(([accountId, cid]) => ({
-              name: <Widget src={`${ownerId}/widget/Request.Line`} props={{ accountId, cid, size: "1em" }} />,
+              name: createProjectLine(accountId),
               value: cid,
             })),
             requestsIsFetched: true
