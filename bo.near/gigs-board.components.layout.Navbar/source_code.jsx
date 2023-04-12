@@ -104,7 +104,8 @@ return (
           <ul class="dropdown-menu">
             <li>
               <a
-                class="dropdown-item"
+                target="_blank"
+                class="dropdown-item dropdown-menu-right"
                 data-bs-toggle="collapse"
                 href="https://github.com/near/devgigsboard-widgets/issues/new?assignees=&labels=bug&template=bug_report.md&title="
               >
@@ -113,7 +114,8 @@ return (
             </li>
             <li>
               <a
-                class="dropdown-item"
+                target="_blank"
+                class="dropdown-item dropdown-menu-right"
                 data-bs-toggle="collapse"
                 href="https://github.com/near/devgigsboard-widgets/issues/new?assignees=&labels=enhancement&template=feature-request.md&title="
               >
