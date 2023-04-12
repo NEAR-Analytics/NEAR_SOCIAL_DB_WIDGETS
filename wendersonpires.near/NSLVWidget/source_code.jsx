@@ -11,7 +11,7 @@
  * 2 - Example of use:
  *
  * <Widget
- *   src={"wendersonpires.near/widget/NSLVWidget"}
+ *   src="wendersonpires.near/widget/NSLVWidget"
  *   props={{ src: "wendersonpires.near/widget/Profile" }}
  * />
  *
