@@ -22,7 +22,7 @@ const Container = styled.div`
       text-decoration:underline;
     }
     .balance:hover{
-        color:#fff;
+        color:#7E8A93;
     }
 
     input::-webkit-outer-spin-button,
