@@ -135,7 +135,7 @@ return (
             onClick={() => {
               changeTab("withdraw");
             }}
-            class={`${tabName == "withdraw" ? "active" : ""}`}
+            class={`${tabName != "adjust" ? "active" : ""}`}
           >
             Withdraw
           </span>
