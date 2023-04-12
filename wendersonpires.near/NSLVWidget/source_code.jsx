@@ -75,7 +75,6 @@ const fetchCode = () => {
     })
     .finally(() => {
       State.update({ ready: true });
-      console.log("FOOOO");
     });
 };
 
