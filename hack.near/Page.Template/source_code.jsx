@@ -1,4 +1,4 @@
-const accountId = props.accountId || "evrything.near"; // which account's Types to use
+const accountId = props.accountId || "hack.near"; // which account's Types to use
 const font = props.font || "Courier"; // custom font for H1
 const type = props.type || "everything"; // selected type
 const text = props.text || type.toLowerCase(); // text for H1
@@ -115,7 +115,7 @@ const renderView = () => {
     case "THINGS":
       return (
         <Widget
-          src={"evrything.near/widget/Everything.Things"}
+          src={"hack.near/widget/Everything.Pages"}
           props={{
             type:
               state.type === "everything"
