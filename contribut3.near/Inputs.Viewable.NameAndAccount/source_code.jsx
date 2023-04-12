@@ -2,6 +2,7 @@ const ownerId = "contribut3.near";
 const id = props.id ?? "text";
 const value = props.value ?? "";
 const onSave = props.onSave ?? (() => { });
+const canEdit = props.canEdit;
 
 const LabelArea = styled.div`
   display: flex;
@@ -60,7 +61,13 @@ return (
           <SaveButton onClick={() => onSave(v)}>Save</SaveButton>
         </LabelArea>
       ),
-      view: <Widget src={`${ownerId}/widget/NameAndAccount`} props={{ accountId: props.accountId, name: value }} />,
+      view: (
+        <Widget
+          src={`${ownerId}/widget/NameAndAccount`}
+          props={{ accountId: props.accountId, name: value }}
+        />
+      ),
+      canEdit
     }}
   />
 );
