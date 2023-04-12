@@ -17,12 +17,15 @@ if (!state.projectsIsFetched) {
     { account_id: context.accountId },
     "final",
     false,
-  ).then((projects) => State.update({
-    projects: projects.map((accountId) => ({
-      name: <Widget src={`${ownerId}/widget/Project.Line`} props={{ accountId, size: "1em" }} />,
-      value: accountId,
-    })), projectsIsFetched: true
-  }));
+  ).then((projects) => {
+    State.update({
+      projects: projects.map((accountId) => ({
+        name: <Widget src={`${ownerId}/widget/Project.Line`} props={{ accountId, size: "1em" }} />,
+        value: accountId,
+      })), projectsIsFetched: true
+    })
+    console.log(state.projects)
+  });
   return <>Loading...</>;
 }
 
