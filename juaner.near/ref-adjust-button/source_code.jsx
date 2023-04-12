@@ -18,6 +18,7 @@ const {
   selectedTokenId,
   amount,
   hasError,
+  hasHFError,
   account,
   onLoad,
   assets,
@@ -120,7 +121,9 @@ const handleWithdraw = () => {
 };
 return (
   <div
-    class={`greenButton mt_25 ${Number(amount) ? "" : "disabled"}`}
+    class={`greenButton mt_25 ${
+      Number(amount) && !hasHFError && !hasError ? "" : "disabled"
+    }`}
     onClick={handleWithdraw}
   >
     Adjust
