@@ -24,6 +24,14 @@ const Header = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  h2 {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.125em;
+    line-height: 1.5em;
+    color: #000000;
+  }
 `;
 
 const CloseButton = styled.button`
