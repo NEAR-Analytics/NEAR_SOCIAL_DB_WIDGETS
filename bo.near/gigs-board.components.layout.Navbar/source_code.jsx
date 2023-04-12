@@ -107,7 +107,6 @@ return (
                 class="dropdown-item"
                 data-bs-toggle="collapse"
                 href="https://github.com/near/devgigsboard-widgets/issues/new?assignees=&labels=bug&template=bug_report.md&title="
-                role="button"
               >
                 Report a bug
               </a>
@@ -117,7 +116,6 @@ return (
                 class="dropdown-item"
                 data-bs-toggle="collapse"
                 href="https://github.com/near/devgigsboard-widgets/issues/new?assignees=&labels=enhancement&template=feature-request.md&title="
-                role="button"
               >
                 Suggest an improvement
               </a>
