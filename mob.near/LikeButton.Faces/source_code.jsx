@@ -24,11 +24,7 @@ likes.forEach((accountId) => {
 
 let faces = [...graphLikes, ...nonGraph];
 
-if (faces.length < limit + 3) {
-  limit = faces.length;
-}
-
-const renderFaces = faces.splice(0, limit);
+const renderFaces = faces.slice(0, limit);
 
 const Faces = styled.span`
   .face {
@@ -54,11 +50,39 @@ const Others = styled.span`
   }
 `;
 
-const numLikes = likes.length - limit;
+const numLikes = likes.length;
 
 return (
   <>
-    <Faces className="ms-1">
+    {numLikes > 0 ? (
+      <OverlayTrigger
+        placement="auto"
+        overlay={
+          <Tooltip>
+            <div
+              className="text-truncate text-start"
+              style={{ maxWidth: "16em" }}
+            >
+              {faces.slice(0, 10).map((accountId, i) => (
+                <Fragment key={i}>
+                  <Widget
+                    src="mob.near/widget/ProfileLine"
+                    props={{ accountId, link: false }}
+                  />
+                  <br />
+                </Fragment>
+              ))}
+              {faces.length > 10 ? "..." : ""}
+            </div>
+          </Tooltip>
+        }
+      >
+        <span>{numLikes}</span>
+      </OverlayTrigger>
+    ) : (
+      ""
+    )}
+    <Faces>
       {renderFaces.map((accountId, i) => (
         <a
           key={i}
@@ -89,35 +113,5 @@ return (
         </a>
       ))}
     </Faces>
-    {numLikes > 0 ? (
-      <OverlayTrigger
-        placement="auto"
-        overlay={
-          <Tooltip>
-            <div
-              className="text-truncate text-start"
-              style={{ maxWidth: "16em" }}
-            >
-              {faces.slice(0, 10).map((accountId, i) => (
-                <Fragment key={i}>
-                  <Widget
-                    src="mob.near/widget/ProfileLine"
-                    props={{ accountId, link: false }}
-                  />
-                  <br />
-                </Fragment>
-              ))}
-              {faces.length > 10 ? "..." : ""}
-            </div>
-          </Tooltip>
-        }
-      >
-        <span className="ms-1 small">
-          and {numLikes} other{numLikes === 1 ? "" : "s"}
-        </span>
-      </OverlayTrigger>
-    ) : (
-      ""
-    )}
   </>
 );
