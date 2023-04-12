@@ -1,3 +1,5 @@
+const ownerId = "contribut3.near";
+
 State.init({
   message: "",
 })
