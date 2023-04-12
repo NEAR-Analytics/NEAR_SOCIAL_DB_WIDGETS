@@ -10,7 +10,7 @@ State.init({
   requestsIsFetched: false,
 });
 
-if (!state.projectIsFetched) {
+if (!state.projectsIsFetched) {
   Near.asyncView(
     ownerId,
     "get_admin_projects",
