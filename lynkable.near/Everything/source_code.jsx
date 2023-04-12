@@ -15,7 +15,7 @@ return (
         accountId: "lynkable.near",
         font: "Times New Roman",
         type: "everything",
-        text: "LES",
+        text: "lower east side",
         domain: "les",
       }}
     />
