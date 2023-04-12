@@ -1,4 +1,4 @@
-const Header = styled.div` width: 100%; display: flex; flex-direction: row; justify-content: space-between; align-items: center; `;
+const Header = styled.div`display: flex; flex-direction: row; justify-content: space-between; align-items: center; `;
 const Title = styled.div` font-size: 24px; line-height: 33.6px; `;
 const Form = styled.div` display: flex; flex-direction: column; gap: 4px; `;
 const Input = styled.input` width: 100%; `;
