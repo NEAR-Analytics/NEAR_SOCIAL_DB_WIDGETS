@@ -1226,7 +1226,7 @@ return (
           Many VCs are investing in projects building on NEAR. Recent examples
           include:
         </Text>
-        <div class="row row-cols-2 g-4">
+        <div class="row row-cols-lg-2 row-cols-1 g-4">
           {ventureCards.map((item) => (
             <div class="col" key={item.ipfsImage}>
               <Card gap="12px" direction="row" style={{ height: "100%" }}>
@@ -1563,7 +1563,7 @@ return (
         Storage
       </Text>
 
-      <div class="row row-cols-3 g-4">
+      <div class="row row-cols-md-3 row-cols-1 g-4">
         {storageCards.map((item) => (
           <div class="col" key={item.ipfsImage}>
             <Card center>
@@ -1741,7 +1741,7 @@ return (
           NEAR hubs around the world
         </Text>
 
-        <div class="row row-cols-3 g-4">
+        <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1 g-4">
           {nearHubsCards.map((item) => (
             <div class="col" key={item.ipfsImage}>
               <Card center>
