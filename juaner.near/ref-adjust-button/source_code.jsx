@@ -36,7 +36,7 @@ function decimalMin(a, b) {
   b = new B(b);
   return a.lt(b) ? a : b;
 }
-const handleWithdraw = () => {
+const handleAdjust = () => {
   if (!selectedTokenId || !amount || hasError || !account) return;
   const asset = assets.find((a) => a.token_id === selectedTokenId);
   const { token_id, metadata, config } = asset;
@@ -49,19 +49,30 @@ const handleWithdraw = () => {
   const accountSuppliedAsset = account.supplied.find(
     (a) => a.token_id === tokenId
   );
-  const suppliedBalance = accountSuppliedAsset?.balance || 0;
-  const decreaseCollateralAmount = decimalMax(
-    expandedAmount.sub(suppliedBalance).toFixed(),
-    0
+  const accountCollateralAsset = account.collateral.find(
+    (a) => a.token_id === tokenId
   );
-  const withdrawAction = {
-    Withdraw: {
-      token_id,
-      max_amount: expandedAmount.toFixed(),
-    },
-  };
+  const suppliedBalance = accountSuppliedAsset?.balance || 0;
+  const collateralBalance = accountCollateralAsset?.balance || 0;
   const transactions = [];
-  if (decreaseCollateralAmount.gt(0)) {
+  if (expandedAmount.gt(collateralBalance)) {
+    transactions.push({
+      contractName: BURROW_CONTRACT,
+      methodName: "execute",
+      gas: expandToken(100, 12),
+      deposit: new Big("1").toFixed(),
+      args: {
+        actions: [
+          {
+            IncreaseCollateral: {
+              token_id,
+              max_amount: expandedAmount.sub(collateralBalance).toFixed(0),
+            },
+          },
+        ],
+      },
+    });
+  } else if (expandedAmount.lt(collateralBalance)) {
     transactions.push({
       contractName: ORACLE_CONTRACT,
       methodName: "oracle_call",
@@ -75,48 +86,15 @@ const handleWithdraw = () => {
               {
                 DecreaseCollateral: {
                   token_id,
-                  amount: decreaseCollateralAmount.toFixed(0),
+                  max_amount: collateralBalance.sub(expandedAmount).toFixed(0),
                 },
               },
-              withdrawAction,
             ],
           },
         }),
       },
     });
-  } else {
-    transactions.push({
-      contractName: ORACLE_CONTRACT,
-      methodName: "oracle_call",
-      gas: expandToken(100, 12),
-      deposit: new Big("1").toFixed(),
-      args: {
-        receiver_id: BURROW_CONTRACT,
-        msg: JSON.stringify({
-          Execute: { actions: [withdrawAction] },
-        }),
-      },
-    });
   }
-  const isNEAR = token_id == "wrap.near";
-  if (isNEAR && expandedAmount.gt(10)) {
-    transactions.push({
-      contractName: token_id,
-      methodName: "near_withdraw",
-      args: { amount: expandedAmount.sub(10).toFixed(0) },
-    });
-  }
-  if (
-    !(storageToken && storageToken.total != "0") &&
-    !NO_STORAGE_DEPOSIT_CONTRACTS.includes(token_id)
-  ) {
-    transactions.unshift({
-      contractName: token_id,
-      methodName: "storage_deposit",
-      deposit: expandToken(0.25, 24).toFixed(),
-    });
-  }
-
   Near.call(transactions);
 };
 return (
@@ -124,7 +102,7 @@ return (
     class={`greenButton mt_25 ${
       Number(amount) && !hasHFError && !hasError ? "" : "disabled"
     }`}
-    onClick={handleWithdraw}
+    onClick={handleAdjust}
   >
     Adjust
   </div>
