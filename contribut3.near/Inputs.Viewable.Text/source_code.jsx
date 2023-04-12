@@ -5,6 +5,7 @@ const value = props.value ?? "";
 const link = props.link ?? "";
 const isLink = link !== "";
 const onSave = props.onSave ?? (() => { });
+const canEdit = props.canEdit;
 
 const LabelArea = styled.div`
   display: flex;
@@ -64,6 +65,7 @@ return (
         </LabelArea>
       ),
       view: isLink ? <a href={link}>{value}</a> : value,
+      canEdit
     }}
   />
 );
