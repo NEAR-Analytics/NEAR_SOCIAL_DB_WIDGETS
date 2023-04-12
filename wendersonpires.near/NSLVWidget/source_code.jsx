@@ -81,7 +81,7 @@ const fetchCode = () => {
 fetchCode();
 
 // Wait till it loads
-if (!state.code) {
+if (!state.ready) {
   return <div />;
 }
 
