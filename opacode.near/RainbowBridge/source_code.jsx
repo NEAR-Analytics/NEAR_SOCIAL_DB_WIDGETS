@@ -178,7 +178,7 @@ return (
         : "Rainbow Bridge (alpha)"}{" "}
       🌈{" "}
     </h2>
-    <div class="mb-3 col-lg-2">
+    <div class="mb-3">
       <label for="selectSourceNetwork">Select Source Network</label>
       <select
         class="form-select"
@@ -212,7 +212,7 @@ return (
       )}
     </div>
 
-    <div class="mb-3 col-lg-2">
+    <div class="mb-3">
       <label for="selectToken">Select token</label>
       <select
         class="form-select"
@@ -241,7 +241,7 @@ return (
         ))}
       </select>
     </div>
-    <div class="mb-3 col-lg-2">
+    <div class="mb-3">
       <label for="amount" class="form-label">
         Enter the amount
       </label>
@@ -271,7 +271,7 @@ return (
       )}
     </div>
 
-    <div class="mb-3 col-lg-2">
+    <div class="mb-3">
       <label for="selectDestinationNetwork">Select Destination Network</label>
       <select
         class="form-select"
@@ -314,7 +314,7 @@ return (
         Bridge tokens
       </button>
     </div>
-    <p class="col-lg-3">
+    <p class="">
       NOTE: Please make sure that your wallet is compatible with the Destination
       Network before sending tokens. Visit rainbowbridge.app.
     </p>
