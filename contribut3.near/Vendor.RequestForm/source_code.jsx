@@ -21,11 +21,9 @@ if (!state.projectsIsFetched) {
     State.update({
       projects: projects.map((accountId) => ({
         text: <Widget src={`${ownerId}/widget/Project.Line`} props={{ accountId, size: "1em" }} />,
-        // text: accountId,
         value: accountId,
       })), projectsIsFetched: true
     })
-    console.log(state.projects)
   });
   return <>Loading...</>;
 }
