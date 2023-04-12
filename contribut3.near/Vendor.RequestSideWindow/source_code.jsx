@@ -39,6 +39,7 @@ const body = (
         onChange: (message) => State.update({ message }),
       }}
     />
+    <textarea />
   </>
 );
 
