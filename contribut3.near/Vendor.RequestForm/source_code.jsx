@@ -26,16 +26,16 @@ if (!state.projectIsFetched) {
   return <>Loading...</>;
 }
 
-if (!state.requestsIsFetched) {
-  Near.asyncView(
-    ownerId,
-    "get_admin_requests",
-    { account_id: context.accountId },
-    "final",
-    false,
-  ).then((requests) => State.update({ requests, requestsIsFetched: true }));
-  return <>Loading...</>;
-}
+// if (!state.requestsIsFetched) {
+//   Near.asyncView(
+//     ownerId,
+//     "get_admin_requests",
+//     { account_id: context.accountId },
+//     "final",
+//     false,
+//   ).then((requests) => State.update({ requests, requestsIsFetched: true }));
+//   return <>Loading...</>;
+// }
 
 const Form = styled.div`
   display: flex;
@@ -45,15 +45,39 @@ const Form = styled.div`
   gap: 1em;
 `;
 
-const
+// const
 
 return (
   <Form>
     <Widget
       src={`${ownerId}/widget/Inputs.Select`}
       props={{
+        label: "Request as *",
+        options: state.projects,
+        value: state.projectId,
+        onChange: (projectId) => {
+          State.update({ projectId });
+          Near.asyncView(
+            ownerId,
+            "get_project_requests",
+            { account_id: projectId.value },
+            "final",
+            false,
+          ).then((requests) => State.update({
+            requests: requests.map((request) => ({
+              name: <Widget src={`${ownerId}/widget/Request.Line`} props={{ request, size: "1em" }} />,
+              value: request,
+            })),
+            requestsIsFetched: true
+          }));
+        },
+      }}
+    />
+    <Widget
+      src={`${ownerId}/widget/Inputs.Select`}
+      props={{
         label: "Contribution to *",
-        options: requests,
+        options: state.requests,
         value: state.requestId,
         onChange: (requestId) => State.update({ requestId }),
       }}
