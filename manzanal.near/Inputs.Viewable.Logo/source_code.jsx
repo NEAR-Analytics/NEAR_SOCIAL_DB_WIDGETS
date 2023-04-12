@@ -67,8 +67,8 @@ return (
       ),
       view: (
         <Widget
-          src={`${ownerId}/widget/ProfileCircle`}
-          props={{ accountId: props.accountId }}
+          src={`${ownerId}/widget/Project.Icon`}
+          props={{ accountId: props.accountId, size: "8em" }}
         />
       ),
       canEdit,
