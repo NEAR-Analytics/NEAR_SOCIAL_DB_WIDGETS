@@ -1,5 +1,5 @@
 State.init({
-  value: "value to update",
+  value: "Information from the Smart Contract on NEAR Will Display Here..",
 });
 
 console.log(Near.view("dev-1680714992236-65898712788505", "get_user"));
