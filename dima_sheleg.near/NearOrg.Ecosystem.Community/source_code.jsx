@@ -53,12 +53,6 @@ const Text = styled.p`
     gap: 16px;
   `}
 `;
-const Small = styled.span`
-  font: inherit;
-  color: inherit;
-  margin: 0;
-  font-size: ${(p) => p.size}
-`;
 const Flex = styled.div`
   display: flex;
   gap: ${(p) => p.gap};
