@@ -26,13 +26,29 @@ const Container = styled.div`
   gap: 0.25em;
 `;
 
+const Name = styled.div`
+  font-style: normal;
+  font-weight: 600;
+  font-size: .95em;
+  line-height: 1em;
+  color: #101828;
+`;
+
+const AccountId = styled.div`
+  font-style: normal;
+  font-weight: 400;
+  font-size: .75em;
+  line-height: 1em;
+  color: #7e868c;
+`;
+
 return (
   <Container>
     <Widget
       src={`${ownerId}/widget/Project.Icon`}
       props={{ accountId, size }}
     />
-    {state.name}
-    @{accountId}
+    <Name>{state.name}</Name>
+    <AccountId>@{accountId}</AccountId>
   </Container>
-)
+);
