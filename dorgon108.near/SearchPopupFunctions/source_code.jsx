@@ -365,27 +365,15 @@ const onSearchResultClick = ({ searchPosition, objectID, eventName }) => {
   }, 50);
 };
 
+if (props.term !== state.lastSyncedTerm) {
+  State.update({
+    lastSyncedTerm: props.term,
+  });
+  onSearchChange(props.term);
+}
+
 return (
   <Wrapper>
-    {showHeader && (
-      <Header>
-        <H1>Search</H1>
-        <H2>Explore and find everything on the Blockchain Operating System</H2>
-      </Header>
-    )}
-
-    {showSearchBar && (
-      <Search>
-        <Widget
-          src="chaotictempest.near/widget/SearchPill"
-          props={{
-            onChange: onSearchChange,
-            term: props.term,
-          }}
-        />
-      </Search>
-    )}
-
     {state.search && (
       <Facets>
         <Widget
