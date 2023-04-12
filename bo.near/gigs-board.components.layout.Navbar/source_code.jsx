@@ -99,7 +99,7 @@ return (
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            <i class="bi bi-question-lg"></i>          
+            <i class="bi bi-question-lg"></i>
           </button>
           <ul class="dropdown-menu dropdown-menu-end">
             <li>
