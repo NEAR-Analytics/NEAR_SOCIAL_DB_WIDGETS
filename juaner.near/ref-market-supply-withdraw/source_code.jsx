@@ -1,5 +1,4 @@
 const Container = styled.div`
-    background-color:black;
     .content input{
       background: #152528;
       border-radius: 12px;
