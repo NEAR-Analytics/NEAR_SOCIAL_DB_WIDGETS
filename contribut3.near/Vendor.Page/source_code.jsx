@@ -138,14 +138,7 @@ return (
           props={{ accountId: props.accountId }}
         />
         <CTARow>
-          <Widget
-            src={`${ownerId}/widget/SideWindow`}
-            props={{
-              title: "Request a contribution",
-              description: "Request a contribution from this vendor",
-              trigger: <>{personPlus}Request contribution</>,
-            }}
-          />
+          <Widget src={`${ownerId}/widget/Vendor.RequestSideWindow`} />
           <Widget
             src={`${ownerId}/widget/Buttons.Grey`}
             props={{
