@@ -7,6 +7,7 @@ const Container = styled.div`
       color: #7E8A93;
       padding:0 15px 0 15px;
       border:none;
+      margin-bottom:4px;
     }
     input:focus{
       outline:none;
