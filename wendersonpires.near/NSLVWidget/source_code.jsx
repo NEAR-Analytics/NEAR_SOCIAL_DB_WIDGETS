@@ -73,6 +73,9 @@ const fetchCode = () => {
         }, 1000);
       }
     })
+    .catch(() => {
+      State.update({ ready: true });
+    })
     .finally(() => {
       State.update({ ready: true });
     });
