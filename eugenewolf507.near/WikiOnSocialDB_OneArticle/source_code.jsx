@@ -6,13 +6,6 @@ if (!accountId) {
   return "No account ID";
 }
 
-const authorsWhiteList = ["eugenewolf507.near", "wolf.near"];
-
-const doesUserCanEditArticle = () =>
-  authorsWhiteList.some((val) => val === accountId);
-
-console.log(doesUserCanEditArticle());
-
 const lastEditor = props.lastEditor;
 const blockHeight =
   props.blockHeight === "now" ? "now" : parseInt(props.blockHeight);
@@ -27,6 +20,16 @@ const article = JSON.parse(
   Social.get(`${lastEditor}/wikiTest2Article/main`, blockHeight)
 );
 State.update({ article });
+
+// ======= CHECK WHO CAN EDIT ARTICLE
+const authorsWhiteList = ["507.near", "wolf.near"];
+const doesUserCanEditArticle = () => {
+  const isAccountIdInWhiteList = authorsWhiteList.some(
+    (val) => val === accountId
+  );
+  const isAccountIdEqualsAuthor = accountId === state.article.author;
+  return isAccountIdInWhiteList || isAccountIdEqualsAuthor ? true : false;
+};
 
 // ======= GET DATA TO ATACH COMMENTS TO THE ARTICLE =======
 // we attach all comments to the first initial article (which version = 0)
