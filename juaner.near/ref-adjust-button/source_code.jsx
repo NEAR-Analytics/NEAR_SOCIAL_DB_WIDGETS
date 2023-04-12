@@ -47,10 +47,10 @@ const handleAdjust = () => {
   const decimals = metadata.decimals + config.extra_decimals;
   const expandedAmount = expandToken(amount, decimals);
   const accountSuppliedAsset = account.supplied.find(
-    (a) => a.token_id === tokenId
+    (a) => a.token_id === token_id
   );
   const accountCollateralAsset = account.collateral.find(
-    (a) => a.token_id === tokenId
+    (a) => a.token_id === token_id
   );
   const suppliedBalance = accountSuppliedAsset?.balance || 0;
   const collateralBalance = accountCollateralAsset?.balance || 0;
