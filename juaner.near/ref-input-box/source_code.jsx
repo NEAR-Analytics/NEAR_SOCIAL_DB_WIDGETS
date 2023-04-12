@@ -38,9 +38,7 @@ State.init({
 });
 function changeAmount(e) {
   const value = Number(e.target.value);
-  console.log("88888888888-amount", value);
   if (Big(value || 0).gt(balance || 0)) return;
-  console.log("校验过了哦");
   State.update({
     amount: value,
   });
@@ -52,11 +50,12 @@ function changeToMax() {
   });
   handleAmount(balance || 0);
 }
+const subBalance = Big(balance || "0").toFixed(4);
 return (
   <Container>
     <input type="number" value={amount} onChange={changeAmount} />
     <span class="balance" onClick={changeToMax}>
-      Balance: {balance || "0"}(${balance$ || "0"})
+      Balance: {subBalance}(${balance$ || "0"})
     </span>
   </Container>
 );
