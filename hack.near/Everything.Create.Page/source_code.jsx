@@ -1,0 +1,1 @@
+return (<p>Go configure your <a href="/#/edit/hack.near/widget/Everything.Create.Page">create widget</a>!</p>);
