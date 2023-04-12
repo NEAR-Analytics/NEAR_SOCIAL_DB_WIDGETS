@@ -178,7 +178,7 @@ return (
         : "Rainbow Bridge (alpha)"}{" "}
       🌈{" "}
     </h2>
-    <div class="mb-3 col-lg-2">
+    <div class="mb-3 col-lg-1">
       <label for="selectSourceNetwork">Select Source Network</label>
       <select
         class="form-select"
