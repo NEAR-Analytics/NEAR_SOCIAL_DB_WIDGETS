@@ -3,14 +3,18 @@ return (
     <div className="mt-auto py-3">
       <div className="container">
         <div className="d-flex justify-content-end">
-          <a href={"/#/evrything-docs.near/widget/Everything.Documentation"}>
+          <a
+            href={
+              "/#/https://temp.everything.dev/#/evrything.near/widget/Everything.View.Thing?src=evrything-docs.near/widget/Everything.View.Document&accountId=evrything.near&blockHeight=89268687"
+            }
+          >
             docs
           </a>
         </div>
       </div>
     </div>
     <Widget
-      src="evrything.near/widget/Everything.Template"
+      src="hack.near/widget/Page.Template"
       props={{
         accountId: "hack.near",
         font: "Courier",
