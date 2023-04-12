@@ -279,7 +279,7 @@ return (
             src="luixo.near/widget/ExplorerAccountComponent"
             props={{
               accountId,
-              network: "testnet",
+              network: context.networkId,
               height: 800,
               language: "en",
             }}
