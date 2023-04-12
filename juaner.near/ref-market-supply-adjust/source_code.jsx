@@ -79,6 +79,8 @@ const expandToken = (value, decimals) => {
 };
 const formatToken = (v) => Math.floor(v * 10_000) / 10_000;
 const { showModal, selectedTokenId } = props;
+// const selectedTokenId =
+//   "dac17f958d2ee523a2206206994597c13d831ec7.factory.bridge.near";
 const {
   rewards,
   balances,
@@ -105,7 +107,7 @@ if (!accountId) {
 const onLoad = (data) => {
   State.update(data);
 };
-/** logic start */
+/** logic start*/
 let apy = 0;
 let cf = "-";
 const getApy = (asset) => {
@@ -222,9 +224,7 @@ function computeAdjustMaxAmount() {
   const asset = assets.find((a) => a.token_id === selectedTokenId);
   const { metadata, config } = asset;
   const decimals = metadata.decimals + config.extra_decimals;
-  const assetPrice = asset.price
-    ? B(asset.price.multiplier).div(B(10).pow(asset.price.decimals))
-    : B(0);
+  const assetPrice = asset.price.usd || 0;
   const accountSuppliedAsset = account.supplied.find(
     (a) => a.token_id === selectedTokenId
   );
@@ -237,7 +237,7 @@ function computeAdjustMaxAmount() {
   const collateralBalance = new B(accountCollateralAsset?.balance || 0);
   const collateral = Number(shrinkToken(collateralBalance.toFixed(), decimals));
   const availableBalance = B(supplied).plus(collateral).toFixed();
-  const availableBalance$ = assetPrice.mul(availableBalance).toFixed();
+  const availableBalance$ = B(assetPrice).mul(availableBalance).toFixed(2);
   return [availableBalance, availableBalance$, collateral];
 }
 function decimalMax(a, b) {
