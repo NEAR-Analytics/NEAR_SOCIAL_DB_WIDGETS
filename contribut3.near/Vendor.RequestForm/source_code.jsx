@@ -15,9 +15,18 @@ if (!state.requestsIsFetched) {
     "final",
     false,
   ).then((requests) => State.update({ requests, requestsIsFetched: true }));
+  return <>Loading...</>;
 }
 
-return <>
+const Form = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 1em;
+`;
+
+return (<Form>
   <Widget
     src={`${ownerId}/widget/Inputs.Select`}
     props={{
@@ -36,4 +45,4 @@ return <>
       onChange: (message) => State.update({ message }),
     }}
   />
-</>
+</Form>);
