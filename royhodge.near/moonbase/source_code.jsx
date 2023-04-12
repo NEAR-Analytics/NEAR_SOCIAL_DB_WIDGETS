@@ -104,7 +104,7 @@ const ActionArea = styled.div`
 
 const logo = (
   <LogoArea
-    href={`/#/${ownerId}/widget/moonbase-auth`}
+    href={`/#/${ownerId}/widget/moonbase`}
     onClick={() => props.update({})}
   >
     <></>MoonBase Widget
