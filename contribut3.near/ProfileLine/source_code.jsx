@@ -1,10 +1,6 @@
 const ownerId = "contribut3.near";
 const accountId = props.accountId || context.accountId;
 const isEntity = props.isEntity ?? false;
-const additionalText = props.additionalText;
-const additionalRow = props.additionalRow;
-const alignment = additionalRow ? "flex-start" : "center";
-const additionalColumn = props.additionalColumn;
 const imageSize = props.imageSize;
 const linkNavigate = () =>
   props.update({
@@ -60,8 +56,8 @@ const Container = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  align-items: flex-start;
   width: 100%;
-  align-items: ${({ alignment }) => alignment};
 `;
 
 return (
