@@ -148,7 +148,7 @@ return (
             Adjust
           </span>
         </div>
-        {tabName == "withdraw" ? (
+        {tabName != "adjust" ? (
           <Widget
             src="juaner.near/widget/ref-market-supply-withdraw"
             props={{ selectedTokenId, showModal }}
