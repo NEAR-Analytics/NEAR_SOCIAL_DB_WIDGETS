@@ -28,16 +28,31 @@ const AccountId = styled.div`
   color: #7e868c;
 `;
 
-const createProjectLine = (accountId) => {
-  const name = Social.get(`${accountId}/profile/name`);
-  console.log("called");
+const ImageCircle = styled.img`
+  background: #fafafa;
+  border-radius: 8px;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+`;
+
+const ImageContainer = styled.div`
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+`;
+
+const createProjectLine = (accountId, name, image) => {
+  const fullName = name ?? accountId;
+  const url = (image.ipfs_cid
+    ? `https://ipfs.near.social/ipfs/${image.ipfs_cid}`
+    : image.url) || "https://thewiki.io/static/media/sasha_anon.6ba19561.png";
 
   return (
     <Container>
-      <Widget
-        src={`${ownerId}/widget/Project.Icon`}
-        props={{ accountId, size: "1em" }}
-      />
+      <ImageContainer title={`${fullName} @${accountId}`}>
+        <ImageCircle src={imageSrc} alt="profile image" />
+      </ImageContainer>
       <Name>{name}</Name>
       <AccountId>@{accountId}</AccountId>
     </Container>
@@ -62,18 +77,24 @@ if (!state.projectsIsFetched) {
     "final",
     false,
   ).then((projects) => {
-    State.update({
-      projects: projects.map((accountId) => ({
-        text: <Widget
-          src={`${ownerId}/widget/Project.Line`}
-          props={{ accountId, size: "1em" }}
-        />,
-        // text: createProjectLine(accountId),
-        // text: accountId,
-        value: accountId,
-      })),
-      projectsIsFetched: true
-    });
+    Near.asyncView(
+      "social.near",
+      "get",
+      { keys: projects.map((accountId) => `${accountId}/profile/**`) },
+      "final",
+      false,
+    ).then((data) =>
+      State.update({
+        projects: projects.map((accountId) => ({
+          // text: <Widget
+          //   src={`${ownerId}/widget/Project.Line`}
+          //   props={{ accountId, size: "1em" }}
+          // />,
+          text: createProjectLine(accountId, data[accountId].profile.name, data[accountId].profile.image),
+          value: accountId,
+        })),
+        projectsIsFetched: true
+      }));
   });
   return <>Loading...</>;
 }
