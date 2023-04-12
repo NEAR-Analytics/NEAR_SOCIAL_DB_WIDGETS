@@ -95,7 +95,13 @@ return (
           <button
             type="button"
             class="btn btn-outline-secondary rounded-circle"
-            style={{ border: "0px" }}
+            style={{
+              width: "30px",
+              height: "30px",
+              padding: "6px 0px",
+              borderWidth: "0.5px",
+              lineHeight: "0px",
+            }}
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
