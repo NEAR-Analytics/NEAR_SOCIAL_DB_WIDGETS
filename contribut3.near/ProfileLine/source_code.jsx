@@ -8,28 +8,16 @@ const additionalColumn = props.additionalColumn;
 const imageSize = props.imageSize;
 const linkNavigate = () =>
   props.update({
-    tab: isEntity ? "entity" : "contributor",
+    tab: isEntity ? "project" : "vendor",
     accountId,
     content: "",
     search: "",
   });
 
 State.init({
-  data: null,
-  fetched: false,
   profile: null,
   profileFetched: false,
 });
-
-if (!state.fetched) {
-  Near.asyncView(
-    ownerId,
-    isEntity ? "get_project" : "get_vendor",
-    { account_id: accountId },
-    "final",
-    false
-  ).then((data) => State.update({ data, fetched: true }));
-}
 
 if (!state.profileFetched) {
   Near.asyncView(
@@ -38,11 +26,13 @@ if (!state.profileFetched) {
     { keys: [`${accountId}/profile/**`] },
     "final",
     false
-  ).then((profile) => State.update({ profile: profile[accountId].profile, profileFetched: true }));
+  ).then((profile) =>
+    State.update({ profile: profile[accountId].profile, profileFetched: true })
+  );
   return <>Loading...</>;
 }
 
-const fullName = state.profile.name || state.data.application.name || accountId;
+const fullName = state.profile.name || accountId;
 const href = `/${ownerId}/widget/Index?tab=${isEntity ? "project" : "vendor"
   }&accountId=${accountId}`;
 
@@ -74,14 +64,6 @@ const Container = styled.div`
   align-items: ${({ alignment }) => alignment};
 `;
 
-const Column = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: between;
-  align-items: flex-start;
-  flex-grow: 1;
-`;
-
 return (
   <Container alignment={alignment}>
     <ImageLink href={href} onClick={linkNavigate}>
@@ -91,17 +73,8 @@ return (
           props={{ accountId, size: imageSize, isEntity }}
         />
       </ImageContainer>
+      <b>{fullName}</b>
+      <span>@{accountId}</span>
     </ImageLink>
-    <Column>
-      <div>
-        <ImageLink href={href} onClick={linkNavigate}>
-          <b>{fullName}</b>
-          <span>@{accountId}</span>
-        </ImageLink>
-        {additionalText}
-      </div>
-      {additionalRow}
-    </Column>
-    {additionalColumn}
   </Container>
 );
