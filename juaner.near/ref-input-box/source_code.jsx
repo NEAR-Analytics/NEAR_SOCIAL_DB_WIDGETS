@@ -43,6 +43,9 @@ function changeAmount(e) {
   handleAmount(value);
 }
 function changeToMax() {
+  State.update({
+    amount: balance || 0,
+  });
   handleAmount(balance || 0);
 }
 return (
