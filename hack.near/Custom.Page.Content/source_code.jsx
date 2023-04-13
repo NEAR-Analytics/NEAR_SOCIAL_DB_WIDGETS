@@ -1,6 +1,5 @@
 const owner = props.owner ?? "hack.near";
 const accountId = props.accountId ?? context.accountId;
-const hashtag = props.hashtag ?? "builders";
 
 const main = context.accountId
   ? Social.get(`${context.accountId}/settings/every/page.main`)
@@ -16,9 +15,6 @@ const defaultWidgets = [
   },
   {
     src: "mob.near/widget/MainPage.Compose",
-  },
-  {
-    src: "mob.near/widget/Hashtag.Feed",
   },
 ];
 
