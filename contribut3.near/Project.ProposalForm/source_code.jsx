@@ -86,16 +86,16 @@ if (!state.projectsIsFetched) {
     { account_id: context.accountId },
     "final",
     false
-  ).then((projects) => {
+  ).then((vendors) => {
     Near.asyncView(
       "social.near",
       "get",
-      { keys: projects.map((accountId) => `${accountId}/profile/**`) },
+      { keys: vendors.map((accountId) => `${accountId}/profile/**`) },
       "final",
       false
     ).then((data) =>
       State.update({
-        projects: projects.map((accountId) => ({
+        vendors: vendors.map((accountId) => ({
           // text: <Widget
           //   src={`${ownerId}/widget/Project.Line`}
           //   props={{ accountId, size: "1em" }}
