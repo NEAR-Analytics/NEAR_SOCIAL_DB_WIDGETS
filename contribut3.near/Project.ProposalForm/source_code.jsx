@@ -69,6 +69,8 @@ State.init({
   projectsIsFetched: false,
   requests: [],
   requestsIsFetched: false,
+  proposalTerms: [],
+  proposalTerm: [],
   terms: [],
   term: [],
   paymentTypes: [],
