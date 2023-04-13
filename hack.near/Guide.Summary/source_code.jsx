@@ -17,7 +17,7 @@ return (
     </div>
     <p className="mt-3">
       This page is meant to guide anyone building composable front-end widgets
-      on the SocialDB contract.
+      and other things on the SocialDB contract.
     </p>
     <div className="mb-2 mt-2 d-flex gap-2 flex-wrap">
       <a
