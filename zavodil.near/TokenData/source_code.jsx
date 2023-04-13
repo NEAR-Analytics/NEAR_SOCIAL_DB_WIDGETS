@@ -35,6 +35,7 @@ switch (network) {
       balance_hr: new Big(balance)
         .div(new Big(10).pow(metadata.decimals))
         .toFixed(4),
+      balance_hr_full: new Big(balance).div(new Big(10).pow(metadata.decimals)),
       price: refPrice,
       metadata,
     };
