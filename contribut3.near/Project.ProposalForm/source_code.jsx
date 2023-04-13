@@ -118,6 +118,32 @@ if (!state.vendorsIsFetched) {
       );
     }
   });
+}
+
+if (!state.requestsIsFetched) {
+  Near.asyncView(
+    ownerId,
+    "get_project_requests",
+    { account_id: accountId },
+    "final",
+    false
+  ).then((requests) =>
+    State.update({
+      requests: requests.map(([accountId, cid]) => ({
+        name: (
+          <Widget
+            src={`${ownerId}/widget/Request.Line`}
+            props={{ accountId, cid, size: "1em" }}
+          />
+        ),
+        value: cid,
+      })),
+      requestsIsFetched: true,
+    })
+  );
+}
+
+if (!state.requestsIsFetched || !state.vendorsIsFetched) {
   return <>Loading...</>;
 }
 
@@ -179,30 +205,10 @@ return (
         src={`${ownerId}/widget/Inputs.Select`}
         props={{
           label: "Propose as *",
-          options: state.projects,
-          value: state.projectId,
-          onChange: (projectId) => {
-            State.update({ projectId });
-            Near.asyncView(
-              ownerId,
-              "get_project_requests",
-              { account_id: projectId.value },
-              "final",
-              false
-            ).then((requests) =>
-              State.update({
-                requests: requests.map(([accountId, cid]) => ({
-                  name: (
-                    <Widget
-                      src={`${ownerId}/widget/Request.Line`}
-                      props={{ accountId, cid, size: "1em" }}
-                    />
-                  ),
-                  value: cid,
-                })),
-                requestsIsFetched: true,
-              })
-            );
+          options: state.vendors,
+          value: state.vendorId,
+          onChange: (vendorId) => {
+            State.update({ vendorId });
           },
         }}
       />
