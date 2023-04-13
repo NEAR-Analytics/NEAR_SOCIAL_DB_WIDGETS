@@ -230,10 +230,19 @@ const can_burrow_assets = assets && assets.filter((a) => a.config.can_borrow);
 const market_burrow_assets =
   can_burrow_assets &&
   can_burrow_assets.map((asset) => {
-    const { token_id, metadata } = asset;
+    const { token_id, metadata, price, config } = asset;
     const r = rewards.find((a) => a.token_id === asset.token_id);
     const borrowApy = r.apyBaseBorrow;
-    const liquidity = nFormat(asset.availableLiquidity, 2);
+    const token_usd_price = price && price.usd;
+    const liquidity = nFormat(
+      B(asset.availableLiquidity || 0)
+        .mul(token_usd_price || 0)
+        .toNumber(),
+      2
+    );
+    const { volatility_ratio } = config;
+    const cf = volatility_ratio / 100;
+
     const hasRewards = rewardsMap[token_id] && assetsMap[token_id];
     const rewardMap = hasRewards && rewardsMap[token_id];
     const rewardTokens = rewardMap && rewardMap.rewardTokensBorrow;
@@ -262,7 +271,9 @@ const market_burrow_assets =
         <td class="text-white">
           {rewardTokensImg.length == 0 ? "-" : rewardTokensImg}
         </td>
-        <td class="text-end">{liquidity}</td>
+        <td>{cf || "-"}%</td>
+        <td>{liquidity}</td>
+        <td class="text-end"></td>
       </tr>
     );
   });
@@ -297,18 +308,22 @@ return (
     <table class="table click noBorder">
       <thead>
         <tr>
-          <th scope="col" width="25%">
+          <th scope="col" width="15%">
             Assets
           </th>
-          <th scope="col" class="text-start" width="25%">
+          <th scope="col" class="text-start" width="15%">
             APY
           </th>
-          <th scope="col" class="text-start" width="25%">
+          <th scope="col" class="text-start" width="15%">
             Rewards
           </th>
-          <th scope="col" class="text-end">
+          <th scope="col" class="text-start" width="15%">
+            C.F.
+          </th>
+          <th scope="col" class="text-start" width="15%">
             Total Liquidity
           </th>
+          <th scope="col" class="text-end"></th>
         </tr>
       </thead>
       <tbody>{market_burrow_assets}</tbody>
