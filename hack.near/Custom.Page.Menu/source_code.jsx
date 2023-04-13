@@ -8,9 +8,6 @@ if (side === null) {
 
 const defaultWidgets = [
   {
-    src: "mob.near/widget/Welcome.GetInvolved",
-  },
-  {
     src: "mob.near/widget/Applications",
   },
   {
