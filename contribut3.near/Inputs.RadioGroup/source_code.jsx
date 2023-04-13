@@ -22,7 +22,7 @@ const RadioButton = styled.div`
     padding: 0;
     width: 1.5em;
     height: 1.5em;
-    border: 1px solid #eceef0;
+    border: 2px solid #eceef0;
     display: flex;
     justify-content: center;
     align-items: center;
