@@ -14,15 +14,16 @@ const Container = styled.div`
       background: #152528; 
       color: #7E8A93;
     }
- 
     .balance {
       font-size:12px;
       color:#4B6778;
       margin-left:6px;
       cursor:pointer;
+    }
+    .balance .value {
       text-decoration:underline;
     }
-    .balance:hover{
+    .balance .value:hover{
         color:#7E8A93;
     }
 
@@ -55,7 +56,10 @@ return (
   <Container>
     <input type="number" value={amount} onChange={changeAmount} />
     <span class="balance" onClick={changeToMax}>
-      Balance: {subBalance}(${balance$ || "0"})
+      Balance:{" "}
+      <label class="value">
+        {subBalance}(${balance$ || "0"})
+      </label>
     </span>
   </Container>
 );
