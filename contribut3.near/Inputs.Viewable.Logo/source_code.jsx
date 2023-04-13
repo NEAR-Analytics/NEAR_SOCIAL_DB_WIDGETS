@@ -23,7 +23,7 @@ const Input = styled.input`
 
 const LabelArea = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   gap: 0.25em;
