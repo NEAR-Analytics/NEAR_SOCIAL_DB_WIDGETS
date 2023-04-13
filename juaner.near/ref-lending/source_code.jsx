@@ -1,6 +1,6 @@
 const Container = styled.div`
     width:100%;
-    .box_tabel{
+   .box_tabel{
       border-radius: 12px;
       background: #1A2E33;
       padding:20px;
@@ -34,6 +34,9 @@ const Container = styled.div`
     }
     .mr_10{
       margin-right:10px;
+    }
+    .ml_5 {
+      margin-left:5px;
     }
     .topArea{
         padding:0 25px 38px 25px;
@@ -106,7 +109,7 @@ const {
   rewards,
   account,
   balances,
-  yourSuppliedUSD,
+  total_supplied_usd,
   yourBurrowedUSD,
   selectedTokenId,
   selectedTokenMeta,
@@ -174,81 +177,44 @@ const depositedAssets = hasData
       ...account.collateral.map((a) => a.token_id),
     ])
   : new Set();
-// get portfolio deposited assets
-let total_supplied_usd = Big(0);
-const suppliedAssets = hasData
-  ? [...depositedAssets].map((depositedTokenId) => {
-      const asset = assets.find((a) => a.token_id === depositedTokenId);
 
-      const r = rewards.find((a) => a.token_id === asset.token_id);
-      const totalApy = r.apyBase + r.apyRewardTvl + r.apyReward;
+function getPortfolioRewards(type, token_id) {
+  const targetFarm = account.farms.find((farm) => {
+    return farm["farm_id"][type] == token_id;
+  });
+  if (targetFarm) {
+    const asset = assets.find((a) => a.token_id == token_id);
+    const rewards = targetFarm["rewards"] || [];
+    const totalRewards =
+      type == "Supplied" ? asset.farms[0].rewards : asset.farms[1].rewards;
+    const result = rewards.map((reward) => {
+      const { reward_token_id } = reward;
+      const assetDecimals =
+        asset.metadata.decimals + asset.config.extra_decimals;
+      const rewardAsset = assets.find((a) => a.token_id == reward_token_id);
+      const rewardTokenDecimals =
+        rewardAsset.metadata.decimals + rewardAsset.config.extra_decimals;
 
-      const decimals = asset.metadata.decimals + asset.config.extra_decimals;
-
-      const supplied = account.supplied.find(
-        (s) => s.token_id === depositedTokenId
+      const boostedShares = Number(
+        shrinkToken(reward.boosted_shares, assetDecimals)
       );
-
-      const depositedBalance = supplied
-        ? Number(shrinkToken(supplied.balance, decimals))
-        : 0;
-
-      const collateral = account.collateral.find(
-        (c) => c.token_id === depositedTokenId
+      const totalBoostedShares = Number(
+        shrinkToken(totalRewards[reward_token_id].boosted_shares, assetDecimals)
       );
-
-      const collateralBalance = collateral
-        ? Number(shrinkToken(collateral.balance, decimals))
-        : 0;
-
-      const totalBalance = depositedBalance + collateralBalance;
-      const usd = totalBalance * asset.price.usd;
-      total_supplied_usd = total_supplied_usd.plus(usd);
-
-      return (
-        <tr>
-          <td>
-            <img
-              src={asset.metadata.icon || wnearbase64}
-              class="tokenIcon"
-            ></img>
-            {asset.metadata.symbol}
-          </td>
-          <td class="text-start">{toAPY(totalApy)}%</td>
-          <td class="text-start">
-            {totalBalance.toFixed(4)}
-            <span class="text_grey_color">(${usd.toFixed(2)})</span>
-          </td>
-          <td class="flex-end">
-            <Widget
-              src="juaner.near/widget/ref-operation-button"
-              props={{
-                clickEvent: () => {
-                  changeSelectedToken(asset, "supply");
-                },
-                buttonType: "solid",
-                actionName: "Adjust",
-                hoverOn: true,
-              }}
-            />
-            &nbsp;&nbsp;
-            <Widget
-              src="juaner.near/widget/ref-operation-button"
-              props={{
-                clickEvent: () => {
-                  changeSelectedToken(asset, "supply");
-                },
-                buttonType: "line",
-                actionName: "WithDraw",
-                hoverOn: true,
-              }}
-            />
-          </td>
-        </tr>
+      const totalRewardsPerDay = Number(
+        shrinkToken(
+          totalRewards[reward_token_id].reward_per_day,
+          rewardTokenDecimals
+        )
       );
-    })
-  : undefined;
-
+      const rewardPerDay =
+        (boostedShares / totalBoostedShares) * totalRewardsPerDay || 0;
+      return { rewardPerDay, metadata: asset.metadata };
+    });
+    return result;
+  }
+  return [];
+}
 // get portfolio borrowed assets
 let total_burrowed_usd = Big(0);
 const borrowedAssets = hasData
@@ -261,7 +227,8 @@ const borrowedAssets = hasData
       const borrowed = Number(shrinkToken(borrowedAsset.balance, decimals));
       const usd = borrowed * asset.price.usd;
       total_burrowed_usd = total_burrowed_usd.plus(usd);
-
+      const rewardsList =
+        getPortfolioRewards("Supplied", borrowedAsset.token_id) || [];
       return (
         <tr>
           <td>
@@ -272,6 +239,22 @@ const borrowedAssets = hasData
             {asset.metadata.symbol}
           </td>
           <td class="text-start">{toAPY(totalApy)}%</td>
+          <td class="text-start">
+            {rewardsList.length == 0
+              ? "-"
+              : rewardsList.map((reward) => {
+                  const { rewardPerDay, metadata } = reward;
+                  return (
+                    <div class="flex_center">
+                      {Big(rewardPerDay).toFixed(4)}
+                      <img
+                        class="rewardIcon ml_5"
+                        src={metadata.icon || wnearbase64}
+                      />
+                    </div>
+                  );
+                })}
+          </td>
           <td class="text-start">
             {borrowed.toFixed(4)}
             <span class="text_grey_color">(${usd.toFixed(2)})</span>
@@ -293,13 +276,12 @@ const borrowedAssets = hasData
       );
     })
   : undefined;
-
-if (total_supplied_usd.gt(0)) {
-  State.update({
-    yourSuppliedUSD: total_supplied_usd.lt(0.01)
-      ? "<$0.01"
-      : "$" + total_supplied_usd.toFixed(2),
-  });
+let yourSuppliedUSD;
+const big_total_supplied_usd = Big(total_supplied_usd || 0);
+if (big_total_supplied_usd.gt(0)) {
+  yourSuppliedUSD = big_total_supplied_usd.lt(0.01)
+    ? "<$0.01"
+    : "$" + big_total_supplied_usd.toFixed(2);
 }
 if (total_burrowed_usd.gt(0)) {
   State.update({
@@ -377,14 +359,7 @@ return (
       {/*yours */}
       <Widget
         src="juaner.near/widget/ss-your-supply"
-        props={{
-          suppliedAssets,
-          selectedTokenId,
-          selectedTokenMeta,
-          type,
-          showModal,
-          closeModal,
-        }}
+        props={{ onLoadState: onLoad }}
       />
       {/*market */}
       <Widget src="juaner.near/widget/ref-market-supply-assets" />
