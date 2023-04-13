@@ -16,9 +16,8 @@ return (
       </a>
     </div>
     <p className="mt-3">
-      Begin your journey into a better future with the blockchain operating
-      system. This page is meant to guide anyone building composable front-end
-      widgets on the SocialDB contract.
+      This page is meant to guide anyone building composable front-end widgets
+      on the SocialDB contract.
     </p>
     <div className="mb-2 mt-2 d-flex gap-2 flex-wrap">
       <a
