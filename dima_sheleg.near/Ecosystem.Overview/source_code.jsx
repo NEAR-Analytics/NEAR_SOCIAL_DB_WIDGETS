@@ -466,8 +466,8 @@ return (
       </Flex>
     </Section>
     <Section background="linear-gradient(to right, hsla(0, 0%, 100%, 0), var(--sand3), hsla(0, 0%, 100%, 0))">
-      <Flex gap="32px">
-        <div class="col-12 col-md-6">
+      <div class="row row-cols-md-2 row-cols-1 g-4 text-md-start text-center">
+        <div class="col order-md-0 order-1">
           <Flex gap="16px" direction="column">
             <Text size="text-3xl" color="sand12">
               Hundreds of Projects and DAOs
@@ -475,7 +475,10 @@ return (
             <Text size="text-xl" color="sand12">
               Projects and DAOs bring value to users, and change to the world.
             </Text>
-            <Flex gap="32px">
+            <Flex
+              gap="32px"
+              className="justify-content-md-start justify-content-center"
+            >
               <NumericLabel>
                 <Text size="text-3xl" color="cyan8" fontWeight="600">
                   750
@@ -495,7 +498,7 @@ return (
             </Flex>
           </Flex>
         </div>
-        <div class="col-12 col-md-6">
+        <div class="col order-md-1 order-0">
           <Widget
             src="mob.near/widget/Image"
             props={{
@@ -504,7 +507,7 @@ return (
             }}
           />
         </div>
-      </Flex>
+      </div>
 
       <Section center id="anker_projects_daos">
         <Text size="text-3xl" color="sand12">
@@ -759,9 +762,9 @@ return (
       </Section>
     </Section>
 
-    <Section id="anker_community">
-      <Flex gap="32px">
-        <div class="col-12 col-md-6">
+    <Section gap="32px" id="anker_community">
+      <div class="row row-cols-md-2 row-cols-1 g-4 text-md-start text-center">
+        <div class="col order-md-0 order-1">
           <Flex gap="16px" direction="column">
             <Text size="text-3xl" color="sand12">
               A vibrant, welcoming community
@@ -771,7 +774,11 @@ return (
               developers, token holders, validators, and members supporting the
               protocol’s platform, ecosystem, and applications.
             </Text>
-            <Flex gap="32px" wrap="wrap" alignItems="center">
+            <Flex
+              gap="32px"
+              wrap="wrap"
+              className="justify-content-md-start justify-content-center"
+            >
               <NumericLabel backgroundColor="var(--sand3)">
                 <Text size="text-3xl" color="cyan8" fontWeight="600">
                   550<Small size="20px">k</Small>
@@ -799,17 +806,17 @@ return (
             </Flex>
           </Flex>
         </div>
-        <div class="col-12 col-md-6">
+        <div class="col order-md-1 order-0">
           <Widget
             src="mob.near/widget/Image"
             props={{
               image: returnIpfsImage(ipfsImages.ecosystemCommunity),
-              className: "img-fluid",
+              className: "img-fluid mx-auto",
             }}
           />
         </div>
-      </Flex>
-      <div>
+      </div>
+      <Flex className="justify-content-md-start justify-content-center">
         <Widget
           src="adminalpha.near/widget/DIG.Button"
           props={{
@@ -820,7 +827,7 @@ return (
             size: "large",
           }}
         />
-      </div>
+      </Flex>
     </Section>
 
     <Section className="mx-auto" style={{ maxWidth: "1000px" }}>
@@ -974,9 +981,10 @@ return (
     <Section
       id="anker_venture_support"
       background="linear-gradient(to right, hsla(0, 0%, 100%, 0), var(--sand3), hsla(0, 0%, 100%, 0))"
+      gap="32px"
     >
-      <Flex gap="32px">
-        <div class="col-12 col-md-6">
+      <div class="row row-cols-md-2 row-cols-1 g-4 text-md-start text-center">
+        <div class="col order-md-0 order-1">
           <Flex gap="16px" direction="column">
             <Text size="text-3xl" color="sand12">
               Strong venture support
@@ -985,7 +993,10 @@ return (
               The ecosystem offers financial support, advice and networking to
               projects to help them become thriving businesses.
             </Text>
-            <Flex gap="32px">
+            <Flex
+              gap="32px"
+              className="justify-content-md-start justify-content-center"
+            >
               <NumericLabel>
                 <Text size="text-3xl" color="cyan8" fontWeight="600">
                   $120<Small size="20px">M+</Small>
@@ -1005,7 +1016,7 @@ return (
             </Flex>
           </Flex>
         </div>
-        <div class="col-12 col-md-6">
+        <div class="col order-md-1 order-0">
           <Widget
             src="mob.near/widget/Image"
             props={{
@@ -1014,8 +1025,8 @@ return (
             }}
           />
         </div>
-      </Flex>
-      <div>
+      </div>
+      <Flex className="justify-content-md-start justify-content-center">
         <Widget
           src="adminalpha.near/widget/DIG.Button"
           props={{
@@ -1026,7 +1037,7 @@ return (
             size: "large",
           }}
         />
-      </div>
+      </Flex>
     </Section>
 
     <Section>
@@ -1184,7 +1195,12 @@ return (
         startup founders and other experts.
       </Text>
       <Flex gap="32px" mobileStack="32px">
-        <Card center direction="row" background="var(--black)">
+        <Card
+          center
+          direction="row"
+          background="var(--black)"
+          className="flex-md-nowrap flex-wrap"
+        >
           <Widget
             src="mob.near/widget/Image"
             props={{
@@ -1195,13 +1211,17 @@ return (
           <Flex
             direction="column"
             gap="16px"
-            alignItems="start"
-            justifyContent="start"
+            className="align-items-center align-items-md-start justify-content-center justify-content-md-start"
           >
-            <Text size="text-xl" fontWeight="600" color="white" align="left">
+            <Text
+              size="text-xl"
+              fontWeight="600"
+              color="white"
+              className="text-center text-md-start"
+            >
               Boost your project with OWC
             </Text>
-            <Text align="left" color="white">
+            <Text color="white" className="text-center text-md-start">
               Open Web Collective is a blockchain accelerator program supporting
               entrepreneurs building the decentralized web. By bringing together
               capital and seasoned advisors, OWC helps founders de-risk,
