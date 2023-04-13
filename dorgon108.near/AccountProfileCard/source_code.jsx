@@ -5,7 +5,6 @@ const profile = props.profile || Social.get(`${accountId}/profile/**`, "final");
 // const tags = Object.keys(profile.tags || {});
 const tags = Object.keys(profile.tags || { users: "dog", animals: "zoo" });
 
-console.log(tags);
 const profileUrl = `/#/calebjacob.near/widget/ProfilePage?accountId=${accountId}`;
 const onPointerUp =
   props.onClick ??
@@ -125,19 +124,12 @@ const col3 = {
   width: "172px",
 };
 
-const col4 = {
-  right: 0,
-
-  padding: 0,
-  textAlign: "right",
-};
-
 const TagsWrapper = styled.div`
   padding-top: 4px;
 `;
 
 return (
-  <Card>
+  <Card style={{ backgroundColor: "black", height: "100px" }}>
     <CardLeft>
       <Row>
         <Col style={col1}>
@@ -164,26 +156,14 @@ return (
             @{accountId}
           </TextLink>
         </Col>
-
-        <Col style={col4}>
-          {!!context.accountId && context.accountId !== props.accountId && (
-            <button
-              style={{
-                cursor: "pointer",
-                backgroundColor: "rgba(255, 193, 7, 0)",
-                border: "none",
-                margin: 0,
-              }}
-            >
-              <img
-                src="https://i.imgur.com/hOp3Ivj.png"
-                alt="Follow icon"
-                style={{ height: "20px", marginRight: "5px" }}
-              />
-            </button>
-          )}
-        </Col>
       </Row>
     </CardLeft>
+
+    {!!context.accountId && context.accountId !== props.accountId && (
+      <Widget
+        src="calebjacob.near/widget/FollowButton"
+        props={{ accountId: props.accountId }}
+      />
+    )}
   </Card>
 );
