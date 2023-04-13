@@ -44,7 +44,9 @@ const Stack = styled.div`
 
   &.f-column {
     flex-direction: column;
+    align-items: flex-start;
   }
+
   &.f-row {
     flex-direction: row;
   }
