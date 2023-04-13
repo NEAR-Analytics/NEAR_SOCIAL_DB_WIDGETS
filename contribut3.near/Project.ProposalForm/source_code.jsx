@@ -69,6 +69,8 @@ State.init({
   projectsIsFetched: false,
   requests: [],
   requestsIsFetched: false,
+  methods: [],
+  method: [],
 });
 
 if (!state.projectsIsFetched) {
