@@ -50,7 +50,7 @@ return (
         role="tabpanel"
         aria-labelledby="pills-explore-tab"
       >
-        <Widget src="mob.near/widget/Welcome.RHS" props={props} />
+        <Widget src="hack.near/widget/Custom.Page.Menu" props={props} />
       </div>
     </div>
   </>
