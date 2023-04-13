@@ -79,7 +79,7 @@ State.init({
   method: [],
 });
 
-if (!state.projectsIsFetched) {
+if (!state.vendorsIsFetched) {
   Near.asyncView(
     ownerId,
     "get_admin_vendors",
