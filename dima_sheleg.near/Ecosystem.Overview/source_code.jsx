@@ -1,3 +1,12 @@
+const nearOrgLinks = {
+  getFundingPage:
+    "https://alpha.near.org/dima_sheleg.near/widget/NearOrg.Ecosystem.GetFunding",
+  communityPage:
+    "https://alpha.near.org/dima_sheleg.near/widget/NearOrg.Ecosystem.Community",
+  workAndEarnPage:
+    "https://alpha.near.org/dima_sheleg.near/widget/NearOrg.Ecosystem.WorkAndEarn",
+};
+
 const Wrapper = styled.div`
   --section-gap: 162px;
   --large-gap: 82px;
@@ -713,7 +722,7 @@ return (
             <Widget
               src="adminalpha.near/widget/DIG.Button"
               props={{
-                href: "https://near.org/ecosystem/get-funding/",
+                href: nearOrgLinks.getFundingPage,
                 iconRight: "ph-bold ph-arrow-right",
                 label: "Explore funding options",
                 variant: "affirmative",
@@ -739,7 +748,7 @@ return (
             <Widget
               src="adminalpha.near/widget/DIG.Button"
               props={{
-                href: "https://near.org/ecosystem/get-funding/",
+                href: "https://app.astrodao.com/all/daos",
                 iconRight: "ph-bold ph-arrow-up-right",
                 label: "Create a new DAO",
                 variant: "affirmative",
@@ -807,7 +816,7 @@ return (
         <Widget
           src="adminalpha.near/widget/DIG.Button"
           props={{
-            href: "#/community",
+            href: nearOrgLinks.communityPage,
             iconRight: "ph-bold ph-arrow-right",
             label: "Explore all parts of the Community",
             variant: "affirmative",
@@ -955,7 +964,7 @@ return (
         <Widget
           src="adminalpha.near/widget/DIG.Button"
           props={{
-            href: "https://near.org/ecosystem/community",
+            href: nearOrgLinks.communityPage,
             iconRight: "ph-bold ph-arrow-right",
             label: "Explore all parts of the Community",
             variant: "affirmative",
@@ -1013,7 +1022,7 @@ return (
         <Widget
           src="adminalpha.near/widget/DIG.Button"
           props={{
-            href: "https://near.org/ecosystem/get-funding",
+            href: nearOrgLinks.getFundingPage,
             iconRight: "ph-bold ph-arrow-right",
             label: "Learn more about funding",
             variant: "affirmative",
@@ -1159,7 +1168,7 @@ return (
         <Widget
           src="adminalpha.near/widget/DIG.Button"
           props={{
-            href: "https://near.org/ecosystem/get-funding",
+            href: nearOrgLinks.getFundingPage,
             iconRight: "ph-bold ph-arrow-right",
             label: "See all funding options",
             variant: "affirmative",
@@ -1875,7 +1884,7 @@ return (
         <Widget
           src="adminalpha.near/widget/DIG.Button"
           props={{
-            href: "https://near.org/ecosystem/work-and-earn",
+            href: nearOrgLinks.workAndEarnPage,
             iconRight: "ph-bold ph-arrow-right",
             label: "Explore all earning opportunities",
             variant: "affirmative",
