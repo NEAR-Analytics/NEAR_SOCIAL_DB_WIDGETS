@@ -106,7 +106,7 @@ return (
                   contractName: "social.near",
                   methodName: "set",
                   args: {
-                    thing: {
+                    data: {
                       main: JSON.stringify({
                         type: state.type,
                         accountId: state.accountId,
