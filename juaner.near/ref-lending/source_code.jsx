@@ -110,7 +110,7 @@ const {
   account,
   balances,
   total_supplied_usd,
-  yourBurrowedUSD,
+  total_burrowed_usd,
   selectedTokenId,
   selectedTokenMeta,
   type,
@@ -171,134 +171,20 @@ const handleClaimAll = () => {
     methodName: "account_farm_claim_all",
   });
 };
-const depositedAssets = hasData
-  ? new Set([
-      ...account.supplied.map((a) => a.token_id),
-      ...account.collateral.map((a) => a.token_id),
-    ])
-  : new Set();
-
-function getPortfolioRewards(type, token_id) {
-  const targetFarm = account.farms.find((farm) => {
-    return farm["farm_id"][type] == token_id;
-  });
-  if (targetFarm) {
-    const asset = assets.find((a) => a.token_id == token_id);
-    const rewards = targetFarm["rewards"] || [];
-    const totalRewards =
-      type == "Supplied" ? asset.farms[0].rewards : asset.farms[1].rewards;
-    const result = rewards.map((reward) => {
-      const { reward_token_id } = reward;
-      const assetDecimals =
-        asset.metadata.decimals + asset.config.extra_decimals;
-      const rewardAsset = assets.find((a) => a.token_id == reward_token_id);
-      const rewardTokenDecimals =
-        rewardAsset.metadata.decimals + rewardAsset.config.extra_decimals;
-
-      const boostedShares = Number(
-        shrinkToken(reward.boosted_shares, assetDecimals)
-      );
-      const totalBoostedShares = Number(
-        shrinkToken(totalRewards[reward_token_id].boosted_shares, assetDecimals)
-      );
-      const totalRewardsPerDay = Number(
-        shrinkToken(
-          totalRewards[reward_token_id].reward_per_day,
-          rewardTokenDecimals
-        )
-      );
-      const rewardPerDay =
-        (boostedShares / totalBoostedShares) * totalRewardsPerDay || 0;
-      return { rewardPerDay, metadata: asset.metadata };
-    });
-    return result;
-  }
-  return [];
-}
 // get portfolio borrowed assets
-let total_burrowed_usd = Big(0);
-const borrowedAssets = hasData
-  ? account.borrowed.map((borrowedAsset) => {
-      const asset = assets.find((a) => a.token_id === borrowedAsset.token_id);
-      const r = rewards.find((a) => a.token_id === asset.token_id);
-      const totalApy = r.apyBaseBorrow;
-
-      const decimals = asset.metadata.decimals + asset.config.extra_decimals;
-      const borrowed = Number(shrinkToken(borrowedAsset.balance, decimals));
-      const usd = borrowed * asset.price.usd;
-      total_burrowed_usd = total_burrowed_usd.plus(usd);
-      const rewardsList =
-        getPortfolioRewards("Supplied", borrowedAsset.token_id) || [];
-      return (
-        <tr>
-          <td>
-            <img
-              src={asset.metadata.icon || wnearbase64}
-              class="tokenIcon"
-            ></img>
-            {asset.metadata.symbol}
-          </td>
-          <td class="text-start">{toAPY(totalApy)}%</td>
-          <td class="text-start">
-            {rewardsList.length == 0
-              ? "-"
-              : rewardsList.map((reward) => {
-                  const { rewardPerDay, metadata } = reward;
-                  return (
-                    <div class="flex_center">
-                      {Big(rewardPerDay).toFixed(4)}
-                      <img
-                        class="rewardIcon ml_5"
-                        src={metadata.icon || wnearbase64}
-                      />
-                    </div>
-                  );
-                })}
-          </td>
-          <td class="text-start">
-            {borrowed.toFixed(4)}
-            <span class="text_grey_color">(${usd.toFixed(2)})</span>
-          </td>
-          <td class="flex-end">
-            <Widget
-              src="juaner.near/widget/ref-operation-button"
-              props={{
-                clickEvent: () => {
-                  changeSelectedToken(asset, "burrow");
-                },
-                buttonType: "solid",
-                actionName: "Repay",
-                hoverOn: true,
-              }}
-            />
-          </td>
-        </tr>
-      );
-    })
-  : undefined;
 let yourSuppliedUSD;
+let yourBurrowedUSD;
 const big_total_supplied_usd = Big(total_supplied_usd || 0);
 if (big_total_supplied_usd.gt(0)) {
   yourSuppliedUSD = big_total_supplied_usd.lt(0.01)
     ? "<$0.01"
     : "$" + big_total_supplied_usd.toFixed(2);
 }
-if (total_burrowed_usd.gt(0)) {
-  State.update({
-    yourBurrowedUSD: total_burrowed_usd.lt(0.01)
-      ? "<$0.01"
-      : "$" + total_burrowed_usd.toFixed(2),
-  });
-}
-
-function changeSelectedToken(asset, type) {
-  const { token_id, metadata } = asset;
-  State.update({
-    selectedTokenId: token_id,
-    selectedTokenMeta: metadata,
-    type,
-    showModal: true,
-  });
+const big_total_burrowed_usd = Big(total_burrowed_usd || 0);
+if (big_total_burrowed_usd.gt(0)) {
+  yourBurrowedUSD = big_total_burrowed_usd.lt(0.01)
+    ? "<$0.01"
+    : "$" + big_total_burrowed_usd.toFixed(2);
 }
 function closeModal() {
   State.update({
@@ -369,14 +255,7 @@ return (
       {/* yours */}
       <Widget
         src="juaner.near/widget/ss-your-burrow"
-        props={{
-          borrowedAssets,
-          selectedTokenId,
-          selectedTokenMeta,
-          type,
-          showModal,
-          closeModal,
-        }}
+        props={{ onLoadState: onLoad }}
       />
       {/*market */}
       <Widget src="juaner.near/widget/ref-market-burrow-assets" />
