@@ -30,7 +30,7 @@ return (
           props={{ accountId, label: "Project", isProject: true }}
         />
       ),
-      trigger: <>{personPlus}Claim</>,
+      trigger: <>{personPlus}Claim project</>,
       children: (
         <Widget
           src={`${ownerId}/widget/Project.ClaimForm`}
