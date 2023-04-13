@@ -197,6 +197,7 @@ const Form = styled.div`
   justify-content: flex-start;
   gap: 1em;
   width: 100%;
+  padding-bottom: 1em;
 `;
 
 return (
