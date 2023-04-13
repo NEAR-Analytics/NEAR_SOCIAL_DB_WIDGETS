@@ -50,7 +50,7 @@ return (
         role="tabpanel"
         aria-labelledby="pills-guides-tab"
       >
-        <div className="col-lg-8 mx-auto">
+        <div className="mx-auto">
           <Widget
             src="hack.near/widget/ForkThis"
             props={{ accounts: [accountId] }}
@@ -63,7 +63,7 @@ return (
         role="tabpanel"
         aria-labelledby="pills-about-tab"
       >
-        <div className="col-lg-8 mx-auto">
+        <div className="mx-auto">
           {description && (
             <div className="border rounded-4 p-3 pb-0 mb-3">
               <h4>
@@ -80,7 +80,7 @@ return (
         role="tabpanel"
         aria-labelledby="pills-posts-tab"
       >
-        <div className="col-lg-8 mx-auto">
+        <div className="mx-auto">
           <Widget src="hack.near/widget/Hashtag.Feed" props={{ hashtag }} />
         </div>
       </div>
@@ -90,7 +90,7 @@ return (
         role="tabpanel"
         aria-labelledby="pills-widgets-tab"
       >
-        <div className="col-lg-8 mx-auto">
+        <div className="mx-auto">
           <Widget src="hack.near/widget/Components" props={{ owner }} />
         </div>
       </div>
