@@ -21,9 +21,11 @@ const mainnetNetworkNames = {
 };
 const testnetConfig = {
   etherCustodianAddress: "0x84a82Bb39c83989D5Dc07e1310281923D2544dC2",
+  erc20LockerAddress: "0xc115851ca60aed2ccc6ee3d5343f590834e4a3ab",
 };
 const mainnetConfig = {
   etherCustodianAddress: "0x6BFaD42cFC4EfC96f529D786D643Ff4A8B89FA52",
+  erc20LockerAddress: "0x23ddd3e3692d1861ed57ede224608875809e127f",
 };
 const testnetTokens = {
   ETH: {
@@ -35,7 +37,7 @@ const testnetTokens = {
     decimals: 18,
     origin: "ethereum",
   },
-  /*
+
   FAU: {
     symbol: "FAU",
     name: "FaucetToken",
@@ -46,7 +48,6 @@ const testnetTokens = {
     decimals: 18,
     origin: "ethereum",
   },
-  */
 };
 const mainnetTokens = {
   ETH: {
@@ -58,7 +59,6 @@ const mainnetTokens = {
     decimals: 18,
     origin: "ethereum",
   },
-  /*
   "USDC.e": {
     symbol: "USDC.e",
     name: "USD Coin",
@@ -68,10 +68,8 @@ const mainnetTokens = {
     decimals: 6,
     origin: "ethereum",
   },
-  */
 };
 
-// Get balance on network switch.
 const fetchBalance = (tokenSymbol) => {
   const tokenAddress =
     state.tokens[tokenSymbol][`${state.sourceNetwork}Address`];
@@ -79,7 +77,10 @@ const fetchBalance = (tokenSymbol) => {
     // erc-20
     const erc20 = new ethers.Contract(
       tokenAddress,
-      ["function balanceOf(address) view returns (uint)"],
+      [
+        "function balanceOf(address) view returns (uint)",
+        "function allowance(address owner, address spender) view returns (uint)",
+      ],
       Ethers.provider()
     );
     erc20.balanceOf(sender).then((balance) => {
@@ -88,6 +89,14 @@ const fetchBalance = (tokenSymbol) => {
         tokenSymbol,
       });
     });
+    erc20
+      .allowance(sender, state.config.erc20LockerAddress)
+      .then((allowance) => {
+        State.update({
+          senderAllowance: ethers.BigNumber.from(allowance),
+          tokenSymbol,
+        });
+      });
   } else if (tokenAddress === undefined) {
     Ethers.provider()
       .getBalance(sender)
@@ -99,58 +108,111 @@ const fetchBalance = (tokenSymbol) => {
       });
   } else {
     // Token address = null: not bridged on this network.
-    State.update({ senderBalance: ethers.BigNumber.from(0), tokenSymbol });
+    State.update({
+      senderBalance: ethers.BigNumber.from(0),
+      senderAllowance: ethers.BigNumber.from(0),
+      tokenSymbol,
+    });
   }
 };
 
-const bridgeTokens = () => {
-  if (state.sourceNetwork !== "ethereum" || state.tokenSymbol !== "ETH") {
-    console.log("Coming soon...");
-    return;
-  }
-  const ethTokenLocker = new ethers.Contract(
-    state.config.etherCustodianAddress,
-    // NOTE: for some reason human readable abi gives
-    // Error: Not a function call expression
-    // when calling the contract, so use standard abi.
-    //["function depositToEvm(string,uint256) payable"],
-    [
-      {
-        inputs: [
-          {
-            internalType: "string",
-            name: "ethRecipientOnNear",
-            type: "string",
-          },
-          { internalType: "uint256", name: "fee", type: "uint256" },
-        ],
-        name: "depositToEVM",
-        outputs: [],
-        stateMutability: "payable",
-        type: "function",
-      },
-    ],
+const erc20Approve = () => {
+  const tokenAddress =
+    state.tokens[state.tokenSymbol][`${state.sourceNetwork}Address`];
+  const erc20 = new ethers.Contract(
+    tokenAddress,
+    ["function approve(address,uint) public returns (bool)"],
     Ethers.provider().getSigner()
   );
-  ethTokenLocker
-    .depositToEVM(sender.slice(2).toLowerCase(), 0, {
-      value: state.bigNumberAmount,
-    })
+  erc20
+    .approve(state.config.erc20LockerAddress, state.bigNumberAmount)
     .then((tx) => {
       console.log(tx);
       State.update({ lastTxHash: tx.hash });
       tx.wait().then((receipt) => {
         console.log(receipt);
-        // TODO sync Recent transfers after 10s
+        fetchBalance(state.tokenSymbol);
         State.update({ lastTxHash: null });
       });
     });
+};
+
+const bridgeTokens = () => {
+  if (state.sourceNetwork !== "ethereum") {
+    console.log("Coming soon...");
+    return;
+  }
+  if (state.tokenSymbol === "ETH") {
+    const ethTokenLocker = new ethers.Contract(
+      state.config.etherCustodianAddress,
+      // NOTE: for some reason human readable abi gives
+      // Error: Not a function call expression
+      // when calling the payable contract, so use standard abi.
+      //["function depositToEvm(string,uint256) payable"],
+      [
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "ethRecipientOnNear",
+              type: "string",
+            },
+            { internalType: "uint256", name: "fee", type: "uint256" },
+          ],
+          name: "depositToEVM",
+          outputs: [],
+          stateMutability: "payable",
+          type: "function",
+        },
+      ],
+      Ethers.provider().getSigner()
+    );
+    ethTokenLocker
+      .depositToEVM(sender.slice(2).toLowerCase(), 0, {
+        value: state.bigNumberAmount,
+      })
+      .then((tx) => {
+        console.log(tx);
+        State.update({ lastTxHash: tx.hash });
+        tx.wait().then((receipt) => {
+          console.log(receipt);
+          // TODO sync Recent transfers after 10s
+          State.update({ lastTxHash: null });
+        });
+      });
+  } else if (state.tokenSymbol === "NEAR") {
+    console.log("Coming soon...");
+  } else {
+    const erc20TokenLocker = new ethers.Contract(
+      state.config.erc20LockerAddress,
+      ["function lockToken(address,uint,string) public"],
+      Ethers.provider().getSigner()
+    );
+    const tokenAddress =
+      state.tokens[state.tokenSymbol][`${state.sourceNetwork}Address`];
+    erc20TokenLocker
+      .lockToken(
+        tokenAddress,
+        state.bigNumberAmount,
+        `aurora:${sender.toLowerCase().slice(2)}`
+      )
+      .then((tx) => {
+        console.log(tx);
+        State.update({ lastTxHash: tx.hash });
+        tx.wait().then((receipt) => {
+          console.log(receipt);
+          fetchBalance(state.tokenSymbol);
+          State.update({ lastTxHash: null });
+        });
+      });
+  }
 };
 
 initState({
   tokenSymbol: null,
   sourceTokenBalance: ethers.BigNumber.from(0),
   senderBalance: ethers.BigNumber.from(0),
+  senderAllowance: ethers.BigNumber.from(0),
   amount: "",
   bigNumberAmount: ethers.BigNumber.from(0),
   sourceNetwork: "ethereum",
@@ -221,6 +283,7 @@ if (wrongWalletNetwork) {
     tokenSymbol: null,
     amount: "",
     senderBalance: ethers.BigNumber.from(0),
+    senderAllowance: ethers.BigNumber.from(0),
     bigNumberAmount: ethers.BigNumber.from(0),
   });
 }
@@ -357,25 +420,42 @@ return (
           </div>
         )}
       </div>
-      <div class="mb-3">
-        <button
-          disabled={
-            !state.tokenSymbol ||
-            state.bigNumberAmount.isZero() ||
-            state.senderBalance.lt(state.bigNumberAmount)
-          }
-          onClick={bridgeTokens}
-        >
-          Bridge tokens
-        </button>
-      </div>
+      {state.tokenSymbol !== "ETH" &&
+      state.senderAllowance.lt(state.bigNumberAmount) ? (
+        <div class="mb-3">
+          <button
+            disabled={
+              !state.tokenSymbol ||
+              state.bigNumberAmount.isZero() ||
+              state.lastTxHash
+            }
+            onClick={erc20Approve}
+          >
+            Allow transfer of tokens
+          </button>
+        </div>
+      ) : (
+        <div class="mb-3">
+          <button
+            disabled={
+              !state.tokenSymbol ||
+              state.bigNumberAmount.isZero() ||
+              state.senderBalance.lt(state.bigNumberAmount) ||
+              state.lastTxHash
+            }
+            onClick={bridgeTokens}
+          >
+            Bridge tokens
+          </button>
+        </div>
+      )}
+      {state.lastTxHash && (
+        <div class="mb-3">{`Pending transaction: ${state.lastTxHash}`}</div>
+      )}
       <p class="">
         NOTE: Please make sure that your wallet is compatible with the
         Destination Network before sending tokens. Visit rainbowbridge.app.
       </p>
-      {state.lastTxHash && (
-        <div>{`Pending transaction: ${state.lastTxHash}`}</div>
-      )}
       <h3> Recent transfers </h3>
     </div>
   </Theme>
