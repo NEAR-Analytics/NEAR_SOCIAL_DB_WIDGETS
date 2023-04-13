@@ -2,6 +2,7 @@ const trigger = props.trigger;
 const title = props.title;
 const description = props.description;
 const children = props.children;
+const minWidth = props.minWidth ?? "unset";
 
 const fadeIn = styled.keyframes`
   from {
@@ -65,6 +66,7 @@ const Content = styled.div`
   overflow-y: auto;
   background: #fff;
   z-index: 10;
+  min-width: ${minWidth};
 `;
 
 const Button = styled.button`
