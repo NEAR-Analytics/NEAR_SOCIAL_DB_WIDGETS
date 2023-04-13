@@ -238,7 +238,7 @@ return (
           label: "Proposal terms",
           items: [{ value: "specify", name: "Specify proposal terms" }, { value: "no", name: "Don't specify" }],
           value: state.proposalTerm,
-          onChange: (proposalTerm) => { State.update({ proposalTerm }); console.log(proposalTerm) },
+          onChange: (proposalTerm) => State.update({ proposalTerm }),
         }}
       />
       <Widget
