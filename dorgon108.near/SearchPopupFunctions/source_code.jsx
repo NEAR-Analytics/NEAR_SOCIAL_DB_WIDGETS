@@ -270,6 +270,7 @@ const updateSearchHits = debounce(({ term, pageNumber, configs }) => {
 const onSearchChange = ({ term }) => {
   writeStateTerm(term);
   updateSearchHits({ term, pageNumber: INITIAL_PAGE });
+  console.log("the profile resutls are", state.search.profiles);
 };
 
 const onPageChange = (pageNumber) => {
@@ -396,7 +397,7 @@ return (
     {state.search?.profiles.length > 0 && (
       <Group>
         <GroupHeader>
-          <H3>People</H3>
+          <H3>Users</H3>
           <Text as="a" href={peopleUrl} small>
             View All
           </Text>
