@@ -4,7 +4,7 @@ const nearDevGovGigsContractAccountId =
   (context.widgetSrc ?? "devgovgigs.near").split("/", 1)[0];
 const nearDevGovGigsWidgetsAccountId =
   props.nearDevGovGigsWidgetsAccountId ||
-  (context.widgetSrc ?? "bo.near").split("/", 1)[0];
+  (context.widgetSrc ?? "devgovgigs.near").split("/", 1)[0];
 
 function widget(widgetName, widgetProps, key) {
   widgetProps = {
@@ -47,6 +47,7 @@ function href(widgetName, linkProps) {
 State.init({
   propsLabel: props.label,
   label: props.label,
+  author: props.author
 });
 
 // When rerendered with different props, State will be preserved, so we need to update the state when we detect that the props have changed.
@@ -57,17 +58,24 @@ if (props.label !== state.propsLabel) {
   });
 }
 
-const onSearch = (label) => {
+const onSearchLabel = (label) => {
   State.update({ label });
 };
 
+const onSearchAuthor = (author) => {
+  State.update({ author });
+};
+
 return widget("components.layout.Page", {
+  header: widget("components.community.FeedHeader"),
   navbarChildren: widget("components.layout.Search", {
-    searchQuery: { label: state.label },
-    onSearch,
+    searchQuery: { label: state.label, author: state.author },
+    onSearchLabel,
+    onSearchAuthor,
   }),
-  children: widget("components.posts.List", {
+  children: widget("components.posts.Search", {
     recency: props.recency,
     label: state.label,
+    author: state.author,
   }),
 });
