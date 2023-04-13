@@ -107,13 +107,13 @@ return (
             Assets
           </th>
           <th scope="col" class="text-start" width="20%">
-            Rewards
+            Borrow APY
           </th>
           <th scope="col" class="text-start" width="20%">
-            Borrowed
+            Rewards
           </th>
           <th scope="col" class="text-start" width="15%">
-            Balance
+            Borrowed
           </th>
           <th scope="col"></th>
         </tr>
