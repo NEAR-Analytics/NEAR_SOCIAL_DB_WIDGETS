@@ -106,14 +106,18 @@ return (
                   contractName: "social.near",
                   methodName: "set",
                   args: {
-                    data: {
-                      [state.accountId]: {
-                        page: {
-                          title: state.title,
-                          accountId: state.accountId,
-                          team: state.team,
+                    thing: {
+                      main: JSON.stringify({
+                        thingId: res.body.data.posts.create.entities[0].id,
+                      }),
+                    },
+                    index: {
+                      abc: JSON.stringify({
+                        key: "main",
+                        value: {
+                          type: "hack.near/type/Page",
                         },
-                      },
+                      }),
                     },
                   },
                 },
