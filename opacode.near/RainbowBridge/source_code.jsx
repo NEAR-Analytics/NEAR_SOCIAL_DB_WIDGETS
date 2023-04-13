@@ -35,6 +35,7 @@ const tokens = {
     decimals: 18,
     origin: "ethereum",
   },
+  /*
   FAU: {
     symbol: "FAU",
     name: "FaucetToken",
@@ -45,6 +46,7 @@ const tokens = {
     decimals: 18,
     origin: "ethereum",
   },
+  */
 };
 
 // Get balance on network switch.
