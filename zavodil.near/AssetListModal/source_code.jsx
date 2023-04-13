@@ -1,7 +1,7 @@
 const title = props.title ?? "Select a token";
 const body = props.body;
 const assets = props.assets;
-const debug = props.debug;
+const selectedAssets = props.selectedAssets ?? [];
 
 const hidden = props.hidden;
 const onClose = props.onClose;
@@ -87,7 +87,7 @@ const assetList = assets.map((tokenId) => {
       src="zavodil.near/widget/AssetListItem"
       props={{
         tokenId: tokenId,
-        debug: false,
+        selected: selectedAssets.includes(tokenId),
         onClick: () => {
           console.log(`${tokenId} selected`);
           if (props.onClick) {
@@ -131,7 +131,6 @@ return (
           </div>
         </ModalDialog>
       </Modal>
-      {debug && <button onClick={ShowModal}>Show Modal</button>}
     </Theme>
   </>
 );
