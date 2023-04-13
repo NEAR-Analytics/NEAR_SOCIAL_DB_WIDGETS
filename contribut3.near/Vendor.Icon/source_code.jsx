@@ -14,7 +14,12 @@ if (!state.profileIsFetched) {
     { keys: [`${accountId}/profile/**`] },
     "final",
     false
-  ).then((profile) => State.update({ profile: profile[accountId].profile, profileIsFetched: true }));
+  ).then((profile) =>
+    State.update({
+      profile: profile[accountId].profile,
+      profileIsFetched: true,
+    })
+  );
   return "Loading...";
 }
 
@@ -29,7 +34,6 @@ const imageSrc = `https://i.near.social/thumbnail/${url}`;
 
 const ImageCircle = styled.img`
   background: #fafafa;
-  // border: 3px solid #eceef0;
   border-radius: 100%;
   object-fit: cover;
   width: 100%;
