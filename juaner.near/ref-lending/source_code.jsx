@@ -224,7 +224,7 @@ const suppliedAssets = hasData
               src="juaner.near/widget/ref-operation-button"
               props={{
                 clickEvent: () => {
-                  handleSelect(token_id);
+                  changeSelectedToken(asset, "supply");
                 },
                 buttonType: "solid",
                 actionName: "Adjust",
