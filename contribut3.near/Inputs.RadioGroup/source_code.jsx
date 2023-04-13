@@ -19,6 +19,7 @@ const RadioButton = styled.div`
     border: none;
     background: none;
     border-radius: 100%;
+    padding: 0;
     width: 1.5em;
     height: 1.5em;
     border: 1px solid #eceef0;
