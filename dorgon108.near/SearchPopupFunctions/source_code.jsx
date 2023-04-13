@@ -367,11 +367,11 @@ const onSearchResultClick = ({ searchPosition, objectID, eventName }) => {
   }, 50);
 };
 
-if ("il" !== state.lastSyncedTerm) {
+if (props.term !== state.lastSyncedTerm) {
   State.update({
-    lastSyncedTerm: "il",
+    lastSyncedTerm: props.term,
   });
-  onSearchChange("il");
+  onSearchChange(props.term);
 }
 
 return (
