@@ -25,8 +25,8 @@ const RadioButton = styled.div`
 
   span {
     display: inline-block;
-    width: 1.5em;
-    height: 1.5em;
+    width: 1.25em;
+    height: 1.25em;
     border-radius: 100%;
     border: 6px solid transparent;
     transition: border-color 200ms ease-out;
