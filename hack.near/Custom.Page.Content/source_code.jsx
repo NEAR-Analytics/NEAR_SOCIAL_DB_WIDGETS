@@ -1,5 +1,6 @@
 const owner = props.owner ?? "hack.near";
 const accountId = props.accountId ?? context.accountId;
+const hashtag = props.hashtag ?? "builders";
 
 const main = context.accountId
   ? Social.get(`${context.accountId}/settings/every/page.main`)
@@ -15,6 +16,9 @@ const defaultWidgets = [
   },
   {
     src: "mob.near/widget/MainPage.Compose",
+  },
+  {
+    src: "mob.near/widget/Hashtag.Feed",
   },
 ];
 
@@ -58,7 +62,7 @@ return (
       ({ src, requiresLogin }, i) =>
         (!requiresLogin || context.accountId) && (
           <div key={i} className="text-bg-light rounded-4 p-3 mb-3">
-            <Widget src={src} />
+            <Widget src={src} props={{ hashtag }} />
           </div>
         )
     )}
