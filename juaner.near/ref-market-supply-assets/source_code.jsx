@@ -265,11 +265,7 @@ const market_deposit_assets =
 
     const cf = volatility_ratio / 100;
     return (
-      <tr
-        onClick={() => {
-          handleSelect(token_id);
-        }}
-      >
+      <tr>
         <td>
           <img src={metadata.icon || wnearbase64} class="tokenIcon"></img>
           {metadata.symbol}
