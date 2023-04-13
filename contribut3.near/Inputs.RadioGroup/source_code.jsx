@@ -30,7 +30,7 @@ const RadioButton = styled.div`
     border-radius: 100%;
     
     &[data-state="checked"] {
-      border: 3px solid #202024;
+      border: 6px solid #202024;
     }
   }
 `;
