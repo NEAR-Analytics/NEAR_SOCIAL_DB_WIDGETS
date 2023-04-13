@@ -44,9 +44,13 @@ function href(widgetName, linkProps) {
 }
 /* END_INCLUDE: "common.jsx" */
 
-const onSearch = props.onSearch;
+const onSearchLabel = props.onSearchLabel;
 const selectedLabels = props.searchQuery?.label
   ? [{ name: props.searchQuery.label }]
+  : [];
+const onSearchAuthor = props.onSearchAuthor;
+const selectedAuthors = props.searchQuery?.author
+  ? [{ name: props.searchQuery.author }]
   : [];
 
 const labels = Near.view(nearDevGovGigsContractAccountId, "get_all_labels");
@@ -55,18 +59,39 @@ if (!labels) {
 }
 const wrappedLabels = labels.map((label) => ({ name: label }));
 
+const authors = Near.view(nearDevGovGigsContractAccountId, "get_all_authors");
+if (!authors) {
+  return <div>Loading ...</div>;
+}
+const wrappedAuthors = authors.map((author) => ({ name: author }));
+
 const onChange = (selectedLabels) => {
-  onSearch(selectedLabels[0]?.name);
+  onSearchLabel({ label: selectedLabels[0]?.name });
+};
+
+const onChangeAuthor = (selectedAuthors) => {
+  onSearchAuthor({ author: selectedAuthors[0]?.name });
 };
 
 return (
-  <Typeahead
-    clearButton
-    id="basic-typeahead-single"
-    labelKey="name"
-    onChange={onChange}
-    options={wrappedLabels}
-    placeholder="Search by tag"
-    selected={selectedLabels}
-  />
+  <>
+    <Typeahead
+      clearButton
+      id="basic-typeahead-single"
+      labelKey="name"
+      onChange={onChange}
+      options={wrappedLabels}
+      placeholder="Search by tag"
+      selected={selectedLabels}
+    />
+    {/* <Typeahead
+      clearButton
+      id="basic-typeahead-single"
+      labelKey="name"
+      onChange={onChangeAuthor}
+      options={wrappedAuthors}
+      placeholder="Search by author"
+      selected={selectedAuthors}
+    /> */}
+  </>
 );
