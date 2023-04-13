@@ -92,30 +92,31 @@ if (!state.projectsIsFetched) {
         vendors: [],
         vendorsIsFetched: true,
       });
+    } else {
+      Near.asyncView(
+        "social.near",
+        "get",
+        { keys: vendors.map((accountId) => `${accountId}/profile/**`) },
+        "final",
+        false
+      ).then((data) =>
+        State.update({
+          vendors: vendors.map((accountId) => ({
+            // text: <Widget
+            //   src={`${ownerId}/widget/Project.Line`}
+            //   props={{ accountId, size: "1em" }}
+            // />,
+            text: createProjectLine(
+              accountId,
+              data[accountId].profile.name,
+              data[accountId].profile.image
+            ),
+            value: accountId,
+          })),
+          vendorsIsFetched: true,
+        })
+      );
     }
-    Near.asyncView(
-      "social.near",
-      "get",
-      { keys: vendors.map((accountId) => `${accountId}/profile/**`) },
-      "final",
-      false
-    ).then((data) =>
-      State.update({
-        vendors: vendors.map((accountId) => ({
-          // text: <Widget
-          //   src={`${ownerId}/widget/Project.Line`}
-          //   props={{ accountId, size: "1em" }}
-          // />,
-          text: createProjectLine(
-            accountId,
-            data[accountId].profile.name,
-            data[accountId].profile.image
-          ),
-          value: accountId,
-        })),
-        vendorsIsFetched: true,
-      })
-    );
   });
   return <>Loading...</>;
 }
