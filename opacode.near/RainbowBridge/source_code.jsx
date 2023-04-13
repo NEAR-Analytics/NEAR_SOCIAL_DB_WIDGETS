@@ -190,6 +190,28 @@ Ethers.provider()
     }
   });
 
+if (!state.theme) {
+  State.update({
+    theme: styled.div`
+      .Container{
+        box-sizing: border-box;
+        margin: 0px auto;
+        min-width: 320px;
+        width: 100%;
+        padding: 0px 32px;
+        max-width: 560px;
+        position: relative;
+        margin-top: 8px;
+        margin-bottom: 8px;
+      }
+      .Header{
+        text-align: center;
+        margin-bottom: 30px;
+      }`,
+  });
+}
+const Theme = state.theme;
+
 const wrongWalletNetwork =
   state.walletChainId !== state.chainIds[state.sourceNetwork];
 if (wrongWalletNetwork) {
@@ -203,154 +225,157 @@ if (wrongWalletNetwork) {
 }
 if (!state.initialized) return <></>;
 return (
-  <>
-    <h2>
-      {" "}
-      🌈 {state.isTestnet
-        ? "Testnet Rainbow Bridge"
-        : "Rainbow Bridge (alpha)"}{" "}
-      🌈{" "}
-    </h2>
-    <div class="mb-3">
-      <label for="selectSourceNetwork">Select Source Network</label>
-      <select
-        class="form-select"
-        id="selectSourceNetwork"
-        onChange={(e) => {
-          State.update({ sourceNetwork: e.target.value });
-          if (state.destinationNetwork === e.target.value) {
-            State.update({
-              destinationNetwork: networks.find(
-                (network) => network !== e.target.value
-              ),
-            });
-          }
-        }}
-      >
-        <option selected={state.sourceNetwork === "aurora"} value={"aurora"}>
-          {state.networkNames.aurora}
-        </option>
-        <option
-          selected={state.sourceNetwork === "ethereum"}
-          value={"ethereum"}
+  <Theme>
+    <div class="Container">
+      <h2 class="Header">
+        {" "}
+        🌈{" "}
+        {state.isTestnet
+          ? "Testnet Rainbow Bridge"
+          : "Rainbow Bridge (alpha)"}{" "}
+        🌈{" "}
+      </h2>
+      <div class="mb-3">
+        <label for="selectSourceNetwork">Select Source Network</label>
+        <select
+          class="form-select"
+          id="selectSourceNetwork"
+          onChange={(e) => {
+            State.update({ sourceNetwork: e.target.value });
+            if (state.destinationNetwork === e.target.value) {
+              State.update({
+                destinationNetwork: networks.find(
+                  (network) => network !== e.target.value
+                ),
+              });
+            }
+          }}
         >
-          {state.networkNames.ethereum}
-        </option>
-      </select>
-      {state.walletChainId !== state.chainIds[state.sourceNetwork] && (
-        <p>
-          Connect your wallet network to{" "}
-          {state.networkNames[state.sourceNetwork]}
-        </p>
+          <option selected={state.sourceNetwork === "aurora"} value={"aurora"}>
+            {state.networkNames.aurora}
+          </option>
+          <option
+            selected={state.sourceNetwork === "ethereum"}
+            value={"ethereum"}
+          >
+            {state.networkNames.ethereum}
+          </option>
+        </select>
+        {state.walletChainId !== state.chainIds[state.sourceNetwork] && (
+          <p>
+            Connect your wallet network to{" "}
+            {state.networkNames[state.sourceNetwork]}
+          </p>
+        )}
+      </div>
+      <div class="mb-3">
+        <label for="selectDestinationNetwork">Select Destination Network</label>
+        <select
+          class="form-select"
+          id="selectDestinationNetwork"
+          onChange={(e) => {
+            State.update({ destinationNetwork: e.target.value });
+            if (state.sourceNetwork === e.target.value) {
+              State.update({
+                sourceNetwork: networks.find(
+                  (network) => network !== e.target.value
+                ),
+              });
+            }
+          }}
+        >
+          <option
+            selected={state.destinationNetwork === "aurora"}
+            value={"aurora"}
+          >
+            {state.networkNames.aurora}
+          </option>
+          <option
+            selected={state.destinationNetwork === "ethereum"}
+            value={"ethereum"}
+          >
+            {state.networkNames.ethereum}
+          </option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="selectToken">Select token</label>
+        <select
+          class="form-select"
+          id="selectToken"
+          disabled={wrongWalletNetwork}
+          onChange={(e) => {
+            if (e.target.value === "...") {
+              State.update({
+                tokenSymbol: null,
+                amount: "",
+                bigNumberAmount: ethers.BigNumber.from(0),
+              });
+              return;
+            }
+            State.update({
+              tokenSymbol: e.target.value,
+            });
+            fetchBalance(e.target.value);
+          }}
+        >
+          <option selected={state.tokenSymbol === null} value={null}>
+            ...
+          </option>
+          {Object.keys(state.tokens).map((symbol) => (
+            <option value={symbol}>{symbol}</option>
+          ))}
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="amount" class="form-label">
+          Enter the amount
+        </label>
+        <input
+          value={state.amount}
+          class="form-control"
+          id="amount"
+          disabled={wrongWalletNetwork || !state.tokenSymbol}
+          placeholder=""
+          onChange={(e) => {
+            const bigNumberAmount = ethers.utils.parseUnits(
+              e.target.value !== "" ? e.target.value : "0",
+              state.tokens[state.tokenSymbol].decimals
+            );
+            State.update({ amount: e.target.value, bigNumberAmount });
+          }}
+        />
+        {state.tokenSymbol && (
+          <div>
+            Balance:{" "}
+            {ethers.utils.formatUnits(
+              state.senderBalance,
+              state.tokens[state.tokenSymbol].decimals
+            )}{" "}
+            {state.tokenSymbol}
+          </div>
+        )}
+      </div>
+      <div class="mb-3">
+        <button
+          disabled={
+            !state.tokenSymbol ||
+            state.bigNumberAmount.isZero() ||
+            state.senderBalance.lt(state.bigNumberAmount)
+          }
+          onClick={bridgeTokens}
+        >
+          Bridge tokens
+        </button>
+      </div>
+      <p class="">
+        NOTE: Please make sure that your wallet is compatible with the
+        Destination Network before sending tokens. Visit rainbowbridge.app.
+      </p>
+      {state.lastTxHash && (
+        <div>{`Pending transaction: ${state.lastTxHash}`}</div>
       )}
+      <h3> Recent transfers </h3>
     </div>
-    <div class="mb-3">
-      <label for="selectDestinationNetwork">Select Destination Network</label>
-      <select
-        class="form-select"
-        id="selectDestinationNetwork"
-        onChange={(e) => {
-          State.update({ destinationNetwork: e.target.value });
-          if (state.sourceNetwork === e.target.value) {
-            State.update({
-              sourceNetwork: networks.find(
-                (network) => network !== e.target.value
-              ),
-            });
-          }
-        }}
-      >
-        <option
-          selected={state.destinationNetwork === "aurora"}
-          value={"aurora"}
-        >
-          {state.networkNames.aurora}
-        </option>
-        <option
-          selected={state.destinationNetwork === "ethereum"}
-          value={"ethereum"}
-        >
-          {state.networkNames.ethereum}
-        </option>
-      </select>
-    </div>
-    <div class="mb-3">
-      <label for="selectToken">Select token</label>
-      <select
-        class="form-select"
-        id="selectToken"
-        disabled={wrongWalletNetwork}
-        onChange={(e) => {
-          if (e.target.value === "...") {
-            State.update({
-              tokenSymbol: null,
-              amount: "",
-              bigNumberAmount: ethers.BigNumber.from(0),
-            });
-            return;
-          }
-          State.update({
-            tokenSymbol: e.target.value,
-          });
-          fetchBalance(e.target.value);
-        }}
-      >
-        <option selected={state.tokenSymbol === null} value={null}>
-          ...
-        </option>
-        {Object.keys(state.tokens).map((symbol) => (
-          <option value={symbol}>{symbol}</option>
-        ))}
-      </select>
-    </div>
-    <div class="mb-3">
-      <label for="amount" class="form-label">
-        Enter the amount
-      </label>
-      <input
-        value={state.amount}
-        class="form-control"
-        id="amount"
-        disabled={wrongWalletNetwork || !state.tokenSymbol}
-        placeholder=""
-        onChange={(e) => {
-          const bigNumberAmount = ethers.utils.parseUnits(
-            e.target.value !== "" ? e.target.value : "0",
-            state.tokens[state.tokenSymbol].decimals
-          );
-          State.update({ amount: e.target.value, bigNumberAmount });
-        }}
-      />
-      {state.tokenSymbol && (
-        <div>
-          Balance:{" "}
-          {ethers.utils.formatUnits(
-            state.senderBalance,
-            state.tokens[state.tokenSymbol].decimals
-          )}{" "}
-          {state.tokenSymbol}
-        </div>
-      )}
-    </div>
-    <div class="mb-3">
-      <button
-        disabled={
-          !state.tokenSymbol ||
-          state.bigNumberAmount.isZero() ||
-          state.senderBalance.lt(state.bigNumberAmount)
-        }
-        onClick={bridgeTokens}
-      >
-        Bridge tokens
-      </button>
-    </div>
-    <p class="">
-      NOTE: Please make sure that your wallet is compatible with the Destination
-      Network before sending tokens. Visit rainbowbridge.app.
-    </p>
-    {state.lastTxHash && (
-      <div>{`Pending transaction: ${state.lastTxHash}`}</div>
-    )}
-    <h3> Recent transfers </h3>
-  </>
+  </Theme>
 );
