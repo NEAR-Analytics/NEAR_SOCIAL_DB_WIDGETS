@@ -25,10 +25,10 @@ const testnetConfig = {
 const mainnetConfig = {
   etherCustodianAddress: "0x6BFaD42cFC4EfC96f529D786D643Ff4A8B89FA52",
 };
-const tokens = {
+const testnetTokens = {
   ETH: {
     symbol: "ETH",
-    name: "Ethereum",
+    name: "Ether",
     ethereumAddress: undefined,
     nearAddress: "aurora",
     auroraAddress: undefined,
@@ -48,10 +48,33 @@ const tokens = {
   },
   */
 };
+const mainnetTokens = {
+  ETH: {
+    symbol: "ETH",
+    name: "Ether",
+    ethereumAddress: undefined,
+    nearAddress: "aurora",
+    auroraAddress: undefined,
+    decimals: 18,
+    origin: "ethereum",
+  },
+  /*
+  "USDC.e": {
+    symbol: "USDC.e",
+    name: "USD Coin",
+    ethereumAddress: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+    nearAddress: "a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48.factory.bridge.near",
+    auroraAddress: "0xb12bfca5a55806aaf64e99521918a4bf0fc40802",
+    decimals: 6,
+    origin: "ethereum",
+  },
+  */
+};
 
 // Get balance on network switch.
 const fetchBalance = (tokenSymbol) => {
-  const tokenAddress = tokens[tokenSymbol][`${state.sourceNetwork}Address`];
+  const tokenAddress =
+    state.tokens[tokenSymbol][`${state.sourceNetwork}Address`];
   if (tokenAddress?.length) {
     // erc-20
     const erc20 = new ethers.Contract(
@@ -88,8 +111,8 @@ const bridgeTokens = () => {
   const ethTokenLocker = new ethers.Contract(
     state.config.etherCustodianAddress,
     // NOTE: for some reason human readable abi gives
-    // Eror: Not a function call expression
-    // when calling the contract.
+    // Error: Not a function call expression
+    // when calling the contract, so use standard abi.
     //["function depositToEvm(string,uint256) payable"],
     [
       {
@@ -157,6 +180,7 @@ Ethers.provider()
         chainIds: isTestnet ? testnetChainIds : mainnetChainIds,
         networkNames: isTestnet ? testnetNetworkNames : mainnetNetworkNames,
         config: isTestnet ? testnetConfig : mainnetConfig,
+        tokens: isTestnet ? testnetTokens : mainnetTokens,
         isTestnet,
         sourceNetwork,
         destinationNetwork:
@@ -245,7 +269,7 @@ return (
         <option selected={state.tokenSymbol === null} value={null}>
           ...
         </option>
-        {Object.keys(tokens).map((symbol) => (
+        {Object.keys(state.tokens).map((symbol) => (
           <option value={symbol}>{symbol}</option>
         ))}
       </select>
@@ -263,7 +287,7 @@ return (
         onChange={(e) => {
           const bigNumberAmount = ethers.utils.parseUnits(
             e.target.value !== "" ? e.target.value : "0",
-            tokens[state.tokenSymbol].decimals
+            state.tokens[state.tokenSymbol].decimals
           );
           State.update({ amount: e.target.value, bigNumberAmount });
         }}
@@ -273,7 +297,7 @@ return (
           Balance:{" "}
           {ethers.utils.formatUnits(
             state.senderBalance,
-            tokens[state.tokenSymbol].decimals
+            state.tokens[state.tokenSymbol].decimals
           )}{" "}
           {state.tokenSymbol}
         </div>
