@@ -42,7 +42,12 @@ return (
       title: "Request a contribution",
       description: "Request a contribution from this vendor",
       trigger: <>{personPlus}Request contribution</>,
-      children: <Container><Widget src={`${ownerId}/widget/Vendor.RequestForm`} /><Footer></Footer></Container>,
+      children: (
+        <Container>
+          <Widget src={`${ownerId}/widget/Vendor.RequestForm`} />
+          <Footer></Footer>
+
+        </Container>),
     }}
   />
 );
