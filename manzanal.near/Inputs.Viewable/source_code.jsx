@@ -5,7 +5,7 @@ const view = props.view ?? (() => <></>);
 const edit = props.edit ?? (() => <></>);
 const big = props.big ?? false;
 const noLabel = props.noLabel ?? false;
-const canEdit = props.canEdit ?? false;
+const canEdit = props.canEdit ?? true;
 const flexDirection = props.direction ?? "row";
 const editButtonText = props.editButtonText ?? "Edit";
 
@@ -38,10 +38,16 @@ const Label = styled.label`
 
 const Stack = styled.div`
   display: flex;
-  flex-direction: ${({ direction }) => direction};
   align-items: center;
   justify-content: flex-start;
   gap: 0.25em;
+
+  &.f-column {
+    flex-direction: column;
+  }
+  &.f-row {
+    flex-direction: row;
+  }
 `;
 
 const EditButton = styled.button`
@@ -77,8 +83,8 @@ const EditButtonContainer = styled.div`
 `;
 
 return (
-  <Container className={big ? "big" : ""}>
-    <Stack direction={flexDirection}>
+  <Container className={`f-${flexDirection} ` + big ? "big" : ""}>
+    <Stack className={"f-" + flexDirection}>
       {noLabel ? (
         view
       ) : (
