@@ -1,6 +1,5 @@
 const nearOrgLinks = {
-  getFundingPage:
-    "https://alpha.near.org/dima_sheleg.near/widget/NearOrg.Ecosystem.GetFunding",
+  getFundingPage: "/dima_sheleg.near/widget/NearOrg.Ecosystem.GetFunding",
 };
 
 const Wrapper = styled.div`
