@@ -37,7 +37,7 @@ const Footer = styled.div`
 `;
 
 const CloseButton = styled.button`
-  padding: 0.5em 1em;
+  padding: 0.75em 1em;
   gap: 0.5em;
   background: #fafafa;
   border: 1px solid #eceef0;
