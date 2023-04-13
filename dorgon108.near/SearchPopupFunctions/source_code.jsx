@@ -35,6 +35,7 @@ const Search = styled.div``;
 
 const Facets = styled.div`
   overflow: auto;
+  background-color:'red'
 `;
 
 const H1 = styled.h1`
@@ -224,6 +225,7 @@ const fetchSearchHits = (query, { pageNumber, configs, optionalFilters }) => {
   let body = {
     query,
     page: pageNumber ?? 0,
+    hitsPerPage: 2,
     optionalFilters: optionalFilters ?? [
       "categories:profile<score=3>",
       "categories:widget<score=2>",
@@ -365,11 +367,11 @@ const onSearchResultClick = ({ searchPosition, objectID, eventName }) => {
   }, 50);
 };
 
-if (props.term !== state.lastSyncedTerm) {
+if ("il" !== state.lastSyncedTerm) {
   State.update({
-    lastSyncedTerm: props.term,
+    lastSyncedTerm: "il",
   });
-  onSearchChange(props.term);
+  onSearchChange("il");
 }
 
 return (
@@ -404,7 +406,7 @@ return (
           {state.search.profiles.map((profile, i) => (
             <Item key={profile.accountId}>
               <Widget
-                src="chaotictempest.near/widget/AccountProfileCard"
+                src="dorgon108.near/widget/AccountProfileCard"
                 props={{
                   accountId: profile.accountId,
                   onClick: () =>
