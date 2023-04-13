@@ -1,4 +1,4 @@
-const Box = styled.button`
+const Box = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
