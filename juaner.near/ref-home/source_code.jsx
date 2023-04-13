@@ -1,4 +1,32 @@
 const Container = styled.div`
+
+   .table{
+        margin:0;
+        border-bottom:2px solid rgba(48, 67, 82, 0.5);
+    }
+     .table.click tbody tr:hover{
+        background: rgba(0, 0, 0, 0.1);
+     }
+    .table thead tr{
+        height:50px;
+        border:hidden;
+    }
+    .table tbody tr{
+        height:50px;
+    }
+    .table th{
+        color: #7E8A93;
+        font-size:14px;
+        vertical-align: middle;
+    }
+    .table td{
+        color: #fff;
+        font-size:14px;
+        vertical-align: middle;
+        border: none;
+    }
+
+
     width:100%;
     min-height:100vh;
     display:flex;
