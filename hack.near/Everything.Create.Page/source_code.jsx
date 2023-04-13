@@ -61,7 +61,7 @@ const FormFooter = styled.div`
 `;
 
 State.init({
-  title: "",
+  type: "",
   accountId: "",
   domain: "",
 });
@@ -74,8 +74,8 @@ return (
         props={{
           label: "Type",
           placeholder: "What kind of page?",
-          value: state.title,
-          onChange: (title) => State.update({ title }),
+          value: state.type,
+          onChange: (type) => State.update({ type }),
         }}
       />
       <Widget
@@ -108,7 +108,9 @@ return (
                   args: {
                     thing: {
                       main: JSON.stringify({
-                        thingId: res.body.data.posts.create.entities[0].id,
+                        type: state.type,
+                        accountId: state.accountId,
+                        domain: state.domain,
                       }),
                     },
                     index: {
