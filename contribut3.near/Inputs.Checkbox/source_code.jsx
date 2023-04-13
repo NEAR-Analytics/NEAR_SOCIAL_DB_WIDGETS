@@ -15,7 +15,7 @@ const Box = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-border: 1.5px solid #a8acb3;
+    border: 1.5px solid #a8acb3;
   }
 
   span {
