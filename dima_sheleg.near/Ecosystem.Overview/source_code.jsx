@@ -1303,8 +1303,8 @@ return (
     </Section>
 
     <Section id="anker_tech_base">
-      <Flex gap="32px">
-        <div class="col-12 col-md-6">
+      <div class="row row-cols-md-2 row-cols-1 g-4 text-md-start text-center">
+        <div class="col order-md-0 order-1">
           <Flex gap="16px" direction="column">
             <Text size="text-3xl" color="sand12">
               NEAR’s strong technical base
@@ -1314,7 +1314,7 @@ return (
             </Text>
           </Flex>
         </div>
-        <div class="col-12 col-md-6">
+        <div class="col order-md-1 order-0">
           <Widget
             src="mob.near/widget/Image"
             props={{
@@ -1323,7 +1323,7 @@ return (
             }}
           />
         </div>
-      </Flex>
+      </div>
     </Section>
 
     <Section
@@ -1732,8 +1732,8 @@ return (
       id="anker_regional_hubs"
       background="linear-gradient(to right, hsla(0, 0%, 100%, 0), var(--sand3), hsla(0, 0%, 100%, 0))"
     >
-      <Flex gap="32px">
-        <div class="col-12 col-md-6">
+      <div class="row row-cols-md-2 row-cols-1 g-4 text-md-start text-center">
+        <div class="col order-md-0 order-1">
           <Flex gap="16px" direction="column">
             <Text size="text-3xl" color="sand12">
               Local presence: Regional Hubs
@@ -1744,7 +1744,7 @@ return (
             </Text>
           </Flex>
         </div>
-        <div class="col-12 col-md-6">
+        <div class="col order-md-1 order-0">
           <Widget
             src="mob.near/widget/Image"
             props={{
@@ -1753,7 +1753,7 @@ return (
             }}
           />
         </div>
-      </Flex>
+      </div>
 
       <Section
         center
@@ -1803,8 +1803,8 @@ return (
     </Section>
 
     <Section id="anker_web3_career">
-      <Flex gap="32px">
-        <div class="col-12 col-md-6">
+      <div class="row row-cols-md-2 row-cols-1 g-4 text-md-start text-center">
+        <div class="col order-md-0 order-1">
           <Flex gap="16px" direction="column">
             <Text size="text-3xl" color="sand12">
               Start your web3 сareer with NEAR
@@ -1813,7 +1813,10 @@ return (
               Regardless of your background or experience, there is ample
               opportunity to participate in this rapidly evolving space.
             </Text>
-            <Flex gap="32px">
+            <Flex
+              gap="32px"
+              className="justify-content-md-start justify-content-center"
+            >
               <NumericLabel backgroundColor="var(--sand3)">
                 <Text size="text-3xl" color="cyan8" fontWeight="600">
                   150<Small size="20px">+</Small>
@@ -1825,7 +1828,7 @@ return (
             </Flex>
           </Flex>
         </div>
-        <div class="col-12 col-md-6">
+        <div class="col order-md-1 order-0">
           <Widget
             src="mob.near/widget/Image"
             props={{
@@ -1834,7 +1837,7 @@ return (
             }}
           />
         </div>
-      </Flex>
+      </div>
     </Section>
 
     <Section
