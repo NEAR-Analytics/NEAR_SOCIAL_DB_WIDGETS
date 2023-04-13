@@ -1,11 +1,12 @@
 const ownerId = "contribut3.near";
 const accountId = props.accountId ?? context.accountId;
-const size = props.size ?? "1em";
+const size = props.size ?? props.tall ? "5em" : "1em";
 
 console.log("Render happening with: ", accountId, size);
 
 State.init({
   name: "",
+  tagline: "",
   nameIsFetched: false,
 });
 
@@ -13,10 +14,12 @@ if (!state.nameIsFetched) {
   Near.asyncView(
     "social.near",
     "get",
-    { keys: [`${accountId}/profile/name`] },
+    { keys: [`${accountId}/profile/**`] },
     "final",
-    false,
-  ).then((name) => State.update({ name: name[accountId].profile.name, nameIsFetched: true }));
+    false
+  ).then((name) =>
+    State.update({ name: name[accountId].profile.name, tagline: name[accountId].profile.tagline, nameIsFetched: true })
+  );
   return <>Loading...</>;
 }
 
@@ -35,7 +38,7 @@ const Container = styled.div`
 const Name = styled.div`
   font-style: normal;
   font-weight: 600;
-  font-size: .95em;
+  font-size: 0.95em;
   line-height: 1em;
   color: #101828;
 `;
@@ -43,9 +46,17 @@ const Name = styled.div`
 const AccountId = styled.div`
   font-style: normal;
   font-weight: 400;
-  font-size: .75em;
+  font-size: 0.75em;
   line-height: 1em;
   color: #7e868c;
+`;
+
+const Column = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0.25em;
 `;
 
 return (
@@ -54,7 +65,11 @@ return (
       src={`${ownerId}/widget/Project.Icon`}
       props={{ accountId, size }}
     />
-    <Name>{state.name}</Name>
-    <AccountId>@{accountId}</AccountId>
+    <Column>
+      <div>
+        <Name>{state.name}</Name>
+        <AccountId>@{accountId}</AccountId>
+      </div>
+    </Column>
   </Container>
 );
