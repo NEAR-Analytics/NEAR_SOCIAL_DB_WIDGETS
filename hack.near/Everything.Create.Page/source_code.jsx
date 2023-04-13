@@ -119,6 +119,7 @@ return (
                 },
               });
             },
+            text: "Create Page",
           }}
         />
       </FormFooter>
