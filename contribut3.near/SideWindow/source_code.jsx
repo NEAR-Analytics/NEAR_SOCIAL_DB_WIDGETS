@@ -87,6 +87,10 @@ const Button = styled.button`
   text-align: center;
 `;
 
+const Description = styled.div`
+  width: 100%;
+`;
+
 return (
   <Dialog.Root>
     <Dialog.Trigger asChild>
@@ -120,7 +124,7 @@ return (
             </CloseButton>
           </Dialog.Close>
         </Header>
-        <Dialog.Description>{description}</Dialog.Description>
+        <Dialog.Description asChild>{description}</Dialog.Description>
         {children}
       </Content>
     </Dialog.Content>
