@@ -10,7 +10,7 @@ if (side === null) {
 
 const defaultWidgets = [
   {
-    src: "hack.near/widget/Page.Supporters",
+    src: "hack.near/widget/ABC.Page.Builders",
   },
 ];
 
