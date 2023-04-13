@@ -210,6 +210,15 @@ return (
         }}
       />
       <Widget
+        src={`${ownerId}/widget/Inputs.RadioGroup`}
+        props={{
+          label: "Proposal terms",
+          items: [{ value: "specify", name: "Specify proposal terms" }, { value: "no", name: "Don't specify" }],
+          value: state.term,
+          onChange: (term) => State.update({ term }),
+        }}
+      />
+      <Widget
         src={`${ownerId}/widget/Inputs.Select`}
         props={{
           label: "Service terms",
