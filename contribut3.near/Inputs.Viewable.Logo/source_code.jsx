@@ -35,9 +35,6 @@ const LabelArea = styled.div`
 
   div.d-inline-block {
     white-space: nowrap;
-    position: absolute;
-    display: flex;
-    flex-direction: row !important;
   }
 
   width: 75%;
