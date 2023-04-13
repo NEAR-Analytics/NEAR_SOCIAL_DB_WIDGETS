@@ -1,5 +1,35 @@
 const Box = styled.div`
-  
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5em;
+
+  button {
+    border: none;
+    background: none;
+    border-radius: 100%;
+    padding: 0;
+    width: 1.5em;
+    height: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+border: 1.5px solid #a8acb3;
+  }
+
+  span {
+    display: inline-block;
+    width: 1.25em;
+    height: 1.25em;
+    border-radius: 100%;
+    border: 6px solid transparent;
+    transition: border-color 200ms ease-out;
+    
+    &[data-state="checked"] {
+      border-color: #202024;
+    }
+  }
 `;
 
 return (
