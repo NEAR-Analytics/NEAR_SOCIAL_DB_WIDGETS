@@ -84,7 +84,7 @@ return (
       placeholder="Search by tag"
       selected={selectedLabels}
     />
-    <Typeahead
+    {/* <Typeahead
       clearButton
       id="basic-typeahead-single"
       labelKey="name"
@@ -92,6 +92,6 @@ return (
       options={wrappedAuthors}
       placeholder="Search by author"
       selected={selectedAuthors}
-    />
+    /> */}
   </>
 );
