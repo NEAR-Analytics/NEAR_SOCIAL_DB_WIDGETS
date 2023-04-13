@@ -59,6 +59,22 @@ const Column = styled.div`
   gap: 0.25em;
 `;
 
+const Row = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.25em;
+`;
+
+const Tagline = styled.div`
+  font-style: normal;
+  font-weight: 400;
+  font-size: .75em;
+  line-height: 1em;
+  color: #11181c;
+`;
+
 return (
   <Container>
     <Widget
@@ -66,10 +82,11 @@ return (
       props={{ accountId, size }}
     />
     <Column>
-      <div>
+      <Row>
         <Name>{state.name}</Name>
         <AccountId>@{accountId}</AccountId>
-      </div>
+      </Row>
+      {props.tall ? <Tagline>{state.tagline}</Tagline> : null}
     </Column>
   </Container>
 );
