@@ -4,7 +4,7 @@ return (
     <div className="mb-2 mt-3 d-flex gap-3 flex-wrap">
       <a
         className="btn btn-success"
-        href="https://thewiki.near.page/PastPresentAndFutureOfNearSocial"
+        href="#/edit/create.near/widget/Common.Page"
       >
         Start Here
       </a>
