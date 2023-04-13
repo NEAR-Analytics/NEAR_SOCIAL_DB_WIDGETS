@@ -238,12 +238,6 @@ const market_deposit_assets =
     const rewardTokens = rewardMap && rewardMap.rewardTokens;
     const token_usd_price = price && price.usd;
     const { volatility_ratio, extra_decimals } = config;
-    const availableLiquidity_usd = nFormat(
-      B(asset.availableLiquidity || 0)
-        .mul(token_usd_price || 0)
-        .toNumber(),
-      2
-    );
     const totalLiquidity = B(asset.supplied.balance || 0)
       .plus(asset.reserved)
       .toFixed();
@@ -282,9 +276,9 @@ const market_deposit_assets =
         </td>
         <td>{toAPY(depositApy)}%</td>
         <td>{rewardTokensImg}</td>
+        <td>{cf}%</td>
         <td>${totalLiquidity_usd}</td>
-        <td>${availableLiquidity_usd}</td>
-        <td class="text-end">{cf}%</td>
+        <td class="text-end"></td>
       </tr>
     );
   });
@@ -322,7 +316,7 @@ return (
     <table class="table click noBorder">
       <thead>
         <tr>
-          <th scope="col" width="20%">
+          <th scope="col" width="15%">
             Assets
           </th>
           <th scope="col" class="text-start" width="15%">
@@ -331,15 +325,13 @@ return (
           <th scope="col" class="text-start" width="15%">
             Rewards
           </th>
-          <th scope="col" class="text-start" width="15%">
-            Total Supply
-          </th>
-          <th scope="col" class="text-start" width="15%">
-            Available Supply
-          </th>
-          <th scope="col" class="text-end">
+          <th scope="col" width="15%">
             C.F.
           </th>
+          <th scope="col" width="15%">
+            Total Supply
+          </th>
+          <th scope="col" class="text-end"></th>
         </tr>
       </thead>
       <tbody>{market_deposit_assets}</tbody>
