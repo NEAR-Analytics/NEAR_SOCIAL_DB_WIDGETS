@@ -25,6 +25,7 @@ const Box = styled.div`
     display: inline-block;
     width: 1.25em;
     height: 1.25em;
+    color: #fff;
   }
 `;
 
