@@ -43,7 +43,7 @@ return (
         </div>
         {/* Widget to display Feed of Questions */}
         <Widget
-          src="dmitriy_sheleg.near/widget/DevSupport.Feed"
+          src="dima_sheleg.near/widget/DevSupport.Feed"
           props={{ admins, adminContract: adminContract }}
         />
       </div>
