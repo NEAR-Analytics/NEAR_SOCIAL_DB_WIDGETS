@@ -55,7 +55,6 @@ const SaveButton = styled.button`
   line-height: 1em;
   text-align: center;
   color: #11181c;
-  transform: translateY(3em);
 `;
 
 return (
