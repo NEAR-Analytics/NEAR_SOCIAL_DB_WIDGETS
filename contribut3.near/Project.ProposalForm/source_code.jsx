@@ -300,11 +300,11 @@ return (
                   stroke-linejoin="round"
                 />
               </svg>
-              Send request
+              Send proposal
             </>
           ),
           onClick: () => {
-            console.log("Send request");
+            console.log("Send proposal");
           },
         }}
       />
