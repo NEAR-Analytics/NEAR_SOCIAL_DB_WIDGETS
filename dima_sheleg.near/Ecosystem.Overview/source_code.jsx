@@ -131,8 +131,6 @@ const SocialIcon = styled.i`
   color: ${(p) => p.color};
 `;
 
-const widgetLink =
-  "https://alpha.near.org/#/dima_sheleg.near/widget/Ecosystem.Overview";
 const navLinks = [
   {
     name: "Projects & DAOs",
