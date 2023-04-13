@@ -62,15 +62,15 @@ const createProjectLine = (accountId, name, image) => {
 };
 
 State.init({
-  requestId: [],
   message: "",
-  projectId: [],
-  projects: [],
-  projectsIsFetched: false,
+  vendorId: [],
+  vendors: [],
+  vendorsIsFetched: false,
+  requestId: [],
   requests: [],
   requestsIsFetched: false,
   proposalTerms: [],
-  proposalTerm: null,
+  proposalTerm: "specify",
   terms: [],
   term: [],
   paymentTypes: [],
@@ -82,7 +82,7 @@ State.init({
 if (!state.projectsIsFetched) {
   Near.asyncView(
     ownerId,
-    "get_admin_projects",
+    "get_admin_vendors",
     { account_id: context.accountId },
     "final",
     false
