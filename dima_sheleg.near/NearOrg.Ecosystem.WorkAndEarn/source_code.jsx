@@ -1,5 +1,6 @@
+const widgetOwnerId = "dima_sheleg.near";
 const nearOrgLinks = {
-  getFundingPage: "/dima_sheleg.near/widget/NearOrg.Ecosystem.GetFunding",
+  getFundingPage: `/${widgetOwnerId}/widget/NearOrg.Ecosystem.GetFunding`,
 };
 
 const Wrapper = styled.div`
