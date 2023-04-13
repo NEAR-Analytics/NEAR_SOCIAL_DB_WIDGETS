@@ -69,6 +69,10 @@ State.init({
   projectsIsFetched: false,
   requests: [],
   requestsIsFetched: false,
+  terms: [],
+  term: [],
+  paymentTypes: [],
+  paymentType: [],
   methods: [],
   method: [],
 });
