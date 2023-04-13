@@ -37,7 +37,7 @@ const Div = styled.div`
 return (
   <Div>
     <div>
-      <h4>Customizable:</h4>
+      <h4>🧰 🛠️ 🧱</h4>
       {context.accountId && (
         <a
           key="edit"
