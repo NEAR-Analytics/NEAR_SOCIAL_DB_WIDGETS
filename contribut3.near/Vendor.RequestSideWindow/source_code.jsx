@@ -25,6 +25,7 @@ const Container = styled.div`
   align-items: flex-start;
   justify-content: space-between;
   width: 100%;
+  flex-grow: 1;
 `;
 
 const Footer = styled.div`
