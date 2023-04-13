@@ -234,6 +234,7 @@ return (
             content: getContent(props.content),
             search: props.search,
             update: props.update,
+            accountId: props.accountId,
             buttons: [
               {
                 id: "overview",
