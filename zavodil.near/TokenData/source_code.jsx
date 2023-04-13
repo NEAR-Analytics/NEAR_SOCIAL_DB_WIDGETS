@@ -32,7 +32,7 @@ switch (network) {
       balance_hr: new Big(balance)
         .div(new Big(10).pow(metadata.decimals))
         .toFixed(),
-      refPrice,
+      price: refPrice,
       metadata,
     };
 
