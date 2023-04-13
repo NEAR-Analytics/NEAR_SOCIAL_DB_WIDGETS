@@ -68,15 +68,11 @@ State.init({
 
 return (
   <Container>
-    <div>
-      <Header>Page Builder</Header>
-      <SubHeader>Launch your own page!</SubHeader>
-    </div>
     <Form>
       <Widget
         src={`${ownerId}/widget/Inputs.Text`}
         props={{
-          label: "Type*",
+          label: "Type",
           placeholder: "What kind of page?",
           value: state.title,
           onChange: (title) => State.update({ title }),
@@ -85,7 +81,7 @@ return (
       <Widget
         src={`${ownerId}/widget/Inputs.AccountId`}
         props={{
-          label: "NEAR Account ID*",
+          label: "NEAR Account ID",
           placeholder: "example.near",
           value: state.accountId,
           onChange: (accountId) => State.update({ accountId }),
@@ -117,25 +113,6 @@ return (
                           accountId: state.accountId,
                           team: state.team,
                         },
-                      },
-                    },
-                  },
-                },
-                {
-                  contractName: ownerId,
-                  methodName: "add_page",
-                  args: { account_id: state.accountId },
-                },
-                {
-                  contractName: ownerId,
-                  methodName: "edit_page",
-                  args: {
-                    account_id: state.accountId,
-                    page: {
-                      application: {
-                        integration: state.integration,
-                        stage: state.dev,
-                        domain: state.domain,
                       },
                     },
                   },
