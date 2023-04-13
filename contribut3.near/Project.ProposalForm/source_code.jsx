@@ -70,7 +70,7 @@ State.init({
   requests: [],
   requestsIsFetched: false,
   proposalTerms: [],
-  proposalTerm: [],
+  proposalTerm: null,
   terms: [],
   term: [],
   paymentTypes: [],
@@ -222,7 +222,7 @@ return (
         props={{
           label: "Proposal terms",
           items: [{ value: "specify", name: "Specify proposal terms" }, { value: "no", name: "Don't specify" }],
-          value: state.proposalTerms,
+          value: state.proposalTerm,
           onChange: (proposalTerm) => { State.update({ proposalTerm }); console.log(proposalTerm) },
         }}
       />
