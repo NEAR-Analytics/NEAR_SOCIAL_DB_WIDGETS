@@ -3,9 +3,8 @@ const body = props.body;
 const assets = props.assets;
 const debug = props.debug;
 
-State.init({
-  hidden: props.hidden ?? false,
-});
+const hidden = props.hidden;
+const onClose = props.onClose;
 
 const css = `
 * {
@@ -43,16 +42,6 @@ if (!state.theme) {
 }
 
 const Theme = state.theme;
-
-const ShowModal = () => State.update({ hidden: false });
-
-const defaultClose = () => {
-  State.update({ hidden: true });
-};
-
-const onClose = props.onClose ?? defaultClose;
-
-const hidden = state.hidden;
 
 const Modal = styled.div`
   display: ${({ hidden }) => (hidden ? "none" : "flex")};
@@ -101,7 +90,6 @@ const assetList = assets.map((tokenId) => {
         debug: false,
         onClick: () => {
           console.log(`${tokenId} selected`);
-          State.update({ hidden: true });
           if (props.onClick) {
             props.onClick(tokenId);
           }
