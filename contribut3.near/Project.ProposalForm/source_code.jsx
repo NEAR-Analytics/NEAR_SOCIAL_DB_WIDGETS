@@ -276,6 +276,15 @@ return (
           onChange: (method) => State.update({ method }),
         }}
       />
+      <Widget
+        src={`${ownerId}/widget/Inputs.Checkbox`}
+        props={{
+          label: "Yes, I understand and agree with NEAR Horizon credit and payment system",
+          options: state.methods,
+          value: state.method,
+          onChange: (method) => State.update({ method }),
+        }}
+      />
     </Form>
     <Footer>
       <Dialog.Close asChild>
