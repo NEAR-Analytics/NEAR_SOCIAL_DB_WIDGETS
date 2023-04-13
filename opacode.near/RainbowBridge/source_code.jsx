@@ -1,5 +1,5 @@
 const sender = Ethers.send("eth_requestAccounts", [])[0];
-
+// NOTE: Switching account in MetaMask doesn't update the sender.
 if (!sender) return <Web3Connect connectLabel="Connect Web3 Wallet" />;
 
 const networks = ["ethereum", "aurora"];
@@ -78,6 +78,50 @@ const fetchBalance = (tokenSymbol) => {
   }
 };
 
+const bridgeTokens = () => {
+  if (state.sourceNetwork !== "ethereum" || state.tokenSymbol !== "ETH") {
+    console.log("Coming soon...");
+    return;
+  }
+  const ethTokenLocker = new ethers.Contract(
+    state.config.etherCustodianAddress,
+    // NOTE: for some reason human readable abi gives
+    // Eror: Not a function call expression
+    // when calling the contract.
+    //["function depositToEvm(string,uint256) payable"],
+    [
+      {
+        inputs: [
+          {
+            internalType: "string",
+            name: "ethRecipientOnNear",
+            type: "string",
+          },
+          { internalType: "uint256", name: "fee", type: "uint256" },
+        ],
+        name: "depositToEVM",
+        outputs: [],
+        stateMutability: "payable",
+        type: "function",
+      },
+    ],
+    Ethers.provider().getSigner()
+  );
+  ethTokenLocker
+    .depositToEVM(sender.slice(2).toLowerCase(), 0, {
+      value: state.bigNumberAmount,
+    })
+    .then((tx) => {
+      console.log(tx);
+      State.update({ lastTxHash: tx.hash });
+      tx.wait().then((receipt) => {
+        console.log(receipt);
+        // TODO sync Recent transfers after 10s
+        State.update({ lastTxHash: null });
+      });
+    });
+};
+
 initState({
   tokenSymbol: null,
   sourceTokenBalance: ethers.BigNumber.from(0),
@@ -87,6 +131,7 @@ initState({
   sourceNetwork: "ethereum",
   destinationNetwork: "aurora",
   initialized: false,
+  lastTxHash: null,
 });
 
 Ethers.provider()
@@ -122,6 +167,7 @@ Ethers.provider()
 const wrongWalletNetwork =
   state.walletChainId !== state.chainIds[state.sourceNetwork];
 if (wrongWalletNetwork) {
+  // Reset selection
   State.update({
     tokenSymbol: null,
     amount: "",
@@ -129,45 +175,6 @@ if (wrongWalletNetwork) {
     bigNumberAmount: ethers.BigNumber.from(0),
   });
 }
-
-const bridgeTokens = () => {
-  console.log("WIP");
-  return;
-
-  if (state.sourceNetwork !== "ethereum") {
-    console.log("Coming soon...");
-    return;
-  }
-  const iface = new ethers.utils.Interface([
-    "function depositToEvm(string,uint) payable",
-  ]);
-  const data = iface.encodeFunctionData("depositToEvm", [
-    sender.slice(2).toLowerCase(),
-    0,
-  ]);
-  console.log(data);
-  const ethTokenLocker = new ethers.Contract(
-    state.config.etherCustodianAddress,
-    ["function depositToEvm(string,uint) payable"],
-    Ethers.provider().getSigner()
-  );
-
-  // Cannot call a contract with data:
-  // Error: Not a function call expression
-  ethTokenLocker
-    .submit(state.config.etherCustodianAddress, {
-      value: state.bigNumberAmount.toHexString(),
-      data,
-    })
-    .then((txHash) => {
-      console.log(txHash);
-    });
-  ethTokenLocker.depositToEVM(sender.slice(2).toLowerCase(), 0, {
-    value: state.bigNumberAmount.toHexString(),
-  });
-  //.then((txHash) => console.log(txHash));
-};
-
 if (!state.initialized) return <></>;
 return (
   <>
@@ -318,6 +325,9 @@ return (
       NOTE: Please make sure that your wallet is compatible with the Destination
       Network before sending tokens. Visit rainbowbridge.app.
     </p>
+    {state.lastTxHash && (
+      <div>{`Pending transaction: ${state.lastTxHash}`}</div>
+    )}
     <h3> Recent transfers </h3>
   </>
 );
