@@ -19,9 +19,6 @@ const css = `
     justify-content: flex-start;
 }
 .asset-item-container {
-    position: absolute;
-    left: 0px;
-    top: 0px;
     height: 56px;
     width: 100%;
     padding: 4px 20px;
