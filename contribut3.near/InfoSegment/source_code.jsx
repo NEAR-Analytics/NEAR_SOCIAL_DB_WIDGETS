@@ -42,6 +42,7 @@ const Description = styled.p`
   font-size: .95em;
   line-height: 1.25em;
   color: #475467;
+  white-space: wrap;
 `;
 
 return (
