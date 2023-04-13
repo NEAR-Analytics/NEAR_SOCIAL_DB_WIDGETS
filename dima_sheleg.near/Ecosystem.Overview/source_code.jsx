@@ -438,7 +438,7 @@ const nearHubsCards = [
 
 return (
   <Wrapper>
-    <Section center>
+    <Section center style={{ position: "relative" }}>
       <Flex gap="16px" direction="column" alignItems="center">
         <H1>Building the Open Web together</H1>
         <Text size="text-xl" color="sand12" style={{ maxWidth: "662px" }}>
@@ -446,15 +446,19 @@ return (
           supporting them with everything they need to succeed.
         </Text>
       </Flex>
-      <StickyNav>
-        <Flex gap="16px" alignItems="center">
-          {navLinks.map((nav) => (
-            <Text key={nav.href} as="a" href={`#${nav.href}`}>
-              {nav.name}
-            </Text>
-          ))}
-        </Flex>
-      </StickyNav>
+      <Flex
+        gap="16px"
+        alignItems="center"
+        wrap="wrap"
+        justifyContent="center"
+        className="sticky-top"
+      >
+        {navLinks.map((nav) => (
+          <Text key={nav.href} as="a" href={`#${nav.href}`}>
+            {nav.name}
+          </Text>
+        ))}
+      </Flex>
     </Section>
     <Section center>
       <Flex gap="var(--large-gap)" wrap="wrap" justifyContent="center">
