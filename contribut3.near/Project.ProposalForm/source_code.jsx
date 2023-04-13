@@ -88,7 +88,7 @@ if (!state.projectsIsFetched) {
     false
   ).then((vendors) => {
     if (!vendors.length) {
-      return State.update({
+      State.update({
         vendors: [],
         vendorsIsFetched: true,
       });
