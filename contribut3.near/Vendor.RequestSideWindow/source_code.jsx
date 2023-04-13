@@ -46,8 +46,8 @@ return (
         <Container>
           <Widget src={`${ownerId}/widget/Vendor.RequestForm`} />
           <Footer></Footer>
-
-        </Container>),
+        </Container>
+      ),
     }}
   />
 );
