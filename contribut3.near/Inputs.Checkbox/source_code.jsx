@@ -15,6 +15,7 @@ const Box = styled.div`
     justify-content: center;
     align-items: center;
     border: 1.5px solid #a8acb3;
+    transition: background 200ms ease-out;
 
     &[data-state="checked"] {
       background: #202024;
