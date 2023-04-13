@@ -8,10 +8,7 @@ if (side === null) {
 
 const defaultWidgets = [
   {
-    src: "mob.near/widget/Applications",
-  },
-  {
-    src: "mob.near/widget/People",
+    src: "hack.near/widget/Page.Supporters",
   },
 ];
 
