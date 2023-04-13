@@ -236,6 +236,12 @@ const borrowedAssets = hasData
       );
     })
   : undefined;
+if (borrowedAssets && borrowedAssets.length > 0) {
+  onLoadState &&
+    onLoadState({
+      total_burrowed_usd: total_burrowed_usd.toFixed(),
+    });
+}
 return (
   <Container>
     {/* load data */}
