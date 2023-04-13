@@ -12,13 +12,7 @@ if (main === null) {
 
 const defaultWidgets = [
   {
-    src: "mob.near/widget/Welcome.GetInvolved",
-  },
-  {
-    src: "mob.near/widget/MainPage.Compose",
-  },
-  {
-    src: "mob.near/widget/Hashtag.Feed",
+    src: "hack.near/widget/Project.Page",
   },
 ];
 
