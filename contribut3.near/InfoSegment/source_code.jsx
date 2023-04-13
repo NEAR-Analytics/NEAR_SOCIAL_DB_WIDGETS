@@ -43,6 +43,7 @@ const Description = styled.p`
   line-height: 1.25em;
   color: #475467;
   white-space: wrap;
+  margin: 0px;
 `;
 
 return (
