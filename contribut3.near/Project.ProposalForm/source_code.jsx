@@ -1,4 +1,5 @@
 const ownerId = "contribut3.near";
+const accountId = props.accountId;
 
 const LineContainer = styled.div`
   display: flex;
