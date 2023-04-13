@@ -51,6 +51,8 @@ const Caption = styled.div`
     color: #A6A6A6;
 `;
 
+const thingId = props.data.thingId;
+
 if (thingId === null) {
   return (
     <Widget
