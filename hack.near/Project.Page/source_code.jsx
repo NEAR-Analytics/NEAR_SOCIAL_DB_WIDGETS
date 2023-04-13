@@ -3,9 +3,9 @@ if (!accountId) {
   return "No account ID";
 }
 
-const profile = props.profile ?? Social.getr(`${accountId}/profile`);
+const page = props.page ?? Social.getr(`${accountId}/page`);
 
-if (profile === null) {
+if (page === null) {
   return "Loading";
 }
 
@@ -13,20 +13,17 @@ return (
   <div className="py-1 px-1">
     <div className="mx-auto">
       <Widget
-        src="mob.near/widget/ProfileLarge"
+        src="hack.near/widget/Page.Summary"
         props={{
           accountId,
-          profile,
+          page,
           link: true,
-          showEditButton: !props.profile,
+          showEditButton: !props.page,
         }}
       />
 
       <div className="mt-3">
-        <Widget
-          src="mob.near/widget/ProfileTabs"
-          props={{ accountId, profile }}
-        />
+        <Widget src="hack.near/widget/Page.Tabs" props={{ accountId, page }} />
       </div>
     </div>
   </div>
