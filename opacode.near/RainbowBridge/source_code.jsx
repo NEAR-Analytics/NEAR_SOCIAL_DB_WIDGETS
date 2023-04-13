@@ -454,7 +454,8 @@ return (
       )}
       <p class="">
         NOTE: Please make sure that your wallet is compatible with the
-        Destination Network before sending tokens. Visit rainbowbridge.app.
+        Destination Network before sending tokens. Only Ethereum ={">"} Aurora
+        transfers available atm from this UI. Visit rainbowbridge.app.
       </p>
       <h3> Recent transfers </h3>
     </div>
