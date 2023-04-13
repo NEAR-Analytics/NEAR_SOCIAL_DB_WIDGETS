@@ -136,7 +136,7 @@ let postIds;
 if (props.searchResult) {
   postIds = props.searchResult.postIds;
   postIds = intersectPostsWithLabel(postIds);
-  postIds = intersectPostsWithAuthor(postIds);
+  // postIds = intersectPostsWithAuthor(postIds);
 } else if (props.label) {
   postIds = getPostsByLabel();
   // postIds = intersectPostsWithAuthor(postIds);
