@@ -51,8 +51,6 @@ const Caption = styled.div`
     color: #A6A6A6;
 `;
 
-const thingId = props.data.thingId;
-
 if (thingId === null) {
   return (
     <Widget
@@ -72,7 +70,7 @@ const data = fetch("https://monkfish-app-ginhc.ondigitalocean.app/graphql", {
   },
   body: JSON.stringify({
     query:
-      "query findIdeaById($is: ID) { findIdeas(id: {is: $is}) { name, description { md }, creationDate } }",
+      "query findIdeaById($thingId: ID) { findIdeas(id: {is: $thingId}) { name, description { md }, creationDate } }",
     variables: {
       thingId: thingId,
     },
