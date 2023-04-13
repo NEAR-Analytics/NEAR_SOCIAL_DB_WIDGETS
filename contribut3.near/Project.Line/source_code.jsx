@@ -2,8 +2,6 @@ const ownerId = "contribut3.near";
 const accountId = props.accountId ?? context.accountId;
 const size = props.size ?? props.tall ? "5em" : "1em";
 
-console.log("Render happening with: ", accountId, size);
-
 State.init({
   name: "",
   tagline: "",
