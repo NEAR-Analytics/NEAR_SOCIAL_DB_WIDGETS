@@ -1,5 +1,5 @@
-const debug = props.debug ?? true;
-const selected = props.selected ?? true;
+const debug = props.debug ?? false;
+const selected = props.selected ?? false;
 
 const css = `
 * {
@@ -28,7 +28,6 @@ const css = `
     display: grid;
     grid-template-columns: auto minmax(auto, 1fr) auto minmax(0px, 72px);
     gap: 16px;
-    cursor: pointer;
     opacity: 1;
     -webkit-box-pack: justify;
     justify-content: space-between;
@@ -136,6 +135,9 @@ const css = `
     pointer-events: none;
     opacity: 0.4;
 }
+.asset-item-container.active{
+    cursor:pointer;
+}
 .asset-item-container .selected-icon{
     height: 20px;
     width: 20px;
@@ -162,6 +164,12 @@ const onLoad = (assetData) => {
   State.update({ assetData });
 };
 
+const assetOnClick = () => {
+  if (!selected && props.onClick) {
+    props.onClick();
+  }
+};
+
 const assetData = state.assetData;
 return (
   <>
@@ -178,7 +186,10 @@ return (
     {assetData && (
       <Theme>
         <div class={debug ? "asset-item-debug-container" : ""}>
-          <div class={`asset-item-container ${selected ? "selected" : ""}`}>
+          <div
+            class={`asset-item-container ${selected ? "selected" : "active"}`}
+            onClick={assetOnClick}
+          >
             <div class="icon-container">
               <div class="icon">
                 <img
