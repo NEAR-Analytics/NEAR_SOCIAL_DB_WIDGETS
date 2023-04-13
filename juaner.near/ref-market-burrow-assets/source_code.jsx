@@ -13,9 +13,6 @@ const Container = styled.div`
     .table tbody tr{
         height:50px;
     }
-    .table.click tbody tr{
-      cursor:pointer;
-    }
      .table.click tbody tr:hover{
         background: rgba(0, 0, 0, 0.1);
      }
@@ -51,14 +48,14 @@ const Container = styled.div`
       display:flex;
       align-items:center;
     }
-    .mt_25{
-      margin-top:25px;
-    }
-    .mt-10{
-      margin-top:10px;
-    }
     .font-18{
       font-size:18px;
+    }
+    .flex-end{
+      display:flex;
+      align-items:center;
+      justify-content:end;
+      height:50px;
     }
 `;
 const Backdrop = styled.div`
@@ -112,27 +109,6 @@ const Modal = styled.div`
     }
     .modal-body {
         padding:0 10px;
-    }
-    .modal-body .tab{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      margin-bottom:30px;
-    }
-    .modal-body .tab span{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      width:50%;
-      height:40px;
-      border-radius: 6px;
-      font-weight: 700;
-      font-size: 18px;
-      cursor:pointer;
-      color:#fff;
-    }
-    .modal-body .tab span.active{
-      background: #304352;
     }
    .btn-close-custom{
       position:absolute;
@@ -258,11 +234,7 @@ const market_burrow_assets =
         );
       });
     return (
-      <tr
-        onClick={() => {
-          handleSelect(token_id);
-        }}
-      >
+      <tr>
         <td>
           <img src={metadata.icon || wnearbase64} class="tokenIcon"></img>
           {metadata.symbol}
@@ -273,7 +245,19 @@ const market_burrow_assets =
         </td>
         <td>{cf || "-"}%</td>
         <td>{liquidity}</td>
-        <td class="text-end"></td>
+        <td class="flex-end">
+          <Widget
+            src="juaner.near/widget/ref-operation-button"
+            props={{
+              clickEvent: () => {
+                handleSelect(token_id);
+              },
+              buttonType: "solid",
+              actionName: "Burrow",
+              hoverOn: true,
+            }}
+          />
+        </td>
       </tr>
     );
   });
