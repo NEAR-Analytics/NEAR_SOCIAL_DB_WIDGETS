@@ -206,11 +206,7 @@ const suppliedAssets = hasData
       total_supplied_usd = total_supplied_usd.plus(usd);
 
       return (
-        <tr
-          onClick={() => {
-            changeSelectedToken(asset, "supply");
-          }}
-        >
+        <tr>
           <td>
             <img
               src={asset.metadata.icon || wnearbase64}
