@@ -220,8 +220,8 @@ return (
         props={{
           label: "Proposal terms",
           items: [{ value: "specify", name: "Specify proposal terms" }, { value: "no", name: "Don't specify" }],
-          value: state.term,
-          onChange: (term) => State.update({ term }),
+          value: state.proposalTerms,
+          onChange: (proposalTerm) => { State.update({ proposalTerm }); console.log(proposalTerm) },
         }}
       />
       <Widget
