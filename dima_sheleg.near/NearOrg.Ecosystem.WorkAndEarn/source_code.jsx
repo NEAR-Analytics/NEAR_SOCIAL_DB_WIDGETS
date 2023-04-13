@@ -1,3 +1,8 @@
+const nearOrgLinks = {
+  getFundingPage:
+    "https://alpha.near.org/dima_sheleg.near/widget/NearOrg.Ecosystem.GetFunding",
+};
+
 const Wrapper = styled.div`
   --section-gap: 162px;
   --large-gap: 82px;
@@ -174,7 +179,7 @@ return (
               <Widget
                 src="adminalpha.near/widget/DIG.Button"
                 props={{
-                  href: "https://near.org/ecosystem/get-funding",
+                  href: nearOrgLinks.getFundingPage,
                   iconRight: "ph-bold ph-arrow-right",
                   label: "Learn more about Grants",
                   variant: "primary",
