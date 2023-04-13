@@ -218,7 +218,7 @@ return (
               text: <>{plus}Create request</>,
             }}
           />
-          <Widget src={`${ownerId}/widget/Project.ProposalSideWindow`} props={{ accountId }} />
+          <Widget src={`${ownerId}/widget/Project.ProposeSideWindow`} props={{ accountId }} />
         </CTARow>
       </HeaderDetails>
       <HeaderProgress>
