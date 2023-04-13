@@ -3,6 +3,10 @@ const body = props.body;
 const assets = props.assets;
 const debug = props.debug;
 
+State.init({
+  hidden: props.hidden ?? false,
+});
+
 const css = `
 * {
     font-family: 'Inter custom',sans-serif;
@@ -40,10 +44,6 @@ if (!state.theme) {
 
 const Theme = state.theme;
 
-State.init({
-  hidden: props.hidden ?? false,
-});
-
 const ShowModal = () => State.update({ hidden: false });
 
 const defaultClose = () => {
@@ -52,7 +52,7 @@ const defaultClose = () => {
 
 const onClose = props.onClose ?? defaultClose;
 
-let hidden = state.hidden ?? false;
+const hidden = state.hidden;
 
 const Modal = styled.div`
   display: ${({ hidden }) => (hidden ? "none" : "flex")};
