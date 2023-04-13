@@ -9,7 +9,7 @@ State.init({
   postExists: true,
   comments: props.comments ?? undefined,
   content: JSON.parse(props.content) ?? undefined,
-  likes: JSON.parse(props.likes) ?? undefined,
+  likes: props.likes ?? undefined,
 });
 
 const item = {
@@ -20,6 +20,7 @@ const item = {
 
 // Load post if not contents and comments are not passed in
 if (!state.content || !state.comments || !state.likes) {
+  console.log("making call again");
   const postsQuery = `
 query IndexerQuery {
   roshaan_near_alphaindexer_posts(
