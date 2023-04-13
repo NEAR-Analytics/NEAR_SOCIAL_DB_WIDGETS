@@ -8,16 +8,40 @@ const icon = (
 );
 
 const Container = styled.div`
-box-sizing: border-box;
-display: flex;
-flex-direction: row;
-align-items: flex-start;
-padding: 16px;
-gap: 12px;
-background: #FCFCFD;
-border: 1px solid #D0D5DD;
-border-radius: 4px;
-width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 1em;
+  gap: .75em;
+  background: #fcfcfd;
+  border: 1px solid #d0d5dd;
+  border-radius: 4px;
+  width: 100%;
+`;
+
+const Text = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: .75em;
+`;
+
+const Heading = styled.div`
+  font-style: normal;
+  font-weight: 600;
+  font-size: .95em;
+  line-height: 1.25em;
+  color: #344054;
+`;
+
+const Description = styled.p`
+  font-style: normal;
+  font-weight: 400;
+  font-size: .95em;
+  line-height: 1.25em;
+  color: #475467;
 `;
 
 return (
