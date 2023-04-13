@@ -58,7 +58,7 @@ return (
   <div>
     <Wrapper>
       <Header>
-        <H1>Guides for Builders</H1>
+        <H1>Guide for Builders</H1>
 
         <Text>
           <h4>Let's hack together!</h4>
