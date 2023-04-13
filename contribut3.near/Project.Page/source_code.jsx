@@ -1,6 +1,21 @@
 const ownerId = "contribut3.near";
 const accountId = props.accountId ?? context.accountId;
 
+State.init({
+  isAdmin: false,
+  isAdminIsFetched: false,
+});
+
+if (!state.isAdminIsFetched) {
+  Near.asyncView(
+    ownerId,
+    "check_is_project_admin",
+    { project_id: accountId, account_id: context.accountId },
+    "final",
+    false
+  ).then((isAdmin) => State.update({ isAdmin, isAdminIsFetched: true }));
+}
+
 const availableContent = [
   "overview",
   "requests",
@@ -132,17 +147,47 @@ const CTARow = styled.div`
 `;
 
 const content = {
-  overview: <Widget src={`${ownerId}/widget/Project.About`} props={{
-    onSave: (s) => {
-      console.log(s);
-    },
-    accountId: props.accountId,
-  }} />,
-  requests: <Widget src={`${ownerId}/widget/Project.Requests`} props={{ accountId: props.accountId }} />,
-  people: <Widget src={`${ownerId}/widget/Project.People`} props={{ accountId: props.accountId }} />,
-  funding: <Widget src={`${ownerId}/widget/Project.Funding`} props={{ accountId: props.accountId }} />,
-  history: <Widget src={`${ownerId}/widget/Project.History`} props={{ accountId: props.accountId }} />,
-  graduation: <Widget src={`${ownerId}/widget/Project.Graduation`} props={{ accountId: props.accountId }} />,
+  overview: (
+    <Widget
+      src={`${ownerId}/widget/Project.About`}
+      props={{
+        onSave: (s) => {
+          console.log(s);
+        },
+        accountId: props.accountId,
+      }}
+    />
+  ),
+  requests: (
+    <Widget
+      src={`${ownerId}/widget/Project.Requests`}
+      props={{ accountId: props.accountId }}
+    />
+  ),
+  people: (
+    <Widget
+      src={`${ownerId}/widget/Project.People`}
+      props={{ accountId: props.accountId }}
+    />
+  ),
+  funding: (
+    <Widget
+      src={`${ownerId}/widget/Project.Funding`}
+      props={{ accountId: props.accountId }}
+    />
+  ),
+  history: (
+    <Widget
+      src={`${ownerId}/widget/Project.History`}
+      props={{ accountId: props.accountId }}
+    />
+  ),
+  graduation: (
+    <Widget
+      src={`${ownerId}/widget/Project.Graduation`}
+      props={{ accountId: props.accountId }}
+    />
+  ),
 }[getContent(props.content)];
 
 return (
@@ -151,7 +196,7 @@ return (
       <HeaderDetails>
         <Widget
           src={`${ownerId}/widget/Project.HeaderDetails`}
-          props={{ accountId: props.accountId }}
+          props={{ accountId, isAdmin: state.isAdmin }}
         />
         <CTARow>
           <Widget
@@ -173,6 +218,7 @@ return (
               text: <>{plus}Create request</>,
             }}
           />
+          <Widget src={`${ownerId}/widget/Project.ProposalSideWindow`} props={{ accountId }} />
         </CTARow>
       </HeaderDetails>
       <HeaderProgress>
