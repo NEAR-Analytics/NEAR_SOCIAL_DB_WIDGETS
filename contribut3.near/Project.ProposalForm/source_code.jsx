@@ -107,7 +107,7 @@ if (!state.projectsIsFetched) {
           ),
           value: accountId,
         })),
-        projectsIsFetched: true,
+        vendorsIsFetched: true,
       })
     );
   });
