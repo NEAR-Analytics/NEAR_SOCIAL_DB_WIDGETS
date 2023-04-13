@@ -117,14 +117,8 @@ const {
   showModal,
   selectedTokenId,
   selectedTokenMeta,
-  tabName,
 } = state;
 const { onLoadState } = props;
-function changeTab(tabName) {
-  State.update({
-    tabName,
-  });
-}
 function changeSelectedToken(asset, type) {
   const { token_id, metadata } = asset;
   State.update({
@@ -287,7 +281,7 @@ const suppliedAssets = hasData
 if (suppliedAssets && suppliedAssets.length > 0) {
   onLoadState &&
     onLoadState({
-      total_supplied_usd,
+      total_supplied_usd: total_supplied_usd.toFixed(),
     });
 }
 
