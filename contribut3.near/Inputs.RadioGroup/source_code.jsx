@@ -25,8 +25,8 @@ const RadioButton = styled.div`
 
   span {
     display: inline-block;
-    width: 100%;
-    height: 100%;
+    width: 1.125em;
+    height: 1.125em;
     border-radius: 100%;
     
     &[data-state="checked"] {
