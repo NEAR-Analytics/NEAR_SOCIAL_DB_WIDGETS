@@ -57,6 +57,13 @@ return (
           onChange: (message) => State.update({ message }),
         }}
       />
+      <Widget
+        src={`${ownerId}/widget/InfoSegment`}
+        props={{
+          title: "The verification process may take 3-5 days",
+          description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid pariatur, ipsum similique veniam.",
+        }}
+      />
     </Form>
     <Footer>
       <Dialog.Close asChild>
