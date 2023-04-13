@@ -27,13 +27,13 @@ const Label = styled.label`
 return (
   <RadioGroup.Root asChild value={props.value} onValueChange={props.onChange}>
     <Radio>
-      {items.map((item) => (
-        <RadioGroup.Item asChild>
-          <RadioButton>
+      {items.map(({ value, name }) => (
+        <RadioButton>
+          <RadioGroup.Item id={value}>
             <RadioGroup.Indicator />
-            <Label>{item.name}</Label>
-          </RadioButton>
-        </RadioGroup.Item>
+          </RadioGroup.Item>
+          <Label htmlFor={value}>{name}</Label>
+        </RadioButton>
       ))}
     </Radio>
   </RadioGroup.Root>
