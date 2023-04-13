@@ -27,12 +27,15 @@ const LabelArea = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
   gap: 0.25em;
+  position: relative;
+
   & input {
     width: 100%;
   }
 
   div.d-inline-block {
     white-space: nowrap;
+    position: absolute;
   }
 
   width: 75%;
