@@ -56,6 +56,12 @@ const Container = styled.div`
     .font-18{
         font-size:18px;
     }
+    .flex-end{
+      display:flex;
+      align-items:center;
+      justify-content:end;
+      height:50px;
+    }
 `;
 const Backdrop = styled.div`
   height: 100vh;
@@ -278,7 +284,19 @@ const market_deposit_assets =
         <td>{rewardTokensImg}</td>
         <td>{cf}%</td>
         <td>${totalLiquidity_usd}</td>
-        <td class="text-end"></td>
+        <td class="flex-end">
+          <Widget
+            src="juaner.near/widget/ref-operation-button"
+            props={{
+              clickEvent: () => {
+                handleSelect(token_id);
+              },
+              buttonType: "solid",
+              actionName: "Supply",
+              hoverOn: true,
+            }}
+          />
+        </td>
       </tr>
     );
   });
