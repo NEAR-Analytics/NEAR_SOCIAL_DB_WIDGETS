@@ -30,9 +30,10 @@ const Box = styled.div`
 const Label = styled.label`
   font-style: normal;
   font-weight: 400;
-  font-size: .95em;
-  line-height: 140%;
+  font-size: .75em;
+  line-height: 1em;
   color: #202024;
+  font-style: normal;
 `;
 
 return (
