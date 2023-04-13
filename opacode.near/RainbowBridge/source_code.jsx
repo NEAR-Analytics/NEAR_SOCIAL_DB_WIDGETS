@@ -206,6 +206,7 @@ if (!state.theme) {
       }
       .Header{
         text-align: center;
+        margin-top: 30px;
         margin-bottom: 30px;
       }`,
   });
