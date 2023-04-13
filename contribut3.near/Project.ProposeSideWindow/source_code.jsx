@@ -14,7 +14,7 @@ return (
       title: "Propose a contribution",
       description: <Widget src={`${ownerId}/widget/SelectedLine`} props={{ accountId, label: "Project", isProject: true }} />,
       trigger: <>{personPlus}Propose contribution</>,
-      children: <Widget src={`${ownerId}/widget/Poject.ProposalForm`} props={{ accountId }} />,
+      children: <Widget src={`${ownerId}/widget/Project.ProposalForm`} props={{ accountId }} />,
       minWidth: "600px",
     }}
   />
