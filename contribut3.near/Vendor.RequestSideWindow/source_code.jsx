@@ -26,7 +26,7 @@ return (
       title: "Request a contribution",
       description: "Request a contribution from this vendor",
       trigger: <>{personPlus}Request contribution</>,
-      children: (<Widget src={`${ownerId}/widget/Vendor.RequestForm`} />),
+      children: <Widget src={`${ownerId}/widget/Vendor.RequestForm`} props={{ accountId }} />,
     }}
   />
 );
