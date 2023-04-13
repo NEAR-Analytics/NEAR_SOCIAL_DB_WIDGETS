@@ -87,6 +87,12 @@ if (!state.projectsIsFetched) {
     "final",
     false
   ).then((vendors) => {
+    if (!vendors.length) {
+      return State.update({
+        vendors: [],
+        vendorsIsFetched: true,
+      });
+    }
     Near.asyncView(
       "social.near",
       "get",
