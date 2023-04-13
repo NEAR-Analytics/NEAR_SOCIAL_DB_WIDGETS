@@ -88,6 +88,7 @@ if (!state.vendorsIsFetched) {
     "final",
     false
   ).then((vendors) => {
+    console.log(vendors);
     if (!vendors.length) {
       State.update({
         vendors: [],
