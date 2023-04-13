@@ -281,6 +281,7 @@ return (
         props={{
           label: "Yes, I understand and agree with NEAR Horizon credit and payment system",
           value: state.agree,
+          id: "agree",
           onChange: (agree) => State.update({ agree }),
         }}
       />
