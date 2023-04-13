@@ -15,34 +15,6 @@ const Container = styled.div`
       font-size: 20px;
       color:#fff;
     }
-    .table{
-        margin:0;
-        border-bottom:2px solid rgba(48, 67, 82, 0.5);
-    }
-    .table.click tbody tr{
-      cursor:pointer;
-    }
-     .table.click tbody tr:hover{
-        background: rgba(0, 0, 0, 0.1);
-     }
-    .table thead tr{
-        height:50px;
-        border:hidden;
-    }
-    .table tbody tr{
-        height:50px;
-    }
-    .table th{
-        color: #7E8A93;
-        font-size:14px;
-        vertical-align: middle;
-    }
-    .table td{
-        color: #fff;
-        font-size:14px;
-        vertical-align: middle;
-        border: none;
-    }
     .mt_16{
       margin-top:16px;
     }
@@ -59,15 +31,6 @@ const Container = styled.div`
     }
     .text_grey_color{
       color:#7E8A93;
-    }
-    .text_green_color{
-      color:#78FF9E;
-    }
-    .text_red_color{
-      color:#FF6BA9;
-    }
-    .ml_4_ne{
-        margin-left:-4px;
     }
     .mr_10{
       margin-right:10px;
@@ -105,6 +68,12 @@ const Container = styled.div`
     .flex_center{
       display:flex;
       align-items:center;
+    }
+    .flex-end{
+      display:flex;
+      align-items:center;
+      justify-content:end;
+      height:50px;
     }
 
     .claim_button{
@@ -254,6 +223,31 @@ const suppliedAssets = hasData
             {totalBalance.toFixed(4)}
             <span class="text_grey_color">(${usd.toFixed(2)})</span>
           </td>
+          <td class="flex-end">
+            <Widget
+              src="juaner.near/widget/ref-operation-button"
+              props={{
+                clickEvent: () => {
+                  handleSelect(token_id);
+                },
+                buttonType: "solid",
+                actionName: "Adjust",
+                hoverOn: true,
+              }}
+            />
+            &nbsp;&nbsp;
+            <Widget
+              src="juaner.near/widget/ref-operation-button"
+              props={{
+                clickEvent: () => {
+                  handleSelect(token_id);
+                },
+                buttonType: "line",
+                actionName: "WithDraw",
+                hoverOn: true,
+              }}
+            />
+          </td>
         </tr>
       );
     })
@@ -273,11 +267,7 @@ const borrowedAssets = hasData
       total_burrowed_usd = total_burrowed_usd.plus(usd);
 
       return (
-        <tr
-          onClick={() => {
-            changeSelectedToken(asset, "burrow");
-          }}
-        >
+        <tr>
           <td>
             <img
               src={asset.metadata.icon || wnearbase64}
@@ -289,6 +279,19 @@ const borrowedAssets = hasData
           <td class="text-start">
             {borrowed.toFixed(4)}
             <span class="text_grey_color">(${usd.toFixed(2)})</span>
+          </td>
+          <td class="flex-end">
+            <Widget
+              src="juaner.near/widget/ref-operation-button"
+              props={{
+                clickEvent: () => {
+                  changeSelectedToken(asset, "burrow");
+                },
+                buttonType: "solid",
+                actionName: "Repay",
+                hoverOn: true,
+              }}
+            />
           </td>
         </tr>
       );
