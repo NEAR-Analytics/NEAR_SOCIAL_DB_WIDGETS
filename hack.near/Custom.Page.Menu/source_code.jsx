@@ -36,7 +36,7 @@ return (
     {context.accountId && (
       <a
         key="edit"
-        href={"#/create.near/widget/Page.Menu.Editor"}
+        href={"#/hack.near/widget/Page.Menu.Editor"}
         className="edit-link position-absolute top-0 end-0 link-secondary me-2 mt-1"
       >
         <i class="bi bi-pencil" /> Edit Menu
