@@ -44,7 +44,7 @@ function href(widgetName, linkProps) {
 }
 /* END_INCLUDE: "common.jsx" */
 
-const onSearchLabel = props.onSearcLabel;
+const onSearchLabel = props.onSearchLabel;
 const selectedLabels = props.searchQuery?.label
   ? [{ name: props.searchQuery.label }]
   : [];
