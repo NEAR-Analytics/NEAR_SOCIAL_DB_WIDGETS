@@ -33,7 +33,7 @@ const LabelArea = styled.div`
 
   div.d-inline-block {
     white-space: nowrap;
-    font-size: 0.75em;
+    font-size: 0.75em !important;
   }
 
   width: 75%;
