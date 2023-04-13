@@ -244,7 +244,36 @@ return (
         </p>
       )}
     </div>
-
+    <div class="mb-3">
+      <label for="selectDestinationNetwork">Select Destination Network</label>
+      <select
+        class="form-select"
+        id="selectDestinationNetwork"
+        onChange={(e) => {
+          State.update({ destinationNetwork: e.target.value });
+          if (state.sourceNetwork === e.target.value) {
+            State.update({
+              sourceNetwork: networks.find(
+                (network) => network !== e.target.value
+              ),
+            });
+          }
+        }}
+      >
+        <option
+          selected={state.destinationNetwork === "aurora"}
+          value={"aurora"}
+        >
+          {state.networkNames.aurora}
+        </option>
+        <option
+          selected={state.destinationNetwork === "ethereum"}
+          value={"ethereum"}
+        >
+          {state.networkNames.ethereum}
+        </option>
+      </select>
+    </div>
     <div class="mb-3">
       <label for="selectToken">Select token</label>
       <select
@@ -303,38 +332,6 @@ return (
         </div>
       )}
     </div>
-
-    <div class="mb-3">
-      <label for="selectDestinationNetwork">Select Destination Network</label>
-      <select
-        class="form-select"
-        id="selectDestinationNetwork"
-        onChange={(e) => {
-          State.update({ destinationNetwork: e.target.value });
-          if (state.sourceNetwork === e.target.value) {
-            State.update({
-              sourceNetwork: networks.find(
-                (network) => network !== e.target.value
-              ),
-            });
-          }
-        }}
-      >
-        <option
-          selected={state.destinationNetwork === "aurora"}
-          value={"aurora"}
-        >
-          {state.networkNames.aurora}
-        </option>
-        <option
-          selected={state.destinationNetwork === "ethereum"}
-          value={"ethereum"}
-        >
-          {state.networkNames.ethereum}
-        </option>
-      </select>
-    </div>
-
     <div class="mb-3">
       <button
         disabled={
