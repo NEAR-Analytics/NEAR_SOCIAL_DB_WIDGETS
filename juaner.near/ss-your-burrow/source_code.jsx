@@ -103,15 +103,19 @@ return (
     <table class="table click">
       <thead>
         <tr>
-          <th scope="col" width="25%">
+          <th scope="col" width="20%">
             Assets
           </th>
-          <th scope="col" class="text-start" width="25%">
-            Borrow APY
+          <th scope="col" class="text-start" width="20%">
+            Rewards
           </th>
-          <th scope="col" class="text-start">
+          <th scope="col" class="text-start" width="20%">
+            Borrowed
+          </th>
+          <th scope="col" class="text-start" width="15%">
             Balance
           </th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>{borrowedAssets}</tbody>
