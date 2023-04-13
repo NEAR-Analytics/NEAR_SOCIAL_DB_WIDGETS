@@ -14,6 +14,24 @@ const RadioButton = styled.div`
   justify-content: flex-start;
   align-items: center;
   gap: 0.5em;
+
+  button {
+    border: none;
+    background: none;
+    border-radius: 100%;
+    width: 1.125em;
+    height: 1.125em;
+  }
+
+  span {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    
+    &[data-state="checked"] {
+      border: 3px solid #202024;
+    }
+  }
 `;
 
 const Label = styled.label`
