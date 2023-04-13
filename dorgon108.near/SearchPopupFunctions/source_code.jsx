@@ -270,7 +270,7 @@ const updateSearchHits = debounce(({ term, pageNumber, configs }) => {
 const onSearchChange = ({ term }) => {
   writeStateTerm(term);
   updateSearchHits({ term, pageNumber: INITIAL_PAGE });
-  console.log("the profile resutls are", state.search.profiles);
+  console.log("the profile resutls are", state.search);
 };
 
 const onPageChange = (pageNumber) => {
