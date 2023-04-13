@@ -48,7 +48,7 @@ return (
     <Radio>
       {items.map(({ value, name }) => (
         <RadioButton>
-          <RadioGroup.Item id={value}>
+          <RadioGroup.Item id={value} value={value}>
             <RadioGroup.Indicator />
           </RadioGroup.Item>
           <Label htmlFor={value}>{name}</Label>
