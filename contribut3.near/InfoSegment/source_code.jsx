@@ -7,6 +7,19 @@ const icon = (
   </svg>
 );
 
+const Container = styled.div`
+box-sizing: border-box;
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 16px;
+gap: 12px;
+background: #FCFCFD;
+border: 1px solid #D0D5DD;
+border-radius: 4px;
+width: 100%;
+`;
+
 return (
   <Container>
     {icon}
