@@ -8,7 +8,6 @@ const Box = styled.div`
   button {
     border: none;
     background: none;
-    border-radius: 100%;
     padding: 0;
     width: 1.5em;
     height: 1.5em;
@@ -16,19 +15,16 @@ const Box = styled.div`
     justify-content: center;
     align-items: center;
     border: 1.5px solid #a8acb3;
+
+    &[data-state="checked"] {
+      background: #202024;
+    }
   }
 
   span {
     display: inline-block;
     width: 1.25em;
     height: 1.25em;
-    border-radius: 100%;
-    border: 6px solid transparent;
-    transition: border-color 200ms ease-out;
-    
-    &[data-state="checked"] {
-      border-color: #202024;
-    }
   }
 `;
 
