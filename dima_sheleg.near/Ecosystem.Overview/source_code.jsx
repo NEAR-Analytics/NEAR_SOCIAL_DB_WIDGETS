@@ -446,13 +446,7 @@ return (
           supporting them with everything they need to succeed.
         </Text>
       </Flex>
-      <Flex
-        gap="16px"
-        alignItems="center"
-        wrap="wrap"
-        justifyContent="center"
-        className="sticky-top"
-      >
+      <Flex gap="16px" alignItems="center" wrap="wrap" justifyContent="center">
         {navLinks.map((nav) => (
           <Text key={nav.href} as="a" href={`#${nav.href}`}>
             {nav.name}
@@ -657,7 +651,7 @@ return (
           </Card>
         </Flex>
         <Flex gap="32px" mobileStack="32px">
-          <Card center direction="row">
+          <Card center direction="row" className="flex-md-nowrap flex-wrap">
             <Widget
               src="mob.near/widget/Image"
               props={{
@@ -668,13 +662,12 @@ return (
             <Flex
               direction="column"
               gap="16px"
-              alignItems="start"
-              justifyContent="start"
+              className="align-items-center align-items-md-start justify-content-center justify-content-md-start"
             >
-              <Text size="text-xl" fontWeight="600" color="sand12" align="left">
+              <Text size="text-xl" fontWeight="600" color="sand12">
                 How crypto became a major source of relief for embattled Ukraine
               </Text>
-              <Text align="left">
+              <Text className="text-center text-md-start">
                 Created on AstroDAO, a DAO-launching platform built on NEAR,
                 Unchain Fund raises funds for humanitarian efforts in in
                 Ukraine, including evacuation, shelter, food, and more. In under
@@ -778,7 +771,7 @@ return (
               developers, token holders, validators, and members supporting the
               protocol’s platform, ecosystem, and applications.
             </Text>
-            <Flex gap="32px">
+            <Flex gap="32px" wrap="wrap" alignItems="center">
               <NumericLabel backgroundColor="var(--sand3)">
                 <Text size="text-3xl" color="cyan8" fontWeight="600">
                   550<Small size="20px">k</Small>
