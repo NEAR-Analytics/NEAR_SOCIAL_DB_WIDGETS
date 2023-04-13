@@ -61,7 +61,7 @@ const Content = styled.div`
   gap: 0.625em;
   isolation: isolate;
   animation: ${slideIn} 200ms ease-out;
-  overflow-y: scroll;
+  overflow-y: auto;
   background: #fff;
   z-index: 10;
 `;
