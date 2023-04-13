@@ -13,9 +13,6 @@ const Container = styled.div`
     .table tbody tr{
         height:50px;
     }
-    .table.click tbody tr{
-      cursor:pointer;
-    }
      .table.click tbody tr:hover{
         background: rgba(0, 0, 0, 0.1);
      }
