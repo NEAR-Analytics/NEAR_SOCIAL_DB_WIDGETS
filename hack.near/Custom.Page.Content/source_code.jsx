@@ -62,7 +62,7 @@ return (
       ({ src, requiresLogin }, i) =>
         (!requiresLogin || context.accountId) && (
           <div key={i} className="text-bg-light rounded-4 p-3 mb-3">
-            <Widget src={src} props={{ hashtag }} />
+            <Widget src={src} props={{ hashtag, owner }} />
           </div>
         )
     )}
