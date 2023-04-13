@@ -13,8 +13,8 @@ switch (network) {
   case "NEAR": {
     // FT METADATA
     const metadata = Near.view(tokenId, "ft_metadata");
-    metadata.icon = metadata.icon ?? NEAR_LOGO;
     if (!metadata) return;
+    metadata.icon = metadata.icon ?? NEAR_LOGO;
 
     // FT BALANCE
     const balance = Near.view(tokenId, "ft_balance_of", {
