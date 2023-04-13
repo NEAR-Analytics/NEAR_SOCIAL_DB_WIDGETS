@@ -280,9 +280,8 @@ return (
         src={`${ownerId}/widget/Inputs.Checkbox`}
         props={{
           label: "Yes, I understand and agree with NEAR Horizon credit and payment system",
-          options: state.methods,
-          value: state.method,
-          onChange: (method) => State.update({ method }),
+          value: state.agree,
+          onChange: (agree) => State.update({ agree }),
         }}
       />
     </Form>
