@@ -27,6 +27,7 @@ const RadioButton = styled.div`
     display: inline-block;
     width: 100%;
     height: 100%;
+    border-radius: 100%;
     
     &[data-state="checked"] {
       border: 3px solid #202024;
