@@ -6,11 +6,6 @@ if (!accountId) {
   return "No account ID";
 }
 
-const authorsWhiteList = ["neardigitalcollective.near"];
-
-const doesUserCanEditArticle = () =>
-  authorsWhiteList.some((val) => val === accountId);
-
 const lastEditor = props.lastEditor;
 const blockHeight =
   props.blockHeight === "now" ? "now" : parseInt(props.blockHeight);
@@ -25,6 +20,16 @@ const article = JSON.parse(
   Social.get(`${lastEditor}/wikiTest2Article/main`, blockHeight)
 );
 State.update({ article });
+
+// ======= CHECK WHO CAN EDIT ARTICLE
+const authorsWhiteList = ["neardigitalcollective.near"];
+const doesUserCanEditArticle = () => {
+  const isAccountIdInWhiteList = authorsWhiteList.some(
+    (val) => val === accountId
+  );
+  const isAccountIdEqualsAuthor = accountId === state.article.author;
+  return isAccountIdInWhiteList || isAccountIdEqualsAuthor ? true : false;
+};
 
 // ======= GET DATA TO ATACH COMMENTS TO THE ARTICLE =======
 // we attach all comments to the first initial article (which version = 0)
