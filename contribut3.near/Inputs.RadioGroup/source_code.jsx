@@ -28,10 +28,11 @@ const RadioButton = styled.div`
     width: 1.125em;
     height: 1.125em;
     border-radius: 100%;
-    transition: border 200ms ease-out;
+    border: 6px solid transparent;
+    transition: border-color 200ms ease-out;
     
     &[data-state="checked"] {
-      border: 6px solid #202024;
+      border-color: #202024;
     }
   }
 `;
