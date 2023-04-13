@@ -28,6 +28,14 @@ const Box = styled.div`
   }
 `;
 
+const Label = styled.label`
+  font-style: normal;
+  font-weight: 400;
+  font-size: .95em;
+  line-height: 140%;
+  color: #202024;
+`;
+
 return (
   <Checkbox.Root asChild value={props.value} onValueChange={props.onChange}>
     <Box>
