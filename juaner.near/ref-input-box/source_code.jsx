@@ -18,9 +18,9 @@ const Container = styled.div`
       font-size:12px;
       color:#4B6778;
       margin-left:6px;
-      cursor:pointer;
     }
     .balance .value {
+      cursor:pointer;
       text-decoration:underline;
     }
     .balance .value:hover{
@@ -55,9 +55,9 @@ const subBalance = Big(balance || "0").toFixed(4);
 return (
   <Container>
     <input type="number" value={amount} onChange={changeAmount} />
-    <span class="balance" onClick={changeToMax}>
+    <span class="balance">
       Balance:{" "}
-      <label class="value">
+      <label class="value" onClick={changeToMax}>
         {subBalance}(${balance$ || "0"})
       </label>
     </span>
