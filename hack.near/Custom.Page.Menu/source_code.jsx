@@ -36,15 +36,19 @@ const Div = styled.div`
 
 return (
   <Div>
-    {context.accountId && (
-      <a
-        key="edit"
-        href={"#/hack.near/widget/Page.Menu.Editor"}
-        className="edit-link position-absolute top-0 end-0 link-secondary me-2 mt-1"
-      >
-        <i class="bi bi-pencil" /> Edit Menu
-      </a>
-    )}
+    <div>
+      <h4>Customizable:</h4>
+      {context.accountId && (
+        <a
+          key="edit"
+          href={"#/hack.near/widget/Page.Menu.Editor"}
+          className="edit-link position-absolute top-0 end-0 link-secondary me-2 mt-1"
+        >
+          <i class="bi bi-pencil" /> Edit Menu
+        </a>
+      )}
+      <br />
+    </div>
     {widgets.map(
       ({ src, requiresLogin }, i) =>
         (!requiresLogin || context.accountId) && (
