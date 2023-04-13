@@ -101,31 +101,24 @@ return (
           src={`${ownerId}/widget/Buttons.Green`}
           props={{
             onClick: () => {
-              Near.call([
-                {
-                  contractName: "social.near",
-                  methodName: "set",
-                  args: {
-                    data: {
-                      main: JSON.stringify({
-                        type: state.type,
-                        accountId: state.accountId,
-                        domain: state.domain,
-                      }),
-                    },
-                    index: {
-                      abc: JSON.stringify({
-                        key: "main",
-                        value: {
-                          type: "hack.near/type/Page",
-                        },
-                      }),
-                    },
-                  },
+              Social.set({
+                thing: {
+                  main: JSON.stringify({
+                    type: state.type,
+                    accountId: state.accountId,
+                    domain: state.domain,
+                  }),
                 },
-              ]);
+                index: {
+                  abc: JSON.stringify({
+                    key: "main",
+                    value: {
+                      type: "hack.near/type/Page",
+                    },
+                  }),
+                },
+              });
             },
-            text: "Create Page",
           }}
         />
       </FormFooter>
