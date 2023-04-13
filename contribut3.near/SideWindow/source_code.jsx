@@ -124,7 +124,10 @@ return (
             </CloseButton>
           </Dialog.Close>
         </Header>
-        <Dialog.Description asChild><Description>{description}</Description></Dialog.Description>
+        <Dialog.Description asChild>
+          <Description>{description}</Description>
+
+        </Dialog.Description>
         {children}
       </Content>
     </Dialog.Content>
