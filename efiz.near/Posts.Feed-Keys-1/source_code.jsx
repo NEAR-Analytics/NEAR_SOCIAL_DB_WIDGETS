@@ -35,8 +35,8 @@ const renderItem = (a) =>
   a.value.type === "md" && (
     <Post className="post" key={JSON.stringify(a)}>
       <Widget
-        src="near/widget/Posts.Post"
-        props={{ accountId: a.accountId, blockHeight: a.blockHeight }}
+        src="efiz.near/widget/Posts.Post-Keys-1"
+        props={{ accountId: a.accountId, blockHeight: a.blockHeight, keys }}
       />
     </Post>
   );
