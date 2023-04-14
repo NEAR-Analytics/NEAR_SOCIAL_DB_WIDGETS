@@ -77,7 +77,7 @@ return (
         <Header>
           <a
             className="btn btn-outline-success"
-            href="#/edit/create.near/widget/Common.Page"
+            href="#/hack.near/widget/Project.Page.Editor"
           >
             Submit Project
           </a>
