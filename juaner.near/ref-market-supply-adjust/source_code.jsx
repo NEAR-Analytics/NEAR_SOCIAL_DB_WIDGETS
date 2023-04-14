@@ -131,6 +131,7 @@ const {
   hasError,
   hasHFError,
   newHealthFactor,
+  closeButtonBase64,
 } = state;
 const hasData = assets.length > 0 && rewards.length > 0;
 if (!showModal) {
@@ -279,12 +280,22 @@ function computeAdjustMaxAmount() {
 }
 const [availableBalance, availableBalance$, remainBalance] =
   computeAdjustMaxAmount();
+function getCloseButtonIcon(icon) {
+  State.update({
+    closeButtonBase64: icon,
+  });
+}
 return (
   <Container>
     {/* load data */}
     {!hasData && (
       <Widget src="juaner.near/widget/ref_burrow-data" props={{ onLoad }} />
     )}
+    {/* load icons */}
+    <Widget
+      src="juaner.near/widget/ref-icons"
+      props={{ getWnearIcon, getCloseButtonIcon }}
+    />
     {/** modal */}
     <Modal style={{ display: showModal ? "block" : "none" }}>
       <div class="modal-header">
