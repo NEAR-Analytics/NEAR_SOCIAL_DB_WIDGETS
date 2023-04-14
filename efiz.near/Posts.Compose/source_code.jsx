@@ -2,13 +2,7 @@ if (!context.accountId) {
   return <></>;
 }
 
-const domains = [
-  "apple123456",
-  "banana123456",
-  "cherry123456",
-  "durian123456",
-  "elderberry123456",
-];
+const domains = props.domains;
 
 State.init({
   image: {},
@@ -427,15 +421,16 @@ return (
           <i className="bi bi-eye-fill" />
         )}
       </button>
-      <Typeahead
-        options={domains}
-        multiple
-        onChange={(value) => {
-          State.update({ choose: value });
-        }}
-        placeholder="Domains"
-      />
-
+      {domains && (
+        <Typeahead
+          options={domains}
+          multiple
+          onChange={(value) => {
+            State.update({ choose: value });
+          }}
+          placeholder="Domains"
+        />
+      )}
       <CommitButton
         disabled={!state.text}
         force
