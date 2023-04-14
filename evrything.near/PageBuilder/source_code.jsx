@@ -4,14 +4,17 @@ const hashtag = props.hashtag || "page"; // where to index data from
 const text = props.text || hashtag; // text for H1
 const view = props.view || "WIDGETS";
 
+// Modify the template below
 const pageTypes = [
   {
     name: "community",
     hashtag: "community",
+    template: "efiz.near/widget/TaggedWidgets",
   },
   {
     name: "guide",
     hashtag: "guide",
+    template: "efiz.near/widget/TaggedWidgets",
   },
 ];
 
@@ -60,12 +63,17 @@ State.init({
 const renderView = () => {
   switch (state.selectedTab) {
     case "CREATE":
-      return <Widget src={"efiz.near/widget/Everything.Create.Page"} />;
+      return (
+        <Widget
+          src={"efiz.near/widget/Everything.Create.Page"}
+          props={{ typeTag: state.type.hashtag, template: state.type.template }}
+        />
+      );
     case "WIDGETS":
       return (
         <Widget
           src={"efiz.near/widget/TaggedWidgets"}
-          props={{ hashtag: state.hashtag }}
+          props={{ hashtag: state.type.hashtag || hashtag }}
         />
       );
   }
@@ -75,7 +83,7 @@ const handleSelectType = (type) => {
   State.update({
     type,
     title: type.name || text,
-    hashtag: type.hashtag || hashtag,
+    selectedTab: "WIDGETS",
   });
 };
 
@@ -93,7 +101,7 @@ return (
         <ButtonRow>
           {state.type === null ? (
             <>
-              {pageTypes.map((it, index) => (
+              {pageTypes.map((it) => (
                 <Button onClick={() => handleSelectType(it)}>{it.name}</Button>
               ))}
             </>
