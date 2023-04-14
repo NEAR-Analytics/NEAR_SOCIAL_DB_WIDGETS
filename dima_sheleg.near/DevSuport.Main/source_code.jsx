@@ -24,7 +24,7 @@ return (
       {/**
     <SidebarWrapper className="col-2 pe-5">
         <Widget
-          src="dmitriy_sheleg.near/widget/DevSupport.Main.Sidebar"
+          src="dima_sheleg.near/widget/DevSupport.Main.Sidebar"
           props={{ categories: sortByCategories, topics: filterByTopic }}
         />
       </SidebarWrapper>
@@ -32,13 +32,13 @@ return (
 
       <div class="col-12 ps-5">
         <Widget
-          src="dmitriy_sheleg.near/widget/DevSupport.Discussion.Title"
+          src="dima_sheleg.near/widget/DevSupport.Discussion.Title"
           props={{ disabled: !context.accountId, onClick: toggleQuestion }}
         />
         {/* Widget to create the question */}
         <div class="my-3">
           {state.askQuestion && (
-            <Widget src="dmitriy_sheleg.near/widget/DevSupport.Question.Edit" />
+            <Widget src="dima_sheleg.near/widget/DevSupport.Question.Edit" />
           )}
         </div>
         {/* Widget to display Feed of Questions */}
