@@ -148,7 +148,7 @@ return (
     </H4>
 
     <div class="row mt-5">
-      <div class="col-8 pe-5">
+      <div class="col-8 pe-md-5">
         <Widget
           src="dima_sheleg.near/widget/DevSupport.Question.PreviewDetailed"
           props={{
@@ -184,7 +184,7 @@ return (
           }}
         />
       </div>
-      <SidebarWrapper className="col-4 ps-5">
+      <SidebarWrapper className="col-4 ps-md-5">
         <Widget
           src="dmitriy_sheleg.near/widget/AccountProfileCard"
           props={{ accountId }}
