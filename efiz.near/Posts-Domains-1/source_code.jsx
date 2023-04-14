@@ -10,6 +10,8 @@ const domains = [
   "elderberry123456",
 ];
 
+const hashtags = ["nearsocial", "dev"];
+
 const previousSelectedTab = Storage.privateGet("selectedTab");
 
 if (previousSelectedTab && previousSelectedTab !== state.selectedTab) {
@@ -159,6 +161,7 @@ return (
         domains are .near accounts and permissions are put in place that only
         authorized users can post to a domain (i.e. exclusive communities).
       </p>
+      <p>Hashtag filter works, but not along with the domain filter.</p>
     </div>
 
     <Content>
@@ -194,7 +197,7 @@ return (
                 options={hashtags}
                 multiple
                 onChange={(value) => {
-                  State.update({ choose: value });
+                  State.update({ hashtags: value });
                 }}
                 placeholder="Hashtag filter"
               />
@@ -214,7 +217,7 @@ return (
       <FeedWrapper>
         <Widget
           src="efiz.near/widget/Posts.Feed-Domains-1"
-          props={{ accounts, domains: state.choose }}
+          props={{ accounts, domains: state.choose, hashtags: state.hashtags }}
         />
       </FeedWrapper>
     </Content>
