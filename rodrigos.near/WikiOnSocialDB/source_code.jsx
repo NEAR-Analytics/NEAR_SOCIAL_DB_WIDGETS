@@ -14,7 +14,12 @@ return (
   <>
     <Widget
       src={`${authorForWidget}/widget/WikiOnSocialDB_MainNavigation`}
-      props={{ currentNavPill: "articles", writersWhiteList }}
+      props={{
+        currentNavPill: "articles",
+        writersWhiteList,
+        addressForArticles,
+        authorForWidget,
+      }}
     />
     <div>
       <Widget
