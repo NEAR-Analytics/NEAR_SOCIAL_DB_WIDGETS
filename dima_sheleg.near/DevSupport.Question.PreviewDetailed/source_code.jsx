@@ -46,14 +46,14 @@ const NftImageWrapper = styled.div`
 
 return (
   <div class="row">
-    <div class="col-1">
+    <div class="col-md-1 col-2">
       {/* Upvote Widget */}
       <Widget
         src="dima_sheleg.near/widget/DevSupport.Question.Button.Upvote"
         props={{ accountId, blockHeight }}
       />
     </div>
-    <div class="col-11">
+    <div class="col-md-11 col-10">
       <div class="row">
         <H1>{question.title}</H1>
         <H6>
