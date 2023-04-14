@@ -481,6 +481,7 @@ return (
                   blockHeight: post.blockHeight,
                   content: post.postContent,
                   snipContent: post.snipContent,
+                  postType: post.postType,
                   onClick: () =>
                     onSearchResultClick({
                       searchPosition: post.searchPosition,
