@@ -1,5 +1,5 @@
 // const accountId = props.accountId;
-const accountId = props.accountId ?? "dorgon108.near";
+const accountId = props.accountId;
 
 const profile = props.profile || Social.get(`${accountId}/profile/**`, "final");
 // const tags = Object.keys(profile.tags || {});
