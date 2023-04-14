@@ -2,10 +2,7 @@ return (
   <div>
     <h5>Earn by Learning</h5>
     <div className="mb-2 mt-3 d-flex gap-3 flex-wrap">
-      <a
-        className="btn btn-success"
-        href="#/edit/create.near/widget/Common.Page"
-      >
+      <a className="btn btn-success" href="#/edit/create.near/widget/ForkThis">
         Start Here
       </a>
       <a
