@@ -19,7 +19,7 @@ const testQuestion = JSON.parse(
   Social.get(`${accountId}/question`, blockHeight) ?? "null"
 );
 
-const link = `#/dmitriy_sheleg.near/widget/DevSupport.Question.Page?accountId=${accountId}&blockHeight=${blockHeight}&adminContract=${adminContract}`;
+const link = `#/dima_sheleg.near/widget/DevSupport.Question.Page?accountId=${accountId}&blockHeight=${blockHeight}&adminContract=${adminContract}`;
 
 const H2 = styled.h2`
   font-size: 20px;
@@ -115,7 +115,7 @@ return (
       <div class="col-1">
         {/* Upvote Widget */}
         <Widget
-          src="dmitriy_sheleg.near/widget/DevSupport.Question.Button.Upvote"
+          src="dima_sheleg.near/widget/DevSupport.Question.Button.Upvote"
           props={{ accountId, blockHeight }}
         />
       </div>
@@ -143,7 +143,7 @@ return (
                     <li>
                       <Item>
                         <Widget
-                          src="dmitriy_sheleg.near/widget/DevSupport.Question.Button.Flag"
+                          src="dima_sheleg.near/widget/DevSupport.Question.Button.Flag"
                           props={{
                             accountId,
                             blockHeight,
@@ -156,7 +156,7 @@ return (
                       <Item>
                         {/* Delete widget */}
                         <Widget
-                          src="dmitriy_sheleg.near/widget/DevSupport.Question.Button.Delete"
+                          src="dima_sheleg.near/widget/DevSupport.Question.Button.Delete"
                           props={{
                             accountId,
                             blockHeight,
@@ -197,7 +197,7 @@ return (
         <div class="row">
           <div class="col">
             <Widget
-              src="dmitriy_sheleg.near/widget/DevSupport.Question.Button.Answers"
+              src="dima_sheleg.near/widget/DevSupport.Question.Button.Answers"
               props={{ accountId, blockHeight }}
             />
           </div>
