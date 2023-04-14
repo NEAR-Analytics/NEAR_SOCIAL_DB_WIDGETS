@@ -3,7 +3,7 @@ return (
     <h5>Earn by Learning</h5>
     <div className="mb-2 mt-3 d-flex gap-3 flex-wrap">
       <a
-        className="btn btn-success"
+        className="btn btn-outline-success"
         href="#/hack.near/widget/Project.Page.Editor"
       >
         Submit Project
