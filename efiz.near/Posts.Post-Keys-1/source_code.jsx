@@ -9,21 +9,20 @@ const keys = props.keys;
 State.init({ hasBeenFlagged: false });
 
 const getContent = () => {
-  if (Social.get(`${accountId}/post/main`, blockHeight)) {
+  if (keys && keys.length > 0) {
+    keys.map((it) => {
+      if (Social.get(`${accountId}/post/${it}`, blockHeight)) {
+        State.update({
+          key: it,
+        });
+        return JSON.parse(Social.get(`${accountId}/post/${it}`, blockHeight));
+      }
+    });
+  } else {
     State.update({
       key: "main",
     });
     return JSON.parse(Social.get(`${accountId}/post/main`, blockHeight));
-  } else {
-    if (keys && keys.length > 0)
-      keys.map((it) => {
-        if (Social.get(`${accountId}/post/${it}`, blockHeight)) {
-          State.update({
-            key: it,
-          });
-          return JSON.parse(Social.get(`${accountId}/post/${it}`, blockHeight));
-        }
-      });
   }
 };
 
