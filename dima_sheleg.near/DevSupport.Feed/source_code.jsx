@@ -39,8 +39,4 @@ const renderItem = (a) => {
   );
 };
 
-return (
-  <div>
-    <Widget src="mob.near/widget/IndexFeed" props={{ index, renderItem }} />
-  </div>
-);
+return <Widget src="mob.near/widget/IndexFeed" props={{ index, renderItem }} />;
