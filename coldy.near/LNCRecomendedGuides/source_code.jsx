@@ -36,6 +36,7 @@ const GuideImage = styled.img`
 
 const GuideAuthor = styled.a`
   margin-top: 10px;
+  font-size:15px;
   text-transform: uppercase;
 `;
 
