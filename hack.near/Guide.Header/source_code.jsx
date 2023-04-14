@@ -76,10 +76,10 @@ return (
 
         <Header>
           <a
-            className="btn btn-outline-success"
-            href="#/hack.near/widget/Project.Page.Editor"
+            className="btn btn-success"
+            href="#/edit/hack.near/widget/ForkThis"
           >
-            Submit Project
+            Start Here
           </a>
         </Header>
 
