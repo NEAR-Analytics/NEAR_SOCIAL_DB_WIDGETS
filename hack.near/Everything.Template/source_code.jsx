@@ -91,7 +91,7 @@ const handleViewThings = () => {
 const renderView = () => {
   switch (state.selectedTab) {
     case "DETAILS":
-      return <div>Type details : ${state.type}</div>;
+      return <div>Type details: ${state.type}</div>;
     case "CREATE":
       if (state.type === "everything") {
         return (
