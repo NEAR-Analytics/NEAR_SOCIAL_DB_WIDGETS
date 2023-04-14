@@ -135,7 +135,31 @@ const FeedWrapper = styled.div`
 
 return (
   <>
-    <H2>Posts</H2>
+    <div class="alert alert-primary" role="alert">
+      <p>This example treats indexes as "domains".</p>
+      <p>
+        Currently, a post created on the main page will be indexed into a
+        sort-of catch-all "post" bucket. Every "post" feed reads from this
+        index.
+      </p>
+      <p>
+        Alternatively in this example, if domains have been provided, then we
+        create an index under that "domain" and do not post into the catch-all
+        "post" index.
+      </p>
+      <p>
+        This has some advantages because now a user can be selective with what
+        feed their post will or will not appear up on, and it's also easy to
+        merge domains together in the feed.
+      </p>
+      <p>
+        However, this also has some disadvantages; domains could proliferate out
+        of control and since there is no "registar", developers could be unaware
+        that they are sharing a domain. A possible solution could be that
+        domains are .near accounts and permissions are put in place that only
+        authorized users can post to a domain (i.e. exclusive communities).
+      </p>
+    </div>
 
     <Content>
       {context.accountId && (
@@ -162,14 +186,24 @@ return (
                 Following
               </PillSelectButton>
             </PillSelect>
-            <Typeahead
-              options={domains}
-              multiple
-              onChange={(value) => {
-                State.update({ choose: value });
-              }}
-              placeholder="Domain filter"
-            />
+            <div className="d-inline-flex gap-2">
+              <Typeahead
+                options={hashtags}
+                multiple
+                onChange={(value) => {
+                  State.update({ choose: value });
+                }}
+                placeholder="Hashtag filter"
+              />
+              <Typeahead
+                options={domains}
+                multiple
+                onChange={(value) => {
+                  State.update({ choose: value });
+                }}
+                placeholder="Domain filter"
+              />
+            </div>
           </FilterWrapper>
         </>
       )}
