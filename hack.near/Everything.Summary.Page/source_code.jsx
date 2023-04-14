@@ -1,3 +1,4 @@
+const accountId = props.accountId ?? context.accountId;
 const domain = props.domain ?? "guide";
 
 let keys = `${accountId ?? "*"}/widget/*`;
