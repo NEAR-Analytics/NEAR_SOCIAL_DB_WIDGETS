@@ -1,3 +1,5 @@
+const ERROR_WIDGET = "evrything.near/widget/Everything.Error";
+
 const Header = styled.div`
     width: 100%;
     display: flex;
@@ -46,9 +48,14 @@ State.init({
   type: "",
   accountId: "",
   domain: "",
+  res: null,
+  loading: false,
 });
 
 const createThing = () => {
+  State.update({
+    loading: true,
+  });
   asyncFetch(type.mutations?.create.url, {
     method: "POST",
     headers: {
@@ -61,6 +68,11 @@ const createThing = () => {
         title: state.title,
       },
     }),
+  }).then((res) => {
+    State.update({
+      res: res,
+      loading: false,
+    });
   });
 };
 
@@ -69,6 +81,8 @@ const resetThing = () => {
     type: "",
     accountId: "",
     domain: "",
+    res: null,
+    loading: false,
   });
 };
 
