@@ -1,5 +1,3 @@
-const accountId = context.accountId;
-
 return (
   <div className="d-flex flex-column">
     <div className="mt-auto py-3">
@@ -14,7 +12,7 @@ return (
     <Widget
       src="hack.near/widget/Everything.Template"
       props={{
-        accountId: accountId,
+        accountId: "hack.near",
         font: "Courier",
         type: "everything",
         text: "ABC",
