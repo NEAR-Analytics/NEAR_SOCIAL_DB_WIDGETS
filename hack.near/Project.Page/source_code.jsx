@@ -1,9 +1,9 @@
-const accountId = props.accountId ?? context.accountId;
-if (!accountId) {
+const owner = props.owner ?? context.accountId;
+if (!owner) {
   return "No account ID";
 }
 
-const page = props.page ?? Social.getr(`${accountId}/page`);
+const page = props.page ?? Social.getr(`${owner}/page`);
 
 if (page === null) {
   return "Loading";
@@ -15,7 +15,7 @@ return (
       <Widget
         src="hack.near/widget/Page.Summary"
         props={{
-          accountId,
+          owner,
           page,
           link: true,
           showEditButton: !props.page,
@@ -23,7 +23,7 @@ return (
       />
 
       <div className="mt-3">
-        <Widget src="hack.near/widget/Page.Tabs" props={{ accountId, page }} />
+        <Widget src="hack.near/widget/Page.Tabs" props={{ owner, page }} />
       </div>
     </div>
   </div>
