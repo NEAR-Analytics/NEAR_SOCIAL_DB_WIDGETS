@@ -1,4 +1,4 @@
-const owner = props.owner ?? context.accountId;
+const accountId = props.accountId ?? context.accountId;
 const tag = props.domain ?? "builders";
 
 const limitPerPage = 20;
@@ -8,19 +8,19 @@ State.init({
   currentPage: 0,
 });
 
-const data = Social.keys(`${owner}/widget/*`, "final", {
+const data = Social.keys(`${accountId}/widget/*`, "final", {
   return_type: "BlockHeight",
 });
 
 if (data) {
   components = [];
 
-  Object.keys(data).forEach((owner) => {
-    return Object.keys(data[owner].widget).forEach((widgetName) => {
+  Object.keys(data).forEach((accountId) => {
+    return Object.keys(data[accountId].widget).forEach((widgetName) => {
       components.push({
-        owner,
+        accountId,
         widgetName,
-        blockHeight: data[owner].widget[widgetName],
+        blockHeight: data[accountId].widget[widgetName],
       });
     });
   });
@@ -118,7 +118,7 @@ return (
                 src="mob.near/widget/ComponentSearch.Item"
                 props={{
                   link: `#/${app.widgetSrc}`,
-                  owner: app.owner,
+                  accountId: app.accountId,
                   widgetName: app.widgetName,
                   onHide: () => State.update({ apps: null }),
                   extraButtons: ({ widgetPath }) => (
@@ -143,7 +143,7 @@ return (
         <Widget
           src="adminalpha.near/widget/ComponentCard"
           props={{
-            src: `${component.owner}/widget/${component.widgetName}`,
+            src: `${component.accountId}/widget/${component.widgetName}`,
             blockHeight: component.blockHeight,
           }}
         />
