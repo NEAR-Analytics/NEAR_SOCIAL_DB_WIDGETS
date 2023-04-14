@@ -19,7 +19,7 @@ const SidebarWrapper = styled.div`
 `;
 
 return (
-  <div class="container py-3 mb-5">
+  <div class="container-md container py-3 mb-5">
     <div class="row">
       {/**
     <SidebarWrapper className="col-2 pe-5">
