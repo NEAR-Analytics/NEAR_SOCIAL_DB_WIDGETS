@@ -64,6 +64,9 @@ const ComposeWrapper = styled.div`
 const FilterWrapper = styled.div`
   border-top: 1px solid #eceef0;
   padding: 24px 24px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 
   @media (max-width: 1200px) {
     padding: 12px;
@@ -165,7 +168,7 @@ return (
               onChange={(value) => {
                 State.update({ choose: value });
               }}
-              placeholder="Domains"
+              placeholder="Domain filter"
             />
           </FilterWrapper>
         </>
