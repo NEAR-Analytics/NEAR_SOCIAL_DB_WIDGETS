@@ -1,3 +1,6 @@
+const owner = props.owner ?? "hack.near";
+const domain = props.domain ?? "abc";
+
 return (
   <>
     <Widget src="mob.near/widget/ProfileOnboarding" />
