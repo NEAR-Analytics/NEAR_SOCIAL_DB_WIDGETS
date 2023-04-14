@@ -218,9 +218,10 @@ Don't forget to save!
 return (
   <Wrapper>
     <Header>
-      <H1>All Guides</H1>
+      <Widget src="hack.near/widget/Guide.Header" />
+      <h3>All Tutorials</h3>
       <Text>
-        These particular widgets are tagged with: <b>#{tag}</b>
+        These widgets are tagged with: <b>#{tag}</b>
       </Text>
       <div className="d-flex flex-wrap gap-1 my-3">
         {state.allItems
@@ -230,7 +231,6 @@ return (
     </Header>
 
     <Items>
-      <h4>Featured</h4>
       <Item>
         <Widget
           src="adminalpha.near/widget/ComponentCard"
