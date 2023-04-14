@@ -147,21 +147,28 @@ const posts = (content, postType) => {
   for (const [i, post] of content || []) {
     const accountId = post.author;
     const blockHeight = post.objectID.split("/").slice(-1)[0];
+
+    let snipContent = true;
+    let text = post.content;
+    if (post._highlightResult.content.matchLevel === "full") {
+      // Use algolia provided snipped content:
+      snipContent = false;
+      text = post._snippetResult.content.value
+        .replaceAll("<em>", "")
+        .replaceAll("</em>", "");
+    }
+
     const postContent = {
       type: "md",
-      text: post.content,
+      text,
     };
-    const headerStyling =
-      postType === "post"
-        ? "border rounded-4 p-3 pb-1"
-        : "pt-3 border-top pb-2";
 
     posts.push({
       accountId,
       blockHeight,
       postContent,
       postType,
-      headerStyling,
+      snipContent,
       searchPosition: i,
     });
   }
@@ -245,7 +252,7 @@ const updateSearchHits = debounce(({ term, pageNumber, configs }) => {
         profiles: profiles(results["profile"]),
         components: components(results["widget"]),
         postsAndComments: posts(results["post"], "post").concat(
-          posts(results["comment, post"], "comment")
+          posts(results["comment, post"], "post-comment")
         ),
       },
       currentPage: 0,
@@ -473,6 +480,13 @@ return (
                   accountId: post.accountId,
                   blockHeight: post.blockHeight,
                   content: post.postContent,
+                  snipContent: post.snipContent,
+                  onClick: () =>
+                    onSearchResultClick({
+                      searchPosition: post.searchPosition,
+                      objectID: `${post.accountId}/${post.postType}/${post.blockHeight}`,
+                      eventName: "Clicked Post After Search",
+                    }),
                 }}
               />
             </Item>
