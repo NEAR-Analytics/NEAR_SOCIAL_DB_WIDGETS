@@ -45,7 +45,7 @@ return (
         role="tabpanel"
         aria-labelledby="pills-feed-tab"
       >
-        <Widget src="hack.near/widget/Custom.Page.Content" props={props} />
+        <Widget src="hack.near/widget/ABC.Page.Content" props={props} />
       </div>
       <div
         className="tab-pane d-lg-block col-lg-4"
