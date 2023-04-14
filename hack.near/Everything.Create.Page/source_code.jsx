@@ -1,5 +1,3 @@
-const ownerId = "contribut3.near";
-
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -70,7 +68,7 @@ return (
   <Container>
     <Form>
       <Widget
-        src={`${ownerId}/widget/Inputs.Text`}
+        src="contribut3.near/widget/Inputs.Text"
         props={{
           label: "Type",
           placeholder: "What kind of page?",
@@ -79,16 +77,16 @@ return (
         }}
       />
       <Widget
-        src={`${ownerId}/widget/Inputs.AccountId`}
+        src="contribut3.near/widget/Inputs.AccountId"
         props={{
-          label: "NEAR Account ID",
+          label: "Account ID",
           placeholder: "example.near",
           value: state.accountId,
           onChange: (accountId) => State.update({ accountId }),
         }}
       />
       <Widget
-        src={`${ownerId}/widget/Inputs.Text`}
+        src="contribut3.near/widget/Inputs.Text"
         props={{
           label: "Domain",
           placeholder: "ABC",
@@ -98,7 +96,7 @@ return (
       />
       <FormFooter>
         <Widget
-          src={`${ownerId}/widget/Buttons.Green`}
+          src="contribut3.near/widget/Buttons.Green"
           props={{
             onClick: () => {
               Social.set({
