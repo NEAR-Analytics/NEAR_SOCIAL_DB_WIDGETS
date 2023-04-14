@@ -8,27 +8,69 @@ const NEAR_LOGO = `data:image/svg+xml,%3Csvg width='35' height='35' fill='none' 
 if (!tokenId) return;
 
 let res;
+let balance, metadata;
+
+const getNearNativeBalance = () => {
+  const account = fetch("https://rpc.mainnet.near.org", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      jsonrpc: "2.0",
+      id: "dontcare",
+      method: "query",
+      params: {
+        request_type: "view_account",
+        finality: "final",
+        account_id: accountId,
+      },
+    }),
+  });
+  if (!account) return;
+  else return account?.body?.result?.amount;
+};
+
+const getRefPrice = (tokenId) => {
+  const refPricesResponse = fetch(
+    "https://indexer.ref.finance/list-token-price"
+  );
+  if (!refPricesResponse) return;
+  const refPrices = JSON.parse(refPricesResponse.body);
+  return parseFloat(refPrices?.[tokenId]?.price);
+};
 
 switch (network) {
   case "NEAR": {
-    // FT METADATA
-    const metadata = Near.view(tokenId, "ft_metadata");
-    if (!metadata) return;
-    metadata.icon = metadata.icon ?? NEAR_LOGO;
+    let refPrice;
+    if (tokenId === "NEAR") {
+      metadata = {
+        name: "NEAR",
+        symbol: "NEAR",
+        icon: NEAR_LOGO,
+        decimals: 24,
+      };
 
-    // FT BALANCE
-    const balance = Near.view(tokenId, "ft_balance_of", {
-      account_id: accountId,
-    });
-    if (!balance) return;
+      // NATIVE NEAR BALANCE
+      balance = getNearNativeBalance();
 
-    // REF PRICE
-    const refPricesResponse = fetch(
-      "https://indexer.ref.finance/list-token-price"
-    );
-    if (!refPricesResponse) return;
-    const refPrices = JSON.parse(refPricesResponse.body);
-    const refPrice = parseFloat(refPrices?.[tokenId]?.price);
+      // REF PRICE
+      refPrice = getRefPrice("wrap.near");
+    } else {
+      // FT METADATA
+      metadata = Near.view(tokenId, "ft_metadata");
+      if (!metadata) return;
+      metadata.icon = metadata.icon ?? NEAR_LOGO;
+
+      // FT BALANCE
+      balance = Near.view(tokenId, "ft_balance_of", {
+        account_id: accountId,
+      });
+
+      // REF PRICE
+      refPrice = getRefPrice(tokenId);
+    }
+    if (!balance || !refPrice || !metadata) return;
 
     res = {
       balance,
