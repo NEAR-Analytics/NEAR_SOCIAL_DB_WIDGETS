@@ -63,14 +63,13 @@ return (
         <Text>
           <h4>Let's hack together!</h4>
           <h5>
-            <b>Step 1:</b> Fork this
-            <a href="/#/edit/hack.near/widget/ForkThis"> demo</a>.
+            <b>Step 1:</b> Click "Start Here" below.
           </h5>
           <h5>
-            <b>Step 2:</b> Read instructions.
+            <b>Step 2:</b> Follow the instructions.
           </h5>
           <h5>
-            <b>Step 3:</b> Save your work.
+            <b>Step 3:</b> Save your widget.
           </h5>
         </Text>
 
