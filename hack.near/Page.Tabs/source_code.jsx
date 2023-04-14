@@ -4,7 +4,7 @@ if (!owner) {
   return "No account ID";
 }
 
-const page = props.page ?? Social.getr(`${accountId}/page`);
+const page = props.page ?? Social.getr(`${owner}/page`);
 
 if (page === null) {
   return "Loading";
@@ -53,7 +53,7 @@ return (
         <div className="mx-auto">
           <Widget
             src="hack.near/widget/ForkThis"
-            props={{ accounts: [accountId] }}
+            props={{ accounts: [owner] }}
           />
         </div>
       </div>
