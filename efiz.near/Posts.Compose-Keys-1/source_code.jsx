@@ -424,7 +424,6 @@ return (
       {domains && (
         <Typeahead
           options={domains}
-          multiple={false}
           onChange={(value) => {
             State.update({ choose: value });
           }}
