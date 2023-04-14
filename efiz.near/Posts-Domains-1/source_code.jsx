@@ -165,7 +165,10 @@ return (
       {context.accountId && (
         <>
           <ComposeWrapper>
-            <Widget src="efiz.near/widget/Posts.Compose" props={{ domains }} />
+            <Widget
+              src="efiz.near/widget/Posts.Compose-Domains-1"
+              props={{ domains }}
+            />
           </ComposeWrapper>
 
           <FilterWrapper>
@@ -210,7 +213,7 @@ return (
 
       <FeedWrapper>
         <Widget
-          src="efiz.near/widget/Posts.Feed"
+          src="efiz.near/widget/Posts.Feed-Domains-1"
           props={{ accounts, domains: state.choose }}
         />
       </FeedWrapper>
