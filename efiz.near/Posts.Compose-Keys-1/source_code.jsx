@@ -59,10 +59,10 @@ function composeData() {
    * Otherwise, we post to main
    */
   if (state.choose) {
-    data.post[state.choose] = JSON.stringify(content);
+    data.post[state.choose[0]] = JSON.stringify(content);
 
     data.index.post = JSON.stringify({
-      key: state.choose,
+      key: state.choose[0],
       value: {
         type: "md",
       },
