@@ -173,8 +173,12 @@ const root = ReactDOM.createRoot(domContainer)
 root.render(React.createElement(NearSocialBridgeCore, {}))
 
 // iFrameResizer - auto resize the iframe to fit the child size
-iFrameResize({ log: true }, '#coreIframe')
+// iFrameResize({ log: true }, '#coreIframe')
 
+</script>
+
+<script>
+iFrameResize({ log: true }, '#coreIframe')
 </script>
 `;
 
