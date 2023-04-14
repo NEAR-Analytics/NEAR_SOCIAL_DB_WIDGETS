@@ -1,6 +1,6 @@
 const domains = props.domains;
 let index;
-if (domains) {
+if (domains && domains.length > 0) {
   index = domains.map((it) => ({
     action: it,
     key: "main",
