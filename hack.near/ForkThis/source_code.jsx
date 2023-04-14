@@ -197,19 +197,19 @@ const Item = styled.div``;
 
 /*
 
-Last, but certainly not least, is the display.
+Last, but certainly not least, is returning the display.
 
 Feel free to make any edits you like!
 
-INSTRUCTIONS
+bOS CHALLENGE INSTRUCTIONS
 
 1. Update <Text> with the <b>#tag</b> you input above.
 
-2. Edit <Button href="URL" > with your own link.
+2. Edit `Guide.Header` to feature your own content.
 
-3. Adjust featured section by updating the widget paths.
+3. Curate pages by updating the widget src paths in <Items>.
 
-    --> Choose your favorite widgets!
+    --> Let us know your favorite widgets!
 
 Don't forget to save!
 
