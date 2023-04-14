@@ -13,7 +13,7 @@ const handleProposal = () => {
   if (!state.description) {
     return;
   }
-  const gas = 200000000000000;
+  const gas = 150000000000000;
   const deposit = 100000000000000000000000;
   Near.call([
     {
