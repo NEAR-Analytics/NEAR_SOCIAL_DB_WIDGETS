@@ -85,7 +85,7 @@ return (
   <div>
     {data.body !== null ? (
       <Wrapper>
-        <H1>LNC Recomended Guides</H1>
+        <H1>LNC Latest Guides</H1>
         <GuideListWrapper>
           {data.body.map((guide) => (
             <GuideListItem key={guide.id}>
