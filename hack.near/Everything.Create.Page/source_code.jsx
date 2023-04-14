@@ -1,61 +1,45 @@
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  gap: 3em;
-  padding-bottom: 3em;
+const Header = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 `;
 
-const Header = styled.h1`
-  font-style: normal;
-  font-weight: 700;
-  font-size: 2em;
-  line-height: 1.4em;
-  text-align: center;
-  color: #000000;
-`;
-
-const SubHeader = styled.h2`
-  font-style: normal;
-  font-weight: 400;
-  font-size: 0.95em;
-  line-height: 1.25em;
-  text-align: center;
-  color: #101828;
+const Title = styled.div`
+    font-size: 24px;
+    line-height: 33.6px;
 `;
 
 const Form = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  width: 60%;
-  gap: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 `;
 
-const FormHeader = styled.h3`
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  padding: 0px 0px 0.5em;
-  border-bottom: 1px solid #eceef0;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 1.125em;
-  line-height: 1.25em;
-  color: #000000;
-  width: 100%;
+const Input = styled.input`
+    width: 100%;
 `;
 
-const FormFooter = styled.div`
-  display: flex;
-  flex-direction: row-reverse;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
+const TextArea = styled.textarea`
+    width: 100%;
+`;
+
+const ButtonRow = styled.div`
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+`;
+
+const Button = styled.button`
+    padding: 8px 20px;
+    max-width: 90px;
+`;
+
+const Caption = styled.div`
+    font-size: 12px;
+    line-height: 15.6px;
+    color: #A6A6A6;
 `;
 
 State.init({
@@ -64,63 +48,85 @@ State.init({
   domain: "",
 });
 
+const createThing = () => {
+  asyncFetch(type.mutations?.create.url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      query: type.mutations?.create.query,
+      variables: {
+        type: props.type,
+        title: state.title,
+      },
+    }),
+  });
+};
+
+const resetThing = () => {
+  State.update({
+    type: "",
+    accountId: "",
+    domain: "",
+  });
+};
+
 return (
-  <Container>
-    <Form>
+  <div>
+    <Widget
+      src="contribut3.near/widget/Inputs.Text"
+      props={{
+        label: "Type",
+        placeholder: "What kind of page?",
+        value: state.type,
+        onChange: (type) => State.update({ type }),
+      }}
+    />
+    <Widget
+      src="contribut3.near/widget/Inputs.AccountId"
+      props={{
+        label: "Account ID",
+        placeholder: "example.near",
+        value: state.accountId,
+        onChange: (accountId) => State.update({ accountId }),
+      }}
+    />
+    <Widget
+      src="contribut3.near/widget/Inputs.Text"
+      props={{
+        label: "Domain",
+        placeholder: "ABC",
+        value: state.domain,
+        onChange: (domain) => State.update({ domain }),
+      }}
+    />
+    <div>
       <Widget
-        src="contribut3.near/widget/Inputs.Text"
+        src="contribut3.near/widget/Buttons.Green"
         props={{
-          label: "Type",
-          placeholder: "What kind of page?",
-          value: state.type,
-          onChange: (type) => State.update({ type }),
+          onClick: () => {
+            Social.set({
+              thing: {
+                main: JSON.stringify({
+                  type: state.type,
+                  accountId: state.accountId,
+                  domain: state.domain,
+                }),
+              },
+              index: {
+                abc: JSON.stringify({
+                  key: "main",
+                  value: {
+                    type: "hack.near/type/Page",
+                  },
+                }),
+              },
+            });
+          },
+          text: "Create Page",
         }}
       />
-      <Widget
-        src="contribut3.near/widget/Inputs.AccountId"
-        props={{
-          label: "Account ID",
-          placeholder: "example.near",
-          value: state.accountId,
-          onChange: (accountId) => State.update({ accountId }),
-        }}
-      />
-      <Widget
-        src="contribut3.near/widget/Inputs.Text"
-        props={{
-          label: "Domain",
-          placeholder: "ABC",
-          value: state.domain,
-          onChange: (domain) => State.update({ domain }),
-        }}
-      />
-      <FormFooter>
-        <Widget
-          src="contribut3.near/widget/Buttons.Green"
-          props={{
-            onClick: () => {
-              Social.set({
-                thing: {
-                  main: JSON.stringify({
-                    type: state.type,
-                    accountId: state.accountId,
-                    domain: state.domain,
-                  }),
-                },
-                index: {
-                  abc: JSON.stringify({
-                    key: "main",
-                    value: {
-                      type: "hack.near/type/Page",
-                    },
-                  }),
-                },
-              });
-            },
-            text: "Create Page",
-          }}
-        />
-      </FormFooter>
-    </Form>
-  </Container>
+    </div>
+  </div>
 );
