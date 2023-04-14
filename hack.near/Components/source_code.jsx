@@ -1,4 +1,7 @@
-const accountId = props.accountId || context.accountId;
+const owner = props.owner ?? "hack.near";
+const tag = props.domain ?? "builders";
+
+const accountId = props.owner || context.accountId;
 
 if (!accountId) return "";
 
@@ -102,7 +105,7 @@ return (
         <Widget
           src="mob.near/widget/ComponentSearch"
           props={{
-            boostedTag: "dev",
+            boostedTag: { tag },
             placeholder: "🔍 Search Components",
             limit: 10,
             onChange: ({ result }) => {
