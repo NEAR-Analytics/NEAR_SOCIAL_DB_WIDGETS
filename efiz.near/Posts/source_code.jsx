@@ -141,7 +141,7 @@ return (
       {context.accountId && (
         <>
           <ComposeWrapper>
-            <Widget src="efiz.near/widget/Posts.Compose" />
+            <Widget src="efiz.near/widget/Posts.Compose" props={{ domains }} />
           </ComposeWrapper>
 
           <FilterWrapper>
