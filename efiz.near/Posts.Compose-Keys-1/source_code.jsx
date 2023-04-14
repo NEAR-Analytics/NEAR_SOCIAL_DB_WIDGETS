@@ -2,7 +2,7 @@ if (!context.accountId) {
   return <></>;
 }
 
-const domains = props.domains;
+const keys = props.keys;
 
 State.init({
   image: {},
@@ -55,8 +55,8 @@ function composeData() {
     index: {},
   };
   /**
-   * If domains have been provided, then we create an index under that "domain"
-   * Otherwise, we post to the catch-all "post" domain
+   * If a key has been provided, then we create the post under that key.
+   * Otherwise, we post to main
    */
   if (state.choose) {
     data.post[state.choose] = JSON.stringify(content);
@@ -421,13 +421,13 @@ return (
           <i className="bi bi-eye-fill" />
         )}
       </button>
-      {domains && (
+      {keys && (
         <Typeahead
-          options={domains}
+          options={keys}
           onChange={(value) => {
             State.update({ choose: value });
           }}
-          placeholder="Domains"
+          placeholder="Keys"
         />
       )}
       <CommitButton
