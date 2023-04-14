@@ -25,7 +25,7 @@ const renderThing = (a) => {
     }
     return (
       <Widget
-        src={"hack.near/widget/Everything.View.Post"}
+        src={"evrything.near/widget/Everything.Summary.Thing"}
         props={{
           accountId: a.accountId,
           blockHeight: a.blockHeight,
