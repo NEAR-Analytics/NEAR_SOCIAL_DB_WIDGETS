@@ -12,7 +12,10 @@ if (main === null) {
 
 const defaultWidgets = [
   {
-    src: "hack.near/widget/Project.Page",
+    src: "hack.near/widget/Guide.Header",
+  },
+  {
+    src: "hack.near/widget/Page.Tabs",
   },
 ];
 
