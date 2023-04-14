@@ -11,11 +11,13 @@ State.init({ hasBeenFlagged: false });
 const getContent = () => {
   if (keys && keys.length > 0) {
     keys.map((it) => {
-      if (Social.get(`${accountId}/post/${it}`, blockHeight)) {
+      if (Social.get(`${accountId}/post/apple123456`, blockHeight)) {
         State.update({
           key: it,
         });
-        return JSON.parse(Social.get(`${accountId}/post/${it}`, blockHeight));
+        return JSON.parse(
+          Social.get(`${accountId}/post/apple123456`, blockHeight)
+        );
       }
     });
   } else {
