@@ -16,55 +16,5 @@ return (
         />
       </a>
     </div>
-    <span className="text-nowrap text-muted">
-      <small>
-        {blockHeight === "now" ? (
-          "now"
-        ) : (
-          <a className="text-muted" href={link}>
-            <Widget src="mob.near/widget/TimeAgo" props={{ blockHeight }} />
-          </a>
-        )}
-      </small>
-      {blockHeight !== "now" && (
-        <span>
-          <a
-            href="javascript:void"
-            className="link-secondary ms-2"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            <i className="fs-6 bi bi-three-dots" />
-          </a>
-          <ul className="dropdown-menu">
-            <li className="dropdown-item">
-              <a
-                className="link-dark text-decoration-none"
-                href={`${link}&raw=true`}
-              >
-                <i className="bi bi-filetype-raw" /> View raw markdown source
-              </a>
-            </li>
-            <li>
-              <Widget
-                src="mob.near/widget/MainPage.Common.HideAccount"
-                props={{ accountId }}
-              />
-            </li>
-            {props.flagItem && (
-              <li>
-                <Widget
-                  src="mob.near/widget/MainPage.Common.FlagContent"
-                  props={{
-                    item: props.flagItem,
-                    label: `Flag ${postType} for moderation`,
-                  }}
-                />
-              </li>
-            )}
-          </ul>
-        </span>
-      )}
-    </span>
   </div>
 );
