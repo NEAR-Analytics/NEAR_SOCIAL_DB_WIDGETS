@@ -12,9 +12,6 @@ if (main === null) {
 
 const defaultWidgets = [
   {
-    src: "hack.near/widget/Guide.Header",
-  },
-  {
     src: "hack.near/widget/Page.Tabs",
   },
 ];
@@ -48,7 +45,7 @@ return (
       {context.accountId && (
         <a
           key="edit"
-          href={"#/create.near/widget/Custom.Page.Editor"}
+          href={"#/hack.near/widget/Custom.Page.Editor"}
           className="edit-link position-absolute top-0 end-0 link-secondary me-2 mt-1"
         >
           <i class="bi bi-pencil" /> Edit Page
