@@ -31,18 +31,23 @@ const GuideListItem = styled.div`
 
 const GuideImage = styled.img`
   width: 100%;
-  height: auto;
+  height: 140px;
 `;
 
-const GuideCategory = styled.div`
+const GuideAuthor = styled.a`
   margin-top: 10px;
-  font-weight: bold;
   text-transform: uppercase;
 `;
 
-const GuideTitle = styled.div`
+const GuideTitle = styled.a`
   margin-top: 5px;
-  font-weight: bold;
+  font-size: 20px;
+  color: #00c08b;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 const H1 = styled.h2`
@@ -85,11 +90,20 @@ return (
         <GuideListWrapper>
           {data.body.map((guide) => (
             <GuideListItem key={guide.id}>
-              <GuideImage src={guide.featured_image_src} alt={guide.title} />
+              <GuideImage
+                src={guide.featured_image_src}
+                alt={guide.title.rendered}
+              />
+              <div>
+                <GuideAuthor href={guide.author_info.author_link}>
+                  By {guide.author_info.display_name}
+                </GuideAuthor>
+              </div>
+              <GuideTitle href={guide.link}>{guide.title.rendered}</GuideTitle>
             </GuideListItem>
           ))}
         </GuideListWrapper>
-        <ButtonLink href="https://nearweek.com" target="_blank">
+        <ButtonLink href="https://learnnear.club/guides/" target="_blank">
           View All Guides
         </ButtonLink>
       </Wrapper>
