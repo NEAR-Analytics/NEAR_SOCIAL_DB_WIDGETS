@@ -16,11 +16,13 @@ return (
   <div>
     <div className="mb-3">
       <h2>WELCOME TO CREATIVES DAO</h2>
-      <Widget src="hack.near/widget/DAO" props={{ daoId }} />
     </div>
     <div className="mb-3">
-      <h5>Congratulations on getting your proposals accepted</h5>
-      <Widget src="hack.near/widget/CreatePoll" props={{ accountId, daoId }} />
+      <h5>Congratulations on getting your proposal accepted!</h5>
+      <Widget
+        src="williamxx.near/widget/CreatePoll-CreativesDAO"
+        props={{ accountId, daoId }}
+      />
     </div>
   </div>
 );
