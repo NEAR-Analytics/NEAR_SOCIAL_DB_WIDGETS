@@ -8,16 +8,18 @@ const keys = props.keys;
 
 State.init({ hasBeenFlagged: false });
 
+/**
+ * This doesn't work!
+ * And I don't know why... I'm guessing the indexer doesn't support other keys
+ */
 const getContent = () => {
   if (keys && keys.length > 0) {
     keys.map((it) => {
-      if (Social.get(`${accountId}/post/apple123456`, blockHeight)) {
+      if (Social.get(`${accountId}/post/${it}`, blockHeight)) {
         State.update({
           key: it,
         });
-        return JSON.parse(
-          Social.get(`${accountId}/post/apple123456`, blockHeight)
-        );
+        return JSON.parse(Social.get(`${accountId}/post/${it}`, blockHeight));
       }
     });
   } else {
