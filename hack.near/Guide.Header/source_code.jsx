@@ -61,7 +61,6 @@ return (
         <H1>Guide for Builders</H1>
 
         <Text>
-          <h4>Let's hack together!</h4>
           <h5>
             <b>Step 1:</b> Click "Start Here" below.
           </h5>
