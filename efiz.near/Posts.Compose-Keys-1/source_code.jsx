@@ -427,7 +427,7 @@ return (
           onChange={(value) => {
             State.update({ choose: value });
           }}
-          placeholder="Keys"
+          placeholder="Key"
         />
       )}
       <CommitButton
