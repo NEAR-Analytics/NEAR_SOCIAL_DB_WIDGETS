@@ -13,6 +13,11 @@ if (state.balance === undefined && state.sender) {
     });
 }
 
+// const sender = Ethers.send("eth_requestAccounts", [])[0];
+// if (!sender) return "Please login first";
+
+// return <p>Account: {sender}</p>;
+
 // FETCH CSS
 
 const cssFont = fetch(
@@ -60,6 +65,7 @@ return (
           required
         />
         <br />
+        <div>Address = {state.sender ?? "..."}</div>
         <div>
           Balance = {state.balance ?? (!state.sender ? "0" : "...")}&nbsp;ETH{" "}
         </div>
