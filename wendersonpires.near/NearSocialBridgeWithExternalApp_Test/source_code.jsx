@@ -1,3 +1,8 @@
+/**
+ * This Widget is part of the NEAR Social Bridge library.
+ * Visit https://github.com/wpdas/near-social-bridge to get to know more.
+ */
+
 // Crucial checks
 if (!props.externalAppUrl) {
   return (
@@ -34,9 +39,143 @@ if (!props.externalAppUrl) {
 const code = `
 <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+<script
+  type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.3.6/iframeResizer.contentWindow.js"
+></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reseter.css/1.0.8/reseter.min.css">
 <div id="bridge-root"></div>
-<script src="https://unpkg.com/near-social-bridge@1.0.1/widget/core.min.js" crossorigin></script>
+
+<script>
+// Viewer port
+let viewerPort
+
+// Outside of the component state controller
+let state = {
+  externalAppUrl: '',
+  initialPath: null,
+  userInfo: null,
+  initialPayload: {},
+  connectMessageSent: false,
+}
+
+// Core Component
+function NearSocialBridgeCore() {
+  const [externalAppUrl, setExternalAppUrl] = React.useState(state.externalAppUrl)
+  const [connectMessageSent, setConnectMessageSent] = React.useState(state.connectMessageSent)
+  const [, setUserInfo] = React.useState(state.userInfo)
+
+  React.useEffect(() => {
+    const handler = (e) => {
+      // Set the Viewer port
+      if (!viewerPort && e.data.type === 'connect-view') {
+        viewerPort = e.source
+        setExternalAppUrl(e.data.externalAppUrl)
+        setUserInfo(e.data.userInfo)
+        state.externalAppUrl = e.data.externalAppUrl
+        state.initialPath = e.data.initialPath
+        state.userInfo = e.data.userInfo
+        state.initialPayload = e.data.initialPayload
+      }
+
+      // When get a message from the View
+      if (viewerPort && e.data.from === 'view') {
+        // Is it message to the core?
+        if (e.data.type.includes('core:')) {
+          // process eventual message to core here
+          return
+        }
+
+        // Send to external app
+        sendMessage(e.data)
+      }
+    }
+
+    window.addEventListener('message', handler)
+
+    return () => {
+      window.removeEventListener('message', handler)
+    }
+  }, [])
+
+  const sendMessage = (message) => {
+    var iframe = document.getElementById('coreIframe')
+    iframe.contentWindow.postMessage(message, '*')
+  }
+
+  const sendMessageToView = (message) => {
+    viewerPort.postMessage(message, '*')
+  }
+
+  // Answer Factory
+  const buildAnswer = (requestType, payload) => {
+    return {
+      from: 'core',
+      type: 'answer',
+      requestType,
+      payload,
+    }
+  }
+
+  // Build connection payload
+  const buildConnectionPayload = () => ({
+    type: 'connect',
+    payload: {
+      userInfo: state.userInfo,
+      initialPath: state.initialPath,
+      initialPayload: state.initialPayload,
+    },
+    created_at: Date.now(),
+  })
+
+  const onMessageHandler = (message) => {
+    // Internal Request Handler
+    if (message.data.from === 'external-app') {
+      // Send to View
+      sendMessageToView(message.data)
+    }
+  }
+
+  function onLoadHandler() {
+    // On load iframe
+    if (!connectMessageSent) {
+      setConnectMessageSent(true)
+      state.connectMessageSent = true
+
+      // On get msg from External App
+      window.addEventListener('message', onMessageHandler, false)
+    }
+
+    // Send the welcome message (connects with the external app)
+    const welcomePayload = buildConnectionPayload()
+    sendMessage(welcomePayload)
+
+    // Wait a bit and send the message again to ensure the app and scripts are loaded and ready
+    setTimeout(() => {
+      sendMessage(buildConnectionPayload())
+    }, 2000)
+  }
+
+  // Wait for the external app url to render the iframe
+  if (!state.externalAppUrl) return null
+
+  return React.createElement('iframe', {
+    sandbox: 'allow-scripts allow-popups-to-escape-sandbox allow-popups',
+    id: 'coreIframe',
+    src: externalAppUrl,
+    style: { border: 'none', width: '100%', margin: 0, padding: 0 },
+    onLoad: onLoadHandler,
+  })
+}
+
+const domContainer = document.querySelector('#bridge-root')
+const root = ReactDOM.createRoot(domContainer)
+root.render(React.createElement(NearSocialBridgeCore, {}))
+
+// iFrameResizer - auto resize the iframe to fit the child size
+iFrameResize({ log: true }, '#coreIframe')
+
+</script>
 `;
 
 // (i) Discovery API uses cached data structure
@@ -52,11 +191,14 @@ const Utils = {
   /**
    * Call resolve or reject for a given caller
    * E.g:
-   * Utils.promisify(() => getCachedObject(), (res) => console.log(res), (err) => console.log(err))
+   * var timeout = 5000 // 5sec
+   * Utils.promisify(() => getCachedObject(), (res) => console.log(res), (err) => console.log(err), timeout)
+   *
+   * Default timeout is 10 seconds
    */
-  promisify: (caller, resolve, reject) => {
+  promisify: (caller, resolve, reject, _timeout) => {
     const timer = 1000;
-    const timeout = timer * 10;
+    const timeout = _timeout || timer * 10;
     let timeoutCheck = 0;
 
     const find = () => {
@@ -89,15 +231,11 @@ const userInfo = { accountId };
 // Initial Path
 const initialPath = props.path;
 
-// Initial iframe height
-const initialIframeHeight = props.initialViewHeight || 500;
-
 // Initial Payload (optional)
 const initialPayload = props.initialPayload || {};
 
 // Initial State
 State.init({
-  iframeHeight: initialIframeHeight,
   // (i) DON'T send async data, it's going to randonly fail
   // If you need to get new info, use "request" for that
   currentMessage: {
@@ -106,7 +244,6 @@ State.init({
     userInfo,
     initialPath,
     initialPayload,
-    initialIframeHeight,
   },
 });
 
@@ -197,10 +334,21 @@ const sessionStorageHydrateViewer = (requestType, payload) => {
 
 // Retrieve stored data
 const sessionStorageHydrateApp = (requestType) => {
-  // get stored data
-  const storageData = Storage.privateGet(CORE_STORAGE_KEY);
-  const responseBody = buildAnswer(requestType, storageData);
-  Utils.sendMessage(responseBody);
+  Utils.promisify(
+    // get stored data
+    () => Storage.privateGet(CORE_STORAGE_KEY),
+    (storageData) => {
+      const responseBody = buildAnswer(requestType, storageData);
+      Utils.sendMessage(responseBody);
+    },
+    () => {
+      // After 3 seconds, if no data is found, just send
+      // an empty answer
+      const responseBody = buildAnswer(requestType);
+      Utils.sendMessage(responseBody);
+    },
+    3000
+  );
 };
 
 // Set thew new iFrame height based on the new screen/route
@@ -239,8 +387,8 @@ const getUserInfo = (requestType) => {
 return (
   <div>
     <iframe
+      iframeResizer
       className="w-100"
-      style={{ height: `${state.iframeHeight}px` }}
       srcDoc={code}
       message={state.currentMessage}
       onMessage={onMessageHandler}
