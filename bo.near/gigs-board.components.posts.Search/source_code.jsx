@@ -709,7 +709,7 @@ return (
       state.processedQuery.length > 0 &&
       state.term.toLowerCase().trim() !== state.processedQuery.join(" ") && (
         <div class="mb-2" style={{ "font-family": "monospace" }}>
-          No results for {state.term}. Looking for
+          Looking for
           <strong>{state.processedQuery.join(" ")}</strong>:
         </div>
       )}
@@ -725,10 +725,12 @@ return (
           },
           recency: props.recency,
           label: props.label,
+          author: props.author,
         })
       : widget("components.posts.List", {
           recency: props.recency,
           label: props.label,
+          author: props.author,
         })}
   </div>
 );
