@@ -1,5 +1,3 @@
-const domain = props.domain ?? "abc";
-
 return (
   <>
     <Widget src="mob.near/widget/ProfileOnboarding" />
@@ -11,48 +9,48 @@ return (
       <li className="nav-item" role="presentation">
         <button
           className="nav-link active"
-          id="pills-content-tab"
+          id="pills-main-tab"
           data-bs-toggle="pill"
-          data-bs-target="#pills-content"
+          data-bs-target="#pills-main"
           type="button"
           role="tab"
-          aria-controls="pills-content"
+          aria-controls="pills-main"
           aria-selected="true"
         >
-          Content
+          Main Page
         </button>
       </li>
       <li className="nav-item" role="presentation">
         <button
           className="nav-link"
-          id="pills-menu-tab"
+          id="pills-explore-tab"
           data-bs-toggle="pill"
-          data-bs-target="#pills-menu"
+          data-bs-target="#pills-explore"
           type="button"
           role="tab"
-          aria-controls="pills-menu"
+          aria-controls="pills-explore"
           aria-selected="false"
         >
-          Menu
+          Explore
         </button>
       </li>
     </ul>
     <div className="tab-content row p-0" id="pills-tabContent">
       <div
         className="tab-pane show active d-lg-block col-lg-8"
-        id="pills-content"
+        id="pills-feed"
         role="tabpanel"
-        aria-labelledby="pills-content-tab"
+        aria-labelledby="pills-feed-tab"
       >
-        <Widget src="create.near/widget/ABC.Page" props={props} />
+        <Widget src="hack.near/widget/Custom.Page.Content" props={props} />
       </div>
       <div
         className="tab-pane d-lg-block col-lg-4"
-        id="pills-menu"
+        id="pills-explore"
         role="tabpanel"
-        aria-labelledby="pills-menu-tab"
+        aria-labelledby="pills-explore-tab"
       >
-        <Widget src="create.near/widget/ABC.Menu" props={props} />
+        <Widget src="hack.near/widget/Custom.Page.Menu" props={props} />
       </div>
     </div>
   </>
