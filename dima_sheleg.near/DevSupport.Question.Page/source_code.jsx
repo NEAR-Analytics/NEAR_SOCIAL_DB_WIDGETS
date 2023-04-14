@@ -104,6 +104,10 @@ const H6 = styled.h6`
 `;
 const SidebarWrapper = styled.div`
   border-left: 1px solid #ECEEF0;
+
+  @media(max-width: 768px) {
+    border-left: none;
+  }
 `;
 const ShareButton = styled.button`
   display: inline-flex;
@@ -148,7 +152,7 @@ return (
     </H4>
 
     <div class="row mt-5">
-      <div class="col-8 pe-md-5">
+      <div class="col-md-8 col-12 pe-md-5">
         <Widget
           src="dima_sheleg.near/widget/DevSupport.Question.PreviewDetailed"
           props={{
@@ -184,7 +188,7 @@ return (
           }}
         />
       </div>
-      <SidebarWrapper className="col-4 ps-md-5">
+      <SidebarWrapper className="col-md-4 col-12 ps-md-5 pt-md-0 pt-5 border-md-0">
         <Widget
           src="dmitriy_sheleg.near/widget/AccountProfileCard"
           props={{ accountId }}
