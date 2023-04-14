@@ -65,7 +65,8 @@ const createThing = () => {
       query: type.mutations?.create.query,
       variables: {
         type: props.type,
-        title: state.title,
+        accountId: state.accountId,
+        domain: state.domain,
       },
     }),
   }).then((res) => {
