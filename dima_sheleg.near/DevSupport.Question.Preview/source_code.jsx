@@ -101,106 +101,100 @@ const Item = styled.div`
 `;
 
 return (
-  <div className={`${display} p-3`}>
-    <div class="row">
-      <div class="col-1">
-        <Widget
-          src="mob.near/widget/ProfileImage"
-          props={{
-            accountId,
-            imageClassName: "rounded-circle w-100 h-100",
-          }}
-        />
-      </div>
-      <div class="col-1">
-        {/* Upvote Widget */}
-        <Widget
-          src="dima_sheleg.near/widget/DevSupport.Question.Button.Upvote"
-          props={{ accountId, blockHeight }}
-        />
-      </div>
-      <div class="col-10">
-        <div class="row">
-          <div class="col">
-            <div class="row">
-              <div class="col">
-                <H2>
-                  <a href={link}>{question.title}</a>
-                  <i class="bi bi-arrow-right" />
-                </H2>
-              </div>
-              <div class="col-auto">
-                <div class="dropdown ms-auto">
-                  <button
-                    class="btn border-0 p-0"
-                    type="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    <i class="bi bi-three-dots" />
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li>
-                      <Item>
-                        <Widget
-                          src="dima_sheleg.near/widget/DevSupport.Question.Button.Flag"
-                          props={{
-                            accountId,
-                            blockHeight,
-                            className: "btn report-btn",
-                          }}
-                        />
-                      </Item>
-                    </li>
-                    <li>
-                      <Item>
-                        {/* Delete widget */}
-                        <Widget
-                          src="dima_sheleg.near/widget/DevSupport.Question.Button.Delete"
-                          props={{
-                            accountId,
-                            blockHeight,
-                            admins,
-                            adminContract,
-                            className: "hide-btn",
-                            text: "Hide",
-                          }}
-                        />
-                      </Item>
-                    </li>
-                  </ul>
-                </div>
+  <div class="row">
+    <div class="col-1 d-sm-block d-none">
+      <Widget
+        src="mob.near/widget/ProfileImage"
+        props={{
+          accountId,
+          imageClassName: "rounded-circle w-100 h-100",
+        }}
+      />
+    </div>
+    <div class="col-sm-1 col-2">
+      <Widget
+        src="dima_sheleg.near/widget/DevSupport.Question.Button.Upvote"
+        props={{ accountId, blockHeight }}
+      />
+    </div>
+    <div class="col-10">
+      <div class="row">
+        <div class="col">
+          <div class="row">
+            <div class="col">
+              <H2>
+                <a href={link}>{question.title}</a>
+                <i class="bi bi-arrow-right" />
+              </H2>
+            </div>
+            <div class="col-auto">
+              <div class="dropdown ms-auto">
+                <button
+                  class="btn border-0 p-0"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <i class="bi bi-three-dots" />
+                </button>
+                <ul class="dropdown-menu">
+                  <li>
+                    <Item>
+                      <Widget
+                        src="dima_sheleg.near/widget/DevSupport.Question.Button.Flag"
+                        props={{
+                          accountId,
+                          blockHeight,
+                          className: "btn report-btn",
+                        }}
+                      />
+                    </Item>
+                  </li>
+                  <li>
+                    <Item>
+                      {/* Delete widget */}
+                      <Widget
+                        src="dima_sheleg.near/widget/DevSupport.Question.Button.Delete"
+                        props={{
+                          accountId,
+                          blockHeight,
+                          admins,
+                          adminContract,
+                          className: "hide-btn",
+                          text: "Hide",
+                        }}
+                      />
+                    </Item>
+                  </li>
+                </ul>
               </div>
             </div>
-            <div class="row">
-              <H6>
-                <div class="d-flex">
-                  <Trancate>{accountId}</Trancate>
-                  &nbsp;in&nbsp;
-                  <TopicName>
-                    <Widget
-                      src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Question.LabelsDisplay"
-                      props={{ labels: question.labels }}
-                    />
-                  </TopicName>
-                  &nbsp;&#8226;&nbsp;
+          </div>
+          <div class="row">
+            <H6>
+              <div class="d-flex">
+                <Trancate>{accountId}</Trancate>
+                &nbsp;in&nbsp;
+                <TopicName>
                   <Widget
-                    src="mob.near/widget/TimeAgo"
-                    props={{ blockHeight }}
+                    src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Question.LabelsDisplay"
+                    props={{ labels: question.labels }}
                   />
-                  &nbsp;ago
-                </div>
-              </H6>
-            </div>
+                </TopicName>
+                &nbsp;&#8226;&nbsp;
+                <Widget src="mob.near/widget/TimeAgo" props={{ blockHeight }} />
+                &nbsp;ago
+              </div>
+            </H6>
           </div>
         </div>
-        <div class="row">
-          <div class="col">
-            <Widget
-              src="dima_sheleg.near/widget/DevSupport.Question.Button.Answers"
-              props={{ accountId, blockHeight }}
-            />
-          </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <Widget
+            src="dima_sheleg.near/widget/DevSupport.Question.Button.Answers"
+            props={{ accountId, blockHeight }}
+          />
         </div>
       </div>
     </div>
