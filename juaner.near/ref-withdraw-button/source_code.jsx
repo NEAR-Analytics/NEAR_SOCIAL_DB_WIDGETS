@@ -1,3 +1,25 @@
+const Container = styled.div`
+  .greenButton{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background: #00FFD1;
+    border-radius: 12px;
+    height:46px;
+    font-weight: 700;
+    font-size: 18px;
+    color:#000;
+    cursor:pointer;
+    width:100%;
+  }
+  .mt_25{
+    margin-top:25px;
+  }
+  .disabled{
+    opacity:0.3;
+    cursor: not-allowed;
+  }
+`;
 let BURROW_CONTRACT = "contract.main.burrow.near";
 let ORACLE_CONTRACT = "priceoracle.near";
 let accountId = context.accountId;
@@ -119,10 +141,12 @@ const handleWithdraw = () => {
   Near.call(transactions);
 };
 return (
-  <div
-    class={`greenButton mt_25 ${Number(amount) ? "" : "disabled"}`}
-    onClick={handleWithdraw}
-  >
-    Withdraw
-  </div>
+  <Container>
+    <div
+      class={`greenButton mt_25 ${Number(amount) ? "" : "disabled"}`}
+      onClick={handleWithdraw}
+    >
+      Withdraw
+    </div>
+  </Container>
 );
