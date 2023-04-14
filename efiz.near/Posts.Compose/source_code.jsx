@@ -60,14 +60,7 @@ function composeData() {
     post: {
       main: JSON.stringify(content),
     },
-    index: {
-      // post: JSON.stringify({
-      //   key: "main",
-      //   value: {
-      //     type: "md",
-      //   },
-      // }),
-    },
+    index: {},
   };
 
   if (state.choose) {
@@ -78,6 +71,13 @@ function composeData() {
           type: "md",
         },
       });
+    });
+  } else {
+    data.index.post = JSON.stringify({
+      key: "main",
+      value: {
+        type: "md",
+      },
     });
   }
 
