@@ -1,9 +1,5 @@
-const owner = props.owner ?? "hack.near";
+const owner = props.owner ?? context.accountId;
 const tag = props.domain ?? "builders";
-
-const accountId = props.owner || context.accountId;
-
-if (!accountId) return "";
 
 const limitPerPage = 20;
 let components = [];
@@ -12,19 +8,19 @@ State.init({
   currentPage: 0,
 });
 
-const data = Social.keys(`${accountId}/widget/*`, "final", {
+const data = Social.keys(`${owner}/widget/*`, "final", {
   return_type: "BlockHeight",
 });
 
 if (data) {
   components = [];
 
-  Object.keys(data).forEach((accountId) => {
-    return Object.keys(data[accountId].widget).forEach((widgetName) => {
+  Object.keys(data).forEach((owner) => {
+    return Object.keys(data[owner].widget).forEach((widgetName) => {
       components.push({
-        accountId,
+        owner,
         widgetName,
-        blockHeight: data[accountId].widget[widgetName],
+        blockHeight: data[owner].widget[widgetName],
       });
     });
   });
@@ -94,7 +90,7 @@ const Button = styled.button`
 `;
 
 if (data !== null && components.length === 0) {
-  return <Text>This account hasn&apos;t published any components yet.</Text>;
+  return <Text>This account has not published any components yet.</Text>;
 }
 
 return (
@@ -122,7 +118,7 @@ return (
                 src="mob.near/widget/ComponentSearch.Item"
                 props={{
                   link: `#/${app.widgetSrc}`,
-                  accountId: app.accountId,
+                  owner: app.owner,
                   widgetName: app.widgetName,
                   onHide: () => State.update({ apps: null }),
                   extraButtons: ({ widgetPath }) => (
@@ -141,16 +137,13 @@ return (
         </div>
       )}
     </div>
-    <Widget
-      src="mob.near/widget/WidgetIcons"
-      props={{ tag: "dev", limit: 39 }}
-    />
+    <Widget src="mob.near/widget/WidgetIcons" props={{ tag: tag, limit: 39 }} />
     <Items>
       {components.map((component, i) => (
         <Widget
           src="adminalpha.near/widget/ComponentCard"
           props={{
-            src: `${component.accountId}/widget/${component.widgetName}`,
+            src: `${component.owner}/widget/${component.widgetName}`,
             blockHeight: component.blockHeight,
           }}
         />
