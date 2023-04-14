@@ -2,8 +2,11 @@ return (
   <div>
     <h5>Earn by Learning</h5>
     <div className="mb-2 mt-3 d-flex gap-3 flex-wrap">
-      <a className="btn btn-success" href="#/edit/create.near/widget/ForkThis">
-        Start Here
+      <a
+        className="btn btn-success"
+        href="#/hack.near/widget/Project.Page.Editor"
+      >
+        Submit Project
       </a>
       <a
         className="btn btn-outline-primary"
@@ -12,10 +15,6 @@ return (
         Docs
       </a>
     </div>
-    <p className="mt-3">
-      This page is meant to guide anyone building composable front-end widgets
-      and other things on the SocialDB contract.
-    </p>
     <div className="mb-2 mt-2 d-flex gap-2 flex-wrap">
       <a
         className="btn btn-outline-secondary border-0"
