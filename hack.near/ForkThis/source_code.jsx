@@ -220,48 +220,17 @@ return (
     <Header>
       <H1>All Guides</H1>
       <Text>
-        These particular widgets are tagged with: <b>#guide</b>
+        These particular widgets are tagged with: <b>#{tag}</b>
       </Text>
       <div className="d-flex flex-wrap gap-1 my-3">
         {state.allItems
           .slice(0, props.limit ? parseInt(props.limit) : 999)
           .map(renderItem)}
       </div>
-      <Button href="/#/edit/hack.near/widget/ForkThis" target="_blank">
-        Getting Started: Fork this Page Demo Widget
-      </Button>
     </Header>
 
-    <Text>
-      <h3>Featured Tutorials</h3>
-      <p>Below are walkthroughs of the page building experience.</p>
-      <div className="mb-2 mt-2">
-        <h5>
-          Step 1:
-          <a href="/#/edit/hack.near/widget/ForkThis">
-            Fork this widget
-          </a> and{" "}
-          <a href="/#/mob.near/widget/WidgetSource?src=hack.near/widget/ForkThis">
-            review code
-          </a>
-        </h5>
-        <h5>Step 2: Follow INSTRUCTIONS in the comments</h5>
-        <h5>Step 3: Complete exercises and save</h5>
-      </div>
-      <br />
-      <div className="mb-2 mt-2">
-        <h4>Earn rewards by creating a post:</h4>
-        <Widget src="hack.near/widget/Page.Compose" />
-      </div>
-    </Text>
-
     <Items>
-      <Item>
-        <Widget
-          src="adminalpha.near/widget/ComponentCard"
-          props={{ src: "hack.near/widget/ForkThis" }}
-        />
-      </Item>
+      <h4>Featured</h4>
       <Item>
         <Widget
           src="adminalpha.near/widget/ComponentCard"
@@ -272,6 +241,12 @@ return (
         <Widget
           src="adminalpha.near/widget/ComponentCard"
           props={{ src: "hack.near/widget/SocialPosts" }}
+        />
+      </Item>
+      <Item>
+        <Widget
+          src="adminalpha.near/widget/ComponentCard"
+          props={{ src: "evrything-docs.near/widget/StartHere" }}
         />
       </Item>
     </Items>
