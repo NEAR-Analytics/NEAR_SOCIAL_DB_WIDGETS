@@ -152,14 +152,14 @@ return (
         all post feeds read from the post index, when the feed encounters a post
         with a key besides main, it won't render the correct content unless the
         post widget itself is configured to check for it. Actually -- I haven't
-        been successful in reading message! No advantages!
+        been successful in reading message! I'm not sure this is a supported
+        approach
       </p>
       <p>
-        However, this also has some disadvantages; you can only post to one key
-        within an index at a time, making it impossible to "cross post" (post
-        once but appear on two feeds) and meaning a lot of duplicate data. A
-        possible solution would be modifying the indexer to allow an array of
-        keys.
+        Regardless, you can only post to one key within an index at a time,
+        making it impossible to "cross post" (post once but appear on two feeds)
+        and meaning a lot of duplicate data. A possible solution would be
+        modifying the indexer to allow an array of keys.
       </p>
     </div>
 
