@@ -19,7 +19,7 @@ const SidebarWrapper = styled.div`
 `;
 
 return (
-  <div class="container-md container py-3 mb-5">
+  <div class="container-fluid py-3 mb-5">
     <div class="row">
       {/**
     <SidebarWrapper className="col-2 pe-5">
@@ -30,7 +30,7 @@ return (
       </SidebarWrapper>
     */}
 
-      <div class="col-12 ps-5">
+      <div class="col-12">
         <Widget
           src="dima_sheleg.near/widget/DevSupport.Discussion.Title"
           props={{ disabled: !context.accountId, onClick: toggleQuestion }}
