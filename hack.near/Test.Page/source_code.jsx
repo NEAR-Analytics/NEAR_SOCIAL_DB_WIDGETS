@@ -85,6 +85,9 @@ return (
         .slice(0, props.limit ? parseInt(props.limit) : 999)
         .map(renderItem)}
     </div>
-    <Widget src="hack.near/widget/Hashtag.Feed" props={hashtag} />
+    <Widget
+      src="hack.near/widget/Hashtag.Feed"
+      props={{ hashtag: props.hashtag }}
+    />
   </div>
 );
