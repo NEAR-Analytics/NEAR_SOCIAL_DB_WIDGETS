@@ -11,7 +11,7 @@ const createThing = () => {
     {
       widget: {
         [`${state.hashtag}.Page`]: {
-          "": `const hashtag = props.hashtag ?? "${state.hashtag}"; return (<Widget src="${template}" props={{hashtag: props.hashtag}} />);`,
+          "": `const hashtag = props.hashtag ?? "${state.hashtag}"; return (<Widget src="${template}" props={{hashtag: hashtag}} />);`,
           metadata: {
             tags: {
               page: "",
