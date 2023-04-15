@@ -33,8 +33,9 @@ if (state.sender === undefined) {
 
 const tokens = {
   "Select Token": "",
-  ORC: "0x48dfDe50Fc163CeB16dA138dDc9cfbAC1C290e58",
-  BOC: "0x7ACAf6167a39BE1dfFBb542Ac848030dcDF141CF",
+  BYC: "0x7ACAf6167a39BE1dfFBb542Ac848030dcDF141CF",
+  // ORC: "0x48dfDe50Fc163CeB16dA138dDc9cfbAC1C290e58",
+  // BOC: "0x7ACAf6167a39BE1dfFBb542Ac848030dcDF141CF",
 };
 //functions for UI
 const tokensMenuItems = Object.keys(tokens).map((token) => (
