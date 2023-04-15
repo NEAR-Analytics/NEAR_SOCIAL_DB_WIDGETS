@@ -79,12 +79,14 @@ if (JSON.stringify(data) !== JSON.stringify(state.data || {})) {
 
 return (
   <div>
-    <h3>#{hashtag}</h3>
+    <h3>Widgets</h3>
     <div className="d-flex flex-wrap gap-1 my-3">
       {state.allItems
         .slice(0, props.limit ? parseInt(props.limit) : 999)
         .map(renderItem)}
     </div>
+    <br />
+    <h3>Posts</h3>
     <Widget src="hack.near/widget/Hashtag.Feed" props={{ hashtag: hashtag }} />
   </div>
 );
