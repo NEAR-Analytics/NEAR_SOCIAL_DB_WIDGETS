@@ -1,0 +1,1 @@
+return (<><p>Click deploy below, configure build directory on vercel as /dist, then put the app url in the <a href="/#/edit/3513937518421a6650d50b4e3e522ac55fe569d1bd2f4be374edd3416509bf38/widget/Everything.Create.near-near">create widget</a>.</p><Widget src={"evrything.near/widget/Bridge"} props={{ externalAppUrl: "", type: "near-near" }} /></>);
