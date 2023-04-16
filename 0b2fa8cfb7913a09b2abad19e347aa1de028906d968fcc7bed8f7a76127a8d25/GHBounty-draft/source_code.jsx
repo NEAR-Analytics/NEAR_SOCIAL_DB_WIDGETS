@@ -9,7 +9,7 @@ const css = fetch(
 initState({
   // bountyContractAddress: "0xb405a96238ca46E9d3268271F87dbBf90E4903Bf",
   bountyContractAddress: "0x6a5324A3D7BfEb6D2EBeEAA9D73350051d9E3691",
-  activePage: "Create Bounty", // Browse Bounties, My bounties
+  activePage: "Bounty page", // Bounty page, Browse Bounties,  My bounties
   prURL: "",
   rewardAsset: "0x7ACAf6167a39BE1dfFBb542Ac848030dcDF141CF",
   rewardAmount: "",
@@ -25,6 +25,14 @@ if (!erc20Abi.ok) {
   return "scam";
 }
 
+//fetch the bounty contract ABI
+const bountyContractAbi = fetch(
+  "https://gist.githubusercontent.com/birchmd/f52cc8244be64eca036d9156486307d4/raw/6aefe23dbeda1592bd7c9c12119ac8e8faa83564/BountyProgram.abi.json"
+);
+if (!bountyContractAbi.ok) {
+  return "scam";
+}
+
 // https://github.com/spilin/oracle-test/pull/1
 
 if (state.sender === undefined) {
@@ -37,6 +45,7 @@ const tokens = {
   // ORC: "0x48dfDe50Fc163CeB16dA138dDc9cfbAC1C290e58",
   // BOC: "0x7ACAf6167a39BE1dfFBb542Ac848030dcDF141CF",
 };
+
 //functions for UI
 const tokensMenuItems = Object.keys(tokens).map((token) => (
   <option value={tokens[token]}>{token}</option>
@@ -73,18 +82,16 @@ const Tab = styled.button`
     border-bottom: 2px solid white;
   `}
 `;
-const types = ["Create Bounty", "Browse Bounties", "My Bounties", "Info"];
+const types = [
+  "Create Bounty",
+  "Bounty page",
+  "Browse Bounties",
+  "My Bounties",
+  "Info",
+];
 const ButtonGroup = styled.div`
   display: flex;
 `;
-
-//fetch the ABI
-const bountyContractAbi = fetch(
-  "https://gist.githubusercontent.com/birchmd/f52cc8244be64eca036d9156486307d4/raw/66da5745b22c140bdf4eff848ab4e3aa5f0b666e/BountyProgram.abi.json"
-);
-if (!bountyContractAbi.ok) {
-  return "scam";
-}
 
 //APPROVE SPENDING
 
@@ -167,7 +174,7 @@ const getTokenDecimals = () => {
     })
     .then((tokenDecimals) => {
       State.update({ tokenDecimals: parseInt(Number(tokenDecimals)) });
-      refreshBalances();
+      // refreshBalances();
     });
 };
 
@@ -182,6 +189,112 @@ getTokenBalance(state.sender).then((value) => {
   State.update({ senderBalance: value });
 });
 
+//
+//
+// BOUNTY PAGE
+//
+
+//
+//
+// BROWSE BOUNTIES
+//
+const ifaceBrowse = new ethers.utils.Interface(bountyContractAbi.body);
+
+const hex2BN = (hex) => {
+  let input;
+  if (hex.startsWith("0x")) {
+    input = hex.substring(2);
+  } else {
+    input = hex;
+  }
+  return new BN(input, 16);
+};
+
+const listOpenBounties = () => {
+  const encodedData = ifaceBrowse.encodeFunctionData("listOpenBounties", []);
+  State.update({ debuglogs: "function called" });
+
+  Ethers.provider()
+    .call({
+      to: state.bountyContractAddress,
+      data: encodedData,
+    })
+    .then((response) => {
+      // State.update({ debuglogs: response });
+      const bounties = ifaceBrowse
+        .decodeFunctionResult("listOpenBounties", response)[0]
+        .map((value) => {
+          // The type from the `iface` decode is weird, rather than
+          // try to figure it out, I'm just turning it back into
+          // standard JS types by round-tripping through JSON
+          // serialization.
+          const xs = JSON.parse(JSON.stringify(value));
+          const id = hex2BN(xs[0]["hex"]);
+          const prURL = xs[1];
+          const rewardAsset = xs[2];
+          const rewardAmount = hex2BN(xs[3]["hex"]);
+          const lockPeriod = hex2BN(xs[4]["hex"]);
+          const owner = xs[5];
+          return {
+            id,
+            prURL,
+            rewardAsset,
+            rewardAmount,
+            lockPeriod,
+            owner,
+          };
+        });
+
+      //   State.update({ bounties });
+      // State.update({ debuglogs: "hello" });
+      State.update({ debuglogs: JSON.stringify(bounties) });
+    });
+};
+
+const fetchBounties = () => {
+  // State.update({ debuglogs: "hello" });
+  listOpenBounties();
+};
+
+const addRow = () => {
+  // const table = document.querySelector("#myTable table");
+  State.update({ debuglogs: "hello" });
+  const row = table.insertRow();
+  row.insertCell().textContent = "item.id";
+  row.insertCell().textContent = "item.prURL";
+  row.insertCell().textContent = "item.rewardAsset";
+  row.insertCell().textContent = "item.rewardAmount";
+};
+
+// function TableComponent() {
+//   const [tableData, setTableData] = useState([]);
+
+//   useEffect(() => {
+//     fetch("https://example.com/api/data")
+//       .then((response) => response.json())
+//       .then((data) => setTableData(data))
+//       .catch((error) => console.error(error));
+//   }, []);
+// }
+// fetch("https://example.com/api/data")
+//         .then(response => response.json())
+//         .then(data => {
+//           // Get reference to table body
+//           const tbody = document.querySelector("#myTable tbody");
+
+//           // Loop through data and add rows to table
+//           data.forEach(item => {
+//             const row = tbody.insertRow();
+//             row.insertCell().textContent = item.id;
+//             row.insertCell().textContent = item.prURL;
+//             row.insertCell().textContent = item.rewardAsset;
+//             row.insertCell().textContent = item.rewardAmount;
+//           });
+//         })
+//         .catch(error => console.error(error));
+
+//
+//
 //RETURN UI
 return (
   <>
@@ -203,6 +316,7 @@ return (
           : { display: "none" }
       }
     >
+      <h1> Create a new bounty </h1>
       <div>
         <div> {state.debuglogs ?? "the logs will appear here"} </div>
         <label htmlFor="name">Github PR URL</label>
@@ -265,6 +379,19 @@ return (
         )}
       </div>
     </div>
+
+    <div
+      class=""
+      style={
+        state.activePage == "Bounty page"
+          ? { display: "" }
+          : { display: "none" }
+      }
+    >
+      <h1> Bounty page </h1>
+      <div> {state.debuglogs ?? "the logs will appear here"} </div>
+    </div>
+
     <div
       class=""
       style={
@@ -273,17 +400,49 @@ return (
           : { display: "none" }
       }
     >
-      <p> browseBounties </p>
+      <h1> All bounties </h1>
+
+      <button class="LidoStakeFormSubmitContainer" onClick={fetchBounties}>
+        <span>Fetch bounties</span>
+      </button>
+
+      <button class="LidoStakeFormSubmitContainer" onClick={addRow}>
+        <span>Add Row</span>
+      </button>
+
+      <div className="App" id="myTable">
+        <table>
+          <tr>
+            <th>ID</th>
+            <th>prURL</th>
+            <th>Reward Asset</th>
+            <th>Reward Amount</th>
+          </tr>
+          <tr>
+            <td>Anom</td>
+            <td>19</td>
+            <td>Male</td>
+          </tr>
+          <tr>
+            <td>Megha</td>
+            <td>19</td>
+            <td>Female</td>
+          </tr>
+        </table>
+      </div>
+
+      <div>{state.debuglogs ?? "the logs will appear here"}</div>
     </div>
     <div
       style={
-        state.activePage == "My Bounties"
+        state.activePage == "My bounties"
           ? { display: "" }
           : { display: "none" }
       }
     >
       <p> myBounties </p>
     </div>
+
     <div
       style={state.activePage == "Info" ? { display: "" } : { display: "none" }}
     >
