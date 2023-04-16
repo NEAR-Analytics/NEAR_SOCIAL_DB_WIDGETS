@@ -95,7 +95,9 @@ return (
       />
     </div>
     <div class="mb-3">
-      <button onClick={sendUpdate}>Send</button>
+      <button onClick={sendUpdate} class="ms-2">
+        Send
+      </button>
       <button onClick={getPrice} class="ms-2">
         Get Price
       </button>
