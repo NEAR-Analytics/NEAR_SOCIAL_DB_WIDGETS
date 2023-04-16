@@ -1,0 +1,1 @@
+return (<p>Go configure your <a href="/#/edit/connectamey.near/widget/Everything.Create.Summary">create widget</a>!</p>);
