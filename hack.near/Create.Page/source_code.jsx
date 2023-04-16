@@ -3,7 +3,7 @@ const typeTag = props.typeTag;
 const template = props.template;
 
 State.init({
-  hashtag: "",
+  hashtag: state.hashtag ?? typeTag,
 });
 
 const createThing = () => {
@@ -29,7 +29,7 @@ const createThing = () => {
 
 return (
   <div>
-    <div className="mb-2">
+    <div className="mb-2 mt-2">
       <input type="text" value={state.hashtag} />
     </div>
     <div>
