@@ -29,15 +29,9 @@ const createThing = () => {
 
 return (
   <div>
-    <Widget
-      src="contribut3.near/widget/Inputs.Text"
-      props={{
-        label: "Page Topic",
-        placeholder: "#hashtag",
-        value: state.hashtag,
-        onChange: (hashtag) => State.update({ hashtag }),
-      }}
-    />
+    <div className="mb-2">
+      <input type="text" value={state.hashtag} />
+    </div>
     <div>
       <button onClick={createThing} disabled={state.hashtag === ""}>
         Create
