@@ -1,5 +1,9 @@
 // Repository: https://github.com/near-everything/idea-creator
-const externalAppUrl = props.externalAppUrl;
+const externalAppUrl = props.externalAppUrl || "";
+
+if (externalAppUrl === "") {
+  return <p>please provide an app url.</p>;
+}
 
 /**
  * Initial Path (optional but recommended)
