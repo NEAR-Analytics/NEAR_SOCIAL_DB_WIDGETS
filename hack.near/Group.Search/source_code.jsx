@@ -101,6 +101,5 @@ return (
         </button>
       )}
     </div>
-    {props.debug && <pre>{JSON.stringify(state.result, undefined, 2)}</pre>}
   </>
 );
