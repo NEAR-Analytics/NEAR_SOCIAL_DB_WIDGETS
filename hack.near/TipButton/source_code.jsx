@@ -1,7 +1,7 @@
 const accountId = props.accountId ?? "infinity.near";
 
 let tipNEAR = (accId) => {
-  let amount = "500000000000000000000000"; //0.5N
+  let amount = "500000000000000000000000"; // 0.5N
   Near.call(
     "passthrough.near",
     "transfer",
