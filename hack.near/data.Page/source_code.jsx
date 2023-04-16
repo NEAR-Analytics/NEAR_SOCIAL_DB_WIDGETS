@@ -1,1 +1,1 @@
-const hashtag = props.hashtag ?? "data"; return (<Widget src="hack.near/widget/Common.Page" props={{hashtag: hashtag}} />);
+const hashtag = props.hashtag ?? "data"; return (<Widget src="hack.near/widget/Hashtag.Feed" props={{hashtag: hashtag}} />);
