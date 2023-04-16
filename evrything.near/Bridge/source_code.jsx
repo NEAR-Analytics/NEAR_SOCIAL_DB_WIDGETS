@@ -1,8 +1,11 @@
-// Repository: https://github.com/near-everything/idea-creator
 const externalAppUrl = props.externalAppUrl || "";
 
 if (externalAppUrl === "") {
-  return <p>please provide an app url.</p>;
+  return (
+    <a href="https://vercel.com/new/clone?repository-url=https://github.com/near-everything/thing-creator">
+      <img src="https://vercel.com/button" alt="Deploy with Vercel" />
+    </a>
+  );
 }
 
 /**
