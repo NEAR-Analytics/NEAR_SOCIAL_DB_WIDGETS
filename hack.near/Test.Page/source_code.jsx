@@ -17,7 +17,7 @@ if (hashtag) {
     .flat();
 
   if (!keys.length) {
-    return `No widgets found with hashtag #${hashtag}`;
+    return `No widgets found with tag: #${hashtag}`;
   }
 }
 
