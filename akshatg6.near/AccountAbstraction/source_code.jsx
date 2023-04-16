@@ -291,37 +291,8 @@ const getSender = () => {
 return (
   <Theme>
     <div class="LidoContainer">
-      <div class="Header">Stake Ether</div>
-      <div class="SubHeader">Stake ETH and receive stETH while staking.</div>
-
       <div class="LidoForm">
-        {state.sender && (
-          <>
-            <div class="LidoFormTopContainer">
-              <div class="LidoFormTopContainerLeft">
-                <div class="LidoFormTopContainerLeftContent1">
-                  <div class="LidoFormTopContainerLeftContent1Container">
-                    <span>Available to stake</span>
-                    <div class="LidoFormTopContainerLeftContent1Circle" />
-                  </div>
-                </div>
-                <div class="LidoFormTopContainerLeftContent2">
-                  <span>
-                    {state.balance ?? (!state.sender ? "0" : "...")}&nbsp;ETH
-                  </span>
-                </div>
-              </div>
-              <div class="LidoFormTopContainerRight">
-                <div class="LidoFormTopContainerRightContent1">
-                  <div class="LidoFormTopContainerRightContent1Text">
-                    <span>{getSender()}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="LidoSplitter" />
-          </>
-        )}
+        {state.sender && <></>}
         <div
           class={
             state.sender ? "LidoFormBottomContainer" : "LidoFormTopContainer"
@@ -336,8 +307,6 @@ return (
       <div class="LidoStakeForm">
         <div>
           {inputElements}
-          {inputElements2}
-          <span class="LidoStakeFormInputContainerSpan1"></span>
           <div
             className="LidoStakeFormInputContainerSpan2"
             style={{ display: "flex", justifyContent: "center" }}
@@ -349,6 +318,8 @@ return (
               +
             </button>
           </div>
+          {inputElements2}
+          <span class="LidoStakeFormInputContainerSpan1"></span>
 
           {state.alert && <span>{state.alert}</span>}
         </div>
@@ -368,27 +339,6 @@ return (
           >
             Submit
           </button>
-        </div>
-
-        <div class="LidoFooterContainer">
-          {state.sender && (
-            <div class="LidoFooterRaw">
-              <div class="LidoFooterRawLeft">You will receive</div>
-              <div class="LidoFooterRawRight">${state.strEther ?? 0} stETH</div>
-            </div>
-          )}
-          <div class="LidoFooterRaw">
-            <div class="LidoFooterRawLeft">Exchange rate</div>
-            <div class="LidoFooterRawRight">1 ETH = 1 stETH</div>
-          </div>
-          <div class="LidoFooterRaw">
-            <div class="LidoFooterRawLeft">Transaction cost</div>
-            <div class="LidoFooterRawRight">{state.txCost}</div>
-          </div>
-          <div class="LidoFooterRaw">
-            <div class="LidoFooterRawLeft">Reward fee</div>
-            <div class="LidoFooterRawRight">10%</div>
-          </div>
         </div>
       </div>
     </div>
