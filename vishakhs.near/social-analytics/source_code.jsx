@@ -108,8 +108,6 @@ const sentiment = fetch(
   }
 );
 
-// console.log(sentiment.body.sentiment);
-
 const values = Object.values(sentiment.body.sentiment);
 const labels = Object.keys(sentiment.body.sentiment);
 
@@ -142,17 +140,34 @@ const actives = fetch("https://fetcher-api.lionhack.workers.dev/api/active");
 // console.log(Object.keys(actives.body.active["0"]));
 const users = Object.keys(actives.body.active["0"]);
 const num = Object.values(actives.body.active["0"]);
-console.log(num);
+console.log(users);
 
 const itemList = users.map((item, index) => <li key={index}>{item}</li>);
 
 return (
   <>
     <>
-      <h5 className="text-center">Top Posters on NEAR Social</h5>
+      <h1 className="text-center">Top Posters on NEAR Social</h1>
       <div className="flex flex-row">
-        <ol>{itemList}</ol>
-        <ul></ul>
+        {Object.entries(actives.body.active["0"]).map(([key, value]) => {
+          let accountId = key;
+          return (
+            <div className="d-flex justify-content-between mb-3">
+              <div className="me-4" style={{ width: "90%" }}>
+                <Widget src="mob.near/widget/Profile" props={{ accountId }} />
+              </div>
+              <div
+                style={{ width: "12%", padding: 0, justifyContent: "center" }}
+              >{`Posts: ${value}`}</div>
+              <div style={{ width: "10%" }}>
+                <Widget
+                  src="mob.near/widget/FollowButton"
+                  props={{ accountId }}
+                />
+              </div>
+            </div>
+          );
+        })}
       </div>
     </>
     <h1 className="text-center">AI Sentiment Analysis</h1>
@@ -210,6 +225,7 @@ return (
             }}
           />
           {label}
+          {"  "}
         </div>
       ))}
     </div>
