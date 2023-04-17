@@ -355,6 +355,55 @@ const approveApplication = () => {
 
 //
 //
+//LIST MY BOUNTIES
+//
+//
+
+const listActiveBountiesBy = () => {
+  const payeeAddress = state.payeeAddress;
+  console.log(payeeAddress);
+  const encodedData = iface.encodeFunctionData("listActiveBountiesBy", [
+    payeeAddress,
+  ]);
+
+  Ethers.provider()
+    .call({
+      to: state.bountyContractAddress,
+      data: encodedData,
+    })
+    .then((response) => {
+      console.log(response);
+      // const applications = iface
+      //   .decodeFunctionResult("listApplications", response)[0]
+      //   .map((value) => {
+      //     console.log(value);
+      //     // The type from the `iface` decode is weird, rather than
+      //     // try to figure it out, I'm just turning it back into
+      //     // standard JS types by round-tripping through JSON
+      //     // serialization.
+      //     const xs = JSON.parse(JSON.stringify(value));
+      //     const id = hex2BN(xs[0]["hex"]);
+      //     // const prURL = xs[1];
+      //     // const rewardAsset = xs[2];
+      //     // const rewardAmount = hex2BN(xs[3]["hex"]);
+      //     // const lockPeriod = hex2BN(xs[4]["hex"]);
+      //     // const owner = xs[5];
+      //     return {
+      //       id
+      //       // prURL,
+      //       // rewardAsset,
+      //       // rewardAmount,
+      //       // lockPeriod,
+      //       // owner,
+      //     };
+      //   });
+
+      // State.update({ myActiveBounties: value });
+    });
+};
+
+//
+//
 //RETURN UI
 return (
   <>
@@ -631,10 +680,7 @@ return (
       />
       <br />
       {!!state.sender ? (
-        <button
-          class="LidoStakeFormSubmitContainer"
-          onClick={listActiveBountiesBy}
-        >
+        <button class="LidoStakeFormSubmitContainer" onClick={claimBounty}>
           <span>Claim my bounty</span>
         </button>
       ) : (
