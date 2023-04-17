@@ -9,7 +9,7 @@ const css = fetch(
 initState({
   // bountyContractAddress: "0xb405a96238ca46E9d3268271F87dbBf90E4903Bf",
   bountyContractAddress: "0x6a5324A3D7BfEb6D2EBeEAA9D73350051d9E3691",
-  activePage: "Bounty page", // Bounty page, Browse Bounties,  My bounties
+  activePage: "My Bounties", // Create Bounty, Apply to Bounty, Bounty page, Browse Bounties,  My Bounties
   prURL: "",
   rewardAsset: "0x7ACAf6167a39BE1dfFBb542Ac848030dcDF141CF",
   rewardAmount: "",
@@ -84,8 +84,9 @@ const Tab = styled.button`
 `;
 const types = [
   "Create Bounty",
-  "Bounty page",
   "Browse Bounties",
+  "Apply to Bounty",
+  "Applications",
   "My Bounties",
   "Info",
 ];
@@ -109,14 +110,21 @@ const approveSpending = () => {
   State.update({ debuglogs: JSON.stringify(output) });
 };
 
+//initiate bounty object for all functions
 const bountyObject = new ethers.Contract(
   state.bountyContractAddress,
   bountyContractAbi.body,
   Ethers.provider().getSigner()
 );
 
+//
+//
+//CREATE BOUNTY
+//
+//
+
 const createBounty = () => {
-  State.update({ debuglogs: state.rewardAsset });
+  // State.update({ debuglogs: state.rewardAsset });
 
   const output = bountyObject.createBounty(
     // "https://github.com/spilin/oracle-test/pull/1",
@@ -210,9 +218,19 @@ const hex2BN = (hex) => {
   return new BN(input, 16);
 };
 
+const tableBounties = [
+  {
+    id: 1,
+    prURL: "link URL",
+    rewardAsset: "BYC",
+    rewardAmount: 2000,
+  },
+];
+
+State.update({ tableBounties: tableBounties });
+
 const listOpenBounties = () => {
   const encodedData = ifaceBrowse.encodeFunctionData("listOpenBounties", []);
-  State.update({ debuglogs: "function called" });
 
   Ethers.provider()
     .call({
@@ -245,9 +263,11 @@ const listOpenBounties = () => {
           };
         });
 
-      //   State.update({ bounties });
+      // State.update({ bounties });
       // State.update({ debuglogs: "hello" });
-      State.update({ debuglogs: JSON.stringify(bounties) });
+      State.update({ bounties: JSON.stringify(bounties) });
+
+      // State.update({ tableBounties: bounties });
     });
 };
 
@@ -256,42 +276,82 @@ const fetchBounties = () => {
   listOpenBounties();
 };
 
-const addRow = () => {
-  // const table = document.querySelector("#myTable table");
-  State.update({ debuglogs: "hello" });
-  const row = table.insertRow();
-  row.insertCell().textContent = "item.id";
-  row.insertCell().textContent = "item.prURL";
-  row.insertCell().textContent = "item.rewardAsset";
-  row.insertCell().textContent = "item.rewardAmount";
+//
+//
+//APPLY TO BOUNTY
+//
+//
+
+//update by default payee address to sender address
+State.update({ payeeAddress: state.sender });
+
+const applyToBounty = () => {
+  const output = bountyObject.submitApplication(
+    state.bountyID,
+    state.payeeAddress,
+    state.githubHandle,
+    state.comments
+  );
 };
 
-// function TableComponent() {
-//   const [tableData, setTableData] = useState([]);
+//
+//
+//RETRIEVE APPLICATIONS
+//
+//
+const listApplications = () => {
+  const id = parseInt(state.bountyID);
+  console.log(typeof id);
+  const encodedData = iface.encodeFunctionData("listApplications", [id]);
 
-//   useEffect(() => {
-//     fetch("https://example.com/api/data")
-//       .then((response) => response.json())
-//       .then((data) => setTableData(data))
-//       .catch((error) => console.error(error));
-//   }, []);
-// }
-// fetch("https://example.com/api/data")
-//         .then(response => response.json())
-//         .then(data => {
-//           // Get reference to table body
-//           const tbody = document.querySelector("#myTable tbody");
+  Ethers.provider()
+    .call({
+      to: state.bountyContractAddress,
+      data: encodedData,
+    })
+    .then((response) => {
+      console.log(response);
+      // const applications = iface
+      //   .decodeFunctionResult("listApplications", response)[0]
+      //   .map((value) => {
+      //     console.log(value);
+      //     // The type from the `iface` decode is weird, rather than
+      //     // try to figure it out, I'm just turning it back into
+      //     // standard JS types by round-tripping through JSON
+      //     // serialization.
+      //     // const xs = JSON.parse(JSON.stringify(value));
+      //     // const id = hex2BN(xs[0]["hex"]);
+      //     // const prURL = xs[1];
+      //     // const rewardAsset = xs[2];
+      //     // const rewardAmount = hex2BN(xs[3]["hex"]);
+      //     // const lockPeriod = hex2BN(xs[4]["hex"]);
+      //     // const owner = xs[5];
+      //     // return {
+      //     //   id,
+      //     //   prURL,
+      //     //   rewardAsset,
+      //     //   rewardAmount,
+      //     //   lockPeriod,
+      //     //   owner,
+      //     // };
+      //   });
 
-//           // Loop through data and add rows to table
-//           data.forEach(item => {
-//             const row = tbody.insertRow();
-//             row.insertCell().textContent = item.id;
-//             row.insertCell().textContent = item.prURL;
-//             row.insertCell().textContent = item.rewardAsset;
-//             row.insertCell().textContent = item.rewardAmount;
-//           });
-//         })
-//         .catch(error => console.error(error));
+      // State.update({ applications: value });
+    });
+};
+
+//
+//
+//APPROVE APPLICATION
+//
+//
+
+const approveApplication = () => {
+  const output = bountyObject.approveApplication(
+    state.applicationID,
+    state.payeeAddress
+  );
+};
 
 //
 //
@@ -379,17 +439,62 @@ return (
         )}
       </div>
     </div>
-
     <div
-      class=""
       style={
-        state.activePage == "Bounty page"
+        state.activePage == "Apply to Bounty"
           ? { display: "" }
           : { display: "none" }
       }
     >
-      <h1> Bounty page </h1>
-      <div> {state.debuglogs ?? "the logs will appear here"} </div>
+      <h1>Apply to an existing Bounty</h1>
+
+      <label htmlFor="bountyID">Bounty ID</label>
+      <input
+        value={state.bountyID}
+        id="bountyID"
+        type="text"
+        onChange={(e) => State.update({ bountyID: e.target.value })}
+        placeholder="Enter the bountyID"
+        required
+      />
+      <label htmlFor="payeeAddress">Your address</label>
+      <input
+        value={state.sender}
+        id="payeeAddress"
+        type="text"
+        onChange={(e) => State.update({ payeeAddress: e.target.value })}
+        placeholder="Add the address you will receive the bounty to"
+        required
+      />
+      <label htmlFor="githubHandle">Your github handle</label>
+      <input
+        value={state.githubHandle}
+        id="githubHandle"
+        type="text"
+        onChange={(e) => State.update({ githubHandle: e.target.value })}
+        placeholder="Enter your github handle"
+        required
+      />
+      <label htmlFor="comments">Comments</label>
+      <input
+        value={state.comments}
+        id="comments"
+        type="text"
+        onChange={(e) => State.update({ comments: e.target.value })}
+        placeholder="Please add your comments here"
+        required
+      />
+      <br />
+      {!!state.sender ? (
+        <button class="LidoStakeFormSubmitContainer" onClick={applyToBounty}>
+          <span>Apply</span>
+        </button>
+      ) : (
+        <Web3Connect
+          className="LidoStakeFormSubmitContainer"
+          connectLabel="Connect with Web3"
+        />
+      )}
     </div>
 
     <div
@@ -400,47 +505,144 @@ return (
           : { display: "none" }
       }
     >
-      <h1> All bounties </h1>
+      <h1> See all bounties </h1>
 
       <button class="LidoStakeFormSubmitContainer" onClick={fetchBounties}>
-        <span>Fetch bounties</span>
+        <span>List bounties</span>
       </button>
 
-      <button class="LidoStakeFormSubmitContainer" onClick={addRow}>
-        <span>Add Row</span>
-      </button>
-
-      <div className="App" id="myTable">
-        <table>
-          <tr>
-            <th>ID</th>
-            <th>prURL</th>
-            <th>Reward Asset</th>
-            <th>Reward Amount</th>
-          </tr>
-          <tr>
-            <td>Anom</td>
-            <td>19</td>
-            <td>Male</td>
-          </tr>
-          <tr>
-            <td>Megha</td>
-            <td>19</td>
-            <td>Female</td>
-          </tr>
-        </table>
-      </div>
-
-      <div>{state.debuglogs ?? "the logs will appear here"}</div>
+      <div>{state.bounties ?? "the list of bounties will appear here"}</div>
     </div>
     <div
       style={
-        state.activePage == "My bounties"
+        state.activePage == "Applications"
           ? { display: "" }
           : { display: "none" }
       }
     >
-      <p> myBounties </p>
+      <h1>Approve applications</h1>
+      <h3>1. Retrieve applications for a bounty</h3>
+      <label htmlFor="bountyID">Bounty ID</label>
+      <input
+        value={state.bountyID}
+        id="comments"
+        type="text"
+        onChange={(e) => State.update({ bountyID: e.target.value })}
+        placeholder="Add the bounty ID to retrieve its applications"
+        required
+      />
+      <br />
+      {!!state.sender ? (
+        <button class="LidoStakeFormSubmitContainer" onClick={listApplications}>
+          <span>Retrieve Applications</span>
+        </button>
+      ) : (
+        <Web3Connect
+          className="LidoStakeFormSubmitContainer"
+          connectLabel="Connect with Web3"
+        />
+      )}
+      <br />
+      <div> {state.applications ?? "the applications will appear here"} </div>
+
+      <br />
+      <h3>2. Approve an application</h3>
+      <label htmlFor="applicationID">Application ID</label>
+      <input
+        value={state.applicationID}
+        id="applicationID"
+        type="text"
+        onChange={(e) => State.update({ applicationID: e.target.value })}
+        placeholder="Enter the applicationID to approve"
+        required
+      />
+      <label htmlFor="payeeAddress">Payee address</label>
+      <input
+        value={state.payeeAddress}
+        id="payeeAdress"
+        type="text"
+        onChange={(e) => State.update({ payeeAdress: e.target.value })}
+        placeholder="Enter the payee address"
+        required
+      />
+      <br />
+      {!!state.sender ? (
+        <button
+          class="LidoStakeFormSubmitContainer"
+          onClick={approveApplication}
+        >
+          <span>Approve application</span>
+        </button>
+      ) : (
+        <Web3Connect
+          className="LidoStakeFormSubmitContainer"
+          connectLabel="Connect with Web3"
+        />
+      )}
+    </div>
+
+    <div
+      class=""
+      style={
+        state.activePage == "My Bounties"
+          ? { display: "" }
+          : { display: "none" }
+      }
+    >
+      <h1> My bounties </h1>
+      <h3>1. See all your approved bounties</h3>
+      <label htmlFor="payeeAddress">Payee Address</label>
+      <input
+        value={state.payeeAddress}
+        id="payeeAddress"
+        type="text"
+        onChange={(e) => State.update({ payeeAddress: e.target.value })}
+        placeholder="Enter the address you applied with"
+        required
+      />
+      <br />
+      {!!state.sender ? (
+        <button
+          class="LidoStakeFormSubmitContainer"
+          onClick={listActiveBountiesBy}
+        >
+          <span>See my bounties</span>
+        </button>
+      ) : (
+        <Web3Connect
+          className="LidoStakeFormSubmitContainer"
+          connectLabel="Connect with Web3"
+        />
+      )}
+      <div>
+        {state.approvedBounties ?? "your approved bounties will appear here"}
+      </div>
+
+      <br />
+      <h3>2. Claim your bounty</h3>
+      <label htmlFor="payeeAddress">Payee Address</label>
+      <input
+        value={state.payeeAddress}
+        id="payeeAddress"
+        type="text"
+        onChange={(e) => State.update({ payeeAddress: e.target.value })}
+        placeholder="Enter the address you applied with"
+        required
+      />
+      <br />
+      {!!state.sender ? (
+        <button
+          class="LidoStakeFormSubmitContainer"
+          onClick={listActiveBountiesBy}
+        >
+          <span>Claim my bounty</span>
+        </button>
+      ) : (
+        <Web3Connect
+          className="LidoStakeFormSubmitContainer"
+          connectLabel="Connect with Web3"
+        />
+      )}
     </div>
 
     <div
