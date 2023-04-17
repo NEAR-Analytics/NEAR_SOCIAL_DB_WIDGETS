@@ -71,7 +71,7 @@ return (
       <input type="text" onChange={(e) => onChangeRecipient(e.target.value)} />
     </div>
     <div className="mb-3">
-      Amount in USD:
+      Amount:
       <input type="number" onChange={(e) => onChangeAmount(e.target.value)} />
     </div>
     <button className="btn btn-success" onClick={handleProposal}>
