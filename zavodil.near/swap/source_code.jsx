@@ -963,7 +963,7 @@ return (
       />
     )}
 
-    {state.network === "NEAR" && state.inputAsset && (
+    {state.network === "NEAR" && state.inputAsset && state.outputAsset && (
       <Widget
         src="weige.near/widget/ref-swap-getEstimate"
         props={{
@@ -983,7 +983,7 @@ return (
       />
     )}
 
-    {state.network === "ETH" && state.inputAsset && (
+    {state.network === "ETH" && state.inputAsset && state.outputAsset && (
       <>
         <Widget
           src="zavodil.near/widget/uni-v3-getEstimate"
