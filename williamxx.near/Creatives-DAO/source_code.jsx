@@ -15,6 +15,9 @@ if (!accountId) {
 return (
   <div>
     <div className="mb-3">
+      <Widget src="williamxx.near/widget/CreativesDAO-Banner" />
+    </div>
+    <div className="mb-3">
       <h2>WELCOME TO CREATIVES DAO</h2>
     </div>
     <div className="mb-3">
