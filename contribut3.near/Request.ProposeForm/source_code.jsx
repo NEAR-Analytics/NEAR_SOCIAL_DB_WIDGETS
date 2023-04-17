@@ -263,6 +263,16 @@ return (
             }}
           />
         </DetailInput>
+        <DetailInput>
+          <Widget
+            src={`${ownerId}/widget/Inputs.Date`}
+            props={{
+              label: "End date",
+              value: state.endDate,
+              onChange: (endDate) => State.update({ endDate }),
+            }}
+          />
+        </DetailInput>
       </Details>
       <Widget
         src={`${ownerId}/widget/Inputs.Checkbox`}
