@@ -214,8 +214,6 @@ const fetchBounties = () => {
   listOpenBounties();
 };
 
-State.update({ payeeAddress: state.sender });
-
 const applyToBounty = () => {
   const output = bountyObject.submitApplication(
     state.bountyID,
