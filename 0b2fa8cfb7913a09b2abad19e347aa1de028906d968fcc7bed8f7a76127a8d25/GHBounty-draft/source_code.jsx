@@ -664,7 +664,7 @@ return (
         />
       )}
       <div>
-        {state.approvedBounties ?? "your approved bounties will appear here"}
+        {state.myActiveBounties ?? "your approved bounties will appear here"}
       </div>
 
       <br />
