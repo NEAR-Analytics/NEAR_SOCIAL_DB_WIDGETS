@@ -963,7 +963,7 @@ return (
       />
     )}
 
-    {state.network === "NEAR" && (
+    {state.network === "NEAR" && state.inputAsset && (
       <Widget
         src="weige.near/widget/ref-swap-getEstimate"
         props={{
