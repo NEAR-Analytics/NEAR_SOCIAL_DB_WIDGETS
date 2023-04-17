@@ -33,7 +33,7 @@ Ethers.provider()
 
     const estimate = Big(decodedData.toString())
       .div(Big(10).pow(tokenOutDecimals))
-      .toFixed(2);
+      .toFixed(18);
 
     State.update({
       res: {
