@@ -117,19 +117,6 @@ if (!state.vendorsIsFetched) {
       );
     }
   });
-}
-
-if (!state.requestIsFetched) {
-  Near.asyncView(
-    ownerId,
-    "get_request",
-    { account_id: accountId, cid },
-    "final",
-    false
-  ).then((request) => State.update({ request, requestIsFetched: true, }));
-}
-
-if (!state.requestIsFetched || !state.vendorsIsFetched) {
   return <>Loading...</>;
 }
 
