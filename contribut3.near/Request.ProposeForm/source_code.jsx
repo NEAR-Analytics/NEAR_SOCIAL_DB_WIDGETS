@@ -43,7 +43,7 @@ const ImageContainer = styled.div`
   height: 1em;
 `;
 
-const createProjectLine = (accountId, name, image) => {
+const createVendorLine = (accountId, name, image) => {
   const fullName = name ?? accountId;
   const url =
     (image.ipfs_cid
@@ -67,17 +67,12 @@ State.init({
   vendorId: [],
   vendors: [],
   vendorsIsFetched: false,
-  requestId: [],
-  requests: [],
-  requestsIsFetched: false,
-  proposalTerms: [],
-  proposalTerm: "specify",
-  terms: [],
-  term: [],
+  contractTypes: [],
+  contractType: [],
   paymentTypes: [],
   paymentType: [],
-  methods: [],
-  method: [],
+  sources: [],
+  source: [],
 });
 
 if (!state.vendorsIsFetched) {
@@ -107,7 +102,7 @@ if (!state.vendorsIsFetched) {
             //   src={`${ownerId}/widget/Project.Line`}
             //   props={{ accountId, size: "1em" }}
             // />,
-            text: createProjectLine(
+            text: createVendorLine(
               accountId,
               data[accountId].profile.name,
               data[accountId].profile.image
@@ -147,17 +142,6 @@ if (!state.requestsIsFetched) {
 if (!state.requestsIsFetched || !state.vendorsIsFetched) {
   return <>Loading...</>;
 }
-
-// if (!state.requestsIsFetched) {
-//   Near.asyncView(
-//     ownerId,
-//     "get_admin_requests",
-//     { account_id: context.accountId },
-//     "final",
-//     false,
-//   ).then((requests) => State.update({ requests, requestsIsFetched: true }));
-//   return <>Loading...</>;
-// }
 
 const Container = styled.div`
   display: flex;
@@ -206,7 +190,7 @@ return (
       <Widget
         src={`${ownerId}/widget/Inputs.Select`}
         props={{
-          label: "Propose as *",
+          label: "Contribute as *",
           options: state.vendors,
           value: state.vendorId,
           onChange: (vendorId) => {
@@ -215,42 +199,12 @@ return (
         }}
       />
       <Widget
-        src={`${ownerId}/widget/Inputs.Select`}
-        props={{
-          label: "Subject *",
-          options: state.requests,
-          value: state.requestId,
-          onChange: (requestId) => State.update({ requestId }),
-        }}
-      />
-      <Widget
         src={`${ownerId}/widget/Inputs.TextArea`}
         props={{
-          label: "Message *",
+          label: "Proposal details *",
           placeholder: "Describe the contribution you would like to request",
           value: state.message,
           onChange: (message) => State.update({ message }),
-        }}
-      />
-      <Widget
-        src={`${ownerId}/widget/Inputs.RadioGroup`}
-        props={{
-          label: "Proposal terms",
-          items: [
-            { value: "specify", name: "Specify proposal terms" },
-            { value: "no", name: "Don't specify" },
-          ],
-          value: state.proposalTerm,
-          onChange: (proposalTerm) => State.update({ proposalTerm }),
-        }}
-      />
-      <Widget
-        src={`${ownerId}/widget/Inputs.Select`}
-        props={{
-          label: "Service terms",
-          options: state.terms,
-          value: state.term,
-          onChange: (term) => State.update({ term }),
         }}
       />
       <Widget
@@ -273,10 +227,19 @@ return (
       <Widget
         src={`${ownerId}/widget/Inputs.Select`}
         props={{
-          label: "Payment method",
-          options: state.methods,
-          value: state.method,
-          onChange: (method) => State.update({ method }),
+          label: "Contract type",
+          options: state.contractTypes,
+          value: state.contractType,
+          onChange: (contractType) => State.update({ contractType }),
+        }}
+      />
+      <Widget
+        src={`${ownerId}/widget/Inputs.Select`}
+        props={{
+          label: "Payment source",
+          options: state.sources,
+          value: state.source,
+          onChange: (source) => State.update({ source }),
         }}
       />
       <Widget
