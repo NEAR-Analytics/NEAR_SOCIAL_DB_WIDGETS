@@ -6,7 +6,7 @@ State.init({
   outputAssetTokenId:
     "dac17f958d2ee523a2206206994597c13d831ec7.factory.bridge.near",
   inputAssetAmount: 1,
-  outputAssetAmount: 0,
+  outputAssetAmount: 1,
   network: "NEAR",
   assets: [
     "NEAR",
@@ -900,40 +900,44 @@ const canSwap =
 
 return (
   <Theme>
-    <Widget
-      src="zavodil.near/widget/AssetListModal"
-      props={{
-        hidden: state.InputAssetModalHidden ?? true,
-        network: state.network,
-        assets: state.assets,
-        selectedAssets: [state.inputAssetTokenId],
-        onClick: (tokenId) => {
-          State.update({
-            InputAssetModalHidden: true,
-            inputAssetTokenId: tokenId,
-            inputAsset: null,
-          });
-        },
-        onClose: () => State.update({ InputAssetModalHidden: true }),
-      }}
-    />
-    <Widget
-      src="zavodil.near/widget/AssetListModal"
-      props={{
-        hidden: state.OutputAssetModalHidden ?? true,
-        assets: state.assets,
-        network: state.network,
-        selectedAssets: [state.outputAssetTokenId],
-        onClick: (tokenId) => {
-          State.update({
-            OutputAssetModalHidden: true,
-            outputAssetTokenId: tokenId,
-            outputAsset: null,
-          });
-        },
-        onClose: () => State.update({ OutputAssetModalHidden: true }),
-      }}
-    />
+    {state.InputAsset && state.inputAssetTokenId && (
+      <Widget
+        src="zavodil.near/widget/AssetListModal"
+        props={{
+          hidden: state.InputAssetModalHidden ?? true,
+          network: state.network,
+          assets: state.assets,
+          selectedAssets: [state.inputAssetTokenId],
+          onClick: (tokenId) => {
+            State.update({
+              InputAssetModalHidden: true,
+              inputAssetTokenId: tokenId,
+              inputAsset: null,
+            });
+          },
+          onClose: () => State.update({ InputAssetModalHidden: true }),
+        }}
+      />
+    )}
+    {state.outputAsset && state.outputAssetTokenId && (
+      <Widget
+        src="zavodil.near/widget/AssetListModal"
+        props={{
+          hidden: state.OutputAssetModalHidden ?? true,
+          assets: state.assets,
+          network: state.network,
+          selectedAssets: [state.outputAssetTokenId],
+          onClick: (tokenId) => {
+            State.update({
+              OutputAssetModalHidden: true,
+              outputAssetTokenId: tokenId,
+              outputAsset: null,
+            });
+          },
+          onClose: () => State.update({ OutputAssetModalHidden: true }),
+        }}
+      />
+    )}
     {!state.inputAsset && state.inputAssetTokenId && (
       <Widget
         src="zavodil.near/widget/TokenData"
