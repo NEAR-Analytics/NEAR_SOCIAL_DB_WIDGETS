@@ -1,7 +1,7 @@
 State.init({
   initalized: false,
-  InputAssetModalHidden: true,
-  OutputAssetModalHidden: true,
+  inputAssetModalHidden: true,
+  outputAssetModalHidden: true,
   inputAssetTokenId: "NEAR",
   outputAssetTokenId:
     "dac17f958d2ee523a2206206994597c13d831ec7.factory.bridge.near",
@@ -900,22 +900,22 @@ const canSwap =
 
 return (
   <Theme>
-    {state.InputAsset && state.inputAssetTokenId && (
+    {state.inputAsset && state.inputAssetTokenId && (
       <Widget
         src="zavodil.near/widget/AssetListModal"
         props={{
-          hidden: state.InputAssetModalHidden ?? true,
+          hidden: state.inputAssetModalHidden ?? true,
           network: state.network,
           assets: state.assets,
           selectedAssets: [state.inputAssetTokenId],
           onClick: (tokenId) => {
             State.update({
-              InputAssetModalHidden: true,
+              inputAssetModalHidden: true,
               inputAssetTokenId: tokenId,
               inputAsset: null,
             });
           },
-          onClose: () => State.update({ InputAssetModalHidden: true }),
+          onClose: () => State.update({ inputAssetModalHidden: true }),
         }}
       />
     )}
@@ -923,18 +923,18 @@ return (
       <Widget
         src="zavodil.near/widget/AssetListModal"
         props={{
-          hidden: state.OutputAssetModalHidden ?? true,
+          hidden: state.outputAssetModalHidden ?? true,
           assets: state.assets,
           network: state.network,
           selectedAssets: [state.outputAssetTokenId],
           onClick: (tokenId) => {
             State.update({
-              OutputAssetModalHidden: true,
+              outputAssetModalHidden: true,
               outputAssetTokenId: tokenId,
               outputAsset: null,
             });
           },
-          onClose: () => State.update({ OutputAssetModalHidden: true }),
+          onClose: () => State.update({ outputAssetModalHidden: true }),
         }}
       />
     )}
@@ -1020,7 +1020,7 @@ return (
                 state.inputAsset,
                 "inputAssetAmount",
                 () => {
-                  State.update({ InputAssetModalHidden: false });
+                  State.update({ inputAssetModalHidden: false });
                 }
               )}
             </div>
@@ -1031,7 +1031,7 @@ return (
                   state.outputAsset,
                   "outputAssetAmount",
                   () => {
-                    State.update({ OutputAssetModalHidden: false });
+                    State.update({ outputAssetModalHidden: false });
                   }
                 )}
                 <div
