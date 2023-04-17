@@ -76,6 +76,8 @@ State.init({
   paymentType: [],
   sources: [],
   source: [],
+  startDate: "",
+  endDate: "",
 });
 
 if (!state.vendorsIsFetched) {
@@ -252,18 +254,18 @@ return (
           />
         </DetailInput>
         <DetailInput>
-          <Widget
-            src={`${ownerId}/widget/Inputs.Checkbox`}
-            props={{
-              label:
-                "Yes, I understand and agree with NEAR Horizon credit and payment system",
-              value: state.agree,
-              id: "agree",
-              onChange: (agree) => State.update({ agree }),
-            }}
-          />
         </DetailInput>
       </Details>
+      <Widget
+        src={`${ownerId}/widget/Inputs.Checkbox`}
+        props={{
+          label:
+            "Yes, I understand and agree with NEAR Horizon credit and payment system",
+          value: state.agree,
+          id: "agree",
+          onChange: (agree) => State.update({ agree }),
+        }}
+      />
     </Form>
     <Footer>
       <Dialog.Close asChild>
