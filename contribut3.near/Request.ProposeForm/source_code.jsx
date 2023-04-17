@@ -254,6 +254,14 @@ return (
           />
         </DetailInput>
         <DetailInput>
+          <Widget
+            src={`${ownerId}/widget/Inputs.Date`}
+            props={{
+              label: "Start date",
+              value: state.startDate,
+              onChange: (startDate) => State.update({ startDate }),
+            }}
+          />
         </DetailInput>
       </Details>
       <Widget
