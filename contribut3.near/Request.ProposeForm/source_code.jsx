@@ -219,42 +219,50 @@ return (
             }}
           />
         </DetailInput>
-        <Widget
-          src={`${ownerId}/widget/Inputs.Number`}
-          props={{
-            label: "Price",
-            value: state.price,
-            onChange: (price) => State.update({ price }),
-          }}
-        />
-        <Widget
-          src={`${ownerId}/widget/Inputs.Select`}
-          props={{
-            label: "Contract type",
-            options: state.contractTypes,
-            value: state.contractType,
-            onChange: (contractType) => State.update({ contractType }),
-          }}
-        />
-        <Widget
-          src={`${ownerId}/widget/Inputs.Select`}
-          props={{
-            label: "Payment source",
-            options: state.sources,
-            value: state.source,
-            onChange: (source) => State.update({ source }),
-          }}
-        />
-        <Widget
-          src={`${ownerId}/widget/Inputs.Checkbox`}
-          props={{
-            label:
-              "Yes, I understand and agree with NEAR Horizon credit and payment system",
-            value: state.agree,
-            id: "agree",
-            onChange: (agree) => State.update({ agree }),
-          }}
-        />
+        <DetailInput>
+          <Widget
+            src={`${ownerId}/widget/Inputs.Number`}
+            props={{
+              label: "Price",
+              value: state.price,
+              onChange: (price) => State.update({ price }),
+            }}
+          />
+        </DetailInput>
+        <DetailInput>
+          <Widget
+            src={`${ownerId}/widget/Inputs.Select`}
+            props={{
+              label: "Contract type",
+              options: state.contractTypes,
+              value: state.contractType,
+              onChange: (contractType) => State.update({ contractType }),
+            }}
+          />
+        </DetailInput>
+        <DetailInput>
+          <Widget
+            src={`${ownerId}/widget/Inputs.Select`}
+            props={{
+              label: "Payment source",
+              options: state.sources,
+              value: state.source,
+              onChange: (source) => State.update({ source }),
+            }}
+          />
+        </DetailInput>
+        <DetailInput>
+          <Widget
+            src={`${ownerId}/widget/Inputs.Checkbox`}
+            props={{
+              label:
+                "Yes, I understand and agree with NEAR Horizon credit and payment system",
+              value: state.agree,
+              id: "agree",
+              onChange: (agree) => State.update({ agree }),
+            }}
+          />
+        </DetailInput>
       </Details>
     </Form>
     <Footer>
