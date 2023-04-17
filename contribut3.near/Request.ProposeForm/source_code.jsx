@@ -1,5 +1,6 @@
 const ownerId = "contribut3.near";
 const accountId = props.accountId;
+const cid = props.cid;
 
 const LineContainer = styled.div`
   display: flex;
@@ -63,6 +64,8 @@ const createVendorLine = (accountId, name, image) => {
 };
 
 State.init({
+  request: null,
+  requestIsFetched: false,
   message: "",
   vendorId: [],
   vendors: [],
@@ -116,30 +119,17 @@ if (!state.vendorsIsFetched) {
   });
 }
 
-if (!state.requestsIsFetched) {
+if (!state.requestIsFetched) {
   Near.asyncView(
     ownerId,
-    "get_project_requests",
-    { account_id: accountId },
+    "get_request",
+    { account_id: accountId, cid },
     "final",
     false
-  ).then((requests) =>
-    State.update({
-      requests: requests.map(([accountId, cid]) => ({
-        name: (
-          <Widget
-            src={`${ownerId}/widget/Request.Line`}
-            props={{ accountId, cid, size: "1em" }}
-          />
-        ),
-        value: cid,
-      })),
-      requestsIsFetched: true,
-    })
-  );
+  ).then((request) => State.update({ request, requestIsFetched: true, }));
 }
 
-if (!state.requestsIsFetched || !state.vendorsIsFetched) {
+if (!state.requestIsFetched || !state.vendorsIsFetched) {
   return <>Loading...</>;
 }
 
