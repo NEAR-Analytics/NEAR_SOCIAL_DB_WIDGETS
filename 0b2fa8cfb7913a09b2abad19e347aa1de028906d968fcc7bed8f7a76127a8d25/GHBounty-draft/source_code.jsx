@@ -9,7 +9,7 @@ const css = fetch(
 initState({
   // bountyContractAddress: "0xb405a96238ca46E9d3268271F87dbBf90E4903Bf",
   bountyContractAddress: "0x6a5324A3D7BfEb6D2EBeEAA9D73350051d9E3691",
-  activePage: "My Bounties", // Create Bounty, Apply to Bounty, Bounty page, Browse Bounties,  My Bounties
+  activePage: "Create Bounty", // Create Bounty, Apply to Bounty, Bounty page, Browse Bounties,  My Bounties
   prURL: "",
   rewardAsset: "0x7ACAf6167a39BE1dfFBb542Ac848030dcDF141CF",
   rewardAmount: "",
