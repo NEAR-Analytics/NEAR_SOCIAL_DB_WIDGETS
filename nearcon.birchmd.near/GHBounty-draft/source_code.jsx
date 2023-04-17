@@ -501,9 +501,9 @@ return (
       />
       <label htmlFor="payeeAddress">Payee address</label>
       <input
-        id="payeeAdress"
+        id="payeeAddress"
         type="text"
-        onChange={(e) => State.update({ payeeAdress: e.target.value })}
+        onChange={(e) => State.update({ payeeAddress: e.target.value })}
         placeholder="Enter the payee address"
         required
       />
