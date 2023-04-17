@@ -217,7 +217,7 @@ const fetchBounties = () => {
 const applyToBounty = () => {
   const output = bountyObject.submitApplication(
     state.bountyID,
-    state.payeeAddress,
+    state.sender,
     state.githubHandle,
     state.comments
   );
