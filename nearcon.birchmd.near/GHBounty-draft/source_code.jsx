@@ -492,18 +492,17 @@ return (
 
       <br />
       <h3>2. Approve an application</h3>
-      <label htmlFor="applicationID">Application ID</label>
+      <label htmlFor="applicationID">Bounty ID</label>
       <input
         value={state.applicationID}
         id="applicationID"
         type="text"
         onChange={(e) => State.update({ applicationID: e.target.value })}
-        placeholder="Enter the applicationID to approve"
+        placeholder="Enter the bountyID to approve"
         required
       />
       <label htmlFor="payeeAddress">Payee address</label>
       <input
-        value={state.payeeAddress}
         id="payeeAdress"
         type="text"
         onChange={(e) => State.update({ payeeAdress: e.target.value })}
