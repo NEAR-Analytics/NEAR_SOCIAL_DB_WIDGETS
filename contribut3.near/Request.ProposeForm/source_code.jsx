@@ -161,6 +161,20 @@ const Form = styled.div`
   padding-bottom: 1em;
 `;
 
+const Details = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1em;
+  width: 100%;
+  flex-wrap: wrap;
+`;
+
+const DetailInput = styled.div`
+  width: 50%;
+`;
+
 return (
   <Container>
     <Form>
