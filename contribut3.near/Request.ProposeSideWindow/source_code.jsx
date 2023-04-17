@@ -15,7 +15,7 @@ return (
       trigger: <>Propose contribution</>,
       children: (
         <Widget
-          src={`${ownerId}/widget/Request.ContributionForm`}
+          src={`${ownerId}/widget/Request.ProposeForm`}
           props={{ accountId }}
         />
       ),
