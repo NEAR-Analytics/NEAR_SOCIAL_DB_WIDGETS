@@ -1,6 +1,9 @@
 const { from, to, assets, onTabChange, onAction, title } = props;
 const { action, amount, selectedAssetId } = state;
 
+const isDeposit = !action || action === "deposit";
+const actionTitle = isDeposit ? "Deposit" : "Withdraw";
+
 const handleAction = () => {
   const selectedAssetIdFromProps = assets.find((a) => a.selected)?.id;
   const assetId = selectedAssetId || selectedAssetIdFromProps || assets?.[0].id;
@@ -20,6 +23,8 @@ const handleAssetChange = (e) => {
 };
 
 const handleTabChange = (tab) => {
+  if (isDeposit && tab === "deposit") return;
+  if (!isDeposit && tab === "withdraw") return;
   State.update({ action: tab, amount: 0 });
   if (onTabChange) onTabChange(tab);
 };
@@ -35,9 +40,6 @@ const Container = styled.div`
     padding-top: 1rem;
     border-radius: 0.5rem;
 `;
-
-const isDeposit = !action || action === "deposit";
-const actionTitle = isDeposit ? "Deposit" : "Withdraw";
 
 return (
   <Container>
