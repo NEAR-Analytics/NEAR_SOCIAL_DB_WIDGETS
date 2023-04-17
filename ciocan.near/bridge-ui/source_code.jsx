@@ -1,3 +1,36 @@
+/*
+// the shape of props data
+{
+  "title": "zkBridge",
+  "from": {
+    "network": {
+      "id": "eth-testnet",
+      "value": "Ethereum Goerli"
+    },
+    "balance": "0.123"
+  },
+  "to": {
+    "network": {
+      "id": "zksync-testnet",
+      "value": "zkSync Era Testnet"
+    },
+    "balance": "0.42"
+  },
+  "amount": "0.1",
+  "assets": [
+    {
+      "id": "eth",
+      "value": "ETH"
+    },
+    {
+      "id": "usdc",
+      "value": "USDC",
+      "selected": true
+    }
+  ]
+}
+*/
+
 const { from, to, assets, onTabChange, onAction, title } = props;
 const { action, amount, selectedAssetId } = state;
 
