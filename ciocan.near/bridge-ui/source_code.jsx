@@ -20,19 +20,8 @@ const handleAssetChange = (e) => {
 };
 
 const handleTabChange = (tab) => {
-  State.update({ action: tab });
-  const data =
-    tab === "deposit"
-      ? {
-          from,
-          to,
-        }
-      : {
-          from: to,
-          to: from,
-        };
-  if (onTabChange) onTabChange(data);
-  State.update({ amount: 0 });
+  State.update({ action: tab, amount: 0 });
+  if (onTabChange) onTabChange(tab);
 };
 
 const Container = styled.div`
