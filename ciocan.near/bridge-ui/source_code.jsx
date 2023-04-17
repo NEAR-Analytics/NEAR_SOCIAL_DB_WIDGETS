@@ -41,7 +41,12 @@ const handleAction = () => {
   const selectedAssetIdFromProps = assets.find((a) => a.selected)?.id;
   const assetId = selectedAssetId || selectedAssetIdFromProps || assets?.[0].id;
   if (onAction)
-    onAction({ networkId: from.network.id, amount, assetId, action });
+    onAction({
+      networkId: from.network.id,
+      amount,
+      assetId,
+      action: isDeposit ? "deposit" : "withdraw",
+    });
 };
 
 const handleMax = () => {
