@@ -25,7 +25,7 @@ const registerFunctionHandler = (request, response) => {
 
   const gas = 200000000000000;
 
-  if (shouldFetchLatestBlockheight == true) {
+  if (shouldFetchLatestBlockheight == true || blockHeight == null) {
     blockHeight = Near.block("optimistic").header.height;
   }
 
