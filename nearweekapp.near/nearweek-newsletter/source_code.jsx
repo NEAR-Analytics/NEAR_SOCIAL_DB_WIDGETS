@@ -114,7 +114,7 @@ return (
                   alt={issue.Thumbnail.alternativeText}
                 />
                 <div class="d-flex flex-column ms-2 mt-0">
-                  <div>
+                  <div class="small">
                     <b>
                       A weekly update on everything that moves NEAR Protocol
                     </b>
