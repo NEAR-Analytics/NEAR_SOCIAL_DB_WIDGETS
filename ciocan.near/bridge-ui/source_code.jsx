@@ -185,9 +185,11 @@ return (
         {isLoading ? "Loading..." : actionTitle}
       </button>
       {log && (
-        <div class="alert alert-success text-truncate" role="alert">
-          {log}
-          <a href={explorerLink} class="alert-link">
+        <div className="alert alert-success" role="alert">
+          <div className="text-truncate" style={{ maxWidth: 300 }}>
+            {log}
+          </div>
+          <a href={explorerLink} class="alert-link" target="_blank">
             Etherscan
           </a>
         </div>
