@@ -1,6 +1,7 @@
 const sender = Ethers.send("eth_requestAccounts", [])[0];
 
 if (!sender) return "Please login first";
+const clone = (o) => JSON.parse(JSON.stringify(o));
 
 const { from, to, assets } = state;
 
@@ -27,8 +28,6 @@ Ethers.provider()
   .then(({ chainId }) => {
     State.update({ chainId: chainId === 5 ? "testnet" : "mainnet" });
   });
-
-console.log("chainId", chainId);
 
 // https://era.zksync.io/docs/dev/building-on-zksync/useful-address.html
 const contracts = {
@@ -72,6 +71,7 @@ const onAction = (data) => {
 
 const handleDeposit = (data) => {
   console.log("handleDeposit", data);
+  State.update({ isLoading: true });
   const l1Token = contracts[chainId][data.assetId].from;
   const amountBig = ethers.utils.parseUnits(data.amount, tokenDecimals);
 
@@ -88,14 +88,17 @@ const handleDeposit = (data) => {
       value: amountBig,
       gasLimit: ethers.BigNumber.from("500000"),
     })
-    .then(() => handleApprove(data));
+    .then(() => handleApprove(data))
+    .catch((e) => {
+      console.error("deposit error:", e);
+      State.update({ isLoading: false });
+    });
 };
 
 const handleApprove = (data) => {
   console.log("handleApprove", data);
-  const l1Token = contracts[chainId][data.assetId].from;
   const contract = new ethers.Contract(
-    l1Token,
+    contracts[chainId][data.assetId].from,
     erc20Abi.body,
     Ethers.provider().getSigner()
   );
@@ -105,13 +108,17 @@ const handleApprove = (data) => {
   contract
     .approve(contracts[chainId].bridge.L1ERC20BridgeProxy, amountBig)
     .then((tx) => {
-      console.log(tx);
+      console.log("approved: ", tx);
       State.update({
         log: "The TX hash is: " + tx.hash,
         explorerLink: "https://etherscan.io/tx/" + tx.hash,
+        isLoading: false,
       });
     })
-    .catch((e) => console.error(e));
+    .catch((e) => {
+      console.error("approve error:", e);
+      State.update({ isLoading: false });
+    });
 };
 
 const handleWithdraw = (data) => {
@@ -154,6 +161,7 @@ if (sender) {
 }
 
 initState({
+  isLoading: false,
   from: {
     network: {
       id: "l1",
@@ -171,6 +179,7 @@ initState({
     {
       id: "weth",
       value: "wETH",
+      selected: true,
       balance: {
         from: "0.00",
         to: "0.00",
@@ -179,7 +188,7 @@ initState({
     {
       id: "usdc",
       value: "USDC",
-      selected: true,
+      selected: false,
       balance: {
         from: "0.00",
         to: "0.00",
@@ -191,8 +200,9 @@ initState({
 // update token balances
 getTokenBalance(sender, contracts[chainId].weth.from, (balance) => {
   if (!assets) return;
-  assets[0].balance.from = balance;
-  State.update({ assets });
+  const cloned = clone(assets);
+  cloned[0].balance.from = balance;
+  State.update({ assets: cloned });
 });
 
 getTokenBalance(sender, contracts[chainId].usdc.from, (balance) => {
