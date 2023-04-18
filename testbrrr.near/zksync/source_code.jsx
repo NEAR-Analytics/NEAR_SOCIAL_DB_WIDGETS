@@ -38,7 +38,7 @@ const sender = Ethers.send("eth_requestAccounts", [])[0];
 
 return (
   <Theme>
-    <div style={{ textAlign: "center", marginTop: 60 }}>
+    <div style={{ textAlign: "center", marginTop: 100 }}>
       <svg
         width="405"
         height="104"
