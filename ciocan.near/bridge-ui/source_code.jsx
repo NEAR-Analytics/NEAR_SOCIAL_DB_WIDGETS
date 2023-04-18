@@ -1,6 +1,7 @@
 /*
 // the shape of props data
 {
+  "isLoading": false,
   "title": "zkBridge",
   "from": {
     "network": {
@@ -37,7 +38,7 @@
 }
 */
 
-const { from, to, assets, onTabChange, onAction, title } = props;
+const { from, to, assets, onTabChange, onAction, title, isLoading } = props;
 const { action, amount, selectedAsset } = state;
 
 const isDeposit = !action || action === "deposit";
@@ -166,8 +167,12 @@ return (
     </div>
     <div className="border border-secondary border-bottom-0 border-light" />
     <div className="p-4 d-grid">
-      <button className="btn btn-primary" onClick={handleAction}>
-        {actionTitle}
+      <button
+        className="btn btn-primary"
+        onClick={handleAction}
+        disabled={isLoading}
+      >
+        {isLoading ? "Loading..." : actionTitle}
       </button>
     </div>
   </Container>
