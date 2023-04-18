@@ -108,14 +108,16 @@ return (
               <div class="d-flex">
                 <img
                   class="rounded"
-                  width="90"
-                  height="90"
+                  width="70"
+                  height="70"
                   src={nwSite + issue.Thumbnail.url}
                   alt={issue.Thumbnail.alternativeText}
                 />
                 <div class="d-flex flex-column ms-2 mt-0">
                   <div class="small">
-                    A weekly update on everything that moves NEAR Protocol
+                    <b>
+                      A weekly update on everything that moves NEAR Protocol
+                    </b>
                   </div>
                   <div class="mt-2 small">
                     {" "}
