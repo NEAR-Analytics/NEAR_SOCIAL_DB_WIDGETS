@@ -3,7 +3,7 @@ const registry_contract_id =
   props.registry_contract_id || "registry.queryapi.near";
 let accountId = props.accountId || context.accountId;
 
-let externalAppUrl = `http://localhost:3001/${path}?accountId=${accountId}`;
+let externalAppUrl = `http://localhost:3000/${path}?accountId=${accountId}`;
 
 if (props.indexerName) {
   externalAppUrl += `&indexerName=${props.indexerName}`;
@@ -15,19 +15,13 @@ if (!context.accountId) {
 }
 
 const registerFunctionHandler = (request, response) => {
-  const {
-    indexerName,
-    code,
-    schema,
-    blockHeight,
-    shouldFetchLatestBlockheight,
-  } = request.payload;
+  const { indexerName, code, schema, blockHeight } = request.payload;
 
   const gas = 200000000000000;
 
-  if (shouldFetchLatestBlockheight == true || blockHeight == null) {
-    blockHeight = Near.block("optimistic").header.height;
-  }
+  // if (shouldFetchLatestBlockheight == true || blockHeight == null) {
+  //   blockHeight = Near.block("optimistic").header.height;
+  // }
 
   Near.call(
     registry_contract_id,
