@@ -103,7 +103,7 @@ const handleApprove = (data) => {
   const amountBig = ethers.utils.parseUnits(data.amount, tokenDecimals);
 
   contract
-    .approve(contracts.main.bridge.L1ERC20BridgeProxy, amountBig)
+    .approve(contracts[chainId].bridge.L1ERC20BridgeProxy, amountBig)
     .then((tx) => {
       console.log(tx);
       State.update({
