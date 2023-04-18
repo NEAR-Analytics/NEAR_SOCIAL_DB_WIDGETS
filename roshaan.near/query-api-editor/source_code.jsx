@@ -1,39 +1,58 @@
-/**
- * External App URL (must)
- */
-const externalAppUrl =
-  "http://localhost:3001/query-api-editor?accountId=roshaan.near&indexerName=feed-indexer";
-/**
- * Initial Path (optional)
- */
-const path = props.path;
-/**
- * Initial view height (optional)
- */
-const initialViewHeight = 500;
-/**
- * Initial Payload (optional)
- */
-const initialPayload = {};
+const path = props.path || "query-api-editor";
+const registry_contract_id =
+  props.registry_contract_id || "registry.queryapi.near";
+let accountId = props.accountId || context.accountId;
+
+let externalAppUrl = `http://localhost:3001/${path}?accountId=${accountId}`;
+
+if (props.indexerName) {
+  externalAppUrl += `&indexerName=${props.indexerName}`;
+}
+
+const initialViewHeight = 750;
+if (!context.accountId) {
+  return "Please sign in to use this widget.";
+}
+
+const registerFunctionHandler = (request, response) => {
+  const {
+    indexerName,
+    code,
+    schema,
+    blockHeight,
+    shouldFetchLatestBlockheight,
+  } = request.payload;
+
+  const gas = 200000000000000;
+
+  if (shouldFetchLatestBlockheight == true) {
+    blockHeight = Near.block("optimistic").header.height;
+  }
+
+  Near.call(
+    registry_contract_id,
+    "register_indexer_function",
+    {
+      function_name: indexerName,
+      code,
+      schema,
+      start_block_height: blockHeight,
+    },
+    gas
+  );
+};
 
 /**
  * Request Handlers here
  */
 const requestHandler = (request, response) => {
   switch (request.type) {
-    case "get-account-id":
-      getAccountIdHandler(request, response);
+    case "register-function":
+      registerFunctionHandler(request, response);
       break;
+    case "default":
+      console.log("default case");
   }
-};
-
-const getAccountIdHandler = (request, response) => {
-  // You have access to the request payload
-  console.log(request.payload); // Any data sent by React App
-  const accountId = context.accountId;
-  // Send a response to the React App
-  // "response" needs the "request" object to know the type of the request
-  response(request).send({ accountId });
 };
 
 // NearSocialBridgeCore widget is the core that makes all the "magic" happens
