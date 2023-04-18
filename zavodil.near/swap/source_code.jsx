@@ -54,6 +54,8 @@ if (!state.initialized && ethers !== undefined) {
           },
           inputAssetTokenId: "0x3355df6D4c9C3035724Fd0e3914dE96A5a83aaf4",
           outputAssetTokenId: "0x5AEa5775959fBC2557Cc8789bC1bf90A239D9a91",
+          inputAsset: undefined,
+          outputAsset: undefined,
           network: NETWORK_ZKSYNC,
         });
       } else {
@@ -67,6 +69,8 @@ if (!state.initialized && ethers !== undefined) {
           ],
           inputAssetTokenId: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
           outputAssetTokenId: "0x6B175474E89094C44Da98b954EedeAC495271d0F",
+          inputAsset: undefined,
+          outputAsset: undefined,
           network: NETWORK_ETH,
         });
       }
