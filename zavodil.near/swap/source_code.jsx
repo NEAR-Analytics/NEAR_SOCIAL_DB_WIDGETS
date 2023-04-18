@@ -1,5 +1,10 @@
+const NETWORK_NEAR = "NEAR";
+const NETWORK_ETH = "ETH";
+const NETWORK_ZKSYNC = "ZKSYNC";
+const NETWORK_TODO = "TODO";
+
 State.init({
-  initalized: false,
+  initialized: false,
   inputAssetModalHidden: true,
   outputAssetModalHidden: true,
   inputAssetTokenId: "NEAR",
@@ -7,7 +12,7 @@ State.init({
     "dac17f958d2ee523a2206206994597c13d831ec7.factory.bridge.near",
   inputAssetAmount: 1,
   outputAssetAmount: 1,
-  network: "NEAR",
+  network: NETWORK_NEAR,
   assets: [
     "NEAR",
     "token.v2.ref-finance.near",
@@ -18,7 +23,6 @@ State.init({
   reloadPools: false,
   estimate: {},
   loadRes: (value) => {
-    console.log(value);
     State.update({
       estimate: value,
       outputAssetAmount: value === null ? "" : value.estimate,
@@ -28,22 +32,50 @@ State.init({
 
 const refReferralId = props.refReferralId ?? "zavodil.near";
 
-if (!state.initalized && ethers !== undefined) {
-  State.update({
-    assets: [
-      "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48", // USDC
-      "0x6B175474E89094C44Da98b954EedeAC495271d0F", // DAI
-      "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
-      "0xae7ab96520de3a18e5e111b5eaab095312d7fe84",
-      "0xf7B098298f7C69Fc14610bf71d5e02c60792894C",
-    ],
-    inputAssetTokenId: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
-    outputAssetTokenId: "0x6B175474E89094C44Da98b954EedeAC495271d0F",
-    network: "ETH",
-  });
-}
+if (!state.initialized && ethers !== undefined) {
+  Ethers.provider()
+    .getNetwork()
+    .then((chainIdData) => {
+      console.log("chainId", chainIdData.chainId);
+      if (chainIdData.chainId === 324) {
+        State.update({
+          assets: [
+            "0x3355df6D4c9C3035724Fd0e3914dE96A5a83aaf4", // USDC
+            "0x5AEa5775959fBC2557Cc8789bC1bf90A239D9a91", // WETH
+            "0x7400793aAd94C8CA801aa036357d10F5Fd0ce08f", // BNB
+          ],
+          coinGeckoTokenIds: {
+            "0x3355df6D4c9C3035724Fd0e3914dE96A5a83aaf4":
+              "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "0x5AEa5775959fBC2557Cc8789bC1bf90A239D9a91":
+              "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "0x7400793aAd94C8CA801aa036357d10F5Fd0ce08f":
+              "0x418d75f65a02b3d53b2418fb8e1fe493759c7605",
+          },
+          inputAssetTokenId: "0x3355df6D4c9C3035724Fd0e3914dE96A5a83aaf4",
+          outputAssetTokenId: "0x5AEa5775959fBC2557Cc8789bC1bf90A239D9a91",
+          network: NETWORK_ZKSYNC,
+        });
+      } else {
+        State.update({
+          assets: [
+            "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48", // USDC
+            "0x6B175474E89094C44Da98b954EedeAC495271d0F", // DAI
+            "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+            "0xae7ab96520de3a18e5e111b5eaab095312d7fe84",
+            "0xf7B098298f7C69Fc14610bf71d5e02c60792894C",
+          ],
+          inputAssetTokenId: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+          outputAssetTokenId: "0x6B175474E89094C44Da98b954EedeAC495271d0F",
+          network: NETWORK_ETH,
+        });
+      }
 
-State.update({ initalized: true });
+      State.update({ initialized: true });
+    });
+} else {
+  State.update({ initialized: true });
+}
 
 const css = `
 * {
@@ -766,12 +798,6 @@ const spacerContainer = (
   </div>
 );
 
-const onLoad = (asset1) => {
-  console.log(state);
-  State.update({ asset1 });
-  //console.log(a);11
-};
-
 const getRefTokenObject = (tokenId, assetData) => {
   return {
     id: tokenId,
@@ -889,7 +915,6 @@ const callTx = () => {
 };
 
 const expandToken = (value, decimals) => {
-  console.log("value", value, decimals);
   return new Big(value).mul(new Big(10).pow(decimals));
 };
 
@@ -907,6 +932,7 @@ return (
           hidden: state.inputAssetModalHidden ?? true,
           network: state.network,
           assets: state.assets,
+          coinGeckoTokenIds: state.coinGeckoTokenIds,
           selectedAssets: [state.inputAssetTokenId],
           onClick: (tokenId) => {
             State.update({
@@ -925,6 +951,7 @@ return (
         props={{
           hidden: state.outputAssetModalHidden ?? true,
           assets: state.assets,
+          coinGeckoTokenIds: state.coinGeckoTokenIds,
           network: state.network,
           selectedAssets: [state.outputAssetTokenId],
           onClick: (tokenId) => {
@@ -943,6 +970,7 @@ return (
         src="zavodil.near/widget/TokenData"
         props={{
           tokenId: state.inputAssetTokenId,
+          coinGeckoTokenId: state?.coinGeckoTokenIds?.[state.inputAssetTokenId],
           network: state.network,
           onLoad: (inputAsset) => {
             inputAsset.metadata.symbol =
@@ -957,6 +985,8 @@ return (
         src="zavodil.near/widget/TokenData"
         props={{
           tokenId: state.outputAssetTokenId,
+          coinGeckoTokenId:
+            state?.coinGeckoTokenIds?.[state.outputAssetTokenId],
           network: state.network,
           onLoad: (outputAsset) => {
             outputAsset.metadata.symbol =
@@ -967,27 +997,32 @@ return (
       />
     )}
 
-    {state.network === "NEAR" && state.inputAsset && state.outputAsset && (
-      <Widget
-        src="weige.near/widget/ref-swap-getEstimate"
-        props={{
-          loadRes: state.loadRes,
-          tokenIn: getRefTokenObject(state.inputAssetTokenId, state.inputAsset),
-          tokenOut: getRefTokenObject(
-            state.outputAssetTokenId,
-            state.outputAsset
-          ),
-          amountIn: state.inputAssetAmount ?? 0,
-          reloadPools: state.reloadPools,
-          setReloadPools: (value) =>
-            State.update({
-              reloadPools: value,
-            }),
-        }}
-      />
-    )}
+    {state.network === NETWORK_NEAR &&
+      state.inputAsset &&
+      state.outputAsset && (
+        <Widget
+          src="weige.near/widget/ref-swap-getEstimate"
+          props={{
+            loadRes: state.loadRes,
+            tokenIn: getRefTokenObject(
+              state.inputAssetTokenId,
+              state.inputAsset
+            ),
+            tokenOut: getRefTokenObject(
+              state.outputAssetTokenId,
+              state.outputAsset
+            ),
+            amountIn: state.inputAssetAmount ?? 0,
+            reloadPools: state.reloadPools,
+            setReloadPools: (value) =>
+              State.update({
+                reloadPools: value,
+              }),
+          }}
+        />
+      )}
 
-    {state.network === "ETH" && state.inputAsset && state.outputAsset && (
+    {state.network === NETWORK_ETH && state.inputAsset && state.outputAsset && (
       <>
         <Widget
           src="zavodil.near/widget/uni-v3-getEstimate"
@@ -1009,6 +1044,31 @@ return (
         />
       </>
     )}
+
+    {state.network === NETWORK_TODO &&
+      state.inputAsset &&
+      state.outputAsset /* TODO */ && (
+        <>
+          <Widget
+            src="zavodil.near/widget/uni-v3-getEstimate"
+            props={{
+              loadRes: state.loadRes,
+              tokenIn: state.inputAssetTokenId,
+              tokenOut: state.outputAssetTokenId,
+              tokenOutDecimals: state.outputAsset.metadata.decimals,
+              amountIn: expandToken(
+                state.inputAssetAmount,
+                state.inputAsset.metadata.decimals
+              ).toFixed(0),
+              reloadPools: state.reloadPools,
+              setReloadPools: (value) =>
+                State.update({
+                  reloadPools: value,
+                }),
+            }}
+          />
+        </>
+      )}
 
     <div class="swap-root">
       <div class="swap-main-container">
@@ -1104,7 +1164,7 @@ return (
                                 class="swap-gas-rate-wrapper"
                                 r="sc-u7b06n-1 eaouLI"
                               >
-                                {state.network != "NEAR_TODO" && (
+                                {state.network != NETWORK_TODO && (
                                   <div class="swap-gas-rate-block">
                                     <svg
                                       width="16"
