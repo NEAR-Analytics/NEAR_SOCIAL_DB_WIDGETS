@@ -38,7 +38,7 @@ const sender = Ethers.send("eth_requestAccounts", [])[0];
 
 return (
   <Theme>
-    <div style={{ textAlign: "center" }}>
+    <div style={{ textAlign: "center", marginTop: 60 }}>
       <svg
         width="405"
         height="104"
@@ -75,7 +75,8 @@ return (
         style={{
           fontFamily: "Gilroy, Arial",
           fontWeight: 400,
-          marginTop: 30,
+          marginTop: 40,
+          marginBottom: 40,
         }}
       >
         Explore the Wonders of the zkSync Ecosystem
@@ -89,33 +90,26 @@ return (
           style={{
             fontWeight: 400,
             marginTop: 30,
+            marginBottom: 70,
+            textAlign: "center",
           }}
         >
-          Bridge to Era
+          1. Bridge to Era
         </h2>
-        <Widget src="mattlock.near/widget/cantoswap-component" />
+        <Widget src="ciocan.near/widget/zk-bridge" />
       </div>
       <div>
         <h2
           style={{
             fontWeight: 400,
             marginTop: 30,
+            textAlign: "center",
           }}
         >
-          Swap
+          2. Swap on SyncSwap
         </h2>
-        <Widget src="mattlock.near/widget/cantoswap-component" />
+        <Widget src="zavodil.near/widget/swap" />
       </div>
     </div>
-    <div class="flex">
-      <div style={{ padding: 16 }}>
-        <Widget src="whtt.near/widget/Draft-1" />
-      </div>
-    </div>
-    <h3>Search Components, View Source and Edit Live!</h3>
-    <Widget
-      src="mattlock.near/widget/canto-component-search"
-      props={{ limit: 4 }}
-    />
   </Theme>
 );
