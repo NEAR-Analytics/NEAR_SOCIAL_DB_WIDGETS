@@ -4,7 +4,7 @@ if (!item) {
   return "";
 }
 
-const likes = Social.index("custom", item);
+const likes = Social.index("like", item);
 
 const dataLoading = likes === null;
 
@@ -88,8 +88,10 @@ const likeClick = () => {
     data.index.notify = JSON.stringify({
       key: props.notifyAccountId,
       value: {
-        type: "like",
-        item,
+        type: "custom",
+        widget: props.singlePageView,
+        params: item,
+        message: "Liked your discussion comment",
       },
     });
   }
