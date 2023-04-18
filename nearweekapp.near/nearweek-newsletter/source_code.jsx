@@ -91,8 +91,7 @@ return (
             </div>
           </div>
         </div>
-        <hr />
-        <div class="d-flex justify-content-center">
+        <div class="d-flex justify-content-center mt-2">
           <div class="d-flex flex-fill p-2">
             <ButtonLink
               href={"https://nearweek.com/newsletters/" + issue.slug}
