@@ -211,7 +211,7 @@ return (
         {primaryActions[primaryAction].display}
       </ButtonLink>
 
-      <ButtonLink href={`/#/editor/${src}`}>
+      <ButtonLink href={`/editor/${src}`}>
         {context.accountId === accountId ? (
           <>
             <i className="bi bi-pencil-fill"></i> Edit
