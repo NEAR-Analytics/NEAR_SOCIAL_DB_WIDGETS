@@ -14,8 +14,58 @@ const fetchTransfers = () => {
       "x-api-key": publicApiKey,
     },
   });
-  proposalsByMonth.body &&
-    State.update({ proposalsByMonth: proposalsByMonth.body });
+  if (proposalsByMonth.body) {
+    proposalsByMonth.body.forEach((proposal) => {
+      const { proposal_type, status, count, day } = proposal;
+      const year = new Date(proposal.day).getFullYear();
+      const month = new Date(proposal.day).getMonth() + 1;
+
+      const key = `${year}-${month}`;
+
+      if (groupedProposals.hasOwnProperty(key)) {
+        const entry = groupedProposals[key].find(
+          (e) => e.proposal_type === proposal_type && e.status === status
+        );
+        if (entry) {
+          entry.count = parseInt(entry.count) + parseInt(count);
+        } else {
+          groupedProposals[key].push({
+            proposal_type,
+            status,
+            count,
+            day,
+          });
+        }
+      } else {
+        groupedProposals[key] = [
+          {
+            proposal_type,
+            status,
+            count,
+            day,
+          },
+        ];
+      }
+    });
+
+    const byMonth = Object.keys(groupedProposals)
+      .map((key) => {
+        const [year, month] = key.split("-");
+        return {
+          year,
+          month,
+          proposals: groupedProposals[key],
+        };
+      })
+      .sort((a, b) => {
+        if (a.year !== b.year) {
+          return a.year - b.year;
+        } else {
+          return a.month - b.month;
+        }
+      });
+  }
+  State.update({ proposalsByMonth: byMonth });
 };
 fetchTransfers();
 
