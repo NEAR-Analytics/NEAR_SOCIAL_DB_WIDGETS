@@ -39,7 +39,7 @@
 
 const { from, to, assets, onTabChange, onAction, title } = props;
 const { action, amount, selectedAsset } = state;
-console.log(assets);
+
 const isDeposit = !action || action === "deposit";
 const actionTitle = isDeposit ? "Deposit" : "Withdraw";
 
