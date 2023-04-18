@@ -102,7 +102,7 @@ return (
             </ButtonLink>
           </div>
           <div class="d-flex  flex-fill p-2">
-            <ButtonLink href="https://nearweek.com" target="_blank">
+            <ButtonLink href="https://subscribe.nearweek.com" target="_blank">
               <span style={{ color: "#2A6BD5" }}>Subscribe</span>
             </ButtonLink>
           </div>
