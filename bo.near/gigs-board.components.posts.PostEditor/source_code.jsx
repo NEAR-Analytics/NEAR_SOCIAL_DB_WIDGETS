@@ -198,7 +198,12 @@ const setLabels = (labels) => {
 };
 let existingLabelStrings =
   Near.view(nearDevGovGigsContractAccountId, "get_all_labels") ?? [];
-existingLabelStrings = existingLabelStrings.filter((label) => Near.view(nearDevGovGigsContractAccountId, "is_allowed_to_use_labels", {editor: context.accountId, labels: [label]}))
+existingLabelStrings = existingLabelStrings.filter((label) =>
+  Near.view(nearDevGovGigsContractAccountId, "is_allowed_to_use_labels", {
+    editor: context.accountId,
+    labels: [label],
+  })
+);
 const existingLabels = existingLabelStrings.map((s) => {
   return { name: s };
 });
@@ -214,8 +219,12 @@ const labelEditor = (
       placeholder="near.social, widget, NEP, standard, protocol, tool"
       selected={state.labels}
       positionFixed
-      allowNew={(results, {text}) => {
-        return Near.view(nearDevGovGigsContractAccountId, "is_allowed_to_use_labels", {editor: context.accountId, labels: [text]});
+      allowNew={(results, props) => {
+        return props.selected.filter((selected) => selected.name === props.text).length == 0 && Near.view(
+          nearDevGovGigsContractAccountId,
+          "is_allowed_to_use_labels",
+          { editor: context.accountId, labels: [props.text] }
+        );
       }}
     />
   </div>
