@@ -71,7 +71,7 @@ const onAction = (data) => {
 
 const handleDeposit = (data) => {
   console.log("handleDeposit", data);
-  State.update({ isLoading: true });
+  State.update({ isLoading: true, log: undefined, explorerLink: undefined });
   const l1Token = contracts[chainId][data.assetId].from;
   const amountBig = ethers.utils.parseUnits(data.amount, tokenDecimals);
 
