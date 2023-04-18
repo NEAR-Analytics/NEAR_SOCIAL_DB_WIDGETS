@@ -5,6 +5,7 @@ const publicApiKey = "36f2b87a-7ee6-40d8-80b9-5e68e587a5b5";
 
 State.init({
   proposalsByMonth: [],
+  periods: [],
 });
 
 const fetchTransfers = () => {
@@ -65,11 +66,22 @@ const fetchTransfers = () => {
           return a.month - b.month;
         }
       });
-    State.update({ proposalsByMonth: byMonth });
+    const periods = byMonth.map((m) => `${m.year}-${m.month}`);
+    State.update({ proposalsByMonth: byMonth, periods });
   }
 };
 fetchTransfers();
 
-console.log(state.proposalsByMonth);
+console.log(state);
 
-return <div>Hello World</div>;
+return (
+  <>
+    {proposalsByMonth.length && (
+      <table>
+        <thead>
+          <tr>{periods && periods.map((p) => <td>{p}</td>)}</tr>
+        </thead>
+      </table>
+    )}
+  </>
+);
