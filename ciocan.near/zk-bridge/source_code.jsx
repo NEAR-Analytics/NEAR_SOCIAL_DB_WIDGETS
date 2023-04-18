@@ -86,6 +86,7 @@ const handleDeposit = (data) => {
       to: contracts[chainId].bridge.L1ERC20BridgeProxy,
       data: encodedData,
       value: amountBig,
+      gasLimit: ethers.BigNumber.from("500000"),
     })
     .then(() => handleApprove(data));
 };
