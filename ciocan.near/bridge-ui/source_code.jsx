@@ -66,11 +66,6 @@ const handleAmountChange = (e) => {
 };
 
 const handleAssetChange = (e) => {
-  console.log(
-    "handleAssetChange",
-    e.target.value,
-    assets.find((a) => a.id === e.target.value)
-  );
   State.update({ selectedAsset: assets.find((a) => a.id === e.target.value) });
 };
 
