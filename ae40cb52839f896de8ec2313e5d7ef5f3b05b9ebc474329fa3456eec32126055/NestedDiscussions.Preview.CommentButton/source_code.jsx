@@ -1,13 +1,6 @@
 const item = props.item;
 
-if (!props.hideCount && !item) {
-  return "";
-}
-
-const comments =
-  !!props.hideCount &&
-  Social.index({ action: props.dbAction, key: props.item });
-const dataLoading = props.hideCount ? false : comments === null;
+const comments = Social.index({ action: props.dbAction, key: props.item });
 const totalComments = comments?.length || 0;
 
 const CommentButton = styled.button`
@@ -37,7 +30,7 @@ const CommentButton = styled.button`
 
 return (
   <CommentButton
-    disabled={dataLoading || !context.accountId}
+    disabled={context.loading || !context.accountId}
     title="Add Comment"
     onClick={props.onClick}
   >
