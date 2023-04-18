@@ -13,7 +13,7 @@ const initialViewHeight = 750;
 if (!context.accountId) {
   return "Please sign in to use this widget.";
 }
-
+const initialPayload = { height: Near.block("optimistic").header.height };
 const registerFunctionHandler = (request, response) => {
   const { indexerName, code, schema, blockHeight } = request.payload;
 
