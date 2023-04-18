@@ -39,7 +39,7 @@
 
 const { from, to, assets, onTabChange, onAction, title } = props;
 const { action, amount, selectedAsset } = state;
-console.log("bridge-ui:assets:", assets);
+console.log(assets);
 const isDeposit = !action || action === "deposit";
 const actionTitle = isDeposit ? "Deposit" : "Withdraw";
 
@@ -66,7 +66,12 @@ const handleAmountChange = (e) => {
 };
 
 const handleAssetChange = (e) => {
-  State.update({ selectedAsset: assets.find((a) => (a.id = e.target.value)) });
+  console.log(
+    "handleAssetChange",
+    e.target.value,
+    assets.find((a) => a.id === e.target.value)
+  );
+  State.update({ selectedAsset: assets.find((a) => a.id === e.target.value) });
 };
 
 const handleTabChange = (tab) => {
