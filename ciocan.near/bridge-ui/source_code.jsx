@@ -58,7 +58,7 @@ const handleAction = () => {
 };
 
 const handleMax = () => {
-  State.update({ amount: from.balance });
+  State.update({ amount: selectedAsset.balance.from });
 };
 
 const handleAmountChange = (e) => {
