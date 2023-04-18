@@ -78,6 +78,7 @@ const Container = styled.div`
     border: 1px solid gray;
     padding-top: 1rem;
     border-radius: 0.5rem;
+    margin-top: 1rem;
 `;
 
 return (
