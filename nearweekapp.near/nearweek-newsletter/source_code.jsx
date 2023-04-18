@@ -115,9 +115,7 @@ return (
                 />
                 <div class="d-flex flex-column ms-2 mt-0">
                   <div class="small">
-                    <b>
-                      A weekly update on everything that moves NEAR Protocol
-                    </b>
+                    A weekly update on everything that moves NEAR Protocol
                   </div>
                   <div class="mt-2">
                     {" "}
