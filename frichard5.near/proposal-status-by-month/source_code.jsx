@@ -14,8 +14,8 @@ const fetchTransfers = () => {
       "x-api-key": publicApiKey,
     },
   });
-  proposalsStatus.body &&
-    State.update({ proposalsStatus: proposalsByMonth.body });
+  proposalsByMonth.body &&
+    State.update({ proposalsByMonth: proposalsByMonth.body });
 };
 fetchTransfers();
 
