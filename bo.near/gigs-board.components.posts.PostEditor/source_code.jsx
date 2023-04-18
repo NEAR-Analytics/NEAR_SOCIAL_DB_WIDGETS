@@ -204,6 +204,7 @@ existingLabelStrings = existingLabelStrings.filter((label) =>
     labels: [label],
   })
 );
+const existingLabelSet = new Set(existingLabelStrings);
 const existingLabels = existingLabelStrings.map((s) => {
   return { name: s };
 });
@@ -220,7 +221,7 @@ const labelEditor = (
       selected={state.labels}
       positionFixed
       allowNew={(results, props) => {
-        return props.selected.filter((selected) => selected.name === props.text).length == 0 && Near.view(
+        return (!existingLabelSet.has(props.text)) && props.selected.filter((selected) => selected.name === props.text).length == 0 && Near.view(
           nearDevGovGigsContractAccountId,
           "is_allowed_to_use_labels",
           { editor: context.accountId, labels: [props.text] }
