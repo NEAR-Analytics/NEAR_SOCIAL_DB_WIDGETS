@@ -15,6 +15,7 @@ const fetchTransfers = () => {
     },
   });
   if (proposalsByMonth.body) {
+    const groupedProposals = {};
     proposalsByMonth.body.forEach((proposal) => {
       const { proposal_type, status, count, day } = proposal;
       const year = new Date(proposal.day).getFullYear();
@@ -64,8 +65,8 @@ const fetchTransfers = () => {
           return a.month - b.month;
         }
       });
+    State.update({ proposalsByMonth: byMonth });
   }
-  State.update({ proposalsByMonth: byMonth });
 };
 fetchTransfers();
 
