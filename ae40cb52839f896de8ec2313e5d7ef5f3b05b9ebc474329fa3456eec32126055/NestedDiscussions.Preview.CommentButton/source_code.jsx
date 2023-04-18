@@ -1,6 +1,4 @@
-const item = props.item;
-
-const comments = Social.index({ action: props.dbAction, key: props.item });
+const comments = Social.index(props.dbAction, props.item);
 const totalComments = comments?.length || 0;
 
 const CommentButton = styled.button`
