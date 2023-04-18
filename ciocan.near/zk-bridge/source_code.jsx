@@ -37,12 +37,12 @@ const contracts = {
       L1ERC20BridgeProxy: "0x57891966931Eb4Bb6FB81430E6cE0A03AAbDe063",
     },
     weth: {
-      l1: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
-      l2: "0x5AEa5775959fBC2557Cc8789bC1bf90A239D9a91",
+      from: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2", // l1 token
+      to: "0x5AEa5775959fBC2557Cc8789bC1bf90A239D9a91", // l2 token
     },
     usdc: {
-      l1: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
-      l2: "0x3355df6D4c9C3035724Fd0e3914dE96A5a83aaf4",
+      from: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      to: "0x3355df6D4c9C3035724Fd0e3914dE96A5a83aaf4",
     },
   },
   testnet: {
@@ -50,17 +50,17 @@ const contracts = {
       L1ERC20BridgeProxy: "0x927DdFcc55164a59E0F33918D13a2D559bC10ce7",
     },
     weth: {
-      l1: "0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6",
-      l2: "", // not found yet
+      from: "0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6",
+      to: "", // not found yet
     },
     usdc: {
-      l1: "0x07865c6e87b9f70255377e024ace6630c1eaa37f",
-      l2: "", // not found yet
+      from: "0x07865c6e87b9f70255377e024ace6630c1eaa37f",
+      to: "", // not found yet
     },
   },
 };
 
-const l2TxGasLimi = "900000";
+const l2TxGasLimit = "900000";
 const l2TxGasPerPubdataByte = "800";
 const tokenDecimals = 18;
 
@@ -72,13 +72,12 @@ const onAction = (data) => {
 
 const handleDeposit = (data) => {
   console.log("handleDeposit", data);
-  const l1Token = contracts[chainId][data.assetId].l1;
-
+  const l1Token = contracts[chainId][data.assetId].from;
   const amountBig = ethers.utils.parseUnits(data.amount, tokenDecimals);
 
   const encodedData = iface.encodeFunctionData(
     "deposit(address,address,uint256,uint256,uint256,address)",
-    [sender, l1Token, amountBig, l2TxGasLimi, l2TxGasPerPubdataByte, sender]
+    [sender, l1Token, amountBig, l2TxGasLimit, l2TxGasPerPubdataByte, sender]
   );
 
   Ethers.provider()
@@ -92,8 +91,10 @@ const handleDeposit = (data) => {
 };
 
 const handleApprove = (data) => {
+  console.log("handleApprove", data);
+  const l1Token = contracts[chainId][data.assetId].l1;
   const contract = new ethers.Contract(
-    usdc,
+    l1Token,
     erc20Abi.body,
     Ethers.provider().getSigner()
   );
@@ -116,19 +117,38 @@ const handleWithdraw = (data) => {
   console.log("handleWithdraw", data);
 };
 
-// FETCH SENDER BALANCE
-if (state.balance === undefined && sender) {
+const getTokenBalance = (sender, tokenAddress, callback) => {
+  if (!sender) return;
+  const erc20Abi = ["function balanceOf(address) view returns (uint256)"];
+  const iface = new ethers.utils.Interface(erc20Abi);
+  const encodedData = iface.encodeFunctionData("balanceOf", [sender]);
+  Ethers.provider()
+    .call({
+      to: tokenAddress,
+      data: encodedData,
+    })
+    .then((rawBalance) => {
+      const receiverBalanceHex = iface.decodeFunctionResult(
+        "balanceOf",
+        rawBalance
+      );
+      const balance = Big(receiverBalanceHex.toString())
+        .div(Big(10).pow(tokenDecimals))
+        .toFixed(2)
+        .replace(/\d(?=(\d{3})+\.)/g, "$&,");
+      if (callback) callback(balance);
+    });
+};
+
+// FETCH SENDER ETH BALANCE
+if (sender) {
   Ethers.provider()
     .getBalance(sender)
     .then((balance) => {
       console.log(
-        "b",
-        balance,
-        Big(balance).div(Big(10).pow(tokenDecimals)).toFixed(2)
+        "balance of eth:",
+        Big(balance).div(Big(10).pow(tokenDecimals)).toFixed(4)
       );
-      State.update({
-        balance: Big(balance).div(Big(10).pow(tokenDecimals)).toFixed(2),
-      });
     });
 }
 
@@ -151,8 +171,8 @@ initState({
       id: "weth",
       value: "wETH",
       balance: {
-        from: "2.00",
-        to: "1.00",
+        from: "0.00",
+        to: "0.00",
       },
     },
     {
@@ -160,15 +180,25 @@ initState({
       value: "USDC",
       selected: true,
       balance: {
-        from: "3.00",
-        to: "4.00",
+        from: "0.00",
+        to: "0.00",
       },
     },
   ],
 });
 
-// TODO: update balances from ethers
-// ...
+// update token balances
+getTokenBalance(sender, contracts[chainId].weth.from, (balance) => {
+  if (!assets) return;
+  assets[0].balance.from = balance;
+  State.update({ assets });
+});
+
+getTokenBalance(sender, contracts[chainId].usdc.from, (balance) => {
+  if (!assets) return;
+  assets[1].balance.from = balance;
+  State.update({ assets });
+});
 
 const onTabChange = () => {
   State.update({ from: to, to: from });
