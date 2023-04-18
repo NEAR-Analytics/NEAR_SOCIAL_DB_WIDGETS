@@ -214,9 +214,8 @@ const labelEditor = (
       placeholder="near.social, widget, NEP, standard, protocol, tool"
       selected={state.labels}
       positionFixed
-      allowNew={(results, props) => {
-        console.log(results, props);
-        return false;
+      allowNew={(results, {text}) => {
+        return Near.view(nearDevGovGigsContractAccountId, "is_allowed_to_use_labels", {editor: context.accountId, labels: [text]});
       }}
     />
   </div>
