@@ -117,7 +117,7 @@ return (
                   <div class="small">
                     A weekly update on everything that moves NEAR Protocol
                   </div>
-                  <div class="mt-2">
+                  <div class="mt-2 small">
                     {" "}
                     NO {issue.Number ? issue.Number : ""} ·{" "}
                     {issue.publishedAt ? formatDate(issue.publishedAt) : ""}
