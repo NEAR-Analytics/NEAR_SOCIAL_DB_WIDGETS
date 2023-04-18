@@ -38,7 +38,17 @@
 }
 */
 
-const { from, to, assets, onTabChange, onAction, title, isLoading } = props;
+const {
+  from,
+  to,
+  assets,
+  onTabChange,
+  onAction,
+  title,
+  isLoading,
+  log,
+  explorerLink,
+} = props;
 const { action, amount, selectedAsset } = state;
 
 const isDeposit = !action || action === "deposit";
@@ -166,7 +176,7 @@ return (
       <div>Balance: {selectedAsset.balance.to}</div>
     </div>
     <div className="border border-secondary border-bottom-0 border-light" />
-    <div className="p-4 d-grid">
+    <div className="p-4 d-grid gap-3">
       <button
         className="btn btn-primary"
         onClick={handleAction}
@@ -174,6 +184,14 @@ return (
       >
         {isLoading ? "Loading..." : actionTitle}
       </button>
+      {log && (
+        <div class="alert alert-success" role="alert">
+          {log}
+          <a href={explorerLink} class="alert-link">
+            Etherscan
+          </a>
+        </div>
+      )}
     </div>
   </Container>
 );
