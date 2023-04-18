@@ -88,7 +88,7 @@ return (
         items?.map((component, index) => (
           <div key={index}>
             <Widget
-              src="saidulbadhon.near/widget/SearchPage.ComponentItem"
+              src="saidulbadhon.near/widget/SearchPage.ComponentItem-fork"
               props={{
                 src: `${component.accountId}/widget/${component.widgetName}`,
                 blockHeight: component.blockHeight,
