@@ -12,27 +12,59 @@ const data = fetch(
 );
 
 const ButtonLink = styled.a`
-  display: block;
-  width: 100%;
   padding: 8px;
-  height: 36px;
-  background: #FBFCFD;
-  border: 1px solid #D7DBDF;
-  border-radius: 50px;
+  height: 32px;
+  border: 1px solid #d7dbdf;
+  border-radius: 100px;
   font-weight: 600;
   font-size: 12px;
   line-height: 15px;
   text-align: center;
   cursor: pointer;
-  color: #11181C;
-  margin: 0;
+  color: ${(p) => (p.primary ? "#006ADC" : "#11181C")} !important;
+  background: #fbfcfd;
+  white-space: nowrap;
 
   &:hover,
   &:focus {
-    background: #ECEDEE;
+    background: #ecedee;
     text-decoration: none;
     outline: none;
   }
+`;
+
+const Card = styled.div`
+  position: relative;
+  width: 100%;
+  border-radius: 12px;
+  background: #fff;
+  border: 1px solid #eceef0;
+  box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1),
+    0px 1px 2px rgba(16, 24, 40, 0.06);
+  overflow: hidden;
+`;
+
+const CardBody = styled.div`
+  padding: 16px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+
+  > * {
+    min-width: 0;
+  }
+`;
+
+const CardContent = styled.div`
+  width: 100%;
+`;
+
+const CardFooter = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 16px;
+  border-top: 1px solid #eceef0;
 `;
 
 function formatDate(dateString) {
@@ -69,44 +101,46 @@ const nwSite = "https://nearweek.com";
 return (
   <div className="">
     {issue !== null ? (
-      <p>
-        <div class="d-flex clearfix">
-          <div class="d-flex">
-            <img
-              class="rounded"
-              width="90"
-              height="90"
-              src={nwSite + issue.Thumbnail.url}
-              alt={issue.Thumbnail.alternativeText}
-            />
-            <div class="d-flex flex-column ms-2 mt-0">
-              <div>
-                <b>A weekly update on everything that moves NEAR Protocol</b>
-              </div>
-              <div class="mt-2">
-                {" "}
-                NO {issue.Number ? issue.Number : ""} ·{" "}
-                {issue.publishedAt ? formatDate(issue.publishedAt) : ""}
+      <Card>
+        <CardBody>
+          <CardContent>
+            <div class="d-flex clearfix">
+              <div class="d-flex">
+                <img
+                  class="rounded"
+                  width="90"
+                  height="90"
+                  src={nwSite + issue.Thumbnail.url}
+                  alt={issue.Thumbnail.alternativeText}
+                />
+                <div class="d-flex flex-column ms-2 mt-0">
+                  <div>
+                    <b>
+                      A weekly update on everything that moves NEAR Protocol
+                    </b>
+                  </div>
+                  <div class="mt-2">
+                    {" "}
+                    NO {issue.Number ? issue.Number : ""} ·{" "}
+                    {issue.publishedAt ? formatDate(issue.publishedAt) : ""}
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div class="d-flex justify-content-center mt-2">
-          <div class="d-flex flex-fill p-2">
-            <ButtonLink
-              href={"https://nearweek.com/newsletters/" + issue.slug}
-              target="_blank"
-            >
-              Read
-            </ButtonLink>
-          </div>
-          <div class="d-flex  flex-fill p-2">
-            <ButtonLink href="https://subscribe.nearweek.com" target="_blank">
-              <span style={{ color: "#2A6BD5" }}>Subscribe</span>
-            </ButtonLink>
-          </div>
-        </div>
-      </p>
+          </CardContent>
+        </CardBody>
+        <CardFooter>
+          <ButtonLink
+            href={"https://nearweek.com/newsletters/" + issue.slug}
+            target="_blank"
+          >
+            Read
+          </ButtonLink>
+          <ButtonLink href="https://nearweek.com" target="_blank" primary>
+            Subscribe
+          </ButtonLink>
+        </CardFooter>
+      </Card>
     ) : (
       <div>Loading ...</div>
     )}
