@@ -93,7 +93,7 @@ const handleDeposit = (data) => {
 
 const handleApprove = (data) => {
   console.log("handleApprove", data);
-  const l1Token = contracts[chainId][data.assetId].l1;
+  const l1Token = contracts[chainId][data.assetId].from;
   const contract = new ethers.Contract(
     l1Token,
     erc20Abi.body,
