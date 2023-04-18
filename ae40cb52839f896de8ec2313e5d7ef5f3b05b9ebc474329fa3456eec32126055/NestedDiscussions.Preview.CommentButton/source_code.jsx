@@ -4,7 +4,9 @@ if (!props.hideCount && !item) {
   return "";
 }
 
-const comments = !!props.hideCount && Social.index(props.dbAction, item);
+const comments =
+  !!props.hideCount &&
+  Social.index({ action: props.dbAction, key: props.item });
 const dataLoading = props.hideCount ? false : comments === null;
 const totalComments = comments?.length || 0;
 
