@@ -90,6 +90,7 @@ const likeClick = () => {
       value: {
         type: "custom",
         widget: props.singlePageView,
+        blockHeight: item.blockHeight,
         params: item,
         message: "Liked your discussion comment",
       },
