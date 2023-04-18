@@ -179,7 +179,7 @@ initState({
     {
       id: "weth",
       value: "wETH",
-      selected: true,
+      selected: false,
       balance: {
         from: "0.00",
         to: "0.00",
@@ -188,7 +188,7 @@ initState({
     {
       id: "usdc",
       value: "USDC",
-      selected: false,
+      selected: true,
       balance: {
         from: "0.00",
         to: "0.00",
