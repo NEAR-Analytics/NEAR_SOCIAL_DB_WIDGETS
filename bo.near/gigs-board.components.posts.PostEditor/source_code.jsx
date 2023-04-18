@@ -214,7 +214,10 @@ const labelEditor = (
       placeholder="near.social, widget, NEP, standard, protocol, tool"
       selected={state.labels}
       positionFixed
-      allowNew
+      allowNew={(results, props) => {
+        console.log(results, props);
+        return false;
+      }}
     />
   </div>
 );
