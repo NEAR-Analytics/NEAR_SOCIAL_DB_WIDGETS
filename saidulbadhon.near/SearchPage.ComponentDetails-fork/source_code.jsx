@@ -185,7 +185,7 @@ return (
   <Wrapper>
     <SummaryWrapper>
       <Widget
-        src="saidulbadhon.near/widget/SearchPage.ComponentDetails.ComponentSummary"
+        src="saidulbadhon.near/widget/SearchPage.ComponentDetails.ComponentSummary-fork"
         props={{
           primaryAction: "open",
           size: "large",
