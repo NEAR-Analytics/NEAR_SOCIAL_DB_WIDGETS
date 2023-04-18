@@ -185,7 +185,7 @@ return (
         {isLoading ? "Loading..." : actionTitle}
       </button>
       {log && (
-        <div class="alert alert-success" role="alert">
+        <div class="alert alert-success text-truncate" role="alert">
           {log}
           <a href={explorerLink} class="alert-link">
             Etherscan
