@@ -1,3 +1,5 @@
+const ownerId = "contribut3.near";
+
 console.log(Social.keys(`${accountId}/graph/follow/*`, "final", {
   return_type: "BlockHeight",
   values_only: true,
