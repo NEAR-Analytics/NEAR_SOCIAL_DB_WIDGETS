@@ -1,5 +1,4 @@
 const ownerId = "contribut3.near";
-const onSave = props.onSave ?? (() => { });
 
 State.init({
   following: [],
@@ -35,8 +34,6 @@ if (!state.accountsWithPermissionsIsFetched) {
   }));
 }
 
-console.log(state.accountsWithPermissions);
-
 if (!state.followingIsFetched || !state.accountsWithPermissionsIsFetched) {
   return <>Loading...</>;
 }
@@ -59,6 +56,40 @@ const Existing = styled.div`
   }
 `;
 
+const SaveButton = styled.button`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5em 1em;
+  background: #00ec97;
+  border-radius: 50px;
+  border: none;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.95em;
+  line-height: 1em;
+  text-align: center;
+  color: #11181c;
+`;
+
+const grantPermissions = () => {
+  const accounts = state.value.map(({ name }) => name);
+
+  if (!accounts.includes(context.accountId) && !state.accountsWithPermissions.includes(context.accountId)) {
+    accounts.push(context.accountId);
+  }
+
+  const transactions = accounts.map((accountId) => ({
+    contractName: "social.near",
+    methodName: "grant_write_permission",
+    args: { predecessor_id: accountId, keys: [context.accountId] },
+    deposit: "1",
+  }));
+
+  Near.call(transactions);
+};
+
 return (
   <>
     <Widget
@@ -71,6 +102,9 @@ return (
         onChange: (value) => State.update({ value }),
       }}
     />
+
+    <SaveButton onClick={grantPermissions}>Grant permissions</SaveButton>
+
     <Existing>
       <h3>Existing permissions</h3>
       <Accounts>
