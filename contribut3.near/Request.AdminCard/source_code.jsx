@@ -46,6 +46,7 @@ const Owner = styled.a`
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
+  gap: .25em;
   width: 25%;
 `;
 
