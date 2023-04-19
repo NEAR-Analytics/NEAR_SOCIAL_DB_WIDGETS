@@ -91,7 +91,7 @@ return (
         aria-labelledby="pills-events-tab"
       >
         <div className="mx-auto">
-          <Widget src="nycdao.near/widget/NYC.Events" props={{ accountId }} />
+          <Widget src="evrything.near/widget/Calendar" props={{ accountId }} />
         </div>
       </div>
     </div>
