@@ -18,12 +18,44 @@ const iframeCode = `
     }
 
     function getKey(accountId) {
-      return localStorage.getItem("near-api-js:keystore:" + accountId + ":mainnet");
+      const key = localStorage.getItem("near-api-js:keystore:" + accountId + ":mainnet");
+      const keyPair = new nearApi.utils.KeyPairEd25519(key);
+      const secretKey = nearApi.utils.PublicKey.fromString(keyPair.secretKey).data;
+      const publicKey = keyPair.publicKey.data;
+      return { secretKey, publicKey };
     }
 
-    function sendRequest(url, body, headers) {}
+    function signMessage(message, secretKey) {
+      const signed = sodium.crypto_sign_detached(message, secretKey);
+      return sodium.to_hex(signed);
+    }
 
-    window.addEventListener("message", ({data}) => {});
+    async function sendRequest(url, body, accountId) {
+      const key = getKey(accountId);
+      const blockHash = await getBlockHash();
+      const message = accountId + "\n" + sodium.to_hex(key.publicKey) + "\n" + blockHash + "\n" + JSON.stringify(body);
+      const signature = signMessage(message, key.secretKey);
+      const result = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Near-Public-Key": sodium.to_hex(key.publicKey),
+          "X-Near-Account-Id": accountId,
+          "X-Near-Block-Hash": blockHash,
+          "X-Near-Signature": signature,
+        },
+        body: JSON.stringify(body),
+      });
+      return await result.json();
+    }
+
+    window.addEventListener("message", ({ data }) => {
+      sodium.ready.then(async function() {
+        const { accountId, body, url } = data;
+        const result = await sendRequest(url, body, accountId);
+        window.top.postMessage(result, "*");
+      });
+    });
 
     sodium.ready.then(async function() {
       const sk = nearApi.utils.PublicKey.fromString(key.secretKey).data;
