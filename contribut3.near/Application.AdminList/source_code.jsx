@@ -64,7 +64,7 @@ return (
         items: state.items,
         createItem: (accountId) => (
           <Widget
-            src={`${ownerId}/widget/Project.AdminCard`}
+            src={`${ownerId}/widget/Application.AdminCard`}
             props={{ accountId }}
           />
         ),
