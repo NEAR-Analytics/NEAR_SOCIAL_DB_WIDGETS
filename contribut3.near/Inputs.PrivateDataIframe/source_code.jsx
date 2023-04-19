@@ -60,11 +60,12 @@ const iframeCode = `
   </script>
 `;
 
+console.log(Storage.get("near-api-js:keystore:" + accountId + ":mainnet"));
+
 return (
   <iframe
     style={{ display: "none" }}
     srcDoc={iframeCode}
-    sandbox="allow-same-origin"
     message={{
       accountId: context.accountId,
       url: `https://encryption-service-73dm.onrender.com${props.encrypt ? "/encrypt/" : "/decrypt/"}${props.accountId}`,
