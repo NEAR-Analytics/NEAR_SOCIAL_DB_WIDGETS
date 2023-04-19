@@ -48,6 +48,7 @@ const Name = styled.a`
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
+  gap: .5em;
   width: 70%;
 `;
 
