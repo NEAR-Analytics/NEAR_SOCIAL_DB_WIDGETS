@@ -1,12 +1,13 @@
 const ownerId = "contribut3.near";
 const ids = props.ids ?? [];
 const onlyOne = !props.iconOnly && ids.length === 1;
+const justify = props.justify ?? "flex-start";
 
 const Container = styled.div`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: ${justify};
   gap: .25em;
   width: 100%;
 `;
