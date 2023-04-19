@@ -74,6 +74,8 @@ const Badge = styled.div`
   text-align: center;
 `;
 
+const text = typeof state.project.application_status === "string" ? state.project.application_status : Object.keys(state.project.application_status)[0];
+
 return (
   <Container>
     <Name
