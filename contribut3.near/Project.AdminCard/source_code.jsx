@@ -61,7 +61,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 1em 1.5em;
+  padding: 1em .95em;
   gap: 1em;
   border-bottom: 1px solid #EAECF0;
   width: 100%;
