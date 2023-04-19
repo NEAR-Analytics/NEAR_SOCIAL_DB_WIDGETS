@@ -1,20 +1,20 @@
 const accountId = context.accountId;
 
-const page = context.accountId
+const main = context.accountId
   ? Social.get(`${context.accountId}/settings/every/page.nyc.main`)
   : undefined;
 
-if (page === null) {
+if (main === null) {
   return "";
 }
 
 const defaultWidgets = [
   {
-    src: "nycdao.near/widget/NYC.Page.Tabs",
+    src: "nycdao.near/widget/NYC.Tabs",
   },
 ];
 
-const settingWidgets = page && JSON.parse(page);
+const settingWidgets = main && JSON.parse(main);
 
 if (state.widgets === undefined) {
   const widgets = settingWidgets ?? defaultWidgets;
@@ -104,7 +104,7 @@ return (
       <CommitButton
         data={{
           settings: {
-            every: { page: JSON.stringify(state.widgets) },
+            every: { main: JSON.stringify(state.widgets) },
           },
         }}
       >
