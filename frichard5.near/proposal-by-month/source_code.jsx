@@ -4,6 +4,9 @@ const widgetUrl = `https://api.pikespeak.ai/widgets/dao/${account}`;
 
 return (
   <>
-    <iframe style={{ width: "100%", height: "440px" }} src={widgetUrl}></iframe>
+    <iframe
+      style={{ width: "100%", height: "440px", marginTop: "40px" }}
+      src={widgetUrl}
+    ></iframe>
   </>
 );
