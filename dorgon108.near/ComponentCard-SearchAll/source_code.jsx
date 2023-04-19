@@ -176,8 +176,6 @@ return (
         <Widget
           src="mob.near/widget/Image"
           props={{
-            overflow: "hidden",
-            textOverflow: "ellipsis",
             image: metadata.image,
             fallbackUrl:
               "https://ipfs.near.social/ipfs/bafkreifc4burlk35hxom3klq4mysmslfirj7slueenbj7ddwg7pc6ixomu",
@@ -186,7 +184,7 @@ return (
         />
       </Thumbnail>
 
-      <MiddleColumn>
+      <MiddleColumn style={{ overflow: "hidden", textOverflow: "ellipsis" }}>
         <TextLink
           as="a"
           href={detailsUrl}
