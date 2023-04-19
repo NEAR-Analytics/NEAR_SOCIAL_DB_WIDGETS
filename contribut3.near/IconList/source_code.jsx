@@ -18,7 +18,6 @@ const Item = styled.a`
   align-items: center;
   justify-content: flex-start;
   gap: .125em;
-  width: 100%;
 `;
 
 State.init({
