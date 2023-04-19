@@ -83,6 +83,21 @@ const Other = styled.div`
   width: 13%;
 `;
 
+const Badge = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: .125em .5em;
+  background: #f2f4f7;
+  mix-blend-mode: multiply;
+  border-radius: 16px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: .75em;
+  line-height: 1.125em;
+  text-align: center;
+`;
+
 return (
   <Container>
     <Name href={`/${ownerId}/widget/Index?tab=project&accountId=${props.accountId}`}>
