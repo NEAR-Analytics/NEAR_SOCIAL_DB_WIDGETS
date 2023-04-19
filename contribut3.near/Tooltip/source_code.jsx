@@ -75,6 +75,7 @@ const StyledTooltip = styled.div`
   }
 `;
 
+
 return (
   <RadixTooltip.Root>
     <RadixTooltip.Trigger asChild>
@@ -85,10 +86,10 @@ return (
       </button>
     </RadixTooltip.Trigger>
     <StyledTooltip>
-      <Radix.Content className="content" sideOffset={5} side="top" align="center">
+      <RadixTooltip.Content className="content" sideOffset={5} side="top" align="center">
         {props.content}
-        <Radix.Arrow className="arrow" />
-      </Radix.Content>
+        <RadixTooltip.Arrow className="arrow" />
+      </RadixTooltip.Content>
     </StyledTooltip>
   </RadixTooltip.Root>
 );
