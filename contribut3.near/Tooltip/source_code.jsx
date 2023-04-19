@@ -82,7 +82,9 @@ return (
     </RadixTooltip.Trigger>
     <StyledContent sideOffset={5} side="top" align="center">
       {props.content}
-      <StyledArrow />
+      <StyledArrow >
+        <Radix.Arrow />
+      </StyledArrow >
     </StyledContent>
   </RadixTooltip.Root>
 );
