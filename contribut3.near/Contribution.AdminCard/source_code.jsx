@@ -88,6 +88,8 @@ const Other = styled.div`
   width: 10%;
 `;
 
+const active = typeof state.contribution.status === "string" || !("Completed" in state.contribution.status);
+
 return (
   <Container>
     <Owner href={`/${ownerId}/widget/Index?tab=vendor&accountId=${vendorId}`}>
@@ -127,7 +129,7 @@ return (
     <Other>
       <Widget
         src={`${ownerId}/widget/ActiveIndicator`}
-        props={{ active: false, inactiveText: "Pending" }}
+        props={{ active, inactiveText: "Pending" }}
       />
     </Other>
   </Container>
