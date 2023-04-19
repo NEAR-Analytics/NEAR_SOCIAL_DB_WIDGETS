@@ -59,7 +59,7 @@ const StyledTooltip = styled.div`
     will-change: transform, opacity;
     font-style: normal;
     font-weight: 700;
-    font-size: 0.75em;
+    font-size: 0.95em;
     line-height: 1.4em;
     color: #11181c;
 
