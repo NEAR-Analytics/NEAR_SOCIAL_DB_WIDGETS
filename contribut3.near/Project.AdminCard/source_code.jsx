@@ -68,6 +68,10 @@ const Container = styled.div`
 `;
 
 const Name = styled.div`
+  dislay: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
   width: 35%;
 `;
 
