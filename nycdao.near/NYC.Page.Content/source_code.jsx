@@ -11,7 +11,7 @@ if (content === null) {
 
 const defaultWidgets = [
   {
-    src: "nycdao.near/widget/NYC.Page.Tabs",
+    src: "nycdao.near/widget/NYC.Tabs",
     props: { hashtag, accountId },
   },
 ];
