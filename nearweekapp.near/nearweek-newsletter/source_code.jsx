@@ -136,7 +136,11 @@ return (
           >
             Read
           </ButtonLink>
-          <ButtonLink href="https://nearweek.com" target="_blank" primary>
+          <ButtonLink
+            href="https://subscribe.nearweek.com"
+            target="_blank"
+            primary
+          >
             Subscribe
           </ButtonLink>
         </CardFooter>
