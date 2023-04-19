@@ -77,4 +77,5 @@ return (
         {state.accountsWithPermissions.map((accountId) => (<li key={accountId}>{accountId}</li>))}
       </Accounts>
     </Existing>
-  </>);
+  </>
+);
