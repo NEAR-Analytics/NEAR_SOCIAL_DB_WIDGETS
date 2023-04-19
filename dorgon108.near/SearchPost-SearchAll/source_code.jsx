@@ -145,7 +145,12 @@ const ViewFullPostButton = styled.button`
 `;
 return (
   <Card>
-    <TopRow>
+    <TopRow
+      style={{
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+      }}
+    >
       <Widget
         src="dorgon108.near/widget/AccountProfile-Search-PostComponent"
         props={{
@@ -156,11 +161,11 @@ return (
     </TopRow>
     <MiddleRow>
       <Content>
-        {"content.text" && (
+        {content.text && (
           <Widget
             src="calebjacob.near/widget/SocialMarkdown"
             props={{
-              text: "content.text Westworld talks about concisouss in. some hosts and who knows",
+              text: content.text,
             }}
           />
         )}
