@@ -167,7 +167,7 @@ return (
           <Widget
             src="calebjacob.near/widget/SocialMarkdown"
             props={{
-              text: content.text,
+              text: content.text ?? "",
             }}
           />
         )}
