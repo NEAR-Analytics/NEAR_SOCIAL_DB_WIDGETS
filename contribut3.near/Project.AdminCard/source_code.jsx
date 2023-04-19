@@ -84,7 +84,7 @@ return (
     <Name>
       <Widget
         src={`${ownerId}/widget/Project.Icon`}
-        props={{ accountId: props.accountId, size: "4em" }}
+        props={{ accountId: props.accountId, size: "2.5em" }}
       />
       <Widget
         src={`${ownerId}/widget/NameAndAccount`}
