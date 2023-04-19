@@ -42,7 +42,7 @@ const slideLeftAndFade = styled.keyframes`
   }
 `;
 
-const StyledArrow = styled(RadixTooltip.Arrow)`
+const StyledArrow = styled.div`
   fill: #fff;
 `;
 
