@@ -187,15 +187,6 @@ return (
           <TextLink href={profileUrl} onPointerUp={onPointerUp} ellipsis>
             @{accountId}
           </TextLink>
-
-          {tags.length > 0 && (
-            <TagsWrapper>
-              <Widget
-                src="calebjacob.near/widget/Tags"
-                props={{ tags, scroll: true }}
-              />
-            </TagsWrapper>
-          )}
         </div>
         <FollowersCount>
           {/* Replace "123" with the actual follower count */}
