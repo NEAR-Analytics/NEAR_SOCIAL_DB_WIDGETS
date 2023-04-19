@@ -59,9 +59,13 @@ const Title = styled.a`
 `;
 
 const Container = styled.div`
-  .cont {
-    width: 100% !important;
-  }
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 1em .95em;
+  gap: 1em;
+  border-bottom: 1px solid #EAECF0;
+  width: 100%;
 `;
 
 const Name = styled.a`
