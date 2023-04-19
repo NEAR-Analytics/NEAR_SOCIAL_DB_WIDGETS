@@ -21,7 +21,7 @@ const Item = styled.div`
 `;
 
 State.init({
-  names: [],
+  names: null,
   namesIsFetched: false,
 });
 
@@ -44,7 +44,7 @@ const createItem = (accountId) => (
   <Item key={accountId}>
     <Widget src={`${ownerId}/widget/Vendor.Icon`} props={{ accountId }} />
     {onlyOne ? (
-      <Widget src={`${ownerId}/widget/Vendor.NameAndAccount`} props={{ accountId, name: state }} />
+      <Widget src={`${ownerId}/widget/Vendor.NameAndAccount`} props={{ accountId, name: state.names[accountId] }} />
     ) : <></>}
   </Item>
 );
