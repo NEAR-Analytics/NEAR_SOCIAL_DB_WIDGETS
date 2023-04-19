@@ -93,12 +93,13 @@ const TopRow = styled.div`
   display: flex;
   padding: 8px;
 `;
-
 const MiddleRow = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
   padding: 8px;
+  overflow-y: auto; // Added overflow-y
+  max-height: 150px; // Adjust the height or max-height according to your needs
 `;
 
 const BottomRow = styled.div`
