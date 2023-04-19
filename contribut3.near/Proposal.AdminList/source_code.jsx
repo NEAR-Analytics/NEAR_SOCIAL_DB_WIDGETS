@@ -57,10 +57,10 @@ const Container = styled.div`
 return (
   <Container>
     <Header>
-      <Owner>Owner</Owner>
-      <Title>Request</Title>
+      <Owner>Proposed by</Owner>
+      <Other>Proposed to</Other>
+      <Title>Proposal / Request</Title>
       <Other>Created</Other>
-      <Other>Proposals</Other>
       <Other>Status</Other>
     </Header>
     <Widget
