@@ -56,7 +56,7 @@ return (
         search,
         items: state.items,
         createItem: (accountId) => (
-          <Widget src={`${ownerId}/widget/Project.Card`} props={{ accountId }} />
+          <Widget src={`${ownerId}/widget/Project.AdminCard`} props={{ accountId }} />
         ),
       }}
     />
