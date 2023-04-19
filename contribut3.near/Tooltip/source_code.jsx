@@ -50,7 +50,6 @@ const StyledTooltip = styled.div`
   .content {
     border-radius: 4px;
     padding: 10px 15px;
-    font-size: 15px;
     background-color: white;
     box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
     user-select: none;
