@@ -1,6 +1,12 @@
 const ownerId = "contribut3.near";
 
-const availableContent = ["projects", "requests", "proposals", "contracts", "applications"];
+const availableContent = [
+  "projects",
+  "requests",
+  "proposals",
+  "contracts",
+  "applications",
+];
 
 const getContent = (content) => {
   if (!content || !availableContent.includes(content)) {
@@ -71,7 +77,7 @@ const content = {
   ),
   applications: (
     <Widget
-      src={`${ownerId}/widget/Project.AdminApplicationList`}
+      src={`${ownerId}/widget/Application.AdminList`}
       props={{ search: props.search, update: props.update }}
     />
   ),
@@ -126,9 +132,7 @@ return (
   <Container>
     <Heading>
       <h1>Manage projects and requests</h1>
-      <p>
-        Create or edit projects and requests
-      </p>
+      <p>Create or edit projects and requests</p>
     </Heading>
     <div>{contentSelector}</div>
     <Filters>
