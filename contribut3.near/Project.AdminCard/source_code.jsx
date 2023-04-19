@@ -87,7 +87,7 @@ const Badge = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: .5em .75em;
+  padding: .5em .95em;
   background: #f2f4f7;
   mix-blend-mode: multiply;
   border-radius: 16px;
