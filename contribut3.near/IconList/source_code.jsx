@@ -44,7 +44,7 @@ const createItem = (accountId) => (
   <Item key={accountId} href={`/near/widget/ProfilePage?accountId=${accountId}`}>
     <Widget src={`${ownerId}/widget/Vendor.Icon`} props={{ accountId }} />
     {onlyOne ? (
-      <Widget src={`${ownerId}/widget/Vendor.NameAndAccount`} props={{ accountId, name: state.names[accountId] }} />
+      <Widget src={`${ownerId}/widget/NameAndAccount`} props={{ accountId, name: state.names[accountId] }} />
     ) : <></>}
   </Item>
 );
