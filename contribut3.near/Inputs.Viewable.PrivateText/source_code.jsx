@@ -56,6 +56,10 @@ const MarkdownText = styled.div`
   }
 `;
 
+State.init({
+  send: false,
+});
+
 return (
   <Widget
     src={`${ownerId}/widget/Inputs.Viewable`}
