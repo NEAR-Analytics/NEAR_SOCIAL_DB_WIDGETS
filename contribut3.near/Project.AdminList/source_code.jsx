@@ -40,6 +40,12 @@ const Other = styled.div`
   width: 13%;
 `;
 
+const Container = styled.div`
+  .cont {
+    width: 100% !important;
+  }
+`;
+
 return (
   <div>
     <Header>
