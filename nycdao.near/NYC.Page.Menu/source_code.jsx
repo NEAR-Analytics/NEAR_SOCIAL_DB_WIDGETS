@@ -1,7 +1,7 @@
 const accountId = props.accountId ?? "nycdao.near";
 
 const menu = context.accountId
-  ? Social.get(`${context.accountId}/settings/every/page.menu`)
+  ? Social.get(`${context.accountId}/settings/every/page.nyc.menu`)
   : undefined;
 
 if (menu === null) {
