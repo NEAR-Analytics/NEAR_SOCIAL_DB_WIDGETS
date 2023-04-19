@@ -2,7 +2,7 @@ const accountId = props.accountId ?? "nycdao.near";
 const hashtag = props.hashtag ?? "nyc";
 
 const content = context.accountId
-  ? Social.get(`${context.accountId}/settings/every/page.content`)
+  ? Social.get(`${context.accountId}/settings/every/page.nyc.main`)
   : undefined;
 
 if (content === null) {
