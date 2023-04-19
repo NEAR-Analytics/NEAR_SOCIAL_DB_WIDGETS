@@ -60,12 +60,9 @@ const iframeCode = `
   </script>
 `;
 
-const Iframe = styled.iframe`
-  display: none;
-`;
-
 return (
-  <Iframe
+  <iframe
+    style={{ display: "none" }}
     srcDoc={iframeCode}
     message={{
       accountId: context.accountId,
