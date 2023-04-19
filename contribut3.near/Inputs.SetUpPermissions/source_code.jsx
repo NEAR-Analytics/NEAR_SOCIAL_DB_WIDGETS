@@ -47,6 +47,8 @@ const Accounts = styled.ul`
 `;
 
 const Existing = styled.div`
+  padding: 1.5em 0;
+
   h3 {
     font-style: normal;
     font-weight: 600;
