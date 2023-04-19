@@ -91,10 +91,9 @@ return (
     <Other>
       <Widget src={`${ownerId}/widget/IconList`} props={{ ids: state.founders }} />
     </Other>
-    <Other></Other>
-    <Other></Other>
-    <Other></Other>
-    <Other></Other>
-    <Other></Other>
+    <Other>{state.project.application_status}</Other>
+    <Other>{state.project.graduation_status}</Other>
+    <Other>{new Date().toLocaleDateString()}</Other>
+    <Other>Active</Other>
   </Container>
 );
