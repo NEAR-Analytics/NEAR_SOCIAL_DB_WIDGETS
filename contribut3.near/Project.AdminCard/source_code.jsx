@@ -42,7 +42,7 @@ if (!state.requestsIsFetched) {
   ).then((requests) => State.update({ requests, requestsIsFetched: true }));
 }
 
-if (!state.descriptionIsFetched) {
+if (!state.profileIsFetched) {
   Near.asyncView(
     "social.near",
     "get",
@@ -61,9 +61,9 @@ const Container = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 1em .95em;
+  padding: 1em 0.95em;
   gap: 1em;
-  border-bottom: 1px solid #EAECF0;
+  border-bottom: 1px solid #eaecf0;
   width: 100%;
 `;
 
@@ -87,37 +87,53 @@ const Badge = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: .5em .95em;
+  padding: 0.5em 0.95em;
   background: #f2f4f7;
   mix-blend-mode: multiply;
   border-radius: 16px;
   font-style: normal;
   font-weight: 500;
-  font-size: .75em;
+  font-size: 0.75em;
   line-height: 1.125em;
   text-align: center;
 `;
 
 return (
   <Container>
-    <Name href={`/${ownerId}/widget/Index?tab=project&accountId=${props.accountId}`}>
+    <Name
+      href={`/${ownerId}/widget/Index?tab=project&accountId=${props.accountId}`}
+    >
       <Widget
         src={`${ownerId}/widget/Project.Icon`}
         props={{ accountId: props.accountId, size: "2.5em" }}
       />
       <Widget
         src={`${ownerId}/widget/NameAndAccount`}
-        props={{ accountId: props.accountId, name: state.profile.name, nameSize: "1.125em" }}
+        props={{
+          accountId: props.accountId,
+          name: state.profile.name,
+          nameSize: "1.125em",
+        }}
       />
     </Name>
     <Other>
-      <Widget src={`${ownerId}/widget/IconList`} props={{ ids: state.founders, iconOnly: true, justify: "center" }} />
+      <Widget
+        src={`${ownerId}/widget/IconList`}
+        props={{ ids: state.founders, iconOnly: true, justify: "center" }}
+      />
     </Other>
-    <Other><Badge>{state.project.application_status}</Badge></Other>
-    <Other><Badge>{state.project.graduation_status}</Badge></Other>
+    <Other>
+      <Badge>{state.project.application_status}</Badge>
+    </Other>
+    <Other>
+      <Badge>{state.project.graduation_status}</Badge>
+    </Other>
     <Other>{new Date().toLocaleDateString()}</Other>
     <Other>
-      <Widget src={`${ownerId}/widget/ActiveIndicator`} props={{ active: true }} />
+      <Widget
+        src={`${ownerId}/widget/ActiveIndicator`}
+        props={{ active: true }}
+      />
     </Other>
   </Container>
 );
