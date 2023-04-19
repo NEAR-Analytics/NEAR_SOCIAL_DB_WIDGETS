@@ -126,10 +126,10 @@ return (
       />
     </Other>
     <Other>
-      <Badge>{state.project.application_status}</Badge>
+      <Badge>{text}</Badge>
     </Other>
     <Other>
-      <Badge>{state.project.graduation_status}</Badge>
+      <Badge>{graduationText}</Badge>
     </Other>
     <Other>{new Date().toLocaleDateString()}</Other>
     <Other>
