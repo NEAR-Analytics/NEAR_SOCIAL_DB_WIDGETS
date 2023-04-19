@@ -56,33 +56,17 @@ const iframeCode = `
         window.top.postMessage(result, "*");
       });
     });
-
-    sodium.ready.then(async function() {
-      const sk = nearApi.utils.PublicKey.fromString(key.secretKey).data;
-      const pk = key.publicKey.data;
-      const blockHash = await getBlockHash();
-      const body = { win_reason: "devet hiljada" };
-      const signed = sodium.crypto_sign_detached(`petarvujovic.near\n${ sodium.to_hex(pk)}\n${ blockHash } \n${ JSON.stringify(body) } `, sk);
-      const signature = sodium.to_hex(signed);
-      const result = await fetch("http://localhost:3000/encrypt/contribut3.near", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "X-Near-Public-Key": sodium.to_hex(pk),
-          "X-Near-Account-Id": "petarvujovic.near",
-          "X-Near-Signature": signature,
-          "X-Near-Block-Hash": blockHash,
-          "Origin": "https://google.com",
-        },
-        body: JSON.stringify(body),
-      });
-      const json = await result.json();
-      console.log({ json });
-      encryptSecretForAccount("petarvujovic.near", "Hello World").then((encrypted) => {
-        tryDecrypt(key.secretKey, encrypted).then((decrypted) => {
-          console.log({ decrypted });
-        });
-      });
-    });
   </script>
 `;
+
+const Iframe = styled.iframe`
+  display: none;
+`;
+
+return (
+  <Iframe
+    srcDoc={iframeCode}
+    message={{ accountId: context.accountId, url: `https://encryption-service-73dm.onrender.com${props.encrypt ? "/encrypt/" : "/decrypt/"}${props.accountId}`, body: props.body }}
+    onMessage={props.onChange}
+  />
+);
