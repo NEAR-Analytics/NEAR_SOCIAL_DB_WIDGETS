@@ -1,7 +1,7 @@
 const accountId = context.accountId;
 
 const page = context.accountId
-  ? Social.get(`${context.accountId}/settings/every/page`)
+  ? Social.get(`${context.accountId}/settings/every/page.nyc.main`)
   : undefined;
 
 if (page === null) {
