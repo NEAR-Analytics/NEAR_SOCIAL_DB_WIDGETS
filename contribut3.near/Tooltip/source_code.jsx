@@ -75,6 +75,7 @@ const StyledTooltip = styled.div`
   }
 `;
 
+console.log("here")
 
 return (
   <RadixTooltip.Root>
