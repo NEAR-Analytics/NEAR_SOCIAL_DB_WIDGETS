@@ -48,7 +48,7 @@ const Name = styled.a`
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  gap: .5em;
+  gap: 0.5em;
   width: 70%;
 `;
 
@@ -79,8 +79,11 @@ if (!state.projectIsFetched || !state.profileIsFetched) {
   return <>Loading...</>;
 }
 
-console.log(state.project)
-const text = typeof state.project.application_status === "string" ? state.project.application_status : Object.keys(state.project.application_status)[0];
+console.log(state.project);
+const text =
+  typeof state.project.application_status === "string"
+    ? state.project.application_status
+    : Object.keys(state.project.application_status)[0];
 
 return (
   <Container>
@@ -104,7 +107,11 @@ return (
     <Other>
       <Widget
         src={`${ownerId}/widget/ActiveIndicator`}
-        props={{ active: state.project.aplication_status === "Accepted", activeText: "Accepted", inactiveText: text }}
+        props={{
+          active: state.project.aplication_status === "Accepted",
+          activeText: "Accepted",
+          inactiveText: text,
+        }}
       />
     </Other>
   </Container>
