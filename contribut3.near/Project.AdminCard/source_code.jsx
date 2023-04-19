@@ -72,6 +72,7 @@ const Name = styled.a`
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
+  gap: .5em;
   width: 35%;
 `;
 
@@ -97,6 +98,10 @@ const Badge = styled.div`
   line-height: 1.125em;
   text-align: center;
 `;
+
+if (!state.projectIsFetched || !state.profileIsFetched) {
+  return <>Loading...</>;
+}
 
 const text = typeof state.project.application_status === "string" ? state.project.application_status : Object.keys(state.project.application_status)[0];
 const graduationText = typeof state.project.graduation_status === "string" ? state.project.graduation_status : Object.keys(state.project.graduation_status)[0];
