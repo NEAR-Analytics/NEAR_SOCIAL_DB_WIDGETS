@@ -89,7 +89,7 @@ return (
       />
     </Name>
     <Other>
-      <Widget src={`${ownerId}/widget/IconList`} props={{ ids: state.founders }} />
+      <Widget src={`${ownerId}/widget/IconList`} props={{ ids: state.founders, iconOnly: true }} />
     </Other>
     <Other>{state.project.application_status}</Other>
     <Other>{state.project.graduation_status}</Other>
