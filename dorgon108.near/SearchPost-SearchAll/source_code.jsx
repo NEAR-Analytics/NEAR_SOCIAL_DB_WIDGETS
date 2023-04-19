@@ -135,7 +135,7 @@ const ViewFullPostButton = styled.button`
   text-align: center;
   font-size: 14px;
   font-weight: 500;
-  color: #687076;
+  color: #006ADC;
   &:hover {
     background-color: #E6E8EB;
   }
@@ -160,7 +160,7 @@ return (
           <Widget
             src="calebjacob.near/widget/SocialMarkdown"
             props={{
-              text: "content.text%%content.textcontent.textcontent.textcontent.textcontent.textcontent.textcontent.text",
+              text: "content.text Westworld talks about concisouss in. some hosts and who knows",
             }}
           />
         )}
