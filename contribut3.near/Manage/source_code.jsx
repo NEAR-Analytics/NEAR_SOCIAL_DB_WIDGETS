@@ -29,9 +29,9 @@ const Header = styled.div`
 
 const header = (
   <Header>
-    <h1>Manage</h1>
+    <h1>Manage projects and contributors</h1>
     <p>
-      Create, edit and manage your projects and contributions
+      Create, edit and manage all of your projects, organizations and requests
     </p>
   </Header>
 );
