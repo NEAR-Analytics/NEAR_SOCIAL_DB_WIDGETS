@@ -24,8 +24,9 @@ State.init({
 const RightColumn = styled.div`
   display: flex;
   flex-direction: column;
-  flex: 3; // Updated flex property
+  flex: 3;
   padding: 8px;
+  word-wrap: break-word; // Added to wrap the text
 `;
 
 const ProfileInfo = styled.div`
@@ -54,7 +55,7 @@ const CardLeft = styled.div`
   display: flex;
   gap: 16px;
   align-items: center;
-  flex: 1; // Updated flex property
+  flex: 1;
   min-width: 0;
 
   > div {
@@ -73,6 +74,7 @@ const Avatar = styled.a`
   overflow: hidden;
   border-radius: 56px;
   transition: border-color 200ms;
+  min-width: 60px; // Added to prevent shrinking
 
   img {
     object-fit: cover;
