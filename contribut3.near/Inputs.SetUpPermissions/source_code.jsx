@@ -20,11 +20,6 @@ if (!state.followingIsFetched) {
   return <>Loading...</>;
 }
 
-// console.log(Social.get(`${context.accountId}/graph/follow/*`, "final", {
-//   // return_type: "BlockHeight",
-//   // values_only: true,
-// }));
-
 return (<Widget
   src={`${ownerId}/widget/Inputs.MultiSelect`}
   props={{
