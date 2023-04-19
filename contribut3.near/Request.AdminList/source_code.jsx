@@ -54,7 +54,7 @@ return (
   <Container>
     <Header>
       <Owner>Owner</Owner>
-      <Request>Request</Request>
+      <Title>Request</Title>
       <Other>Created</Other>
       <Other>Proposals</Other>
       <Other>Status</Other>
