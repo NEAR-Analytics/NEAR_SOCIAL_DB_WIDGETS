@@ -101,7 +101,7 @@ return (
     <Other>
       <Widget
         src={`${ownerId}/widget/ActiveIndicator`}
-        props={{ active: state.project.aplication_status !== "Accepted", activeText: "Accepted", inactiveText: state.project.application_status }}
+        props={{ active: state.project.aplication_status !== "Accepted", activeText: "Accepted", inactiveText: text }}
       />
     </Other>
   </Container>
