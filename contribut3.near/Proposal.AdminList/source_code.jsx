@@ -36,11 +36,11 @@ const Header = styled.div`
 `;
 
 const Owner = styled.div`
-  width: 25%;
+  width: 20%;
 `;
 
 const Title = styled.div`
-  width: 45%;
+  width: 40%;
 `;
 
 const Other = styled.div`
@@ -58,7 +58,7 @@ return (
   <Container>
     <Header>
       <Owner>Proposed by</Owner>
-      <Other>Proposed to</Other>
+      <Owner>Proposed to</Owner>
       <Title>Proposal / Request</Title>
       <Other>Created</Other>
       <Other>Status</Other>
