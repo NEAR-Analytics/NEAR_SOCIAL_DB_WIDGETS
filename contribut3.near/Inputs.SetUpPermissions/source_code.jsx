@@ -6,7 +6,7 @@ State.init({
   value: [],
   accountsWithPermissions: [],
   accountsWithPermissionsIsFetched: false,
-})
+});
 
 if (!state.followingIsFetched) {
   Near.asyncView(
@@ -14,11 +14,15 @@ if (!state.followingIsFetched) {
     "get",
     { keys: [`${context.accountId}/graph/follow/*`] },
     "final",
-    false,
-  ).then((data) => State.update({
-    following: Object.keys(data[context.accountId].graph.follow).map((name) => ({ name })),
-    followingIsFetched: true,
-  }));
+    false
+  ).then((data) =>
+    State.update({
+      following: Object.keys(data[context.accountId].graph.follow).map(
+        (name) => ({ name })
+      ),
+      followingIsFetched: true,
+    })
+  );
 }
 
 if (!state.accountsWithPermissionsIsFetched) {
@@ -27,11 +31,16 @@ if (!state.accountsWithPermissionsIsFetched) {
     "debug_get_permissions",
     { account_id: context.accountId },
     "final",
-    false,
-  ).then((data) => State.update({
-    accountsWithPermissions: data.map(([info]) => info).filter((info) => "AccountId" in info).map(({ AccountId }) => AccountId),
-    accountsWithPermissionsIsFetched: true,
-  }));
+    false
+  ).then((data) =>
+    State.update({
+      accountsWithPermissions: data
+        .map(([info]) => info)
+        .filter((info) => "AccountId" in info)
+        .map(({ AccountId }) => AccountId),
+      accountsWithPermissionsIsFetched: true,
+    })
+  );
 }
 
 if (!state.followingIsFetched || !state.accountsWithPermissionsIsFetched) {
@@ -78,7 +87,10 @@ const SaveButton = styled.button`
 const grantPermissions = () => {
   const accounts = state.value.map(({ name }) => name);
 
-  if (!accounts.includes(context.accountId) && !state.accountsWithPermissions.includes(context.accountId)) {
+  if (
+    !accounts.includes(context.accountId) &&
+    !state.accountsWithPermissions.includes(context.accountId)
+  ) {
     accounts.push(context.accountId);
   }
 
@@ -110,7 +122,9 @@ return (
     <Existing>
       <h3>Existing permissions</h3>
       <Accounts>
-        {state.accountsWithPermissions.map((accountId) => (<li key={accountId}>{accountId}</li>))}
+        {state.accountsWithPermissions.map((accountId) => (
+          <li key={accountId}>{accountId}</li>
+        ))}
       </Accounts>
     </Existing>
   </>
