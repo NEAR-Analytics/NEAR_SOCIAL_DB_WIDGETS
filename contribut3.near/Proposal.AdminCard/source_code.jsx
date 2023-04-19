@@ -125,7 +125,7 @@ return (
     <Other>
       <Widget
         src={`${ownerId}/widget/ActiveIndicator`}
-        props={{ active: false, notActiveText: "Pending" }}
+        props={{ active: false, inactiveText: "Pending" }}
       />
     </Other>
   </Container>
