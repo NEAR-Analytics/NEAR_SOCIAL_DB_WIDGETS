@@ -68,7 +68,7 @@ const Container = styled.div`
 `;
 
 const Name = styled.div`
-  dislay: flex;
+  display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
