@@ -14,7 +14,7 @@ const defaultWidgets = [
     src: "nycdao.near/widget/NYC.Explore",
   },
   {
-    src: "nycdao.near/widget/NYC.Members",
+    src: "nycdao.near/widget/NYC.People",
   },
 ];
 
