@@ -24,6 +24,11 @@ const Header = styled.div`
   width: 100%;
   background: #f9fafb;
   border-bottom: 1px solid #eaecf0;
+  font-style: normal;
+  font-weight: 600;
+  font-size: .75em;
+  line-height: 1em;
+  color: #475467;
 `;
 
 const Name = styled.div`
@@ -31,6 +36,7 @@ const Name = styled.div`
 `;
 
 const Other = styled.div`
+  text-align: center;
   width: 13%;
 `;
 
