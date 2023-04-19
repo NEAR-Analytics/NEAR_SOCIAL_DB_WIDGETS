@@ -76,7 +76,7 @@ return (
             value={v}
             onChange={(e) => update(e.target.value)}
           />
-          <Widget src={`${ownerId}/widget/PrivateDataIframe`} props={{
+          <Widget src={`${ownerId}/widget/Inputs.PrivateDataIframe`} props={{
             accountId,
             encrypt: true,
             body: { [id]: v },
