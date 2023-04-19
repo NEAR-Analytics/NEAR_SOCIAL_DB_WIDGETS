@@ -51,7 +51,8 @@ const iframeCode = `
 
     window.addEventListener("message", ({ data }) => {
       sodium.ready.then(async function() {
-        const { accountId, body, url } = data;
+        const { accountId, body, url, send } = data;
+        if (!send) return;
         const result = await sendRequest(url, body, accountId);
         window.top.postMessage(result, "*");
       });
@@ -69,7 +70,8 @@ return (
     message={{
       accountId: context.accountId,
       url: `https://encryption-service-73dm.onrender.com${props.encrypt ? "/encrypt/" : "/decrypt/"}${props.accountId}`,
-      body: props.body
+      body: props.body,
+      send: props.send,
     }}
     onMessage={props.onChange}
   />
