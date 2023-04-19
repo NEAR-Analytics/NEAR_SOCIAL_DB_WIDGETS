@@ -47,7 +47,7 @@ const Container = styled.div`
 `;
 
 return (
-  <div>
+  <Container>
     <Header>
       <Name>Name</Name>
       <Other>Admins</Other>
@@ -66,5 +66,5 @@ return (
         ),
       }}
     />
-  </div>
+  </Container>
 );
