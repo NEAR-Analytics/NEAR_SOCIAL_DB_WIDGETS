@@ -19,7 +19,9 @@ if (!state.contributionIsFetched) {
     { project_id: projectId, cid, vendor_id: vendorId },
     "final",
     false
-  ).then((contribution) => State.update({ contribution, contributionIsFetched: true }));
+  ).then((contribution) =>
+    State.update({ contribution, contributionIsFetched: true })
+  );
 }
 
 if (!state.projectNameIsFetched) {
@@ -88,7 +90,9 @@ const Other = styled.div`
   width: 10%;
 `;
 
-const active = typeof state.contribution.status === "string" || !("Completed" in state.contribution.status);
+const active =
+  typeof state.contribution.status === "string" ||
+  !("Completed" in state.contribution.status);
 
 return (
   <Container>
