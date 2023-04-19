@@ -1,3 +1,5 @@
+let filters = props.filters;
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -52,55 +54,37 @@ const handleChange = (primary, sub) => {
 console.log(state);
 
 // ... JSX structure goes here ...
-
 return (
   <Container>
-    <CheckboxGroup>
-      <CheckboxLabel checked={state.primary1?.primary1 || false}>
-        <CheckboxInput>
-          <input
-            type="checkbox"
-            checked={state.primary1?.primary1 || false}
-            onChange={() => handleChange("primary1")}
-          />
-        </CheckboxInput>
-        Primary 1
-      </CheckboxLabel>
-      <SubCheckboxGroup>
-        <CheckboxLabel checked={state.primary1?.sub1 || false}>
+    {Object.entries(filters).map(([primary, subFilters]) => (
+      <CheckboxGroup key={primary}>
+        <CheckboxLabel checked={state[primary]?.[primary] || false}>
           <CheckboxInput>
             <input
               type="checkbox"
-              checked={state.primary1?.sub1 || false}
-              onChange={() => handleChange("primary1", "sub1")}
+              checked={state[primary]?.[primary] || false}
+              onChange={() => handleChange(primary)}
             />
           </CheckboxInput>
-          Sub 1
+          {primary}
         </CheckboxLabel>
-        <CheckboxLabel checked={state.primary1?.sub2 || false}>
-          <CheckboxInput>
-            <input
-              type="checkbox"
-              checked={state.primary1?.sub2 || false}
-              onChange={() => handleChange("primary1", "sub2")}
-            />
-          </CheckboxInput>
-          Sub 2
-        </CheckboxLabel>
-      </SubCheckboxGroup>
-    </CheckboxGroup>
-
-    <CheckboxGroup>
-      <CheckboxLabel checked={state.primary2?.primary2 || false}>
-        <CheckboxInput>
-          <input
-            type="checkbox"
-            checked={state.primary2?.primary2 || false}
-            onChange={() => handleChange("primary2")}
-          />
-        </CheckboxInput>
-        Primary 2
-      </CheckboxLabel>
-    </CheckboxGroup>
+        {subFilters && (
+          <SubCheckboxGroup>
+            {Object.entries(subFilters).map(([sub, _]) => (
+              <CheckboxLabel key={sub} checked={state[primary]?.[sub] || false}>
+                <CheckboxInput>
+                  <input
+                    type="checkbox"
+                    checked={state[primary]?.[sub] || false}
+                    onChange={() => handleChange(primary, sub)}
+                  />
+                </CheckboxInput>
+                {sub}
+              </CheckboxLabel>
+            ))}
+          </SubCheckboxGroup>
+        )}
+      </CheckboxGroup>
+    ))}
   </Container>
 );
