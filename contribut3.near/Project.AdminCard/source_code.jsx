@@ -67,7 +67,7 @@ const Container = styled.div`
   width: 100%;
 `;
 
-const Name = styled.div`
+const Name = styled.a`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -85,7 +85,7 @@ const Other = styled.div`
 
 return (
   <Container>
-    <Name>
+    <Name href={`/${ownerId}/widget/Index?tab=project&accountId=${props.accountId}`}>
       <Widget
         src={`${ownerId}/widget/Project.Icon`}
         props={{ accountId: props.accountId, size: "2.5em" }}
