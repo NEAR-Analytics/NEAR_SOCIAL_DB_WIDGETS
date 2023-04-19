@@ -121,7 +121,7 @@ return (
       />
     </Owner>
     <Title
-      href={`/${ownerId}/widget/Index?tab=proposal&projectId=${projectId}&cid=${cid}&vendorId=${vendorId}`}
+      href={`/${ownerId}/widget/Index?tab=contribution&projectId=${projectId}&cid=${cid}&vendorId=${vendorId}`}
     >
       {state.contribution.title}
     </Title>
