@@ -1,45 +1,48 @@
 const ownerId = "contribut3.near";
-const accountId = props.accountId;
+const projectId = props.projectId;
 const cid = props.cid;
+const vendorId = props.vendorId;
 
 State.init({
-  request: null,
-  requestIsFetched: false,
-  proposals: null,
-  proposalsIsFetched: false,
-  name: null,
-  nameIsFetched: false,
+  proposal: null,
+  proposalIsFetched: false,
+  projectName: null,
+  projectNameIsFetched: false,
+  vendorName: null,
+  vendorNameIsFetched: false,
 });
 
-if (!state.requestIsFetched) {
+if (!state.proposalIsFetched) {
   Near.asyncView(
     ownerId,
-    "get_request",
-    { account_id: accountId, cid },
+    "get_proposal",
+    { project_id: projectId, cid, vendor_id: vendorId },
     "final",
     false
-  ).then((request) => State.update({ request, requestIsFetched: true }));
+  ).then((proposal) => State.update({ proposal, proposalIsFetched: true }));
 }
 
-if (!state.proposalsIsFetched) {
-  Near.asyncView(
-    ownerId,
-    "get_request_proposals",
-    { account_id: accountId, cid },
-    "final",
-    false
-  ).then((proposals) => State.update({ proposals, proposalsIsFetched: true }));
-}
-
-if (!state.nameIsFetched) {
+if (!state.projectNameIsFetched) {
   Near.asyncView(
     "social.near",
     "get",
-    { keys: [`${accountId}/profile/name`] },
+    { keys: [`${projectId}/profile/name`] },
     "final",
     false
   ).then((data) =>
-    State.update({ name: data[accountId].profile.name, nameIsFetched: true })
+    State.update({ projectName: data[projectId].profile.name, projectNameIsFetched: true })
+  );
+}
+
+if (!state.vendorNameIsFetched) {
+  Near.asyncView(
+    "social.near",
+    "get",
+    { keys: [`${vendorId}/profile/name`] },
+    "final",
+    false
+  ).then((data) =>
+    State.update({ vendorName: data[vendorId].profile.name, vendorNameIsFetched: true })
   );
 }
 
@@ -49,7 +52,7 @@ const Owner = styled.a`
   align-items: center;
   justify-content: flex-start;
   gap: 0.25em;
-  width: 25%;
+  width: 20%;
 `;
 
 const Title = styled.a`
@@ -58,7 +61,7 @@ const Title = styled.a`
   font-size: 0.95em;
   line-height: 1em;
   color: #101828;
-  width: 45%;
+  width: 40%;
 `;
 
 const Container = styled.div`
@@ -69,14 +72,6 @@ const Container = styled.div`
   gap: 1em;
   border-bottom: 1px solid #eaecf0;
   width: 100%;
-`;
-
-const Name = styled.a`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  width: 35%;
 `;
 
 const Other = styled.div`
@@ -90,32 +85,47 @@ const Other = styled.div`
 return (
   <Container>
     <Owner
-      href={`/${ownerId}/widget/Index?tab=project&accountId=${props.accountId}`}
+      href={`/${ownerId}/widget/Index?tab=vendor&accountId=${vendorId}`}
     >
       <Widget
-        src={`${ownerId}/widget/Project.Icon`}
-        props={{ accountId: props.accountId, size: "2.5em" }}
+        src={`${ownerId}/widget/Vendor.Icon`}
+        props={{ accountId: vendorId, size: "2.5em" }}
       />
       <Widget
         src={`${ownerId}/widget/NameAndAccount`}
         props={{
-          accountId: props.accountId,
-          name: state.name,
+          accountId: vendorId,
+          name: state.vendorName,
+          nameSize: "1.125em",
+        }}
+      />
+    </Owner>
+    <Owner
+      href={`/${ownerId}/widget/Index?tab=project&accountId=${projectId}`}
+    >
+      <Widget
+        src={`${ownerId}/widget/Project.Icon`}
+        props={{ accountId: projectId, size: "2.5em" }}
+      />
+      <Widget
+        src={`${ownerId}/widget/NameAndAccount`}
+        props={{
+          accountId: projectId,
+          name: state.projectName,
           nameSize: "1.125em",
         }}
       />
     </Owner>
     <Title
-      href={`/${ownerId}/widget/Index?tab=request&accountId=${accountId}&cid=${cid}`}
+      href={`/${ownerId}/widget/Index?tab=proposal&projectId=${projectId}&cid=${cid}&vendorId=${vendorId}`}
     >
-      {state.request.title}
+      {state.proposal.title}
     </Title>
     <Other>{new Date().toLocaleDateString()}</Other>
-    <Other>{state.proposals.length}</Other>
     <Other>
       <Widget
         src={`${ownerId}/widget/ActiveIndicator`}
-        props={{ active: state.request.open }}
+        props={{ active: false }}
       />
     </Other>
   </Container>
