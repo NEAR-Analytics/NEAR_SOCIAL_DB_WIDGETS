@@ -13,9 +13,9 @@ if (page === null) {
 const description = page.description;
 
 const pills = [
-  { id: "community", title: "Discover" },
-  { id: "about", title: "About" },
   { id: "projects", title: "Projects" },
+  { id: "about", title: "About" },
+  { id: "community", title: "Community" },
   { id: "events", title: "Events" },
 ];
 
@@ -46,12 +46,15 @@ return (
     <div className="tab-content" id="pills-tabContent">
       <div
         className="tab-pane fade show active"
-        id="pills-community"
+        id="pills-projects"
         role="tabpanel"
-        aria-labelledby="pills-community-tab"
+        aria-labelledby="pills-projects-tab"
       >
         <div className="mx-auto">
-          <Widget src="nycdao.near/widget/NYC.Social" props={{ hashtag }} />
+          <Widget
+            src="nycdao.near/widget/NYC.Projects"
+            props={{ accounts: [accountId] }}
+          />
         </div>
       </div>
       <div
@@ -73,25 +76,22 @@ return (
       </div>
       <div
         className="tab-pane fade"
-        id="pills-projects"
+        id="pills-community"
         role="tabpanel"
-        aria-labelledby="pills-projects-tab"
+        aria-labelledby="pills-community-tab"
       >
         <div className="mx-auto">
-          <Widget
-            src="nycdao.near/widget/NYC.Projects"
-            props={{ accounts: [accountId] }}
-          />
+          <Widget src="nycdao.near/widget/NYC.Social" props={{ hashtag }} />
         </div>
       </div>
       <div
-        className="tab-pane fade"
+        className="tab-pane fade events"
         id="pills-events"
         role="tabpanel"
         aria-labelledby="pills-events-tab"
       >
         <div className="mx-auto">
-          <Widget src="evrything.near/widget/Calendar" props={{ accountId }} />
+          <Widget src="nycdao.near/widget/NYC.Events" props={{ accountId }} />
         </div>
       </div>
     </div>
