@@ -4,10 +4,6 @@ const accountId = props.accountId;
 State.init({
   project: null,
   projectIsFetched: false,
-  founders: null,
-  foundersIsFetched: false,
-  requests: null,
-  requestsIsFetched: false,
   profile: null,
   profileIsFetched: false,
 });
@@ -22,27 +18,7 @@ if (!state.projectIsFetched) {
   ).then((project) => State.update({ project, projectIsFetched: true }));
 }
 
-if (!state.foundersIsFetched) {
-  Near.asyncView(
-    ownerId,
-    "get_founders",
-    { account_id: accountId },
-    "final",
-    false
-  ).then((founders) => State.update({ founders, foundersIsFetched: true }));
-}
-
-if (!state.requestsIsFetched) {
-  Near.asyncView(
-    ownerId,
-    "get_project_requests",
-    { account_id: accountId },
-    "final",
-    false
-  ).then((requests) => State.update({ requests, requestsIsFetched: true }));
-}
-
-if (!state.descriptionIsFetched) {
+if (!state.profileIsFetched) {
   Near.asyncView(
     "social.near",
     "get",
@@ -72,7 +48,7 @@ const Name = styled.a`
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  width: 35%;
+  width: 70%;
 `;
 
 const Other = styled.div`
@@ -80,7 +56,7 @@ const Other = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  width: 13%;
+  width: 15%;
 `;
 
 const Badge = styled.div`
@@ -117,22 +93,13 @@ return (
       />
     </Name>
     <Other>
-      <Widget
-        src={`${ownerId}/widget/IconList`}
-        props={{ ids: state.founders, iconOnly: true, justify: "center" }}
-      />
-    </Other>
-    <Other>
       <Badge>{state.project.application_status}</Badge>
-    </Other>
-    <Other>
-      <Badge>{state.project.graduation_status}</Badge>
     </Other>
     <Other>{new Date().toLocaleDateString()}</Other>
     <Other>
       <Widget
         src={`${ownerId}/widget/ActiveIndicator`}
-        props={{ active: true }}
+        props={{ active: state.project.aplication_status !== "Accepted", activeText: "Accepted", inactiveText: state.project.application_status }}
       />
     </Other>
   </Container>
