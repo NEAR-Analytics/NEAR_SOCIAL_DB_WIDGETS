@@ -10,6 +10,13 @@ const onPointerUp =
     }
   });
 
+const accountUrl = `/#/calebjacob.near/widget/ProfilePage?accountId=${accountId}`;
+
+let followers = Social.keys(`*/graph/follow/${accountId}`, "final", {
+  return_type: "BlockHeight",
+  values_only: true,
+});
+
 State.init({
   show: false,
 });
@@ -112,6 +119,38 @@ const FollowersCount = styled.div`
   margin-top: 4px;
 `;
 
+const TabsButton = styled.a`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-weight: 600;
+  font-size: 12px;
+  padding: 0 12px;
+  position: relative;
+  color: ${(p) => (p.selected ? "#11181C" : "#687076")};
+  background: none;
+  border: none;
+  outline: none;
+  text-align: center;
+  text-decoration: none !important;
+
+  &:hover {
+    color: #11181C;
+  }
+
+  &::after {
+    content: '';
+    display: ${(p) => (p.selected ? "block" : "none")};
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #59E692;
+  }
+`;
+
 return (
   <Card>
     <CardLeft>
@@ -149,7 +188,12 @@ return (
         </div>
         <FollowersCount>
           {/* Replace "123" with the actual follower count */}
-          {123} Following
+          <TabsButton
+            href={`${accountUrl}&tab=followers`}
+            selected={state.selectedTab === "followers"}
+          >
+            {Object.keys(followers).length} Followers
+          </TabsButton>
         </FollowersCount>
       </ProfileInfo>
     </RightColumn>
