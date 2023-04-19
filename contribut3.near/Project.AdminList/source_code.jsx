@@ -7,7 +7,7 @@ State.init({
 });
 
 if (!state.itemsIsFetched) {
-  Near.asyncView(ownerId, "get_admin_projects", {}, "final", false).then((items) =>
+  Near.asyncView(ownerId, "get_admin_projects", { account_id: context.accountId }, "final", false).then((items) =>
     State.update({ items, itemsIsFetched: true })
   );
 
