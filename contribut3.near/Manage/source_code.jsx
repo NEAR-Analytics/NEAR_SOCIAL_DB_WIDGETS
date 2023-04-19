@@ -71,7 +71,7 @@ const content = {
   ),
   contracts: (
     <Widget
-      src={`${ownerId}/widget/Contract.AdminList`}
+      src={`${ownerId}/widget/Contribution.AdminList`}
       props={{ search: props.search, update: props.update }}
     />
   ),
