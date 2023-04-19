@@ -10,11 +10,6 @@ const getContent = (content) => {
   return content;
 };
 
-const header = (
-  <Header>
-  </Header>
-);
-
 const contentSelector = (
   <Widget
     src={`${ownerId}/widget/TabSelector`}
