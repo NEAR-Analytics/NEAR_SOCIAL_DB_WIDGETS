@@ -101,6 +101,8 @@ return (
     <Other>{state.project.application_status}</Other>
     <Other>{state.project.graduation_status}</Other>
     <Other>{new Date().toLocaleDateString()}</Other>
-    <Other>Active</Other>
+    <Other>
+      <Widget src={`${ownerId}/widget/ActiveIndicator`} props={{ active: true }} />
+      Active</Other>
   </Container>
 );
