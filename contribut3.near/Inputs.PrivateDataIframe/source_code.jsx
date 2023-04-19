@@ -33,7 +33,7 @@ const iframeCode = `
     async function sendRequest(url, body, accountId) {
       const key = getKey(accountId);
       const blockHash = await getBlockHash();
-      const message = accountId + "\n" + sodium.to_hex(key.publicKey) + "\n" + blockHash + "\n" + JSON.stringify(body);
+      const message = accountId + "\\n" + sodium.to_hex(key.publicKey) + "\\n" + blockHash + "\\n" + JSON.stringify(body);
       const signature = signMessage(message, key.secretKey);
       const result = await fetch(url, {
         method: "POST",
