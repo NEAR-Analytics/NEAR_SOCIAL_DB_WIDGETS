@@ -88,7 +88,9 @@ return (
         props={{ accountId: props.accountId, name: state.profile.name, nameSize: "1.125em" }}
       />
     </Name>
-    <Other></Other>
+    <Other>
+      <Widget src={`${ownerId}/widget/IconList`} props={{ ids: state.founders }} />
+    </Other>
     <Other></Other>
     <Other></Other>
     <Other></Other>
