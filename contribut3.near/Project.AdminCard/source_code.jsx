@@ -103,6 +103,6 @@ return (
     <Other>{new Date().toLocaleDateString()}</Other>
     <Other>
       <Widget src={`${ownerId}/widget/ActiveIndicator`} props={{ active: true }} />
-      Active</Other>
+    </Other>
   </Container>
 );
