@@ -37,7 +37,7 @@ const Div = styled.div`
 return (
   <Div>
     <div className="mb-3">
-      <a href="#/hack.near/widget/Page.Menu.Editor">🧰 🛠️ 🧱</a>
+      <a href="#/hack.near/widget/Page.Menu.Editor">🍎 🏙 🗽</a>
       {context.accountId && (
         <a
           key="edit"
