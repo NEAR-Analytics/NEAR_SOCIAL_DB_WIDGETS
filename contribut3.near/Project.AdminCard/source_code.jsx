@@ -113,8 +113,8 @@ return (
     <Other>
       <Widget src={`${ownerId}/widget/IconList`} props={{ ids: state.founders, iconOnly: true, justify: "center" }} />
     </Other>
-    <Other>{state.project.application_status}</Other>
-    <Other>{state.project.graduation_status}</Other>
+    <Other><Badge>{state.project.application_status}</Badge></Other>
+    <Other><Badge>{state.project.graduation_status}</Badge></Other>
     <Other>{new Date().toLocaleDateString()}</Other>
     <Other>
       <Widget src={`${ownerId}/widget/ActiveIndicator`} props={{ active: true }} />
