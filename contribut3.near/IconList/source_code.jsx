@@ -11,7 +11,7 @@ const Container = styled.div`
   width: 100%;
 `;
 
-const Item = styled.div`
+const Item = styled.a`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -41,7 +41,7 @@ if (!state.namesIsFetched) {
 }
 
 const createItem = (accountId) => (
-  <Item key={accountId}>
+  <Item key={accountId} href={`/near/widget/ProfilePage?accountId=${accountId}`}>
     <Widget src={`${ownerId}/widget/Vendor.Icon`} props={{ accountId }} />
     {onlyOne ? (
       <Widget src={`${ownerId}/widget/Vendor.NameAndAccount`} props={{ accountId, name: state.names[accountId] }} />
