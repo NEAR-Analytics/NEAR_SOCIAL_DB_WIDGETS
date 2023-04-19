@@ -72,7 +72,10 @@ const Name = styled.div`
 `;
 
 const Other = styled.div`
-  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   width: 13%;
 `;
 
