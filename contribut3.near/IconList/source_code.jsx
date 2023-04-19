@@ -1,6 +1,6 @@
 const ownerId = "contribut3.near";
 const ids = props.ids ?? [];
-const onlyOne = ids.length === 1;
+const onlyOne = !props.iconOnly && ids.length === 1;
 
 const Container = styled.div`
   display: flex;
