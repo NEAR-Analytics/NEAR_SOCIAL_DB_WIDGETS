@@ -43,7 +43,6 @@ const Card = styled.div`
   gap: 16px;
   width: 100%;
   border-radius: 16px;
-  z-index: 1070;
   background: #fff;
   overflow: hidden;
   padding: 16px;
@@ -151,6 +150,16 @@ const TabsButton = styled.a`
   }
 `;
 
+function formatNumber(num) {
+  if (num >= 1000000) {
+    return (num / 1000000).toFixed(1) + "M";
+  } else if (num >= 1000) {
+    return (num / 1000).toFixed(1) + "k";
+  } else {
+    return num;
+  }
+}
+
 return (
   <Card>
     <CardLeft>
@@ -192,7 +201,7 @@ return (
             href={`${accountUrl}&tab=followers`}
             selected={state.selectedTab === "followers"}
           >
-            {Object.keys(followers).length} Followers
+            {formatNumber(Object.keys(followers).length)} Followers
           </TabsButton>
         </FollowersCount>
       </ProfileInfo>
