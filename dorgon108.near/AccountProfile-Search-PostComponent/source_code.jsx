@@ -194,7 +194,7 @@ return (
             href={`${accountUrl}&tab=followers`}
             selected={state.selectedTab === "followers"}
           >
-            {formatNumber(Object.keys(followers).length) ?? null} Followers
+            {formatNumber(Object.keys(followers || {}).length)} Followers
           </TabsButton>
         </FollowersCount>
       </ProfileInfo>
