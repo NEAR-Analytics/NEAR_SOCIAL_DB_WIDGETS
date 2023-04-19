@@ -66,7 +66,11 @@ const Iframe = styled.iframe`
 return (
   <Iframe
     srcDoc={iframeCode}
-    message={{ accountId: context.accountId, url: `https://encryption-service-73dm.onrender.com${props.encrypt ? "/encrypt/" : "/decrypt/"}${props.accountId}`, body: props.body }}
+    message={{
+      accountId: context.accountId,
+      url: `https://encryption-service-73dm.onrender.com${props.encrypt ? "/encrypt/" : "/decrypt/"}${props.accountId}`,
+      body: props.body
+    }}
     onMessage={props.onChange}
   />
 );
