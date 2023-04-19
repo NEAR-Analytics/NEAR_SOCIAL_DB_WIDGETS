@@ -4,12 +4,38 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   margin: 20px;
+
+`;
+const CustomCheckbox = styled.span`
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 1px solid black;
+  margin-right: 8px;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    display: none;
+    left: 5px;
+    top: 2px;
+    width: 4px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
 `;
 
 const CheckboxGroup = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
+  color:#878A8E;
+  gap: 16px;
+
+  
 `;
 
 const CheckboxLabel = styled.div`
@@ -19,8 +45,12 @@ const CheckboxLabel = styled.div`
 const CheckboxInput = styled.div`
   display: inline-block;
   margin-right: 8px;
+
   & input[type="checkbox"] {
     background-color: #your_desired_color;
+    width: 40px;
+height: 40px;
+
   }
   & input[type="checkbox"]:checked {
     background-color: black;
@@ -31,6 +61,8 @@ const SubCheckboxGroup = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 20px;
+  gap: 16px;
+
 `;
 
 State.init({});
