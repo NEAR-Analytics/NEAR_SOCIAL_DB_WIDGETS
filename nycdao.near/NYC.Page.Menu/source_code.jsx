@@ -1,3 +1,5 @@
+const accountId = props.accountId ?? "nycdao.near";
+
 const menu = context.accountId
   ? Social.get(`${context.accountId}/settings/every/page.menu`)
   : undefined;
@@ -9,6 +11,9 @@ if (menu === null) {
 const defaultWidgets = [
   {
     src: "nycdao.near/widget/NYC.Summary",
+  },
+  {
+    src: "mob.near/widget/Profile.InlineBlock",
   },
   {
     src: "nycdao.near/widget/NYC.People",
@@ -50,7 +55,7 @@ return (
       ({ src, requiresLogin }, i) =>
         (!requiresLogin || context.accountId) && (
           <div key={i} className="text-bg-light rounded-4 p-3 mb-3">
-            <Widget src={src} />
+            <Widget src={src} props={accountId} />
           </div>
         )
     )}
