@@ -28,12 +28,12 @@ const Header = styled.div`
 `;
 
 const header = (
-  <div>
-    <h1 className="fs-2">Manage</h1>
-    <p className="fw-semibold fs-5 text-muted">
+  <Header>
+    <h1>Manage</h1>
+    <p>
       Create, edit and manage your projects and contributions
     </p>
-  </div>
+  </Header>
 );
 
 const contentSelector = (
