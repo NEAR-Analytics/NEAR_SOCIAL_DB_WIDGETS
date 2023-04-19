@@ -1,7 +1,7 @@
 const widgetProvider = props.widgetProvider;
 const account = props.account || "marketing.sputnik-dao.near";
 const widgetUrl = `https://api.pikespeak.ai/widgets/dao/${account}`;
-console.log(account);
+console.log("render propp by month", props.account);
 return (
   <>
     <iframe
