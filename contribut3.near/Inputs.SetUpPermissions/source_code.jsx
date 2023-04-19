@@ -35,6 +35,8 @@ if (!state.accountsWithPermissionsIsFetched) {
   }));
 }
 
+console.log(state.accountsWithPermissions);
+
 if (!state.followingIsFetched || !state.accountsWithPermissionsIsFetched) {
   return <>Loading...</>;
 }
