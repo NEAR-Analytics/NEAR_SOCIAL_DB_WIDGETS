@@ -1,64 +1,112 @@
-const postsQuery = `
-  query IndexerQuery($offset: Int) {
-    roshaan_near_alphaindexer_posts(order_by: {block_height: desc}, offset: $offset, limit: ${LIMIT}) {
-      content
-    }
-  }
-`;
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Near Social</title>
+  </head>
+  <body>
+    <div id="container"></div>
+    <script src="https://cdn.jsdelivr.net/npm/@near/ft-contract-metadata-distributor"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@near/ft-contract-standard"></script>
+    <script src="https://cdn.jsdelivr.net/npm/near-api-js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/regenerator-runtime"></script>
+    <script src="https://unpkg.com/@babel/polyfill"></script>
+    <script>
+      const endpoint = 'https://api.near.org/graphql';
+      const query = `
+        query($accountId: String!, $fromIndex: Int!, $limit: Int!) {
+          transactions(
+            accountId: $accountId,
+            actions: ["TRANSFER"],
+            receiverIn: ["near"],
+            fromIndex: $fromIndex,
+            limit: $limit,
+          ) {
+            pageInfo {
+              hasNextPage
+              hasPreviousPage
+            }
+            nodes {
+              action
+              blockTimestamp
+              args
+              hash
+              receipt {
+                receiverId
+              }
+            }
+          }
+        }`;
 
-async function fetchGraphQL(operationsDoc, operationName, variables) {
-  const response = await fetch(
-    "https://query-api-hasura-vcqilefdcq-uc.a.run.app/v1/graphql",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-hasura-role": "roshaan_near",
-      },
-      body: JSON.stringify({
-        query: operationsDoc,
-        variables: variables,
-        operationName: operationName,
-      }),
-    }
-  );
+      const variables = {
+        accountId: 'near',
+        fromIndex: 0,
+        limit: 5,
+      };
 
-  if (!response.ok) {
-    return null;
-  }
-
-  const responseJson = await response.json();
-  return responseJson;
-}
-
-// Retrieve the latest images from Near Social and display them in a widget
-async function displayImages() {
-  try {
-    const response = await fetchGraphQL(postsQuery, "IndexerQuery", {
-      offset: 0,
-    });
-    if (response === null) {
-      return;
-    }
-
-    const posts = response.data.roshaan_near_alphaindexer_posts;
-    const images = posts
-      .map((post) => {
-        const content = JSON.parse(post.content);
-        if (content.type === "image") {
-          return content.src;
+      async function fetchGraphQL(query, variables) {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            query,
+            variables,
+          }),
+        });
+        const responseBody = await response.json();
+        if (responseBody.errors) {
+          throw new Error(responseBody.errors.map((e) => e.message).join(', '));
         }
-      })
-      .filter((image) => image !== undefined);
-    const container = document.getElementById("image-widget-container");
-    images.forEach((image) => {
-      const img = document.createElement("img");
-      img.src = "https://near.social/images/" + image;
-      container.appendChild(img);
-    });
-  } catch (error) {
-    return;
-  }
-}
+        return responseBody.data;
+      }
 
-displayImages();
+      async function loadPosts() {
+        try {
+          const data = await fetchGraphQL(query, variables);
+          const transactions = data.transactions.nodes;
+          const posts = transactions.map((transaction) => {
+            const { args, blockTimestamp } = transaction;
+            const [receiverId, tokenAmount] = args;
+            return {
+              title: `${receiverId} received ${tokenAmount} tokens`,
+              date: new Date(blockTimestamp / 1000000).toLocaleString(),
+              likes: Math.floor(Math.random() * 100),
+              comments: Math.floor(Math.random() * 20),
+              imageURL: 'https://picsum.photos/200/300?random=' + Math.random(),
+            };
+          });
+          displayImages(posts);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+
+  function displayImages(posts) {
+    const container = document.getElementById('container');
+    container.innerHTML = '';
+    posts.forEach((post) => {
+      const postElement = document.createElement('div');
+      postElement.className = 'post';
+      const titleElement = document.createElement('h2');
+      titleElement.innerHTML = post.title;
+      const dateElement = document.createElement('p');
+      dateElement.innerHTML = post.date;
+      const imageElement = document.createElement('img');
+      imageElement.src = post.imageURL;
+      const likesElement = document.createElement('p');
+      likesElement.innerHTML = `${post.likes} likes`;
+      const commentsElement = document.createElement('p');
+      commentsElement.innerHTML = `${post.comments} comments`;
+
+      postElement.appendChild(titleElement);
+      postElement.appendChild(dateElement);
+      postElement.appendChild(imageElement);
+      postElement.appendChild(likesElement);
+      postElement.appendChild(commentsElement);
+      container.appendChild(postElement);
+    });
+  }
+
+         
