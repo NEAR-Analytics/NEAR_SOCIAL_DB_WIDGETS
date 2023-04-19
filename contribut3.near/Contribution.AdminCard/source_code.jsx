@@ -4,22 +4,22 @@ const cid = props.cid;
 const vendorId = props.vendorId;
 
 State.init({
-  proposal: null,
-  proposalIsFetched: false,
+  contribution: null,
+  contributionIsFetched: false,
   projectName: null,
   projectNameIsFetched: false,
   vendorName: null,
   vendorNameIsFetched: false,
 });
 
-if (!state.proposalIsFetched) {
+if (!state.contributionIsFetched) {
   Near.asyncView(
     ownerId,
-    "get_proposal",
+    "get_contribution",
     { project_id: projectId, cid, vendor_id: vendorId },
     "final",
     false
-  ).then((proposal) => State.update({ proposal, proposalIsFetched: true }));
+  ).then((contribution) => State.update({ contribution, contributionIsFetched: true }));
 }
 
 if (!state.projectNameIsFetched) {
@@ -121,7 +121,7 @@ return (
     <Title
       href={`/${ownerId}/widget/Index?tab=proposal&projectId=${projectId}&cid=${cid}&vendorId=${vendorId}`}
     >
-      {state.proposal.title}
+      {state.contribution.title}
     </Title>
     <Other>{new Date().toLocaleDateString()}</Other>
     <Other>
