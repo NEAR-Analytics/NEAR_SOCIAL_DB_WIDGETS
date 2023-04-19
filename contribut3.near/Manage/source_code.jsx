@@ -10,29 +10,8 @@ const getContent = (content) => {
   return content;
 };
 
-const Header = styled.div`
-  h1 {
-    font-style: normal;
-    font-weight: 700;
-    font-size: 2em;
-    color: #101828;
-  }
-
-  p {
-    font-style: normal;
-    font-weight: 400;
-    font-size: 1em;
-    line-height: 1.5em;
-    color: #475467;
-  }
-`;
-
 const header = (
   <Header>
-    <h1>Manage projects and requests</h1>
-    <p>
-      Create or edit projects and requests
-    </p>
   </Header>
 );
 
@@ -103,24 +82,104 @@ const content = {
   ),
 }[getContent(props.content)];
 
+const Heading = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+
+  h1 {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 2em;
+    color: #101828;
+  }
+
+  h2 {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1em;
+    line-height: 1.5em;
+    color: #475467;
+  }
+`;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 1.5em;
+`;
+
+const Filters = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const Filter = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+`;
+
 return (
-  <div>
-    <div className="mb-3 px-3">
-      <div className="d-flex flex-row justify-content-between mb-3">
-        {header}
-      </div>
-      <div className="d-flex flex-row justify-content-between">
-        {contentSelector}
+  <Container>
+    <Heading>
+      <h1>Manage projects and requests</h1>
+      <p>
+        Create or edit projects and requests
+      </p>
+    </Heading>
+    <div>{contentSelector}</div>
+    <Filters>
+      <Widget
+        src={`${ownerId}/widget/SearchInput`}
+        props={{ search: props.search, update: props.update }}
+      />
+      <Filter>
         <Widget
-          src={`${ownerId}/widget/SearchInput`}
-          props={{ search: props.search, update: props.update }}
+          src={`${ownerId}/widget/Filter`}
+          props={{
+            name: "Type",
+            options: [
+              { id: "verified", text: "Verified", href: "#" },
+              { id: "not-verified", text: "Not verified", href: "#" },
+            ],
+            selected: "verified",
+            update: (id) => console.log(id),
+          }}
         />
-      </div>
-    </div>
-    <div className="px-3 pt-3">
-      {context.accountId
-        ? content
-        : "You need to be logged in to view this page!"}
-    </div>
-  </div>
+        <Widget
+          src={`${ownerId}/widget/Filter`}
+          props={{
+            name: "Status",
+            options: [
+              { id: "active", text: "Active", href: "#" },
+              { id: "not-active", text: "Not active", href: "#" },
+            ],
+            selected: "active",
+            update: (id) => alert(id),
+          }}
+        />
+        <Widget
+          src={`${ownerId}/widget/Filter`}
+          props={{
+            name: "Sort by",
+            options: [
+              { id: "name", text: "Name", href: "#" },
+              { id: "id", text: "Account ID", href: "#" },
+            ],
+            selected: "name",
+            update: (id) => alert(id),
+          }}
+        />
+      </Filter>
+    </Filters>
+    <div>{content}</div>
+  </Container>
 );
