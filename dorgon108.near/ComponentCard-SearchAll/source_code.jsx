@@ -192,7 +192,6 @@ return (
         >
           {metadata.name || widgetName}
         </TextLink>
-
         <TextLink
           small
           as="a"
@@ -202,8 +201,17 @@ return (
         >
           @{accountId}
         </TextLink>
-
-        {tags.length > 0 && <TagsWrapper>// ...</TagsWrapper>}
+        {tags.length > 0 && (
+          <TagsWrapper>
+            <Widget
+              src="adminalpha.near/widget/Tags"
+              props={{
+                tags,
+                scroll: true,
+              }}
+            />
+          </TagsWrapper>
+        )}{" "}
       </MiddleColumn>
 
       <ButtonWrapper>
