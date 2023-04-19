@@ -24,14 +24,33 @@ const items = initialItems.filter((item) => item.value.type === type);
 const events = items.map((it) => {
   const accountId = it.accountId;
   const blockHeight = parseInt(it.blockHeight);
-  return JSON.parse(
+  const data = JSON.parse(
     Social.get(`${accountId}/thing/main`, blockHeight) ?? "null"
   );
+  if (data) {
+    return {
+      id: blockHeight,
+      source: accountId,
+      ...data.payload,
+      start: new Date(data.payload["startStr"]),
+      end: new Date(data.payload["endStr"]),
+    };
+  }
 });
 
 console.log(events);
+// events = [
+//   {
+//     id: "89914147",
+//     source: "evrything.near",
 
-// const events = [{ title: "Meeting", start: new Date() }];
+//     allDay: true,
+//     startStr: "2022-06-26T03:45:00.000Z",
+//     endStr: "2022-06-26T04:00:00.000Z",
+//     title: "first event :)",
+//     url: "https://everything.dev",
+//   },
+// ];
 
 const srcData = `
 <!DOCTYPE html>
@@ -52,12 +71,12 @@ const srcData = `
             }
           },
           headerToolbar: {
-            start: 'prev,next today getEvents', // will normally be on the left. if RTL, will be on the right
+            start: 'prev,next today', // will normally be on the left. if RTL, will be on the right
             center: 'title',
             end: 'dayGridMonth dayGridWeek dayGridDay list' // will normally be on the right. if RTL, will be on the left
           },
           navLinks: true,
-          events: []
+          events: ${JSON.stringify(events)}
         })
         calendar.render()
       })
