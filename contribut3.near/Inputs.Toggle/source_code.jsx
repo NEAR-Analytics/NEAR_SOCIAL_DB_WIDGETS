@@ -42,8 +42,9 @@ return (
       checked={props.value}
       onCheckedChange={props.onChange}
       id={props.id}
+      className="switch"
     >
-      <Switch.Thumb />
+      <Switch.Thumb className="thumb" />
     </Switch.Root>
     <Label htmlFor={props.id}>{props.value ? props.labelActive : props.labelInactive}</Label>
   </Box>
