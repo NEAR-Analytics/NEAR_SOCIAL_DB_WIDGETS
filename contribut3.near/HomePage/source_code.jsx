@@ -61,7 +61,36 @@ const SubSection = styled.div`
   }
 `;
 
-console.log("here")
+const MainSubSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1em;
+  text-align: left;
+
+  h4 {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 2.375em;
+    line-height: 120%;
+    color: #000000;
+  }
+
+  p {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.125em;
+    line-height: 150%;
+    color: #000000;
+  }
+
+  @media (max-width: 768px) {
+    align-items: center;
+    text-align: center;
+  }
+`;
+
 const foundersImages = ["bafkreiaypep5xqg5vhbw7gralttufuzbqk5oggts2uyfbnjgpshtk5mggu", "bafkreiajakictce47mjdcpro45s3hasoozmuik4n3dkcstizpqv4igbx74", "bafkreihefba6pk23b3jcq2dugs7mw5ktkqtvcuqj5c2owrpkhspthuahyu"]
 const contributorsImage = "bafkreicce3m4vow4eisshn4zdbfrqfda62uavb7t5s2n2bjaawck2i7e64";
 const investorsImage = "bafkreiaypep5xqg5vhbw7gralttufuzbqk5oggts2uyfbnjgpshtk5mggu";
