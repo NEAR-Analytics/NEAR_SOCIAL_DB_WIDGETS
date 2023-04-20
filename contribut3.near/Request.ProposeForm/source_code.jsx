@@ -184,7 +184,7 @@ const DetailHeading = styled.div`
 `;
 
 const DetailInput = styled.div`
-  width: 50%;
+  width: 49%;
 `;
 
 return (
