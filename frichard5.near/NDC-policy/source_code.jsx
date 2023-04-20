@@ -72,7 +72,7 @@ const parseNano = (nano) => {
 };
 
 const parseNear = (near) => {
-  return Number(near) / Math.pow(10, 24);
+  return (Number(near) / Math.pow(10, 24)).toFixed(2);
 };
 
 const GenericTable = (
