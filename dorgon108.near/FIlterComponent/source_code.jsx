@@ -123,6 +123,7 @@ State.init({
   youDontFollow: false,
   inputValue: "",
   filteredTags: tags,
+  activeTags: [], // Add this line
 });
 
 const updateFilteredTags = (inputValue) => {
@@ -139,6 +140,15 @@ const updateTags = () => {
 
 // Call updateTags function to update tags
 updateTags();
+
+const toggleActiveTag = (tag) => {
+  State.update({
+    activeTags: state.activeTags.includes(tag)
+      ? state.activeTags.filter((t) => t !== tag)
+      : [...state.activeTags, tag],
+  });
+};
+
 return (
   <Container>
     <Row>
@@ -166,7 +176,15 @@ return (
       <TagsContainer>
         {" "}
         {state.filteredTags.map((tag) => (
-          <Tag key={tag}>{tag}</Tag>
+          <Tag
+            key={tag}
+            onClick={() => toggleActiveTag(tag)}
+            style={{
+              borderColor: state.activeTags.includes(tag) ? "blue" : "#E6E8EB",
+            }}
+          >
+            {tag}
+          </Tag>
         ))}
       </TagsContainer>
     </Row>
