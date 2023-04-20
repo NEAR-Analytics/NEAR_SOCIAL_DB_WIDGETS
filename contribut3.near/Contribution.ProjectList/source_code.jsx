@@ -32,7 +32,7 @@ return (
         items: state.items,
         createItem: ([[project_id, cid], vendor_id]) => (
           <Widget
-            src={`${ownerId}/widget/Contribution.DetailCard`}
+            src={`${ownerId}/widget/Contribution.Card`}
             props={{ project_id, cid, vendor_id, isVendorView: false }}
           />
         ),
