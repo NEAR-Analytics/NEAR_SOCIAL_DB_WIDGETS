@@ -14,6 +14,10 @@ const Row = styled.div`
   width: 100%;
 
   @media (max-width: 768px) {
+    &.reverse {
+      flex-direction: column;
+    }
+
     flex-direction: column;
     justify-content: flex-start;
   }
