@@ -397,9 +397,9 @@ return (
           Contributors
         </SectionHeader>
         <Row className="reverse">
-          <img src={mapImage(contributorsImage)} alt="Contributoe and earn as an individual" />
+          <img src={mapImage(contributorsImage)} alt="Contribute and earn as an individual" />
           <SubSection>
-            <h4>Contributoe and earn as an individual</h4>
+            <h4>Contribute and earn as an individual</h4>
             <p>
               Join a growing community of founders building top Web3 projects who are looking for support. Whether you are an individual contributor or a global vendor, you can tap into a growing pool of projects that are hungry for what you have to offer.
             </p>
