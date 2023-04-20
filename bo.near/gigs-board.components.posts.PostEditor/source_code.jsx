@@ -198,19 +198,15 @@ const setLabels = (labels) => {
       oldLabels.delete(label);
     }
     let removed = oldLabels.values().next().value.name;
-    while (Near.view(
+    Near.asyncView(
       nearDevGovGigsContractAccountId,
       "is_allowed_to_use_labels",
       { editor: context.accountId, labels: [removed] }
-    ) === null) {}
-    if (Near.view(
-      nearDevGovGigsContractAccountId,
-      "is_allowed_to_use_labels",
-      { editor: context.accountId, labels: [removed] }
-    ) === false) {
-      State.update({warning: 'No permission to remove ' + removed.name})
-      return;
-    }
+    ).then((res) => console.log(res))
+
+    State.update({warning: 'No permission to remove ' + removed.name})
+    return;
+    
   }
 
   let labelStrings = labels.map((o) => {
