@@ -250,7 +250,7 @@ const Section = styled.div`
 `;
 
 const foundersImages = ["bafkreiaypep5xqg5vhbw7gralttufuzbqk5oggts2uyfbnjgpshtk5mggu", "bafkreiajakictce47mjdcpro45s3hasoozmuik4n3dkcstizpqv4igbx74", "bafkreihefba6pk23b3jcq2dugs7mw5ktkqtvcuqj5c2owrpkhspthuahyu"]
-const contributorsImage = "bafkreicce3m4vow4eisshn4zdbfrqfda62uavb7t5s2n2bjaawck2i7e64";
+const contributorsImage = "bafkreig6smxsodwtho4fwio4fkvufvrlxu6ubl4pfxds2vqj4ywiqhd2fe";
 const investorsImage = "bafkreiaypep5xqg5vhbw7gralttufuzbqk5oggts2uyfbnjgpshtk5mggu";
 const mainImage = "bafkreiafxt54wrdulmbyff4pqknm562fcpsj2edu2fywroke4snirrbnnq";
 const logo = "bafkreihxjdgrt6iun2xkinwjzp4h6tkhkrpbxuzyeanrrecsp7yzsdr3ru";
