@@ -1,6 +1,6 @@
 const ownerId = "contribut3.near";
 const creditsAccount = `credits.${ownerId}`;
-const accountId = props.accountId ?? context.accountId;
+const accountId = props.accountId;
 
 const Container = styled.div`
   display: flex;
@@ -117,7 +117,7 @@ return (
             value: state.active,
             onSave: (active) =>
               Near.call("social.near", "set", {
-                data: { [accountId]: { profile: { active } } },
+                data: { [accountId]: { profile: { active: "" + active } } },
               }),
           }}
         />
