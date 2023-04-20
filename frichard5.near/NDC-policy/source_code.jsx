@@ -103,7 +103,7 @@ const fetchPolicy = () => {
 !state.policy && fetchPolicy();
 
 return (
-  <div>
+  <div style={{ marginTop: "40px" }}>
     {state.policy && (
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <GeneralInfos>
