@@ -58,10 +58,9 @@ return (
           <Widget
             src={`${ownerId}/widget/Inputs.Toggle`}
             props={{
-
-              id
-            value: v
-            onChange: update
+              id,
+              value: v,
+              onChange: update,
             }}
           />
           <SaveButton onClick={() => onSave(v)}>Save</SaveButton>
