@@ -138,12 +138,6 @@ const updateTags = () => {
   updateFilteredTags(state.inputValue);
 };
 
-// Add this function to update tags based on props.selectedTags
-const updateTags = () => {
-  tags = props.selectedTags ?? [];
-  updateFilteredTags(state.inputValue);
-};
-
 // Call updateTags function to update tags
 updateTags();
 const toggleActiveTag = (tag) => {
