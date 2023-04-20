@@ -198,26 +198,32 @@ const setLabels = (labels) => {
       oldLabels.delete(label.name);
     }
     let removed = oldLabels.values().next().value;
-    console.log(labels);
-    console.log(oldLabels);
     Near.asyncView(
       nearDevGovGigsContractAccountId,
       "is_allowed_to_use_labels",
       { editor: context.accountId, labels: [removed] }
-    ).then((res) => console.log(res))
-
-    State.update({warning: 'No permission to remove ' + removed})
-    return;
-    
+    ).then((allowed) => {
+      if (allowed) {
+        let labelStrings = labels.map((o) => {
+          return o.name;
+        });
+        State.update({ labels, labelStrings });
+      } else {
+        State.update({ warning: "No permission to remove " + removed });
+        return;
+      }
+    });
+  } else {
+    let labelStrings = labels.map((o) => {
+      return o.name;
+    });
+    State.update({ labels, labelStrings });
   }
-
-  let labelStrings = labels.map((o) => {
-    return o.name;
-  });
-  State.update({ labels, labelStrings });
 };
 const existingLabelStrings =
-  Near.view(nearDevGovGigsContractAccountId, "get_all_allowed_labels", {editor: context.accountId}) ?? [];
+  Near.view(nearDevGovGigsContractAccountId, "get_all_allowed_labels", {
+    editor: context.accountId,
+  }) ?? [];
 const existingLabelSet = new Set(existingLabelStrings);
 const existingLabels = existingLabelStrings.map((s) => {
   return { name: s };
@@ -338,10 +344,23 @@ return (
     </div>
 
     <div class="card-body">
-      {state.warning ? <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        {state.warning}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onClick={() => State.update({warning: ""})}></button>
-      </div> : <></>}
+      {state.warning ? (
+        <div
+          class="alert alert-warning alert-dismissible fade show"
+          role="alert"
+        >
+          {state.warning}
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+            onClick={() => State.update({ warning: "" })}
+          ></button>
+        </div>
+      ) : (
+        <></>
+      )}
       {fields.includes("githubLink") ? (
         <div className="row">
           {githubLinkDiv}
