@@ -66,7 +66,7 @@ return (
       ),
       view: (
         <Widget
-          src={`${ownerId}/Widget/ActiveIndicator`}
+          src={`${ownerId}/widget/ActiveIndicator`}
           props={{
             active: state.active,
             activeText: "Available",
