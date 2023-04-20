@@ -421,7 +421,7 @@ return (
         </Row>
       </Narrow>
     </Section>
-    <Footer style={{ padding: "2em 0 0 0" }}>
+    <Footer style={{ padding: "2em 0 4em 0" }}>
       <img src={mapImage(endingImage)} alt="Accelerate your Web3 Startup!" />
       <h2>Accelerate your Web3 Startup!</h2>
       <Link href="/nearhorizon.near/widget/Index">Try it Now</Link>
