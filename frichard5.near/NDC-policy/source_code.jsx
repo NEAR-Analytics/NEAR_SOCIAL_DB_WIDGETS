@@ -140,6 +140,6 @@ return (
         </GeneralInfos>
       </div>
     )}
-    {GenericTable}
+    {state.policy && GenericTable}
   </div>
 );
