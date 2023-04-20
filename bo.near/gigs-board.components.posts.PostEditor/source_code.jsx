@@ -200,6 +200,7 @@ const setLabels = (labels) => {
     let removed = oldLabels.values().next().value;
     console.log("removing: ", removed);
     State.update({warning: 'No permission to remove ' + removed})
+    return;
   }
 
   let labelStrings = labels.map((o) => {
