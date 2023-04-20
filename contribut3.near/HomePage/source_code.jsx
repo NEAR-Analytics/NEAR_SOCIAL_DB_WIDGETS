@@ -185,7 +185,7 @@ return (
           label: "Raised",
         }}
       />
-      <Widget src={`${ownerId}/widget/Stats.Link`} />
+      <Widget src={`${ownerId}/widget/Stats.Link`} className="link" />
     </Stats>
 
     <SectionHeader>
