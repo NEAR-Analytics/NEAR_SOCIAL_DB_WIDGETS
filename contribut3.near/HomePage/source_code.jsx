@@ -253,7 +253,7 @@ const foundersImages = ["bafkreiaypep5xqg5vhbw7gralttufuzbqk5oggts2uyfbnjgpshtk5
 const contributorsImage = "bafkreicce3m4vow4eisshn4zdbfrqfda62uavb7t5s2n2bjaawck2i7e64";
 const investorsImage = "bafkreiaypep5xqg5vhbw7gralttufuzbqk5oggts2uyfbnjgpshtk5mggu";
 const mainImage = "bafkreiafxt54wrdulmbyff4pqknm562fcpsj2edu2fywroke4snirrbnnq";
-const logo = "bafkreia7buai6q35e2s5drbio2swhcjz5fp7pnn7aoobft27557dvdsxuq";
+const logo = "bafkreihxjdgrt6iun2xkinwjzp4h6tkhkrpbxuzyeanrrecsp7yzsdr3ru";
 const endingImage = "bafkreibfk6pkeoxsl6banldzxearj3swh53p3gmn7unhz7nag4nco4p2sm";
 const mapImage = (src) => `https://ipfs.near.social/ipfs/${src}`;
 
