@@ -85,19 +85,19 @@ if (!state.vendorsIsFetched) {
   Near.asyncView(ownerId, "get_payment_types", {}, "final", false).then(
     (paymentTypes) =>
       State.update({
-        paymentTypes: paymentTypes.map((id) => ({ id, text: id })),
+        paymentTypes: paymentTypes.map((value) => ({ value, text: value })),
       })
   );
   Near.asyncView(ownerId, "get_payment_sources", {}, "final", false).then(
     (paymentSources) =>
       State.update({
-        paymentSources: paymentSources.map((id) => ({ id, text: id })),
+        paymentSources: paymentSources.map((value) => ({ value, text: value })),
       })
   );
   Near.asyncView(ownerId, "get_request_types", {}, "final", false).then(
     (requestTypes) =>
       State.update({
-        requestTypes: requestTypes.map((id) => ({ id, text: id })),
+        requestTypes: requestTypes.map((value) => ({ value, text: value })),
       })
   );
   Near.asyncView(
