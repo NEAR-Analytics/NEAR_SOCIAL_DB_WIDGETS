@@ -142,11 +142,12 @@ const updateTags = () => {
 updateTags();
 
 const toggleActiveTag = (tag) => {
-  State.update({
-    activeTags: state.activeTags.includes(tag)
-      ? state.activeTags.filter((t) => t !== tag)
-      : [...state.activeTags, tag],
-  });
+  const newActiveTags = state.activeTags.includes(tag)
+    ? state.activeTags.filter((t) => t !== tag)
+    : [...state.activeTags, tag];
+
+  State.update({ activeTags: newActiveTags });
+  props.onTagClick(newActiveTags);
 };
 
 return (
