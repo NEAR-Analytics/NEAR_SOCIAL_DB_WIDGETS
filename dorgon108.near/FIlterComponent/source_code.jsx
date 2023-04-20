@@ -278,14 +278,6 @@ return (
         </SubRow>
       </SubRow>
     </Row>
-    <Row>
-      <SubRow>
-        <SortBy>
-          <SubTitle>Sort By:</SubTitle>
-          <SortOption>Date Created</SortOption>
-          <SortOption>Popularity</SortOption>
-        </SortBy>
-      </SubRow>
-    </Row>
+    <Row></Row>
   </Container>
 );
