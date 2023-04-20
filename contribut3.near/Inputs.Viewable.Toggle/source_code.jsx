@@ -64,7 +64,16 @@ return (
           <SaveButton onClick={() => onSave(v)}>Save</SaveButton>
         </LabelArea>
       ),
-      view: <Widget src={`${ownerId}/ActiveIndicator`} props={{ active: state.active, activeText: "Available", inactiveText: "Not Available" }} />,
+      view: (
+        <Widget
+          src={`${ownerId}/Widget/ActiveIndicator`}
+          props={{
+            active: state.active,
+            activeText: "Available",
+            inactiveText: "Not Available",
+          }}
+        />
+      ),
       canEdit,
     }}
   />
