@@ -327,6 +327,10 @@ return (
     </div>
 
     <div class="card-body">
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
       {fields.includes("githubLink") ? (
         <div className="row">
           {githubLinkDiv}
@@ -345,7 +349,7 @@ return (
         </div>
       )}
 
-      <a className={"btn btn-outline-primary mb-2 " + "disabled"} onClick={onClick}>
+      <a className="btn btn-outline-primary mb-2" onClick={onClick}>
         Submit
       </a>
       {disclaimer}
