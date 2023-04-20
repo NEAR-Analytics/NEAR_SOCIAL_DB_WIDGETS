@@ -111,7 +111,7 @@ const mapImage = (src) => `https://ipfs.near.social/ipfs/${src}`;
 
 return (
   <div>
-    <Row className="reverse">
+    <Row >
       <img src={mapImage(mainImage)} />
       <MainSubSection>
         <img src={mapImage(logo)} />
