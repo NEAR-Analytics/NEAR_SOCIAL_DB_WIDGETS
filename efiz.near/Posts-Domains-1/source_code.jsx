@@ -161,10 +161,6 @@ return (
         domains are .near accounts and permissions are put in place that only
         authorized users can post to a domain (i.e. exclusive communities).
       </p>
-      <p>
-        Also: hashtag filter works, but not along with the domain filter (at
-        least not with a rework of hashtagging)
-      </p>
     </div>
 
     <Content>
