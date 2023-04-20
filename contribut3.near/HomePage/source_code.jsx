@@ -296,7 +296,7 @@ return (
         <Widget src={`${ownerId}/widget/Stats.Link`} className="link" />
       </Stats>
     </Section>
-    <Section className="dark">
+    <Section className="dark" style={{ padding: "2em 0" }}>
       <svg width="222" height="444" viewBox="0 0 222 444" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ position: "absolute", inset: "0 auto auto 0" }}>
         <path d="M0 443.126C141.506 344.16 87.0596 304.869 33.9785 266.562C21.7825 257.761 9.65857 249.012 0 239.602V443.126Z" fill="white" />
         <path d="M0 157.384C10.4491 145.188 25.4545 131.68 46.0689 116.546C68.4236 100.135 85.876 82.3307 102.188 65.6899C135.817 31.3826 164.6 2.02013 221.5 0H0V157.384Z" fill="white" />
