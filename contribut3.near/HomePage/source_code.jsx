@@ -116,6 +116,7 @@ const Stats = styled.div`
   align-items: stretch;
   justify-content: flex-start;
   gap: 0.5em;
+  width: 100%;
 
   div {
     width: 20%;
@@ -206,6 +207,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 `;
 
 const Narrow = styled.div`
