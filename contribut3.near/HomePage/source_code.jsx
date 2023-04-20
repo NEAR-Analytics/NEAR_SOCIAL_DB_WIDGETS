@@ -305,7 +305,7 @@ return (
         <path d="M448.372 121.428C454.416 88.5481 461.506 49.9822 513.5 0V387.151H0C113.496 387.151 149.128 353.266 188.262 316.051C216.021 289.654 245.541 261.581 305.862 242.734C433.397 202.888 439.844 167.817 448.372 121.428Z" fill="#CDE0FF" />
       </svg>
       <SubHeading>Welcome to your new Web3 community</SubHeading>
-      <Row>
+      <Row style={{ padding: "2em 0 0 0" }}>
         <List>
           <h4>
             <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
