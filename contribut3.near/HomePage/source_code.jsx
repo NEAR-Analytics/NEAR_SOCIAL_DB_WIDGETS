@@ -65,6 +65,8 @@ const SubSection = styled.div`
 `;
 
 console.log("here")
+const foundersImages = ["bafkreiaypep5xqg5vhbw7gralttufuzbqk5oggts2uyfbnjgpshtk5mggu"]
+const mapImage = (src) => `https://ipfs.near.social/ipfs/${src}`;
 
 return (
   <div>
@@ -75,6 +77,7 @@ return (
       Web3 Founders
     </SectionHeader>
     <Row>
+      <img src={foundersImages[0]} alt="Join an acceleration program" />
       <SubSection>
         <h4>Join an acceleration program</h4>
         <p>
