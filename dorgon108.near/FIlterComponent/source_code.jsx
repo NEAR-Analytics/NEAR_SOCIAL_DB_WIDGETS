@@ -10,11 +10,12 @@ const TagsContainer = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   margin: 0 15px;
-  max-width: calc(90px * 3 + 4px * 2 * 3); // 90px is the width of a tag, 4px is the margin, and 2 is the left and right margin
+  max-width: calc(90px * 3 + 4px * 2 * 3);
 `;
+
 const Row = styled.div`
   display: flex;
-  width: 100%;
+  width: 200%;
   justify-content: flex-start;
 `;
 
@@ -27,12 +28,8 @@ const Title = styled.div`
 
 const SubRow = styled.div`
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-direction: column;
   margin: 20px 20px;
-    flex-direction: column; // Change this to column
-
-  max-width: calc(90px * 3 + 4px * 2 * 3); // 90px is the width of a tag, 4px is the margin, and 2 is the left and right margin
 `;
 
 const SubTitle = styled.div`
@@ -65,10 +62,10 @@ const SortOption = styled.div`
   color: #687076;
   cursor: pointer;
   padding: 8px 12px 8px 8px;
-gap: 8px;
+  gap: 8px;
+
   &:hover {
     opacity: 0.8;
-
   }
 `;
 
@@ -87,7 +84,7 @@ const CheckboxContainer = styled.div`
 const Checkbox = styled.div`
   width: 100%;
   height: 100%;
-  background-color: ${(props) => (props.checked ? "black" : "red")} ;
+  background-color: ${(props) => (props.checked ? "black" : "red")};
   position: absolute;
   top: 0;
   left: 0;
@@ -102,16 +99,25 @@ const Tag = styled.div`
   align-items: center;
   padding: 3px 8px;
   gap: 3px;
-  width: auto; // Change width to auto
+  width: auto;
   max-width: 90px;
   height: 24px;
-  background: #FFFFFF;
-  border: 1px solid #E6E8EB;
+  background: #ffffff;
+  border: 1px solid #e6e8eb;
   border-radius: 6px;
   flex: none;
   order: 2;
   flex-grow: 0;
   margin: 4px;
+`;
+const CheckboxInput = styled.div`
+  display: inline-block;
+  margin-right: 8px;
+
+  & input[type="checkbox"] {
+    width: 40px;
+    height: 40px;
+  }
 `;
 
 const CustomCheckbox = styled.span`
@@ -140,22 +146,8 @@ const CheckboxGroup = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
-  color:#878A8E;
+  color: #878A8E;
   gap: 16px;
-
-  
-`;
-
-const CheckboxInput = styled.div`
-  display: inline-block;
-  margin-right: 8px;
-
-  & input[type="checkbox"] {
-    background-color: ${({ checked }) =>
-      checked ? "black" : "#your_desired_color"};
-    width: 40px;
-    height: 40px;
-  }
 `;
 
 const SubCheckboxGroup = styled.div`
@@ -163,8 +155,8 @@ const SubCheckboxGroup = styled.div`
   flex-direction: column;
   margin-left: 20px;
   gap: 16px;
-
 `;
+
 let tags = props.selectedTags ?? [];
 
 // Initialize the state
@@ -190,6 +182,7 @@ const updateTags = () => {
 
 // Call updateTags function to update tags
 updateTags();
+
 const toggleActiveTag = (tag) => {
   const newActiveTags = state.activeTags.includes(tag)
     ? state.activeTags.filter((t) => t !== tag)
@@ -201,6 +194,7 @@ const toggleActiveTag = (tag) => {
   // Call updateTags function to update tags
   updateTags();
 };
+
 const handleChange = (checkboxName) => {
   props.onCheckboxChange(checkboxName, !props[checkboxName]);
 };
@@ -247,24 +241,36 @@ return (
     <Row>
       <SubRow>
         <SubTitle>People</SubTitle>
-        <div>
+        <SubRow>
           <CheckboxInput>
             <input
               type="checkbox"
+              style={{
+                backgroundColor: props.showFollowed ? "black" : "white",
+                width: "40px",
+                height: "40px",
+              }}
               checked={props.showFollowed}
               onChange={() => handleChange("showFollowed")}
             />
             <label>Show Followed</label>
           </CheckboxInput>
+        </SubRow>
+        <SubRow>
           <CheckboxInput>
             <input
               type="checkbox"
+              style={{
+                backgroundColor: props.showNotFollowed ? "black" : "white",
+                width: "40px",
+                height: "40px",
+              }}
               checked={props.showNotFollowed}
               onChange={() => handleChange("showNotFollowed")}
             />
             <label>Show Not Followed</label>
           </CheckboxInput>
-        </div>
+        </SubRow>
       </SubRow>
     </Row>
     <Row>
