@@ -55,11 +55,11 @@ return (
       value,
       edit: (update, v) => (
         <LabelArea>
-          <Input
+          <Widget
+            src={`${ownerId}/widget/Inputs.Toggle`}
             id
-            type={isLink ? "url" : "text"}
             value={v}
-            onChange={(e) => update(e.target.value)}
+            onChange={update}
           />
           <SaveButton onClick={() => onSave(v)}>Save</SaveButton>
         </LabelArea>
