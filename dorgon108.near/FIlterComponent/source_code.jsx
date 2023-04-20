@@ -147,7 +147,7 @@ const toggleActiveTag = (tag) => {
     : [...state.activeTags, tag];
 
   State.update({ activeTags: newActiveTags });
-  props.onTagClick(newActiveTags);
+  emit("onTagClick", { activeTags: newActiveTags });
 };
 
 return (
