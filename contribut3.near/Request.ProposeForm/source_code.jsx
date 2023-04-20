@@ -337,7 +337,7 @@ return (
               proposal: {
                 vendor_id: state.vendorId.value,
                 request_id: [accountId, cid],
-                title: "",
+                title: state.request.title,
                 description: state.message,
                 price: Number(state.price),
                 payment_type: state.paymentType.value,
