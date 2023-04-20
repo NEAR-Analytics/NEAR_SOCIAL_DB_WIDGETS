@@ -115,7 +115,7 @@ const Tag = styled.div`
   margin: 4px;
 `;
 
-const tags = props.selectedTags ?? [];
+let tags = props.selectedTags ?? [];
 
 // Initialize the state
 State.init({
@@ -130,6 +130,15 @@ const updateFilteredTags = (inputValue) => {
     filteredTags: tags.filter((tag) => tag.includes(inputValue)),
   });
 };
+
+// Add this function to update tags based on props.selectedTags
+const updateTags = () => {
+  tags = props.selectedTags ?? [];
+  updateFilteredTags(state.inputValue);
+};
+
+// Call updateTags function to update tags
+updateTags();
 return (
   <Container>
     <Row>
