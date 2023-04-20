@@ -339,7 +339,7 @@ return (
                 request_id: [accountId, cid],
                 title: "",
                 description: state.message,
-                price: +state.price,
+                price: Number(state.price),
                 payment_type: state.paymentType.value,
                 proposal_type: state.requestType.value,
                 payment_source: state.paymentSource.value,
