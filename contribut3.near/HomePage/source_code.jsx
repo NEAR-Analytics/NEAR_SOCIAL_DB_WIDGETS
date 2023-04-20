@@ -134,11 +134,28 @@ const Stats = styled.div`
   }
 `;
 
+const Footer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+
+  h2 {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 120%;
+    color: #000000;
+  }
+`;
+
 const foundersImages = ["bafkreiaypep5xqg5vhbw7gralttufuzbqk5oggts2uyfbnjgpshtk5mggu", "bafkreiajakictce47mjdcpro45s3hasoozmuik4n3dkcstizpqv4igbx74", "bafkreihefba6pk23b3jcq2dugs7mw5ktkqtvcuqj5c2owrpkhspthuahyu"]
 const contributorsImage = "bafkreicce3m4vow4eisshn4zdbfrqfda62uavb7t5s2n2bjaawck2i7e64";
 const investorsImage = "bafkreiaypep5xqg5vhbw7gralttufuzbqk5oggts2uyfbnjgpshtk5mggu";
 const mainImage = "bafkreiafxt54wrdulmbyff4pqknm562fcpsj2edu2fywroke4snirrbnnq";
 const logo = "bafkreia7buai6q35e2s5drbio2swhcjz5fp7pnn7aoobft27557dvdsxuq";
+const endingImage = "bafkreibfk6pkeoxsl6banldzxearj3swh53p3gmn7unhz7nag4nco4p2sm";
 const mapImage = (src) => `https://ipfs.near.social/ipfs/${src}`;
 
 return (
@@ -251,5 +268,10 @@ return (
         </p>
       </SubSection>
     </Row>
+    <img src={mapImage(endingImage)} alt="Accelerate your Web3 Startup!" />
+    <Footer>
+      <h2>Accelerate your Web3 Startup!</h2>
+      <Link href="/nearhorizon.near/widget/Index">Try it Now</Link>
+    </Footer>
   </div>
 );
