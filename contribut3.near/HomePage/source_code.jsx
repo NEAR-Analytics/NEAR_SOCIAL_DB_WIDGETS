@@ -129,7 +129,7 @@ const Stats = styled.div`
       width: 49%;
     }
 
-    .link {
+    div:last-child {
       width: 100%;
     }
   }
