@@ -8,8 +8,10 @@ State.init({
   retryCount: 0,
 });
 
+const endPointUrl = props.endPointUrl || "https://mainnet.aurora.dev";
+
 const fetchBlockData = (number) => {
-  const response = fetch(props.endPointUrl, {
+  const response = fetch(endPointUrl, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -62,7 +64,7 @@ const fetchBlockData = (number) => {
 };
 
 const fetchCurrentBlockNumber = () => {
-  const response = fetch(props.endPointUrl, {
+  const response = fetch(endPointUrl, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -83,7 +85,7 @@ const fetchCurrentBlockNumber = () => {
   }
 };
 
-if (!props.endPointUrl) {
+if (!endPointUrl) {
   return (
     <div>
       <p>Please provide an endpoint URL</p>
