@@ -256,9 +256,9 @@ return (
             src={`${ownerId}/widget/Inputs.Select`}
             props={{
               label: "Contract type",
-              options: state.contractTypes,
-              value: state.contractType,
-              onChange: (contractType) => State.update({ contractType }),
+              options: state.requestTypes,
+              value: state.requestTypes,
+              onChange: (requestType) => State.update({ requestType }),
             }}
           />
         </DetailInput>
