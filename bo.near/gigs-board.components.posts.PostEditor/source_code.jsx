@@ -198,7 +198,8 @@ const setLabels = (labels) => {
       oldLabels.delete(label);
     }
     let removed = oldLabels.values().next().value.name;
-    console.log(removed);
+    console.log(labels);
+    console.log(oldLabels);
     Near.asyncView(
       nearDevGovGigsContractAccountId,
       "is_allowed_to_use_labels",
