@@ -108,7 +108,9 @@ return (
     </Row>
     <Row>
       <Label>Status:</Label>
-      <Value><Widget src={`${ownerId}/ActiveIndicator`} props={{ active: state.active, activeText: "Available", inactiveText: "Not Available" }} /></Value>
+      <Value>
+        <Widget src={`${ownerId}/widget/Inputs.Viewable.Toggle`} props={{ id: "active", value: state.active, onSave: (active) => Near.call("social.near", "set", { data: { [accountId]: { profile: { active } } } }) }}
+  </Value>
     </Row>
     <Row>
       <Label>Profile:</Label>
