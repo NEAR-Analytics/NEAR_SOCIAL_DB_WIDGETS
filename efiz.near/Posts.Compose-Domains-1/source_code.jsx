@@ -77,7 +77,7 @@ function composeData() {
    * If domains have been provided, then we create an index under that "domain"
    * Otherwise, we post to the catch-all "post" domain
    */
-  if (state.choose) {
+  if (state.choose && state.choose.length > 0) {
     state.choose.map((it) => {
       data.index[it] = JSON.stringify({
         key: "main",
