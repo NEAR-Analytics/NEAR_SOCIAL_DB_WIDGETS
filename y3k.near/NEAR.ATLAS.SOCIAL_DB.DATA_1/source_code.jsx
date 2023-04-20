@@ -20,12 +20,6 @@ const sortedData = data.sort((a, b) => {
   return new Date(a["MONTH"]) - new Date(b["MONTH"]);
 });
 
-const COMMITS_COUNT = {};
-
-data.map((entry) => {
-  COMMITS_COUNT[entry["MONTH"]] = entry["COMMITS_COUNT"];
-});
-
 const dates = data.map((entry) => entry["MONTH"]);
 
 //
