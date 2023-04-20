@@ -114,6 +114,57 @@ const Tag = styled.div`
   margin: 4px;
 `;
 
+const CustomCheckbox = styled.span`
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 1px solid black;
+  margin-right: 8px;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    display: none;
+    left: 5px;
+    top: 2px;
+    width: 4px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+`;
+
+const CheckboxGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  color:#878A8E;
+  gap: 16px;
+
+  
+`;
+
+const CheckboxInput = styled.div`
+  display: inline-block;
+  margin-right: 8px;
+
+  & input[type="checkbox"] {
+    background-color: ${({ checked }) =>
+      checked ? "black" : "#your_desired_color"};
+    width: 40px;
+    height: 40px;
+  }
+`;
+
+const SubCheckboxGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+  gap: 16px;
+
+`;
 let tags = props.selectedTags ?? [];
 
 // Initialize the state
@@ -150,8 +201,9 @@ const toggleActiveTag = (tag) => {
   // Call updateTags function to update tags
   updateTags();
 };
-
-const onCheckboxChange = props.onCheckboxChange;
+const handleChange = (checkboxName) => {
+  props.onCheckboxChange(checkboxName, !props[checkboxName]);
+};
 
 return (
   <Container>
@@ -195,15 +247,24 @@ return (
     <Row>
       <SubRow>
         <SubTitle>People</SubTitle>
-        <Widget
-          src={"dorgon108.near/widget/CheckBox"}
-          props={{
-            showFollowed: props.showFollowed,
-            showNotFollowed: props.showNotFollowed,
-            filters: { "You Follow": null, "You Don't Follow": null },
-            onCheckboxChange: onCheckboxChange,
-          }}
-        />
+        <div>
+          <CheckboxInput>
+            <input
+              type="checkbox"
+              checked={props.showFollowed}
+              onChange={() => handleChange("showFollowed")}
+            />
+            <label>Show Followed</label>
+          </CheckboxInput>
+          <CheckboxInput>
+            <input
+              type="checkbox"
+              checked={props.showNotFollowed}
+              onChange={() => handleChange("showNotFollowed")}
+            />
+            <label>Show Not Followed</label>
+          </CheckboxInput>
+        </div>
       </SubRow>
     </Row>
     <Row>
