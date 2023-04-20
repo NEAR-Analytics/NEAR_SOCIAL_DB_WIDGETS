@@ -111,12 +111,15 @@ const Tag = styled.div`
   margin: 4px;
 `;
 const CheckboxInput = styled.div`
-  display: inline-block;
-  margin-right: 8px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
 
-  & input[type="checkbox"] {
+  & > input[type="checkbox"] {
     width: 40px;
     height: 40px;
+    margin-right: 8px;
   }
 `;
 
@@ -196,6 +199,7 @@ const toggleActiveTag = (tag) => {
 };
 
 const handleChange = (checkboxName) => {
+  console.log("called", checkboxName);
   props.onCheckboxChange(checkboxName, !props[checkboxName]);
 };
 
