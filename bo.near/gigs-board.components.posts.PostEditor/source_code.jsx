@@ -187,7 +187,7 @@ const normalizeLabel = (label) =>
     .toLowerCase()
     .trim("-");
 
-const setLabels = (labels) => {
+const setLabels = async (labels) => {
   labels = labels.map((o) => {
     o.name = normalizeLabel(o.name);
     return o;
@@ -198,7 +198,7 @@ const setLabels = (labels) => {
       oldLabels.delete(label);
     }
     let removed = oldLabels.values().next().value.name;
-    if (Near.view(
+    if (await Near.asyncView(
       nearDevGovGigsContractAccountId,
       "is_allowed_to_use_labels",
       { editor: context.accountId, labels: [removed] }
