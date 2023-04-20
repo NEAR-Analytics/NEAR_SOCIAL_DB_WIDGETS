@@ -3,9 +3,6 @@ const hashtags = props.hashtags;
 
 let index;
 if (hashtags && hashtags.length > 0) {
-  // if (domains && domains.length > 0) {
-  //   return null;
-  // } else {
   index = hashtags.map((it) => ({
     action: "hashtag",
     key: it.toLowerCase(),
@@ -15,7 +12,6 @@ if (hashtags && hashtags.length > 0) {
       accountId: props.accounts,
     },
   }));
-  // }
 } else {
   if (domains && domains.length > 0) {
     index = domains.map((it) => ({
@@ -49,32 +45,89 @@ const Post = styled.div`
   }
 `;
 
-const renderItem = (a) =>
-  (a.value.type === "md" && (
-    <Post className="post" key={JSON.stringify(a)}>
-      <Widget
-        src="near/widget/Posts.Post"
-        props={{ accountId: a.accountId, blockHeight: a.blockHeight }}
-      />
-    </Post>
-  )) ||
-  (a.value.type === "social" && `${a.accountId}/post/main` === a.value.path && (
-    <div key={JSON.stringify(a)} className="mb-3">
-      <Widget
-        src="mob.near/widget/MainPage.Post"
-        props={{ accountId: a.accountId, blockHeight: a.blockHeight }}
-      />
-    </div>
-  )) ||
-  (a.value.type === "social" &&
-    `${a.accountId}/post/comment` === a.value.path && (
-      <div key={JSON.stringify(a)} className="mb-3">
-        <Widget
-          src="mob.near/widget/MainPage.Comment.Post"
-          props={{ accountId: a.accountId, blockHeight: a.blockHeight }}
-        />
-      </div>
-    ));
+const renderItem = (a) => {
+  if (hashtags && hashtags.length > 0) {
+    if (domains && domains.length > 0) {
+      domains.forEach((it) => {
+        if (
+          a.value.type === "social" &&
+          `${a.accountId}/${it}/main` === a.value.path
+        ) {
+          return (
+            <div key={JSON.stringify(a)} className="mb-3">
+              <Widget
+                src="mob.near/widget/MainPage.Post"
+                props={{ accountId: a.accountId, blockHeight: a.blockHeight }}
+              />
+            </div>
+          );
+        } else if (
+          a.value.type === "social" &&
+          `${a.accountId}/${it}/comment` === a.value.path
+        ) {
+          return (
+            <div key={JSON.stringify(a)} className="mb-3">
+              <Widget
+                src="mob.near/widget/MainPage.Comment.Post"
+                props={{ accountId: a.accountId, blockHeight: a.blockHeight }}
+              />
+            </div>
+          );
+        }
+      });
+    } else {
+      return (
+        (a.value.type === "social" &&
+          `${a.accountId}/post/main` === a.value.path && (
+            <div key={JSON.stringify(a)} className="mb-3">
+              <Widget
+                src="mob.near/widget/MainPage.Post"
+                props={{ accountId: a.accountId, blockHeight: a.blockHeight }}
+              />
+            </div>
+          )) ||
+        (a.value.type === "social" &&
+          `${a.accountId}/post/comment` === a.value.path && (
+            <div key={JSON.stringify(a)} className="mb-3">
+              <Widget
+                src="mob.near/widget/MainPage.Comment.Post"
+                props={{ accountId: a.accountId, blockHeight: a.blockHeight }}
+              />
+            </div>
+          ))
+      );
+    }
+  } else {
+    return (
+      (a.value.type === "md" && (
+        <Post className="post" key={JSON.stringify(a)}>
+          <Widget
+            src="near/widget/Posts.Post"
+            props={{ accountId: a.accountId, blockHeight: a.blockHeight }}
+          />
+        </Post>
+      )) ||
+      (a.value.type === "social" &&
+        `${a.accountId}/post/main` === a.value.path && (
+          <div key={JSON.stringify(a)} className="mb-3">
+            <Widget
+              src="mob.near/widget/MainPage.Post"
+              props={{ accountId: a.accountId, blockHeight: a.blockHeight }}
+            />
+          </div>
+        )) ||
+      (a.value.type === "social" &&
+        `${a.accountId}/post/comment` === a.value.path && (
+          <div key={JSON.stringify(a)} className="mb-3">
+            <Widget
+              src="mob.near/widget/MainPage.Comment.Post"
+              props={{ accountId: a.accountId, blockHeight: a.blockHeight }}
+            />
+          </div>
+        ))
+    );
+  }
+};
 
 return (
   <Widget src="mob.near/widget/MergedIndexFeed" props={{ index, renderItem }} />
