@@ -150,6 +150,44 @@ const Footer = styled.div`
   }
 `;
 
+const List = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1em;
+  width: 33%;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+
+  h4 {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 120%;
+    color: #ffffff;
+  }
+
+  p {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 150%;
+    color: #ffffff;
+  }
+
+  ul {
+    list-style: none;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 150%;
+    color: #cde0ff;
+  }
+`;
+
 const foundersImages = ["bafkreiaypep5xqg5vhbw7gralttufuzbqk5oggts2uyfbnjgpshtk5mggu", "bafkreiajakictce47mjdcpro45s3hasoozmuik4n3dkcstizpqv4igbx74", "bafkreihefba6pk23b3jcq2dugs7mw5ktkqtvcuqj5c2owrpkhspthuahyu"]
 const contributorsImage = "bafkreicce3m4vow4eisshn4zdbfrqfda62uavb7t5s2n2bjaawck2i7e64";
 const investorsImage = "bafkreiaypep5xqg5vhbw7gralttufuzbqk5oggts2uyfbnjgpshtk5mggu";
