@@ -3,19 +3,19 @@ const hashtags = props.hashtags;
 
 let index;
 if (hashtags && hashtags.length > 0) {
-  if (domains && domains.length > 0) {
-    return null;
-  } else {
-    index = hashtags.map((it) => ({
-      action: "hashtag",
-      key: it.toLowerCase(),
-      options: {
-        limit: 10,
-        order: "desc",
-        accountId: props.accounts,
-      },
-    }));
-  }
+  // if (domains && domains.length > 0) {
+  //   return null;
+  // } else {
+  index = hashtags.map((it) => ({
+    action: "hashtag",
+    key: it.toLowerCase(),
+    options: {
+      limit: 10,
+      order: "desc",
+      accountId: props.accounts,
+    },
+  }));
+  // }
 } else {
   if (domains && domains.length > 0) {
     index = domains.map((it) => ({
