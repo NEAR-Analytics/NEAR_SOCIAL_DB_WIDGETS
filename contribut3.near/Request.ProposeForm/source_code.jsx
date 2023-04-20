@@ -81,7 +81,15 @@ State.init({
   endDate: "",
 });
 
+
 if (!state.vendorsIsFetched) {
+  Near.asyncView(
+    ownerId,
+    "get_payment_types",
+    {},
+    "final",
+    false
+  ).then((paymentTypes) => State.update({ paymentTypes: paymentTypes.map((name) => ({ name }) }));
   Near.asyncView(
     ownerId,
     "get_admin_vendors",
