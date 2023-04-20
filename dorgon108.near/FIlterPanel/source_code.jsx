@@ -1,4 +1,4 @@
-let filters = props.filters;
+let filters = props.filters ?? {};
 
 const Container = styled.div`
   display: flex;
