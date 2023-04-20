@@ -180,6 +180,7 @@ const DetailHeading = styled.div`
   font-size: 1em;
   line-height: 1.4em;
   color: #000000;
+  width: 100%;
 `;
 
 const DetailInput = styled.div`
