@@ -408,6 +408,9 @@ return (
               Gain access to nurtured projects ready for backers with details on their GTM strategies, pitch decks, team profiles, previous work, white papers and more.
             </p>
           </SubSection>
+          <svg width="429" height="369" viewBox="0 0 429 369" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ inset: "auto 0 auto 0" }}>
+            <path d="M0 368.43H428.538C369.254 357.09 341.966 331.14 312.723 303.331C284.964 276.933 255.443 248.86 195.123 230.014C67.5881 190.168 61.1408 155.097 52.6129 108.708C47.0914 78.6724 40.6976 43.8925 0 0V368.43Z" fill="white" />
+          </svg>
         </Row>
       </Narrow>
     </Section>
