@@ -108,7 +108,7 @@ return (
     </Row>
     <Row>
       <Label>Status:</Label>
-      <Value></Value>
+      <Value><Widget src={`${ownerId}/ActiveIndicator`} props={{ active: state.active, activeText: "Available", inactiveText: "Not Available" }} /></Value>
     </Row>
     <Row>
       <Label>Profile:</Label>
