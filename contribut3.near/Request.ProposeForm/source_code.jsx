@@ -345,7 +345,7 @@ return (
                 payment_source: state.paymentSource.value,
                 start_date: `${new Date(state.startDate).getTime()}`,
                 end_date: `${new Date(state.endDate).getTime()}`,
-              }
+              },
             }),
         }}
       />
