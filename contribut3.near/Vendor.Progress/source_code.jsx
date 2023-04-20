@@ -67,7 +67,7 @@ if (!state.earnedIsFetched) {
     false
   ).then((earned) =>
     State.update({
-      earned: earned / 1000,
+      earned: Number(earned) / 1000,
       earnedIsFetched: true,
     })
   );
