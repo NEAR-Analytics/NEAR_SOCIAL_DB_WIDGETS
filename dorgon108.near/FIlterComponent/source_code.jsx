@@ -87,8 +87,7 @@ const CheckboxContainer = styled.div`
 const Checkbox = styled.div`
   width: 100%;
   height: 100%;
-  background-color: ${(props) =>
-    props.checked ? "black" : "red"} ${console.log(props.checked)};
+  background-color: ${(props) => (props.checked ? "black" : "red")}};
   position: absolute;
   top: 0;
   left: 0;
