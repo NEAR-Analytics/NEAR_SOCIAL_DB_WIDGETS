@@ -84,7 +84,7 @@ const CheckboxContainer = styled.div`
 const Checkbox = styled.div`
   width: 100%;
   height: 100%;
-  background-color: ${(props) => (props.checked ? "black" : "red")};
+  
   position: absolute;
   top: 0;
   left: 0;
@@ -268,6 +268,7 @@ return (
               checked={props.showNotFollowed}
               onChange={() => handleChange("showNotFollowed")}
             />
+
             <label>Show Not Followed</label>
           </CheckboxInput>
         </SubRow>
