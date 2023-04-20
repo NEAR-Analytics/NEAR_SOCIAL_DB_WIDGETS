@@ -115,7 +115,6 @@ const Stats = styled.div`
   flex-direction: row;
   align-items: stretch;
   justify-content: flex-start;
-  flex-wrap: wrap;
   gap: 0.5em;
 
   div {
@@ -123,6 +122,8 @@ const Stats = styled.div`
   }
 
   @media (max-width: 768px) {
+    flex-wrap: wrap;
+
     div {
       width: 50%;
     }
