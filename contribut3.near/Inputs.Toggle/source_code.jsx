@@ -5,25 +5,35 @@ const Box = styled.div`
   align-items: center;
   gap: 0.5em;
 
-  button {
-    border: none;
-    background: none;
-    padding: 0;
-    width: 1.5em;
-    height: 1.5em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1.5px solid #a8acb3;
-    transition: background 200ms ease-out;
-
-    &[data-state="checked"] {
-      background: #202024;
-    }
+  .switch {
+    width: 42px;
+    height: 25px;
+    background-color: var(--blackA9);
+    border-radius: 9999px;
+    position: relative;
+    box-shadow: 0 2px 10px var(--blackA7);
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
+  .switch:focus {
+    box-shadow: 0 0 0 2px black;
+  }
+  .switch[data-state='checked'] {
+    background-color: black;
   }
 
-  svg {
-    color: #fff;
+  .thumb {
+    display: block;
+    width: 21px;
+    height: 21px;
+    background-color: white;
+    border-radius: 9999px;
+    box-shadow: 0 2px 2px var(--blackA7);
+    transition: transform 100ms;
+    transform: translateX(2px);
+    will-change: transform;
+  }
+  .thumb[data-state='checked'] {
+    transform: translateX(19px);
   }
 `;
 
