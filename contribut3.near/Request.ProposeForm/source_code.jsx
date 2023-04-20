@@ -89,21 +89,21 @@ if (!state.vendorsIsFetched) {
     {},
     "final",
     false
-  ).then((paymentTypes) => State.update({ paymentTypes: paymentTypes.map((id) => ({ id })) }));
+  ).then((paymentTypes) => State.update({ paymentTypes: paymentTypes.map((id) => ({ id, text: id })) }));
   Near.asyncView(
     ownerId,
     "get_payment_sources",
     {},
     "final",
     false
-  ).then((paymentSources) => State.update({ paymentSources: paymentSources.map((id) => ({ id })) }));
+  ).then((paymentSources) => State.update({ paymentSources: paymentSources.map((id) => ({ id, text: id })) }));
   Near.asyncView(
     ownerId,
     "get_request_types",
     {},
     "final",
     false
-  ).then((requestTypes) => State.update({ requestTypes: requestTypes.map((id) => ({ id })) }));
+  ).then((requestTypes) => State.update({ requestTypes: requestTypes.map((id) => ({ id, text: id })) }));
   Near.asyncView(
     ownerId,
     "get_admin_vendors",
