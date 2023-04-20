@@ -334,7 +334,7 @@ return (
           ),
           onClick: () =>
             Near.call(ownerId, "add_proposal", {
-              vendor_id: state.vendorId[0].value,
+              vendor_id: state.vendorId.value,
               request_id: [accountId, cid],
               title: "",
               description: state.message,
