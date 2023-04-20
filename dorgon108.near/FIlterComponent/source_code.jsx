@@ -5,6 +5,13 @@ const Container = styled.div`
   justify-content: center;
 `;
 
+const TagsContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0 15px;
+  max-width: calc(90px * 3 + 4px * 2 * 3); // 90px is the width of a tag, 4px is the margin, and 2 is the left and right margin
+`;
 const Row = styled.div`
   display: flex;
   width: 100%;
@@ -12,7 +19,6 @@ const Row = styled.div`
 `;
 
 const Title = styled.div`
-  font-family: "Inter";
   font-style: normal;
   font-weight: 600;
   font-size: 19px;
@@ -21,8 +27,12 @@ const Title = styled.div`
 
 const SubRow = styled.div`
   display: flex;
-  flex-direction: column;
-  margin: 0 15px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 20px 20px;
+    flex-direction: column; // Change this to column
+
+  max-width: calc(90px * 3 + 4px * 2 * 3); // 90px is the width of a tag, 4px is the margin, and 2 is the left and right margin
 `;
 
 const SubTitle = styled.div`
@@ -48,15 +58,17 @@ const SortBy = styled.div`
 `;
 
 const SortOption = styled.div`
-  font-family: "Inter";
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
   line-height: 17px;
   color: #687076;
   cursor: pointer;
+  padding: 8px 12px 8px 8px;
+gap: 8px;
   &:hover {
     opacity: 0.8;
+
   }
 `;
 
@@ -84,13 +96,36 @@ const Checkbox = styled.div`
 `;
 
 const Tag = styled.div`
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 3px 8px;
+  gap: 3px;
+  width: auto; // Change width to auto
+  max-width: 90px;
+  height: 24px;
+  background: #FFFFFF;
+  border: 1px solid #E6E8EB;
+  border-radius: 6px;
+  flex: none;
+  order: 2;
+  flex-grow: 0;
   margin: 4px;
-  padding: 4px 8px;
-  background-color: #f1f1f1;
-  border-radius: 4px;
 `;
 
-const tags = ["app", "component", "tool", "social"];
+const tags = [
+  "app",
+  "component",
+  "tool",
+  "social",
+  "tag1",
+  "tag2",
+  "tag3",
+  "tag4",
+  "tag5",
+];
 
 // Initialize the state
 State.init({
@@ -105,17 +140,18 @@ const updateFilteredTags = (inputValue) => {
     filteredTags: tags.filter((tag) => tag.includes(inputValue)),
   });
 };
-
 return (
   <Container>
     <Row>
       <Title>Filters</Title>
     </Row>
+
     <Row>
       <SubRow>
-        <div>Tags</div>
+        <SubTitle>Tags</SubTitle>
         <StyledInput>
           <input
+            placeholder="Search Tags"
             type="text"
             style={{ width: "100%", background: "transparent", border: "none" }}
             value={state.inputValue}
@@ -128,45 +164,30 @@ return (
       </SubRow>
     </Row>
     <Row>
-      <SubRow>
+      <TagsContainer>
+        {" "}
         {state.filteredTags.map((tag) => (
           <Tag key={tag}>{tag}</Tag>
         ))}
-      </SubRow>
+      </TagsContainer>
     </Row>
     <Row>
       <SubRow>
         <SubTitle>People</SubTitle>
-        <CheckboxLabel>
-          <CheckboxContainer>
-            <Checkbox
-              checked={youFollow}
-              onClick={() => setYouFollow(!youFollow)}
-            />
-          </CheckboxContainer>
-          You Follow
-        </CheckboxLabel>
-        <CheckboxLabel>
-          <Widget
-            src={"dorgon108.near/widget/FIlterPanel"}
-            props={{ filter: { dorian: null, egg: null } }}
-          />
-          <CheckboxContainer>
-            <Checkbox
-              checked={youDontFollow}
-              onClick={() => setYouDontFollow(!youDontFollow)}
-            />
-          </CheckboxContainer>
-          You Don't Follow
-        </CheckboxLabel>
+        <Widget
+          src={"dorgon108.near/widget/CheckBox"}
+          props={{ filters: { "You Follow": null, "You Don't Follow": null } }}
+        />
       </SubRow>
     </Row>
     <Row>
-      <SortBy>
-        <div>Sort By:</div>
-        <SortOption>Date Created</SortOption>
-        <SortOption>Popularity</SortOption>
-      </SortBy>
+      <SubRow>
+        <SortBy>
+          <SubTitle>Sort By:</SubTitle>
+          <SortOption>Date Created</SortOption>
+          <SortOption>Popularity</SortOption>
+        </SortBy>
+      </SubRow>
     </Row>
   </Container>
 );
