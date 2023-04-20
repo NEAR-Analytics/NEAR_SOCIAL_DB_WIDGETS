@@ -57,9 +57,12 @@ return (
         <LabelArea>
           <Widget
             src={`${ownerId}/widget/Inputs.Toggle`}
-            id
-            value={v}
-            onChange={update}
+            props={{
+
+              id
+            value: v
+            onChange: update
+            }}
           />
           <SaveButton onClick={() => onSave(v)}>Save</SaveButton>
         </LabelArea>
