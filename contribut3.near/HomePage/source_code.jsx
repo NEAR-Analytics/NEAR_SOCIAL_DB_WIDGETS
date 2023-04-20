@@ -1,3 +1,5 @@
+const ownerId = "contribut3.near";
+
 const Row = styled.div`
   display: flex;
   flex-direction: row;
