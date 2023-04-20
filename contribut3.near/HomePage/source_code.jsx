@@ -108,7 +108,7 @@ return (
       </svg>
       Contributors
     </SectionHeader>
-    <Row>
+    <Row className="reverse">
       <img src={mapImage(contributorsImage)} alt="Contributoe and earn as an individual" />
       <SubSection>
         <h4>Contributoe and earn as an individual</h4>
