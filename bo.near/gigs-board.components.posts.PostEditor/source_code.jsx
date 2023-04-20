@@ -191,19 +191,22 @@ const setLabels = (labels) => {
     o.name = normalizeLabel(o.name);
     return o;
   });
+  if (labels.length < state.labels.length) {
+    let oldLabels = new Set(state.labels);
+    for (let label of labels) {
+      oldLabels.delete(label);
+    }
+    let removed = oldLabels.values().next().value;
+    console.log("removing: ", removed);
+  }
+
   let labelStrings = labels.map((o) => {
     return o.name;
   });
   State.update({ labels, labelStrings });
 };
-let existingLabelStrings =
-  Near.view(nearDevGovGigsContractAccountId, "get_all_labels") ?? [];
-existingLabelStrings = existingLabelStrings.filter((label) =>
-  Near.view(nearDevGovGigsContractAccountId, "is_allowed_to_use_labels", {
-    editor: context.accountId,
-    labels: [label],
-  })
-);
+const existingLabelStrings =
+  Near.view(nearDevGovGigsContractAccountId, "get_all_allowed_labels", {editor: context.accountId}) ?? [];
 const existingLabelSet = new Set(existingLabelStrings);
 const existingLabels = existingLabelStrings.map((s) => {
   return { name: s };
@@ -221,10 +224,15 @@ const labelEditor = (
       selected={state.labels}
       positionFixed
       allowNew={(results, props) => {
-        return (!existingLabelSet.has(props.text)) && props.selected.filter((selected) => selected.name === props.text).length == 0 && Near.view(
-          nearDevGovGigsContractAccountId,
-          "is_allowed_to_use_labels",
-          { editor: context.accountId, labels: [props.text] }
+        return (
+          !existingLabelSet.has(props.text) &&
+          props.selected.filter((selected) => selected.name === props.text)
+            .length == 0 &&
+          Near.view(
+            nearDevGovGigsContractAccountId,
+            "is_allowed_to_use_labels",
+            { editor: context.accountId, labels: [props.text] }
+          )
         );
       }}
     />
