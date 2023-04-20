@@ -113,10 +113,21 @@ const Stats = styled.div`
   flex-direction: row;
   align-items: stretch;
   justify-content: flex-start;
+  flex-wrap: wrap;
   gap: 0.5em;
 
   div {
     width: 20%;
+  }
+
+  @media (max-width: 768px) {
+    div {
+      width: 50%;
+    }
+
+    .link {
+      width: 100%;
+    }
   }
 `;
 
