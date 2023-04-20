@@ -219,7 +219,7 @@ const Narrow = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 80%;
+  width: 60%;
 
   @media (max-width: 768px) {
     width: 100%;
