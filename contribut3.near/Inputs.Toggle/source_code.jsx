@@ -17,7 +17,7 @@ const Box = styled.div`
   .switch:focus {
     box-shadow: 0 0 0 2px black;
   }
-  .switch[data-state='checked'] {
+  .switch[data-state="checked"] {
     background-color: black;
   }
 
@@ -32,7 +32,7 @@ const Box = styled.div`
     transform: translateX(2px);
     will-change: transform;
   }
-  .thumb[data-state='checked'] {
+  .thumb[data-state="checked"] {
     transform: translateX(19px);
   }
 `;
@@ -56,6 +56,8 @@ return (
     >
       <Switch.Thumb className="thumb" />
     </Switch.Root>
-    <Label htmlFor={props.id}>{props.value ? props.labelActive : props.labelInactive}</Label>
+    <Label htmlFor={props.id}>
+      {props.value ? props.labelActive : props.labelInactive}
+    </Label>
   </Box>
 );
