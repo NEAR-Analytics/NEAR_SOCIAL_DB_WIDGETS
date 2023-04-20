@@ -69,7 +69,7 @@ const MainSubSection = styled.div`
   gap: 1em;
   text-align: left;
 
-  h4 {
+  h1 {
     font-style: normal;
     font-weight: 700;
     font-size: 2.375em;
@@ -91,16 +91,38 @@ const MainSubSection = styled.div`
   }
 `;
 
+const Link = styled.a`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 36px;
+  gap: 24px;
+  background: #66a0ff;
+  border-radius: 1000px;
+`;
+
 const foundersImages = ["bafkreiaypep5xqg5vhbw7gralttufuzbqk5oggts2uyfbnjgpshtk5mggu", "bafkreiajakictce47mjdcpro45s3hasoozmuik4n3dkcstizpqv4igbx74", "bafkreihefba6pk23b3jcq2dugs7mw5ktkqtvcuqj5c2owrpkhspthuahyu"]
 const contributorsImage = "bafkreicce3m4vow4eisshn4zdbfrqfda62uavb7t5s2n2bjaawck2i7e64";
 const investorsImage = "bafkreiaypep5xqg5vhbw7gralttufuzbqk5oggts2uyfbnjgpshtk5mggu";
 const mainImage = "bafkreiafxt54wrdulmbyff4pqknm562fcpsj2edu2fywroke4snirrbnnq";
+const logo = "bafkreia7buai6q35e2s5drbio2swhcjz5fp7pnn7aoobft27557dvdsxuq";
 const mapImage = (src) => `https://ipfs.near.social/ipfs/${src}`;
 
 return (
   <div>
     <Row className="reverse">
       <img src={mapImage(mainImage)} />
+      <MainSubSection>
+        <img src={mapImage(logo)} />
+        <h1>Accelerate your Web3 Startup</h1>
+        <p>
+          NEAR Horizon is an early stage accelerator revolutionizing how founders and builders find support in Web3. Build and scale great projects alongside a thriving community, while tapping into a robust backer network and diverse supporting resources.
+        </p>
+        <Link href="/nearhorizon.near/widget/Index">
+          Try It Now
+        </Link>
+      </MainSubSection>
     </Row>
     <SectionHeader>
       <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
