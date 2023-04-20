@@ -114,7 +114,7 @@ return (
           src={`${ownerId}/widget/Inputs.Viewable.Toggle`}
           props={{
             id: "active",
-            value: state.active,
+            value: Boolean(state.active),
             onSave: (active) =>
               Near.call("social.near", "set", {
                 data: { [accountId]: { profile: { active: "" + active } } },
