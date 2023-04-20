@@ -251,7 +251,7 @@ const Section = styled.div`
 
 const foundersImages = ["bafkreiaypep5xqg5vhbw7gralttufuzbqk5oggts2uyfbnjgpshtk5mggu", "bafkreiajakictce47mjdcpro45s3hasoozmuik4n3dkcstizpqv4igbx74", "bafkreihefba6pk23b3jcq2dugs7mw5ktkqtvcuqj5c2owrpkhspthuahyu"]
 const contributorsImage = "bafkreidy4y7x4l2xc2jnin3x4h2cniusviood54cknrsb5nioe63aluune";
-const investorsImage = "bafkreiegcqdg7fl4yz544wps36uridezgs3o6ikrewkeniwwbwyb4xfwby";
+const investorsImage = "bafkreie3zrtr3ynis5xlgq4wjtef7f43ycyll5re3ko3nnrsv3kbjd7xvm";
 const mainImage = "bafkreiafxt54wrdulmbyff4pqknm562fcpsj2edu2fywroke4snirrbnnq";
 const logo = "bafkreihxjdgrt6iun2xkinwjzp4h6tkhkrpbxuzyeanrrecsp7yzsdr3ru";
 const endingImage = "bafkreibfk6pkeoxsl6banldzxearj3swh53p3gmn7unhz7nag4nco4p2sm";
