@@ -48,7 +48,8 @@ const Post = styled.div`
 const renderItem = (a) => {
   if (hashtags && hashtags.length > 0) {
     if (domains && domains.length > 0) {
-      domains.forEach((it) => {
+      for (let i = 0; i < domains.length; i++) {
+        const it = domains[i];
         if (
           a.value.type === "social" &&
           `${a.accountId}/${it}/main` === a.value.path
@@ -74,7 +75,7 @@ const renderItem = (a) => {
             </div>
           );
         }
-      });
+      }
     } else {
       return (
         (a.value.type === "social" &&
