@@ -41,7 +41,6 @@ const SubSection = styled.div`
   text-align: left;
 
   h4 {
-    font-family: 'FK Grotesk';
     font-style: normal;
     font-weight: 700;
     font-size: 1.5em;
@@ -50,7 +49,6 @@ const SubSection = styled.div`
   }
 
   p {
-    font-family: 'FK Grotesk';
     font-style: normal;
     font-weight: 400;
     font-size: 1em;
