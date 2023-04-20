@@ -240,6 +240,8 @@ const Section = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
+  border-radius: 2em;
+  margin: 4em 0;
 
   &.dark {
     background: #000000;
