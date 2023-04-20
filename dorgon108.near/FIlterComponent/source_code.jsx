@@ -198,6 +198,8 @@ return (
         <Widget
           src={"dorgon108.near/widget/CheckBox"}
           props={{
+            showFollowed: props.showFollowed,
+            showNotFollowed: props.showNotFollowed,
             filters: { "You Follow": null, "You Don't Follow": null },
             onCheckboxChange: onCheckboxChange,
           }}
