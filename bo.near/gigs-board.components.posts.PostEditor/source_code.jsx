@@ -197,7 +197,8 @@ const setLabels = (labels) => {
     for (let label of labels) {
       oldLabels.delete(label);
     }
-    let removed = oldLabels.values().next().value.name;
+    let removed = oldLabels.values().next().value;
+    console.log(removed)
     Near.asyncView(
       nearDevGovGigsContractAccountId,
       "is_allowed_to_use_labels",
