@@ -8,6 +8,7 @@ const Box = styled.div`
   .switch {
     width: 42px;
     height: 25px;
+    padding: 0;
     background-color: var(--blackA9);
     border-radius: 9999px;
     position: relative;
