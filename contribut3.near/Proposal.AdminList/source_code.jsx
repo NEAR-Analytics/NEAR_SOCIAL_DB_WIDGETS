@@ -68,10 +68,10 @@ return (
       props={{
         search,
         items: state.items,
-        createItem: ([[projectId, cid], vendor_id]) => (
+        createItem: ([[projectId, cid], vendorId]) => (
           <Widget
             src={`${ownerId}/widget/Proposal.AdminCard`}
-            props={{ projectId, cid, vendor_id }}
+            props={{ projectId, cid, vendorId }}
           />
         ),
       }}
