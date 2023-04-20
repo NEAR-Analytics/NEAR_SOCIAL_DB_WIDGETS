@@ -187,6 +187,10 @@ const List = styled.div`
     line-height: 150%;
     color: #cde0ff;
   }
+
+  li {
+    padding: 0.5em 0;
+  }
 `;
 
 const SubHeading = styled.h2`
