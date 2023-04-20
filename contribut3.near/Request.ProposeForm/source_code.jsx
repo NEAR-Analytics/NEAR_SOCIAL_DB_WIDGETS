@@ -334,13 +334,15 @@ return (
           ),
           onClick: () =>
             Near.call(ownerId, "add_proposal", {
-              vendor_id: state.vendorId.value,
-              request_id: [accountId, cid],
-              title: "",
-              description: state.message,
-              price: state.price,
-              start_date: `${new Date(state.startDate).getTime()}`,
-              end_date: `${new Date(state.endDate).getTime()}`,
+              proposal: {
+                vendor_id: state.vendorId.value,
+                request_id: [accountId, cid],
+                title: "",
+                description: state.message,
+                price: state.price,
+                start_date: `${new Date(state.startDate).getTime()}`,
+                end_date: `${new Date(state.endDate).getTime()}`,
+              }
             }),
         }}
       />
