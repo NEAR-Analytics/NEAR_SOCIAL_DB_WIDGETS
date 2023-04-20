@@ -68,6 +68,9 @@ const SubCheckboxGroup = styled.div`
 State.init({});
 
 const handleChange = (primary, sub) => {
+  const isChecked = !state[primary]?.[primary];
+  props.onCheckboxChange(primary, isChecked);
+
   if (sub) {
     State.update((prevState) => ({
       ...prevState,
@@ -77,7 +80,7 @@ const handleChange = (primary, sub) => {
     State.update((prevState) => ({
       ...prevState,
       [primary]: prevState[primary]
-        ? { ...prevState[primary], [primary]: !prevState[primary][primary] }
+        ? { ...prevState[primary], [primary]: isChecked }
         : { [primary]: true },
     }));
   }
