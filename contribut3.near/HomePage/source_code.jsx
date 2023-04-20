@@ -268,8 +268,8 @@ return (
         </p>
       </SubSection>
     </Row>
-    <img src={mapImage(endingImage)} alt="Accelerate your Web3 Startup!" />
     <Footer>
+      <img src={mapImage(endingImage)} alt="Accelerate your Web3 Startup!" />
       <h2>Accelerate your Web3 Startup!</h2>
       <Link href="/nearhorizon.near/widget/Index">Try it Now</Link>
     </Footer>
