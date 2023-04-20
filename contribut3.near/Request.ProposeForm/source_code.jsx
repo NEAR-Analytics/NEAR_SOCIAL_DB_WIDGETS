@@ -271,9 +271,9 @@ return (
             src={`${ownerId}/widget/Inputs.Select`}
             props={{
               label: "Payment source",
-              options: state.sources,
-              value: state.source,
-              onChange: (source) => State.update({ source }),
+              options: state.paymentSources,
+              value: state.paymentSource,
+              onChange: (paymentSource) => State.update({ paymentSource }),
             }}
           />
         </DetailInput>
