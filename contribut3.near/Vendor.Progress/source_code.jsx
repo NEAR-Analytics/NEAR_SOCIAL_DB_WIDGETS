@@ -95,7 +95,7 @@ if (!state.activeIsFetched) {
   return <>Loading...</>;
 }
 
-console.log(state.active)
+console.log(typeof state.active)
 
 return (
   <Container>
