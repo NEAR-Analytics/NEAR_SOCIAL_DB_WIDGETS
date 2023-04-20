@@ -56,6 +56,8 @@ const Value = styled.div`
 State.init({
   earned: 0,
   earnedIsFetched: false,
+  active: false,
+  activeIsFetched: false,
 });
 
 if (!state.earnedIsFetched) {
@@ -71,6 +73,24 @@ if (!state.earnedIsFetched) {
       earnedIsFetched: true,
     })
   );
+}
+
+if (!state.activeIsFetched) {
+  Near.asyncView(
+    "social.near",
+    "get",
+    { keys: [`${accountId}/profile/active`] },
+    "final",
+    false
+  ).then((active) =>
+    State.update({
+      active: active[accountId].profile.active,
+      activeIsFetched: true,
+    })
+  );
+}
+
+if (!state.earnedIsFetched || !state.activeIsFetched) {
   return <>Loading...</>;
 }
 
@@ -85,6 +105,10 @@ return (
           props={{ content: "Test use case" }}
         />
       </Value>
+    </Row>
+    <Row>
+      <Label>Status:</Label>
+      <Value></Value>
     </Row>
     <Row>
       <Label>Profile:</Label>
