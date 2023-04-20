@@ -45,7 +45,7 @@ const columns = [
   {
     id: "rejected",
     label: "Rejected",
-    formatter: (d) => <span className="rejected">{d.approve}</span>,
+    formatter: (d) => <span className="rejected">{d.rejected}</span>,
   },
 ];
 
