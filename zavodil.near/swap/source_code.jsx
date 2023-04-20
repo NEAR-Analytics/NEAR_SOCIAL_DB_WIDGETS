@@ -12,7 +12,7 @@ State.init({
     "dac17f958d2ee523a2206206994597c13d831ec7.factory.bridge.near",
   inputAssetAmount: 1,
   outputAssetAmount: 0,
-  //network: NETWORK_NEAR,
+  dexName: "Ref Finance",
   assets: [
     "NEAR",
     "token.v2.ref-finance.near",
@@ -32,8 +32,12 @@ State.init({
 
 const refReferralId = props.refReferralId ?? "zavodil.near";
 
+if (ethers !== undefined && state.sender === undefined) {
+  State.update({ sender: Ethers.send("eth_requestAccounts", [])[0] ?? "" });
+}
+
 if (!state.initialized) {
-  if (ethers !== undefined) {
+  if (ethers !== undefined && state.sender) {
     Ethers.provider()
       .getNetwork()
       .then((chainIdData) => {
@@ -58,8 +62,10 @@ if (!state.initialized) {
             inputAsset: undefined,
             outputAsset: undefined,
             network: NETWORK_ZKSYNC,
+            routerContract: "0x2da10A1e27bF85cEdD8FFb1AbBe97e53391C0295",
+            dexName: "SyncSwap",
           });
-        } else {
+        } else if (chainIdData.chainId === 1) {
           State.update({
             assets: [
               "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48", // USDC
@@ -73,12 +79,18 @@ if (!state.initialized) {
             inputAsset: undefined,
             outputAsset: undefined,
             network: NETWORK_ETH,
+            routerContract: "0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45", // "0xE592427A0AEce92De3Edee1F18E0157C05861564", // 0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45 ?
+            dexName: "UniSwap",
           });
+        } else {
+          // not supported evm chain
+          State.update({ network: NETWORK_NEAR });
         }
 
         State.update({ initialized: true });
       });
   } else {
+    // ethers not supported on this gateway
     State.update({ network: NETWORK_NEAR });
   }
 } else {
@@ -207,6 +219,7 @@ const rearrangeAssets = () => {
     outputAsset: undefined,
     inputAssetAmount: state.outputAssetAmount,
     outputAssetAmount: state.inputAssetAmount,
+    approvalNeeded: undefined,
   });
 };
 
@@ -239,6 +252,49 @@ const getRefTokenObject = (tokenId, assetData) => {
   };
 };
 
+const tokenInApprovaleNeededCheck = () => {
+  if (state.approvalNeeded === undefined) {
+    if (
+      state.sender &&
+      state.erc20Abi !== undefined &&
+      state.routerContract !== undefined &&
+      [NETWORK_ETH, NETWORK_ZKSYNC].includes(state.network)
+    ) {
+      const ifaceErc20 = new ethers.utils.Interface(state.erc20Abi);
+
+      const encodedTokenAllowancesData = ifaceErc20.encodeFunctionData(
+        "allowance",
+        [state.sender, state.routerContract]
+      );
+
+      return Ethers.provider()
+        .call({
+          to: state.inputAssetTokenId,
+          data: encodedTokenAllowancesData,
+        })
+        .then((encodedTokenAllowanceHex) => {
+          const tokenAllowance = ifaceErc20.decodeFunctionResult(
+            "allowance",
+            encodedTokenAllowanceHex
+          );
+
+          console.log(
+            "new Big(tokenAllowance).toFixed()",
+            new Big(tokenAllowance).toFixed()
+          );
+
+          State.update({
+            approvalNeeded: new Big(tokenAllowance).toFixed() == "0",
+          });
+        });
+    } else {
+      State.update({ approvalNeeded: false });
+    }
+  }
+};
+
+// PREPARE DATA
+
 if (state.network === NETWORK_ZKSYNC) {
   if (state.routerAbi == undefined) {
     const routerAbi = fetch(
@@ -261,11 +317,34 @@ if (state.network === NETWORK_ZKSYNC) {
   }
 }
 
-const callTxZkSync = () => {
-  const sender = Ethers.send("eth_requestAccounts", [])[0];
-  if (sender) {
-    const routerContract = "0x2da10A1e27bF85cEdD8FFb1AbBe97e53391C0295";
+if (state.network == NETWORK_ETH) {
+  if (state.routerAbi == undefined) {
+    const routerAbi = fetch(
+      "https://gist.githubusercontent.com/zavodil/108a3719d4ac4b53131b09872ff81b83/raw/82561cf48afcc72861fa8fa8283b33c04da316d7/SwapRouter02.json"
+    );
+    if (!routerAbi.ok) {
+      return "Loading";
+    }
 
+    State.update({ routerAbi: routerAbi.body });
+  }
+}
+
+if (state.network === NETWORK_ZKSYNC || state.network == NETWORK_ETH) {
+  if (state.erc20Abi == undefined) {
+    const erc20Abi = fetch(
+      "https://gist.githubusercontent.com/veox/8800debbf56e24718f9f483e1e40c35c/raw/f853187315486225002ba56e5283c1dba0556e6f/erc20.abi.json"
+    );
+    if (!erc20Abi.ok) {
+      return "Loading";
+    }
+    State.update({ erc20Abi: erc20Abi.body });
+  }
+  tokenInApprovaleNeededCheck();
+}
+
+const callTxZkSync = () => {
+  if (state.sender && state.routerContract !== undefined) {
     const classicPoolFactoryContractId =
       "0xf2DAd89f2788a8CD54625C60b55cD3d2D0ACa7Cb";
     const ifaceFactory = new ethers.utils.Interface(state.factoryABI);
@@ -291,7 +370,7 @@ const callTxZkSync = () => {
 
         const swapData = ethers.utils.defaultAbiCoder.encode(
           ["address", "address", "uint8"],
-          [tokenIn, sender, withdrawMode] // tokenIn, to, withdraw mode
+          [tokenIn, state.sender, withdrawMode] // tokenIn, to, withdraw mode
         );
 
         const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
@@ -330,7 +409,7 @@ const callTxZkSync = () => {
         );
 
         const swapContract = new ethers.Contract(
-          routerContract,
+          state.routerContract,
           state.routerAbi,
           Ethers.provider().getSigner()
         );
@@ -347,6 +426,69 @@ const callTxZkSync = () => {
               outputAsset: undefined,
             });
           });
+      });
+  }
+};
+
+const callTxUni = () => {
+  if (state.sender && state.routerContract !== undefined && state.routerAbi) {
+    const value = expandToken(
+      state.inputAssetAmount,
+      state.inputAsset.metadata.decimals
+    ).toFixed();
+
+    const swapContract = new ethers.Contract(
+      state.routerContract,
+      state.routerAbi,
+      Ethers.provider().getSigner()
+    );
+
+    swapContract
+      .swapExactTokensForTokens(
+        value,
+        "0",
+        [state.inputAssetTokenId, state.outputAssetTokenId],
+        state.sender,
+        {
+          gasPrice: ethers.utils.parseUnits("0.50", "gwei"),
+          gasLimit: 20000000,
+        }
+      )
+      .then((transactionHash) => {
+        console.log("transactionHash", transactionHash);
+        state.update({
+          outputAsset: undefined,
+        });
+      });
+  }
+};
+
+const callTokenApproval = () => {
+  if (
+    state.sender &&
+    state.erc20Abi &&
+    state.inputAssetAmount &&
+    state.routerContract
+  ) {
+    const value = expandToken(
+      state.inputAssetAmount,
+      state.inputAsset.metadata.decimals
+    ).toFixed();
+
+    const approveContract = new ethers.Contract(
+      state.inputAssetTokenId,
+      state.erc20Abi,
+      Ethers.provider().getSigner()
+    );
+
+    approveContract
+      .approve(state.routerContract, value, {
+        gasPrice: ethers.utils.parseUnits("0.26", "gwei"),
+        gasLimit: 20000000,
+      })
+      .then((transactionHash) => {
+        console.log("transactionHash", transactionHash);
+        tokenInApprovaleNeededCheck();
       });
   }
 };
@@ -465,7 +607,7 @@ const expandToken = (value, decimals) => {
 const canSwap =
   state.network &&
   Number(state.inputAsset.balance_hr_full) >= Number(state.inputAssetAmount) &&
-  Number(state.inputAssetAmount || 0) > 0;
+  Number(state.inputAssetAmount ?? 0) > 0;
 
 return (
   <Theme>
@@ -483,6 +625,7 @@ return (
               inputAssetModalHidden: true,
               inputAssetTokenId: tokenId,
               inputAsset: null,
+              approvalNeeded: undefined,
             });
           },
           onClose: () => State.update({ inputAssetModalHidden: true }),
@@ -618,6 +761,11 @@ return (
       <div class="swap-main-container">
         <div class="swap-main-column">
           <div class="swap-page">
+            {state.network && state.dexName && (
+              <span class="ps-2" style={{ color: "#7780a0" }}>
+                {state.dexName} ({state.network})
+              </span>
+            )}
             <div class="top-container">
               {assetContainer(
                 true,
@@ -754,23 +902,42 @@ return (
                 )}
               </div>
               <div class="swap-button-container">
-                <button
-                  class={canSwap ? "swap-button-enabled" : "swap-button"}
-                  onClick={() => {
-                    if (canSwap) {
-                      if (state.network === NETWORK_NEAR) {
-                        callTxRef();
-                      } else if (state.network === NETWORK_ZKSYNC) {
-                        callTxZkSync();
+                {state.approvalNeeded === true && (
+                  <button
+                    class={"swap-button-enabled"}
+                    onClick={() => {
+                      callTokenApproval();
+                    }}
+                  >
+                    <div class="swap-button-text">
+                      Approve {state.inputAsset.metadata.symbol}
+                    </div>
+                  </button>
+                )}
+                {state.approvalNeeded !== true && (
+                  <button
+                    class={canSwap ? "swap-button-enabled" : "swap-button"}
+                    onClick={() => {
+                      if (canSwap) {
+                        if (state.network === NETWORK_NEAR) {
+                          callTxRef();
+                        } else if (state.network === NETWORK_ZKSYNC) {
+                          callTxZkSync();
+                        } else if (state.network === NETWORK_ETH) {
+                          callTxUni();
+                        }
                       }
-                    }
-                  }}
-                >
-                  <div class="swap-button-text">Swap</div>
-                </button>
+                    }}
+                  >
+                    <div class="swap-button-text">Swap</div>
+                  </button>
+                )}
               </div>
             </div>
           </div>
+        </div>
+        <div class="pt-3 text-secondary opacity-50">
+          Supported networks: {NETWORK_NEAR}, {NETWORK_ETH}, {NETWORK_ZKSYNC}
         </div>
       </div>
     </div>
