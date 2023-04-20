@@ -30,6 +30,7 @@ const SectionHeader = styled.h3`
   font-size: 2.5em;
   line-height: 120%;
   color: #000000;
+  padding: 2em 0;
 
   &.black {
     font-size: 3em;
