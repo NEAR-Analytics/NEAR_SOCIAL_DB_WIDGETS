@@ -197,15 +197,15 @@ const setLabels = (labels) => {
     for (let label of labels) {
       oldLabels.delete(label);
     }
-    let removed = oldLabels.values().next().value;
-    console.log(removed)
+    let removed = oldLabels.values().next().value.name;
+    console.log(removed);
     Near.asyncView(
       nearDevGovGigsContractAccountId,
       "is_allowed_to_use_labels",
       { editor: context.accountId, labels: [removed] }
     ).then((res) => console.log(res))
 
-    State.update({warning: 'No permission to remove ' + removed.name})
+    State.update({warning: 'No permission to remove ' + removed})
     return;
     
   }
