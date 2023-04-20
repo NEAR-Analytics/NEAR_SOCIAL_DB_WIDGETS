@@ -64,7 +64,7 @@ return (
           <SaveButton onClick={() => onSave(v)}>Save</SaveButton>
         </LabelArea>
       ),
-      view: isLink ? <a href={link}>{value}</a> : value,
+      view: <Widget src={`${ownerId}/ActiveIndicator`} props={{ active: state.active, activeText: "Available", inactiveText: "Not Available" }} />,
       canEdit,
     }}
   />
