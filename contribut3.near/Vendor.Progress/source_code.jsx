@@ -1,5 +1,6 @@
 const ownerId = "contribut3.near";
 const creditsAccount = `credits.${ownerId}`;
+const accountId = props.accountId ?? context.accountId;
 
 const Container = styled.div`
   display: flex;
