@@ -151,8 +151,7 @@ const toggleActiveTag = (tag) => {
   updateTags();
 };
 
-const   onCheckboxChange=props.onCheckboxChange
-
+const onCheckboxChange = props.onCheckboxChange;
 
 return (
   <Container>
@@ -198,8 +197,10 @@ return (
         <SubTitle>People</SubTitle>
         <Widget
           src={"dorgon108.near/widget/CheckBox"}
-          props={{ filters: { "You Follow": null, "You Don't Follow": null },  onCheckboxChange={onCheckboxChange}
- }}
+          props={{
+            filters: { "You Follow": null, "You Don't Follow": null },
+            onCheckboxChange: onCheckboxChange,
+          }}
         />
       </SubRow>
     </Row>
