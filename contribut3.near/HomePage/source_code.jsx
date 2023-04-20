@@ -51,7 +51,6 @@ const SubSection = styled.div`
     font-size: 1.5em;
     line-height: 120%;
     color: #000000;
-    padding: 2em 0;
   }
 
   p {
