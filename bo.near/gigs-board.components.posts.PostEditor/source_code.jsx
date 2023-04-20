@@ -69,6 +69,7 @@ initState({
   token: props.token ?? "Near",
   supervisor: props.supervisor ?? "",
   githubLink: props.githubLink ?? "",
+  warning: "",
 });
 
 let fields = {
@@ -198,6 +199,7 @@ const setLabels = (labels) => {
     }
     let removed = oldLabels.values().next().value;
     console.log("removing: ", removed);
+    State.update({warning: 'No permission to remove ' + removed})
   }
 
   let labelStrings = labels.map((o) => {
@@ -327,10 +329,10 @@ return (
     </div>
 
     <div class="card-body">
-      <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        Cannot remove that label!
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onClick={() => console.log('hehehe')}></button>
-      </div>
+      {state.warning ?? <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {state.warning}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onClick={() => State.update({warning: ""})}></button>
+      </div>}
       {fields.includes("githubLink") ? (
         <div className="row">
           {githubLinkDiv}
