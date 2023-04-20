@@ -67,6 +67,7 @@ State.init({
   request: null,
   requestIsFetched: false,
   message: "",
+  price: 0,
   vendorId: [],
   vendors: [],
   vendorsIsFetched: false,
@@ -312,9 +313,15 @@ return (
               Send proposal
             </>
           ),
-          onClick: () => {
-            console.log("Send proposal");
-          },
+          onClick: () => Near.call(ownerId, "add_proposal", {
+            vendor_id: state.vendorId[0].value,
+            request_id: [accountId, cid],
+            title: "",
+            description: state.message,
+            price: state.price,
+            start_date: `${new Date(state.startDate).getTime()}`,
+            end_date: `${new Date(state.endDate).getTime()}`,
+          }),
         }}
       />
     </Footer>
