@@ -81,7 +81,7 @@ return (
         aria-labelledby="pills-community-tab"
       >
         <div className="mx-auto">
-          <Widget src="nycdao.near/widget/NYC.Social" props={{ hashtag }} />
+          <Widget src="efiz.near/widget/NYC.Social" props={{ hashtag }} />
         </div>
       </div>
       <div
