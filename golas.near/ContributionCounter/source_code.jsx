@@ -1,0 +1,1 @@
+return <div>ContributionCounter</div>;
