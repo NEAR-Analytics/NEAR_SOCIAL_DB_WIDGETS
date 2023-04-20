@@ -9,7 +9,7 @@ State.init({
 if (!state.itemsIsFetched) {
   Near.asyncView(
     ownerId,
-    `get_project${props.completed ? "_completed" : ""}_contributions`,
+    "get_project_completed_contributions",
     { account_id: context.accountId },
     "final",
     false
