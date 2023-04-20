@@ -37,7 +37,7 @@ if (ethers !== undefined && state.sender === undefined) {
 }
 
 if (!state.initialized) {
-  if (ethers !== undefined && state.sender) {
+  if (ethers !== undefined && Ethers.send("eth_requestAccounts", [])[0]) {
     Ethers.provider()
       .getNetwork()
       .then((chainIdData) => {
