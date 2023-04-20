@@ -19,7 +19,6 @@ const Row = styled.div`
 
 const SectionHeader = styled.h3`
   text-align: center;
-  font-family: 'FK Grotesk';
   font-style: normal;
   font-weight: 700;
   font-size: 2.5em;
