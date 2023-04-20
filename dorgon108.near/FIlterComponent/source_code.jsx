@@ -87,7 +87,7 @@ const CheckboxContainer = styled.div`
 const Checkbox = styled.div`
   width: 100%;
   height: 100%;
-  background-color: ${(props) => (props.checked ? "black" : "red")}};
+  background-color: ${(props) => (props.checked ? "black" : "red")} ;
   position: absolute;
   top: 0;
   left: 0;
@@ -151,6 +151,9 @@ const toggleActiveTag = (tag) => {
   updateTags();
 };
 
+const   onCheckboxChange=props.onCheckboxChange
+
+
 return (
   <Container>
     <Row>
@@ -195,7 +198,8 @@ return (
         <SubTitle>People</SubTitle>
         <Widget
           src={"dorgon108.near/widget/CheckBox"}
-          props={{ filters: { "You Follow": null, "You Don't Follow": null } }}
+          props={{ filters: { "You Follow": null, "You Don't Follow": null },  onCheckboxChange={onCheckboxChange}
+ }}
         />
       </SubRow>
     </Row>
