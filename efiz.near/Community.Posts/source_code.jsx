@@ -162,11 +162,12 @@ return (
         <>
           <ComposeWrapper>
             <Widget
-              src="efiz.near/widget/Posts.Compose"
+              src="efiz.near/widget/Community.Posts.Compose"
               props={{
-                domain: community.domain,
-                hashtags,
-                members: community.members,
+                allowPublic: showPublic,
+                isMember: communityMembers.includes(context.accountId),
+                communityDomain,
+                embedHashtags: communityHashtags,
               }}
             />
           </ComposeWrapper>
