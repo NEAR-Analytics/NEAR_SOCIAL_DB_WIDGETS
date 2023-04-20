@@ -10,7 +10,7 @@ const Row = styled.div`
 
   justify-content: space-between;
   align-items: center;
-  gap: 1em;
+  gap: 2.5em;
   width: 100%;
 
   @media (max-width: 768px) {
