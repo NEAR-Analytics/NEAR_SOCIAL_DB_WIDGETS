@@ -68,15 +68,18 @@ const SubCheckboxGroup = styled.div`
 State.init({});
 
 const handleChange = (primary, sub) => {
-  const isChecked = !state[primary]?.[primary];
-  props.onCheckboxChange(primary, isChecked);
-
   if (sub) {
+    const isChecked = !state[primary]?.[sub];
+    props.onCheckboxChange(`${primary}_${sub}`, isChecked);
+
     State.update((prevState) => ({
       ...prevState,
-      [primary]: { ...prevState[primary], [sub]: !prevState[primary]?.[sub] },
+      [primary]: { ...prevState[primary], [sub]: isChecked },
     }));
   } else {
+    const isChecked = !state[primary]?.[primary];
+    props.onCheckboxChange(primary, isChecked);
+
     State.update((prevState) => ({
       ...prevState,
       [primary]: prevState[primary]
@@ -86,7 +89,7 @@ const handleChange = (primary, sub) => {
   }
 };
 
-console.log(state);
+console.log("the primary is", state[primary]);
 
 // ... JSX structure goes here ...
 return (
