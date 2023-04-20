@@ -193,11 +193,11 @@ const setLabels = (labels) => {
     return o;
   });
   if (labels.length < state.labels.length) {
-    let oldLabels = new Set(state.labels);
+    let oldLabels = new Set(state.labels.map((label) => label.name));
     for (let label of labels) {
-      oldLabels.delete(label);
+      oldLabels.delete(label.name);
     }
-    let removed = oldLabels.values().next().value.name;
+    let removed = oldLabels.values().next().value;
     console.log(labels);
     console.log(oldLabels);
     Near.asyncView(
