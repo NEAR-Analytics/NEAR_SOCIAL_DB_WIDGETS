@@ -3,6 +3,24 @@ const account = props.account || "marketing.sputnik-dao.near";
 const apiUrl = `https://api.pikespeak.ai/daos/policy/${account}`;
 const publicApiKey = "36f2b87a-7ee6-40d8-80b9-5e68e587a5b5";
 
+const Label = styled.span`
+  color:#8c8c8c;
+  font-size: 11px;
+`;
+
+const InfoWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 8px;
+`;
+
+const GeneralInfos = styled.div`
+    padding: 10px;
+    background: rgba(68, 152, 224, 0.1);
+    border-radius: 4px;
+    width: 49%;
+`;
+
 const membersFormatter = (roles) => {
   let memberList = [];
   if (Array.isArray(roles.kind) && roles.kind.length) {
@@ -49,6 +67,14 @@ const columns = [
   },
 ];
 
+const parseNano = (nano) => {
+  return Number(nano) / Math.pow(10, 9) / 86400;
+};
+
+const parseNear = (near) => {
+  return Number(near) / Math.pow(10, 24);
+};
+
 const GenericTable = (
   <Widget
     src={`${widgetProvider}/widget/generic_table`}
@@ -69,10 +95,51 @@ const fetchPolicy = () => {
   });
   policy.body &&
     State.update({
-      policy: policy.body,
+      policy: policy.body.state.policy,
       roles: policy.body.state.policy.roles,
+      config: policy.body.state.config,
     });
 };
 !state.policy && fetchPolicy();
 
-return <div>{GenericTable}</div>;
+return (
+  <div>
+    {state.policy && (
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <GeneralInfos>
+          <h2>Infos</h2>
+          <InfoWrapper>
+            <Label>Name</Label>
+            <span>{state.config.name}</span>
+          </InfoWrapper>
+          <InfoWrapper>
+            <Label>Purpose</Label>
+            <span>{state.config.purpose}</span>
+          </InfoWrapper>
+        </GeneralInfos>
+        <GeneralInfos>
+          <h2>Policy</h2>
+          <InfoWrapper>
+            <Label>Proposal period</Label>
+            <span>{parseNano(state.policy.proposal_period)} days</span>
+          </InfoWrapper>
+          <InfoWrapper>
+            <Label>Proposal bond</Label>
+            <span>{parseNear(state.policy.proposal_bond)} NEAR</span>
+          </InfoWrapper>
+          <InfoWrapper>
+            <Label>Bounty forgiveness period</Label>
+            <span>
+              {parseNano(state.policy.bounty_forgiveness_period)} days
+            </span>
+          </InfoWrapper>
+          <InfoWrapper>
+            <Label>Bounty bond</Label>
+            <span>{parseNear(state.policy.bounty_bond)} NEAR</span>
+          </InfoWrapper>
+        </GeneralInfos>
+      </div>
+    )}
+    {GenericTable}
+  </div>
+);
