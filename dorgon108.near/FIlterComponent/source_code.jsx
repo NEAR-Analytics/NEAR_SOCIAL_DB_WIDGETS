@@ -115,17 +115,7 @@ const Tag = styled.div`
   margin: 4px;
 `;
 
-const tags = [
-  "app",
-  "component",
-  "tool",
-  "social",
-  "tag1",
-  "tag2",
-  "tag3",
-  "tag4",
-  "tag5",
-];
+const tags = props.selectedTags ?? [];
 
 // Initialize the state
 State.init({
