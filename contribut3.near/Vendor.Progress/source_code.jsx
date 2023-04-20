@@ -1,4 +1,5 @@
 const ownerId = "contribut3.near";
+const creditsAccount = `credits.${ownerId}`;
 
 const Container = styled.div`
   display: flex;
@@ -52,10 +53,31 @@ const Value = styled.div`
   width: 65%;
 `;
 
+State.init({
+  earned: 0,
+  earnedIsFetched: false,
+});
+
+if (!state.earnedIsFetched) {
+  Near.asyncView(
+    creditsAccount,
+    "ft_balance_of",
+    { account_id: accountId },
+    "final",
+    false
+  ).then((earned) =>
+    State.update({
+      earned: earned / 1000,
+      earnedIsFetched: true,
+    })
+  );
+  return <>Loading...</>;
+}
+
 return (
   <Container>
     <Row>
-      <Label>Credits:</Label>
+      <Label>Earned:</Label>
       <Value>
         0 NHZN{" "}
         <Widget
