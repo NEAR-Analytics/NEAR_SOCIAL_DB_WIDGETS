@@ -340,6 +340,9 @@ return (
                 title: "",
                 description: state.message,
                 price: state.price,
+                payment_type: state.paymentType.value,
+                proposal_type: state.requestType.value,
+                payment_source: state.paymentSource.value,
                 start_date: `${new Date(state.startDate).getTime()}`,
                 end_date: `${new Date(state.endDate).getTime()}`,
               }
