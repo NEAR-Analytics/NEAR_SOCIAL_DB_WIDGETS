@@ -70,7 +70,7 @@ return (
         <Widget
           src={`${ownerId}/widget/ActiveIndicator`}
           props={{
-            active: state.active,
+            active: value,
             activeText: "Available",
             inactiveText: "Not Available",
           }}
