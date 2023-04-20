@@ -225,6 +225,11 @@ const Narrow = styled.div`
 const Section = styled.div`
   background: #ffffff;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 
   &.dark {
     background: #000000;
