@@ -76,6 +76,7 @@ const MainSubSection = styled.div`
   text-align: left;
 
   h1 {
+    text-align: center;
     font-style: normal;
     font-weight: 700;
     font-size: 2.375em;
