@@ -345,7 +345,7 @@ return (
         </div>
       )}
 
-      <a className="btn btn-outline-primary mb-2" onClick={onClick}>
+      <a className={"btn btn-outline-primary mb-2 " + "disabled"} onClick={onClick}>
         Submit
       </a>
       {disclaimer}
