@@ -79,7 +79,7 @@ return (
     <Row>
       <Label>Earned:</Label>
       <Value>
-        0 NHZN{" "}
+        {state.earned} NHZN{" "}
         <Widget
           src={`${ownerId}/widget/Tooltip`}
           props={{ content: "Test use case" }}
