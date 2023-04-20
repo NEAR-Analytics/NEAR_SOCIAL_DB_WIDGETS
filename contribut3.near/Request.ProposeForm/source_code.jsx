@@ -81,29 +81,25 @@ State.init({
   endDate: "",
 });
 
-
 if (!state.vendorsIsFetched) {
-  Near.asyncView(
-    ownerId,
-    "get_payment_types",
-    {},
-    "final",
-    false
-  ).then((paymentTypes) => State.update({ paymentTypes: paymentTypes.map((id) => ({ id, text: id })) }));
-  Near.asyncView(
-    ownerId,
-    "get_payment_sources",
-    {},
-    "final",
-    false
-  ).then((paymentSources) => State.update({ paymentSources: paymentSources.map((id) => ({ id, text: id })) }));
-  Near.asyncView(
-    ownerId,
-    "get_request_types",
-    {},
-    "final",
-    false
-  ).then((requestTypes) => State.update({ requestTypes: requestTypes.map((id) => ({ id, text: id })) }));
+  Near.asyncView(ownerId, "get_payment_types", {}, "final", false).then(
+    (paymentTypes) =>
+      State.update({
+        paymentTypes: paymentTypes.map((id) => ({ id, text: id })),
+      })
+  );
+  Near.asyncView(ownerId, "get_payment_sources", {}, "final", false).then(
+    (paymentSources) =>
+      State.update({
+        paymentSources: paymentSources.map((id) => ({ id, text: id })),
+      })
+  );
+  Near.asyncView(ownerId, "get_request_types", {}, "final", false).then(
+    (requestTypes) =>
+      State.update({
+        requestTypes: requestTypes.map((id) => ({ id, text: id })),
+      })
+  );
   Near.asyncView(
     ownerId,
     "get_admin_vendors",
@@ -336,15 +332,16 @@ return (
               Send proposal
             </>
           ),
-          onClick: () => Near.call(ownerId, "add_proposal", {
-            vendor_id: state.vendorId[0].value,
-            request_id: [accountId, cid],
-            title: "",
-            description: state.message,
-            price: state.price,
-            start_date: `${new Date(state.startDate).getTime()}`,
-            end_date: `${new Date(state.endDate).getTime()}`,
-          }),
+          onClick: () =>
+            Near.call(ownerId, "add_proposal", {
+              vendor_id: state.vendorId[0].value,
+              request_id: [accountId, cid],
+              title: "",
+              description: state.message,
+              price: state.price,
+              start_date: `${new Date(state.startDate).getTime()}`,
+              end_date: `${new Date(state.endDate).getTime()}`,
+            }),
         }}
       />
     </Footer>
