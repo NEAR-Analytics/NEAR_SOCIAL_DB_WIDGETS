@@ -89,7 +89,7 @@ if (!state.vendorsIsFetched) {
     {},
     "final",
     false
-  ).then((paymentTypes) => State.update({ paymentTypes: paymentTypes.map((name) => ({ name }) }));
+  ).then((paymentTypes) => State.update({ paymentTypes: paymentTypes.map((name) => ({ name }))));
   Near.asyncView(
     ownerId,
     "get_admin_vendors",
