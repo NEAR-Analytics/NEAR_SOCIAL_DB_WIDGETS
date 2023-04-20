@@ -114,7 +114,7 @@ const Stats = styled.div`
   display: flex;
   flex-direction: row;
   align-items: stretch;
-  justify-content: flex-start;
+  justify-content: space-between;
   gap: 0.5em;
   width: 100%;
 
@@ -126,7 +126,7 @@ const Stats = styled.div`
     flex-wrap: wrap;
 
     div {
-      width: 50%;
+      width: 49%;
     }
 
     .link {
