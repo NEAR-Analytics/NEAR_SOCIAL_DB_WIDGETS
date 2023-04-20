@@ -3,25 +3,33 @@ const account = props.account || "marketing.sputnik-dao.near";
 const apiUrl = `https://api.pikespeak.ai/daos/policy/${account}`;
 const publicApiKey = "36f2b87a-7ee6-40d8-80b9-5e68e587a5b5";
 
-const membersFormatter = (data) => {
-  const members = data.policy.roles;
-  let memberList;
-  if (Array.isArray(members) && members.length) {
-    memberList = members.map((m) => {
+const membersFormatter = (roles) => {
+  let memberList = [];
+  if (Array.isArray(roles.kind) && roles.kind.length) {
+    memberList = roles.kind.map((m) => {
       return (
         <a href={`https://explorer.near.org/accounts/${m}`} target="_blank">
           {m}
         </a>
       );
     });
-    return memberList;
-  } else if (members.length) {
-    memberList = [
-      <a href={`https://explorer.near.org/accounts/${members}`} target="_blank">
-        {members}
-      </a>,
-    ];
+  } else if (roles.kind.length) {
+    memberList = [roles.kind];
   }
+  return (
+    <div style={{ display: "flex", flexDirection: "column" }}>{memberList}</div>
+  );
+};
+
+const permissionsFormatter = (roles) => {
+  const permissions = roles.permissions.map((p) => (
+    <div>{p.replace("*:", "")}</div>
+  ));
+  return (
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      {permissions}
+    </div>
+  );
 };
 
 const columns = [
@@ -35,13 +43,9 @@ const columns = [
     formatter: membersFormatter,
   },
   {
-    id: "new_users",
-    label: "new users",
-  },
-  {
     id: "permissions",
     label: "Permissions",
-    //formatter: amountsFormatter("amounts_in"),
+    formatter: permissionsFormatter,
   },
 ];
 
@@ -51,7 +55,7 @@ const GenericTable = (
     props={{
       title: `Roles and permissions`,
       columns,
-      data: state.policy,
+      data: state.roles,
     }}
   />
 );
@@ -66,10 +70,9 @@ const fetchPolicy = () => {
   policy.body &&
     State.update({
       policy: policy.body,
+      roles: policy.body.state.policy.roles,
     });
 };
 !state.policy && fetchPolicy();
-
-console.log("POLICY", state.policy);
 
 return <div>{GenericTable}</div>;
