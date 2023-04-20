@@ -3,6 +3,20 @@ const account = props.account || "marketing.sputnik-dao.near";
 const apiUrl = `https://api.pikespeak.ai/daos/votes/${account}`;
 const publicApiKey = "36f2b87a-7ee6-40d8-80b9-5e68e587a5b5";
 
+const councilSvg = (
+  <svg
+    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiBox-root css-1om0hkc"
+    focusable="false"
+    aria-hidden="true"
+    viewBox="0 0 24 24"
+    data-testid="DoneIcon"
+    height="20"
+    fill="#13a36e"
+  >
+    <path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"></path>
+  </svg>
+);
+
 const columns = [
   {
     id: "account",
@@ -21,7 +35,7 @@ const columns = [
   {
     id: "isCouncil",
     label: "Council member",
-    formatter: (d) => (d.isCouncil ? "yes" : "no"),
+    formatter: (d) => (d.isCouncil ? councilSvg : ""),
   },
   {
     id: "approve",
