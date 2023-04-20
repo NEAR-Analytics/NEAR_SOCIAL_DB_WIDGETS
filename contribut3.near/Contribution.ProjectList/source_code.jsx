@@ -9,7 +9,7 @@ State.init({
 if (!state.itemsIsFetched) {
   Near.asyncView(
     ownerId,
-    "get_project_completed_contributions",
+    "get_project_contributions",
     { account_id: context.accountId },
     "final",
     false
@@ -32,7 +32,7 @@ return (
         items: state.items,
         createItem: ([[project_id, cid], vendor_id]) => (
           <Widget
-            src={`${ownerId}/widget/Contribution.Card`}
+            src={`${ownerId}/widget/Contribution.DetailCard`}
             props={{ project_id, cid, vendor_id, isVendorView: false }}
           />
         ),
