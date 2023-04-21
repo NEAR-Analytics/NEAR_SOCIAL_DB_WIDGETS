@@ -24,7 +24,7 @@ const ComponentWrapper = styled.div`
     transform: translate(-50%,-50%);
 `;
 
-const clickModal = () => {
+const closeModal = () => {
   toggleModal(false);
 };
 
