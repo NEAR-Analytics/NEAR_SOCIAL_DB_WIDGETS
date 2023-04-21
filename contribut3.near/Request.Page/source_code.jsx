@@ -216,7 +216,35 @@ return (
       </HeaderDetails>
     </Header>
     <ContentContainer>
-      <MainContent>{content}</MainContent>
+      <MainContent>
+        {state.isAdmin ? (
+          <Widget
+            src={`${ownerId}/widget/TabSelector`}
+            props={{
+              tab: "request",
+              content: getContent(props.content),
+              search: props.search,
+              update: props.update,
+              accountId: props.accountId,
+              buttons: [
+                {
+                  id: "overview",
+                  text: "Overview",
+                },
+                {
+                  id: "invitations",
+                  text: "Invitations",
+                },
+                {
+                  id: "proposals",
+                  text: "Proposals",
+                },
+              ],
+            }}
+          />
+        : <></>
+        }
+        {content}</MainContent>
       <Sidebar>
         <Widget src={`${ownerId}/widget/Request.Sidebar`} props={{ accountId, cid, isAdmin: state.isAdmin }} />
       </Sidebar>
