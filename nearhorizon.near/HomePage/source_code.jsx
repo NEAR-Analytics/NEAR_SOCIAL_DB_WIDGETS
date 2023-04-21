@@ -129,6 +129,7 @@ const Stats = styled.div`
   justify-content: space-between;
   gap: 0.5em;
   width: 100%;
+  max-width: 1300px;
 
   div {
     width: 20%;
