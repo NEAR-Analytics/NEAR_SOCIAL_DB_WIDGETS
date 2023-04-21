@@ -357,7 +357,7 @@ if (ethers !== undefined && Ethers.send("eth_requestAccounts", [])[0]) {
           routerContract: "0x2da10A1e27bF85cEdD8FFb1AbBe97e53391C0295",
           dexName: "SyncSwap",
           routerAbi: state.routerAbi,
-          factoryABI: state.factoryABI,
+          factoryAbi: state.factoryAbi,
           erc20Abi: state.erc20Abi,
           callTx: (i, o, g) => callTxSyncSwap(i, o, g),
           callTokenApproval: (i, o, g) => callTokenApprovalEVM(i, o, g),
