@@ -464,7 +464,7 @@ return (
         </List>
       </Row>
     </Section>
-    <Section style={{ padding: "2em 0 4em 0" }}>
+    <Section style={{ padding: "0 0 4em 0" }}>
       <Narrow>
         <SectionHeader>
           <svg
