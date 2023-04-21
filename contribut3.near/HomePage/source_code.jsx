@@ -768,7 +768,11 @@ return (
         />
       </svg>
       <h2>Accelerate your Web3 Startup!</h2>
-      <Link href="/nearhorizon.near/widget/Index" className="white" style={{ marginTop: "1em" }}>
+      <Link
+        href="/nearhorizon.near/widget/Index"
+        className="white"
+        style={{ marginTop: "1em" }}
+      >
         Try it Now
       </Link>
     </Footer>
