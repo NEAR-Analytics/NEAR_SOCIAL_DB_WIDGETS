@@ -59,14 +59,6 @@ const HeaderDetails = styled.div`
   width: 80%;
 `;
 
-const HeaderProgress = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  width: 20%;
-`;
-
 const ContentContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -119,6 +111,7 @@ const circledPlus = (
     </defs>
   </svg>
 );
+
 const personPlus = (
   <svg
     width="18"
