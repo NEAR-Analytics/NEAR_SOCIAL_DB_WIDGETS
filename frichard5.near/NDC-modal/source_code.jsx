@@ -29,10 +29,16 @@ const closeModal = () => {
   toggleModal(false);
 };
 
+const closeModalExternal = (e) => {
+  if (e.target.id === "modal") {
+    toggleModal(false);
+  }
+};
+
 return (
-  <Modal id="modal">
+  <Modal id="modal" onClick={closeModalExternal}>
     <button
-      style={{ position: "absolute", right: "100px", top: "29%" }}
+      style={{ position: "absolute", right: "100px", top: "29%", zIndex: 100 }}
       onClick={closeModal}
     >
       <svg
