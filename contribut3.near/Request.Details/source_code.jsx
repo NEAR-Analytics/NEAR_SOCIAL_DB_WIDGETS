@@ -29,6 +29,8 @@ State.init({
   paymentTypes: [],
   requestTypes: [],
   isFetched: false,
+  name: "",
+  nameIsFetched: false,
 });
 
 if (!state.isFetched) {
@@ -53,9 +55,38 @@ if (!state.isFetched) {
   State.update({ isFetched: true });
 }
 
+if (!state.nameIsFetched) {
+  Near.asyncView("social.near", "get", { keys: [`${request.project_id}/profile/name`] }, "final", false).then(
+    (data) => State.update({ name: data[request.project_id].profile.name, nameIsFetched: true }));
+  return <>Loading...</>;
+}
+
+const Project = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: .25em;
+  width: 100%;
+`;
+
 return (
   <Container>
     <Heading>Request Details</Heading>
+    <Project>
+      <Widget
+        src={`${ownerId}/widget/Project.Icon`}
+        props={{ accountId: request.project_id, size: "2.5em" }}
+      />
+      <Widget
+        src={`${ownerId}/widget/NameAndAccount`}
+        props={{
+          accountId: projectId,
+          name: state.projectName,
+          nameSize: "1.125em",
+        }}
+      />
+    </Project>
     <Widget
       src={`${ownerId}/widget/Inputs.Viewable.Number`}
       props={{
