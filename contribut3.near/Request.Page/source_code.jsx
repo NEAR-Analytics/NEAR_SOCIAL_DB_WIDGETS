@@ -184,7 +184,6 @@ return (
           src={`${ownerId}/widget/Request.HeaderDetails`}
           props={{ accountId, cid, isAdmin: state.isAdmin }}
         />
-
         <CTARow>
           <Widget
             src={`${ownerId}/widget/Request.ProposeSideWindow`}
