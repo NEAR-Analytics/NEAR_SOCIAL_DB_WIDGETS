@@ -346,7 +346,7 @@ return (
                   tags: state.tags.map(({ name }) => name),
                   source: state.source.value,
                   deadline: `${new Date(state.deadline).getTime()}`,
-                  budget: +state.budget,
+                  budget: Number(state.budget),
                 },
               });
             },
