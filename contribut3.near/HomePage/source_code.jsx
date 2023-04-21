@@ -586,7 +586,7 @@ return (
         </Row>
       </Narrow>
     </Section>
-    <Footer style={{ padding: "2em 0 8em 0" }}>
+    <Footer style={{ padding: "8em 0" }}>
       <svg
         fill="none"
         height="307"
