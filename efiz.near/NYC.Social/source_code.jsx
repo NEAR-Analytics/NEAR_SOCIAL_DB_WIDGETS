@@ -16,15 +16,13 @@ const group = policy.roles
 const hashtags = ["nyc"];
 
 return (
-  <>
-    <Widget
-      src="efiz.near/widget/Community.Posts"
-      props={{
-        communityHashtags: hashtags,
-        communityDomain: "nycdao.near",
-        communityMembers: group,
-        exclusive: false,
-      }}
-    />
-  </>
+  <Widget
+    src="efiz.near/widget/Community.Posts"
+    props={{
+      communityHashtags: hashtags,
+      communityDomain: "nycdao.near",
+      communityMembers: group[0],
+      exclusive: false,
+    }}
+  />
 );
