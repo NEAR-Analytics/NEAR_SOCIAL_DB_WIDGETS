@@ -71,7 +71,6 @@ const columns = [
       const proposalId = d.transaction_view.actProposal.id;
       const setModal = (proposalId) => {
         return () => {
-          console.log("SETADAZD", proposalId);
           State.update({ isModalOpen: true, proposalId: proposalId });
         };
       };
@@ -170,7 +169,6 @@ const fetchProposal = (id) => {
 };
 
 state.proposalId && fetchProposal(state.proposalId);
-console.log("state.proposal", state.proposal);
 
 const toggleModal = (isOpen) => {
   State.update({ isModalOpen: isOpen });
@@ -178,7 +176,7 @@ const toggleModal = (isOpen) => {
 
 return (
   <>
-    {state.proposal ? (
+    {state.proposal && state.isModalOpen ? (
       <Widget
         src={`${widgetProvider}/widget/NDC-modal`}
         props={{
