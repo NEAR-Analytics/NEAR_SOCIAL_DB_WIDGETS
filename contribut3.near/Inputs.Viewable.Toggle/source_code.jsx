@@ -73,8 +73,8 @@ return (
           src={`${ownerId}/widget/ActiveIndicator`}
           props={{
             active: value,
-            activeText: "Available",
-            inactiveText: "Not Available",
+            activeText,
+            inactiveText,
           }}
         />
       ),
