@@ -1,6 +1,7 @@
 const widgetProvider = props.widgetProvider;
 const account = props.account || "marketing.sputnik-dao.near";
 const apiUrl = `https://api.pikespeak.ai/daos/votes-history/${account}`;
+const apiProposalUrl = `https://api.pikespeak.ai/daos/proposal/marketing.sputnik-dao.near`;
 const publicApiKey = "36f2b87a-7ee6-40d8-80b9-5e68e587a5b5";
 
 const thumbUpSvg = (
@@ -67,12 +68,14 @@ const columns = [
     id: "id",
     label: "Proposal id",
     formatter: (d) => {
+      const proposalId = d.transaction_view.actProposal.id;
       const setModal = (proposalId) => {
-        State.update({ isModalOpen: true, modalComp: proposalId });
+        return () => {
+          console.log("SETADAZD", proposalId);
+          State.update({ isModalOpen: true, proposalId: proposalId });
+        };
       };
-      return (
-        <button onClick={setModal}>{d.transaction_view.actProposal.id}</button>
-      );
+      return <button onClick={setModal(proposalId)}>{proposalId}</button>;
     },
   },
   {
@@ -104,6 +107,7 @@ State.init({
   votes: [],
   offset: 0,
   isModalOpen: false,
+  proposal: [],
 });
 
 const nextPage = () => {
@@ -129,11 +133,11 @@ const GenericTable = (
   />
 );
 
-const proposalCard = (
+const ProposalCard = (
   <Widget
     src={`${widgetProvider}/widget/NDC-proposal-card`}
     props={{
-      proposal: props.proposal,
+      proposal: state.proposal,
     }}
   />
 );
@@ -151,7 +155,22 @@ const fetchVoteHistory = (offset) => {
     });
 };
 !state.votes.length && fetchVoteHistory(state.offset);
-console.log("state.votes", state.votes);
+
+const fetchProposal = (id) => {
+  const proposal = fetch(apiProposalUrl + `?id=${id}`, {
+    mode: "cors",
+    headers: {
+      "x-api-key": publicApiKey,
+    },
+  });
+  proposal.body &&
+    State.update({
+      proposal: proposal.body.length ? proposal.body[0] : [],
+    });
+};
+
+state.proposalId && fetchProposal(state.proposalId);
+console.log("state.proposal", state.proposal);
 
 const toggleModal = (isOpen) => {
   State.update({ isModalOpen: isOpen });
@@ -159,16 +178,19 @@ const toggleModal = (isOpen) => {
 
 return (
   <>
-    {
+    {state.proposal ? (
       <Widget
         src={`${widgetProvider}/widget/NDC-modal`}
         props={{
           isOpen: state.isModalOpen,
           toggleModal,
-          component: proposalCard,
+          component: ProposalCard,
         }}
       />
-    }
+    ) : (
+      ""
+    )}
+
     {GenericTable}
   </>
 );
