@@ -129,6 +129,15 @@ const GenericTable = (
   />
 );
 
+const proposalCard = (
+  <Widget
+    src={`${widgetProvider}/widget/NDC-proposal-card`}
+    props={{
+      proposal: props.proposal,
+    }}
+  />
+);
+
 const fetchVoteHistory = (offset) => {
   const voteHistory = fetch(apiUrl + `?offset=${offset}&limit=${resPerPage}`, {
     mode: "cors",
@@ -150,12 +159,16 @@ const toggleModal = (isOpen) => {
 
 return (
   <>
-    {GenericTable}
     {
       <Widget
         src={`${widgetProvider}/widget/NDC-modal`}
-        props={{ isOpen: state.isModalOpen, toggleModal }}
+        props={{
+          isOpen: state.isModalOpen,
+          toggleModal,
+          component: proposalCard,
+        }}
       />
     }
+    {GenericTable}
   </>
 );
