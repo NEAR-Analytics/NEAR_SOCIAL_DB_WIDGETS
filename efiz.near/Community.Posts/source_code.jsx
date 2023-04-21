@@ -10,7 +10,17 @@ const exclusive = props.exclusive && true; // rename to exclusive
 State.init({
   selectedTab: Storage.privateGet("selectedTab") || "all",
   domainsFilter: [],
+  hashtagsFilter: [],
 });
+
+const embedHashtags = communityHashtags
+  .filter((hashtag) => hashtag.required === true)
+  .map((hashtag) => hashtag.name);
+
+// To be continued...
+const optionalHashtags = communityHashtags
+  .filter((hashtag) => hashtag.required === false)
+  .map((hashtag) => hashtag.name);
 
 function selectTab(selectedTab) {
   Storage.privateSet("selectedTab", selectedTab);
@@ -155,42 +165,43 @@ return (
                 allowPublic: !exclusive,
                 isMember: communityMembers.includes(context.accountId),
                 communityDomain,
-                embedHashtags: communityHashtags,
+                embedHashtags,
               }}
             />
           </ComposeWrapper>
 
           <FilterWrapper>
-            {exclusive ? null : (
-              <PillSelect>
-                <PillSelectButton
-                  type="button"
-                  onClick={() => selectTab("all")}
-                  selected={state.selectedTab === "all"}
-                >
-                  All
-                </PillSelectButton>
-                {communityDomain && (
+            <PillSelect>
+              {exclusive ? null : (
+                <>
                   <PillSelectButton
                     type="button"
-                    onClick={() => selectTab("community")}
-                    selected={state.selectedTab === "community"}
+                    onClick={() => selectTab("all")}
+                    selected={state.selectedTab === "all"}
                   >
-                    Community
+                    All
                   </PillSelectButton>
-                )}
-              </PillSelect>
-            )}
-
-            <PillSelectButton
-              type="button"
-              onClick={() =>
-                State.update({ filterFollowing: !state.filterFollowing })
-              }
-              selected={state.filterFollowing}
-            >
-              Following
-            </PillSelectButton>
+                  {communityDomain && (
+                    <PillSelectButton
+                      type="button"
+                      onClick={() => selectTab("community")}
+                      selected={state.selectedTab === "community"}
+                    >
+                      Community
+                    </PillSelectButton>
+                  )}
+                </>
+              )}
+              <PillSelectButton
+                type="button"
+                onClick={() =>
+                  State.update({ filterFollowing: !state.filterFollowing })
+                }
+                selected={state.filterFollowing}
+              >
+                Following
+              </PillSelectButton>
+            </PillSelect>
           </FilterWrapper>
         </>
       )}
@@ -201,7 +212,7 @@ return (
           props={{
             accounts,
             domainsFilter: state.domainsFilter,
-            hashtagFilter: communityHashtags,
+            hashtagsFilter: embedHashtags,
           }}
         />
       </FeedWrapper>
