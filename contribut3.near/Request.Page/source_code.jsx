@@ -15,8 +15,10 @@ const getContent = (content) => {
 State.init({
   request: null,
   requestIsFetched: false,
-  isAdmin: false,
-  isAdminIsFetched: false,
+  isProjectAdmin: false,
+  isProjectAdminIsFetched: false,
+  isVendorAdmin: false,
+  isVendorAdminIsFetched: false,
 });
 
 if (!state.requestIsFetched) {
@@ -29,17 +31,27 @@ if (!state.requestIsFetched) {
   ).then((request) => State.update({ request, requestIsFetched: true }));
 }
 
-if (!state.isAdminIsFetched) {
+if (!state.isProjectAdminIsFetched) {
   Near.asyncView(
     ownerId,
     "check_is_project_admin",
     { project_id: accountId, account_id: context.accountId },
     "final",
     false
-  ).then((isAdmin) => State.update({ isAdmin, isAdminIsFetched: true }));
+  ).then((isProjectAdmin) => State.update({ isProjectAdmin, isProjectAdminIsFetched: true }));
 }
 
-if (!state.requestIsFetched || !state.isAdminIsFetched) {
+if (!state.isVendorAdminIsFetched) {
+  Near.asyncView(
+    ownerId,
+    "check_is_vendor_admin",
+    { vendor_id: accountId, account_id: context.accountId },
+    "final",
+    false
+  ).then((isVendorAdmin) => State.update({ isVendorAdmin, isVendorAdminIsFetched: true }));
+}
+
+if (!state.requestIsFetched || !state.isProjectAdminIsFetched || !state.isVendorAdminIsFetched) {
   return <>Loading...</>;
 }
 
