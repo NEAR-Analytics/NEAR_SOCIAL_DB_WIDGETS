@@ -82,11 +82,12 @@ return (
   <Container>
     <Heading>Request Details</Heading>
     <Project>
-      <Widget
-        src={`${ownerId}/widget/Project.Icon`}
-        props={{ accountId: request.project_id, size: "2.5em" }}
-      />
+      Project
       <div>
+        <Widget
+          src={`${ownerId}/widget/Project.Icon`}
+          props={{ accountId: request.project_id, size: "2.5em" }}
+        />
         <Widget
           src={`${ownerId}/widget/NameAndAccount`}
           props={{
@@ -95,7 +96,8 @@ return (
             nameSize: ".95em",
             accountSize: ".75em",
           }}
-        /></div>
+        />
+      </div>
     </Project>
     <Widget
       src={`${ownerId}/widget/Inputs.Viewable.Number`}
