@@ -112,7 +112,7 @@ const col2 = {
 };
 
 const col3 = {
-  width: "172px",
+  width: "300px",
 };
 
 const col4 = {
