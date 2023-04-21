@@ -4,6 +4,8 @@ State.init({
   isOpen,
 });
 
+if (state.isOpen != isOpen) State.update({ isOpen });
+
 const Modal = styled.div`
     width: 100%;
     height: 100%;
