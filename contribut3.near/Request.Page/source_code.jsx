@@ -5,6 +5,8 @@ const cid = props.cid;
 State.init({
   request: null,
   requestIsFetched: false,
+  isAdmin: false,
+  isAdminIsFetched: false,
 });
 
 if (!state.requestIsFetched) {
@@ -17,7 +19,17 @@ if (!state.requestIsFetched) {
   ).then((request) => State.update({ request, requestIsFetched: true }));
 }
 
-if (!state.requestIsFetched) {
+if (!state.isAdminIsFetched) {
+  Near.asyncView(
+    ownerId,
+    "check_is_project_admin",
+    { account_id: accountId },
+    "final",
+    false
+  ).then((isAdmin) => State.update({ isAdmin, isAdminIsFetched: true }));
+}
+
+if (!state.requestIsFetched || !state.isAdminIsFetched) {
   return <>Loading...</>;
 }
 
@@ -175,8 +187,8 @@ return (
     <Header>
       <HeaderDetails>
         <Widget
-          src={`${ownerId}/widget/Request.Line`}
-          props={{ accountId, cid, size: "1em" }}
+          src={`${ownerId}/widget/Request.HeaderDetails`}
+          props={{ accountId, cid, isAdmin: state.isAdmin }}
         />
 
         <CTARow>
