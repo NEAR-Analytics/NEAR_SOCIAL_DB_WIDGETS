@@ -193,30 +193,14 @@ return (
 
         <CTARow>
           <Widget
-            src={`${ownerId}/widget/SideWindow`}
-            props={{
-              title: "Propose contribution",
-              description: (
-                <Widget
-                  src={`${ownerId}/widget/SelectedLine`}
-                  props={{ accountId, label: "Project", isProject: true }}
-                />
-              ),
-              trigger: <>{personPlus}Propose contribution</>,
-              children: (
-                <Widget
-                  src={`${ownerId}/widget/Request.ProposalForm`}
-                  props={{ accountId }}
-                />
-              ),
-              minWidth: "600px",
-            }}
+            src={`${ownerId}/widget/Request.ProposeSideWindow`}
+            props={{ accountId, cid }}
           />
           <Widget
             src={`${ownerId}/widget/Buttons.Grey`}
             props={{
               onClick: () => {
-                console.log("clicked");
+                clipboard.writeText(`https://alpha.near.org/${ownerId}/widget/Index?tab=request&accountId=${accountId}&cid=${cid}`);
               },
               text: <>Share</>,
             }}
