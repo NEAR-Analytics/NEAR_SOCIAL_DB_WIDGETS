@@ -1,11 +1,14 @@
+const { component, isOpen } = props;
+
 State.init({
-  isOpen: true,
+  isOpen,
 });
 
 const Modal = styled.div`
     width: 100%;
     height: 100%;
     background: grey;
+    display: ${state.isOpen ? "block" : "none"}
 `;
 
 const ComponentWrapper = styled.div`
@@ -16,10 +19,15 @@ const ComponentWrapper = styled.div`
 
 const clickModal = (e) => {
   console.log("event", e);
+  if (e.target.id === "modal") {
+    State.update({ isOpen: !isOpen });
+  }
 };
 
 return (
-  <Modal onClick={clickModal}>
-    <ComponentWrapper className="component-wrapper">hey</ComponentWrapper>
+  <Modal id="modal" onClick={clickModal}>
+    <ComponentWrapper id="modal-comp" className="component-wrapper">
+      hey
+    </ComponentWrapper>
   </Modal>
 );
