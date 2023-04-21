@@ -226,7 +226,7 @@ const content = {
   ),
   details: (
     <Widget
-      src={`${ownerId}/widget/Contribution.Details`}
+      src={`${ownerId}/widget/Contribution.About`}
       props={{
         projectId,
         cid,
