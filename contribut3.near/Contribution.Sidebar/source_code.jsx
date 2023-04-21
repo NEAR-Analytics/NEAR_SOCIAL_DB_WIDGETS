@@ -36,7 +36,7 @@ if (!state.requestIsFetched) {
   Near.asyncView(
     ownerId,
     "get_request",
-    { account_id: projectId, cid, vendor_id: vendorId },
+    { account_id: projectId, cid },
     "final",
     false
   ).then((request) => State.update({ request, requestIsFetched: true }));
