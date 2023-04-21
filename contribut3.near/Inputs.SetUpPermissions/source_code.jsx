@@ -8,6 +8,10 @@ State.init({
   accountsWithPermissionsIsFetched: false,
 });
 
+if (!context.accountId) {
+  return <>Please sign in to continue</>;
+}
+
 if (!state.followingIsFetched) {
   Near.asyncView(
     "social.near",
