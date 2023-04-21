@@ -1,6 +1,6 @@
 const ownerId = "contribut3.near";
 const accountId = props.accountId;
-const gas = "300000000000000";
+const cid = props.cid;
 
 const companySizeTiers = [
   "1-10 employees",
@@ -11,20 +11,20 @@ const companySizeTiers = [
 ];
 
 State.init({
-  project: null,
-  projectIsFetched: false,
+  request: null,
+  requestIsFetched: false,
 });
 
-if (!state.projectIsFetched) {
+if (!state.requestIsFetched) {
   Near.asyncView(
     ownerId,
-    "get_project",
-    { account_id: accountId },
+    "get_request",
+    { account_id: accountId, cid },
     "final",
     false
-  ).then((project) => State.update({ project, projectIsFetched: true }));
+  ).then((request) => State.update({ request, requestIsFetched: true }));
 
-  return "Loading...";
+  return <>Loading...</>;
 }
 
 return (
@@ -33,20 +33,12 @@ return (
     props={{
       accountId,
       isAdmin: props.isAdmin,
-      project: state.project,
-      onSave: (project) => {
-        State.update({
-          project: {
-            ...state.project,
-            application: { ...state.project.application, ...project },
-          },
-        });
+      request: state.request,
+      onSave: (request) => {
         Near.call(
           ownerId,
-          "edit_project",
-          { account_id: accountId, project: state.project },
-          gas,
-          "0"
+          "edit_request",
+          { ...state.request, ...request },
         );
       },
     }}
