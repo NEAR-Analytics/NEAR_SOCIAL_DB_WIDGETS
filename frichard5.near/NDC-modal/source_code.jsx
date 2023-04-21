@@ -1,5 +1,5 @@
 const { component, isOpen } = props;
-
+console.log("ISOPEN", isOpen);
 State.init({
   isOpen,
 });
