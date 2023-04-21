@@ -1,6 +1,5 @@
 /**
  * Forked from near/widget/Posts
- *
  */
 
 const communityHashtags = props.communityHashtags || [];
@@ -8,19 +7,15 @@ const communityDomain = props.communityDomain || null;
 const communityMembers = props.communityMembers || [];
 const exclusive = props.exclusive && true; // rename to exclusive
 
-let domainsFilter = [];
-if (!exclusive) {
-  domainsFilter.push("post");
-}
-if (communityDomain) {
-  domainsFilter.push(communityDomain);
-}
-const defaultFilter = domainsFilter;
-
 State.init({
   selectedTab: Storage.privateGet("selectedTab") || "all",
-  domainsFilter: defaultFilter,
+  domainsFilter: [],
 });
+
+function selectTab(selectedTab) {
+  Storage.privateSet("selectedTab", selectedTab);
+  State.update({ selectedTab });
+}
 
 const previousSelectedTab = Storage.privateGet("selectedTab");
 
@@ -30,9 +25,19 @@ if (previousSelectedTab && previousSelectedTab !== state.selectedTab) {
   });
 }
 
+if (state.selectedTab === "community") {
+  State.update({
+    domainsFilter: ["apple123456"],
+  });
+} else {
+  State.update({
+    domainsFilter: ["post"],
+  });
+}
+
 let accounts = undefined;
 
-if (state.selectedTab === "following" && context.accountId) {
+if (state.filterFollowing) {
   const graph = Social.keys(`${context.accountId}/graph/follow/*`, "final");
   if (graph !== null) {
     accounts = Object.keys(graph[context.accountId].graph.follow || {});
@@ -40,23 +45,6 @@ if (state.selectedTab === "following" && context.accountId) {
   } else {
     accounts = [];
   }
-  State.update({
-    domainsFilter: defaultFilter,
-  });
-} else if (state.selectedTab === "community") {
-  State.update({
-    domainsFilter: [communityDomain],
-  });
-} else {
-  accounts = undefined;
-  State.update({
-    domainsFilter: defaultFilter,
-  });
-}
-
-function selectTab(selectedTab) {
-  Storage.privateSet("selectedTab", selectedTab);
-  State.update({ selectedTab });
 }
 
 const H2 = styled.h2`
@@ -173,31 +161,36 @@ return (
           </ComposeWrapper>
 
           <FilterWrapper>
-            <PillSelect>
-              <PillSelectButton
-                type="button"
-                onClick={() => selectTab("all")}
-                selected={state.selectedTab === "all"}
-              >
-                All
-              </PillSelectButton>
-              {communityDomain && (
+            {exclusive ? null : (
+              <PillSelect>
                 <PillSelectButton
                   type="button"
-                  onClick={() => selectTab("community")}
-                  selected={state.selectedTab === "community"}
+                  onClick={() => selectTab("all")}
+                  selected={state.selectedTab === "all"}
                 >
-                  Community
+                  All
                 </PillSelectButton>
-              )}
-              <PillSelectButton
-                type="button"
-                onClick={() => selectTab("following")}
-                selected={state.selectedTab === "following"}
-              >
-                Following
-              </PillSelectButton>
-            </PillSelect>
+                {communityDomain && (
+                  <PillSelectButton
+                    type="button"
+                    onClick={() => selectTab("community")}
+                    selected={state.selectedTab === "community"}
+                  >
+                    Community
+                  </PillSelectButton>
+                )}
+              </PillSelect>
+            )}
+
+            <PillSelectButton
+              type="button"
+              onClick={() =>
+                State.update({ filterFollowing: !state.filterFollowing })
+              }
+              selected={state.filterFollowing}
+            >
+              Following
+            </PillSelectButton>
           </FilterWrapper>
         </>
       )}
