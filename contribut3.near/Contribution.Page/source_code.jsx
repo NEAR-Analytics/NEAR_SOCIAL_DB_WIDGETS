@@ -251,25 +251,14 @@ return (
       <HeaderDetails>
         <Title>{state.proposal.title}</Title>
         <CTARow>
-          {state.isAdmin ? (
+          {state.isProjectAdmin && "Created" in state.contribution.status ? (
             <></>
-          ) : (
-            <Widget
-              src={`${ownerId}/widget/Request.ProposeSideWindow`}
-              props={{ accountId, cid }}
-            />
-          )}
-          <Widget
-            src={`${ownerId}/widget/Buttons.Grey`}
-            props={{
-              onClick: () => {
-                clipboard.writeText(
-                  `https://alpha.near.org/${ownerId}/widget/Index?tab=request&accountId=${accountId}&cid=${cid}`
-                );
-              },
-              text: <>Share</>,
-            }}
-          />
+          ) : state.isVendorAdmin && "Created" in state.contribution.status ? (
+            <>
+              <Widget src={`${ownerId}/widget/Buttons.Green`} props={{ text: <></>, onClick: () => Near.call(ownerId, "accept_contribution", { project_id: projectId, cid, vendor_id: vendorId }) }} />
+              <Widget src={`${ownerId}/widget/Buttons.Red`} props={{ text: <></>, onClick: () => Near.call(ownerId, "reject_contribution", { project_id: projectId, cid, vendor_id: vendorId }) }} />
+            </>
+          ) : <Widget src={`${ownerId}/widget/Buttons.Grey`} props={{}} />}
         </CTARow>
       </HeaderDetails>
     </Header>
