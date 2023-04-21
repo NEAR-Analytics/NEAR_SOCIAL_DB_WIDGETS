@@ -1,7 +1,7 @@
 const accountId = props.accountId;
 const profile = props.profile || Social.get(`${accountId}/profile/**`, "final");
 const tags = profile && profile.tags ? Object.keys(profile.tags) : {};
-const profileUrl = `/#/calebjacob.near/widget/ProfilePage?accountId=${accountId}`;
+const profileUrl = `/#/near/widget/ProfilePage?accountId=${accountId}`;
 const onPointerUp =
   props.onClick ??
   ((event) => {
@@ -10,7 +10,7 @@ const onPointerUp =
     }
   });
 
-const accountUrl = `/#/calebjacob.near/widget/ProfilePage?accountId=${accountId}`;
+const accountUrl = `/#/near/widget/ProfilePage?accountId=${accountId}`;
 
 let followers = Social.keys(`*/graph/follow/${accountId}`, "final", {
   return_type: "BlockHeight",
