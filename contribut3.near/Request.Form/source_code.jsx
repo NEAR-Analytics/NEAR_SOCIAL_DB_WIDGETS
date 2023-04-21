@@ -344,7 +344,7 @@ return (
                   request_type: state.requestType.value,
                   payment_type: state.paymentType.value,
                   tags: state.tags.map(({ name }) => name),
-                  source: state.source.value,
+                  source: state.paymentSource.value,
                   deadline: `${new Date(state.deadline).getTime()}`,
                   budget: Number(state.budget),
                 },
