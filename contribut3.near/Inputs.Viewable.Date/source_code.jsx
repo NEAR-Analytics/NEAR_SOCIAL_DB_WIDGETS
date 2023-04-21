@@ -62,7 +62,7 @@ return (
           <SaveButton onClick={() => onSave(v)}>Save</SaveButton>
         </LabelArea>
       ),
-      view: isLink ? <a href={link}>{value}</a> : value,
+      view: new Date(value).toLocaleDateString(),
       canEdit,
     }}
   />
