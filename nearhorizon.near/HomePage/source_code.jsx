@@ -12,6 +12,7 @@ const Row = styled.div`
   align-items: center;
   gap: 2.5em;
   width: 100%;
+  max-width: 1300px;
 
   @media (max-width: 768px) {
     &.reverse {
@@ -264,6 +265,7 @@ const Narrow = styled.div`
   justify-content: center;
   align-items: center;
   width: 70%;
+  max-width: 1000px;
 
   @media (max-width: 768px) {
     width: 100%;
