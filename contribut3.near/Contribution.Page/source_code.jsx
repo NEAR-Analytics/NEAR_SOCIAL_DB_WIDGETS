@@ -310,35 +310,31 @@ return (
     </Header>
     <ContentContainer>
       <MainContent>
-        {state.isAdmin ? (
-          <Widget
-            src={`${ownerId}/widget/TabSelector`}
-            props={{
-              tab: "contribution",
-              content: getContent(props.content),
-              search: props.search,
-              update: props.update,
-              accountId: props.accountId,
-              cid,
-              buttons: [
-                {
-                  id: "activity",
-                  text: "Activity",
-                },
-                {
-                  id: "details",
-                  text: "Details",
-                },
-                {
-                  id: "feedback",
-                  text: "Feedback",
-                },
-              ],
-            }}
-          />
-        ) : (
-          <></>
-        )}
+        <Widget
+          src={`${ownerId}/widget/TabSelector`}
+          props={{
+            tab: "contribution",
+            content: getContent(props.content),
+            search: props.search,
+            update: props.update,
+            accountId: props.accountId,
+            cid,
+            buttons: [
+              {
+                id: "activity",
+                text: "Activity",
+              },
+              {
+                id: "details",
+                text: "Details",
+              },
+              {
+                id: "feedback",
+                text: "Feedback",
+              },
+            ],
+          }}
+        />
         {content}
       </MainContent>
       <Sidebar>
