@@ -37,13 +37,14 @@ const Items = styled.div`
   }
 `;
 const Text = styled.p`
-    padding: 20px;
-    text-align: center;
-    color: #687076;
+  padding: 20px;
+  text-align: center;
+  color: #687076;
 `;
 
 return (
   <Wrapper>
+    <h2>Widgets</h2>
     {Object.keys(widgets)?.length > 0 ? (
       <Items>
         {Object.keys(widgets)?.map((item, index) => (
