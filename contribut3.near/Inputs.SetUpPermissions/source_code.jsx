@@ -47,9 +47,9 @@ if (!state.accountsWithPermissionsIsFetched) {
   );
 }
 
-if (!state.followingIsFetched || !state.accountsWithPermissionsIsFetched) {
-  return <>Loading...</>;
-}
+// if (!state.followingIsFetched || !state.accountsWithPermissionsIsFetched) {
+//   return <>Loading...</>;
+// }
 
 const Accounts = styled.ul`
   font-style: normal;
