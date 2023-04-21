@@ -255,7 +255,7 @@ const Title = styled.h1`
   color: #101828;
 `;
 
-console.log(here)
+console.log("here")
 
 return (
   <Container>
@@ -322,16 +322,16 @@ return (
               cid,
               buttons: [
                 {
-                  id: "overview",
-                  text: "Overview",
+                  id: "activity",
+                  text: "Activity",
                 },
                 {
-                  id: "invitations",
-                  text: "Invitations",
+                  id: "details",
+                  text: "Details",
                 },
                 {
-                  id: "proposals",
-                  text: "Proposals",
+                  id: "feedback",
+                  text: "Feedback",
                 },
               ],
             }}
@@ -343,7 +343,7 @@ return (
       </MainContent>
       <Sidebar>
         <Widget
-          src={`${ownerId}/widget/Request.Sidebar`}
+          src={`${ownerId}/widget/Contribution.Sidebar`}
           props={{ accountId, cid, isAdmin: state.isAdmin }}
         />
       </Sidebar>
