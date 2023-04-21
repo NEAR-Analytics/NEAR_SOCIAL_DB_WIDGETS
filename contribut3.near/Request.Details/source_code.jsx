@@ -125,7 +125,7 @@ return (
       props={{
         label: "Request type",
         id: "request_type",
-        value: request.request_type,
+        value: [{ name: request.request_type }],
         options: state.requestTypes.map((value) => ({ value, text: value })),
         onSave: (request_type) => onSave({ request_type }),
         canEdit: isAdmin,
