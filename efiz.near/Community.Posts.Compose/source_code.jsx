@@ -1,15 +1,16 @@
-const allowPublic = props.allowPublic && true;
+const allowPublicPosting = props.allowPublicPosting || false;
 const isMember = props.isMember || false;
 const communityDomain = props.communityDomain || null;
 const embedHashtags = props.embedHashtags || [];
+const exclusive = props.exclusive || false;
 
 // Do not show if user is not logged in
 if (!context.accountId) {
   return <></>;
 }
 
-// Do not show if public posting is not allowed and user is not a member
-if (!allowPublic && !isMember) {
+// Do not show if exclusive and user is not a member
+if (!exclusive && !isMember) {
   return <></>;
 }
 
@@ -17,7 +18,7 @@ State.init({
   image: {},
   text: "",
   showPreview: false,
-  public: allowPublic,
+  public: allowPublicPosting,
 });
 
 const profile = Social.getr(`${context.accountId}/profile`);
@@ -477,7 +478,7 @@ return (
         />
       </AutoComplete>
     )}
-    {!state.showPreview && isMember && allowPublic && (
+    {!state.showPreview && isMember && allowPublicPosting && (
       <Domain>
         <input
           className="form-check-input"
