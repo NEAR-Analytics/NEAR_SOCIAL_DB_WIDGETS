@@ -148,6 +148,7 @@ const Footer = styled.div`
   align-items: center;
   gap: 1em;
   background: #00ec97;
+  width: 100%;
 
   h2 {
     font-style: normal;
