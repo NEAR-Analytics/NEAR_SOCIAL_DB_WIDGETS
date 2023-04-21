@@ -5,7 +5,7 @@ State.init({
 });
 
 if (state.isOpen != isOpen) State.update({ isOpen });
-console.log("STAEOPEN", state.isOpen);
+
 const Modal = styled.div`
     position: absolute;
     z-index:100;
@@ -13,6 +13,7 @@ const Modal = styled.div`
     width: 100%;
     height: 100vh;
     display: ${state.isOpen ? "block" : "none"}
+    background: rgba(128,128,128,0.65);
 `;
 
 const ComponentWrapper = styled.div`
@@ -30,7 +31,12 @@ const closeModal = () => {
 
 return (
   <Modal id="modal">
-    <button onClick={closeModal}>Close</button>
+    <button
+      style={{ position: "absolute", right: "30px" }}
+      onClick={closeModal}
+    >
+      Close
+    </button>
     <ComponentWrapper id="modal-comp" className="component-wrapper">
       {component}
     </ComponentWrapper>
