@@ -7,19 +7,15 @@ State.init({
 });
 
 if (!state.itemsIsFetched) {
-  if (!context.accountId) {
-    State.update({ items: [], itemsIsFetched: true });
-  } else {
-    Near.asyncView(
-      ownerId,
-      "get_admin_proposals",
-      { account_id: context.accountId },
-      "final",
-      false
-    ).then((items) => State.update({ items, itemsIsFetched: true }));
+  Near.asyncView(
+    ownerId,
+    "get_admin_proposals",
+    { account_id: context.accountId },
+    "final",
+    false
+  ).then((items) => State.update({ items, itemsIsFetched: true }));
 
-    return <>Loading...</>;
-  }
+  return <>Loading...</>;
 }
 
 const Header = styled.div`
