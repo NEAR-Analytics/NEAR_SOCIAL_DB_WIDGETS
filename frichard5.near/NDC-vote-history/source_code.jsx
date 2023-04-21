@@ -28,7 +28,7 @@ const thumbDownSvg = (
 
 const getVoteSvg = (vote) => {
   switch (vote) {
-    case "VoteRejected":
+    case "VoteReject":
       return thumbDownSvg;
     case "VoteApprove":
       return thumbUpSvg;
