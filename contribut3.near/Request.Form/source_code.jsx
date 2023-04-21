@@ -177,7 +177,7 @@ State.init({
   paymentTypes: [],
   paymentSource: null,
   paymentSources: [],
-  budget: 0,
+  budget: null,
   deadline: null,
 });
 
