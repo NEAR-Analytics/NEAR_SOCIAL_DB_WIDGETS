@@ -19,3 +19,19 @@ if (!state.itemsIsFetched) {
 
   return <>Loading...</>;
 }
+
+return (
+  <Widget
+    src={`${ownerId}/widget/List`}
+    props={{
+      search,
+      items: state.items,
+      createItem: ([[projectId, cid], vendorId]) => (
+        <Widget
+          src={`${ownerId}/widget/Proposal.AdminCard`}
+          props={{ projectId, cid, vendorId }}
+        />
+      ),
+    }}
+  />
+);
