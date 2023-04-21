@@ -147,6 +147,7 @@ const Footer = styled.div`
   justify-content: center;
   align-items: center;
   gap: 1em;
+  background: #00ec97;
 
   h2 {
     font-style: normal;
@@ -253,10 +254,6 @@ const Section = styled.div`
 
   &.dark {
     background: #000000;
-  }
-
-  &.blue {
-    background: #cde0ff;
   }
 `;
 
@@ -416,7 +413,7 @@ return (
         </List>
       </Row>
     </Section>
-    <Section className="blue" style={{ padding: "2em 0 4em 0" }}>
+    <Section style={{ padding: "2em 0 4em 0" }}>
       <Narrow>
         <SectionHeader>
           <svg
