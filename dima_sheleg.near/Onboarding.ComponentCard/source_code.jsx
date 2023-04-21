@@ -1,3 +1,9 @@
+// link without `gateway` won't work. You can pass "https://near.social/#" or "https://alpha.near.org"
+const gateway = props.gateway ?? "https://near.social/#";
+// passing `context.accountId` just for preview example.
+const accountId = props.accountId ?? context.accountId;
+const name = props.name ?? "NotRealComponentName";
+
 const Card = styled.a`
   border: 1px solid #d0d7de;
 
@@ -31,14 +37,11 @@ const Text = styled.p`
 `;
 
 return (
-  <Card
-    href={`${props.gateway}/${props.accountId}/widget/${props.name}`}
-    target="_blank"
-  >
+  <Card href={`${gateway}/${accountId}/widget/${name}`} target="_blank">
     <Text as="h3" size="18px" color="#58a6ff" ellipsis bold>
-      {props.name}
+      {name}
     </Text>
-    <Text>{`${props.accountId}/widget/${props.name}`}</Text>
+    <Text>{`${accountId}/widget/${name}`}</Text>
 
     <div className="d-flex align-items-center g-3 mt-3">
       <Text
