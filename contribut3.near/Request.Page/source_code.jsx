@@ -218,7 +218,7 @@ return (
     <ContentContainer>
       <MainContent>{content}</MainContent>
       <Sidebar>
-        <Widget src={`${ownerId}/widget/Request.Sidebar`} props={{ accountId }} />
+        <Widget src={`${ownerId}/widget/Request.Sidebar`} props={{ accountId, cid }} />
       </Sidebar>
     </ContentContainer>
   </Container>
