@@ -6,10 +6,10 @@
 const communityHashtags = props.communityHashtags || [];
 const communityDomain = props.communityDomain || null;
 const communityMembers = props.communityMembers || [];
-const showPublic = props.showPublic || true;
+const exclusive = props.exclusive && true; // rename to exclusive
 
 let domainFilter = [];
-if (showPublic) {
+if (!exclusive) {
   domainFilter.push("post");
 }
 if (communityDomain) {
@@ -164,7 +164,7 @@ return (
             <Widget
               src="efiz.near/widget/Community.Posts.Compose"
               props={{
-                allowPublic: showPublic,
+                allowPublic: !exclusive,
                 isMember: communityMembers.includes(context.accountId),
                 communityDomain,
                 embedHashtags: communityHashtags,
