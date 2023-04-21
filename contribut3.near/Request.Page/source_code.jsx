@@ -166,15 +166,15 @@ const Heading = styled.div`
   width: 100%;
 `;
 
-const content = (
-  <Widget
+const content = {
+  overview: <Widget
     src={`${ownerId}/widget/Request.About`}
     props={{
       accountId,
       cid,
     }}
   />
-);
+}[getContent(props.content)];
 
 return (
   <Container>
