@@ -2,6 +2,20 @@ const ownerId = "contribut3.near";
 const accountId = props.accountId ?? context.accountId;
 const cid = props.cid;
 
+const availableContent = [
+  "overview",
+  "invitations",
+  "proposals",
+];
+
+const getContent = (content) => {
+  if (!content || !availableContent.includes(content)) {
+    return "overview";
+  }
+
+  return content;
+};
+
 State.init({
   request: null,
   requestIsFetched: false,
