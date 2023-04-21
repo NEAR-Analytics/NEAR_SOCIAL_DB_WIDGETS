@@ -121,7 +121,7 @@ const Project = styled.div`
 
 return (
   <Container>
-    <Heading>Request Details</Heading>
+    <Heading>Contract Details</Heading>
     <Project>
       <label>Project</label>
       <div>
