@@ -27,7 +27,7 @@ if (!state.requestIsFetched) {
   ).then((request) => State.update({ request, requedtIsFetched: true }));
 }
 
-if (!state.requesIsFetched) {
+if (!state.requestIsFetched) {
   return <>Loading...</>;
 }
 
