@@ -466,7 +466,7 @@ return (
     </Section>
     <Section style={{ padding: "0 0 4em 0" }}>
       <Narrow>
-        <SectionHeader>
+        <SectionHeader style={{ padding: "0 0 2em 0" }}>
           <svg
             width="56"
             height="56"
