@@ -305,7 +305,7 @@ const mapImage = (src) => `https://ipfs.near.social/ipfs/${src}`;
 
 return (
   <Container>
-    <Section>
+    <Section style={{ marginTop: "0" }}>
       <Row style={{ padding: "0 0 4em 0" }}>
         <img src={mapImage(mainImage)} style={{ transform: "scale(.9)" }} />
         <MainSubSection>
