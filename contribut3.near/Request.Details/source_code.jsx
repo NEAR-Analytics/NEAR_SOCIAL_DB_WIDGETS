@@ -81,9 +81,9 @@ return (
       <Widget
         src={`${ownerId}/widget/NameAndAccount`}
         props={{
-          accountId: projectId,
-          name: state.projectName,
-          nameSize: "1.125em",
+          accountId: request.project_id,
+          name: state.name,
+          nameSize: ".95em",
         }}
       />
     </Project>
