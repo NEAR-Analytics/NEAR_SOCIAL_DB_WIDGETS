@@ -62,7 +62,7 @@ return (
           <SaveButton onClick={() => onSave(v)}>Save</SaveButton>
         </LabelArea>
       ),
-      view: new Date(value).toLocaleDateString(),
+      view: new Date(Number(value)).toLocaleDateString(),
       canEdit,
     }}
   />
