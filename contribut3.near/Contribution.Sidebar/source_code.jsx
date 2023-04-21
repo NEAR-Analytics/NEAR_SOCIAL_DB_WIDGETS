@@ -1,42 +1,59 @@
 const ownerId = "contribut3.near";
-const accountId = props.accountId;
+const projectId = props.projectId;
 const cid = props.cid;
-
-const companySizeTiers = [
-  "1-10 employees",
-  "11-50 employees",
-  "51-250 employees",
-  "251-1000 employees",
-  "1001+ employees",
-];
+const vendorId = props.vendorId;
 
 State.init({
+  contribution: null,
+  contributionIsFetched: false,
+  proposal: null,
+  proposalIsFetched: false,
   request: null,
   requestIsFetched: false,
 });
+
+if (!state.contributionIsFetched) {
+  Near.asyncView(
+    ownerId,
+    "get_contribution",
+    { project_id: projectId, cid, vendor_id: vendorId },
+    "final",
+    false
+  ).then((contribution) => State.update({ contribution, contributionIsFetched: true }));
+
+}
+
+if (!state.proposalIsFetched) {
+  Near.asyncView(
+    ownerId,
+    "get_proposal",
+    { project_id: projectId, cid, vendor_id: vendorId },
+    "final",
+    false
+  ).then((proposal) => State.update({ proposal, proposalIsFetched: true }));
+}
 
 if (!state.requestIsFetched) {
   Near.asyncView(
     ownerId,
     "get_request",
-    { account_id: accountId, cid },
+    { account_id: projectId, cid, vendor_id: vendorId },
     "final",
     false
   ).then((request) => State.update({ request, requestIsFetched: true }));
+}
 
+if (!state.iscontributionFetched || !state.isProposalFetched || !state.isRequestFetched) {
   return <>Loading...</>;
 }
 
 return (
   <Widget
-    src={`${ownerId}/widget/Request.Details`}
+    src={`${ownerId}/widget/Contribution.Details`}
     props={{
-      accountId,
-      isAdmin: props.isAdmin,
+      contribution: state.contribution,
+      proposal: state.proposal,
       request: state.request,
-      onSave: (request) => {
-        Near.call(ownerId, "edit_request", { ...state.request, ...request });
-      },
     }}
   />
 );
