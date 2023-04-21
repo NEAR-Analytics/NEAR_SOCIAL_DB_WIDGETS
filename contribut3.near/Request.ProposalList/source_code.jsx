@@ -21,6 +21,8 @@ if (!state.itemsIsFetched) {
 }
 
 const Container = styled.div`
+  width: 100%;
+
   .cont {
     width: 100% !important;
   }
