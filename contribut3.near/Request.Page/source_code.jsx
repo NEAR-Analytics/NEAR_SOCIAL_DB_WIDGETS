@@ -23,7 +23,7 @@ if (!state.isAdminIsFetched) {
   Near.asyncView(
     ownerId,
     "check_is_project_admin",
-    { account_id: accountId },
+    { project_id: accountId },
     "final",
     false
   ).then((isAdmin) => State.update({ isAdmin, isAdminIsFetched: true }));
