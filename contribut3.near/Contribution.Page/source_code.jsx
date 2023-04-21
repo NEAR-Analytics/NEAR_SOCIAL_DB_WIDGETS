@@ -261,9 +261,7 @@ return (
       <HeaderDetails>
         <Title>{state.proposal.title}</Title>
         <CTARow>
-          {state.isProjectAdmin && "Created" in state.contribution.status ? (
-            <></>
-          ) : state.isVendorAdmin && "Created" in state.contribution.status ? (
+          {state.isVendorAdmin && "Created" in state.contribution.status ? (
             <>
               <Widget
                 src={`${ownerId}/widget/Buttons.Green`}
@@ -300,6 +298,8 @@ return (
                 }}
               />
             </>
+          ) : state.isProjectAdmin && "Created" in state.contribution.status ? (
+            <></>
           ) : (
             <Widget src={`${ownerId}/widget/Buttons.Grey`} props={{}} />
           )}
