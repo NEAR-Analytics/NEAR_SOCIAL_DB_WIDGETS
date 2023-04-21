@@ -38,7 +38,7 @@ const closeModalExternal = (e) => {
 return (
   <Modal id="modal" onClick={closeModalExternal}>
     <button
-      style={{ position: "absolute", right: "100px", top: "29%", zIndex: 100 }}
+      style={{ position: "absolute", right: "100px", top: "29%", zIndex: 102 }}
       onClick={closeModal}
     >
       <svg
