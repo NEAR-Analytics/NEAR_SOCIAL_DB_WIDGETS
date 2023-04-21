@@ -112,7 +112,7 @@ const callTxSyncSwap = (input, onComplete) => {
   }
 };
 
-const callTxUni = (input) => {
+const callTxUni = (input, onComplete) => {
   if (input.sender && input.routerContract !== undefined && input.routerAbi) {
     const value = expandToken(
       input.inputAssetAmount,
@@ -171,7 +171,7 @@ const callTokenApproval = (input, onComplete) => {
   }
 };
 
-const callTxRef = (input, expandToken) => {
+const callTxRef = (input, onComplete, expandToken) => {
   const tx = [];
 
   const nearDeposit = {
@@ -196,7 +196,7 @@ const callTxRef = (input, expandToken) => {
       tx.push(nearWithdraw);
     }
 
-    return Near.call(tx);
+    return Near.call(tx).then(() => onComplete());
   }
 
   if (register === null) {
@@ -275,7 +275,7 @@ const callTxRef = (input, expandToken) => {
     });
   }
 
-  Near.call(tx);
+  Near.call(tx).then(() => onComplete());
 };
 
 // FINAL RESULTS
