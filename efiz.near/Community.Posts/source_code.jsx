@@ -8,18 +8,18 @@ const communityDomain = props.communityDomain || null;
 const communityMembers = props.communityMembers || [];
 const exclusive = props.exclusive && true; // rename to exclusive
 
-let domainFilter = [];
+let domainsFilter = [];
 if (!exclusive) {
-  domainFilter.push("post");
+  domainsFilter.push("post");
 }
 if (communityDomain) {
-  domainFilter.push(communityDomain);
+  domainsFilter.push(communityDomain);
 }
-const defaultFilter = domainFilter;
+const defaultFilter = domainsFilter;
 
 State.init({
   selectedTab: Storage.privateGet("selectedTab") || "all",
-  domainFilter: defaultFilter,
+  domainsFilter: defaultFilter,
 });
 
 const previousSelectedTab = Storage.privateGet("selectedTab");
@@ -41,16 +41,16 @@ if (state.selectedTab === "following" && context.accountId) {
     accounts = [];
   }
   State.update({
-    domainFilter: defaultFilter,
+    domainsFilter: defaultFilter,
   });
 } else if (state.selectedTab === "community") {
   State.update({
-    domainFilter: [communityDomain],
+    domainsFilter: [communityDomain],
   });
 } else {
   accounts = undefined;
   State.update({
-    domainFilter: defaultFilter,
+    domainsFilter: defaultFilter,
   });
 }
 
@@ -207,7 +207,7 @@ return (
           src="efiz.near/widget/Posts.Feed"
           props={{
             accounts,
-            domainFilter: state.domainFilter,
+            domainsFilter: state.domainsFilter,
             hashtagFilter: communityHashtags,
           }}
         />
