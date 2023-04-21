@@ -113,6 +113,7 @@ const callTxSyncSwap = (input, onComplete, gweiPrice) => {
 };
 
 const callTxUni = (input, onComplete, gasPrice) => {
+  console.log("callTxUni", input, onComplete);
   if (input.sender && input.routerContract !== undefined && input.routerAbi) {
     const value = expandToken(
       input.inputAssetAmount,
@@ -142,7 +143,7 @@ const callTxUni = (input, onComplete, gasPrice) => {
   }
 };
 
-const callTokenApproval = (input, onComplete, gweiPrice) => {
+const callTokenApprovalEVM = (input, onComplete, gweiPrice) => {
   if (
     input.sender &&
     input.erc20Abi &&
@@ -358,8 +359,8 @@ if (ethers !== undefined && Ethers.send("eth_requestAccounts", [])[0]) {
           routerAbi: state.routerAbi,
           factoryABI: state.factoryABI,
           erc20Abi: state.erc20Abi,
-          callTx: callTxSyncSwap,
-          callTokenApproval,
+          callTx: (i, o, g) => callTxSyncSwap(i, o, g),
+          callTokenApproval: (i, o, g) => callTokenApprovalEVM(i, o, g),
         });
         State.update({ loadComplete: true });
       } else if (chainIdData.chainId === 1) {
@@ -403,8 +404,8 @@ if (ethers !== undefined && Ethers.send("eth_requestAccounts", [])[0]) {
           dexName: "UniSwap",
           erc20Abi: state.erc20Abi,
           routerAbi: state.routerAbi,
-          callTx: callTxUni,
-          callTokenApproval,
+          callTx: (i, o, g) => callTxUni(i, o, g),
+          callTokenApproval: (i, o, g) => callTokenApprovalEVM(i, o, g),
         });
         State.update({ loadComplete: true });
       } else {
