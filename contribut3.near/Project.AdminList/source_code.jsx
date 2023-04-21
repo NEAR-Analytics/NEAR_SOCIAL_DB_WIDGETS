@@ -7,11 +7,19 @@ State.init({
 });
 
 if (!state.itemsIsFetched) {
-  Near.asyncView(ownerId, "get_admin_projects", { account_id: context.accountId }, "final", false).then((items) =>
-    State.update({ items, itemsIsFetched: true })
-  );
+  if (!context.accountId) {
+    State.update({ items: [], itemsIsFetched: true });
+  } else {
+    Near.asyncView(
+      ownerId,
+      "get_admin_projects",
+      { account_id: context.accountId },
+      "final",
+      false
+    ).then((items) => State.update({ items, itemsIsFetched: true }));
 
-  return <>Loading...</>;
+    return <>Loading...</>;
+  }
 }
 
 const Header = styled.div`
@@ -19,14 +27,14 @@ const Header = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: .75em .95em;
-  gap: .75em;
+  padding: 0.75em 0.95em;
+  gap: 0.75em;
   width: 100%;
   background: #f9fafb;
   border-bottom: 1px solid #eaecf0;
   font-style: normal;
   font-weight: 600;
-  font-size: .75em;
+  font-size: 0.75em;
   line-height: 1em;
   color: #475467;
 `;
@@ -62,7 +70,10 @@ return (
         search,
         items: state.items,
         createItem: (accountId) => (
-          <Widget src={`${ownerId}/widget/Project.AdminCard`} props={{ accountId }} />
+          <Widget
+            src={`${ownerId}/widget/Project.AdminCard`}
+            props={{ accountId }}
+          />
         ),
       }}
     />
