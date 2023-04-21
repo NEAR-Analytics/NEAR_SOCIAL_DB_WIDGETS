@@ -255,8 +255,6 @@ const Title = styled.h1`
   color: #101828;
 `;
 
-console.log("here")
-
 return (
   <Container>
     <Header>
