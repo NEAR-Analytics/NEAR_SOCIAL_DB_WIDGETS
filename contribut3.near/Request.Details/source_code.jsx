@@ -81,7 +81,7 @@ const Project = styled.div`
     font-style: normal;
     font-weight: 600;
     font-size: 0.95em;
-    line-height: 1.25em;
+    line-height: 1em;
     color: #11181c;
   }
 `;
