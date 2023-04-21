@@ -95,7 +95,6 @@ if (!state.activeIsFetched) {
   return <>Loading...</>;
 }
 
-
 return (
   <Container>
     <Row>
@@ -120,6 +119,7 @@ return (
               Near.call("social.near", "set", {
                 data: { [accountId]: { profile: { active: "" + active } } },
               }),
+            canEdit: props.isAdmin,
           }}
         />
       </Value>
