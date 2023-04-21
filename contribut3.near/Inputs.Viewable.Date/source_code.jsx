@@ -55,7 +55,7 @@ return (
         <LabelArea>
           <Input
             id
-            type={isLink ? "url" : "text"}
+            type="date"
             value={v}
             onChange={(e) => update(e.target.value)}
           />
