@@ -103,7 +103,7 @@ return (
       props={{
         label: "Payment source",
         id: "source",
-        value: request.source,
+        value: [{ name: request.source }],
         options: state.paymentSources.map((value) => ({ value, text: value })),
         onSave: (source) => onSave({ source }),
         canEdit: isAdmin,
@@ -114,7 +114,7 @@ return (
       props={{
         label: "Payment type",
         id: "payment_type",
-        value: request.payment_type,
+        value: [{ name: request.payment_type }],
         options: state.paymentTypes.map((value) => ({ value, text: value })),
         onSave: (payment_type) => onSave({ payment_type }),
         canEdit: isAdmin,
