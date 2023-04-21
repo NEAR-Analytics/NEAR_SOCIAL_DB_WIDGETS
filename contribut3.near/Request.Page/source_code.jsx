@@ -162,6 +162,7 @@ const CTARow = styled.div`
   justify-content: flex-start;
   gap: 0.75em;
 `;
+
 const Heading = styled.div`
   padding-bottom: 0.5em;
   font-style: normal;
