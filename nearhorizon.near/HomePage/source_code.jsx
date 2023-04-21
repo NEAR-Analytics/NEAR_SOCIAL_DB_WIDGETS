@@ -259,15 +259,15 @@ const Section = styled.div`
 `;
 
 const foundersImages = [
-  "bafkreiaypep5xqg5vhbw7gralttufuzbqk5oggts2uyfbnjgpshtk5mggu",
-  "bafkreiajakictce47mjdcpro45s3hasoozmuik4n3dkcstizpqv4igbx74",
-  "bafkreihefba6pk23b3jcq2dugs7mw5ktkqtvcuqj5c2owrpkhspthuahyu",
+  "bafkreifwbjnot4tk7ni3vcnjjsqmf4bekqljfl23mfayqfu65qhywunowu",
+  "bafkreicslh5ph3zmnkrijsdmvsmb5jambkdjnah4mo5r3rjip2ziwysdim",
+  "bafkreifj34mpmul3qsj56cem73cuepwh55zq564lhspvyueksc5gxkrzuu",
 ];
 const contributorsImage =
-  "bafkreidy4y7x4l2xc2jnin3x4h2cniusviood54cknrsb5nioe63aluune";
+  "bafkreiclfvrrajgdpqpdzzsnuwnyetyyrnmqz5olemdlt6t4ggar2itzka";
 const investorsImage =
-  "bafkreie3zrtr3ynis5xlgq4wjtef7f43ycyll5re3ko3nnrsv3kbjd7xvm";
-const mainImage = "bafkreiafxt54wrdulmbyff4pqknm562fcpsj2edu2fywroke4snirrbnnq";
+  "bafkreig2nd35uimsfet5iebjyai45xhcpc3c6py5ha3bspmwpu4ubxhie4";
+const mainImage = "bafkreif26i2lero7qwn4y7mfqsd6ni2xg64a6nabtpkv2mjuvxfquyhj7u";
 const logo = "bafkreihxjdgrt6iun2xkinwjzp4h6tkhkrpbxuzyeanrrecsp7yzsdr3ru";
 const endingImage =
   "bafkreibfk6pkeoxsl6banldzxearj3swh53p3gmn7unhz7nag4nco4p2sm";
