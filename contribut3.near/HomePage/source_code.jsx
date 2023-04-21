@@ -113,7 +113,7 @@ const Link = styled.a`
   font-size: 24px;
   line-height: 31px;
   text-align: center;
-  color: #ffffff;
+  color: #000000;
   background: #00ec97;
 
   &.white {
