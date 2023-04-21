@@ -1,6 +1,6 @@
 // const accountId = props.accountId;
-const accountId = props.accountId ?? "";
-// const accountId = props.accountId;
+const accountId = props.accountId;
+
 const profile = props.profile || Social.get(`${accountId}/profile/**`, "final");
 // const tags = Object.keys(profile.tags || {});
 const tags = Object.keys(profile.tags || { users: "dog", animals: "zoo" });
@@ -53,8 +53,9 @@ const Avatar = styled.a`
   transition: border-color 200ms;
 
   img {
-    width: 50px;
-    height: 50px;
+    object-fit: cover;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
   }
 
@@ -152,13 +153,12 @@ return (
           </TextLink>
         </Col>
 
-        <Col href={profileUrl}>
+        <Col>
           {!!context.accountId && context.accountId !== props.accountId && (
             <button
-              href={profileUrl}
-              onClick={() => {
-                window.location.href = profileUrl;
-              }}
+              onClick={() =>
+                console.log(`redirecting you to the profile`, profileUrl)
+              }
               style={{
                 backgroundColor: "rgba(255, 193, 7, 0)",
                 padding: "10px",
@@ -167,12 +167,13 @@ return (
                 cursor: "pointer",
               }}
             >
-              <img
-                src="https://i.imgur.com/dIDX59g.png"
-                alt="Follow icon"
-                href={profileUrl}
-                style={{ height: "100%", marginRight: "5px" }}
-              />
+              <a href={profileUrl}>
+                <img
+                  src="https://i.imgur.com/dIDX59g.png"
+                  alt="Follow icon"
+                  style={{ height: "20px", marginRight: "5px" }}
+                />
+              </a>
             </button>
           )}
         </Col>
