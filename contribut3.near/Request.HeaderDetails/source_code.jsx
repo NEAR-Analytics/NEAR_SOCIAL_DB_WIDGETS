@@ -14,12 +14,7 @@ if (!state.requestIsFetched) {
     { account_id: accountId, cid },
     "final",
     false
-  ).then((request) =>
-    State.update({
-      request,
-      requestIsFetched: true,
-    })
-  );
+  ).then((request) => State.update({ request, requestIsFetched: true }));
   return <>Loading...</>;
 }
 
@@ -43,17 +38,13 @@ return (
   <Container>
     <div>
       <Widget
-        src={`${ownerId}/widget/Inputs.Viewable.Logo`}
+        src={`${ownerId}/widget/Inputs.Viewable.Title`}
         props={{
-          accountId,
-          value: state.profile.image,
-          isProject: false,
-          id: "image",
-          onSave: (image) =>
-            Near.call("social.near", "set", {
-              data: {
-                [accountId]: { profile: { image: { ipfs_cid: image.cid } } },
-              },
+          value: state.request.title,
+          id: "title",
+          onSave: (title) =>
+            Near.call(ownerId, "edit_request", {
+              request: { ...state.request, title }
             }),
           canEdit: props.isAdmin,
         }}
