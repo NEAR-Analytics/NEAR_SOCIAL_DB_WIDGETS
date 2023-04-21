@@ -9,7 +9,7 @@ const exclusive = props.exclusive || false; // rename to exclusive
 const allowPublicPosting = props.allowPublicPosting || false;
 
 State.init({
-  selectedTab: Storage.privateGet("selectedTab") || "all",
+  selectedTab: Storage.privateGet("selectedTab") || "community",
   domainsFilter: [],
   hashtagsFilter: [],
 });
@@ -174,7 +174,7 @@ return (
 
           <FilterWrapper>
             <PillSelect>
-              {allowPublicPosting ? null : (
+              {allowPublicPosting ? (
                 <>
                   <PillSelectButton
                     type="button"
@@ -193,7 +193,7 @@ return (
                     </PillSelectButton>
                   )}
                 </>
-              )}
+              ) : null}
               <PillSelectButton
                 type="button"
                 onClick={() =>
