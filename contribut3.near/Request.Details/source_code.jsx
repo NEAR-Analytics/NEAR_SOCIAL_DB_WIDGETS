@@ -84,6 +84,7 @@ return (
           accountId: request.project_id,
           name: state.name,
           nameSize: ".95em",
+          accountSize: ".75em",
         }}
       />
     </Project>
