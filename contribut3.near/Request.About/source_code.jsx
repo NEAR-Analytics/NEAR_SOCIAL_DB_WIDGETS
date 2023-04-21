@@ -1,5 +1,6 @@
 const ownerId = "contribut3.near";
 const accountId = props.accountId;
+const cid = props.cid;
 
 const Container = styled.div`
   display: flex;
@@ -42,6 +43,7 @@ return (
           Near.call(ownerId, "edit_request", {
             request: { ...state.request, description },
           }),
+        canEdit: props.isAdmin,
       }}
     />
   </Container>
