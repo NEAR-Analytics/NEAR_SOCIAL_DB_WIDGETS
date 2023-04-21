@@ -241,8 +241,8 @@ return (
                 },
               ],
             }}
-          />
-        : <></>
+          />)
+          : (<></>)
         }
         {content}</MainContent>
       <Sidebar>
