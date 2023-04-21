@@ -20,68 +20,39 @@ if (!state.requestIsFetched) {
 
 const Container = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
   gap: 1em;
 `;
 
-const Details = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: 0.5em;
-`;
-
 return (
   <Container>
-    <div>
-      <Widget
-        src={`${ownerId}/widget/Inputs.Viewable.Title`}
-        props={{
-          value: state.request.title,
-          id: "title",
-          onSave: (title) =>
-            Near.call(ownerId, "edit_request", {
-              request: { ...state.request, title }
-            }),
-          canEdit: props.isAdmin,
-        }}
-      />
-    </div>
-    <Details>
-      <Widget
-        src={`${ownerId}/widget/Inputs.Viewable.NameAndAccount`}
-        props={{
-          value: state.profile.name,
-          id: "name",
-          accountId,
-          onSave: (name) =>
-            Near.call("social.near", "set", {
-              data: { [accountId]: { profile: { name } } },
-            }),
-          canEdit: props.isAdmin,
-        }}
-      />
-      <Widget
-        src={`${ownerId}/widget/Inputs.Viewable.OneLiner`}
-        props={{
-          value: state.profile.tagline,
-          id: "tagline",
-          onSave: (tagline) =>
-            Near.call("social.near", "set", {
-              data: { [accountId]: { profile: { tagline } } },
-            }),
-          canEdit: props.isAdmin,
-        }}
-      />
-      {/*<Widget
-        src={`${ownerId}/widget/BadgeList`}
-        props={{
-          badges: [{ value: "Verified" }],
-        }}
-      />*/}
-    </Details>
+    <Widget
+      src={`${ownerId}/widget/Inputs.Viewable.Title`}
+      props={{
+        value: state.request.title,
+        id: "title",
+        onSave: (title) =>
+          Near.call(ownerId, "edit_request", {
+            request: { ...state.request, title }
+          }),
+        canEdit: props.isAdmin,
+      }}
+    />
+    <Widget
+      src={`${ownerId}/widget/Inputs.Viewable.Toggle`}
+      props={{
+        id: "open",
+        activeText: "Receiving proposals",
+        inactiveText: "Closed",
+        value: state.request.open,
+        onSave: (open) =>
+          Near.call(ownerId, "edit_request", {
+            request: { ...state.request, open }
+          }),
+        canEdit: props.isAdmin,
+      }}
+    />
   </Container>
 );
