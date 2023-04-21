@@ -343,7 +343,7 @@ return (
                   open: true,
                   request_type: state.requestType.value,
                   payment_type: state.paymentType.value,
-                  tags: state.tags.map(({ value }) => value),
+                  tags: state.tags.map(({ name }) => name),
                   source: state.source.value,
                   deadline: `${new Date(state.deadline).getTime()}`,
                   budget: +state.budget,
