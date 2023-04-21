@@ -9,9 +9,10 @@ const exclusive = props.exclusive || false; // rename to exclusive
 const allowPublicPosting = props.allowPublicPosting || false;
 
 State.init({
-  selectedTab: Storage.privateGet("selectedTab") || "community",
+  selectedTab: Storage.privateGet("selectedTab") || "all",
   domainsFilter: [],
   hashtagsFilter: [],
+  disableHashtags: false,
 });
 
 const embedHashtags = communityHashtags
@@ -39,10 +40,12 @@ if (previousSelectedTab && previousSelectedTab !== state.selectedTab) {
 if (state.selectedTab === "community") {
   State.update({
     domainsFilter: [communityDomain],
+    disableHashtags: true,
   });
 } else {
   State.update({
     domainsFilter: ["post"],
+    disableHashtags: false,
   });
 }
 
@@ -214,7 +217,7 @@ return (
           props={{
             accounts,
             domainsFilter: state.domainsFilter,
-            hashtagsFilter: embedHashtags,
+            hashtagsFilter: state.disableHashtags ? [] : embedHashtags,
           }}
         />
       </FeedWrapper>
