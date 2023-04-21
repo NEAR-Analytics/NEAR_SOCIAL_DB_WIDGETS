@@ -5,7 +5,8 @@
 const communityHashtags = props.communityHashtags || [];
 const communityDomain = props.communityDomain || null;
 const communityMembers = props.communityMembers || [];
-const exclusive = props.exclusive && true; // rename to exclusive
+const exclusive = props.exclusive || false; // rename to exclusive
+const allowPublicPosting = props.allowPublicPosting || false;
 
 State.init({
   selectedTab: Storage.privateGet("selectedTab") || "all",
@@ -37,7 +38,7 @@ if (previousSelectedTab && previousSelectedTab !== state.selectedTab) {
 
 if (state.selectedTab === "community") {
   State.update({
-    domainsFilter: ["apple123456"],
+    domainsFilter: [communityDomain],
   });
 } else {
   State.update({
@@ -162,7 +163,8 @@ return (
             <Widget
               src="efiz.near/widget/Community.Posts.Compose"
               props={{
-                allowPublic: !exclusive,
+                allowPublicPosting,
+                exclusive,
                 isMember: communityMembers.includes(context.accountId),
                 communityDomain,
                 embedHashtags,
@@ -172,7 +174,7 @@ return (
 
           <FilterWrapper>
             <PillSelect>
-              {exclusive ? null : (
+              {allowPublicPosting ? null : (
                 <>
                   <PillSelectButton
                     type="button"
