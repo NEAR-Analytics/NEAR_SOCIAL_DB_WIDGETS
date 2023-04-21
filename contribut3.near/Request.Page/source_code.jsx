@@ -2,11 +2,7 @@ const ownerId = "contribut3.near";
 const accountId = props.accountId ?? context.accountId;
 const cid = props.cid;
 
-const availableContent = [
-  "overview",
-  "invitations",
-  "proposals",
-];
+const availableContent = ["overview", "invitations", "proposals"];
 
 const getContent = (content) => {
   if (!content || !availableContent.includes(content)) {
@@ -181,14 +177,16 @@ const Heading = styled.div`
 `;
 
 const content = {
-  overview: (<Widget
-    src={`${ownerId}/widget/Request.About`}
-    props={{
-      accountId,
-      cid,
-      isAdmin: state.isAdmin,
-    }}
-  />),
+  overview: (
+    <Widget
+      src={`${ownerId}/widget/Request.About`}
+      props={{
+        accountId,
+        cid,
+        isAdmin: state.isAdmin,
+      }}
+    />
+  ),
 }[getContent(props.content)];
 
 return (
@@ -200,16 +198,21 @@ return (
           props={{ accountId, cid, isAdmin: state.isAdmin }}
         />
         <CTARow>
-          {state.isAdmin ? (<></>) : (
+          {state.isAdmin ? (
+            <></>
+          ) : (
             <Widget
               src={`${ownerId}/widget/Request.ProposeSideWindow`}
               props={{ accountId, cid }}
-            />)}
+            />
+          )}
           <Widget
             src={`${ownerId}/widget/Buttons.Grey`}
             props={{
               onClick: () => {
-                clipboard.writeText(`https://alpha.near.org/${ownerId}/widget/Index?tab=request&accountId=${accountId}&cid=${cid}`);
+                clipboard.writeText(
+                  `https://alpha.near.org/${ownerId}/widget/Index?tab=request&accountId=${accountId}&cid=${cid}`
+                );
               },
               text: <>Share</>,
             }}
@@ -228,6 +231,7 @@ return (
               search: props.search,
               update: props.update,
               accountId: props.accountId,
+              cid,
               buttons: [
                 {
                   id: "overview",
@@ -243,12 +247,17 @@ return (
                 },
               ],
             }}
-          />)
-          : (<></>)
-        }
-        {content}</MainContent>
+          />
+        ) : (
+          <></>
+        )}
+        {content}
+      </MainContent>
       <Sidebar>
-        <Widget src={`${ownerId}/widget/Request.Sidebar`} props={{ accountId, cid, isAdmin: state.isAdmin }} />
+        <Widget
+          src={`${ownerId}/widget/Request.Sidebar`}
+          props={{ accountId, cid, isAdmin: state.isAdmin }}
+        />
       </Sidebar>
     </ContentContainer>
   </Container>
