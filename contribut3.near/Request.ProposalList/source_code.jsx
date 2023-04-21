@@ -20,18 +20,26 @@ if (!state.itemsIsFetched) {
   return <>Loading...</>;
 }
 
+const Container = styled.div`
+  .cont {
+    width: 100% !important;
+  }
+`;
+
 return (
-  <Widget
-    src={`${ownerId}/widget/List`}
-    props={{
-      search,
-      items: state.items,
-      createItem: ([[projectId, cid], vendorId]) => (
-        <Widget
-          src={`${ownerId}/widget/Proposal.AdminCard`}
-          props={{ projectId, cid, vendorId }}
-        />
-      ),
-    }}
-  />
+  <Container>
+    <Widget
+      src={`${ownerId}/widget/List`}
+      props={{
+        search,
+        items: state.items,
+        createItem: ([[projectId, cid], vendorId]) => (
+          <Widget
+            src={`${ownerId}/widget/Proposal.Card`}
+            props={{ projectId, cid, vendorId }}
+          />
+        ),
+      }}
+    />
+  </Container>
 );
