@@ -235,6 +235,7 @@ const labelEditor = (
     <Typeahead
       multiple
       labelKey="name"
+      onInputChange={(text, event) => console.log(text,event)}
       onChange={setLabels}
       options={existingLabels}
       placeholder="near.social, widget, NEP, standard, protocol, tool"
