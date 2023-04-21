@@ -319,7 +319,7 @@ return (
           label: "Budget *",
           placeholder: 1500,
           value: state.budget,
-          onChange: (budget) => State.update({ bugdet }),
+          onChange: (budget) => State.update({ budget }),
         }}
       />
       <Widget
