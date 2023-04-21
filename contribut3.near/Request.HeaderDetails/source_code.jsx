@@ -1,5 +1,6 @@
 const ownerId = "contribut3.near";
 const accountId = props.accountId;
+const cid = props.cid;
 const isAdmin = props.isAdmin;
 
 State.init({
