@@ -207,9 +207,6 @@ return (
           />
         </CTARow>
       </HeaderDetails>
-      <HeaderProgress>
-        <Widget src={`${ownerId}/widget/Project.Progress`} props={{}} />
-      </HeaderProgress>
     </Header>
     <ContentContainer>
       <MainContent>{content}</MainContent>
