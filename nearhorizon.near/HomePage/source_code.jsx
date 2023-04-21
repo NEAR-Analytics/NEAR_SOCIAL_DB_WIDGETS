@@ -113,7 +113,7 @@ const Link = styled.a`
   font-size: 24px;
   line-height: 31px;
   text-align: center;
-  color: #ffffff;
+  color: #000000;
   background: #00ec97;
 
   &.white {
@@ -305,7 +305,7 @@ const mapImage = (src) => `https://ipfs.near.social/ipfs/${src}`;
 
 return (
   <Container>
-    <Section style={{ padding: "4em 0 0 0" }}>
+    <Section>
       <Row style={{ padding: "0 0 4em 0" }}>
         <img src={mapImage(mainImage)} style={{ transform: "scale(.9)" }} />
         <MainSubSection>
@@ -464,7 +464,7 @@ return (
         </List>
       </Row>
     </Section>
-    <Section style={{ padding: "2em 0 4em 0" }}>
+    <Section style={{ padding: "0 0 4em 0" }}>
       <Narrow>
         <SectionHeader>
           <svg
@@ -768,7 +768,7 @@ return (
         />
       </svg>
       <h2>Accelerate your Web3 Startup!</h2>
-      <Link href="/nearhorizon.near/widget/Index" className="white">
+      <Link href="/nearhorizon.near/widget/Index" className="white" style={{ marginTop: "1em" }}>
         Try it Now
       </Link>
     </Footer>
