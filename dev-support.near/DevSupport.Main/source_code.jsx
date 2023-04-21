@@ -42,9 +42,7 @@ return (
           <div class="mt-4 p-2">
             <Widget
               src="dev-support.near/widget/DevSupport.Question.Edit"
-              onCommit={() => {
-                State.update({ askQuestion: false });
-              }}
+              props={{ onCommit: () => State.update({ askQuestion: false }) }}
             />
           </div>
         )}
