@@ -68,6 +68,14 @@ const Project = styled.div`
   justify-content: flex-start;
   gap: .25em;
   width: 100%;
+
+  div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: .5em;
+  }
 `;
 
 return (
@@ -78,15 +86,16 @@ return (
         src={`${ownerId}/widget/Project.Icon`}
         props={{ accountId: request.project_id, size: "2.5em" }}
       />
-      <Widget
-        src={`${ownerId}/widget/NameAndAccount`}
-        props={{
-          accountId: request.project_id,
-          name: state.name,
-          nameSize: ".95em",
-          accountSize: ".75em",
-        }}
-      />
+      <div>
+        <Widget
+          src={`${ownerId}/widget/NameAndAccount`}
+          props={{
+            accountId: request.project_id,
+            name: state.name,
+            nameSize: ".95em",
+            accountSize: ".75em",
+          }}
+        /></div>
     </Project>
     <Widget
       src={`${ownerId}/widget/Inputs.Viewable.Number`}
