@@ -307,7 +307,7 @@ return (
   <Container>
     <Section style={{ padding: "4em 0 0 0" }}>
       <Row style={{ padding: "0 0 4em 0" }}>
-        <img src={mapImage(mainImage)} />
+        <img src={mapImage(mainImage)} style={{ transform: "scale(.9)" }} />
         <MainSubSection>
           <svg
             fill="none"
