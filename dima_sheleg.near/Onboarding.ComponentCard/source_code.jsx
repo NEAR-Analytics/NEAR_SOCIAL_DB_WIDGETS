@@ -41,7 +41,11 @@ return (
     <Text>{`${props.accountId}/widget/${props.name}`}</Text>
 
     <div className="d-flex align-items-center g-3 mt-3">
-      <Text as="div" className="d-flex align-items-center" title="commits">
+      <Text
+        as="div"
+        className="d-flex align-items-center"
+        title={`${props.commits.length || 0} commits`}
+      >
         <i class="ph ph-git-commit" style={{ fontSize: "20px" }} />
         <span>{props.commits.length || 0}</span>
       </Text>
