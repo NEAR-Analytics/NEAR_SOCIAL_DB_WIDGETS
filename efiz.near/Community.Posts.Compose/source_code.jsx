@@ -10,7 +10,7 @@ if (!context.accountId) {
 }
 
 // Do not show if exclusive and user is not a member
-if (!exclusive && !isMember) {
+if (exclusive && !isMember) {
   return <></>;
 }
 
