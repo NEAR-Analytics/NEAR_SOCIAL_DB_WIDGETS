@@ -67,7 +67,12 @@ const columns = [
     id: "id",
     label: "Proposal id",
     formatter: (d) => {
-      return d.transaction_view.actProposal.id;
+      const setModal = (proposalId) => {
+        State.update({ isModalOpen: true, modalComp: proposalId });
+      };
+      return (
+        <button onClick={setModal}>{d.transaction_view.actProposal.id}</button>
+      );
     },
   },
   {
@@ -98,6 +103,7 @@ const resPerPage = 10;
 State.init({
   votes: [],
   offset: 0,
+  isModalOpen: false,
 });
 
 const nextPage = () => {
@@ -138,4 +144,18 @@ const fetchVoteHistory = (offset) => {
 !state.votes.length && fetchVoteHistory(state.offset);
 console.log("state.votes", state.votes);
 
-return <>{GenericTable}</>;
+const toggleModal = (isOpen) => {
+  State.update({ isModalOpen: isOpen });
+};
+
+return (
+  <>
+    {GenericTable}
+    {
+      <Widget
+        src={`${widgetProvider}/widget/NDC-modal`}
+        props={{ isOpen: state.isModalOpen, toggleModal }}
+      />
+    }
+  </>
+);
