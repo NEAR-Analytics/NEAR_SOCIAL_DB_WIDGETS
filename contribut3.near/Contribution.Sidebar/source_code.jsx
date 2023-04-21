@@ -42,7 +42,7 @@ if (!state.requestIsFetched) {
   ).then((request) => State.update({ request, requestIsFetched: true }));
 }
 
-if (!state.iscontributionFetched || !state.isProposalFetched || !state.isRequestFetched) {
+if (!state.isContributionFetched || !state.isProposalFetched || !state.isRequestFetched) {
   return <>Loading...</>;
 }
 
