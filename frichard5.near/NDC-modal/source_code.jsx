@@ -8,6 +8,7 @@ if (state.isOpen != isOpen) State.update({ isOpen });
 console.log("STAEOPEN", state.isOpen);
 const Modal = styled.div`
     position: absolute;
+    z-index:100;
     top: 0px;
     width: 100%;
     height: 100vh;
@@ -16,13 +17,11 @@ const Modal = styled.div`
 
 const ComponentWrapper = styled.div`
     position:absolute;
+    width: 100%;
+    z-index: 100;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-    width: 300px;
-    height: 150px;
-    background: red;
-
 `;
 
 const clickModal = () => {
