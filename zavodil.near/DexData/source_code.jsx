@@ -28,7 +28,7 @@ if (typeof onLoad !== "function") return "Error";
 
 // SUBMIT TX EVENTS
 
-const callTxSyncSwap = (input, onComplete) => {
+const callTxSyncSwap = (input, onComplete, gweiPrice) => {
   if (input.sender && input.routerContract !== undefined) {
     const classicPoolFactoryContractId =
       "0xf2DAd89f2788a8CD54625C60b55cD3d2D0ACa7Cb";
@@ -102,7 +102,7 @@ const callTxSyncSwap = (input, onComplete) => {
         swapContract
           .swap(paths, 1, deadline.toFixed(), {
             value,
-            gasPrice: ethers.utils.parseUnits("0.26", "gwei"),
+            gasPrice: ethers.utils.parseUnits(gweiPrice ?? "0.26", "gwei"),
             gasLimit: 20000000,
           })
           .then((transactionHash) => {
@@ -112,7 +112,7 @@ const callTxSyncSwap = (input, onComplete) => {
   }
 };
 
-const callTxUni = (input, onComplete) => {
+const callTxUni = (input, onComplete, gasPrice) => {
   if (input.sender && input.routerContract !== undefined && input.routerAbi) {
     const value = expandToken(
       input.inputAssetAmount,
@@ -132,7 +132,7 @@ const callTxUni = (input, onComplete) => {
         [input.inputAssetTokenId, input.outputAssetTokenId],
         input.sender,
         {
-          gasPrice: ethers.utils.parseUnits("0.50", "gwei"),
+          gasPrice: ethers.utils.parseUnits(gasPrice ?? "0.50", "gwei"),
           gasLimit: 20000000,
         }
       )
@@ -142,7 +142,7 @@ const callTxUni = (input, onComplete) => {
   }
 };
 
-const callTokenApproval = (input, onComplete) => {
+const callTokenApproval = (input, onComplete, gweiPrice) => {
   if (
     input.sender &&
     input.erc20Abi &&
@@ -162,7 +162,7 @@ const callTokenApproval = (input, onComplete) => {
 
     approveContract
       .approve(input.routerContract, value, {
-        gasPrice: ethers.utils.parseUnits("0.26", "gwei"),
+        gasPrice: ethers.utils.parseUnits(gweiPrice ?? "0.26", "gwei"),
         gasLimit: 20000000,
       })
       .then((transactionHash) => {
@@ -359,6 +359,7 @@ if (ethers !== undefined && Ethers.send("eth_requestAccounts", [])[0]) {
           factoryABI: state.factoryABI,
           erc20Abi: state.erc20Abi,
           callTx: callTxSyncSwap,
+          callTokenApproval,
         });
         State.update({ loadComplete: true });
       } else if (chainIdData.chainId === 1) {
@@ -403,6 +404,7 @@ if (ethers !== undefined && Ethers.send("eth_requestAccounts", [])[0]) {
           erc20Abi: state.erc20Abi,
           routerAbi: state.routerAbi,
           callTx: callTxUni,
+          callTokenApproval,
         });
         State.update({ loadComplete: true });
       } else {
