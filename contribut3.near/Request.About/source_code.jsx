@@ -24,7 +24,7 @@ if (!state.requestIsFetched) {
     { account_id: accountId, cid },
     "final",
     false
-  ).then((request) => State.update({ request, requedtIsFetched: true }));
+  ).then((request) => State.update({ request, requestIsFetched: true }));
 }
 
 if (!state.requestIsFetched) {
