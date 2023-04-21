@@ -20,7 +20,6 @@ if (!state.contributionIsFetched) {
     "final",
     false
   ).then((contribution) => State.update({ contribution, contributionIsFetched: true }));
-
 }
 
 if (!state.proposalIsFetched) {
