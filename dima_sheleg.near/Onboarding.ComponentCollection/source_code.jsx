@@ -44,7 +44,6 @@ const Text = styled.p`
 
 return (
   <Wrapper>
-    <h2>Widgets</h2>
     {Object.keys(widgets)?.length > 0 ? (
       <Items>
         {Object.keys(widgets)?.map((item, index) => (
