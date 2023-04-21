@@ -1,6 +1,9 @@
-const network = props.network;
 let onLoad = props.onLoad;
 const debug = props.debug;
+
+const NETWORK_NEAR = "NEAR";
+const NETWORK_ETH = "ETH";
+const NETWORK_ZKSYNC = "ZKSYNC";
 
 State.init({ loadComplete: false });
 
@@ -22,10 +25,6 @@ if (state.loadComplete) {
 }
 
 if (typeof onLoad !== "function") return "Error";
-
-const NETWORK_NEAR = "NEAR";
-const NETWORK_ETH = "ETH";
-const NETWORK_ZKSYNC = "ZKSYNC";
 
 // SUBMIT TX EVENTS
 
@@ -373,6 +372,17 @@ if (ethers !== undefined && Ethers.send("eth_requestAccounts", [])[0]) {
             return "Loading";
           }
           State.update({ erc20Abi: erc20Abi.body });
+        }
+
+        if (state.routerAbi == undefined) {
+          const routerAbi = fetch(
+            "https://gist.githubusercontent.com/zavodil/108a3719d4ac4b53131b09872ff81b83/raw/82561cf48afcc72861fa8fa8283b33c04da316d7/SwapRouter02.json"
+          );
+          if (!routerAbi.ok) {
+            return "Loading";
+          }
+
+          State.update({ routerAbi: routerAbi.body });
         }
 
         if (!state.routerAbi || !state.erc20Abi) return "Loading ABIs";
