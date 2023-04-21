@@ -213,7 +213,7 @@ const Heading = styled.div`
 `;
 
 const content = {
-  acitivity: (
+  activity: (
     <Widget
       src={`${ownerId}/widget/Contribution.Activity`}
       props={{
