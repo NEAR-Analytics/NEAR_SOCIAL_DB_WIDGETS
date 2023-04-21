@@ -158,10 +158,7 @@ return (
     </CardHeader>
 
     <CardBody>
-      <Widget
-        src="adminalpha.near/widget/SocialMarkdown"
-        props={{ text: content.text }}
-      />
+      <Widget src="near/widget/SocialMarkdown" props={{ text: content.text }} />
     </CardBody>
 
     <CardFooter>
