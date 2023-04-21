@@ -10,8 +10,7 @@ const Modal = styled.div`
     position: absolute;
     top: 0px;
     width: 100%;
-    height: 100%;
-    background: rgba(128,128,128,0.65);
+    height: 100vh;
     display: ${state.isOpen ? "block" : "none"}
 `;
 
@@ -26,17 +25,15 @@ const ComponentWrapper = styled.div`
 
 `;
 
-const clickModal = (e) => {
-  console.log("event", e);
-  if (e.target.id === "modal") {
-    toggleModal(!isOpen);
-  }
+const clickModal = () => {
+  toggleModal(false);
 };
 
 return (
-  <Modal id="modal" onClick={clickModal}>
+  <Modal id="modal">
+    <button onClick={closeModal}>Close</button>
     <ComponentWrapper id="modal-comp" className="component-wrapper">
-      hey
+      {component}
     </ComponentWrapper>
   </Modal>
 );
