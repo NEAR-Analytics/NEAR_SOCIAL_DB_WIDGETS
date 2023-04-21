@@ -3,6 +3,8 @@ const ownerId = "contribut3.near";
 const isAdmin = false;
 const contribution = props.contribution;
 const [[projectId, cid], vendorId] = contribution.proposal_id;
+const proposal = props.proposal;
+const request = props.request;
 
 const Container = styled.div`
   display: flex;
@@ -62,12 +64,12 @@ if (!state.nameIsFetched) {
   Near.asyncView(
     "social.near",
     "get",
-    { keys: [`${contribution.proposal_id[0]}/profile/name`] },
+    { keys: [`${projectId}/profile/name`] },
     "final",
     false
   ).then((data) =>
     State.update({
-      name: data[request.project_id].profile.name,
+      name: data[projectId].profile.name,
       nameIsFetched: true,
     })
   );
@@ -77,12 +79,12 @@ if (!state.vendorNameIsFetched) {
   Near.asyncView(
     "social.near",
     "get",
-    { keys: [`${request.vendor_id}/profile/name`] },
+    { keys: [`${vendorId}/profile/name`] },
     "final",
     false
   ).then((data) =>
     State.update({
-      vendorName: data[request.vendor_id].profile.name,
+      vendorName: data[vendorId].profile.name,
       vendorNameIsFetched: true,
     })
   );
@@ -125,13 +127,31 @@ return (
       <div>
         <Widget
           src={`${ownerId}/widget/Project.Icon`}
-          props={{ accountId: request.project_id, size: "2.5em" }}
+          props={{ accountId: projectId, size: "2.5em" }}
         />
         <Widget
           src={`${ownerId}/widget/NameAndAccount`}
           props={{
-            accountId: request.project_id,
+            accountId: projectId,
             name: state.name,
+            nameSize: ".95em",
+            accountSize: ".75em",
+          }}
+        />
+      </div>
+    </Project>
+    <Project>
+      <label>Project</label>
+      <div>
+        <Widget
+          src={`${ownerId}/widget/Vendor.Icon`}
+          props={{ accountId: vendorId, size: "2.5em" }}
+        />
+        <Widget
+          src={`${ownerId}/widget/NameAndAccount`}
+          props={{
+            accountId: vendorId,
+            name: state.vendorName,
             nameSize: ".95em",
             accountSize: ".75em",
           }}
@@ -143,8 +163,7 @@ return (
       props={{
         label: "Budget",
         id: "bugdet",
-        value: request.budget,
-        onSave: (budget) => onSave({ budget }),
+        value: contribution.price,
         canEdit: isAdmin,
       }}
     />
@@ -153,9 +172,7 @@ return (
       props={{
         label: "Payment source",
         id: "source",
-        value: [{ name: request.source }],
-        options: state.paymentSources.map((value) => ({ value, text: value })),
-        onSave: (source) => onSave({ source }),
+        value: [{ name: proposal.payment_source }],
         canEdit: isAdmin,
       }}
     />
@@ -164,9 +181,7 @@ return (
       props={{
         label: "Payment type",
         id: "payment_type",
-        value: [{ name: request.payment_type }],
-        options: state.paymentTypes.map((value) => ({ value, text: value })),
-        onSave: (payment_type) => onSave({ payment_type }),
+        value: [{ name: proposal.payment_type }],
         canEdit: isAdmin,
       }}
     />
@@ -175,9 +190,25 @@ return (
       props={{
         label: "Request type",
         id: "request_type",
-        value: [{ name: request.request_type }],
-        options: state.requestTypes.map((value) => ({ value, text: value })),
-        onSave: (request_type) => onSave({ request_type }),
+        value: [{ name: proposal.proposal_type }],
+        canEdit: isAdmin,
+      }}
+    />
+    <Widget
+      src={`${ownerId}/widget/Inputs.Viewable.Date`}
+      props={{
+        label: "Start date",
+        id: "start_date",
+        value: proposal.start_date,
+        canEdit: isAdmin,
+      }}
+    />
+    <Widget
+      src={`${ownerId}/widget/Inputs.Viewable.Date`}
+      props={{
+        label: "End date",
+        id: "end_date",
+        value: proposal.end_date ?? "Work in progress",
         canEdit: isAdmin,
       }}
     />
@@ -187,24 +218,6 @@ return (
         label: "Deadline",
         id: "deadline",
         value: request.deadline,
-        onSave: (deadline) =>
-          onSave({ deadline: `${new Date(deadline).getTime()}` }),
-        canEdit: isAdmin,
-      }}
-    />
-    <Widget
-      src={`${ownerId}/widget/Inputs.Viewable.Tags`}
-      props={{
-        label: "Tags",
-        id: "tags",
-        value: request.tags.map((name) => ({ name })),
-        options: [
-          { name: "defi" },
-          { name: "exchange" },
-          { name: "staking" },
-          { name: "farming" },
-        ],
-        onSave: (tags) => onSave({ tags: tags.map(({ name }) => name) }),
         canEdit: isAdmin,
       }}
     />
