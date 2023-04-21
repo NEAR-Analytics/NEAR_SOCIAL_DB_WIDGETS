@@ -481,7 +481,7 @@ return (
           </svg>
           Web3 Founders
         </SectionHeader>
-        <Row>
+        <Row style={{ marginBottom: "5em" }}>
           <img
             src={mapImage(foundersImages[0])}
             alt="Join an acceleration program"
@@ -495,7 +495,7 @@ return (
             </p>
           </SubSection>
         </Row>
-        <Row className="reverse">
+        <Row className="reverse" style={{ marginBottom: "5em" }}>
           <img
             src={mapImage(foundersImages[1])}
             alt="Connect with top backers"
@@ -511,7 +511,7 @@ return (
             </p>
           </SubSection>
         </Row>
-        <Row>
+        <Row style={{ marginBottom: "5em" }}>
           <img
             src={mapImage(foundersImages[2])}
             alt="Fulfill your business needs"
@@ -540,7 +540,7 @@ return (
           </svg>
           Contributors
         </SectionHeader>
-        <Row className="reverse">
+        <Row className="reverse" style={{ marginBottom: "5em" }}>
           <img
             src={mapImage(contributorsImage)}
             alt="Contribute and earn as an individual"
@@ -570,7 +570,7 @@ return (
           </svg>
           Web3 Investors
         </SectionHeader>
-        <Row>
+        <Row style={{ marginBottom: "5em" }}>
           <img
             src={mapImage(investorsImage)}
             alt="Find the next big innovation in Web3"
@@ -583,13 +583,10 @@ return (
               white papers and more.
             </p>
           </SubSection>
-          {/*<svg width="214" height="184" viewBox="0 0 429 369" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ position: "absolute", inset: "auto auto -1px 0" }}>
-            <path d="M0 368.43H428.538C369.254 357.09 341.966 331.14 312.723 303.331C284.964 276.933 255.443 248.86 195.123 230.014C67.5881 190.168 61.1408 155.097 52.6129 108.708C47.0914 78.6724 40.6976 43.8925 0 0V368.43Z" fill="white" />
-          </svg>*/}
         </Row>
       </Narrow>
     </Section>
-    <Footer style={{ padding: "2em 0 8em 0" }}>
+    <Footer style={{ padding: "8em 0" }}>
       <svg
         fill="none"
         height="307"
