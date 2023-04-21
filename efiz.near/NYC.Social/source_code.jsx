@@ -1,7 +1,6 @@
 /**
  * Configure your community feed.
  */
-const hashtags = ["nyc"]; // any dedicated hashtags?
 const daoId = "liberty.sputnik-dao.near"; // restrict posting to members of a DAO (Optional)
 const groupId = "community"; // which group can post?
 
@@ -14,10 +13,18 @@ const group = policy.roles
     return group;
   });
 
-const community = {
-  daoId,
-  members: group,
-  domain: "nycdao.near",
-};
+const hashtags = ["nyc"];
 
-return <Widget src="efiz.near/widget/Posts" props={{ hashtags, community }} />;
+return (
+  <>
+    <Widget
+      src="efiz.near/widget/Community.Posts"
+      props={{
+        communityHashtags: hashtags,
+        communityDomain: "nycdao.near",
+        communityMembers: group,
+        exclusive: false,
+      }}
+    />
+  </>
+);
