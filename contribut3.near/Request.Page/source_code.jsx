@@ -200,10 +200,11 @@ return (
           props={{ accountId, cid, isAdmin: state.isAdmin }}
         />
         <CTARow>
-          <Widget
-            src={`${ownerId}/widget/Request.ProposeSideWindow`}
-            props={{ accountId, cid }}
-          />
+          {state.isAdmin ? (<></>) : (
+            <Widget
+              src={`${ownerId}/widget/Request.ProposeSideWindow`}
+              props={{ accountId, cid }}
+            />)}
           <Widget
             src={`${ownerId}/widget/Buttons.Grey`}
             props={{
