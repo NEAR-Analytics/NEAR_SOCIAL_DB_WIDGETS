@@ -54,8 +54,8 @@ const Avatar = styled.a`
 
   img {
     object-fit: cover;
-    width: 24px;
-    height: 24px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
   }
 
