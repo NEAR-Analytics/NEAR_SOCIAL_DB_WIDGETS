@@ -187,6 +187,25 @@ const content = {
       }}
     />
   ),
+  invitations: (
+    <Widget
+      src={`${ownerId}/widget/Request.Invitations`}
+      props={{
+        accountId,
+        cid,
+        isAdmin: state.isAdmin,
+      }}
+    />
+  ),
+  proposals: (
+    <Widget
+      src={`${ownerId}/widget/Request.ProposalList`}
+      props={{
+        accountId,
+        cid,
+      }}
+    />
+  ),
 }[getContent(props.content)];
 
 return (
