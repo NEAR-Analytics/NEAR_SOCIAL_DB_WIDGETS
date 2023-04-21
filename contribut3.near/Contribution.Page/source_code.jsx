@@ -344,7 +344,7 @@ return (
       <Sidebar>
         <Widget
           src={`${ownerId}/widget/Contribution.Sidebar`}
-          props={{ accountId, cid, isAdmin: state.isAdmin }}
+          props={{ projectId, vendorId, cid, isAdmin: state.isAdmin }}
         />
       </Sidebar>
     </ContentContainer>
