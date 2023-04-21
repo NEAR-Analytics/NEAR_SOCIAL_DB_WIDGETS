@@ -82,7 +82,7 @@ const Project = styled.div`
     font-weight: 600;
     font-size: 0.95em;
     line-height: 1.25em;
-    color: #344054;
+    color: #11181c;
   }
 `;
 
