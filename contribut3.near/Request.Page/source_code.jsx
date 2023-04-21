@@ -186,6 +186,7 @@ const content = {
     props={{
       accountId,
       cid,
+      isAdmin: state.isAdmin,
     }}
   />),
 }[getContent(props.content)];
