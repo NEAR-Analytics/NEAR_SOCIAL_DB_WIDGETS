@@ -41,7 +41,9 @@ if (!state.contributionIsFetched) {
     { project_id: projectId, cid, vendor_id: vendorId },
     "final",
     false
-  ).then((contribution) => State.update({ contribution, contributionIsFetched: true }));
+  ).then((contribution) =>
+    State.update({ contribution, contributionIsFetched: true })
+  );
 }
 
 if (!state.isProjectAdminIsFetched) {
@@ -51,7 +53,9 @@ if (!state.isProjectAdminIsFetched) {
     { project_id: projectId, account_id: context.accountId },
     "final",
     false
-  ).then((isProjectAdmin) => State.update({ isProjectAdmin, isProjectAdminIsFetched: true }));
+  ).then((isProjectAdmin) =>
+    State.update({ isProjectAdmin, isProjectAdminIsFetched: true })
+  );
 }
 
 if (!state.isVendorAdminIsFetched) {
@@ -61,10 +65,17 @@ if (!state.isVendorAdminIsFetched) {
     { vendor_id: vendorId, account_id: context.accountId },
     "final",
     false
-  ).then((isVendorAdmin) => State.update({ isVendorAdmin, isVendorAdminIsFetched: true }));
+  ).then((isVendorAdmin) =>
+    State.update({ isVendorAdmin, isVendorAdminIsFetched: true })
+  );
 }
 
-if (!state.contributionIsFetched || !state.proposalIsFetched || !state.isProjectAdminIsFetched || !state.isVendorAdminIsFetched) {
+if (
+  !state.contributionIsFetched ||
+  !state.proposalIsFetched ||
+  !state.isProjectAdminIsFetched ||
+  !state.isVendorAdminIsFetched
+) {
   return <>Loading...</>;
 }
 
@@ -244,7 +255,6 @@ const Title = styled.h1`
   color: #101828;
 `;
 
-
 return (
   <Container>
     <Header>
@@ -255,10 +265,34 @@ return (
             <></>
           ) : state.isVendorAdmin && "Created" in state.contribution.status ? (
             <>
-              <Widget src={`${ownerId}/widget/Buttons.Green`} props={{ text: <></>, onClick: () => Near.call(ownerId, "accept_contribution", { project_id: projectId, cid, vendor_id: vendorId }) }} />
-              <Widget src={`${ownerId}/widget/Buttons.Red`} props={{ text: <></>, onClick: () => Near.call(ownerId, "reject_contribution", { project_id: projectId, cid, vendor_id: vendorId }) }} />
+              <Widget
+                src={`${ownerId}/widget/Buttons.Green`}
+                props={{
+                  text: <></>,
+                  onClick: () =>
+                    Near.call(ownerId, "accept_contribution", {
+                      project_id: projectId,
+                      cid,
+                      vendor_id: vendorId,
+                    }),
+                }}
+              />
+              <Widget
+                src={`${ownerId}/widget/Buttons.Red`}
+                props={{
+                  text: <></>,
+                  onClick: () =>
+                    Near.call(ownerId, "reject_contribution", {
+                      project_id: projectId,
+                      cid,
+                      vendor_id: vendorId,
+                    }),
+                }}
+              />
             </>
-          ) : <Widget src={`${ownerId}/widget/Buttons.Grey`} props={{}} />}
+          ) : (
+            <Widget src={`${ownerId}/widget/Buttons.Grey`} props={{}} />
+          )}
         </CTARow>
       </HeaderDetails>
     </Header>
