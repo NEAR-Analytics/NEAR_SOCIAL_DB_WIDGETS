@@ -5,20 +5,14 @@ const embedHashtags = props.embedHashtags || [];
 const exclusive = props.exclusive || false;
 
 // Do not show if user is not logged in
-if (!context.accountId) {
-  return <></>;
-}
-
 // Do not show if exclusive and user is not a member
-if (exclusive && !isMember) {
-  return <></>;
-}
+if (!context.accountId || (exclusive && !isMember)) return <></>;
 
 State.init({
   image: {},
   text: "",
   showPreview: false,
-  public: allowPublicPosting,
+  publicPosting: allowPublicPosting,
 });
 
 const profile = Social.getr(`${context.accountId}/profile`);
@@ -103,7 +97,7 @@ function composeData() {
    * If domains have been provided, then we create an index under that "domain"
    * Otherwise, we post to the catch-all "post" domain
    */
-  if (state.public) {
+  if (state.publicPosting) {
     data.index.post = JSON.stringify({
       key: "main",
       value: {
@@ -121,7 +115,7 @@ function composeData() {
   }
 
   if (hashtags.length) {
-    if (state.public) {
+    if (state.publicPosting) {
       data.index.hashtag = JSON.stringify(
         hashtags.map((hashtag) => ({
           key: hashtag,
@@ -410,9 +404,17 @@ const AutoComplete = styled.div`
   }
 `;
 
-const setPublic = () => {
-  State.update({ public: !state.public });
-};
+const PillSelectButton = styled.button`
+  border: 1px solid #e6e8eb;
+  padding: 3px 24px;
+  border-radius: 6px;
+  font-size: 12px;
+  line-height: 18px;
+  color: ${state.publicPosting ? "#fff" : "#687076"};
+  background: ${state.publicPosting ? "#006ADC !important" : "#FBFCFD"};
+  font-weight: 600;
+  transition: all 200ms;
+`;
 
 return (
   <Wrapper>
@@ -440,7 +442,6 @@ return (
             }}
           />
         </Avatar>
-
         <Textarea data-value={state.text}>
           <textarea
             placeholder="What's happening?"
@@ -452,7 +453,6 @@ return (
             }}
             value={state.text}
           />
-
           <TextareaDescription>
             <a
               href="https://www.markdownguide.org/basic-syntax/"
@@ -465,7 +465,6 @@ return (
         </Textarea>
       </>
     )}
-
     {autocompleteEnabled && state.showAccountAutocomplete && (
       <AutoComplete>
         <Widget
@@ -480,16 +479,15 @@ return (
     )}
     {!state.showPreview && isMember && allowPublicPosting && (
       <Domain>
-        <input
-          className="form-check-input"
-          type="checkbox"
-          checked={state.public}
-          onChange={(e) => {
-            setPublic(e);
-          }}
-          id="public"
-        />
-        <label htmlFor={"public"}>post publicly</label>
+        <PillSelectButton
+          type="button"
+          onClick={() => State.update({ publicPosting: !state.publicPosting })}
+          selected={state.publicPosting}
+        >
+          {state.publicPosting
+            ? "Public Posting Enabled"
+            : "Public Posting Disabled"}
+        </PillSelectButton>
       </Domain>
     )}
 
@@ -500,7 +498,6 @@ return (
           className="upload-image-button bi bi-image"
         />
       )}
-
       <button
         type="button"
         disabled={!state.text}
