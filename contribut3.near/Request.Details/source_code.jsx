@@ -74,7 +74,7 @@ const Project = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    gap: .5em;
+    gap: .25em;
   }
 
   label {
