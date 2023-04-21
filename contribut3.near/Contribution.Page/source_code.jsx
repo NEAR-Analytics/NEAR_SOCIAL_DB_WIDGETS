@@ -314,7 +314,7 @@ return (
           <Widget
             src={`${ownerId}/widget/TabSelector`}
             props={{
-              tab: "request",
+              tab: "contribution",
               content: getContent(props.content),
               search: props.search,
               update: props.update,
@@ -344,7 +344,7 @@ return (
       <Sidebar>
         <Widget
           src={`${ownerId}/widget/Contribution.Sidebar`}
-          props={{ projectId, vendorId, cid, isAdmin: state.isAdmin }}
+          props={{ projectId, vendorId, cid }}
         />
       </Sidebar>
     </ContentContainer>
