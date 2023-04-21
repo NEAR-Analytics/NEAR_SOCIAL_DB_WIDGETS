@@ -481,7 +481,7 @@ return (
           </svg>
           Web3 Founders
         </SectionHeader>
-        <Row>
+        <Row style={{ marginBottom: "5em" }}>
           <img
             src={mapImage(foundersImages[0])}
             alt="Join an acceleration program"
@@ -495,7 +495,7 @@ return (
             </p>
           </SubSection>
         </Row>
-        <Row className="reverse">
+        <Row className="reverse" style={{ marginBottom: "5em" }}>
           <img
             src={mapImage(foundersImages[1])}
             alt="Connect with top backers"
@@ -511,7 +511,7 @@ return (
             </p>
           </SubSection>
         </Row>
-        <Row>
+        <Row style={{ marginBottom: "5em" }}>
           <img
             src={mapImage(foundersImages[2])}
             alt="Fulfill your business needs"
@@ -540,7 +540,7 @@ return (
           </svg>
           Contributors
         </SectionHeader>
-        <Row className="reverse">
+        <Row className="reverse" style={{ marginBottom: "5em" }}>
           <img
             src={mapImage(contributorsImage)}
             alt="Contribute and earn as an individual"
@@ -570,7 +570,7 @@ return (
           </svg>
           Web3 Investors
         </SectionHeader>
-        <Row>
+        <Row style={{ marginBottom: "5em" }}>
           <img
             src={mapImage(investorsImage)}
             alt="Find the next big innovation in Web3"
