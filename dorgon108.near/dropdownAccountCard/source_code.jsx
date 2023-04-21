@@ -53,9 +53,8 @@ const Avatar = styled.a`
   transition: border-color 200ms;
 
   img {
-    object-fit: cover;
-    width: 24px;
-    height: 24px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
   }
 
@@ -172,7 +171,7 @@ return (
                 src="https://i.imgur.com/dIDX59g.png"
                 alt="Follow icon"
                 href={profileUrl}
-                style={{ height: "20px", marginRight: "5px" }}
+                style={{ height: "100%", marginRight: "5px" }}
               />
             </button>
           )}
