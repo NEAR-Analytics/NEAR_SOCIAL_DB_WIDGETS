@@ -167,13 +167,13 @@ const Heading = styled.div`
 `;
 
 const content = {
-  overview: <Widget
+  overview: (<Widget
     src={`${ownerId}/widget/Request.About`}
     props={{
       accountId,
       cid,
     }}
-  />
+  />),
 }[getContent(props.content)];
 
 return (
@@ -206,12 +206,9 @@ return (
       <MainContent>{content}</MainContent>
       <Sidebar>
         <Widget
-          src={`${ownerId}/widget/Project.Sidebar`}
+          src={`${ownerId}/widget/Request.Sidebar`}
           props={{
-            accountId: "contribut3.near",
-            onSave: (s) => {
-              console.log(s);
-            },
+            accountId,
           }}
         />
       </Sidebar>
