@@ -1,4 +1,4 @@
-const { component, isOpen } = props;
+const { component, isOpen, toggleModal } = props;
 console.log("ISOPEN", isOpen);
 State.init({
   isOpen,
@@ -22,7 +22,7 @@ const ComponentWrapper = styled.div`
 const clickModal = (e) => {
   console.log("event", e);
   if (e.target.id === "modal") {
-    State.update({ isOpen: !isOpen });
+    toggleModal(!isOpen);
   }
 };
 
