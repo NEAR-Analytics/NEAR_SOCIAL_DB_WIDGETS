@@ -47,7 +47,7 @@ return (
       </Text>
 
       <Text as="div" className="d-flex align-items-center">
-        <i class="ph ph-dot" style={{ fontSize: "20px" }} />
+        <i class="ph ph-dot" style={{ fontSize: "20px", marginRight: 0 }} />
       </Text>
 
       <Text as="div" className="d-flex align-items-center">
