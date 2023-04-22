@@ -11,7 +11,7 @@ const data = fetch("https://monkfish-app-ginhc.ondigitalocean.app/graphql", {
       "query events($source: String) { findEvents(source: {is: $source}) { id, title, start, end, url } }",
   }),
   variables: {
-    source: "hello",
+    source: "xrnyc",
   },
 });
 
