@@ -45,7 +45,7 @@ return (
     </ul>
     <div className="tab-content" id="pills-tabContent">
       <div
-        className="tab-pane fade"
+        className="tab-pane fade show active"
         id="pills-community"
         role="tabpanel"
         aria-labelledby="pills-community-tab"
@@ -72,7 +72,7 @@ return (
         </div>
       </div>
       <div
-        className="tab-pane fade show active"
+        className="tab-pane fade"
         id="pills-projects"
         role="tabpanel"
         aria-labelledby="pills-projects-tab"
@@ -85,7 +85,7 @@ return (
         </div>
       </div>
       <div
-        className="tab-pane fade events"
+        className="tab-pane fade"
         id="pills-events"
         role="tabpanel"
         aria-labelledby="pills-events-tab"
