@@ -13,6 +13,8 @@
 //     return group;
 //   });
 
+const defaultTag = props.defaultTag;
+
 const hashtags = [
   { name: "everything", required: true },
   { name: "nyc", required: true },
@@ -23,6 +25,8 @@ const options = hashtags.map((hashtag) => ({
   label: hashtag.name,
   value: hashtag,
 }));
+
+const defaultOption = options.find((option) => option.label === defaultTag);
 
 const font = props.font || "Times New Roman";
 State.init({
@@ -87,7 +91,7 @@ return (
               textAlign: "center",
             },
           }}
-          defaultSelected={[options[0]]}
+          defaultSelected={[defaultOption]}
           options={options}
           multiple={false}
           onChange={(val) => {
