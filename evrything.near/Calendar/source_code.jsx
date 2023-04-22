@@ -31,11 +31,25 @@ const srcData = `
         calendar.render()
       })
     </script>
+    
   </head>
   <body>
     <div id='calendar'></div>
   </body>
 </html>
+
+<style>
+html,
+body {
+  height: 100%;
+}
+
+#calendar {
+  height: 100%;
+}
+
+</style>
+
 `;
 
 return (
