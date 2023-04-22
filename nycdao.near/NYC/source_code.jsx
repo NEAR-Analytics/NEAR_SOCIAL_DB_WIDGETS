@@ -8,9 +8,4 @@ if (page === null) {
   return "Loading...";
 }
 
-if (!accountId) {
-  return <Widget src="nycdao.near/widget/CommunityOnboarding" />;
-}
-if (accountId) {
-  return <Widget src={page ?? "nycdao.near/widget/NYC.Page"} props={props} />;
-}
+return <Widget src={page ?? "nycdao.near/widget/NYC.Page"} props={props} />;
