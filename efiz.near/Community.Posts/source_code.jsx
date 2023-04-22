@@ -209,7 +209,7 @@ return (
           </FilterWrapper>
         </>
       ) : (
-        <Widget src="/evrything.near/widget/Register" />
+        <Widget src="evrything.near/widget/Register" />
       )}
       <FeedWrapper>
         <Widget
