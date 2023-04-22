@@ -21,8 +21,9 @@ const srcData = `
           },
           headerToolbar: {
             start: 'prev,next today', // will normally be on the left. if RTL, will be on the right
-            
-            end: 'timeGridDay list' // will normally be on the right. if RTL, will be on the left
+            // center: 'title',
+            end: 'timeGridDay list' 
+            // end: 'timeGridDay dayGridMonth dayGridWeek dayGridDay list' 
           },
           navLinks: true,
           events: ${JSON.stringify(events)}
@@ -45,7 +46,7 @@ return (
         console.log(data);
       }}
       style={{
-        height: "80vh",
+        height: "100vh",
         width: "100%",
       }}
     />
