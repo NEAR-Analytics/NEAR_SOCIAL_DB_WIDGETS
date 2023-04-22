@@ -13,7 +13,7 @@ if (page === null) {
 const description = page.description;
 
 const pills = [
-  { id: "community", title: "Community" },
+  { id: "community", title: "Discover" },
   { id: "about", title: "About" },
   { id: "projects", title: "Projects" },
   { id: "events", title: "Events" },
