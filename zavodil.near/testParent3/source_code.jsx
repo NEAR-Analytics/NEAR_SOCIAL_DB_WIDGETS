@@ -1,20 +1,8 @@
-State.init({
-  onLoad: (obj) => {
-    console.log(obj.func(1));
-    State.update({ funcRemote: obj.func });
-    console.log(state.funcRemote(2));
-  },
-});
-
 if (typeof state.funcRemote === "function") {
   console.log("Run funcRemote", state.funcRemote(3));
 }
 
-const onClick = () => {
-  if (typeof state.funcRemote === "function") {
-    console.log("onClick funcRemote", state.funcRemote(4));
-  }
-};
+console.log(state);
 
 return (
   <div>
@@ -22,11 +10,27 @@ return (
       <Widget
         src="zavodil.near/widget/test"
         props={{
-          onLoad: state.onLoad,
-          value: "#",
+          onLoad: (obj) => {
+            console.log(obj.func(1));
+            State.update({ funcRemote: obj.func, something: 1 });
+            console.log(state.funcRemote(2));
+          },
+          value: "foo",
         }}
       />
     )}
-    <button onClick={() => onClick()}>Button</button>
+
+    {typeof state.funcRemote === "function" && (
+      <>
+        <button
+          onClick={() => {
+            console.log(state.something); // works
+            console.log(state.funcRemote()); // undefined
+          }}
+        >
+          Button
+        </button>
+      </>
+    )}
   </div>
 );
