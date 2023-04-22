@@ -113,7 +113,7 @@ return (
         <br />
         <br />
         <Link href="https://shard.dog/go?url=https://near.social">
-          <Button>register</Button>
+          <Button>click here to register</Button>
         </Link>
         <br />
         <br />
