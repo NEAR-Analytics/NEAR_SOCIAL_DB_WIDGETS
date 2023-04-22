@@ -51,6 +51,11 @@ return (
       )}
       <br />
     </div>
+    {!context.accountId && (
+      <div>
+        <Widget src="nycdao.near/widget/CommunityOnboarding" />;
+      </div>
+    )}
     {widgets.map(
       ({ src, requiresLogin }, i) =>
         (!requiresLogin || context.accountId) && (
