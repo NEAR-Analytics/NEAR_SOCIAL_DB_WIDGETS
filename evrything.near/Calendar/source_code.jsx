@@ -11,7 +11,7 @@ const srcData = `
       document.addEventListener('DOMContentLoaded', function() {
         const calendarEl = document.getElementById('calendar')
         const calendar = new FullCalendar.Calendar(calendarEl, {
-          initialView: 'dayGridWeek',
+          initialView: 'timeGridDay',
           editable: true,
           customButtons: {
             getEvents: {
@@ -21,8 +21,8 @@ const srcData = `
           },
           headerToolbar: {
             start: 'prev,next today', // will normally be on the left. if RTL, will be on the right
-            center: 'title',
-            end: 'dayGridMonth dayGridWeek dayGridDay list' // will normally be on the right. if RTL, will be on the left
+            
+            end: 'timeGridDay list' // will normally be on the right. if RTL, will be on the left
           },
           navLinks: true,
           events: ${JSON.stringify(events)}
