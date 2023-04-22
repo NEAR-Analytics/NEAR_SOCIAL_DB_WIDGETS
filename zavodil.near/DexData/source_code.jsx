@@ -112,7 +112,7 @@ const callTxSyncSwap = (input, onComplete, gweiPrice) => {
   }
 };
 
-const callTxUni = (input, onComplete, gasPrice) => {
+const callTxUni = (input, onComplete, expandToken, gasPrice) => {
   console.log("callTxUni", input, onComplete);
   if (input.sender && input.routerContract !== undefined && input.routerAbi) {
     const value = expandToken(
@@ -143,7 +143,7 @@ const callTxUni = (input, onComplete, gasPrice) => {
   }
 };
 
-const callTokenApprovalEVM = (input, onComplete, gweiPrice) => {
+const callTokenApprovalEVM = (input, onComplete, expandToken, gweiPrice) => {
   if (
     input.sender &&
     input.erc20Abi &&
