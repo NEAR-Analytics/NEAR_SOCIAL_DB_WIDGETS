@@ -52,8 +52,8 @@ return (
       <br />
     </div>
     {!context.accountId && (
-      <div>
-        <Widget src="nycdao.near/widget/CommunityOnboarding" />;
+      <div className="mb-2">
+        <Widget src="nycdao.near/widget/CommunityOnboarding" />
       </div>
     )}
     {widgets.map(
