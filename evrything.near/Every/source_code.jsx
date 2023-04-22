@@ -1,17 +1,17 @@
 /**
  * Configure your community feed.
  */
-const daoId = "liberty.sputnik-dao.near"; // restrict posting to members of a DAO (Optional)
-const groupId = "community"; // which group can post?
+// const daoId = "liberty.sputnik-dao.near"; // restrict posting to members of a DAO (Optional)
+// const groupId = "community"; // which group can post?
 
-const policy = Near.view(daoId, "get_policy");
-const group = policy.roles
-  .filter((role) => role.name === groupId)
-  .map((role) => {
-    const group = role.kind.Group;
+// const policy = Near.view(daoId, "get_policy");
+// const group = policy.roles
+//   .filter((role) => role.name === groupId)
+//   .map((role) => {
+//     const group = role.kind.Group;
 
-    return group;
-  });
+//     return group;
+//   });
 
 const hashtags = [
   { name: "everything", required: true },
