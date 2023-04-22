@@ -11,12 +11,15 @@ if (menu === null) {
 const defaultWidgets = [
   {
     src: "nycdao.near/widget/NYC.Summary",
+    requiresLogin: true,
   },
   {
     src: "mob.near/widget/Profile.InlineBlock",
+    requiresLogin: true,
   },
   {
     src: "nycdao.near/widget/NYC.People",
+    requiresLogin: true,
   },
 ];
 
