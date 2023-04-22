@@ -1,11 +1,13 @@
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  padding-bottom: 16px;
 `;
 
 const Text = styled.p`
   font-size: 1.2rem;
   margin-bottom: 1rem;
+  font-family: ${font}, Times, serif;
 `;
 
 const Link = styled.a`
