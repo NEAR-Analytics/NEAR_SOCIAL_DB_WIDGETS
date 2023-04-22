@@ -2,7 +2,6 @@ const hashtag = props.hashtag ?? "nyc";
 
 return (
   <>
-    <Widget src="nycdao.near/widget/CommunityOnboarding" />
     <ul
       className="nav nav-pills nav-fill mb-3 d-lg-none"
       id="pills-tab"
