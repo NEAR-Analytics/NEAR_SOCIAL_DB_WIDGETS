@@ -13,7 +13,7 @@
 //     return group;
 //   });
 
-const defaultTag = props.defaultTag || "everything";
+const defaultTag = props.defaultTag || "earthday";
 
 const hashtags = [
   { name: "everything", required: true },
