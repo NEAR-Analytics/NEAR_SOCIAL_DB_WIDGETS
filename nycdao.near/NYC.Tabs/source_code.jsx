@@ -13,9 +13,9 @@ if (page === null) {
 const description = page.description;
 
 const pills = [
-  { id: "projects", title: "Projects" },
-  { id: "about", title: "About" },
   { id: "community", title: "Community" },
+  { id: "about", title: "About" },
+  { id: "projects", title: "Projects" },
   { id: "events", title: "Events" },
 ];
 
@@ -45,16 +45,13 @@ return (
     </ul>
     <div className="tab-content" id="pills-tabContent">
       <div
-        className="tab-pane fade show active"
-        id="pills-projects"
+        className="tab-pane fade"
+        id="pills-community"
         role="tabpanel"
-        aria-labelledby="pills-projects-tab"
+        aria-labelledby="pills-community-tab"
       >
         <div className="mx-auto">
-          <Widget
-            src="nycdao.near/widget/NYC.Projects"
-            props={{ accounts: [accountId] }}
-          />
+          <Widget src="nycdao.near/widget/NYC.Social" props={{ hashtag }} />
         </div>
       </div>
       <div
@@ -75,13 +72,16 @@ return (
         </div>
       </div>
       <div
-        className="tab-pane fade"
-        id="pills-community"
+        className="tab-pane fade show active"
+        id="pills-projects"
         role="tabpanel"
-        aria-labelledby="pills-community-tab"
+        aria-labelledby="pills-projects-tab"
       >
         <div className="mx-auto">
-          <Widget src="efiz.near/widget/NYC.Social" props={{ hashtag }} />
+          <Widget
+            src="nycdao.near/widget/NYC.Projects"
+            props={{ accounts: [accountId] }}
+          />
         </div>
       </div>
       <div
