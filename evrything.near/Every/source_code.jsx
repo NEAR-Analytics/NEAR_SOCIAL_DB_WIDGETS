@@ -32,6 +32,7 @@ const font = props.font || "Times New Roman";
 State.init({
   title: "everything",
   hashtagsFilter: hashtags[0],
+  selectedType: "posts",
 });
 
 const H1 = styled.h1`
@@ -115,16 +116,28 @@ return (
             />
           )}
         />
+        <div className="d-inline-block">
+          <Button onClick={() => State.update({ selectedType: "posts" })}>
+            posts
+          </Button>
+          <Button onClick={() => State.update({ selectedType: "events" })}>
+            events
+          </Button>
+        </div>
       </Controller>
-      <Widget
-        src="efiz.near/widget/Community.Posts"
-        props={{
-          communityHashtags: [state.hashtagsFilter],
-          communityMembers: [],
-          exclusive: false,
-          allowPublicPosting: true,
-        }}
-      />
+      {state.selectedType === "posts" ? (
+        <Widget
+          src="efiz.near/widget/Community.Posts"
+          props={{
+            communityHashtags: [state.hashtagsFilter],
+            communityMembers: [],
+            exclusive: false,
+            allowPublicPosting: true,
+          }}
+        />
+      ) : (
+        <Widget src="evrything.near/widget/Everything.ViewAll.Events" />
+      )}
     </Container>
   </>
 );
