@@ -39,7 +39,7 @@ return (
         src="miraclx.near/widget/Attribution"
         props={{
           dep: true,
-          authors: [accountId],
+          authors: ["evrything.near"],
         }}
       />
       {context.accountId && (
