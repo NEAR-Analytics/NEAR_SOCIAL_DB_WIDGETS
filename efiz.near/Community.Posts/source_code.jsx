@@ -160,7 +160,7 @@ const FeedWrapper = styled.div`
 return (
   <>
     <Content>
-      {context.accountId && (
+      {context.accountId ? (
         <>
           <ComposeWrapper>
             <Widget
@@ -174,7 +174,6 @@ return (
               }}
             />
           </ComposeWrapper>
-
           <FilterWrapper>
             <PillSelect>
               {allowPublicPosting ? (
@@ -209,8 +208,9 @@ return (
             </PillSelect>
           </FilterWrapper>
         </>
+      ) : (
+        <Widget src="/evrything.near/widget/Register" />
       )}
-
       <FeedWrapper>
         <Widget
           src="efiz.near/widget/Posts.Feed"
