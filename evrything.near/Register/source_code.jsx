@@ -36,7 +36,7 @@ return (
       <a href="https://near.org/">NEAR</a>.<br />
       <br />
       <strong>everything</strong> was built using fully decentralized
-      technologies, and it's completely open source, will always be free, and
+      technologies, it's completely open source, and will always be free and
       open to the public.
       <br />
       <br />
