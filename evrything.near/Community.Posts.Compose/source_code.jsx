@@ -445,7 +445,7 @@ const Button = styled.button`
   }
 `;
 
-if (true) {
+if (!context.accountId) {
   return (
     <Container>
       <Text>
