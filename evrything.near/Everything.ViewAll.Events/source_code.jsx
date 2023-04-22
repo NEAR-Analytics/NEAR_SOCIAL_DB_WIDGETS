@@ -15,8 +15,6 @@ const data = fetch("https://monkfish-app-ginhc.ondigitalocean.app/graphql", {
   },
 });
 
-// we can do a few things here...
-
 if (!data.body.errors) {
   events = data.body.data.findEvents;
 }
