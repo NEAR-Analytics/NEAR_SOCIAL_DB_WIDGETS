@@ -1,16 +1,12 @@
+const { NETWORK_NEAR, NETWORK_ETH, NETWORK_ZKSYNC, debug } = props;
 let onLoad = props.onLoad;
 const forceReload = props.forceReload ?? false;
-const debug = props.debug;
 
 State.init({ loadComplete: false });
 
 if (state.loadComplete && !forceReload) {
   return state.debugOutput ?? <div />;
 }
-
-const NETWORK_NEAR = "NEAR";
-const NETWORK_ETH = "ETH";
-const NETWORK_ZKSYNC = "ZKSYNC";
 
 if (debug) {
   onLoad = (data) => {
