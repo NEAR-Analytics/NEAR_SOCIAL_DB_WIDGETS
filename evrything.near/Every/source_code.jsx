@@ -19,6 +19,8 @@ const hashtags = [
   { name: "everything", required: true },
   { name: "nyc", required: true },
   { name: "earthday", required: true },
+  { name: "bos", required: true },
+  { name: "dev", required: true },
 ];
 
 const options = hashtags.map((hashtag) => ({
