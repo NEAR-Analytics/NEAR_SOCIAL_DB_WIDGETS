@@ -63,6 +63,9 @@ const Theme = state.theme;
 
 // USER FUNCTIONS
 
+const currentAccountId =
+  getEVMAccountId() !== "" ? getEVMAccountId() : context.accountId;
+
 const rearrangeAssets = () => {
   State.update({
     inputAssetTokenId: state.outputAssetTokenId,
@@ -553,10 +556,7 @@ return (
           <p>
             Supported networks: {NETWORK_NEAR}, {NETWORK_ETH}, {NETWORK_ZKSYNC}
           </p>
-          <p>
-            Current account:{" "}
-            {(getEVMAccountId() ?? context.accountId) || "(Disconnected)"}
-          </p>
+          {currentAccountId && <p>Current account: {currentAccountId}</p>}
         </div>
       </div>
     </div>
