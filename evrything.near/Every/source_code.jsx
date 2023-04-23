@@ -29,11 +29,12 @@ const options = hashtags.map((hashtag) => ({
 }));
 
 const defaultOption = options.find((option) => option.label === defaultTag);
+const defaultFilter = hashtags.find((hashtag) => hashtag.name === defaultTag);
 
 const font = props.font || "Times New Roman";
 State.init({
   title: "everything",
-  hashtagsFilter: hashtags[0],
+  hashtagsFilter: defaultFilter,
   selectedType: "posts",
 });
 
