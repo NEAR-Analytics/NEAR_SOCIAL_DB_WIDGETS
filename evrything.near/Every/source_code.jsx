@@ -37,6 +37,27 @@ State.init({
   selectedType: "posts",
 });
 
+const renderThings = () => {
+  switch (state.selectedType) {
+    case "posts":
+      return (
+        <Widget
+          src="efiz.near/widget/Community.Posts"
+          props={{
+            communityHashtags: [state.hashtagsFilter],
+            communityMembers: [],
+            exclusive: false,
+            allowPublicPosting: true,
+          }}
+        />
+      );
+    case "events":
+      return <Widget src="evrything.near/widget/Everything.ViewAll.Events" />;
+    case "climateclock":
+      return <Widget src="earthday.near/widget/ClimateClock" />;
+  }
+};
+
 const H1 = styled.h1`
   font-family: ${font}, Times, serif;
   font-size: 4em;
@@ -125,21 +146,16 @@ return (
           <Button onClick={() => State.update({ selectedType: "events" })}>
             events
           </Button>
+          {state.hashtagsFilter.name === "earthday" ? (
+            <Button
+              onClick={() => State.update({ selectedType: "climateclock" })}
+            >
+              climate clock
+            </Button>
+          ) : null}
         </div>
       </Controller>
-      {state.selectedType === "posts" ? (
-        <Widget
-          src="efiz.near/widget/Community.Posts"
-          props={{
-            communityHashtags: [state.hashtagsFilter],
-            communityMembers: [],
-            exclusive: false,
-            allowPublicPosting: true,
-          }}
-        />
-      ) : (
-        <Widget src="evrything.near/widget/Everything.ViewAll.Events" />
-      )}
+      {renderThings()}
     </Container>
   </>
 );
