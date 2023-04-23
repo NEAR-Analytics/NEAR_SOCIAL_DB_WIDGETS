@@ -117,9 +117,12 @@ return (
         </Link>
         <br />
         <br />
-        <strong>everything</strong> was built using fully decentralized
-        technologies, it's completely open source, it will always be free and
-        open to the public, and we don't collect any of your information.
+        <strong>everything</strong> was built using fully{" "}
+        <a href="https://docs.near.org/discovery" target="_blank">
+          decentralized technologies
+        </a>
+        , it's completely open source, it will always be free and open to the
+        public, and we don't collect any of your information.
         <br />
         <br />
         It is a platform built for the people, by the people. And we mean that--
@@ -128,7 +131,6 @@ return (
         <br />
         Because with <strong>everything</strong> we can do <i>anything</i>.
         <br />
-        It's about time we had a platform like this.
         <br />
       </Content>
     </Body>
