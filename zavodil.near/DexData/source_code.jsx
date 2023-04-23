@@ -29,6 +29,10 @@ if (typeof onLoad !== "function") return "Error";
 
 // SUBMIT TX EVENTS
 
+const expandToken = (value, decimals) => {
+  return new Big(value).mul(new Big(10).pow(decimals));
+};
+
 const callTxSyncSwap = (input, onComplete, gweiPrice) => {
   if (input.sender && input.routerContract !== undefined) {
     const classicPoolFactoryContractId =
@@ -113,7 +117,7 @@ const callTxSyncSwap = (input, onComplete, gweiPrice) => {
   }
 };
 
-const callTxUni = (input, onComplete, expandToken, gasPrice) => {
+const callTxUni = (input, onComplete, gasPrice) => {
   console.log("callTxUni", input, onComplete);
   if (input.sender && input.routerContract !== undefined && input.routerAbi) {
     const value = expandToken(
@@ -144,7 +148,7 @@ const callTxUni = (input, onComplete, expandToken, gasPrice) => {
   }
 };
 
-const callTokenApprovalEVM = (input, onComplete, expandToken, gweiPrice) => {
+const callTokenApprovalEVM = (input, onComplete, gweiPrice) => {
   if (
     input.sender &&
     input.erc20Abi &&
@@ -173,7 +177,7 @@ const callTokenApprovalEVM = (input, onComplete, expandToken, gweiPrice) => {
   }
 };
 
-const callTxRef = (input, onComplete, expandToken) => {
+const callTxRef = (input, onComplete) => {
   const tx = [];
 
   const nearDeposit = {
@@ -360,8 +364,8 @@ if (ethers !== undefined && Ethers.send("eth_requestAccounts", [])[0]) {
           routerAbi: state.routerAbi,
           factoryAbi: state.factoryAbi,
           erc20Abi: state.erc20Abi,
-          callTx: (i, o, g) => callTxSyncSwap(i, o, g),
-          callTokenApproval: (i, o, g) => callTokenApprovalEVM(i, o, g),
+          callTx: callTxSyncSwap,
+          callTokenApproval: callTokenApprovalEVM,
         });
         State.update({ loadComplete: true });
       } else if (chainIdData.chainId === 1) {
@@ -405,8 +409,8 @@ if (ethers !== undefined && Ethers.send("eth_requestAccounts", [])[0]) {
           dexName: "UniSwap",
           erc20Abi: state.erc20Abi,
           routerAbi: state.routerAbi,
-          callTx: (i, o, g) => callTxUni(i, o, g),
-          callTokenApproval: (i, o, g) => callTokenApprovalEVM(i, o, g),
+          callTx: callTxUni,
+          callTokenApproval: callTokenApprovalEVM,
         });
         State.update({ loadComplete: true });
       } else {
