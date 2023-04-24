@@ -241,8 +241,6 @@ if (!state.projectsIsFetched) {
   return <>Loading...</>;
 }
 
-console.log(state)
-
 return (
   <Container>
     {/*<ProgressBar className={state.step === "step1" ? "half" : ""}><div /><div /></ProgressBar>*/}
