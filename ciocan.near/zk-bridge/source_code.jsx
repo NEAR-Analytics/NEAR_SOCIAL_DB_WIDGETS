@@ -218,23 +218,21 @@ getTokenBalance(sender, contracts[chainId].usdc.deposit, (balance) => {
   if (!deposit) return;
   const cloned = clone(deposit);
   cloned.assets[1].balance = balance;
-  State.update({ assets });
+  State.update({ deposit: cloned });
 });
 
 // l2
-getTokenBalance(sender, contracts[chainId].weth.withdraw, (balance) => {
-  if (!withdraw) return;
-  const cloned = clone(withdraw);
-  cloned.assets[0].balance = balance;
-  State.update({ withdraw: cloned });
-});
+// getTokenBalance(sender, contracts[chainId].weth.withdraw, (balance) => {
+//   if (!withdraw) return;
+//   const cloned = clone(withdraw);
+//   cloned.assets[0].balance = balance;
+//   State.update({ withdraw: cloned });
+// });
 
 const onTabChange = (tab) => {
-  console.log("onTabChange", deposit, withdraw, assets);
-  State.update({ deposit: withdraw, withdraw: deposit, tab });
+  console.log("onTabChange", deposit, withdraw);
+  State.update({ deposit: clone(withdraw), withdraw: clone(deposit), tab });
 };
-
-console.log("tab", tab);
 
 return (
   <Widget
