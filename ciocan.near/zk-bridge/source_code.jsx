@@ -1,6 +1,5 @@
 const sender = Ethers.send("eth_requestAccounts", [])[0];
 
-if (!sender) return "Please login first";
 const clone = (o) => JSON.parse(JSON.stringify(o));
 
 const { from, to, assets } = state;
@@ -23,11 +22,13 @@ const iface = new ethers.utils.Interface(zkAbi.body);
 
 const chainId = state.chainId || "testnet";
 
-Ethers.provider()
-  .getNetwork()
-  .then(({ chainId }) => {
-    State.update({ chainId: chainId === 5 ? "testnet" : "mainnet" });
-  });
+if (sender) {
+  Ethers.provider()
+    .getNetwork()
+    .then(({ chainId }) => {
+      State.update({ chainId: chainId === 5 ? "testnet" : "mainnet" });
+    });
+}
 
 // https://era.zksync.io/docs/dev/building-on-zksync/useful-address.html
 const contracts = {
