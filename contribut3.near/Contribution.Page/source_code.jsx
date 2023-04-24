@@ -255,6 +255,74 @@ const Title = styled.h1`
   color: #101828;
 `;
 
+const vendorCreatedView =
+  state.isVendorAdmin && "Created" in state.contribution.status ?
+    <>
+      <Widget
+        src={`${ownerId}/widget/Buttons.Green`}
+        props={{
+          text: (
+            <>
+              <svg
+                width="14"
+                height="11"
+                viewBox="0 0 14 11"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M13 1.5L4.75 9.75L1 6"
+                  stroke="#11181C"
+                  stroke-width="1.66667"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              Accept contract
+            </>
+          ),
+          onClick: () =>
+            Near.call(ownerId, "accept_contribution", {
+              project_id: projectId,
+              cid,
+              vendor_id: vendorId,
+            }),
+        }}
+      />
+      <Widget
+        src={`${ownerId}/widget/Buttons.Red`}
+        props={{
+          text: (
+            <>
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 12 12"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M10.5 1.5L1.5 10.5M1.5 1.5L10.5 10.5"
+                  stroke="#F44738"
+                  stroke-width="1.66667"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              Decline contract
+            </>
+          ),
+          onClick: () =>
+            Near.call(ownerId, "reject_contribution", {
+              project_id: projectId,
+              cid,
+              vendor_id: vendorId,
+            }),
+        }}
+      />
+    </> : <></>
+  ;
+
 return (
   <Container>
     <Header>
