@@ -102,6 +102,7 @@ if ("Completed" in status) {
 }
 
 const List = styled.ul`
+  list-style-position: inside;
   list-style-type: image;
   list-style-image: url(https://ipfs.near.social/ipfs/bafkreicxzxikc435dyiwilxuitevu5uiwoea4ls6o7ckdev3esjs6r3p5q);
   width: 100%;
