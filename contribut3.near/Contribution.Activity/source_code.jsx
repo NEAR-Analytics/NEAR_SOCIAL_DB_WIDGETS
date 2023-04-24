@@ -45,4 +45,11 @@ if ("Delivered" in contribution.status || "Completed" in contribution.status) {
   });
 }
 
+if ("Completed" in contribution.status) {
+  activity.push({
+    id: "completed",
+    text: <>Contract completed</>
+  });
+}
+
 return <>Here</>;
