@@ -149,12 +149,22 @@ const contributionType = (
   </Item>
 );
 
+const Label = styled.div`
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.95em;
+  line-height: 1.25em;
+  color: #344054;
+`;
+
 return (
   <Container>
+    <Label>Project</Label>
     <Widget
       src={`${ownerId}/widget/Project.Line`}
       props={{ accountId: projectId, size: "1.5em" }}
     />
+    <Label>Vendor</Label>
     <Widget
       src={`${ownerId}/widget/Vendor.Line`}
       props={{ accountId: vendorId, size: "1.5em" }}
