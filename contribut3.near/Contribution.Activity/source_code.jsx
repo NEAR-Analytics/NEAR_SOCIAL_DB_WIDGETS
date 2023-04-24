@@ -108,7 +108,7 @@ actions.forEach(({ description, start_date, end_date }) =>
   })
 );
 
-if (typeof status !== "string" && "Delivered" in status || "Completed" in status) {
+if (typeof status !== "string" && ("Delivered" in status || "Completed" in status)) {
   activity.push({
     id: "delivered",
     text: (
