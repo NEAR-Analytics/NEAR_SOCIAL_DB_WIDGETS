@@ -138,6 +138,7 @@ const ProposalCard = (
     src={`${widgetProvider}/widget/NDC-proposal-card`}
     props={{
       proposal: state.proposal,
+      council: state.council,
     }}
   />
 );
@@ -194,7 +195,7 @@ const toggleModal = (isOpen) => {
 
 return (
   <>
-    {state.proposal && state.isModalOpen ? (
+    {state.proposal && state.isModalOpen && state.council ? (
       <Widget
         src={`${widgetProvider}/widget/NDC-modal`}
         props={{
