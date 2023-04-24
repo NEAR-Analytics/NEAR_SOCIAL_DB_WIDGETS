@@ -13,17 +13,35 @@ const activity = [
   },
 ];
 
-if ((!("Rejected" in contribution.status) && !("Created" in contribution.status))) {
+if (!("Rejected" in contribution.status) && !("Created" in contribution.status)) {
   activity.push({
     id: "accepted",
-    text: <>{vendorName} accepted contract</>
+    text: <><b>{vendorName}</b> accepted contract</>
+  });
+  activity.push({
+    id: "started",
+    text: <>Contract has started</>
   });
 }
 
 if ("Rejected" in contribution.status) {
   activity.push({
     id: "rejected",
-    text: <>{vendorName} rejected contract</>
+    text: <><b>{vendorName}</b> rejected contract</>
+  });
+}
+
+if (contribution.status === "Ongoing" || "Delivered" in contribution.status || "Completed" in contribution.status) {
+  activity.push({
+    id: "ongoing",
+    text: <>Work in progress</>
+  });
+}
+
+if ("Delivered" in contribution.status || "Completed" in contribution.status) {
+  activity.push({
+    id: "delivered",
+    text: <>Contract marked as delivered by <b>{vendorName}</b></>
   });
 }
 
