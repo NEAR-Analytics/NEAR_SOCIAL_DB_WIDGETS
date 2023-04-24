@@ -116,31 +116,34 @@ const projectFeedbackView = (
 );
 
 const vendorFeedbackView = (
-  <Container>
-    <Column>
-      <Row>
-        <Widget
-          src={`${ownerId}/widget/Vendor.Icon`}
-          props={{ accountId: vendorId, size: "2em" }}
-        />
-        <Widget
-          src={`${ownerId}/widget/NameAndAccount`}
-          props={{
-            accountId: vendorId,
-            name: state.name,
-            nameSize: "1.125em",
-          }}
-        />
-      </Row>
-      <h3>{title}</h3>
-      <Description>
-        <Widget
-          src={`${ownerId}/widget/DescriptionArea`}
-          props={{ description: vendorFeedback }}
-        />
-      </Description>
-    </Column>
-  </Container>
+  <Widget src={`${ownerId}/widget/Card`} props={{
+    body:
+      <Container>
+        <Column>
+          <Row>
+            <Widget
+              src={`${ownerId}/widget/Vendor.Icon`}
+              props={{ accountId: vendorId, size: "2em" }}
+            />
+            <Widget
+              src={`${ownerId}/widget/NameAndAccount`}
+              props={{
+                accountId: vendorId,
+                name: state.name,
+                nameSize: "1.125em",
+              }}
+            />
+          </Row>
+          <h3>{title}</h3>
+          <Description>
+            <Widget
+              src={`${ownerId}/widget/DescriptionArea`}
+              props={{ description: vendorFeedback }}
+            />
+          </Description>
+        </Column>
+      </Container>
+  }} />
 );
 
 return <>Feedback</>;
