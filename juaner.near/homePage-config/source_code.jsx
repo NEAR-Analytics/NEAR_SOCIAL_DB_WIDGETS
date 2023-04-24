@@ -1,1 +1,1 @@
-return <Widget src="juaner.near/widget/ref-lending" />;
+return <Widget src="juaner.near/widget/ref-home" />;
