@@ -58,4 +58,18 @@ if ("Completed" in contribution.status) {
   });
 }
 
-return <>Here</>;
+const List = styled.ul`
+  list-style-type: image;
+  list-style-image: url(https://ipfs.near.social/ipfs/bafkreicxzxikc435dyiwilxuitevu5uiwoea4ls6o7ckdev3esjs6r3p5q);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0;
+  gap: 2em;
+`;
+
+return <List>{
+  activity.reverse().map(({ id, text, timestamp }) => <li key={id}><span>{text}</span><small>{timestamp}</small></li>)
+}</List>;
