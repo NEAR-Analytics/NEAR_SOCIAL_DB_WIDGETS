@@ -141,7 +141,7 @@ ${JSON.stringify(state.response, undefined, 2)}
     </div>
     <div class="container-fluid mt-4 text-center">
       <p class="fs-6">
-        Powered By
+        Powered by Web3Client. For more features, checkout
         <a
           href="https://workspace.web3client.app/"
           class="link-primary"
