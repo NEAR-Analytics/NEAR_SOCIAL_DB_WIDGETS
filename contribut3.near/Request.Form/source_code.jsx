@@ -261,7 +261,7 @@ return (
           label: "Request as *",
           value: state.projectId,
           options: state.projects,
-          onChange: (projectId) => State.update({ projectId }),
+          onChange: (projectId) => { State.update({ projectId }); console.log(projectId) },
         }}
       />
       <Widget
