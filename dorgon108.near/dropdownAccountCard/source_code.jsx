@@ -66,6 +66,7 @@ const Avatar = styled.a`
 `;
 
 const TextLink = styled.a`
+  width:100%;
   display: block;
   margin: 0;
   margin-right: 42.22px;
