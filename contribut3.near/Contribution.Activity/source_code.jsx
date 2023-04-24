@@ -1,22 +1,65 @@
-const contribution = props.contribution;
-const request = props.request;
-const projectName = props.projectName;
-const vendorName = props.vendorName;
+const ownerId = "contribut3.near";
+const projectId = props.projectId;
+const vendorId = props.vendorId;
+const title = props.title;
+const status = props.status;
+const actions = props.actions;
+
+State.init({
+  name: "",
+  nameIsFetched: false,
+  vendorName: "",
+  vendorNameIsFetched: false,
+});
+
+if (!state.nameIsFetched) {
+  Near.asyncView(
+    "social.near",
+    "get",
+    { keys: [`${projectId}/profile/name`] },
+    "final",
+    false
+  ).then((data) =>
+    State.update({
+      name: data[projectId].profile.name,
+      nameIsFetched: true,
+    })
+  );
+}
+
+if (!state.vendorNameIsFetched) {
+  Near.asyncView(
+    "social.near",
+    "get",
+    { keys: [`${vendorId}/profile/name`] },
+    "final",
+    false
+  ).then((data) =>
+    State.update({
+      vendorName: data[vendorId].profile.name,
+      vendorNameIsFetched: true,
+    })
+  );
+}
+
+if (!state.nameIsFetched || !state.vendorNameIsFetched) {
+  return <>Loading...</>;
+}
 
 const activity = [
   {
     id: "created",
-    text: <><b>{projectName}</b> created a contract <b>"{request.title}"</b> with <b>{vendorName}</b></>
+    text: <><b>{state.name}</b> created a contract <b>"{title}"</b> with <b>{state.vendorName}</b></>
   }, {
     id: "awaiting",
-    text: <>Awaiting approval by <b>{vendorName}</b></>
+    text: <>Awaiting approval by <b>{state.vendorName}</b></>
   },
 ];
 
-if (!("Rejected" in contribution.status) && !("Created" in contribution.status)) {
+if (!("Rejected" in status) && !("Created" in status)) {
   activity.push({
     id: "accepted",
-    text: <><b>{vendorName}</b> accepted contract</>
+    text: <><b>{state.vendorName}</b> accepted contract</>
   });
   activity.push({
     id: "started",
@@ -24,14 +67,14 @@ if (!("Rejected" in contribution.status) && !("Created" in contribution.status))
   });
 }
 
-if ("Rejected" in contribution.status) {
+if ("Rejected" in status) {
   activity.push({
     id: "rejected",
-    text: <><b>{vendorName}</b> rejected contract</>
+    text: <><b>{state.vendorName}</b> rejected contract</>
   });
 }
 
-if (contribution.status === "Ongoing" || "Delivered" in contribution.status || "Completed" in contribution.status) {
+if (status === "Ongoing" || "Delivered" in status || "Completed" in status) {
   activity.push({
     id: "ongoing",
     text: <>Work in progress</>
@@ -44,14 +87,14 @@ contribution.actions.forEach(({ description, start_date, end_date }) => activity
   timestamp: `${new Date(Number(start_date)).toLocaleDateString()}${end_date ? " - " + new Date(Number(end_date)).toLocaleDateString() : ""}`
 }));
 
-if ("Delivered" in contribution.status || "Completed" in contribution.status) {
+if ("Delivered" in status || "Completed" in status) {
   activity.push({
     id: "delivered",
-    text: <>Contract marked as delivered by <b>{vendorName}</b></>
+    text: <>Contract marked as delivered by <b>{state.vendorName}</b></>
   });
 }
 
-if ("Completed" in contribution.status) {
+if ("Completed" in status) {
   activity.push({
     id: "completed",
     text: <>Contract completed</>
