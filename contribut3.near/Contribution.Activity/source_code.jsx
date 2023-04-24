@@ -119,7 +119,7 @@ if (typeof status !== "string" && "Delivered" in status || "Completed" in status
   });
 }
 
-if ("Completed" in status) {
+if (typeof status !== "string" && "Completed" in status) {
   activity.push({
     id: "completed",
     text: <>Contract completed</>,
