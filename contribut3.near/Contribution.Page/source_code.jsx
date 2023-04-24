@@ -244,6 +244,10 @@ const content = {
         projectId,
         cid,
         vendorId,
+        status: state.contribution.status,
+        title: state.proposal.title,
+        projectFeedback: state.contribution.project_feedback,
+        vendorFeedback: state.contribution.vendor_feedback,
       }}
     />
   ),
