@@ -55,9 +55,9 @@ const { assets } = from;
 const isDeposit = !action || action === "deposit";
 const actionTitle = isDeposit ? "Deposit" : "Withdraw";
 
-if (!selectedAsset) {
+if (assets && !selectedAsset) {
   initState({
-    selectedAsset: assets?.find((a) => a.selected) || assets?.[0],
+    selectedAsset: assets.find((a) => a.selected) || assets?.[0],
   });
 }
 
@@ -84,7 +84,7 @@ const handleAmountChange = (e) => {
 };
 
 const handleAssetChange = (e) => {
-  State.update({ selectedAsset: assets.find((a) => a.id === e.target.value) });
+  State.update({ selectedAsset: assets?.find((a) => a.id === e.target.value) });
 };
 
 const handleTabChange = (tab) => {
@@ -197,11 +197,12 @@ return (
             aria-label="select asset"
             onChange={handleAssetChange}
           >
-            {assets.map((asset) => (
-              <option value={asset.id} selected={asset.selected}>
-                {asset.value}
-              </option>
-            ))}
+            {assets &&
+              assets.map((asset) => (
+                <option value={asset.id} selected={asset.selected}>
+                  {asset.value}
+                </option>
+              ))}
           </select>
         </div>
         <div className="d-flex flex-column gap-2">
@@ -229,7 +230,7 @@ return (
     <div className="border border-secondary border-bottom-0 border-light" />
     <div className="p-4 d-flex justify-content-between">
       <div>{to.network.value}</div>
-      <div>Balance: {selectedAssetTo?.balance}</div>
+      <div>Balance: {selectedAssetTo.balance}</div>
     </div>
     <div className="border border-secondary border-bottom-0 border-light" />
     <div className="p-4 d-grid gap-3">
