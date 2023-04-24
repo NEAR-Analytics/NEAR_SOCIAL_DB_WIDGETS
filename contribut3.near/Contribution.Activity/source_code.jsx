@@ -145,7 +145,7 @@ return (
       <li key={id}>
         <span>{text}</span>
         <br />
-        At <small>{timestamp}</small>
+        {timestamp ? <>At <small>{timestamp}</small></> : <></>}
       </li>
     ))}
   </List>
