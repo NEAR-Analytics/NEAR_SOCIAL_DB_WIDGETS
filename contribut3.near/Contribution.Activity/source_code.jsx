@@ -103,7 +103,7 @@ actions.forEach(({ description, start_date, end_date }) =>
   activity.push({
     id: start_date,
     text: <>{description}</>,
-    timestamp: `${new Date(Number(start_date.substring(start_date.length - 8))).toLocaleDateString()}${end_date ? " - " + new Date(Number(end_date.substring(end_date.length - 8))).toLocaleDateString() : ""
+    timestamp: `${new Date(Number(start_date.substring(start_date.length - 6))).toLocaleDateString()}${end_date ? " - " + new Date(Number(end_date.substring(end_date.length - 6))).toLocaleDateString() : ""
       }`,
   })
 );
