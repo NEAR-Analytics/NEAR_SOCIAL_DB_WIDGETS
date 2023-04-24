@@ -20,6 +20,7 @@ State.init({
 });
 
 const refReferralId = props.refReferralId ?? "ukraine";
+const forceNetwork = props.forceNetwork;
 
 const getEVMAccountId = () => {
   if (ethers !== undefined) {
@@ -266,6 +267,24 @@ const onCallTxComple = (tx) => {
 };
 
 // OUTPUT
+
+if (forceNetwork && forceNetwork !== state.network) {
+  return (
+    <Theme>
+      <div class="swap-main-container pt-5">
+        To proceed, kindly switch to {forceNetwork}.
+        {!state.sender && (
+          <div class="swap-button-container">
+            <Web3Connect
+              className="swap-button-enabled swap-button-text p-2"
+              connectLabel="Connect with Web3"
+            />
+          </div>
+        )}
+      </div>
+    </Theme>
+  );
+}
 
 return (
   <Theme>
