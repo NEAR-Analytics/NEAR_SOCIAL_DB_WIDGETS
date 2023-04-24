@@ -424,6 +424,7 @@ return (
           {vendorCreatedView}
           {vendorAcceptedView}
           {projectDeliveredView}
+          {addActionView}
         </CTARow>
       </HeaderDetails>
     </Header>
