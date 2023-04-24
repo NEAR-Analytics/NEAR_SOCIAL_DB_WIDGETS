@@ -128,6 +128,8 @@ const Container = styled.div`
     }
 
     .balance {
+      height: 38px;
+      
       input {
         background: #f5f6fd;
         color: black;
