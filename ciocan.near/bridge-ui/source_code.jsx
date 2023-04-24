@@ -5,7 +5,7 @@
   "log": "The TX hash is: 0x2c5d223e47ecd9ac68fbdcd3eeb2bc4615ce6f7209d295104131c1440056497e Etherscan",
   "explorerLink": "https://etherscan.io/tx/123",
   "title": "zkBridge",
-  "from": {
+  "deposit": {
     "network": {
       "id": "eth-testnet",
       "name": "Ethereum Goerli"
@@ -24,7 +24,7 @@
       }
     ]
   },
-  "to": {
+  "withdraw": {
     "network": {
       "id": "zksync-testnet",
       "name": "zkSync Era Testnet"
@@ -47,10 +47,18 @@
 }
 */
 
-const { from, to, onTabChange, onAction, title, isLoading, log, explorerLink } =
-  props;
-const { action, amount, selectedAsset, selectedAssetBalanceTo } = state;
-const { assets } = from;
+const {
+  deposit,
+  withdraw,
+  onTabChange,
+  onAction,
+  title,
+  isLoading,
+  log,
+  explorerLink,
+} = props;
+const { action, amount, selectedAsset } = state;
+const { assets } = deposit;
 
 const isDeposit = !action || action === "deposit";
 const actionTitle = isDeposit ? "Deposit" : "Withdraw";
@@ -61,14 +69,14 @@ if (assets && !selectedAsset) {
   });
 }
 
-const selectedAssetTo = selectedAsset
-  ? to?.assets?.find((a) => a.id === selectedAsset.id)
+const selectedAssetWithdraw = selectedAsset
+  ? withdraw?.assets?.find((a) => a.id === selectedAsset.id)
   : undefined;
 
 const handleAction = () => {
   if (onAction)
     onAction({
-      networkId: from.network.id,
+      networkId: deposit.network.id,
       amount,
       assetId: selectedAsset.id,
       action: isDeposit ? "deposit" : "withdraw",
@@ -191,7 +199,7 @@ return (
     <div className="p-4">
       <div className="d-flex justify-content-between">
         <div className="assets d-flex flex-column gap-2">
-          <span>{from.network.name}</span>
+          <span>{deposit.network.name}</span>
           <select
             className="form-select"
             aria-label="select asset"
@@ -229,8 +237,8 @@ return (
     </div>
     <div className="border border-secondary border-bottom-0 border-light" />
     <div className="p-4 d-flex justify-content-between">
-      <div>{to.network.name}</div>
-      <div>Balance: {selectedAssetTo.balance}</div>
+      <div>{withdraw.network.name}</div>
+      <div>Balance: {selectedAssetWithdraw.balance}</div>
     </div>
     <div className="border border-secondary border-bottom-0 border-light" />
     <div className="p-4 d-grid gap-3">
