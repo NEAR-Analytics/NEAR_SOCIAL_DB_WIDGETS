@@ -83,13 +83,10 @@ return (
         <option selected value="view">
           View
         </option>
-        <option value="nonPayable">Non Payable</option>
         <option value="payable">Payable</option>
       </select>
-
-      <div class="mt-4">
-        {(state.state_mutability === "nonPayable" ||
-          state.state_mutability === "payable") && (
+      {state.state_mutability === "payable" && (
+        <div class="mt-4">
           <>
             <label for="selectFunction" class="mt-2">
               Deposit
@@ -115,24 +112,20 @@ return (
                 State.update({ gas });
               }}
             />
+            <button type="button" class="btn btn-success" onClick={handleCall}>
+              Call
+            </button>
           </>
-        )}
-      </div>
+        </div>
+      )}
 
-      <div class="col-md mt-4">
-        {state.state_mutability === "view" && (
+      {state.state_mutability === "view" && (
+        <div class="col-md mt-4">
           <button type="button" class="btn btn-success" onClick={handleView}>
             View
           </button>
-        )}
-
-        {(state.state_mutability === "nonPayable" ||
-          state.state_mutability === "payable") && (
-          <button type="button" class="btn btn-success" onClick={handleCall}>
-            Call
-          </button>
-        )}
-      </div>
+        </div>
+      )}
 
       <div class="mt-3">
         {state.response && (
@@ -145,6 +138,18 @@ ${JSON.stringify(state.response, undefined, 2)}
           />
         )}
       </div>
+    </div>
+    <div class="container-fluid mt-4 text-center">
+      <p class="fs-6">
+        Powered By
+        <a
+          href="https://workspace.web3client.app/"
+          class="link-primary"
+          target="_blank"
+        >
+          Web3Client.app
+        </a>
+      </p>
     </div>
   </div>
 );
