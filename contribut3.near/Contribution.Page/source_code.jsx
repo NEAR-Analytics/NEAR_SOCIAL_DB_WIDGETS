@@ -218,7 +218,9 @@ const content = {
       src={`${ownerId}/widget/Contribution.Activity`}
       props={{
         projectId,
-        cid,
+        title: state.proposal.title,
+        actions: state.contribution.actions,
+        status: state.contribution.status,
         vendorId,
         isAdmin: state.isAdmin,
       }}
