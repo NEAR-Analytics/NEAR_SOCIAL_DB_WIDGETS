@@ -143,7 +143,7 @@ return (
   <List>
     {activity.reverse().map(({ id, text, timestamp }) => (
       <li key={id}>
-        <span>{text}</span>
+        <span>{text}</span> on <br />
         <small>{timestamp}</small>
       </li>
     ))}
