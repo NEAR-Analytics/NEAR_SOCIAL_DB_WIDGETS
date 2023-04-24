@@ -422,9 +422,9 @@ return (
         <Title>{state.proposal.title}</Title>
         <CTARow>
           {vendorCreatedView}
+          {addActionView}
           {vendorAcceptedView}
           {projectDeliveredView}
-          {addActionView}
         </CTARow>
       </HeaderDetails>
     </Header>
