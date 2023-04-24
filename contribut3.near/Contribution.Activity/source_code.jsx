@@ -102,7 +102,7 @@ if (status === "Ongoing" || "Delivered" in status || "Completed" in status) {
 const actionsMapped = actions.map(({ description, start_date, end_date }) => ({
   id: start_date,
   text: <>{description}</>,
-  timestamp: start_date.substring(start_date.length - 6),
+  timestamp: start_date.substring(0, start_date.length - 6),
 }));
 
 console.log(actionsMapped);
