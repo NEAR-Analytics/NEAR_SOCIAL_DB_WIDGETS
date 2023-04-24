@@ -18,9 +18,9 @@ return (
     src="efiz.near/widget/Community.Posts"
     props={{
       communityHashtags: hashtags,
-      communityDomain: "create.near",
+      // communityDomain: "create.near",
       // communityMembers: group[0],
-      // exclusive: true,
+      exclusive: false,
       allowPublicPosting: true,
     }}
   />
