@@ -206,6 +206,7 @@ initState({
 });
 
 // update token balances
+// l1
 getTokenBalance(sender, contracts[chainId].weth.deposit, (balance) => {
   if (!deposit) return;
   const cloned = clone(deposit);
@@ -218,6 +219,14 @@ getTokenBalance(sender, contracts[chainId].usdc.deposit, (balance) => {
   const cloned = clone(deposit);
   cloned.assets[1].balance = balance;
   State.update({ assets });
+});
+
+// l2
+getTokenBalance(sender, contracts[chainId].weth.withdraw, (balance) => {
+  if (!withdraw) return;
+  const cloned = clone(withdraw);
+  cloned.assets[0].balance = balance;
+  State.update({ withdraw: cloned });
 });
 
 const onTabChange = (tab) => {
