@@ -6,10 +6,7 @@ if (!accountId) {
 
 State.init({
   description: "",
-  args: "",
 });
-
-const proposal_args = Buffer.from(state.args, "utf-8").toString("base64");
 
 const handleProposal = () => {
   Near.call([
@@ -44,18 +41,7 @@ const handleProposal = () => {
                       },
                     },
                   },
-                  /*
-                  "hack.near": {
-                    "post": {
-                      "main": "{\"type\":\"md\",\"text\":\"gm\"}"
-                    },
-                    "index": {
-                      "post": "{\"key\":\"main\",\"value\":{\"type\":\"md\"}}",
-                      "hashtag": "[{\"key\":\"news\",\"value\":{\"type\":\"social\",\"path\":\"hack.near/post/main\"}}]"
-                    }
-                  }
-                  */
-                  deposit: "88888888888888",
+                  deposit: "50000000000000000000000",
                   gas: "200000000000000",
                 },
               ],
