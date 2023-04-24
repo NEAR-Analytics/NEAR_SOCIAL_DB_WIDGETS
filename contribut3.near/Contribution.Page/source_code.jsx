@@ -406,7 +406,7 @@ const projectDeliveredView =
 
 const addActionView = "Accepted" in state.contribution.status || state.contribution.status === "Ongoing" ? (
   <Widget
-    src={`${ownerId}/widget/Contribution.ProposeSideWindow`}
+    src={`${ownerId}/widget/Contribution.ActionSideWindow`}
     props={{
       projectId,
       vendorId,
