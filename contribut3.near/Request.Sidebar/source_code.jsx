@@ -35,11 +35,7 @@ return (
       isAdmin: props.isAdmin,
       request: state.request,
       onSave: (request) => {
-        Near.call(
-          ownerId,
-          "edit_request",
-          { ...state.request, ...request },
-        );
+        Near.call(ownerId, "edit_request", { cid, request: { ...state.request, ...request } });
       },
     }}
   />
