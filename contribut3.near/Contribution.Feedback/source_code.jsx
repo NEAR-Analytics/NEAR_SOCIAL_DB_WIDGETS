@@ -85,65 +85,82 @@ const Description = styled.div`
 `;
 
 const projectFeedbackView = projectFeedback ? (
-  <Widget src={`${ownerId}/widget/Card`} props={{
-    body:
-      <Container>
-        <Column>
-          <Row>
-            <Widget
-              src={`${ownerId}/widget/Project.Icon`}
-              props={{ accountId: projectId, size: "2em" }}
-            />
-            <Widget
-              src={`${ownerId}/widget/NameAndAccount`}
-              props={{
-                accountId: projectId,
-                name: state.name,
-                nameSize: "1.125em",
-              }}
-            />
-          </Row>
-          <h3>{title}</h3>
-          <Description>
-            <Widget
-              src={`${ownerId}/widget/DescriptionArea`}
-              props={{ description: projectFeedback }}
-            />
-          </Description>
-        </Column>
-      </Container>
-  }} />
-) : <>No project feedback yet...</>;
+  <Widget
+    src={`${ownerId}/widget/Card`}
+    props={{
+      body: (
+        <Container>
+          <Column>
+            <Row>
+              <Widget
+                src={`${ownerId}/widget/Project.Icon`}
+                props={{ accountId: projectId, size: "2em" }}
+              />
+              <Widget
+                src={`${ownerId}/widget/NameAndAccount`}
+                props={{
+                  accountId: projectId,
+                  name: state.name,
+                  nameSize: "1.125em",
+                }}
+              />
+            </Row>
+            <h3>{title}</h3>
+            <Description>
+              <Widget
+                src={`${ownerId}/widget/DescriptionArea`}
+                props={{ description: projectFeedback }}
+              />
+            </Description>
+          </Column>
+        </Container>
+      ),
+    }}
+  />
+) : (
+  <>No project feedback yet...</>
+);
 
 const vendorFeedbackView = vendorFeedback ? (
-  <Widget src={`${ownerId}/widget/Card`} props={{
-    body:
-      <Container>
-        <Column>
-          <Row>
-            <Widget
-              src={`${ownerId}/widget/Vendor.Icon`}
-              props={{ accountId: vendorId, size: "2em" }}
-            />
-            <Widget
-              src={`${ownerId}/widget/NameAndAccount`}
-              props={{
-                accountId: vendorId,
-                name: state.name,
-                nameSize: "1.125em",
-              }}
-            />
-          </Row>
-          <h3>{title}</h3>
-          <Description>
-            <Widget
-              src={`${ownerId}/widget/DescriptionArea`}
-              props={{ description: vendorFeedback }}
-            />
-          </Description>
-        </Column>
-      </Container>
-  }} />
-) : <>No vendor feedback yet...</>;
+  <Widget
+    src={`${ownerId}/widget/Card`}
+    props={{
+      body: (
+        <Container>
+          <Column>
+            <Row>
+              <Widget
+                src={`${ownerId}/widget/Vendor.Icon`}
+                props={{ accountId: vendorId, size: "2em" }}
+              />
+              <Widget
+                src={`${ownerId}/widget/NameAndAccount`}
+                props={{
+                  accountId: vendorId,
+                  name: state.name,
+                  nameSize: "1.125em",
+                }}
+              />
+            </Row>
+            <h3>{title}</h3>
+            <Description>
+              <Widget
+                src={`${ownerId}/widget/DescriptionArea`}
+                props={{ description: vendorFeedback }}
+              />
+            </Description>
+          </Column>
+        </Container>
+      ),
+    }}
+  />
+) : (
+  <>No vendor feedback yet...</>
+);
 
-return <Column>{projectFeedback}{vendorFeedback}</Column>;
+return (
+  <Column>
+    {projectFeedback}
+    {vendorFeedback}
+  </Column>
+);
