@@ -58,8 +58,6 @@ const Container = styled.div`
   }
 `;
 
-console.log(state.items)
-
 return (
   <Container>
     <Header>
