@@ -109,9 +109,12 @@ const handleApprove = (data) => {
     .approve(contracts[chainId].bridge.L1ERC20BridgeProxy, amountBig)
     .then((tx) => {
       console.log("approved: ", tx);
+
       State.update({
         log: "The TX hash is: " + tx.hash,
-        explorerLink: "https://etherscan.io/tx/" + tx.hash,
+        explorerLink:
+          `https://${chainId === "testnet" ? "goerli" : ""}etherscan.io/tx/` +
+          tx.hash,
         isLoading: false,
       });
     })
@@ -221,16 +224,16 @@ getTokenBalance(sender, contracts[chainId].usdc.deposit, (balance) => {
   State.update({ deposit: cloned });
 });
 
-// l2
-// getTokenBalance(sender, contracts[chainId].weth.withdraw, (balance) => {
-//   if (!withdraw) return;
-//   const cloned = clone(withdraw);
-//   cloned.assets[0].balance = balance;
-//   State.update({ withdraw: cloned });
-// });
+l2;
+getTokenBalance(sender, contracts[chainId].weth.withdraw, (balance) => {
+  if (!withdraw) return;
+  const cloned = clone(withdraw);
+  cloned.assets[0].balance = balance;
+  State.update({ withdraw: cloned });
+});
 
 const onTabChange = (tab) => {
-  console.log("onTabChange", deposit, withdraw);
+  // console.log("onTabChange", deposit, withdraw);
   State.update({ deposit: clone(withdraw), withdraw: clone(deposit), tab });
 };
 
