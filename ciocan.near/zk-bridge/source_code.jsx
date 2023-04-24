@@ -50,11 +50,11 @@ const contracts = {
     },
     weth: {
       deposit: "0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6",
-      withdraw: "", // not found yet
+      withdraw: undefined, // not found yet
     },
     usdc: {
       deposit: "0x07865c6e87b9f70255377e024ace6630c1eaa37f",
-      withdraw: "", // not found yet
+      withdraw: undefined, // not found yet
     },
   },
 };
@@ -129,7 +129,7 @@ const handleWithdraw = (data) => {
 };
 
 const getTokenBalance = (sender, tokenAddress, callback) => {
-  if (!sender) return;
+  if (!sender || !tokenAddress) return;
   const erc20Abi = ["function balanceOf(address) view returns (uint256)"];
   const iface = new ethers.utils.Interface(erc20Abi);
   const encodedData = iface.encodeFunctionData("balanceOf", [sender]);
@@ -224,11 +224,18 @@ getTokenBalance(sender, contracts[chainId].usdc.deposit, (balance) => {
   State.update({ deposit: cloned });
 });
 
-l2;
+//l2;
 getTokenBalance(sender, contracts[chainId].weth.withdraw, (balance) => {
   if (!withdraw) return;
   const cloned = clone(withdraw);
   cloned.assets[0].balance = balance;
+  State.update({ withdraw: cloned });
+});
+
+getTokenBalance(sender, contracts[chainId].usdc.withdraw, (balance) => {
+  if (!withdraw || !contracts[chainId].usdc.withdraw) return;
+  const cloned = clone(withdraw);
+  cloned.assets[1].balance = balance;
   State.update({ withdraw: cloned });
 });
 
