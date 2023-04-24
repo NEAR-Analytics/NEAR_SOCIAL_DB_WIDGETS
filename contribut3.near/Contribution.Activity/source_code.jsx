@@ -38,7 +38,7 @@ if (contribution.status === "Ongoing" || "Delivered" in contribution.status || "
   });
 }
 
-contribution.actions.forEach(({ description, start_date, end_date }) => activity.push({
+contribution.actions.forEach(({ description, start_date }) => activity.push({
   id: start_date,
   text: <>{description}</>,
   timestamp: `${new Date(Number(start_date)).toLocaleDateString()}`
