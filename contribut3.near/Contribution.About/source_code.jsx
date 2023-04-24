@@ -39,7 +39,7 @@ return (
       props={{
         label: "Description",
         id: "description",
-        value: state.request.description,
+        value: state.proposal.description,
         onSave: (description) =>
           Near.call(ownerId, "edit_request", {
             request: { ...state.request, description },
