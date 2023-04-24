@@ -2,7 +2,8 @@ const sender = Ethers.send("eth_requestAccounts", [])[0];
 
 const clone = (o) => JSON.parse(JSON.stringify(o));
 
-const { from, to } = state;
+const { deposit, withdraw } = state;
+const tab = !state.tab || state.tab === "deposit" ? "deposit" : "withdraw";
 
 const zkAbi = fetch(
   "https://gist.githubusercontent.com/kcole16/3aa22a29b14ea6a1a7377b38463697ef/raw/c8a7249231ac00c7c3c9f1dc6188fbf28c262cb5/abi.json"
@@ -35,12 +36,12 @@ const contracts = {
       L1ERC20BridgeProxy: "0x57891966931Eb4Bb6FB81430E6cE0A03AAbDe063",
     },
     weth: {
-      from: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2", // l1 token
-      to: "0x5AEa5775959fBC2557Cc8789bC1bf90A239D9a91", // l2 token
+      deposit: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2", // l1 token
+      withdraw: "0x5AEa5775959fBC2557Cc8789bC1bf90A239D9a91", // l2 token
     },
     usdc: {
-      from: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
-      to: "0x3355df6D4c9C3035724Fd0e3914dE96A5a83aaf4",
+      deposit: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48", // l1 token
+      withdraw: "0x3355df6D4c9C3035724Fd0e3914dE96A5a83aaf4", // l2 token
     },
   },
   testnet: {
@@ -48,12 +49,12 @@ const contracts = {
       L1ERC20BridgeProxy: "0x927DdFcc55164a59E0F33918D13a2D559bC10ce7",
     },
     weth: {
-      from: "0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6",
-      to: "", // not found yet
+      deposit: "0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6",
+      withdraw: "", // not found yet
     },
     usdc: {
-      from: "0x07865c6e87b9f70255377e024ace6630c1eaa37f",
-      to: "", // not found yet
+      deposit: "0x07865c6e87b9f70255377e024ace6630c1eaa37f",
+      withdraw: "", // not found yet
     },
   },
 };
@@ -71,7 +72,7 @@ const onAction = (data) => {
 const handleDeposit = (data) => {
   console.log("handleDeposit", data);
   State.update({ isLoading: true, log: undefined, explorerLink: undefined });
-  const l1Token = contracts[chainId][data.assetId].from;
+  const l1Token = contracts[chainId][data.assetId].deposit;
   const amountBig = ethers.utils.parseUnits(data.amount, tokenDecimals);
 
   const encodedData = iface.encodeFunctionData(
@@ -97,7 +98,7 @@ const handleDeposit = (data) => {
 const handleApprove = (data) => {
   console.log("handleApprove", data);
   const contract = new ethers.Contract(
-    contracts[chainId][data.assetId].from,
+    contracts[chainId][data.assetId].deposit,
     erc20Abi.body,
     Ethers.provider().getSigner()
   );
@@ -161,7 +162,7 @@ if (sender) {
 
 initState({
   isLoading: false,
-  from: {
+  deposit: {
     network: {
       id: "l1",
       name: "Ethereum",
@@ -181,7 +182,7 @@ initState({
       },
     ],
   },
-  to: {
+  withdraw: {
     network: {
       id: "l2",
       name: "zkSync Era",
@@ -205,24 +206,26 @@ initState({
 });
 
 // update token balances
-getTokenBalance(sender, contracts[chainId].weth.from, (balance) => {
-  if (!from) return;
-  const cloned = clone(from);
+getTokenBalance(sender, contracts[chainId].weth.deposit, (balance) => {
+  if (!deposit) return;
+  const cloned = clone(deposit);
   cloned.assets[0].balance = balance;
-  State.update({ from: cloned });
+  State.update({ deposit: cloned });
 });
 
-getTokenBalance(sender, contracts[chainId].usdc.from, (balance) => {
-  if (!from) return;
-  const cloned = clone(from);
+getTokenBalance(sender, contracts[chainId].usdc.deposit, (balance) => {
+  if (!deposit) return;
+  const cloned = clone(deposit);
   cloned.assets[1].balance = balance;
   State.update({ assets });
 });
 
-const onTabChange = () => {
-  console.log("onTabChange", from, to, assets);
-  State.update({ from: to, to: from });
+const onTabChange = (tab) => {
+  console.log("onTabChange", deposit, withdraw, assets);
+  State.update({ deposit: withdraw, withdraw: deposit, tab });
 };
+
+console.log("tab", tab);
 
 return (
   <Widget
