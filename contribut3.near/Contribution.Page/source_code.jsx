@@ -421,7 +421,8 @@ return (
             content: getContent(props.content),
             search: props.search,
             update: props.update,
-            accountId: props.accountId,
+            projectId,
+            vendorId,
             cid,
             buttons: [
               {
