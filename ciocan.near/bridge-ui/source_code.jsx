@@ -1,62 +1,69 @@
 /*
 // the shape of props data
 {
-  "isLoading": false,
+  "isLoading": true,
+  "log": "The TX hash is: 0x2c5d223e47ecd9ac68fbdcd3eeb2bc4615ce6f7209d295104131c1440056497e Etherscan",
+  "explorerLink": "https://etherscan.io/tx/123",
   "title": "zkBridge",
   "from": {
     "network": {
       "id": "eth-testnet",
       "value": "Ethereum Goerli"
     },
+    "assets": [
+      {
+        "id": "eth",
+        "value": "ETH",
+        "balance": "123.22"
+      },
+      {
+        "id": "usdc",
+        "value": "USDC",
+        "selected": true,
+        "balance": "42.00"
+      }
+    ]
   },
   "to": {
     "network": {
       "id": "zksync-testnet",
       "value": "zkSync Era Testnet"
     },
+    "assets": [
+      {
+        "id": "eth",
+        "value": "ETH",
+        "balance": "0.123"
+      },
+      {
+        "id": "usdc",
+        "value": "USDC",
+        "selected": true,
+        "balance": "0.42"
+      }
+    ]
   },
-  "amount": "0.1",
-  "assets": [
-    {
-      "id": "eth",
-      "value": "ETH",
-      "balance": {
-        "from": "123.22",
-        "to": "0.123"
-      }
-    },
-    {
-      "id": "usdc",
-      "value": "USDC",
-      "selected": true,
-      "balance": {
-        "from": "42.00",
-        "to": "0.42"
-      }
-    }
-  ]
+  "amount": "0.1"
 }
 */
 
-const {
-  from,
-  to,
-  assets,
-  onTabChange,
-  onAction,
-  title,
-  isLoading,
-  log,
-  explorerLink,
-} = props;
-const { action, amount, selectedAsset } = state;
+const { from, to, onTabChange, onAction, title, isLoading, log, explorerLink } =
+  props;
+const { action, amount, selectedAsset, selectedAssetBalanceTo } = state;
+const { assets } = from;
 
 const isDeposit = !action || action === "deposit";
 const actionTitle = isDeposit ? "Deposit" : "Withdraw";
 
 if (!selectedAsset) {
-  initState({ selectedAsset: assets.find((a) => a.selected) || assets[0] });
+  initState({
+    selectedAsset: assets.find((a) => a.selected) || assets[0],
+  });
 }
+
+const selectedAssetTo = selectedAsset
+  ? to.assets.find((a) => a.id === selectedAsset.id)
+  : undefined;
 
 const handleAction = () => {
   if (onAction)
@@ -69,7 +76,7 @@ const handleAction = () => {
 };
 
 const handleMax = () => {
-  State.update({ amount: selectedAsset.balance.from });
+  State.update({ amount: selectedAsset.balance });
 };
 
 const handleAmountChange = (e) => {
@@ -199,7 +206,7 @@ return (
         </div>
         <div className="d-flex flex-column gap-2">
           <div className="d-flex justify-content-between">
-            <span>Balance: {selectedAsset.balance.from}</span>
+            <span>Balance: {selectedAsset.balance}</span>
           </div>
           <div className="balance input-group">
             <input
@@ -222,7 +229,7 @@ return (
     <div className="border border-secondary border-bottom-0 border-light" />
     <div className="p-4 d-flex justify-content-between">
       <div>{to.network.value}</div>
-      <div>Balance: {selectedAsset.balance.to}</div>
+      <div>Balance: {selectedAssetTo?.balance}</div>
     </div>
     <div className="border border-secondary border-bottom-0 border-light" />
     <div className="p-4 d-grid gap-3">
