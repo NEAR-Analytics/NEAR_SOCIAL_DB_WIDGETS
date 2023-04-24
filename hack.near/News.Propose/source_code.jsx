@@ -1,4 +1,5 @@
 const accountId = props.accountId ?? context.accountId;
+const daoId = props.daoId ?? "multi.sputnik-dao.near";
 
 if (!accountId) {
   return "Please connect your NEAR wallet :)";
@@ -35,7 +36,7 @@ const handleProposal = () => {
                           key: "main",
                           value: {
                             type: "social",
-                            path: `${accountId}/post/main`,
+                            path: `${daoId}/post/main`,
                           },
                         },
                       },
