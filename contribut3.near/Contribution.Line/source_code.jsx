@@ -15,7 +15,7 @@ if (!state.requestIsFetched) {
   Near.asyncView(
     ownerId,
     "get_request",
-    { project_id: projectIt, cid },
+    { account_id: projectId, cid },
     "final",
     false
   ).then((request) => State.update({ request, requestIsFetched: true }));
@@ -153,11 +153,11 @@ return (
   <Container>
     <Widget
       src={`${ownerId}/widget/Project.Line`}
-      props={{ accountId: projectId, size: "1em" }}
+      props={{ accountId: projectId, size: "1.5em" }}
     />
     <Widget
       src={`${ownerId}/widget/Vendor.Line`}
-      props={{ accountId: vendorId, size: "1em" }}
+      props={{ accountId: vendorId, size: "1.5em" }}
     />
     <Title>{state.request.title}</Title>
     <Details>
