@@ -28,7 +28,7 @@ if (!state.requestIsFetched) {
   ).then((proposal) => State.update({ proposal, proposalIsFetched: true }));
 }
 
-if (!state.requestIsFetched) {
+if (!state.proposalIsFetched) {
   return <>Loading...</>;
 }
 
