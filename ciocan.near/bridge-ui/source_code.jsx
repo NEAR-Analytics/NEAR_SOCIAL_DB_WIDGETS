@@ -8,12 +8,12 @@
   "from": {
     "network": {
       "id": "eth-testnet",
-      "value": "Ethereum Goerli"
+      "name": "Ethereum Goerli"
     },
     "assets": [
       {
         "id": "eth",
-        "value": "ETH",
+        "name": "ETH",
         "balance": "123.22"
       },
       {
@@ -27,17 +27,17 @@
   "to": {
     "network": {
       "id": "zksync-testnet",
-      "value": "zkSync Era Testnet"
+      "name": "zkSync Era Testnet"
     },
     "assets": [
       {
         "id": "eth",
-        "value": "ETH",
+        "name": "ETH",
         "balance": "0.123"
       },
       {
         "id": "usdc",
-        "value": "USDC",
+        "name": "USDC",
         "selected": true,
         "balance": "0.42"
       }
@@ -191,7 +191,7 @@ return (
     <div className="p-4">
       <div className="d-flex justify-content-between">
         <div className="assets d-flex flex-column gap-2">
-          <span>{from.network.value}</span>
+          <span>{from.network.name}</span>
           <select
             className="form-select"
             aria-label="select asset"
@@ -200,7 +200,7 @@ return (
             {assets &&
               assets.map((asset) => (
                 <option value={asset.id} selected={asset.selected}>
-                  {asset.value}
+                  {asset.name}
                 </option>
               ))}
           </select>
@@ -229,7 +229,7 @@ return (
     </div>
     <div className="border border-secondary border-bottom-0 border-light" />
     <div className="p-4 d-flex justify-content-between">
-      <div>{to.network.value}</div>
+      <div>{to.network.name}</div>
       <div>Balance: {selectedAssetTo.balance}</div>
     </div>
     <div className="border border-secondary border-bottom-0 border-light" />
