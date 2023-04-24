@@ -112,6 +112,7 @@ const Container = styled.div`
 
     .actionTabs {
       border: 1px solid black;
+      height: 38px;
       label {
         color: gray;
 
