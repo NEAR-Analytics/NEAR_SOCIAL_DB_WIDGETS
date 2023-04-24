@@ -98,35 +98,81 @@ const Container = styled.div`
     padding-top: 1rem;
     border-radius: 0.5rem;
     margin-top: 1rem;
+
+    * {
+        font-family: 'Inter custom',sans-serif;
+    }
+
+    background: white;
+    color: black;
+
+    .title {
+      margin-top: 8px;
+    }
+
+    .actionTabs {
+      border: 1px solid black;
+      label {
+        color: gray;
+
+        &:hover {
+          color: black;
+        }
+      }
+    }
+
+    .action {
+      background: black;
+      color: white;
+    }
+
+    .balance {
+      input {
+        background: #f5f6fd;
+        color: black;
+        border: 1px solid black;
+      }
+      button {
+        background: #f5f6fd;
+        color: black;
+      }
+    }
+
+    .assets {
+      select {
+        background: #f5f6fd;
+        color: black;
+      }
+    }
 `;
 
 return (
   <Container>
     <div className="d-flex gap-4 align-items-center mb-3 justify-content-center">
-      <h5>{title || "Bridge"}</h5>
-      <div class="action btn-group" role="group" aria-label="Deposit">
+      <h5 className="title">{title || "Bridge"}</h5>
+      <div className="actionTabs btn-group" role="group" aria-label="Deposit">
         <input
           id="deposit"
           type="radio"
-          class="btn-check"
+          className="btn-check"
           name="btnradioaction"
           autocomplete="off"
           checked={isDeposit}
           onClick={() => handleTabChange("deposit")}
         />
-        <label class="btn btn-outline-primary" for="deposit">
+        <label className="btn btn-outline-primary" for="deposit">
           Deposit
         </label>
         <input
           id="withdraw"
           type="radio"
-          class="btn-check"
+          className="btn-check"
           name="btnradioaction"
           autocomplete="off"
           checked={!isDeposit}
           onClick={() => handleTabChange("withdraw")}
         />
-        <label class="btn btn-outline-primary" for="withdraw">
+        <label className="btn btn-outline-primary" for="withdraw">
           Withdraw
         </label>
       </div>
@@ -134,10 +180,10 @@ return (
     <div className="border border-secondary border-bottom-0 border-light" />
     <div className="p-4">
       <div className="d-flex justify-content-between">
-        <div className="d-flex flex-column gap-2">
+        <div className="assets d-flex flex-column gap-2">
           <span>{from.network.value}</span>
           <select
-            class="form-select"
+            className="form-select"
             aria-label="select asset"
             onChange={handleAssetChange}
           >
@@ -152,7 +198,7 @@ return (
           <div className="d-flex justify-content-between">
             <span>Balance: {selectedAsset.balance.from}</span>
           </div>
-          <div className="input-group">
+          <div className="balance input-group">
             <input
               style={{ maxWidth: "120px" }}
               type="number"
@@ -178,7 +224,7 @@ return (
     <div className="border border-secondary border-bottom-0 border-light" />
     <div className="p-4 d-grid gap-3">
       <button
-        className="btn btn-primary"
+        className="action btn btn-primary"
         onClick={handleAction}
         disabled={isLoading}
       >
@@ -189,7 +235,7 @@ return (
           <div className="text-truncate" style={{ maxWidth: 300 }}>
             {log}
           </div>
-          <a href={explorerLink} class="alert-link" target="_blank">
+          <a href={explorerLink} className="alert-link" target="_blank">
             Etherscan
           </a>
         </div>
