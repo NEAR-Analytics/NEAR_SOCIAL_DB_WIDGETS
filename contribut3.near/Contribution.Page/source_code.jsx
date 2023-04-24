@@ -331,7 +331,7 @@ const vendorCreatedView =
     <></>
   );
 const vendorAcceptedView =
-  state.isVendorAdmin && "Accepted" in state.contribution.status ? (
+  state.isVendorAdmin && typeof state.contribution.status !== "string" && "Accepted" in state.contribution.status ? (
     <Widget
       src={`${ownerId}/widget/Buttons.Grey`}
       props={{
@@ -368,7 +368,7 @@ const vendorAcceptedView =
   );
 
 const projectDeliveredView =
-  state.isProjectAdmin && "Delivered" in state.contribution.status ? (
+  state.isProjectAdmin && typeof state.contribution.status !== "string" && "Delivered" in state.contribution.status ? (
     <Widget
       src={`${ownerId}/widget/Buttons.Grey`}
       props={{
@@ -404,7 +404,7 @@ const projectDeliveredView =
     <></>
   );
 
-const addActionView = "Accepted" in state.contribution.status || state.contribution.status === "Ongoing" ? (
+const addActionView = (typeof state.contribution.status !== "string" && "Accepted" in state.contribution.status) || state.contribution.status === "Ongoing" ? (
   <Widget
     src={`${ownerId}/widget/Contribution.ActionSideWindow`}
     props={{
