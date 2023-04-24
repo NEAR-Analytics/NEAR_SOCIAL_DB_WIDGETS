@@ -164,18 +164,18 @@ initState({
   from: {
     network: {
       id: "l1",
-      value: "Ethereum",
+      name: "Ethereum",
     },
     assets: [
       {
         id: "weth",
-        value: "wETH",
+        name: "wETH",
         selected: false,
         balance: "0.00",
       },
       {
         id: "usdc",
-        value: "USDC",
+        name: "USDC",
         selected: true,
         balance: "0.00",
       },
@@ -184,18 +184,18 @@ initState({
   to: {
     network: {
       id: "l2",
-      value: "zkSync Era",
+      name: "zkSync Era",
     },
     assets: [
       {
         id: "weth",
-        value: "wETH",
+        name: "wETH",
         selected: false,
         balance: "0.00",
       },
       {
         id: "usdc",
-        value: "USDC",
+        name: "USDC",
         selected: true,
         balance: "0.00",
       },
