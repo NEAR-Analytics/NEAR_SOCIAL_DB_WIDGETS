@@ -44,7 +44,7 @@ return (
           Near.call(ownerId, "edit_request", {
             request: { ...state.request, description },
           }),
-        canEdit: props.isAdmin,
+        canEdit: false,
       }}
     />
   </Container>
