@@ -86,24 +86,11 @@ const Item = styled.div`
   color: #11181c;
 `;
 
-const deadline = (
+const lastAction = state.contribution.actions.length > 0 ? state.contribution.actions[state.contribution.actions.length - 1] : null;
+
+const lastActivity = (
   <Item>
-    <svg
-      width="15"
-      height="16"
-      viewBox="0 0 15 16"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M1.5 14.75L1.5 2M1.5 8.75H7.05C7.47004 8.75 7.68006 8.75 7.84049 8.66825C7.98161 8.59635 8.09635 8.48161 8.16825 8.34049C8.25 8.18006 8.25 7.97004 8.25 7.55V2.45C8.25 2.02996 8.25 1.81994 8.16825 1.65951C8.09635 1.51839 7.98161 1.40365 7.84049 1.33175C7.68006 1.25 7.47004 1.25 7.05 1.25H2.7C2.27996 1.25 2.06994 1.25 1.90951 1.33175C1.76839 1.40365 1.65365 1.51839 1.58175 1.65951C1.5 1.81994 1.5 2.02996 1.5 2.45V8.75ZM8.25 2.75H13.05C13.47 2.75 13.6801 2.75 13.8405 2.83175C13.9816 2.90365 14.0963 3.01839 14.1683 3.15951C14.25 3.31994 14.25 3.52996 14.25 3.95V9.05C14.25 9.47004 14.25 9.68006 14.1683 9.84049C14.0963 9.98161 13.9816 10.0963 13.8405 10.1683C13.6801 10.25 13.47 10.25 13.05 10.25H9.45C9.02996 10.25 8.81994 10.25 8.65951 10.1683C8.51839 10.0963 8.40365 9.98161 8.33175 9.84049C8.25 9.68006 8.25 9.47004 8.25 9.05V2.75Z"
-        stroke="#7E868C"
-        stroke-width="1.35"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-    </svg>
-    {new Date(Number(state.request.deadline)).toLocaleDateString()}
+    {lastAction ? (<>{lastAction.description} at {new Date(Number(lastAction.start_date)).toLocaleDateString()}</>) : <>Contract has started</>}
   </Item>
 );
 
