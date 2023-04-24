@@ -99,23 +99,14 @@ if (status === "Ongoing" || "Delivered" in status || "Completed" in status) {
   });
 }
 
-const actionsMapped = actions.map(({ description, start_date, end_date }) => ({
-  id: start_date,
-  text: <>{description}</>,
-  timestamp: start_date.substring(0, start_date.length - 6),
-}));
-
-console.log(actionsMapped);
-
-actionsMapped.forEach(({ text, id, timestamp }) =>
+actions.forEach(({ description, start_date, end_date }) =>
   activity.push({
-    id,
-    text,
-    timestamp: `${new Date(Number(timestamp)).toLocaleDateString()}`,
+    id: start_date,
+    text: <>{description}</>,
+    timestamp: `${new Date(Number(start_date.substring(0, start_date.length - 6))).toLocaleDateString()}${end_date ? " - " + new Date(Number(end_date.substring(0, end_date.length - 6))).toLocaleDateString() : ""
+      }`,
   })
 );
-
-console.log(actions);
 
 if (typeof status !== "string" && ("Delivered" in status || "Completed" in status)) {
   activity.push({
