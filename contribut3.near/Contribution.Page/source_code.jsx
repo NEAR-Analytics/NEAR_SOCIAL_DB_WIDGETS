@@ -331,7 +331,7 @@ const vendorCreatedView =
     <></>
   );
 const vendorAcceptedView =
-  state.isVendorAdmin && typeof state.contribution.status !== "string" && "Accepted" in state.contribution.status ? (
+  state.isVendorAdmin && typeof state.contribution.status === "string" || "Accepted" in state.contribution.status ? (
     <Widget
       src={`${ownerId}/widget/Buttons.Grey`}
       props={{
