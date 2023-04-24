@@ -57,12 +57,12 @@ const actionTitle = isDeposit ? "Deposit" : "Withdraw";
 
 if (!selectedAsset) {
   initState({
-    selectedAsset: assets.find((a) => a.selected) || assets[0],
+    selectedAsset: assets?.find((a) => a.selected) || assets?.[0],
   });
 }
 
 const selectedAssetTo = selectedAsset
-  ? to.assets.find((a) => a.id === selectedAsset.id)
+  ? to?.assets?.find((a) => a.id === selectedAsset.id)
   : undefined;
 
 const handleAction = () => {
