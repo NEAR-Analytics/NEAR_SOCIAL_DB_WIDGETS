@@ -1,5 +1,4 @@
 const accountId = props.accountId ?? context.accountId;
-const daoId = props.daoId ?? "multi.sputnik-dao.near";
 
 if (!accountId) {
   return "Please connect your NEAR wallet :)";
@@ -7,13 +6,7 @@ if (!accountId) {
 
 State.init({
   description: "",
-  receiver_id: "",
-  method_name: "",
   args: "",
-  deposit: "",
-  gas: "",
-  fc_deposit: "",
-  fc_gas: "",
 });
 
 const proposal_args = Buffer.from(state.args, "utf-8").toString("base64");
@@ -21,7 +14,7 @@ const proposal_args = Buffer.from(state.args, "utf-8").toString("base64");
 const handleProposal = () => {
   Near.call([
     {
-      contractName: daoId,
+      contractName: "multi.sputnik-dao.near",
       methodName: "add_proposal",
       args: {
         proposal: {
@@ -33,7 +26,7 @@ const handleProposal = () => {
                 {
                   method_name: "set",
                   args: {
-                    daoId: {
+                    "multi.sputnik-dao.near": {
                       post: {
                         main: {
                           type: "md",
