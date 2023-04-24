@@ -17,7 +17,7 @@ return (
     src="efiz.near/widget/Community.Posts"
     props={{
       communityHashtags: hashtags,
-      communityDomain: "nearweekapp.near",
+      communityDomain: "nearweek",
       communityMembers: group[0],
       exclusive: false,
       allowPublicPosting: true,
