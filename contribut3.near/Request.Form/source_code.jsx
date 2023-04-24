@@ -238,6 +238,7 @@ if (!state.projectsIsFetched) {
       })
     );
   });
+  return <>Loading...</>;
 }
 
 return (
