@@ -49,55 +49,81 @@ if (!state.nameIsFetched || !state.vendorNameIsFetched) {
 const activity = [
   {
     id: "created",
-    text: <><b>{state.name}</b> created a contract <b>"{title}"</b> with <b>{state.vendorName}</b></>
-  }, {
+    text: (
+      <>
+        <b>{state.name}</b> created a contract <b>"{title}"</b> with{" "}
+        <b>{state.vendorName}</b>
+      </>
+    ),
+  },
+  {
     id: "awaiting",
-    text: <>Awaiting approval by <b>{state.vendorName}</b></>
+    text: (
+      <>
+        Awaiting approval by <b>{state.vendorName}</b>
+      </>
+    ),
   },
 ];
 
 if (!("Rejected" in status) && !("Created" in status)) {
   activity.push({
     id: "accepted",
-    text: <><b>{state.vendorName}</b> accepted contract</>
+    text: (
+      <>
+        <b>{state.vendorName}</b> accepted contract
+      </>
+    ),
   });
   activity.push({
     id: "started",
-    text: <>Contract has started</>
+    text: <>Contract has started</>,
   });
 }
 
 if ("Rejected" in status) {
   activity.push({
     id: "rejected",
-    text: <><b>{state.vendorName}</b> rejected contract</>
+    text: (
+      <>
+        <b>{state.vendorName}</b> rejected contract
+      </>
+    ),
   });
 }
 
 if (status === "Ongoing" || "Delivered" in status || "Completed" in status) {
   activity.push({
     id: "ongoing",
-    text: <>Work in progress</>
+    text: <>Work in progress</>,
   });
 }
 
-actions.forEach(({ description, start_date, end_date }) => activity.push({
-  id: start_date,
-  text: <>{description}</>,
-  timestamp: `${new Date(Number(start_date)).toLocaleDateString()}${end_date ? " - " + new Date(Number(end_date)).toLocaleDateString() : ""}`
-}));
+actions.forEach(({ description, start_date, end_date }) =>
+  activity.push({
+    id: start_date,
+    text: <>{description}</>,
+    timestamp: `${new Date(Number(start_date)).toLocaleDateString()}${
+      end_date ? " - " + new Date(Number(end_date)).toLocaleDateString() : ""
+    }`,
+  })
+);
 
 if ("Delivered" in status || "Completed" in status) {
   activity.push({
     id: "delivered",
-    text: <>Contract marked as delivered by <b>{state.vendorName}</b></>
+    text: (
+      <>
+        Contract marked as delivered by <b>{state.vendorName}</b>
+      </>
+    ),
   });
 }
 
 if ("Completed" in status) {
   activity.push({
     id: "completed",
-    text: <>Contract completed</>
+    text: <>Contract completed</>,
   });
 }
 
@@ -114,6 +140,13 @@ const List = styled.ul`
   gap: 2em;
 `;
 
-return <List>{
-  activity.reverse().map(({ id, text, timestamp }) => <li key={id}><span>{text}</span><small>{timestamp}</small></li>)
-}</List>;
+return (
+  <List>
+    {activity.reverse().map(({ id, text, timestamp }) => (
+      <li key={id}>
+        <span>{text}</span>
+        <small>{timestamp}</small>
+      </li>
+    ))}
+  </List>
+);
