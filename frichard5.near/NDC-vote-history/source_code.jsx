@@ -2,6 +2,7 @@ const widgetProvider = props.widgetProvider;
 const account = props.account || "marketing.sputnik-dao.near";
 const apiUrl = `https://api.pikespeak.ai/daos/votes-history/${account}`;
 const apiProposalUrl = `https://api.pikespeak.ai/daos/proposal/marketing.sputnik-dao.near`;
+const apiPolicyUrl = `https://api.pikespeak.ai/daos/policy/${account}`;
 const publicApiKey = "36f2b87a-7ee6-40d8-80b9-5e68e587a5b5";
 
 const thumbUpSvg = (
@@ -169,6 +170,23 @@ const fetchProposal = (id) => {
 };
 
 state.proposalId && fetchProposal(state.proposalId);
+
+const fetchPolicy = () => {
+  const policy = asyncFetch(apiPolicyUrl, {
+    mode: "cors",
+    headers: {
+      "x-api-key": publicApiKey,
+    },
+  }).then(({ err, body, ok }) => {
+    if (ok) {
+      State.update({
+        council: body.state.policy.roles.find((r) => r.name === "Council").kind,
+      });
+    }
+  });
+};
+
+!state.council && fetchPolicy();
 
 const toggleModal = (isOpen) => {
   State.update({ isModalOpen: isOpen });
