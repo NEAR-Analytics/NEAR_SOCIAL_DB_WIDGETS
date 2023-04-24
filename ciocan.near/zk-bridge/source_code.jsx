@@ -2,7 +2,7 @@ const sender = Ethers.send("eth_requestAccounts", [])[0];
 
 const clone = (o) => JSON.parse(JSON.stringify(o));
 
-const { from, to, assets } = state;
+const { from, to } = state;
 
 const zkAbi = fetch(
   "https://gist.githubusercontent.com/kcole16/3aa22a29b14ea6a1a7377b38463697ef/raw/c8a7249231ac00c7c3c9f1dc6188fbf28c262cb5/abi.json"
@@ -166,51 +166,61 @@ initState({
       id: "l1",
       value: "Ethereum",
     },
+    assets: [
+      {
+        id: "weth",
+        value: "wETH",
+        selected: false,
+        balance: "0.00",
+      },
+      {
+        id: "usdc",
+        value: "USDC",
+        selected: true,
+        balance: "0.00",
+      },
+    ],
   },
   to: {
     network: {
       id: "l2",
       value: "zkSync Era",
     },
+    assets: [
+      {
+        id: "weth",
+        value: "wETH",
+        selected: false,
+        balance: "0.00",
+      },
+      {
+        id: "usdc",
+        value: "USDC",
+        selected: true,
+        balance: "0.00",
+      },
+    ],
   },
   amount: "0.0",
-  assets: [
-    {
-      id: "weth",
-      value: "wETH",
-      selected: false,
-      balance: {
-        from: "0.00",
-        to: "0.00",
-      },
-    },
-    {
-      id: "usdc",
-      value: "USDC",
-      selected: true,
-      balance: {
-        from: "0.00",
-        to: "0.00",
-      },
-    },
-  ],
 });
 
 // update token balances
 getTokenBalance(sender, contracts[chainId].weth.from, (balance) => {
-  if (!assets) return;
-  const cloned = clone(assets);
-  cloned[0].balance.from = balance;
-  State.update({ assets: cloned });
+  if (!from) return;
+  const cloned = clone(from);
+  cloned.assets[0].balance = balance;
+  State.update({ from: cloned });
 });
 
 getTokenBalance(sender, contracts[chainId].usdc.from, (balance) => {
-  if (!assets) return;
-  assets[1].balance.from = balance;
+  if (!from) return;
+  const cloned = clone(from);
+  cloned.assets[1].balance = balance;
   State.update({ assets });
 });
 
 const onTabChange = () => {
+  console.log("onTabChange", from, to, assets);
   State.update({ from: to, to: from });
 };
 
