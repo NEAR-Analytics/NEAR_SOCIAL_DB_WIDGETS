@@ -16,6 +16,8 @@ const Container = styled.div`
 State.init({
   proposal: null,
   proposalIsFetched: false,
+  request: null,
+  requestIsFetched: false,
 });
 
 if (!state.requestIsFetched) {
@@ -28,7 +30,17 @@ if (!state.requestIsFetched) {
   ).then((proposal) => State.update({ proposal, proposalIsFetched: true }));
 }
 
-if (!state.proposalIsFetched) {
+if (!state.requestIsFetched) {
+  Near.asyncView(
+    ownerId,
+    "get_request",
+    { project_id: projectId, cid, vendor_id: vendorId },
+    "final",
+    false
+  ).then((request) => State.update({ request, requestIsFetched: true }));
+}
+
+if (!state.proposalIsFetched || !state.requestIsFetched) {
   return <>Loading...</>;
 }
 
@@ -37,13 +49,18 @@ return (
     <Widget
       src={`${ownerId}/widget/Inputs.Viewable.TextArea`}
       props={{
-        label: "Description",
-        id: "description",
+        label: "Request description",
+        id: "request-description",
+        value: state.request.description,
+        canEdit: false,
+      }}
+    />
+    <Widget
+      src={`${ownerId}/widget/Inputs.Viewable.TextArea`}
+      props={{
+        label: "Proposal description",
+        id: "proposal-description",
         value: state.proposal.description,
-        onSave: (description) =>
-          Near.call(ownerId, "edit_request", {
-            request: { ...state.request, description },
-          }),
         canEdit: false,
       }}
     />
