@@ -1,4 +1,5 @@
 const ownerId = "contribut3.near";
+const accountId = props.accountId;
 
 const LineContainer = styled.div`
   display: flex;
@@ -151,14 +152,14 @@ const CancelButton = styled.a`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: .75em 1em;
-  gap: .5em;
+  padding: 0.75em 1em;
+  gap: 0.5em;
   background: #ffffff;
   border: 1px solid #eceef0;
   border-radius: 50px;
   font-style: normal;
   font-weight: 600;
-  font-size: .95em;
+  font-size: 0.95em;
   line-height: 1em;
   text-align: center;
   color: #101828;
@@ -228,6 +229,12 @@ if (!state.projectsIsFetched) {
           value: accountId,
         })),
         projectsIsFetched: true,
+        ...(accountId ? {
+          projectId: {
+            text: createProjectLine(accountId, data[accountId].profile.name, data[accountId].profile.image),
+            value: accountId,
+          }
+        } : {})
       })
     );
   });
@@ -278,10 +285,7 @@ return (
         props={{
           label: "Tags",
           placeholder: "DeFi, Gaming...",
-          options: [
-            { name: "Wallets" },
-            { name: "Games" },
-          ],
+          options: [{ name: "Wallets" }, { name: "Games" }],
           value: state.tags,
           onChange: (tags) => State.update({ tags }),
         }}
