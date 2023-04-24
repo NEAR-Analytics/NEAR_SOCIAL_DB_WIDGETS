@@ -54,6 +54,10 @@ if (!state.vendorNameIsFetched) {
   );
 }
 
+if (!state.contributionIsFetched || !state.projectNameIsFetched || !state.vendorNameIsFetched) {
+  return <>Loading...</>;
+}
+
 const Owner = styled.a`
   display: flex;
   flex-direction: row;
