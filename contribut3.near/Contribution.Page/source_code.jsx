@@ -262,7 +262,7 @@ const Title = styled.h1`
 `;
 
 const vendorCreatedView =
-  state.isVendorAdmin && "Created" in state.contribution.status ? (
+  state.isVendorAdmin && typeof state.contribution.status !== "string" && "Created" in state.contribution.status ? (
     <>
       <Widget
         src={`${ownerId}/widget/Buttons.Green`}
