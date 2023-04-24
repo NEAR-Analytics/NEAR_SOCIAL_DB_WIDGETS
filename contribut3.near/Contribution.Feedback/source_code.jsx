@@ -80,7 +80,7 @@ const Column = styled.div`
 
 const Description = styled.div`
   padding-left: 1em;
-  border-left: 3px solid #b2ddff;
+  border-left: 3px solid #00ec97;
   width: 100%;
 `;
 
