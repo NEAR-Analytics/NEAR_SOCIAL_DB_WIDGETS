@@ -85,17 +85,48 @@ const Description = styled.div`
 `;
 
 const projectFeedbackView = (
+  <Widget src={`${ownerId}/widget/Card`} props={{
+    body:
+      <Container>
+        <Column>
+          <Row>
+            <Widget
+              src={`${ownerId}/widget/Project.Icon`}
+              props={{ accountId: projectId, size: "2em" }}
+            />
+            <Widget
+              src={`${ownerId}/widget/NameAndAccount`}
+              props={{
+                accountId: projectId,
+                name: state.name,
+                nameSize: "1.125em",
+              }}
+            />
+          </Row>
+          <h3>{title}</h3>
+          <Description>
+            <Widget
+              src={`${ownerId}/widget/DescriptionArea`}
+              props={{ description: projectFeedback }}
+            />
+          </Description>
+        </Column>
+      </Container>
+  }} />
+);
+
+const vendorFeedbackView = (
   <Container>
     <Column>
       <Row>
         <Widget
-          src={`${ownerId}/widget/Project.Icon`}
-          props={{ accountId: projectId, size: "2em" }}
+          src={`${ownerId}/widget/Vendor.Icon`}
+          props={{ accountId: vendorId, size: "2em" }}
         />
         <Widget
           src={`${ownerId}/widget/NameAndAccount`}
           props={{
-            accountId: projectId,
+            accountId: vendorId,
             name: state.name,
             nameSize: "1.125em",
           }}
@@ -105,7 +136,7 @@ const projectFeedbackView = (
       <Description>
         <Widget
           src={`${ownerId}/widget/DescriptionArea`}
-          props={{ description: state.proposal.description }}
+          props={{ description: vendorFeedback }}
         />
       </Description>
     </Column>
