@@ -5,7 +5,7 @@ const vendorFeedback = props.vendorFeedback;
 const projectFeedback = props.projectFeedback;
 const title = props.title;
 
-if (!("Completed" in status)) {
+if (typeof status === "string" || !("Completed" in status)) {
   return <>No feedback yet. Contract still in progress...</>;
 }
 
