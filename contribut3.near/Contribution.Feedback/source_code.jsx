@@ -146,4 +146,4 @@ const vendorFeedbackView = vendorFeedback ? (
   }} />
 ) : <>No vendor feedback yet...</>;
 
-return <>Feedback</>;
+return <Column>{projectFeedback}{vendorFeedback}</Column>;
