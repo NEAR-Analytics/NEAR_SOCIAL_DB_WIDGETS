@@ -84,7 +84,7 @@ const Description = styled.div`
   width: 100%;
 `;
 
-const projectFeedbackView = (
+const projectFeedbackView = projectFeedback ? (
   <Widget src={`${ownerId}/widget/Card`} props={{
     body:
       <Container>
@@ -113,9 +113,9 @@ const projectFeedbackView = (
         </Column>
       </Container>
   }} />
-);
+) : <>No project feedback yet...</>;
 
-const vendorFeedbackView = (
+const vendorFeedbackView = vendorFeedback ? (
   <Widget src={`${ownerId}/widget/Card`} props={{
     body:
       <Container>
@@ -144,6 +144,6 @@ const vendorFeedbackView = (
         </Column>
       </Container>
   }} />
-);
+) : <>No vendor feedback yet...</>;
 
 return <>Feedback</>;
