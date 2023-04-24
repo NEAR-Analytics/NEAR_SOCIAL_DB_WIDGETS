@@ -113,7 +113,7 @@ const handleApprove = (data) => {
       State.update({
         log: "The TX hash is: " + tx.hash,
         explorerLink:
-          `https://${chainId === "testnet" ? "goerli" : ""}etherscan.io/tx/` +
+          `https://${chainId === "testnet" ? "goerli." : ""}etherscan.io/tx/` +
           tx.hash,
         isLoading: false,
       });
