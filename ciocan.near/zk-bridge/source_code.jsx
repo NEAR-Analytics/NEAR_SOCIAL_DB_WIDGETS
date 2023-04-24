@@ -7,14 +7,12 @@ const { from, to, assets } = state;
 const zkAbi = fetch(
   "https://gist.githubusercontent.com/kcole16/3aa22a29b14ea6a1a7377b38463697ef/raw/c8a7249231ac00c7c3c9f1dc6188fbf28c262cb5/abi.json"
 );
-if (!zkAbi.ok) {
-  return "";
-}
 
 const erc20Abi = fetch(
   "https://gist.githubusercontent.com/veox/8800debbf56e24718f9f483e1e40c35c/raw/f853187315486225002ba56e5283c1dba0556e6f/erc20.abi.json"
 );
-if (!erc20Abi.ok) {
+
+if (!zkAbi.ok || !erc20Abi.ok) {
   return "";
 }
 
