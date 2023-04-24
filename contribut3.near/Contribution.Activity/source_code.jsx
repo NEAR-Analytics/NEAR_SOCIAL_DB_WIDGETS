@@ -66,7 +66,10 @@ const activity = [
   },
 ];
 
-if (typeof status === "string" || !("Rejected" in status) && !("Created" in status)) {
+if (
+  typeof status === "string" ||
+  (!("Rejected" in status) && !("Created" in status))
+) {
   activity.push({
     id: "accepted",
     text: (
@@ -103,12 +106,23 @@ actions.forEach(({ description, start_date, end_date }) =>
   activity.push({
     id: start_date,
     text: <>{description}</>,
-    timestamp: `${new Date(Number(start_date.substring(0, start_date.length - 6))).toLocaleDateString()}${end_date ? " - " + new Date(Number(end_date.substring(0, end_date.length - 6))).toLocaleDateString() : ""
-      }`,
+    timestamp: `${new Date(
+      Number(start_date.substring(0, start_date.length - 6))
+    ).toLocaleDateString()}${
+      end_date
+        ? " - " +
+          new Date(
+            Number(end_date.substring(0, end_date.length - 6))
+          ).toLocaleDateString()
+        : ""
+    }`,
   })
 );
 
-if (typeof status !== "string" && ("Delivered" in status || "Completed" in status)) {
+if (
+  typeof status !== "string" &&
+  ("Delivered" in status || "Completed" in status)
+) {
   activity.push({
     id: "delivered",
     text: (
