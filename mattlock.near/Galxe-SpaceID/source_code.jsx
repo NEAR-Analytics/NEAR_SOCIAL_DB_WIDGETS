@@ -106,6 +106,7 @@ const init = () => {
       const address = accounts[0];
 
       State.update({ address });
+
       const res = fetch(
         `https://open-platform.nodereal.io/a956dfb1d373444a8e97d04bcfbc8871/spaceid/domain/names/byOwners`,
         {
