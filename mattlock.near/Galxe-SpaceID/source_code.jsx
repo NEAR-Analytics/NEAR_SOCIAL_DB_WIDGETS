@@ -100,6 +100,7 @@ if (!state.theme) {
 const Theme = state.theme;
 
 const init = () => {
+  console.log("init");
   if (state.address === undefined) {
     const accounts = Ethers.send("eth_requestAccounts", []);
 
@@ -144,13 +145,14 @@ const init = () => {
 };
 init();
 
+console.log("data", state.data);
+
 if (!state.data)
   return (
     <Theme>
       <button onClick={init}>Get Started</button>
     </Theme>
   );
-console.log(state.data);
 
 const handleClaim = (id) => {
   const queryRes1 = fetch(
