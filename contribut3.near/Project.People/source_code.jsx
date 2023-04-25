@@ -42,7 +42,7 @@ if (!state.namesIsFetched) {
   ).then((names) => {
     console.log(names);
     console.log(Object.keys(names).map((account) => names[account].profile.name))
-    State.update({ names: new Map(Object.keys(names).map((account) => names[account].profile.name)), namesIsFetched: true })
+    State.update({ names: new Map(Object.keys(names).map((account) => [account, names[account].profile.name])), namesIsFetched: true })
   });
 }
 
