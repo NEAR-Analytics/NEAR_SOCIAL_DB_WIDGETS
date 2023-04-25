@@ -1,4 +1,4 @@
-const notificationWidget = props.notificationWidget;
+const notificationComponent = props.notificationComponent;
 const notificationParams = props.notificationParams;
 const notifyAccountId = props.notifyAccountId;
 const item = props.item;
@@ -93,7 +93,7 @@ const likeClick = () => {
       value: {
         type: "custom",
         message: "Liked your comment",
-        widget: notificationWidget,
+        widget: notificationComponent,
         params: notificationParams,
       },
     });
