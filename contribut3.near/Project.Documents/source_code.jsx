@@ -1,3 +1,5 @@
-Storage.set("S", "H");
-console.log(Storage.get("S"));
-return <></>;
+return <><button onClick={() => {
+  Storage.set("S", "H");
+}}>Set</button><button onClick={() => {
+  console.log(Storage.get("S"));
+}>Get</button></>;
