@@ -1,4 +1,4 @@
-const daoId = props.daoId ?? "liberty.sputnik-dao.near";
+const daoId = props.daoId ?? "nearweek-news-contribution.sputnik-dao.near";
 
 const index = [
   {
