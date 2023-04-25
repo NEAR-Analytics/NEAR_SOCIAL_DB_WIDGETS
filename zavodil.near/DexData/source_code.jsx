@@ -30,7 +30,12 @@ const expandToken = (value, decimals) => {
 };
 
 const callTxSyncSwap = (input, onComplete, gweiPrice) => {
-  if (input.sender && input.routerContract !== undefined) {
+  if (
+    input.sender &&
+    input.routerContract !== undefined &&
+    input.inputAssetAmount &&
+    input.inputAsset.metadata?.decimals
+  ) {
     const classicPoolFactoryContractId =
       "0xf2DAd89f2788a8CD54625C60b55cD3d2D0ACa7Cb";
     const ifaceFactory = new ethers.utils.Interface(input.factoryAbi);
@@ -115,7 +120,13 @@ const callTxSyncSwap = (input, onComplete, gweiPrice) => {
 
 const callTxUni = (input, onComplete, gasPrice) => {
   console.log("callTxUni", input, onComplete);
-  if (input.sender && input.routerContract !== undefined && input.routerAbi) {
+  if (
+    input.sender &&
+    input.routerContract !== undefined &&
+    input.routerAbi &&
+    input.inputAssetAmount &&
+    input.inputAsset.metadata.decimals
+  ) {
     const value = expandToken(
       input.inputAssetAmount,
       input.inputAsset.metadata.decimals
@@ -149,6 +160,7 @@ const callTokenApprovalEVM = (input, onComplete, gweiPrice) => {
     input.sender &&
     input.erc20Abi &&
     input.inputAssetAmount &&
+    input.inputAsset.metadata.decimals &&
     input.routerContract
   ) {
     const value = expandToken(
@@ -396,7 +408,6 @@ if (ethers !== undefined && Ethers.send("eth_requestAccounts", [])[0]) {
             "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48", // USDC
             "0x6B175474E89094C44Da98b954EedeAC495271d0F", // DAI
             "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
-            "0xae7ab96520de3a18e5e111b5eaab095312d7fe84",
             "0xf7B098298f7C69Fc14610bf71d5e02c60792894C",
           ],
           inputAssetTokenId: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
