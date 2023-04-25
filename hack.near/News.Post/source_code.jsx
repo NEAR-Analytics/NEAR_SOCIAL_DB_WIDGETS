@@ -57,7 +57,7 @@ const onChangeDescription = (description) => {
 const handleProposal = () => {
   Near.call([
     {
-      contractName: state.contract_name,
+      contractName: contract_name,
       methodName: "add_proposal",
       args: {
         proposal: {
@@ -104,7 +104,7 @@ const proposal_args = Buffer.from(social_args, "utf-8").toString("base64");
 const handleBoostProposal = () => {
   Near.call([
     {
-      contractName: state.contract_name,
+      contractName: contract_name,
       methodName: "add_proposal",
       args: {
         proposal: {
