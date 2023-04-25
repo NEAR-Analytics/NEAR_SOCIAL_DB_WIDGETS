@@ -1,4 +1,9 @@
-const { checkboxes, title } = props;
+const { checkboxes, title, updateChecked } = props;
+
+State.init({
+  checkboxes,
+  title,
+});
 
 const Input = styled.input``;
 const Fieldset = styled.fieldset`
@@ -6,13 +11,31 @@ const Fieldset = styled.fieldset`
     flex-direction: column;
 `;
 
+const handleChange = (e) => {
+  updateChecked([
+    ...state.checkboxes.map((c) => {
+      if (c.value === e.target.value) {
+        c.selected = e.target.checked;
+      }
+      return c;
+    }),
+  ]);
+};
+
 return (
   <Fieldset>
     <p>{title}</p>
-    {checkboxes.map((c) => {
+    {state.checkboxes.map((c) => {
+      console.log(c.value, c.selected);
       return (
         <label>
-          <Input type="checkbox" value={c.value} /> {c.label}
+          <input
+            className=""
+            type="checkbox"
+            value={c.value}
+            onChange={handleChange}
+          />
+          {c.label}
         </label>
       );
     })}
