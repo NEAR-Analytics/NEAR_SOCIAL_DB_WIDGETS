@@ -234,11 +234,11 @@ return (
     >
       <img
         style={{
-          height: "20px",
+          height: "30px",
           width: "auto",
           position: "absolute",
           left: "32px",
-          top: "24px",
+          top: "44px",
           color: "#FFF",
         }}
         src="https://gist.githubusercontent.com/zavodil/a4d671cc9c3536f10ac3ddffd7bf4337/raw/33735c2b5376a77371aace9fe45ae9ce32b28ea9/icon.svg"
