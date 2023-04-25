@@ -1,4 +1,6 @@
 const accountId = props.accountId;
+const contract_name = "nearweek-news-contribution.sputnik-dao.near";
+
 const blockHeight =
   props.blockHeight === "now" ? "now" : parseInt(props.blockHeight);
 const content =
@@ -30,7 +32,6 @@ const convertAmount = (amount, decimals) => {
 
 State.init({
   recipient: accountId,
-  contract_name: "nearweek-news-contribution.sputnik-dao.near",
   amount: 0.5,
   deposit: 0.1,
 });
@@ -73,6 +74,58 @@ const handleProposal = () => {
       gas: state.gas ?? 200000000000000,
       deposit:
         convertAmount(state.deposit.toString(), 24) ?? 100000000000000000000000,
+    },
+  ]);
+};
+
+const social_args = JSON.stringify({
+  data: {
+    contract_name: {
+      post: {
+        main: {
+          type: "md",
+          text: `${content.text}`,
+        },
+      },
+      index: {
+        post: {
+          key: "main",
+          value: {
+            type: "md",
+          },
+        },
+      },
+    },
+  },
+});
+
+const proposal_args = Buffer.from(social_args, "utf-8").toString("base64");
+
+const handleBoostProposal = () => {
+  Near.call([
+    {
+      contractName: state.contract_name,
+      methodName: "add_proposal",
+      args: {
+        proposal: {
+          description: content.text,
+          kind: {
+            FunctionCall: {
+              receiver_id: state.receiver_id,
+              actions: [
+                {
+                  method_name: state.method_name,
+                  args: proposal_args,
+                  deposit: state.fc_deposit ?? "1",
+                  gas: state.fc_gas ?? "200000000000000",
+                },
+              ],
+            },
+          },
+        },
+      },
+      deposit: state.deposit ?? "100000000000000000000000",
+      gas: state.gas ?? "200000000000000",
     },
   ]);
 };
@@ -127,8 +180,11 @@ return (
       </div>
     )}
     <div className="me-3">
-      <button className="btn btn-primary mt-3" onClick={handleProposal}>
-        Submit
+      <button className="btn btn-primary m-2" onClick={handleProposal}>
+        Submit to NEARWEEK
+      </button>
+      <button className="btn btn-success m-2" onClick={handleBoostProposal}>
+        Request a Boost
       </button>
     </div>
     <div className="mt-3 ps-5">
