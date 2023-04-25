@@ -2,7 +2,7 @@ const label = props.label ?? "File";
 const id = props.id ?? "file";
 const fileAccept = props.fileAccept ?? ["images/*", "video/*", ".pdf"];
 const noLabel = props.noLabel ?? false;
-const value = props.value;
+const value = props.value ?? null;
 const onChange = props.onChange ?? (() => { });
 const validate = props.validate ?? (() => { });
 const error = props.error ?? "";
