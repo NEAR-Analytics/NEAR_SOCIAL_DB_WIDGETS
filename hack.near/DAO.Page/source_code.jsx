@@ -166,7 +166,7 @@ return (
     <Main>
       <SidebarWrapper>
         <Widget
-          src="near/widget/ProfilePage.Sidebar"
+          src="hack.near/widget/DAO.Page.Sidebar"
           props={{
             accountId,
             profile,
