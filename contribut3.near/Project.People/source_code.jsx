@@ -61,6 +61,8 @@ const Item = styled.li`
   align-items: center;
   justify-content: flex-start;
   width: 100%;
+  padding: 1.5em 0px;
+  border-bottom: 1px solid #EAECF0;
 `;
 
 const Heading = styled.h3`
