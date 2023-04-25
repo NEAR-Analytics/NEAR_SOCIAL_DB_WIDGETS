@@ -47,7 +47,7 @@ const SaveButton = styled.button`
 
 const edit = (update, v) => (
   <LabelArea>
-    <Widget src={`${ownerId}/widget/Inputs.Integration`} props={{ integration: v, update }} />
+    <Widget src={`${ownerId}/widget/Inputs.Integration`} props={{ integration: v, update, noLabel: true }} />
     <SaveButton onClick={() => onSave(v)}>Save</SaveButton>
   </LabelArea>
 );
