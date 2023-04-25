@@ -223,7 +223,7 @@ return (
       <p>
         There are three types of Voyage Boxes of varying rarity, each containing
         random points that can be claimed. The box with the higher rarity will
-        give you more points,
+        give you more points.
       </p>
 
       {state.toast && (
