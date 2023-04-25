@@ -262,17 +262,20 @@ return (
                 }}
               />
             </FollowButtonWrapper>
-
-            <Widget
-              src="hack.near/widget/DAO.Join"
-              props={{
-                accountId,
-              }}
-            />
           </>
         ) : (
           <></>
         )}
+      </Actions>
+      <Actions>
+        <FollowButtonWrapper>
+          <Widget
+            src="hack.near/widget/DAO.Join"
+            props={{
+              accountId,
+            }}
+          />
+        </FollowButtonWrapper>
 
         <OverlayTrigger
           placement="top"
