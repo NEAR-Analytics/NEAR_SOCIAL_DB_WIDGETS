@@ -243,7 +243,11 @@ return (
                   }),
                   inbox: JSON.stringify({
                     key: context.accountId,
-                    value: { type: "project/invite", requestId: [state.projectId.value, state.requestId.value], message: state.message },
+                    value: {
+                      type: "project/invite",
+                      requestId: [state.projectId.value, state.requestId.value],
+                      message: state.message
+                    },
                   }),
                 },
               },
