@@ -1,5 +1,5 @@
 const { checkboxes, label, onChange, selectedBoxes } = props;
-
+console.log(checkboxes, selectedBoxes);
 State.init({
   checkboxes,
   title,
