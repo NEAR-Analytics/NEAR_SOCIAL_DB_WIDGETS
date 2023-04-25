@@ -103,10 +103,7 @@ return (
       ago
     </Text>
     <div>
-      <Widget
-        src="near/widget/AccountProfileInline"
-        props={{ accountId }}
-      />
+      <Widget src="near/widget/AccountProfileInline" props={{ accountId }} />
       invited
       <Widget
         src="near/widget/AccountProfileInline"
