@@ -236,10 +236,6 @@ return (
             console.log(state)
             Social.set({
               data: {
-                graph: JSON.stringify({
-                  key: "project-invite",
-                  value: { accountId: context.accountId },
-                }),
                 index: {
                   graph: JSON.stringify({
                     key: "project-invite",
