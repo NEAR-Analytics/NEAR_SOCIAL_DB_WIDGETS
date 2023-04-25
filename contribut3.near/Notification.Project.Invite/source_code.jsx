@@ -1,3 +1,4 @@
+const ownerId = "contribut3.near";
 const { requestId } = props.value;
 const [accountId, cid] = requestId;
 console.log(accountId, cid);
