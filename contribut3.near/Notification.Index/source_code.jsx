@@ -1,3 +1,4 @@
+console.log(props)
 const { value } = props;
 const ownerId = "contribut3.near";
 
