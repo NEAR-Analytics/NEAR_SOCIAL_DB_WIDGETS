@@ -81,6 +81,6 @@ return <>
   <Heading>Team</Heading>
   <List>{state.team.map((member) => <Item>
     <Widget src={`${ownerId}/widget/Vendor.Icon`} props={{ accountId: member, size: "2em" }} />
-    <Widget src={`${ownerId}/widget/NameAndAccount`} props={{ accountId: member, name: state.names.get(founder), nameSize: ".9em" }} />
+    <Widget src={`${ownerId}/widget/NameAndAccount`} props={{ accountId: member, name: state.names.get(member), nameSize: ".9em" }} />
   </Item>)}</List>
 </>;
