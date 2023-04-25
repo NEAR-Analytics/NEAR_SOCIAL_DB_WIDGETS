@@ -78,19 +78,35 @@ const handleProposal = () => {
 };
 
 const social_args = JSON.stringify({
-  data: {
-    contract_name: {
-      post: {
-        main: {
-          type: "md",
-          text: `${content.text}`,
+  "liberty.sputnik-dao.near": {
+    index: {
+      repost: {
+        key: "main",
+        value: {
+          type: "repost",
+          item: {
+            type: "social",
+            path: `${daoId}/post/main`,
+            blockHeight: blockHeight,
+          },
+        },
+        key: {
+          type: "social",
+          path: `${daoId}/post/main`,
+          blockHeight: blockHeight,
+          value: {
+            type: "repost",
+          },
         },
       },
-      index: {
-        post: {
-          key: "main",
-          value: {
-            type: "md",
+      notify: {
+        key: accountId,
+        value: {
+          type: "repost",
+          item: {
+            type: "social",
+            path: `${daoId}/post/main`,
+            blockHeight: blockHeight,
           },
         },
       },
