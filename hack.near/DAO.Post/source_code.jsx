@@ -74,7 +74,7 @@ const handleProposal = () => {
 
 const item = {
   type: "social",
-  path: `${contract_name}/post/main`,
+  path: `${accountId}/post/main`,
   blockHeight,
 };
 
