@@ -107,17 +107,17 @@ const init = () => {
 
       State.update({ address });
 
-      const res = fetch(
-        `https://open-platform.nodereal.io/a956dfb1d373444a8e97d04bcfbc8871/spaceid/domain/names/byOwners`,
-        {
-          method: `POST`,
-          body: JSON.stringify([address]),
-        }
-      );
+      // const res = fetch(
+      //   `https://open-platform.nodereal.io/a956dfb1d373444a8e97d04bcfbc8871/spaceid/domain/names/byOwners`,
+      //   {
+      //     method: `POST`,
+      //     body: JSON.stringify([address]),
+      //   }
+      // );
 
-      if (res.body) {
-        State.update({ names: Object.values(res.body)[0] });
-      }
+      // if (res.body) {
+      //   State.update({ names: Object.values(res.body)[0] });
+      // }
 
       const queryRes = fetch(
         `https://galxe-proxy.near.workers.dev?a=123&url=https://graphigo.prd.galaxy.eco/query`,
