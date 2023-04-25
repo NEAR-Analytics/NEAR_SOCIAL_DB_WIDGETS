@@ -233,48 +233,48 @@ return (
             </>
           ),
           onClick: () => {
-            Near.view(ownerId, "get_vendor", { account_id: props.accountId }).then(({ permisssions }) => {
-              // const data = Object.keys(permissions).filter((account) => permissions[account].includes("Admin")).map((account) => ({
-              //   index: {
-              //     graph: JSON.stringify({
-              //       key: "project/invite",
-              //       value: { accountId: state.projectId.value },
-              //     }),
-              //     inbox: JSON.stringify({
-              //       key: account,
-              //       value: {
-              //         type: "project/invite",
-              //         requestId: [state.projectId.value, state.requestId.value],
-              //         message: state.message,
-              //         vendorId: props.accountId,
-              //       },
-              //     }),
-              //   }
-              // }));
-              // Near.call(data.map((index) => ({
-              //   contractName: "social.near",
-              //   methodName: "set",
-              //   args: index,
-              // })));
-              Social.set({
-                index: {
-                  graph: JSON.stringify({
-                    key: "project/invite",
-                    value: { accountId: state.projectId.value },
-                  }),
-                  inbox: JSON.stringify({
-                    key: props.accountId,
-                    value: {
-                      type: "project/invite",
-                      requestId: [state.projectId.value, state.requestId.value],
-                      vendorId: props.accountId,
-                      message: state.message,
-                    },
-                  }),
-                },
+            // Near.view(ownerId, "get_vendor", { account_id: props.accountId }).then(({ permisssions }) => {
+            // const data = Object.keys(permissions).filter((account) => permissions[account].includes("Admin")).map((account) => ({
+            //   index: {
+            //     graph: JSON.stringify({
+            //       key: "project/invite",
+            //       value: { accountId: state.projectId.value },
+            //     }),
+            //     inbox: JSON.stringify({
+            //       key: account,
+            //       value: {
+            //         type: "project/invite",
+            //         requestId: [state.projectId.value, state.requestId.value],
+            //         message: state.message,
+            //         vendorId: props.accountId,
+            //       },
+            //     }),
+            //   }
+            // }));
+            // Near.call(data.map((index) => ({
+            //   contractName: "social.near",
+            //   methodName: "set",
+            //   args: index,
+            // })));
+            Social.set({
+              index: {
+                graph: JSON.stringify({
+                  key: "project/invite",
+                  value: { accountId: state.projectId.value },
+                }),
+                inbox: JSON.stringify({
+                  key: props.accountId,
+                  value: {
+                    type: "project/invite",
+                    requestId: [state.projectId.value, state.requestId.value],
+                    vendorId: props.accountId,
+                    message: state.message,
+                  },
+                }),
               },
-              )
-            })
+            },
+            )
+            // })
           },
         }}
       />
