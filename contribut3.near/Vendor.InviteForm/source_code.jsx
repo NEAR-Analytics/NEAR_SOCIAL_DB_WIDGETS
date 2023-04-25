@@ -178,7 +178,7 @@ return (
               State.update({
                 requests: requests.map(([accountId, cid, title]) => ({
                   text: title,
-                  value: [accountId, cid],
+                  value: cid,
                 })),
                 requestsIsFetched: true,
               })
