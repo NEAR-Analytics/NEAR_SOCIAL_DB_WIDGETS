@@ -233,6 +233,7 @@ return (
             </>
           ),
           onClick: () => {
+            console.log(state)
             Social.set({
               data: {
                 index: {
