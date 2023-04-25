@@ -11,7 +11,8 @@ const Container = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
+  gap: 1em;
   padding: .5em;
   background: #FFFFFF;
   border: 1px solid #ECEEF0;
