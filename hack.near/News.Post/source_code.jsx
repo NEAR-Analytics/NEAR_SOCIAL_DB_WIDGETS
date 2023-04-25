@@ -60,7 +60,7 @@ const handleProposal = () => {
       methodName: "add_proposal",
       args: {
         proposal: {
-          description: content,
+          description: content.text,
           kind: {
             Transfer: {
               token_id: "",
