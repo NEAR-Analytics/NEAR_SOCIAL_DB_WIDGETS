@@ -239,10 +239,10 @@ return (
                 index: {
                   graph: JSON.stringify({
                     key: "project/invite",
-                    value: { accountId },
+                    value: { accountId: context.accountId },
                   }),
                   inbox: JSON.stringify({
-                    key: props.accountId,
+                    key: context.accountId,
                     value: { type: "project/invite", requestId: [state.projectId.value, state.requestId.value], message: state.message },
                   }),
                 },
