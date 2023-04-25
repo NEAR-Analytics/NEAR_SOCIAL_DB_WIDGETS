@@ -21,6 +21,16 @@ const handleChange = (e) => {
   }
 };
 
+const sameSelected =
+  containsAll(state.selectedBoxes, selectedBoxes) &&
+  containsAll(selectedBoxes, state.selectedBoxes);
+
+if (!sameSelected) {
+  State.update({
+    selectedBoxes,
+  });
+}
+
 return (
   <Fieldset>
     <p>{label}</p>
@@ -34,7 +44,7 @@ return (
             type="checkbox"
             value={c.value}
             onChange={handleChange}
-            checked={selectedBoxes.includes(c.value)}
+            checked={state.selectedBoxes.includes(c.value)}
           />
           <label htmlFor={`status-checkbox-${c.value}`}>
             {c.label} {JSON.stringify(selectedBoxes.includes(c.value))}
