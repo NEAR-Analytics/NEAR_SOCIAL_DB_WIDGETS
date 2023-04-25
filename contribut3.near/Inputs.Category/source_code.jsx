@@ -17,6 +17,7 @@ return (
     src={`${ownerId}/widget/Inputs.Select`}
     props={{
       label: "Project category *",
+      noLabel: props.noLabel,
       placeholder: "Wallets",
       options,
       value: props.category,
