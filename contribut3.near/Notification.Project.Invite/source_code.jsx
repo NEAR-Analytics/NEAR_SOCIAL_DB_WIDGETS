@@ -1,7 +1,5 @@
-const ownerId = "contribut3.near";
 const { requestId } = props.value;
-const [accountId, cid] = requestId;
-console.log(accountId, cid);
+const { accountId, cid } = requestId;
 
 State.init({
   request: null,
