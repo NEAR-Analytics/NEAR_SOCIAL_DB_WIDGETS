@@ -10,11 +10,6 @@ const subscribe = !!props.subscribe;
 const raw = !!props.raw;
 
 const notifyAccountId = accountId;
-const item = {
-  type: "social",
-  path: `${accountId}/post/main`,
-  blockHeight,
-};
 
 const link = `#/mob.near/widget/MainPage.Post.Page?accountId=${accountId}&blockHeight=${blockHeight}`;
 
@@ -77,38 +72,33 @@ const handleProposal = () => {
   ]);
 };
 
+const item = {
+  type: "social",
+  path: `${a.accountId}/post/main`,
+  blockHeight,
+};
+
+const reposts = [
+  {
+    key: "main",
+    value: {
+      type: "repost",
+      item,
+    },
+  },
+  {
+    key: item,
+    value: {
+      type: "repost",
+    },
+  },
+];
+
 const social_args = JSON.stringify({
-  "liberty.sputnik-dao.near": {
-    index: {
-      repost: {
-        key: "main",
-        value: {
-          type: "repost",
-          item: {
-            type: "social",
-            path: "liberty.sputnik-dao.near/post/main",
-            blockHeight: blockHeight,
-          },
-        },
-        key: {
-          type: "social",
-          path: "liberty.sputnik-dao.near/post/main",
-          blockHeight: blockHeight,
-          value: {
-            type: "repost",
-          },
-        },
-      },
-      notify: {
-        key: accountId,
-        value: {
-          type: "repost",
-          item: {
-            type: "social",
-            path: `${daoId}/post/main`,
-            blockHeight: blockHeight,
-          },
-        },
+  data: {
+    [contract_name]: {
+      index: {
+        repost: JSON.stringify(reposts),
       },
     },
   },
