@@ -1,3 +1,5 @@
+const ownerId = "contribut3.near";
+
 const options = [
   { text: "Wallets", value: "wallets" },
   { text: "Gaming/Metaverse", value: "gaming/metaverse" },
