@@ -239,7 +239,7 @@ return (
 
             <Widget
               src="hack.near/widget/DAO.Social"
-              props={{ daoId: daoId }}
+              props={{ daoId: "multi.sputnik-dao.near" }}
             />
           </>
         )}
@@ -249,7 +249,7 @@ return (
         )}
 
         {state.selectedTab === "communities" && (
-          <Widget src="hack.near/widget/People" props={{ daoId }} />
+          <Widget src="mob.near/widget/People" props={{ daoId }} />
         )}
 
         {state.selectedTab === "followers" && (
