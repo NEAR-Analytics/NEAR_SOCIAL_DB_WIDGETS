@@ -61,11 +61,13 @@ const fetchVotersByProposal = () => {
       voters: voters.body,
     });
 };
+
 !state.voters && fetchVotersByProposal();
 
 return (
   <div>
     {state.voters &&
+      state.council &&
       state.voters.map((v) => {
         return (
           <Widget
