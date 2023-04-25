@@ -70,7 +70,9 @@ if (state.tokenPrice === undefined) {
     .div(Big(10).pow(24))
     .toFixed();
   console.log("tokenPrice", tokenPrice);
-  State.update({ tokenPrice });
+  if (Number(tokenPrice)) {
+    State.update({ tokenPrice });
+  }
 }
 
 const youWillReceive =
