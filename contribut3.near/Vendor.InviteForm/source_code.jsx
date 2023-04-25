@@ -62,11 +62,11 @@ const createProjectLine = (accountId, name, image) => {
 };
 
 State.init({
-  requestId: [],
   message: "",
-  projectId: [],
+  projectId: null,
   projects: [],
   projectsIsFetched: false,
+  requestId: null,
   requests: [],
   requestsIsFetched: false,
 });
