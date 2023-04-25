@@ -192,7 +192,7 @@ return (
           label: "Contribution to *",
           options: state.requests,
           value: state.requestId,
-          onChange: (requestId) => { State.update({ requestId }); console.log(requestId) },
+          onChange: (requestId) => State.update({ requestId }),
         }}
       />
       <Widget
