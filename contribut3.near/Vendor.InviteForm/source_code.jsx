@@ -246,7 +246,7 @@ return (
                     value: {
                       type: "project/invite",
                       requestId: [state.projectId.value, state.requestId.value],
-                      message: state.message
+                      message: state.message,
                     },
                   }),
                 },
