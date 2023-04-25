@@ -1,13 +1,11 @@
-if (!props.blockHeight) {
-  return (
-    <div>
-      <p>Please provide a block height</p>
-    </div>
-  );
-}
+const MAX_BLOCKS = 50;
+const MAX_RETRIES = 15;
 
 State.init({
-  blockData: null,
+  currentBlockNumber: props.blockNumber || null,
+  nexBlockNumber: null,
+  blocksData: new Map(),
+  retryCount: 0,
 });
 
 const endPointUrl = props.endPointUrl || "https://mainnet.aurora.dev";
@@ -30,8 +28,59 @@ const fetchBlockData = (number) => {
   const data = response?.body?.result;
 
   if (data) {
+    const newData = new Map(state.blocksData);
+    const block = {
+      number: data.number,
+      hash: data.hash,
+      timestamp: data.timestamp,
+      transactions: data.transactions,
+    };
+
+    newData.set(data.number, block);
+
+    if (newData.size > MAX_BLOCKS) {
+      const oldestKey = Array.from(newData.keys())[0];
+      newData.delete(oldestKey);
+    }
+
     State.update({
-      blockData: data,
+      blocksData: newData,
+      currentBlockNumber: number,
+      nextBlockNumber: number + 1,
+      retryCount: 0,
+    });
+  } else {
+    if (state.retryCount >= MAX_RETRIES) {
+      State.update({
+        nextBlockNumber: number + 1,
+        retryCount: 0,
+      });
+    } else {
+      State.update({
+        retryCount: state.retryCount + 1,
+      });
+    }
+  }
+};
+
+const fetchCurrentBlockNumber = () => {
+  const response = fetch(endPointUrl, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      jsonrpc: "2.0",
+      method: "eth_blockNumber",
+      params: [],
+      id: 1,
+    }),
+  });
+
+  if (!response) return;
+  if (response?.body?.result) {
+    State.update({
+      currentBlockNumber: parseInt(response.body.result, 16),
     });
   }
 };
@@ -44,18 +93,38 @@ if (!endPointUrl) {
   );
 }
 
-if (props.blockHeight && !state.blockData) {
-  fetchBlockData(props.blockHeight);
+if (!state.currentBlockNumber) {
+  fetchCurrentBlockNumber();
 }
 
-const BlockDetails = styled.div`
-  display: inline-block;
+if (state.currentBlockNumber && !state.nextBlockNumber) {
+  fetchBlockData(state.currentBlockNumber);
+}
+
+if (
+  state.currentBlockNumber &&
+  state.nextBlockNumber &&
+  state.currentBlockNumber !== state.nextBlockNumber
+) {
+  setTimeout(() => {
+    fetchBlockData(state.nextBlockNumber);
+  }, 500);
+}
+
+const List = styled.ul`
+  list-style: none;
+  margin: 0;
+  padding: 0;
+`;
+
+const ListItem = styled.li`
+  margin-bottom: 20px;
   border: 1px solid #fff;
   padding: 20px;
 `;
 
 const Section = styled.div`
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 
   p {
     margin: 0;
@@ -70,58 +139,65 @@ const Section = styled.div`
   }
 `;
 
-if (!state.blockData) {
-  return (
-    <div>
-      <p>Loading block data...</p>
-    </div>
-  );
-}
-
 return (
-  <BlockDetails>
-    <h1>Block details</h1>
+  <div>
+    <h1>Block stream</h1>
 
-    <Section>
-      <p>Block number</p>
-      <p>{state.blockData?.number}</p>
-    </Section>
+    <p>Current block number: {state.currentBlockNumber}</p>
 
-    <Section>
-      <p>Block hash</p>
-      <p>{state.blockData?.hash}</p>
-    </Section>
+    {state.blocksData.size > 0 ? (
+      <List>
+        {Array.from(state.blocksData.values())
+          .reverse()
+          .map((block) => {
+            if (!block) {
+              return null;
+            }
 
-    <Section>
-      <p>Parent hash</p>
-      <p>{state.blockData?.parentHash}</p>
-    </Section>
+            return (
+              <ListItem key={block.number}>
+                <Section>
+                  <p>Block number</p>
+                  <a
+                    href={`https://bos.gg/#/bos_check.near/widget/BlockDetails?blockHeight=${block.number}`}
+                    target="_blank"
+                  >
+                    {block.number}
+                  </a>
+                </Section>
+                <Section>
+                  <p>Block hash</p>
+                  <p>{block.hash}</p>
+                </Section>
+                <Section>
+                  <p>Block timestamp</p>
+                  <p>{block.timestamp}</p>
+                </Section>
+                <Section>
+                  <p>Block transactions</p>
 
-    <Section>
-      <p>Timestamp</p>
-
-      <p>{state.blockData?.timestamp}</p>
-    </Section>
-
-    <Section>
-      <p>Transactions</p>
-
-      <div>
-        {state.blockData?.transactions?.length > 0 ? (
-          <div>
-            {state.blockData?.transactions?.map((tx, i) => (
-              <a
-                href={`https://bos.gg/#/bos_check.near/widget/TxDetails?txHash=${tx}`}
-                target="_blank"
-              >
-                {tx}
-              </a>
-            ))}
-          </div>
-        ) : (
-          <p>No transactions</p>
-        )}
-      </div>
-    </Section>
-  </BlockDetails>
+                  <div>
+                    {block.transactions.length > 0 ? (
+                      block.transactions.map((tx, i) => {
+                        return (
+                          <a
+                            key={tx - i}
+                            href={`https://bos.gg/#/bos_check.near/widget/TxDetails?txHash=${tx}`}
+                            target="_blank"
+                          >
+                            {tx}
+                          </a>
+                        );
+                      })
+                    ) : (
+                      <p>No transactions</p>
+                    )}
+                  </div>
+                </Section>
+              </ListItem>
+            );
+          })}
+      </List>
+    ) : null}
+  </div>
 );
