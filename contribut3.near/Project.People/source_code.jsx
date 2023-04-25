@@ -40,8 +40,6 @@ if (!state.namesIsFetched) {
     "final",
     false
   ).then((names) => {
-    console.log(names);
-    console.log(Object.keys(names).map((account) => names[account].profile.name))
     State.update({ names: new Map(Object.keys(names).map((account) => [account, names[account].profile.name])), namesIsFetched: true })
   });
 }
@@ -77,8 +75,8 @@ const Heading = styled.h3`
 return <>
   <Heading>Founders</Heading>
   <List>{state.founders.map((founder) => <Item>
-    <Widget src={`${founder}/widget/Vendor.Icon`} props={{ accountId: founder, size: "2em" }} />
-    <Widget src={`${founder}/widget/NameAndAccount`} props={{ accountId: founder, name: state.names.get(founder), nameSize: ".9em" }} />
+    <Widget src={`${ownerId}/widget/Vendor.Icon`} props={{ accountId: founder, size: "2em" }} />
+    <Widget src={`${ownerId}/widget/NameAndAccount`} props={{ accountId: founder, name: state.names.get(founder), nameSize: ".9em" }} />
   </Item>)}</List>
   <Heading>Team</Heading>
 </>;
