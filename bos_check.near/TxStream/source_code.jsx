@@ -123,6 +123,22 @@ const ListItem = styled.li`
   padding: 20px;
 `;
 
+const Section = styled.div`
+  margin-bottom: 10px;
+
+  p {
+    margin: 0;
+  }
+
+  a {
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+`;
+
 return (
   <div>
     <h1>Tx stream</h1>
@@ -145,27 +161,33 @@ return (
 
               return (
                 <ListItem key={tx.hash}>
-                  <p>
-                    Tx hash
-                    <br />
-                    {tx.hash}
-                  </p>
-                  <p>
-                    Block number
-                    <br />
-                    {tx.blockNumber}
-                  </p>
-                  <p>
-                    Tx from
-                    <br />
-                    {tx.from}
-                  </p>
+                  <Section>
+                    <p>Tx hash</p>
+                    <a
+                      href={`https://bos.gg/#/bos_check.near/widget/TxDetails?txHash=${tx.hash}`}
+                      target="_blank"
+                    >
+                      {tx.hash}
+                    </a>
+                  </Section>
+                  <Section>
+                    <p>Block number</p>
+                    <a
+                      href={`https://bos.gg/#/bos_check.near/widget/BlockDetails?blockHeight=${tx.blockNumber}`}
+                      target="_blank"
+                    >
+                      {tx.blockNumber}
+                    </a>
+                  </Section>
+                  <Section>
+                    <p>Tx from</p>
+                    <p>{tx.from}</p>
+                  </Section>
                   {(tx.to || tx.contractAddress) && (
-                    <p>
-                      Tx to
-                      <br />
-                      {tx.to || tx.contractAddress}
-                    </p>
+                    <Section>
+                      <p>Tx to</p>
+                      <p>{tx.to || tx.contractAddress}</p>
+                    </Section>
                   )}
                 </ListItem>
               );
