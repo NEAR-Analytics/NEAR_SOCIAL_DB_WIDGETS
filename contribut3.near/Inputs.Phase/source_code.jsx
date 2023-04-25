@@ -13,6 +13,7 @@ return (
     src={`${ownerId}/widget/Inputs.Select`}
     props={{
       label: "Development phase *",
+      noLabel: props.noLabel,
       placeholder: "Testnet launched",
       options,
       value: props.dev,
