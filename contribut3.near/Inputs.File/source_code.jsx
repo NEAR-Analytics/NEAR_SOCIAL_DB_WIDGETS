@@ -2,7 +2,8 @@ const label = props.label ?? "File";
 const id = props.id ?? "file";
 const fileAccept = props.fileAccept ?? ["images/*", "video/*", ".pdf"];
 const noLabel = props.noLabel ?? false;
-const value = props.value ?? null;
+const value = props.value ?? "---";
+const [cid, filename, size, uploaded] = value.split("-");
 const onChange = props.onChange ?? (() => { });
 const validate = props.validate ?? (() => { });
 const error = props.error ?? "";
@@ -44,7 +45,7 @@ const Error = styled.span`
   }
 `;
 
-const Input = styled.input`
+const Input = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
@@ -59,9 +60,74 @@ const Input = styled.input`
   width: 100%;
 `;
 
+const FileDetails = styled.div`
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: .5em 1em .75em;
+  gap: .75em;
+  background: #fafafa;
+  border: 1px solid #eceef0;
+  border-radius: 8px;
+`;
+
+const Small = styled.span`
+  font-style: normal;
+  font-weight: 400;
+  font-size: .75em;
+  line-height: 1em;
+  display: flex;
+  align-items: flex-end;
+  text-align: center;
+  color: #7e868c;
+`;
+
+State.init({
+  uploading: false,
+});
+
+const ipfsUrl = (cid) => `https://ipfs.near.social/ipfs/${cid}`;
+
 return (
   <Container>
     <Label>{label}</Label>
+    {cid ?
+      <a href={ipfsUrl(state.cid)} download>{state.filename}</a>
+      : <></>}
+    <Files
+      multiple={false}
+      accepts={["image/*", "video/*", ".pdf"]}
+      minFileSize={1}
+      clickable
+      className="btn btn-outline-primary"
+      onChange={(files) => {
+        if (!files || !files.length) return;
+
+        const [body] = files;
+
+        State.update({ uploading: true, cid: null });
+        asyncFetch(
+          "https://ipfs.near.social/add",
+          {
+            method: "POST",
+            headers: { Accept: "application/json" },
+            body,
+          }
+        ).then(
+          ({ body: { cid } }) => {
+            State.update({ cid, filename: body.name, uploading: false });
+            // props.update(cid);
+          }
+        );
+      }}
+    >
+      {state.uploading
+        ? "Uploading"
+        : state.cid
+          ? "Replace"
+          : buttonText}
+    </Files>
     <Input
       type="text"
       placeholder={placeholder}
