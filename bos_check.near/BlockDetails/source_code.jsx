@@ -54,6 +54,22 @@ const BlockDetails = styled.div`
   padding: 20px;
 `;
 
+const Section = styled.div`
+  margin-bottom: 20px;
+
+  p {
+    margin: 0;
+  }
+
+  a {
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+`;
+
 if (!state.blockData) {
   return (
     <div>
@@ -66,41 +82,46 @@ return (
   <BlockDetails>
     <h1>Block details</h1>
 
-    <div>
+    <Section>
       <p>Block number</p>
       <p>{state.blockData?.number}</p>
-    </div>
+    </Section>
 
-    <div>
+    <Section>
       <p>Block hash</p>
       <p>{state.blockData?.hash}</p>
-    </div>
+    </Section>
 
-    <div>
+    <Section>
       <p>Parent hash</p>
       <p>{state.blockData?.parentHash}</p>
-    </div>
+    </Section>
 
-    <div>
+    <Section>
       <p>Timestamp</p>
 
       <p>{state.blockData?.timestamp}</p>
-    </div>
+    </Section>
 
-    <div>
+    <Section>
       <p>Transactions</p>
 
       <div>
         {state.blockData?.transactions?.length > 0 ? (
           <div>
             {state.blockData?.transactions?.map((tx, i) => (
-              <p>{tx}</p>
+              <a
+                href={`https://bos.gg/#/bos_check.near/widget/TxDetails?txHash=${tx}`}
+                target="_blank"
+              >
+                {tx}
+              </a>
             ))}
           </div>
         ) : (
           <p>No transactions</p>
         )}
       </div>
-    </div>
+    </Section>
   </BlockDetails>
 );
