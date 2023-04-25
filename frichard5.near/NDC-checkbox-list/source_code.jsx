@@ -24,6 +24,7 @@ return (
   <Fieldset>
     <p>{label}</p>
     {state.checkboxes.map((c) => {
+      console.log(c.value, selectedBoxes.includes(c.value));
       return (
         <label>
           <input
