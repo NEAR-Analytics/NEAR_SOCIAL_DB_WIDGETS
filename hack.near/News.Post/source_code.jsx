@@ -72,8 +72,7 @@ const handleProposal = () => {
         },
       },
       gas: state.gas ?? 200000000000000,
-      deposit:
-        convertAmount(state.deposit.toString(), 24) ?? 100000000000000000000000,
+      deposit: 100000000000000000000000,
     },
   ]);
 };
