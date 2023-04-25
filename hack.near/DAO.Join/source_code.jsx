@@ -66,7 +66,7 @@ const Wrapper = styled.div`
 
 return (
   <Wrapper>
-    <button className="join-button mt-2" onClick={handleProposal}>
+    <button className="join-button" onClick={handleProposal}>
       Ask to Join
     </button>
   </Wrapper>
