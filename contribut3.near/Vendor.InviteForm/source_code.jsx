@@ -237,21 +237,23 @@ return (
               console.log(vendor);
               const { permissions } = vendor;
               const data = Object.keys(permissions).filter((account) => permissions[account].includes("Admin")).map((account) => ({
-                [context.accountId]: {
-                  index: {
-                    graph: JSON.stringify({
-                      key: "project/invite",
-                      value: { accountId: state.projectId.value },
-                    }),
-                    inbox: JSON.stringify({
-                      key: account,
-                      value: {
-                        type: "project/invite",
-                        requestId: [state.projectId.value, state.requestId.value],
-                        message: state.message,
-                        vendorId: props.accountId,
-                      },
-                    }),
+                data: {
+                  [context.accountId]: {
+                    index: {
+                      graph: JSON.stringify({
+                        key: "project/invite",
+                        value: { accountId: state.projectId.value },
+                      }),
+                      inbox: JSON.stringify({
+                        key: account,
+                        value: {
+                          type: "project/invite",
+                          requestId: [state.projectId.value, state.requestId.value],
+                          message: state.message,
+                          vendorId: props.accountId,
+                        },
+                      }),
+                    }
                   }
                 }
               }));
