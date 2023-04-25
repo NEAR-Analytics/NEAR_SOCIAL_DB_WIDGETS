@@ -88,6 +88,7 @@ State.init({
 });
 
 const ipfsUrl = (cid) => `https://ipfs.near.social/ipfs/${cid}`;
+
 const formatBytes = () => {
   const size = Number(size);
   const unit = size < 1000 ? "byte" : size < 1000000 ? "kilobyte" : size < 1000000000 ? "megabyte" : "gigabyte";
@@ -105,8 +106,9 @@ return (
             <path d="M8.5 1.70215V4.80005C8.5 5.22009 8.5 5.43011 8.58175 5.59055C8.65365 5.73167 8.76839 5.8464 8.90951 5.91831C9.06994 6.00005 9.27996 6.00005 9.7 6.00005H12.7979M10 9.75H4M10 12.75H4M5.5 6.75H4M8.5 1.5H4.6C3.33988 1.5 2.70982 1.5 2.22852 1.74524C1.80516 1.96095 1.46095 2.30516 1.24524 2.72852C1 3.20982 1 3.83988 1 5.1V12.9C1 14.1601 1 14.7902 1.24524 15.2715C1.46095 15.6948 1.80516 16.039 2.22852 16.2548C2.70982 16.5 3.33988 16.5 4.6 16.5H9.4C10.6601 16.5 11.2902 16.5 11.7715 16.2548C12.1948 16.039 12.539 15.6948 12.7548 15.2715C13 14.7902 13 14.1601 13 12.9V6L8.5 1.5Z" stroke="#7E868C" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
           <a href={ipfsUrl(state.cid)} download>{state.filename}</a>
-          <Small>{Number(size < ).toLocaleString("en-US", { unit: size < 1000 ? "byte" : size < 1000000 ? "kilobyte" : size < 1000000000 ? "megabyte" : "gigabyte", style: "unit" })}</Small>
+          <Small>{formatBytes()}</Small>
         </span>
+        <span>Uploaded {new Date(Number(uploaded)).toLocaleDateString()}</span>
       </FileDetails>
       : <></>}
     <Files
