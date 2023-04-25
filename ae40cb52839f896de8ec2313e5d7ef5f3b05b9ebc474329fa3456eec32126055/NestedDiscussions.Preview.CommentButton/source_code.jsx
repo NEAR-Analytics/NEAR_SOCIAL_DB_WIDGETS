@@ -1,4 +1,4 @@
-const comments = Social.index(props.dbAction, props.item);
+const comments = Social.index("discuss", props.item);
 const totalComments = comments?.length || 0;
 
 const CommentButton = styled.button`
@@ -33,6 +33,6 @@ return (
     onClick={props.onClick}
   >
     <i className="bi-chat" />
-    {!props.hideCount && totalComments}
+    {totalComments}
   </CommentButton>
 );
