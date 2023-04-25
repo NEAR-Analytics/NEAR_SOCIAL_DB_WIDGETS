@@ -1,6 +1,6 @@
-const accountId = props.accountId ?? "onboarddao.sputnik-dao.near";
+const daoId = props.daoId ?? "onboarddao.sputnik-dao.near";
 
-const profile = props.profile ?? Social.getr(`${accountId}/profile`);
+const profile = props.profile ?? Social.getr(`${daoId}/profile`);
 
 if (profile === null) {
   return "Loading...";
@@ -12,7 +12,7 @@ return (
       <Widget
         src="hack.near/widget/DAO.ProfileLarge"
         props={{
-          accountId,
+          daoId,
           profile,
           link: true,
           showEditButton: !props.profile,
@@ -20,10 +20,7 @@ return (
       />
 
       <div className="mt-3">
-        <Widget
-          src="hack.near/widget/DAO.Tabs"
-          props={{ accountId, profile }}
-        />
+        <Widget src="hack.near/widget/DAO.Tabs" props={{ daoId, profile }} />
       </div>
     </div>
   </div>
