@@ -49,6 +49,7 @@ if (props.blockHeight && !state.blockData) {
 }
 
 const BlockDetails = styled.div`
+  display: inline-block;
   border: 1px solid #fff;
   padding: 20px;
 `;
