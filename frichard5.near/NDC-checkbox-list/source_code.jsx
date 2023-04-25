@@ -1,4 +1,4 @@
-const { checkboxes, label, updateChecked, selectedBoxes } = props;
+const { checkboxes, label, onChange, selectedBoxes } = props;
 
 State.init({
   checkboxes,
@@ -13,10 +13,10 @@ const Fieldset = styled.fieldset`
 
 const handleChange = (e) => {
   if (e.target.checked) {
-    updateChecked([...selectedBoxes, e.target.value]);
+    onChange([...selectedBoxes, e.target.value]);
   } else {
     const selectedList = selectedBoxes.filter((b) => b != e.target.value);
-    updateChecked(selectedList);
+    onChange(selectedList);
   }
 };
 
