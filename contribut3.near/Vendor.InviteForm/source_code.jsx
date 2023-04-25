@@ -242,7 +242,7 @@ return (
                   }),
                   inbox: JSON.stringify({
                     key: props.accountId,
-                    value: { type: "project/invite", requestId: props.requestId },
+                    value: { type: "project/invite", requestId: state.requestId.value },
                   }),
                 },
               },
