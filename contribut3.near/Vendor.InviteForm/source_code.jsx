@@ -233,24 +233,25 @@ return (
             </>
           ),
           onClick: () => {
-            console.log(state)
-            Social.set({
-              index: {
-                graph: JSON.stringify({
-                  key: "project/invite",
-                  value: { accountId: context.accountId },
-                }),
-                inbox: JSON.stringify({
-                  key: context.accountId,
-                  value: {
-                    type: "project/invite",
-                    requestId: [state.projectId.value, state.requestId.value],
-                    message: state.message,
-                  },
-                }),
+            Near.view(ownerId, "get_vendor", { account_id: props.accountId }).then((vendor) => {
+              Social.set({
+                index: {
+                  graph: JSON.stringify({
+                    key: "project/invite",
+                    value: { accountId: context.accountId },
+                  }),
+                  inbox: JSON.stringify({
+                    key: props.accountId,
+                    value: {
+                      type: "project/invite",
+                      requestId: [state.projectId.value, state.requestId.value],
+                      message: state.message,
+                    },
+                  }),
+                },
               },
-            },
-            )
+              )
+            })
           },
         }}
       />
