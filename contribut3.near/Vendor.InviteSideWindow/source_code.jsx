@@ -15,7 +15,7 @@ return (
       trigger: <>Invite vendor</>,
       children: (
         <Widget
-          src={`${ownerId}/widget/Vendor.RequestForm`}
+          src={`${ownerId}/widget/Vendor.InviteForm`}
           props={{ accountId }}
         />
       ),
