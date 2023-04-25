@@ -256,7 +256,7 @@ return (
             //   methodName: "set",
             //   args: index,
             // })));
-            Social.set({
+            Near.call("social.near", "set", {
               index: {
                 graph: JSON.stringify({
                   key: "project/invite",
