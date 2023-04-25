@@ -1,9 +1,11 @@
 const widgetProvider = "frichard5.near";
 const refUrl = "https://api.stats.ref.finance/api/ft";
 
+const daoId = props.daoId ?? "marketing.sputnik-dao.near";
+
 // Initial state
 State.init({
-  selectedDao: "marketing.sputnik-dao.near",
+  selectedDao: daoId,
   selectedTab: "money",
 });
 
