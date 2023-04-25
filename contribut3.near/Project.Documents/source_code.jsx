@@ -1,7 +1,10 @@
 return <>
   <button onClick={() => {
     Storage.set("S", "H");
-  }}>Set</button>
+  }}>
+    Set
+  </button>
   <button onClick={() => {
     console.log(Storage.get("S"));
-  }}>Get</button></>;
+  }}>Get</button>
+</>;
