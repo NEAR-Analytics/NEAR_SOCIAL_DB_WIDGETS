@@ -238,13 +238,13 @@ return (
               data: {
                 index: {
                   graph: JSON.stringify({
-                    key: "project/invite",
+                    key: "project-invite",
                     value: { accountId: context.accountId },
                   }),
                   inbox: JSON.stringify({
                     key: context.accountId,
                     value: {
-                      type: "project/invite",
+                      type: "project-invite",
                       requestId: [state.projectId.value, state.requestId.value],
                       message: state.message,
                     },
