@@ -114,7 +114,9 @@ const init = () => {
         }
       );
 
-      State.update({ names: Object.values(res.body)[0] });
+      if (res.body) {
+        State.update({ names: Object.values(res.body)[0] });
+      }
 
       const queryRes = fetch(
         `https://galxe-proxy.near.workers.dev?a=123&url=https://graphigo.prd.galaxy.eco/query`,
@@ -138,7 +140,6 @@ const init = () => {
     }
   }
 };
-
 init();
 
 if (!state.data)
