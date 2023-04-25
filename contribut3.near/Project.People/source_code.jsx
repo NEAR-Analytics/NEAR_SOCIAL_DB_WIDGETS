@@ -79,4 +79,8 @@ return <>
     <Widget src={`${ownerId}/widget/NameAndAccount`} props={{ accountId: founder, name: state.names.get(founder), nameSize: ".9em" }} />
   </Item>)}</List>
   <Heading>Team</Heading>
+  <List>{state.team.map((founder) => <Item>
+    <Widget src={`${ownerId}/widget/Vendor.Icon`} props={{ accountId: founder, size: "2em" }} />
+    <Widget src={`${ownerId}/widget/NameAndAccount`} props={{ accountId: founder, name: state.names.get(founder), nameSize: ".9em" }} />
+  </Item>)}</List>
 </>;
