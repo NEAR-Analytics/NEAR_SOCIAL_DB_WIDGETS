@@ -1,10 +1,17 @@
+State.init({
+  count: 0,
+})
+
 return <>
   <button onClick={() => {
-    Storage.set("S", "H");
+    State.update({ count: state.count + 1 });
+    Storage.set("S", state.count);
   }}>
     Set
   </button>
   <button onClick={() => {
     console.log(Storage.get("S"));
-  }}>Get</button>
+  }}>
+    Get
+  </button>
 </>;
