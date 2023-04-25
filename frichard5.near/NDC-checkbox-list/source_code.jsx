@@ -1,4 +1,4 @@
-const { checkboxes, title, updateChecked } = props;
+const { checkboxes, label, updateChecked, selectedBoxes } = props;
 
 State.init({
   checkboxes,
@@ -12,19 +12,17 @@ const Fieldset = styled.fieldset`
 `;
 
 const handleChange = (e) => {
-  updateChecked([
-    ...state.checkboxes.map((c) => {
-      if (c.value === e.target.value) {
-        c.selected = e.target.checked;
-      }
-      return c;
-    }),
-  ]);
+  if (e.target.checked) {
+    updateChecked([...selectedBoxes, e.target.value]);
+  } else {
+    const selectedList = selectedBoxes.filter((b) => b != e.target.value);
+    updateChecked(selectedList);
+  }
 };
 
 return (
   <Fieldset>
-    <p>{title}</p>
+    <p>{label}</p>
     {state.checkboxes.map((c) => {
       console.log(c.value, c.selected);
       return (
@@ -34,6 +32,7 @@ return (
             type="checkbox"
             value={c.value}
             onChange={handleChange}
+            selected={c.selectedBoxes.includes(c.value)}
           />
           {c.label}
         </label>
