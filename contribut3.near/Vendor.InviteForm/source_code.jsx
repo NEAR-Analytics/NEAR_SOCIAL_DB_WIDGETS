@@ -260,30 +260,6 @@ return (
                 methodName: "set",
                 args: index,
               })));
-              // Near.call({
-              //   contractName: "social.near", methodName: "set", args: {
-              //     data: {
-              //       [props.accountId]: {
-              //         index: {
-              //           graph: JSON.stringify({
-              //             key: "project/invite",
-              //             value: { accountId: state.projectId.value },
-              //           }),
-              //           inbox: JSON.stringify({
-              //             key: props.accountId,
-              //             value: {
-              //               type: "project/invite",
-              //               requestId: [state.projectId.value, state.requestId.value],
-              //               vendorId: props.accountId,
-              //               message: state.message,
-              //             },
-              //           }),
-              //         }
-              //       }
-              //     },
-              //   },
-              // }
-              // )
             })
           },
         }}
