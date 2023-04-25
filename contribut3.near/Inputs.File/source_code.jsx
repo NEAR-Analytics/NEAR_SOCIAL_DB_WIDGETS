@@ -93,7 +93,10 @@ return (
   <Container>
     <Label>{label}</Label>
     {cid ?
-      <a href={ipfsUrl(state.cid)} download>{state.filename}</a>
+      <FileDetails>
+        <a href={ipfsUrl(state.cid)} download>{state.filename}</a>
+
+      </FileDetails>
       : <></>}
     <Files
       multiple={false}
