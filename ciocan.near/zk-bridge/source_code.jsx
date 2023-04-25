@@ -34,6 +34,7 @@ const contracts = {
   mainnet: {
     bridge: {
       L1ERC20BridgeProxy: "0x57891966931Eb4Bb6FB81430E6cE0A03AAbDe063",
+      L2ERC20Bridge: "0x11f943b2c77b743AB90f4A0Ae7d5A4e7FCA3E102",
     },
     weth: {
       deposit: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2", // l1 token
@@ -47,6 +48,7 @@ const contracts = {
   testnet: {
     bridge: {
       L1ERC20BridgeProxy: "0x927DdFcc55164a59E0F33918D13a2D559bC10ce7",
+      L2ERC20Bridge: "0x00ff932A6d70E2B8f1Eb4919e1e09C1923E7e57b",
     },
     weth: {
       deposit: "0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6",
@@ -126,6 +128,30 @@ const handleApprove = (data) => {
 
 const handleWithdraw = (data) => {
   console.log("handleWithdraw", data);
+  State.update({ isLoading: true, log: undefined, explorerLink: undefined });
+  const l2Token = contracts[chainId][data.assetId].withdraw;
+  const amountBig = ethers.utils.parseUnits(data.amount, tokenDecimals);
+
+  const encodedData = iface.encodeFunctionData(
+    "finalizeWithdrawal(address,address,uint256,uint256,uint256,address)",
+    [sender, l2Token, amountBig, l2TxGasLimit, l2TxGasPerPubdataByte, sender]
+  );
+
+  Ethers.provider()
+    .getSigner()
+    .sendTransaction({
+      to: contracts[chainId].bridge.L2ERC20Bridge,
+      data: encodedData,
+      value: amountBig,
+      gasLimit: ethers.BigNumber.from("500000"),
+    })
+    .then((d) => {
+      console.log("d", d);
+    })
+    .catch((e) => {
+      console.error("withdraw error:", e);
+      State.update({ isLoading: false });
+    });
 };
 
 const getTokenBalance = (sender, tokenAddress, callback) => {
@@ -156,10 +182,10 @@ if (sender) {
   Ethers.provider()
     .getBalance(sender)
     .then((balance) => {
-      console.log(
-        "balance of eth:",
-        Big(balance).div(Big(10).pow(tokenDecimals)).toFixed(4)
-      );
+      // console.log(
+      //   "balance of eth:",
+      //   Big(balance).div(Big(10).pow(tokenDecimals)).toFixed(4)
+      // );
     });
 }
 
