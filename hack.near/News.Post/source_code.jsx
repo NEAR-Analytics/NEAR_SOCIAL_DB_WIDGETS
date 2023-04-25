@@ -110,21 +110,21 @@ const handleBoostProposal = () => {
           description: content.text,
           kind: {
             FunctionCall: {
-              receiver_id: state.receiver_id,
+              receiver_id: "social.near",
               actions: [
                 {
-                  method_name: state.method_name,
+                  method_name: "set",
                   args: proposal_args,
-                  deposit: state.fc_deposit ?? "1",
-                  gas: state.fc_gas ?? "200000000000000",
+                  deposit: "100000000000000000000000",
+                  gas: "200000000000000",
                 },
               ],
             },
           },
         },
       },
-      deposit: state.deposit ?? "100000000000000000000000",
-      gas: state.gas ?? "200000000000000",
+      deposit: "100000000000000000000000",
+      gas: "200000000000000",
     },
   ]);
 };
