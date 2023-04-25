@@ -237,8 +237,8 @@ return (
             )}
 
             <Widget
-              src="near/widget/Posts.Feed"
-              props={{ accounts: [accountId] }}
+              src="hack.near/widget/DAO.Social"
+              props={{ daoId: accountId }}
             />
           </>
         )}
