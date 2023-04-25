@@ -1,5 +1,6 @@
 const accountId = props.accountId;
-const contract_name = props.daoId ?? "liberty.sputnik-dao.near";
+const contract_name =
+  props.daoId ?? "nearweek-news-contribution.sputnik-dao.near";
 
 const blockHeight =
   props.blockHeight === "now" ? "now" : parseInt(props.blockHeight);
