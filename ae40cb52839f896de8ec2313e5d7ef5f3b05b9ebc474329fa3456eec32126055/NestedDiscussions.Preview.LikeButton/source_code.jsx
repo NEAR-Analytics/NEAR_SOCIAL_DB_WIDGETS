@@ -1,3 +1,5 @@
+const notificationWidget = props.notificationWidget;
+const notificationParams = props.notificationParams;
 const item = props.item;
 
 if (!item) {
@@ -89,10 +91,9 @@ const likeClick = () => {
       key: props.notifyAccountId,
       value: {
         type: "custom",
-        message: "Liked your discussion comment",
-        widget: props.previewWidget,
-        blockHeight: item.blockHeight,
-        params: item,
+        message: "Liked your comment",
+        widget: notificationWidget,
+        params: notificationParams,
       },
     });
   }
