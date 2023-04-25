@@ -86,13 +86,13 @@ const social_args = JSON.stringify({
           type: "repost",
           item: {
             type: "social",
-            path: `${daoId}/post/main`,
+            path: "liberty.sputnik-dao.near/post/main",
             blockHeight: blockHeight,
           },
         },
         key: {
           type: "social",
-          path: `${daoId}/post/main`,
+          path: "liberty.sputnik-dao.near/post/main",
           blockHeight: blockHeight,
           value: {
             type: "repost",
