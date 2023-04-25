@@ -123,6 +123,22 @@ const ListItem = styled.li`
   padding: 20px;
 `;
 
+const Section = styled.div`
+  margin-bottom: 10px;
+
+  p {
+    margin: 0;
+  }
+
+  a {
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+`;
+
 return (
   <div>
     <h1>Block stream</h1>
@@ -140,26 +156,44 @@ return (
 
             return (
               <ListItem key={block.number}>
-                <p>
-                  Block number
-                  <br />
-                  {block.number}
-                </p>
-                <p>
-                  Block hash
-                  <br />
-                  {block.hash}
-                </p>
-                <p>
-                  Block timestamp
-                  <br />
-                  {block.timestamp}
-                </p>
-                <p>
-                  Block transactions
-                  <br />
-                  {block.transactions.length}
-                </p>
+                <Section>
+                  <p>Block number</p>
+                  <a
+                    href={`https://bos.gg/#/bos_check.near/widget/BlockDetails?blockHeight=${block.number}`}
+                    target="_blank"
+                  >
+                    {block.number}
+                  </a>
+                </Section>
+                <Section>
+                  <p>Block hash</p>
+                  <p>{block.hash}</p>
+                </Section>
+                <Section>
+                  <p>Block timestamp</p>
+                  <p>{block.timestamp}</p>
+                </Section>
+                <Section>
+                  <p>Block transactions</p>
+
+                  <div>
+                    {block.transactions.length > 0 ? (
+                      block.transactions.map((tx, i) => {
+                        return (
+                          <a
+                            key={tx - i}
+                            href={`https://bos.gg/#/bos_check.near/widget/TxDetails?txHash=${tx}`}
+                            target="_blank"
+                          >
+                            {tx}
+                          </a>
+                        );
+                      })
+                    ) : (
+                      <p>No transactions</p>
+                    )}
+                  </div>
+                </Section>
               </ListItem>
             );
           })}
