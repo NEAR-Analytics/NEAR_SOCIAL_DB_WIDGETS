@@ -3,6 +3,7 @@ console.log(checkboxes, selectedBoxes);
 State.init({
   checkboxes,
   title,
+  selectedBoxes,
 });
 
 const Input = styled.input``;
@@ -24,7 +25,7 @@ return (
   <Fieldset>
     <p>{label}</p>
     {state.checkboxes.map((c) => {
-      console.log(c.value, selectedBoxes.includes(c.value));
+      console.log(c.value, state.selectedBoxes.includes(c.value));
       return (
         <label>
           <input
