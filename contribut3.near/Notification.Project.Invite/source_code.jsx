@@ -93,6 +93,8 @@ const Text = styled.p`
   }
 `;
 
+console.log(props)
+
 return (
   <>
     <Text bold>
