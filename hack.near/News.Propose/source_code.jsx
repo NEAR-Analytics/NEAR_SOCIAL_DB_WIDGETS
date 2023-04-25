@@ -12,7 +12,7 @@ State.init({
 const handleProposal = () => {
   Near.call([
     {
-      contractName: daoId,
+      contractName: "multi.sputnik-dao.near",
       methodName: "add_proposal",
       args: {
         proposal: {
@@ -25,7 +25,7 @@ const handleProposal = () => {
                   method_name: "set",
                   args: {
                     data: {
-                      daoId: {
+                      "multi.sputnik-dao.near": {
                         post: {
                           main: {
                             type: "md",
