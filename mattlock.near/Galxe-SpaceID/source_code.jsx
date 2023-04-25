@@ -145,8 +145,6 @@ const init = () => {
     }
   );
 
-  console.log(queryRes);
-
   State.update({
     data: JSON.parse(queryRes.body).data,
   });
@@ -164,7 +162,7 @@ if (!state.data)
 
 const handleClaim = (id) => {
   const queryRes1 = fetch(
-    `https://galxe-proxy.near.workers.dev?a=123&url=https://graphigo.prd.galaxy.eco/query`,
+    `https://galxe-proxy.near.workers.dev?url=https://graphigo.prd.galaxy.eco/query`,
     {
       method: "POST",
       body: JSON.stringify({
