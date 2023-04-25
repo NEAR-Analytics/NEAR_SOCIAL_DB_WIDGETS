@@ -36,6 +36,7 @@ return (
             checked={selectedBoxes.includes(c.value)}
           />
           {c.label}
+          {selectedBoxes.includes(c.value)}
         </label>
       );
     })}
