@@ -245,7 +245,7 @@ return (
                     value: { type: "project/invite", requestId: props.requestId },
                   }),
                 },
-              }
+              },
             }
             )
           },
