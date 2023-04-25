@@ -2,7 +2,8 @@ State.init({
   selectedTab: props.tab || "overview",
 });
 
-const accountId = props.accountId ?? "onboarddao.sputnik-dao.near";
+const accountId = props.accountId ?? context.accountId;
+const daoId = props.daoId ?? "onboarddao.sputnik-dao.near";
 
 if (props.tab && props.tab !== state.selectedTab) {
   State.update({
@@ -10,8 +11,8 @@ if (props.tab && props.tab !== state.selectedTab) {
   });
 }
 
-const profile = props.profile ?? Social.getr(`${accountId}/profile`);
-const accountUrl = `#/near/widget/ProfilePage?accountId=${accountId}`;
+const profile = props.profile ?? Social.getr(`${daoId}/profile`);
+const accountUrl = `#/hack.near/widget/DAO.Page?daoId=${daoId}`;
 
 const Wrapper = styled.div`
   padding-bottom: 48px;
@@ -168,7 +169,7 @@ return (
         <Widget
           src="hack.near/widget/DAO.Page.Sidebar"
           props={{
-            accountId,
+            daoId,
             profile,
           }}
         />
@@ -238,32 +239,38 @@ return (
 
             <Widget
               src="hack.near/widget/DAO.Social"
-              props={{ daoId: accountId }}
+              props={{ daoId: daoId }}
             />
           </>
         )}
 
         {state.selectedTab === "proposals" && (
-          <Widget src="hack.near/widget/DAO.Proposals" props={{ accountId }} />
+          <Widget src="hack.near/widget/DAO.Proposals" props={{ daoId }} />
         )}
 
         {state.selectedTab === "communities" && (
-          <Widget src="hack.near/widget/Communities" props={{ accountId }} />
+          <Widget src="hack.near/widget/Communities" props={{ daoId }} />
         )}
 
         {state.selectedTab === "followers" && (
-          <Widget src="near/widget/FollowersList" props={{ accountId }} />
+          <Widget
+            src="near/widget/FollowersList"
+            props={{ accountId: daoId }}
+          />
         )}
 
         {state.selectedTab === "following" && (
-          <Widget src="near/widget/FollowingList" props={{ accountId }} />
+          <Widget
+            src="near/widget/FollowingList"
+            props={{ accountId: daoId }}
+          />
         )}
 
         {state.selectedTab === "explorer" && (
           <Widget
             src="near/widget/Explorer.Account"
             props={{
-              accountId,
+              accountId: daoId,
               network: context.networkId,
               language: "en",
               baseUrl: props.baseUrl,
