@@ -70,6 +70,7 @@ const Heading = styled.h3`
   font-weight: 700;
   font-size: 1.125em;
   line-height: 1.5em;
+  margin: 1em 0;
 
   color: #000000;
 `;
