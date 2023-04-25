@@ -218,6 +218,13 @@ const handleClaim = (id) => {
 return (
   <Theme>
     <div class="main">
+      <h2>SPACE ID Voyage Season 2 - Calling</h2>
+      <p>
+        There are three types of Voyage Boxes of varying rarity, each containing
+        random points that can be claimed. The box with the higher rarity will
+        give you more points,
+      </p>
+
       {state.toast && (
         <div class="toasted-container">
           <div class="toasted">
