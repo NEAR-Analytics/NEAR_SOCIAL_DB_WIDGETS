@@ -174,7 +174,8 @@ return (
               { account_id: projectId.value },
               "final",
               false
-            ).then((requests) =>
+            ).then((requests) => {
+              console.log(requests)
               State.update({
                 requests: requests.map(([accountId, cid, title]) => ({
                   name: title,
@@ -182,6 +183,7 @@ return (
                 })),
                 requestsIsFetched: true,
               })
+            }
             );
           },
         }}
