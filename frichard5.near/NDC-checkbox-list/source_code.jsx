@@ -32,7 +32,7 @@ return (
             type="checkbox"
             value={c.value}
             onChange={handleChange}
-            selected={selectedBoxes.includes(c.value)}
+            checked={selectedBoxes.includes(c.value)}
           />
           {c.label}
         </label>
