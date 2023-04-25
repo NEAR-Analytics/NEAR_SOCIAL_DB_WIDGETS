@@ -70,12 +70,16 @@ const Heading = styled.h3`
   font-weight: 700;
   font-size: 1.125em;
   line-height: 1.5em;
-  margin: 1em 0;
+  margin-top: 1em;
 
   color: #000000;
 `;
 
-return <div>
+const Container = styled.div`
+  width: 100%;
+`;
+
+return <Container>
   <Heading>Founders</Heading>
   <List>{state.founders.map((founder) => <Item>
     <Widget src={`${ownerId}/widget/Vendor.Icon`} props={{ accountId: founder, size: "2em" }} />
@@ -86,4 +90,4 @@ return <div>
     <Widget src={`${ownerId}/widget/Vendor.Icon`} props={{ accountId: member, size: "2em" }} />
     <Widget src={`${ownerId}/widget/NameAndAccount`} props={{ accountId: member, name: state.names.get(member), nameSize: ".9em" }} />
   </Item>)}</List>
-</div>;
+</Container>;
