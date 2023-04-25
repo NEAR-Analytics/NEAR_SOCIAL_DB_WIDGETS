@@ -24,19 +24,21 @@ const handleProposal = () => {
                 {
                   method_name: "set",
                   args: {
-                    daoId: {
-                      post: {
-                        main: {
-                          type: "md",
-                          text: state.description,
-                        },
-                      },
-                      index: {
+                    data: {
+                      daoId: {
                         post: {
-                          key: "main",
-                          value: {
-                            type: "social",
-                            path: `${daoId}/post/main`,
+                          main: {
+                            type: "md",
+                            text: state.description,
+                          },
+                        },
+                        index: {
+                          post: {
+                            key: "main",
+                            value: {
+                              type: "social",
+                              path: `${daoId}/post/main`,
+                            },
                           },
                         },
                       },
