@@ -184,17 +184,17 @@ return (
           </TabsButton>
 
           <TabsButton
-            href={`${accountUrl}&tab=pages`}
-            selected={state.selectedTab === "pages"}
+            href={`${accountUrl}&tab=communities`}
+            selected={state.selectedTab === "communities"}
           >
             Communities
           </TabsButton>
 
           <TabsButton
-            href={`${accountUrl}&tab=nfts`}
-            selected={state.selectedTab === "nfts"}
+            href={`${accountUrl}&tab=proposals`}
+            selected={state.selectedTab === "proposals"}
           >
-            NFTs
+            Proposals
           </TabsButton>
 
           <TabsButton
@@ -243,12 +243,12 @@ return (
           </>
         )}
 
-        {state.selectedTab === "nfts" && (
-          <Widget src="near/widget/NFTCollection" props={{ accountId }} />
+        {state.selectedTab === "proposals" && (
+          <Widget src="hack.near/widget/DAO.Proposals" props={{ accountId }} />
         )}
 
-        {state.selectedTab === "pages" && (
-          <Widget src="near/widget/ComponentCollection" props={{ accountId }} />
+        {state.selectedTab === "communities" && (
+          <Widget src="hack.near/widget/Communities" props={{ accountId }} />
         )}
 
         {state.selectedTab === "followers" && (
