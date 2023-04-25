@@ -24,6 +24,7 @@ const apiKey = `22e40acef23c40ebb4953a2601ff31a3`;
 
 const css = `
   .main {
+    margin-top: 32px;
     width: 100%;
     text-align: center;
     position: relative;
