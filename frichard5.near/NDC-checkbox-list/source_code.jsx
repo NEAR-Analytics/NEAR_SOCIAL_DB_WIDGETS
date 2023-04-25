@@ -21,15 +21,9 @@ const handleChange = (e) => {
   }
 };
 
-const sameSelected =
-  containsAll(state.selectedBoxes, selectedBoxes) &&
-  containsAll(selectedBoxes, state.selectedBoxes);
-
-if (!sameSelected) {
-  State.update({
-    selectedBoxes,
-  });
-}
+State.update({
+  selectedBoxes,
+});
 
 return (
   <Fieldset>
