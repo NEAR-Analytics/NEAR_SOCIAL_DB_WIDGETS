@@ -39,7 +39,11 @@ if (!state.namesIsFetched) {
     { keys: [...state.founders, ...state.team].map((key) => `${key}/profile/name`) },
     "final",
     false
-  ).then((names) => State.update({ names: new MapObject.keys(names).map((account) => names[account].profile.name)), namesIsFetched: true }));
+  ).then((names) => {
+    console.log(names);
+    console.log(Object.keys(names).map((account) => names[account].profile.name))
+    State.update({ names: new Map(Object.keys(names).map((account) => names[account].profile.name)), namesIsFetched: true })
+  });
 }
 
 const List = styled.ul`
