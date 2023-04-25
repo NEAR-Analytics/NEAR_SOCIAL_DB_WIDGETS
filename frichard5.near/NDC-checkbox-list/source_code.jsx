@@ -27,17 +27,19 @@ return (
     {state.checkboxes.map((c) => {
       console.log(c.value, selectedBoxes.includes(c.value));
       return (
-        <label>
+        <>
           <input
+            id={`status-checkbox-${c.value}`}
             className=""
             type="checkbox"
             value={c.value}
             onChange={handleChange}
             checked={selectedBoxes.includes(c.value)}
           />
-          {c.label}
-          {JSON.stringify(selectedBoxes.includes(c.value))}
-        </label>
+          <label htmlFor={`status-checkbox-${c.value}`}>
+            {c.label} {JSON.stringify(selectedBoxes.includes(c.value))}
+          </label>
+        </>
       );
     })}
   </Fieldset>
