@@ -8,30 +8,16 @@ const validate = props.validate ?? (() => { });
 const error = props.error ?? "";
 
 const Container = styled.div`
-box-sizing: border-box;
-
-/* Auto layout */
-
-display: flex;
-flex-direction: column;
-align-items: flex-end;
-padding: 0px 0px 8px;
-
-width: 721px;
-height: 155px;
-
-/* Base/White */
-
-background: #FFFFFF;
-/* Slate/Light/4
-
-ECEEF0
-*/
-border: 1px solid #ECEEF0;
-/* Shadow/sm */
-
-box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1), 0px 1px 2px rgba(16, 24, 40, 0.06);
-border-radius: 8px;`;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: .5em;
+  background: #FFFFFF;
+  border: 1px solid #ECEEF0;
+  box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1), 0px 1px 2px rgba(16, 24, 40, 0.06);
+  border-radius: 8px;
+`;
 
 const Label = styled.label`
   font-style: normal;
