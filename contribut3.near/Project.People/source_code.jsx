@@ -36,11 +36,23 @@ if (!state.namesIsFetched) {
   Near.asyncView(
     "social.near",
     "get",
-    { keys: [...state.founders, ...state.team].map((key) => `${key}/profile/name`) },
+    {
+      keys: [...state.founders, ...state.team].map(
+        (key) => `${key}/profile/name`
+      ),
+    },
     "final",
     false
   ).then((names) => {
-    State.update({ names: new Map(Object.keys(names).map((account) => [account, names[account].profile.name])), namesIsFetched: true })
+    State.update({
+      names: new Map(
+        Object.keys(names).map((account) => [
+          account,
+          names[account].profile.name,
+        ])
+      ),
+      namesIsFetched: true,
+    });
   });
 }
 
@@ -62,7 +74,7 @@ const Item = styled.li`
   justify-content: flex-start;
   width: 100%;
   padding: 1.5em 0px;
-  border-bottom: 1px solid #EAECF0;
+  border-bottom: 1px solid #eaecf0;
 `;
 
 const Heading = styled.h3`
@@ -79,15 +91,45 @@ const Container = styled.div`
   width: 100%;
 `;
 
-return <Container>
-  <Heading>Founders</Heading>
-  <List>{state.founders.map((founder) => <Item>
-    <Widget src={`${ownerId}/widget/Vendor.Icon`} props={{ accountId: founder, size: "2em" }} />
-    <Widget src={`${ownerId}/widget/NameAndAccount`} props={{ accountId: founder, name: state.names.get(founder), nameSize: ".9em" }} />
-  </Item>)}</List>
-  <Heading>Team</Heading>
-  <List>{state.team.map((member) => <Item>
-    <Widget src={`${ownerId}/widget/Vendor.Icon`} props={{ accountId: member, size: "2em" }} />
-    <Widget src={`${ownerId}/widget/NameAndAccount`} props={{ accountId: member, name: state.names.get(member), nameSize: ".9em" }} />
-  </Item>)}</List>
-</Container>;
+return (
+  <Container>
+    <Heading>Founders</Heading>
+    <List>
+      {state.founders.map((founder) => (
+        <Item>
+          <Widget
+            src={`${ownerId}/widget/Vendor.Icon`}
+            props={{ accountId: founder, size: "2em" }}
+          />
+          <Widget
+            src={`${ownerId}/widget/NameAndAccount`}
+            props={{
+              accountId: founder,
+              name: state.names.get(founder),
+              nameSize: ".9em",
+            }}
+          />
+        </Item>
+      ))}
+    </List>
+    <Heading>Team</Heading>
+    <List>
+      {state.team.map((member) => (
+        <Item>
+          <Widget
+            src={`${ownerId}/widget/Vendor.Icon`}
+            props={{ accountId: member, size: "2em" }}
+          />
+          <Widget
+            src={`${ownerId}/widget/NameAndAccount`}
+            props={{
+              accountId: member,
+              name: state.names.get(member),
+              nameSize: ".9em",
+            }}
+          />
+        </Item>
+      ))}
+    </List>
+  </Container>
+);
