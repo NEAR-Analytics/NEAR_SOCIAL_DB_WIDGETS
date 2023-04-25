@@ -233,8 +233,7 @@ return (
             </>
           ),
           onClick: () => {
-            Near.view(ownerId, "get_vendor", { account_id: props.accountId }).then(({ permisssions }) => {
-              console.log(permisssions);
+            Near.asyncView(ownerId, "get_vendor", { account_id: props.accountId }).then(({ permisssions }) => {
               const data = Object.keys(permissions).filter((account) => permissions[account].includes("Admin")).map((account) => ({
                 [context.accountId]: {
                   index: {
