@@ -1,5 +1,5 @@
 const accountId = props.accountId ?? context.accountId;
-const daoId = props.daoId ?? "multi.sputnik-dao.near";
+const daoId = "multi.sputnik-dao.near";
 
 if (!accountId) {
   return "Please connect your NEAR wallet :)";
@@ -27,19 +27,10 @@ const handleProposal = () => {
                     data: {
                       "multi.sputnik-dao.near": {
                         post: {
-                          main: {
-                            type: "md",
-                            text: state.description,
-                          },
+                          main: `{\"type\":\"md\",\"text\":${state.description}}`,
                         },
                         index: {
-                          post: {
-                            key: "main",
-                            value: {
-                              type: "social",
-                              path: `${daoId}/post/main`,
-                            },
-                          },
+                          post: '{"key":"main","value":{"type":"md"}}',
                         },
                       },
                     },
