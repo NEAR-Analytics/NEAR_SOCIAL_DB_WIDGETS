@@ -233,8 +233,10 @@ return (
             </>
           ),
           onClick: () => {
-            Near.asyncView(ownerId, "get_vendor", { account_id: props.accountId }).then(({ permissions }) => {
-              const data = Object.keys(permissions).filter((account) => permissions[account].includes("Admin")).map((account) => ({
+            Near.call({
+              contractName: "social.near",
+              methodName: "set",
+              args: {
                 data: {
                   [context.accountId]: {
                     index: {
@@ -246,20 +248,18 @@ return (
                         key: account,
                         value: {
                           type: "project/invite",
-                          requestId: [state.projectId.value, state.requestId.value],
+                          requestId: [
+                            state.projectId.value,
+                            state.requestId.value,
+                          ],
                           message: state.message,
                           vendorId: props.accountId,
                         },
                       }),
-                    }
-                  }
-                }
-              }));
-              Near.call(data.map((index) => ({
-                contractName: "social.near",
-                methodName: "set",
-                args: index,
-              })));
+                    },
+                  },
+                },
+              }
             })
           },
         }}
