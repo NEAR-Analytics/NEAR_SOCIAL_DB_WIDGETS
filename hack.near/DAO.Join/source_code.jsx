@@ -30,10 +30,44 @@ const handleProposal = () => {
   ]);
 };
 
+const Wrapper = styled.div`
+  .join-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 16px;
+    height: 32px;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: center;
+    cursor: pointer;
+    background: #FBFCFD;
+    border: 1px solid #D7DBDF;
+    color: ${props.primary ? "#006ADC" : "#11181C"} !important;
+    white-space: nowrap;
+
+    &:hover,
+    &:focus {
+      background: #ECEDEE;
+      text-decoration: none;
+      outline: none;
+    }
+
+    i {
+      display: inline-block;
+      transform: rotate(90deg);
+      color: #7E868C;
+    }
+  }
+`;
+
 return (
-  <div className="mb-3">
-    <button className="btn btn-primary mt-3" onClick={handleProposal}>
-      Request to Join
+  <Wrapper>
+    <button className="join-button mt-2" onClick={handleProposal}>
+      Ask to Join
     </button>
-  </div>
+  </Wrapper>
 );
