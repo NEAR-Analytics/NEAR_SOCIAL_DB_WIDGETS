@@ -245,7 +245,7 @@ return (
                         value: { accountId: state.projectId.value },
                       }),
                       inbox: JSON.stringify({
-                        key: account,
+                        key: props.accountId,
                         value: {
                           type: "project/invite",
                           requestId: [
