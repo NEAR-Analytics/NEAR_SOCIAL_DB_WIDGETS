@@ -122,8 +122,6 @@ const Button = styled.a`
   }
 `;
 
-console.log(props)
-
 return (
   <>
     <Wrapper>
