@@ -27,7 +27,7 @@ const handleProposal = () => {
                     data: {
                       "multi.sputnik-dao.near": {
                         post: {
-                          main: `{\"type\":\"md\",\"text\":${state.description}}`,
+                          main: `{\"type\":\"md\",\"text\":\"${state.description}\"}`,
                         },
                         index: {
                           post: '{"key":"main","value":{"type":"md"}}',
