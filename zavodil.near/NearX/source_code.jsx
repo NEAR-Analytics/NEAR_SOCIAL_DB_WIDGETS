@@ -26,7 +26,7 @@ function getNearBalance(accountId) {
     }),
   });
   const { amount, storage_usage } = account.body.result;
-  console.log("F", amount, storage_usage);
+
   const COMMON_MIN_BALANCE = 0.05;
   if (!amount) return "-";
   const availableBalance = Big(amount || 0).minus(
@@ -66,11 +66,11 @@ function isValid(a) {
 }
 
 if (state.tokenPrice === undefined) {
-  State.update({
-    tokenPrice: Big(Near.view(CONTRACT_ID, "get_nearx_price", `{}`) ?? "0")
-      .div(Big(10).pow(24))
-      .toFixed(),
-  });
+  const tokenPrice = Big(Near.view(CONTRACT_ID, "get_nearx_price", `{}`) ?? "0")
+    .div(Big(10).pow(24))
+    .toFixed();
+  console.log("tokenPrice", tokenPrice);
+  State.update({ tokenPrice });
 }
 
 const youWillReceive =
