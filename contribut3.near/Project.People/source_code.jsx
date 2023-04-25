@@ -74,7 +74,7 @@ const Heading = styled.h3`
   color: #000000;
 `;
 
-return <>
+return <div>
   <Heading>Founders</Heading>
   <List>{state.founders.map((founder) => <Item>
     <Widget src={`${ownerId}/widget/Vendor.Icon`} props={{ accountId: founder, size: "2em" }} />
@@ -85,4 +85,4 @@ return <>
     <Widget src={`${ownerId}/widget/Vendor.Icon`} props={{ accountId: member, size: "2em" }} />
     <Widget src={`${ownerId}/widget/NameAndAccount`} props={{ accountId: member, name: state.names.get(member), nameSize: ".9em" }} />
   </Item>)}</List>
-</>;
+</div>;
