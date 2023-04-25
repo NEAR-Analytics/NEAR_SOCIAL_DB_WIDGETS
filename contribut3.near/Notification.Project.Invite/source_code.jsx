@@ -107,12 +107,12 @@ return (
     <div>
       <Widget
         src="near/widget/AccountProfileInline"
-        props={{ accountId: props.accountId }}
+        props={{ accountId }}
       />
       invited
       <Widget
         src="near/widget/AccountProfileInline"
-        props={{ accountId: context.accountId }}
+        props={{ accountId: props.value.vendorId }}
       />
       to contribute to request
       <Text bold>{state.request.title}.</Text>
