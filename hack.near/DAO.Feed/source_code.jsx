@@ -43,7 +43,11 @@ const renderPost = (a) => {
     <div key={JSON.stringify(a)} className="mb-3">
       <Widget
         src="hack.near/widget/DAO.Post"
-        props={{ accountId: a.accountId, blockHeight: a.blockHeight }}
+        props={{
+          accountId: a.accountId,
+          blockHeight: a.blockHeight,
+          daoId: daoId,
+        }}
       />
     </div>
   );
