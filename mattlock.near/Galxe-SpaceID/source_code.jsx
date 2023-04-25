@@ -241,7 +241,7 @@ return (
       <div class="boxes">
         {state.data.campaign.childrenCampaigns.map(
           ({ id, name, whitelistInfo: { maxCount, usedCount } }, i) => {
-            const eligible = i == 1 || maxCount - 1 === usedCount;
+            const eligible = maxCount - 1 === usedCount;
             return (
               <div key={id}>
                 <h4>{name}</h4>
