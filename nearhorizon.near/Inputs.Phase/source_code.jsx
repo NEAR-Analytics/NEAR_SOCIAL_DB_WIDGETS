@@ -23,7 +23,7 @@ return (
           props.setError("Please select a development phase");
         }
 
-        if (!options.find(({ value }) => props.value === value)) {
+        if (!options.find(({ value }) => props.dev.value === value)) {
           props.setError("Please select a valid development phase");
         }
       },
