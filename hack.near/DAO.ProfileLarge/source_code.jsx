@@ -48,7 +48,7 @@ return (
         />
       )}
       <a
-        href="#/mob.near/widget/ProfileEditor"
+        href="#/hack.near/widget/DAO.Profile.Editor"
         className="btn mt-4 btn-outline-light float-end position-relative"
         style={{ zIndex: 1 }}
       >
