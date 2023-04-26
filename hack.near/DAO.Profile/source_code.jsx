@@ -1,5 +1,9 @@
 const daoId = props.daoId;
 
+if (!daoId) {
+  return <Widget src="hack.near/widget/CreateDAO" />;
+}
+
 const profile = props.profile ?? Social.getr(`${daoId}/profile`);
 
 if (profile === null) {
