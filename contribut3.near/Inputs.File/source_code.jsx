@@ -75,6 +75,7 @@ const FileDetails = styled.div`
   background: #fafafa;
   border: 1px solid #eceef0;
   border-radius: 8px;
+  width: 100%;
 
   > span {
     display: flex;
