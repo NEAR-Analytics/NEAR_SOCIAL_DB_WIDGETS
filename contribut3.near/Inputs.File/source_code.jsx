@@ -175,8 +175,7 @@ return (
       </Files> : <></>}
     <Error className={error ? "show" : ""}>{error}</Error>
     {props.canEdit ? <SaveButton
-      valid={state.valid}
-      onClick={() => state.valid && onSave(formatValue(state.cid, state.filename, state.size, state.uploaded))}
+      onClick={() => onSave(formatValue(state.cid, state.filename, state.size, state.uploaded))}
     >
       Save
     </SaveButton> : <></>}
