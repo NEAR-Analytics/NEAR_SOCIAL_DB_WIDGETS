@@ -144,7 +144,13 @@ const Row = styled.div`
 
 return (
   <Container>
-    <Label>{label}</Label>
+    <Label>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="24" height="24" rx="12" fill="#00EC97" />
+        <path d="M10.3333 16L7 12.5957L8.16667 11.4043L10.3333 13.617L15.8333 8L17 9.19149L10.3333 16Z" fill="black" />
+      </svg>
+      {label}
+    </Label>
     {state.cid ?
       <FileDetails>
         <span>
