@@ -38,6 +38,7 @@ const Container = styled.div`
     line-height: 1em;
     text-align: center;
     white-space: nowrap;
+    cursor: pointer;
   }
 `;
 
