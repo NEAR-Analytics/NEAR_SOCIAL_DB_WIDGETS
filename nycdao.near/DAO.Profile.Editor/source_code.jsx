@@ -50,9 +50,9 @@ const handleProposal = () => {
   ]);
 };
 
-const onChangeContract = (receiver_id) => {
+const onChangeContract = (daoId) => {
   State.update({
-    receiver_id,
+    daoId,
   });
 };
 
