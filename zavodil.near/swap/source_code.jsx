@@ -407,9 +407,9 @@ return (
       state.inputAssetTokenId !== state.outputAssetTokenId &&
       state.inputAssetAmount &&
       state.inputAsset &&
-      state.inputAsset.metadata.decimals &&
+      state.inputAsset.metadata?.decimals &&
       state.outputAsset &&
-      state.outputAsset.metadata.decimals && (
+      state.outputAsset.metadata?.decimals && (
         <>
           <Widget
             src="zavodil.near/widget/uni-v3-getEstimate"
