@@ -169,15 +169,6 @@ const Tabs = (
 
 return (
   <>
-    <div className="mb-2">
-      <Widget
-        src="miraclx.near/widget/Attribution"
-        props={{
-          dep: true,
-          authors: ["frichard2.near"],
-        }}
-      />
-    </div>
-    {Tabs}
+    <div className="mb-2">{Tabs}</div>
   </>
 );
