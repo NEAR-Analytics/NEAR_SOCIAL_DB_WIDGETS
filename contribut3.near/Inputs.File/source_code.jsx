@@ -8,7 +8,6 @@ const [cid, filename, size, uploaded] = value.split(",");
 const onSave = props.onSave ?? (() => { });
 const validate = props.validate ?? (() => { });
 const error = props.error ?? "";
-console.log(cid, filename, size, uploaded);
 
 const Container = styled.div`
   box-sizing: border-box;
