@@ -436,7 +436,9 @@ return (
         <Widget
           src={`${ownerId}/widget/Buttons.Green`}
           props={{
+            disabled: !validateForm(),
             onClick: () => {
+              if (!validateForm()) return;
               Near.call(ownerId, "add_request", {
                 request: {
                   project_id: state.projectId.value,
