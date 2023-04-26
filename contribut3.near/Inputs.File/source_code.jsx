@@ -190,6 +190,10 @@ return (
         <Empty />
       )}
       {label}
+      <Widget
+        src={`${ownerId}/widget/Tooltip`}
+        props={{ content: props.tooltip }}
+      />
     </Label>
     {state.cid ? (
       <FileDetails>
