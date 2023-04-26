@@ -400,6 +400,10 @@ return (
       )}
 
     {state.network === NETWORK_ETH &&
+      state.inputAssetTokenId &&
+      state.outputAssetTokenId &&
+      state.inputAssetTokenId !== state.outputAssetTokenId &&
+      state.inputAssetAmount &&
       state.inputAsset &&
       state.outputAsset &&
       state.outputAsset.metadata.decimals && (
@@ -428,6 +432,7 @@ return (
     {state.network === NETWORK_ZKSYNC &&
       state.inputAsset &&
       state.outputAsset &&
+      state.inputAssetAmount &&
       state.outputAsset.metadata.decimals &&
       state.loadRes({
         estimate: (
