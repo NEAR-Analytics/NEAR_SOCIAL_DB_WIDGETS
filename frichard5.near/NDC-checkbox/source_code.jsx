@@ -14,7 +14,7 @@ return (
       className=""
       type="checkbox"
       value={value}
-      onChange={handleChange}
+      onClick={handleChange}
       checked={state.checked}
     />
     <label htmlFor={`status-checkbox-${value}`}>
