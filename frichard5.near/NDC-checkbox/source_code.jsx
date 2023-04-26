@@ -1,15 +1,38 @@
 const { onChange, value, label, checked } = props;
 
+const CheckBoxWrapper = styled.div`
+  .CheckboxRoot {
+    background-color: white;
+    width: 25px;
+    height: 25px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(68, 152, 224, 0.3);
+    border-color: rgba(68, 152, 224, 1);
+  }
+
+  .CheckboxRoot:hover {
+    background-color: rgba(68, 152, 224, 0.3);
+  }
+
+
+  .CheckboxIndicator {
+    color: rgba(68, 152, 224, 1);
+  }
+`;
+
 const handleChange = (value) => {
   return (checked) => {
-    onChange(checked, value);
+    //onChange(checked, value);
   };
 };
 
 State.update({ checked });
 
 return (
-  <>
+  <CheckBoxWrapper>
     <Checkbox.Root
       className="CheckboxRoot"
       value={value}
@@ -38,5 +61,5 @@ return (
     <label htmlFor={`status-checkbox-${value}`}>
       {label} {JSON.stringify(checked)}
     </label>
-  </>
+  </CheckBoxWrapper>
 );
