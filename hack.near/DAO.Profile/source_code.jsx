@@ -10,16 +10,17 @@ if (!daoId) {
   return (
     <>
       <div className="mb-3">
-        Sputnik Contract ID:
+        Account ID:
         <input
           type="text"
-          placeholder="<example>.sputnik-dao.near"
+          placeholder="example.sputnik-dao.near"
           onChange={(e) => onChangeContract(e.target.value)}
         />
         <a className="btn btn-primary mt-3" onClick={onChangeContract}>
-          View DAO Page
+          View Profile
         </a>
       </div>
+      <Widget src="hack.near/widget/Cyborgs" />
       <Widget src="hack.near/widget/CreateDAO" />
     </>
   );
