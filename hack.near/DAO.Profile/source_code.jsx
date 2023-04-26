@@ -1,4 +1,4 @@
-const daoId = props.daoId ?? "onboarddao.sputnik-dao.near";
+const daoId = props.daoId;
 
 const profile = props.profile ?? Social.getr(`${daoId}/profile`);
 
