@@ -82,6 +82,7 @@ const FileDetails = styled.div`
     align-items: center;
     justify-content: flex-start;
     gap: .75em;
+    width: 100%;
   }
 `;
 
