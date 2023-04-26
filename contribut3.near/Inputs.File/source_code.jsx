@@ -166,6 +166,7 @@ const Row = styled.div`
   flex-direction: row;
   align-items: stretch;
   justify-content: flex-start;
+  gap: 0.5em;
 `;
 
 const Empty = styled.div`
