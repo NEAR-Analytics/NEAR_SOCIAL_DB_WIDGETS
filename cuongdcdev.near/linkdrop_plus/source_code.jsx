@@ -7,7 +7,7 @@ if (!accountId) {
 const dropInfo = Social.getr(`${accountId}/keypomConfig`);
 
 State.init({
-  amount: "0.1",
+  amount: "0.05",
   drops: "5",
   img: dropInfo.img ?? null,
   desc: dropInfo.desc ?? "",
@@ -68,9 +68,9 @@ const createDrop = () => {
 
           args: {
             public_keys: state.publicKeys,
-            deposit_per_use: Near2Yocto(state.amount ?? "0.1"),
+            deposit_per_use: Near2Yocto(state.amount ?? "0.05"),
           },
-          deposit: Near2Yocto(state.publicKeys.length * state.amount),
+          deposit: Near2Yocto(state.publicKeys.length * state.amount + 0.3),
         },
       ]);
     }
@@ -163,7 +163,7 @@ return (
           type="number"
           min="0"
           step="0.01"
-          defaultValue="0.1"
+          defaultValue="0.05"
           onChange={(e) => onChangeValue("amount", e.target.value)}
         />
         <button
