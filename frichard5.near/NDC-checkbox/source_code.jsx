@@ -5,7 +5,7 @@ const handleChange = (e) => {
 };
 
 State.update({ checked });
-
+console.log(label, checked);
 return (
   <div key={`status-checkbox-${value}-wrapper`}>
     <input
