@@ -306,14 +306,14 @@ return (
           validate: () => {
             if (state.title.length < 3) {
               State.update({
-                titleError: "Name must be at least 3 characters",
+                titleError: "Title must be at least 3 characters",
               });
               return;
             }
 
             if (state.title.length > 50) {
               State.update({
-                titleError: "Name must be less than 50 characters",
+                titleError: "Title must be less than 50 characters",
               });
               return;
             }
@@ -331,6 +331,24 @@ return (
             "Crypto ipsum bitcoin ethereum dogecoin litecoin. Holo stacks fantom kava flow algorand. Gala dogecoin gala XRP binance flow. Algorand polygon bancor arweave avalanche. Holo kadena telcoin kusama BitTorrent flow holo velas horizen. TerraUSD helium filecoin terra shiba-inu. Serum algorand horizen kava flow maker telcoin algorand enjin. Dai bitcoin.",
           value: state.description,
           onChange: (description) => State.update({ description }),
+          validate: () => {
+            if (state.description.length < 10) {
+              State.update({
+                descriptionError: "Description must be at least 10 characters",
+              });
+              return;
+            }
+
+            if (state.description.length > 500) {
+              State.update({
+                descriptionError: "Name must be less than 500 characters",
+              });
+              return;
+            }
+
+            State.update({ descriptionError: "" });
+          },
+          error: state.descriptionError,
         }}
       />
       <Widget
@@ -340,7 +358,12 @@ return (
           placeholder: "DeFi, Gaming...",
           options: [{ name: "Wallets" }, { name: "Games" }],
           value: state.tags,
-          onChange: (tags) => State.update({ tags }),
+          onChange: (tags) =>
+            State.update({
+              tags: tags.map(({ name }) => ({
+                name: name.trim().replaceAll(/\s+/g, "-"),
+              })),
+            }),
         }}
       />
       <Widget
