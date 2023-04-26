@@ -1,0 +1,1 @@
+return (<Widget src="evrything.near/widget/Everything.Template" props={{ accountId: "danielledvorchak.near", font: "Times New Roman", type: "everything", text: "danielledvorchak.near", domain: "everything" }} />);
