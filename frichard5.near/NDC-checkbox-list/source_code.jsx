@@ -4,7 +4,7 @@ const { checkboxes, label, onChange, selectedBoxes } = props;
 State.init({
   checkboxes,
   title,
-  selectedBoxes: ["All"],
+  selectedBoxes,
 });
 
 State.update({ selectedBoxes });
