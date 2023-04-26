@@ -1,6 +1,8 @@
 const { widgetProvider, comps } = props;
 
 const FilterMenu = styled.div`
+  display: flex;
 `;
-
-return <FilterMenu>{comps.map((c) => c)}</FilterMenu>;
+console.log(comps);
+//{comps.map((c) => c)}
+return <FilterMenu></FilterMenu>;
