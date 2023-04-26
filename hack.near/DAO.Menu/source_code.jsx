@@ -21,7 +21,7 @@ const TabsContainer = styled.div``;
 const Content = styled.div``;
 const TabButton = styled.button`
     background: ${(props) =>
-      props.selected ? "#FFFFAA" : "transparent"} !important;
+      props.selected ? "#C2EAFC" : "transparent"} !important;
     border: none; 
     border-radius: 4px;
     margin: 10px 10px;
