@@ -2,6 +2,7 @@ const { onChange, value, label, checked } = props;
 
 const CheckBoxWrapper = styled.div`
   display: flex;
+  margin-bottom: 5px;
   label {
     margin-left: 10px;
   }
