@@ -58,7 +58,7 @@ return (
         label: "Pitch deck",
         id: "pitch-deck",
         fileAccept: [".pdf"],
-        value: "",
+        value: state.project.application.graduation.pitch_deck,
         onSave: (pitch_deck) => onSave({ application: { graduation: { pitch_deck } } }),
         canEdit,
       }}
