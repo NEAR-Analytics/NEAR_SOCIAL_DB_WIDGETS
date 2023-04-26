@@ -11,19 +11,25 @@ const onChangeContract = (daoId) => {
 if (!daoId) {
   return (
     <>
-      <div className="mb-3">
-        Account ID:
+      <div className="mt-3">
         <input
           type="text"
           placeholder="example.sputnik-dao.near"
           onChange={(e) => onChangeContract(e.target.value)}
         />
-        <a className="btn btn-primary mt-3" onClick={onChangeContract}>
+        <a
+          className="btn btn-primary mt-2"
+          href={`/#/hack.near/widget/DAO.Profile?daoId=${state.daoId}`}
+        >
           View Profile
         </a>
       </div>
-      <Widget src="hack.near/widget/Cyborgs" />
-      <Widget src="hack.near/widget/CreateDAO" />
+      <div className="mt-3">
+        <Widget src="hack.near/widget/Cyborgs" />
+      </div>
+      <div className="mt-3">
+        <Widget src="hack.near/widget/CreateDAO" />
+      </div>
     </>
   );
 }
