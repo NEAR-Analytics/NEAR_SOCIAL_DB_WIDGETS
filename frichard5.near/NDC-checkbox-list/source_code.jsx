@@ -25,7 +25,7 @@ const handleChange = (checked, value) => {
 };
 
 return (
-  <div style={{ marginBottom: "5px" }}>
+  <div>
     <p>{label}</p>
     {state.checkboxes.map((c) => {
       return (
