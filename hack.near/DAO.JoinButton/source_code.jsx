@@ -29,7 +29,7 @@ const handleProposal = () => {
 return (
   <div>
     <button className="btn btn-success" onClick={handleProposal}>
-      Ask to Join
+      Join
     </button>
   </div>
 );
