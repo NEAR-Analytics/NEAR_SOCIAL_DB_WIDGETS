@@ -5,7 +5,26 @@ State.init({
   filters,
 });
 
-console.log(state.filters, filters);
+const arraysEqual = (arr1, arr2) => {
+  if (arr1.length !== arr2.length) {
+    return false;
+  }
+
+  arr1.sort();
+  arr2.sort();
+
+  for (let i = 0; i < arr1.length; i++) {
+    if (arr1[i] !== arr2[i]) {
+      return false;
+    }
+  }
+
+  return true;
+};
+
+if (!arraysEqual(filters, state.filters)) {
+  State.update({ isOpen: false });
+}
 
 const FilterMenu = styled.div`
     display: flex;
