@@ -143,7 +143,7 @@ const formatBytes = () => {
 };
 
 const formatValue = (cid, filename, size, uploaded) =>
-  `${cid}-${filename}-${size}-${uploaded}`;
+  `${cid},${filename},${size},${uploaded}`;
 
 const SaveButton = styled.button`
   display: flex;
