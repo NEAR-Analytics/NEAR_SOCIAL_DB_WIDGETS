@@ -1,6 +1,7 @@
 const { onChange, value, label, checked } = props;
 
 const handleChange = (e) => {
+  console.log("uh");
   onChange(e);
 };
 
@@ -11,7 +12,7 @@ return (
     <Checkbox.Root
       className="CheckboxRoot"
       value={value}
-      onChange={handleChange}
+      onCheckedChange={handleChange}
       checked={state.checked}
       key={`status-checkbox-${value}`}
       id={`status-checkbox-${value}`}
