@@ -1,4 +1,4 @@
-const ownerId = "contribut3.near";
+const ownerId = "nearhorizon.near";
 const projectId = props.projectId;
 const cid = props.cid;
 const vendorId = props.vendorId;
@@ -30,7 +30,10 @@ if (!state.projectNameIsFetched) {
     "final",
     false
   ).then((data) =>
-    State.update({ projectName: data[projectId].profile.name, projectNameIsFetched: true })
+    State.update({
+      projectName: data[projectId].profile.name,
+      projectNameIsFetched: true,
+    })
   );
 }
 
@@ -42,7 +45,10 @@ if (!state.vendorNameIsFetched) {
     "final",
     false
   ).then((data) =>
-    State.update({ vendorName: data[vendorId].profile.name, vendorNameIsFetched: true })
+    State.update({
+      vendorName: data[vendorId].profile.name,
+      vendorNameIsFetched: true,
+    })
   );
 }
 
@@ -84,9 +90,7 @@ const Other = styled.div`
 
 return (
   <Container>
-    <Owner
-      href={`/${ownerId}/widget/Index?tab=vendor&accountId=${vendorId}`}
-    >
+    <Owner href={`/${ownerId}/widget/Index?tab=vendor&accountId=${vendorId}`}>
       <Widget
         src={`${ownerId}/widget/Vendor.Icon`}
         props={{ accountId: vendorId, size: "2.5em" }}
@@ -100,9 +104,7 @@ return (
         }}
       />
     </Owner>
-    <Owner
-      href={`/${ownerId}/widget/Index?tab=project&accountId=${projectId}`}
-    >
+    <Owner href={`/${ownerId}/widget/Index?tab=project&accountId=${projectId}`}>
       <Widget
         src={`${ownerId}/widget/Project.Icon`}
         props={{ accountId: projectId, size: "2.5em" }}
