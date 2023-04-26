@@ -17,12 +17,12 @@ return (
       options,
       value: props.integration,
       onChange: (integration) => props.update(integration),
-      validate: (integration) => {
-        if (!integration) {
+      validate: () => {
+        if (!props.integration) {
           props.setError("Please select a integration");
         }
 
-        if (!options.find(({ value }) => integration.value === value)) {
+        if (!options.find(({ value }) => props.integration.value === value)) {
           props.setError("Please select a valid integration");
         }
       },
