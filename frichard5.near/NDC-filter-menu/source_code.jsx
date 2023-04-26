@@ -1,4 +1,4 @@
-const { widgetProvider, comps, filters, removeFilter } = props;
+const { widgetProvider, comps, filters, removeFilter, resetFilters } = props;
 
 State.init({
   isOpen: false,
@@ -73,6 +73,13 @@ const FilterTagsContainer = styled.div`
     padding: 10px;
 `;
 
+const ResetAllButton = styled.button`
+`;
+
+const handleResetFilters = () => {
+  resetFilters();
+};
+
 const handleFilterRemove = (filter) => {
   removeFilter(filter);
 };
@@ -111,7 +118,8 @@ return (
               <path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
             </svg>
           </FilterTag>
-        ))}{" "}
+        ))}
+        <ResetAllButton onClick={handleResetFilters}>Reset All</ResetAllButton>
       </FilterTagsContainer>
     )}
     {state.isOpen && <FilterMenu>{comps.map((c) => c)}</FilterMenu>}
