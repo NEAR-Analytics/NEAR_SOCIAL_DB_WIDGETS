@@ -123,10 +123,12 @@ return (
             </svg>
           </FilterTag>
         ))}
-        {filters.length && (
+        {filters.length ? (
           <ResetAllButton onClick={handleResetFilters}>
             Reset All
           </ResetAllButton>
+        ) : (
+          ""
         )}
       </FilterTagsContainer>
     )}
