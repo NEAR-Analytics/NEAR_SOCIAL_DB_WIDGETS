@@ -61,9 +61,14 @@ const FilterTag = styled.div`
   svg {
     cursor: pointer;
   }
+  border: 1px solid rgb(140, 140, 140);
+  width: fit-content;
+  border-radius: 4px;
+  padding: 4px;
 `;
 
 const FilterTagsContainer = styled.div`
+    padding: 10px;
 `;
 
 const handleFilterRemove = (filter) => {
