@@ -75,6 +75,13 @@ const FileDetails = styled.div`
   background: #fafafa;
   border: 1px solid #eceef0;
   border-radius: 8px;
+
+  > span {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+  }
 `;
 
 const Small = styled.span`
