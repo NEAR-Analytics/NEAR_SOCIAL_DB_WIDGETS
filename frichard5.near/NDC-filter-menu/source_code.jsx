@@ -16,7 +16,9 @@ const FilterMenu = styled.div`
 
 return (
   <>
-    <button onClick={State.update({ isOpen: !state.isOpen })}>open</button>
+    <button onClick={() => State.update({ isOpen: !state.isOpen })}>
+      open
+    </button>
     {state.isOpen && <FilterMenu>{comps.map((c) => c)}</FilterMenu>}
   </>
 );
