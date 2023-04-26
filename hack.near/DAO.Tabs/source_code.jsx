@@ -68,7 +68,7 @@ const ProposalsByMonth = (
   <Widget
     src={`${widgetProvider}/widget/proposal-by-month`}
     props={{
-      account: state.daoId,
+      account: daoId,
       widgetProvider,
     }}
   />
