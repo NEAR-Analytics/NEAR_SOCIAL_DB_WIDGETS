@@ -1,12 +1,12 @@
-const accountId = props.accountId || "evrything.near"; // which account's Types to use
-const font = props.font || "Times New Roman"; // custom font for H1
-const type = props.type || "everything"; // selected type
-const text = props.text || type.toLowerCase(); // text for H1
-const view = props.view || null;
-const domain = props.domain || "everything"; // where to index data from
+const accountId = props.accountId || "evrything.near";
+const text = props.text || accountId;
+const styles = props.styles || {
+  font: "Times New Roman",
+};
+const types = props.types || [];
 
 const H1 = styled.h1`
-  font-family: ${font}, Times, serif;
+  font-family: ${styles.font}, Times, serif;
   font-size: 4em;
   line-height: 1.25;
   font-weight: 400;
@@ -41,30 +41,22 @@ const Button = styled.button`
   text-transform: lowercase !important;
 `;
 
-const types = Social.keys(`${accountId}/type/*`, "final", {
-  return_type: "BlockHeight",
-  values_only: true,
-});
-
-types = Object.entries(types[accountId].type ?? {});
-
 State.init({
   title: text,
-  type: type,
   selectedTab: view,
 });
 
 const handleSelectType = (typeName) => {
-  if (typeName === "everything") {
+  if (typeName) {
     State.update({
-      title: text,
-      type: "everything",
+      title: typeName.toLowerCase().split("/")[2] + "s",
+      type: typeName,
       selectedTab: "THINGS",
     });
   } else {
     State.update({
-      title: typeName.toLowerCase() + "s",
-      type: typeName,
+      title: text,
+      type: null,
       selectedTab: "THINGS",
     });
   }
@@ -95,21 +87,25 @@ const renderView = () => {
     case "CREATE":
       if (state.type === "everything") {
         return (
-          <Widget
-            src={`evrything.near/widget/Everything.Create.Type`}
-            props={{
-              type,
-            }}
-          />
+          <div className="w-100">
+            <Widget
+              src={`evrything.near/widget/Everything.Create.Type`}
+              props={{
+                type,
+              }}
+            />
+          </div>
         );
       } else {
         return (
-          <Widget
-            src={`${accountId}/widget/Everything.Create.${state.type}`}
-            props={{
-              type,
-            }}
-          />
+          <div className="w-100">
+            <Widget
+              src={`${accountId}/widget/Everything.Create.${state.type}`}
+              props={{
+                type,
+              }}
+            />
+          </div>
         );
       }
     case "THINGS":
@@ -136,26 +132,24 @@ return (
       <Controller>
         <H1 onClick={() => handleViewThings()}>{state.title}</H1>
         <ButtonRow>
-          {state.type === "everything" ? (
+          {state.type ? (
+            <>
+              <Button onClick={() => handleSelectType(null)}>back</Button>
+              <Button onClick={() => handleTypeDetails()}>
+                view type details
+              </Button>
+              <Button onClick={() => handleTypeCreate()}>create new</Button>
+            </>
+          ) : (
             <>
               {types.map((it) => (
-                <Button onClick={() => handleSelectType(it[0])}>
-                  {it[0] + "s"}
+                <Button onClick={() => handleSelectType(it)}>
+                  {it.split("/")[2] + "s"}
                 </Button>
               ))}
               {context.accountId === accountId ? ( // currently thinking the button should only show if you are able to create types in domain
                 <Button onClick={() => handleTypeCreate()}>+</Button>
               ) : null}
-            </>
-          ) : (
-            <>
-              <Button onClick={() => handleSelectType("everything")}>
-                back
-              </Button>
-              <Button onClick={() => handleTypeDetails()}>
-                view type details
-              </Button>
-              <Button onClick={() => handleTypeCreate()}>create new</Button>
             </>
           )}
         </ButtonRow>
