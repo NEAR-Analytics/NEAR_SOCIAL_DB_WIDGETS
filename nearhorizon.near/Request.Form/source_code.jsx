@@ -400,6 +400,17 @@ return (
           placeholder: 1500,
           value: state.budget,
           onChange: (budget) => State.update({ budget }),
+          validate: () => {
+            if (state.budget < 1) {
+              State.update({
+                budgetError: "Budget must be at least 1",
+              });
+              return;
+            }
+
+            State.update({ budgetError: "" });
+          },
+          error: state.budgetError,
         }}
       />
       <Widget
@@ -408,6 +419,17 @@ return (
           label: "Deadline *",
           value: state.deadline,
           onChange: (deadline) => State.update({ deadline }),
+          validate: () => {
+            if (new Date(state.deadline) < new Date()) {
+              State.update({
+                deadlineError: "Deadline must be in the future",
+              });
+              return;
+            }
+
+            State.update({ deadlineError: "" });
+          },
+          error: state.deadlineError,
         }}
       />
       <FormFooter>
