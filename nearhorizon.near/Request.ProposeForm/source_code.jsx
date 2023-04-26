@@ -2,6 +2,11 @@ const ownerId = "nearhorizon.near";
 const accountId = props.accountId;
 const cid = props.cid;
 
+const createDate = (date) => {
+  const d = date ? new Date(date) : new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2)}-${String(d.getDate()).padStart()}`;
+}
+
 const LineContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -77,7 +82,7 @@ State.init({
   paymentType: [],
   paymentSources: [],
   paymentSource: [],
-  startDate: "",
+  startDate: createDate(null),
   endDate: "",
 });
 
@@ -155,6 +160,7 @@ if (!state.requestIsFetched) {
     paymentType: { value: request.payment_type, text: request.payment_type },
     paymentSource: { value: request.source, text: request.source },
     price: request.budget,
+    endDate: createDate(Number(request.deadline)),
   }));
   return <>Loading...</>;
 }
