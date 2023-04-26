@@ -1,10 +1,10 @@
-const accountId = props.accountId ?? context.accountId;
+const accountId = context.accountId ?? props.accountId;
 
 if (!accountId) {
   return "U need to login first or create new NEAR account here:https://shard.dog/go";
 }
-
-const dropInfo = Social.getr(`${accountId}/keypomConfig`);
+let dropInfo = Social.getr(`${accountId}/keypomConfig`);
+console.log("dropinfo", dropInfo);
 
 State.init({
   amount: "0.05",
