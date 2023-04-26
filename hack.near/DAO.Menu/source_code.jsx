@@ -18,14 +18,10 @@ const tabSelect = (selectedTab) => {
   };
 };
 const TabsContainer = styled.div``;
-const Attribution = styled.div`
-    display:flex;
-    justify-content:flex-end;
-`;
 const Content = styled.div``;
 const TabButton = styled.button`
     background: ${(props) =>
-      props.selected ? "#FFD50D" : "transparent"} !important;
+      props.selected ? "#FFFFAA" : "transparent"} !important;
     border: none; 
     border-radius: 4px;
     margin: 10px 10px;
@@ -51,15 +47,13 @@ return (
   <TabsContainer>
     <div>{tabList}</div>
     <div className="m-2">
-      <Attribution>
-        <Widget
-          src="miraclx.near/widget/Attribution"
-          props={{
-            dep: true,
-            authors: ["frichard2.near"],
-          }}
-        />
-      </Attribution>
+      <Widget
+        src="miraclx.near/widget/Attribution"
+        props={{
+          dep: true,
+          authors: ["frichard2.near"],
+        }}
+      />
     </div>
     <Content>
       {tabs.find((t) => t.value === state.selectedTab).components}
