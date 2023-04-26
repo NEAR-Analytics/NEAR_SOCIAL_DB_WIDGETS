@@ -5,7 +5,7 @@ State.init({
   filters,
 });
 
-State.update({ isOpen: false });
+console.log(state.filters, filters);
 
 const FilterMenu = styled.div`
     display: flex;
