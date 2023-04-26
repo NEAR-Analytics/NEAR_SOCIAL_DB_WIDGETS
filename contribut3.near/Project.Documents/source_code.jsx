@@ -18,8 +18,6 @@ if (!state.projectIsFetched) {
   return <>Loading...</>;
 }
 
-console.log(state.project)
-
 const onSave = (project) => {
   Near.call(
     ownerId,
