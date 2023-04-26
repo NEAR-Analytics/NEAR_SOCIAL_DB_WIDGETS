@@ -18,7 +18,7 @@ if (!state.projectIsFetched) {
   return <>Loading...</>;
 }
 
-console.log(project)
+console.log(state.project)
 
 const onSave = (project) => {
   Near.call(
