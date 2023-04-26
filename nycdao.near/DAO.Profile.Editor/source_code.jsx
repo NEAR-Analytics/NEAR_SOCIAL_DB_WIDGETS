@@ -11,15 +11,15 @@ State.init({
   daoId: "",
 });
 
-const profile_args = {
+const profile_args = JSON.stringify({
   data: {
     [state.daoId]: {
       profile: state.profile,
     },
   },
-};
+});
 
-const proposal_args = Buffer.from("profile_args", "utf-8").toString("base64");
+const proposal_args = Buffer.from(profile_args, "utf-8").toString("base64");
 
 const handleProposal = () => {
   Near.call([
