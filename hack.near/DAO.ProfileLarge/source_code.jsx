@@ -1,4 +1,4 @@
-const daoId = props.daoId ?? "nearweek-news-contribution.sputnik-dao.near";
+const daoId = props.daoId;
 
 const link =
   props.link &&
@@ -75,7 +75,7 @@ return (
       <div className="d-md-flex justify-content-between pt-3 mb-2">
         <div style={{ paddingTop: "3rem" }}>
           <div className="me-2 d-sm-flex gap-1 flex-row align-items-center">
-            <div className="me-2 position-relative">
+            <div className="me-2">
               {link ? (
                 <a className="text-truncate text-dark" href={link}>
                   {nameHeader}
