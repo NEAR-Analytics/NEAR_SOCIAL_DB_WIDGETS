@@ -1,7 +1,28 @@
 const daoId = props.daoId;
 
+const onChangeContract = (daoId) => {
+  State.update({
+    daoId,
+  });
+};
+
 if (!daoId) {
-  return <Widget src="hack.near/widget/CreateDAO" />;
+  return (
+    <>
+      <div className="mb-3">
+        Sputnik Contract ID:
+        <input
+          type="text"
+          placeholder="<example>.sputnik-dao.near"
+          onChange={(e) => onChangeContract(e.target.value)}
+        />
+        <a className="btn btn-primary mt-3" onClick={onChangeContract}>
+          View DAO Page
+        </a>
+      </div>
+      <Widget src="hack.near/widget/CreateDAO" />
+    </>
+  );
 }
 
 const profile = props.profile ?? Social.getr(`${daoId}/profile`);
