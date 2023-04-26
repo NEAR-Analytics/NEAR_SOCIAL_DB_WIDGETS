@@ -1,6 +1,4 @@
-const accountId = props.accountId ?? context.accountId;
-
-const daoId = props.daoId ?? "onboarddao.sputnik-dao.near";
+const daoId = props.daoId ?? "nearweek-news-contribution.sputnik-dao.near";
 
 const link =
   props.link &&
@@ -9,21 +7,30 @@ const link =
 const profile = props.profile ?? Social.getr(`${daoId}/profile`);
 
 if (profile === null) {
-  return "Loading";
+  return "Loading...";
 }
 
-const showEditButton =
-  profile !== undefined &&
-  (!props.profile || props.showEditButton) &&
-  daoId &&
-  daoId === accountId;
-
-const name = profile.name || "No-name Profile";
+const name = profile.name || "@DAO";
 const image = profile.image;
 const backgroundImage = profile.backgroundImage;
 const tags = Object.keys(profile.tags ?? {});
 
 const nameHeader = <h4 className="mt-0 mb-0 text-truncate">{name}</h4>;
+
+const FollowButtonWrapper = styled.div`
+  width: 100%;
+  div,
+  button {
+    width: 100%;
+  }
+  @media (max-width: 1200px) {
+    width: auto;
+    div,
+    button {
+      width: auto;
+    }
+  }
+`;
 
 return (
   <div className="bg-white shadow rounded overflow-hidden">
@@ -33,7 +40,6 @@ return (
           src="mob.near/widget/Image"
           props={{
             image: backgroundImage,
-            alt: "profile background",
             className: "position-absolute w-100 h-100",
             style: { objectFit: "cover", left: 0, top: 0 },
             fallbackUrl:
@@ -41,15 +47,13 @@ return (
           }}
         />
       )}
-      {showEditButton && (
-        <a
-          href="#/mob.near/widget/ProfileEditor"
-          className="btn mt-4 btn-outline-light float-end position-relative"
-          style={{ zIndex: 1 }}
-        >
-          Edit profile
-        </a>
-      )}
+      <a
+        href="#/mob.near/widget/ProfileEditor"
+        className="btn mt-4 btn-outline-light float-end position-relative"
+        style={{ zIndex: 1 }}
+      >
+        Update Profile
+      </a>
       <div
         className="profile-picture d-inline-block"
         style={{ transform: "translateY(7rem)" }}
@@ -58,7 +62,7 @@ return (
           src="mob.near/widget/ProfileImage"
           props={{
             profile,
-            daoId,
+            accountId: daoId,
             style: { width: "10rem", height: "10rem" },
             className: "mb-2",
             imageClassName: "rounded-circle w-100 h-100 img-thumbnail d-block",
@@ -91,25 +95,25 @@ return (
                 />
                 <Widget
                   src="mob.near/widget/FollowsYouBadge"
-                  props={{ daoId }}
+                  props={{ accountId: daoId }}
                 />
               </div>
-              <div className="container mt-2">
+              <FollowButtonWrapper>
                 <div className="row">
-                  <div className="col-6">
+                  <div className="col-6 m-1">
                     <Widget
                       src="hack.near/widget/DAO.Follow"
                       props={{ daoId }}
                     />
                   </div>
-                  <div className="col-6">
+                  <div className="col-6 m-1">
                     <Widget
                       src="hack.near/widget/DAO.JoinButton"
                       props={{ daoId }}
                     />
                   </div>
                 </div>
-              </div>
+              </FollowButtonWrapper>
             </div>
           </div>
           <div>
