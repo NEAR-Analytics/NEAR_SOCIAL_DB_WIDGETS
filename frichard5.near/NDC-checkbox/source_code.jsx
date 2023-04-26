@@ -7,7 +7,7 @@ const handleChange = (value) => {
 };
 
 State.update({ checked });
-console.log(label, checked);
+console.log("CHECKPROPS", props);
 return (
   <>
     <Checkbox.Root
