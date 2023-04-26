@@ -1,4 +1,6 @@
-const daoId = props.daoId;
+State.init({
+  daoId: props.daoId,
+});
 
 const onChangeContract = (daoId) => {
   State.update({
