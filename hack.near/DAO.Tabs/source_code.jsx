@@ -167,8 +167,4 @@ const Tabs = (
   />
 );
 
-return (
-  <>
-    <div className="mb-2">{Tabs}</div>
-  </>
-);
+return <>{Tabs}</>;
