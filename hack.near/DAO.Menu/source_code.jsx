@@ -49,7 +49,7 @@ tabs.forEach((tab) => {
 
 return (
   <TabsContainer>
-    <div>{tabList}</div>
+    <div className="m-1">{tabList}</div>
     <div className="m-2">
       <Attribution>
         <Widget
