@@ -285,7 +285,7 @@ if (!state.projects.length) {
           <>
             You need to log in with an account that has admin rights to a
             project or create a{" "}
-            <a href={`${ownerId}/widget/Index?tab=createproject`}>
+            <a href={`/${ownerId}/widget/Index?tab=createproject`}>
               new project
             </a>
             !
