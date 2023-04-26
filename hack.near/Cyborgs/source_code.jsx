@@ -1,3 +1,5 @@
+const daoId = props.daoId;
+
 return (
   <div>
     <h1>🌐 Cybernetic Organizations</h1>
@@ -15,7 +17,7 @@ return (
 
     <a
       className="btn btn-outline-primary"
-      href="https://near.social/#/onboarder.near/widget/FunctionCallProposal"
+      href="/#/hack.near/widget/DAO.Profile.Editor"
     >
       Submit Proposal to <b>Create a Profile</b> for a Decentralized Autonomous
       Organization
@@ -33,7 +35,7 @@ return (
           >
             <div className="me-2 text-truncate">
               <a
-                href={`#/mob.near/widget/ProfilePage?accountId=${accountId}`}
+                href={`#/hack.near/widget/DAO.Profile?accountId=${accountId}`}
                 className="text-decoration-none link-dark text-truncate"
               >
                 <Widget
