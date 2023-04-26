@@ -36,6 +36,7 @@ if (state.sender === undefined) {
 }
 
 const onDexDataLoad = (data) => {
+  console.log("onDexDataLoad", data);
   State.update({
     ...data,
     inputAsset: undefined,
@@ -240,9 +241,11 @@ const tokenInApprovaleNeededCheck = () => {
             encodedTokenAllowanceHex
           );
 
-          State.update({
-            approvalNeeded: new Big(tokenAllowance).toFixed() == "0",
-          });
+          if (tokenAllowance) {
+            State.update({
+              approvalNeeded: new Big(tokenAllowance).toFixed() == "0",
+            });
+          }
         });
     } else {
       State.update({ approvalNeeded: false });
@@ -504,7 +507,8 @@ return (
                             <div class="swap-price-details-text">
                               <button class="swap-price-details-text-button">
                                 <div class="swap-price-details-rate">
-                                  {Number(state.inputAssetAmount) === 0
+                                  {Number(state.inputAssetAmount) === 0 ||
+                                  Number(state.outputAssetAmount) === 0
                                     ? " "
                                     : `1 ${
                                         state.inputAsset.metadata.symbol
