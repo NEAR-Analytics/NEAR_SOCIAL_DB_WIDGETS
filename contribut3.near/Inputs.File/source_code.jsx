@@ -5,8 +5,8 @@ const fileAccept = props.fileAccept ?? ["images/*", "video/*", ".pdf"];
 const noLabel = props.noLabel ?? false;
 const value = props.value ?? ",,,";
 const [cid, filename, size, uploaded] = value.split(",");
-const onSave = props.onSave ?? (() => { });
-const validate = props.validate ?? (() => { });
+const onSave = props.onSave ?? (() => {});
+const validate = props.validate ?? (() => {});
 const error = props.error ?? "";
 
 const Container = styled.div`
@@ -122,18 +122,18 @@ const formatBytes = () => {
     size < 1000
       ? "byte"
       : size < 1000000
-        ? "kilobyte"
-        : size < 1000000000
-          ? "megabyte"
-          : "gigabyte";
+      ? "kilobyte"
+      : size < 1000000000
+      ? "megabyte"
+      : "gigabyte";
   const value =
     size < 1000
       ? size
       : size < 1000000
-        ? size / 1000
-        : size < 1000000000
-          ? size / 1000000
-          : size / 1000000000;
+      ? size / 1000
+      : size < 1000000000
+      ? size / 1000000
+      : size / 1000000000;
   return value.toLocaleString("en-US", {
     unit,
     style: "unit",
