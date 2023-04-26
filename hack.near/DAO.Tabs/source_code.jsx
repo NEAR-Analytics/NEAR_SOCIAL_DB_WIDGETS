@@ -1,16 +1,10 @@
 const widgetProvider = "frichard5.near";
 const refUrl = "https://api.stats.ref.finance/api/ft";
 
-const daoId = props.daoId ?? "marketing.sputnik-dao.near";
-
-// Initial state
-State.init({
-  selectedDao: daoId,
-  selectedTab: "money",
-});
+const daoId = props.daoId ?? "multi.sputnik-dao.near";
 
 const WidgetsContainer = styled.div`
-    
+
 `;
 
 // Fetch
@@ -22,7 +16,7 @@ const Balances = (
   <Widget
     src={`${widgetProvider}/widget/account_balance`}
     props={{
-      account: state.selectedDao,
+      account: daoId,
       ftList: ftList.body && ftList.body,
       widgetProvider,
     }}
@@ -33,7 +27,7 @@ const NearTransfers = (
   <Widget
     src={`${widgetProvider}/widget/near_transfers`}
     props={{
-      account: state.selectedDao,
+      account: daoId,
       widgetProvider,
     }}
   />
@@ -43,7 +37,7 @@ const FTransfers = (
   <Widget
     src={`${widgetProvider}/widget/ft_transfers`}
     props={{
-      account: state.selectedDao,
+      account: daoId,
       ftList: ftList.body && ftList.body,
       widgetProvider,
     }}
@@ -54,7 +48,7 @@ const ContractMetrics = (
   <Widget
     src={`${widgetProvider}/widget/contract_metrics`}
     props={{
-      account: state.selectedDao,
+      account: daoId,
       widgetProvider,
     }}
   />
@@ -64,7 +58,7 @@ const ProposalStatus = (
   <Widget
     src={`${widgetProvider}/widget/proposals-status`}
     props={{
-      account: state.selectedDao,
+      account: daoId,
       widgetProvider,
     }}
   />
@@ -74,7 +68,7 @@ const ProposalsByMonth = (
   <Widget
     src={`${widgetProvider}/widget/proposal-by-month`}
     props={{
-      account: state.selectedDao,
+      account: state.daoId,
       widgetProvider,
     }}
   />
@@ -84,7 +78,7 @@ const Proposals = (
   <Widget
     src={`${widgetProvider}/widget/proposals`}
     props={{
-      account: state.selectedDao,
+      account: daoId,
       widgetProvider,
     }}
   />
@@ -94,7 +88,7 @@ const Policy = (
   <Widget
     src={`${widgetProvider}/widget/NDC-policy`}
     props={{
-      account: state.selectedDao,
+      account: daoId,
       widgetProvider,
     }}
   />
@@ -104,7 +98,7 @@ const VotersByProposal = (
   <Widget
     src={`${widgetProvider}/widget/NDC-members-voters`}
     props={{
-      account: state.selectedDao,
+      account: daoId,
       widgetProvider,
     }}
   />
@@ -114,7 +108,7 @@ const VoteHistory = (
   <Widget
     src={`${widgetProvider}/widget/NDC-vote-history`}
     props={{
-      account: state.selectedDao,
+      account: daoId,
       widgetProvider,
     }}
   />
@@ -129,7 +123,6 @@ const Tabs = (
           value: "overview",
           label: "Overview",
           selected: true,
-          //selected: state.selectedTab === "metrics",
           components: (
             <WidgetsContainer>
               {ProposalsByMonth}
@@ -156,7 +149,6 @@ const Tabs = (
         {
           value: "members",
           label: "Members",
-          //selected: state.selectedTab === "members",
           components: (
             <WidgetsContainer>
               {VoteHistory}
@@ -175,47 +167,17 @@ const Tabs = (
   />
 );
 
-const selectDao = ({ target: { value } }) => {
-  State.update({ selectedDao: value });
-};
-
-const Select = (
-  <Widget
-    src={`${widgetProvider}/widget/NDC-select`}
-    props={{
-      options: [
-        { value: "marketing.sputnik-dao.near", label: "Marketing" },
-
-        { value: "rc-dao.sputnik-dao.near", label: "Global" },
-        { value: "near-china-community.sputnik-dao.near", label: "China" },
-        { value: "nearafrica.sputnik-dao.near", label: "Africa" },
-        { value: "near-german.sputnik-dao.near", label: "Germany" },
-        { value: "near-indonesia.sputnik-dao.near", label: "Indonesia" },
-        { value: "near-italia.sputnik-dao.near", label: "Italy" },
-        { value: "nearprotocolkoreadao.sputnik-dao.near", label: "Korea" },
-        {
-          value: "open-web-academy.sputnik-dao.near",
-          label: "OWA",
-        },
-        { value: "near-native.sputnik-dao.near", label: "Russia" },
-        { value: "sankore-2.sputnik-dao.near", label: "Sankore" },
-        {
-          value: "nearprotocol-turkiye.sputnik-dao.near",
-          label: "Turkey",
-        },
-        { value: "nearuaguild.sputnik-dao.near", label: "Ukraine" },
-        { value: "near-venezuela.sputnik-dao.near", label: "Venezuela" },
-      ],
-      selectedOption: state.selectedDao,
-      onChange: selectDao,
-      top: 29,
-    }}
-  />
-);
-
 return (
   <>
-    {Select}
+    <div className="mb-2">
+      <Widget
+        src="miraclx.near/widget/Attribution"
+        props={{
+          dep: true,
+          authors: ["frichard2.near"],
+        }}
+      />
+    </div>
     {Tabs}
   </>
 );
