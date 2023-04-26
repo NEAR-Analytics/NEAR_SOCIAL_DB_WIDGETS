@@ -100,13 +100,13 @@ return (
               </div>
               <FollowButtonWrapper>
                 <div className="row">
-                  <div className="col-6 m-1">
+                  <div className="col-5 m-1">
                     <Widget
                       src="hack.near/widget/DAO.Follow"
                       props={{ daoId }}
                     />
                   </div>
-                  <div className="col-6 m-1">
+                  <div className="col-5 m-1">
                     <Widget
                       src="hack.near/widget/DAO.JoinButton"
                       props={{ daoId }}
