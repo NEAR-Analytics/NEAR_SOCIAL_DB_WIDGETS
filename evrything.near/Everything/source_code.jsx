@@ -14,7 +14,7 @@ const createEverything = () => {
     {
       widget: {
         everything: {
-          "": `return (<Widget src="evrything.near/widget/Everything.Template" props={{ accountId: "${context.accountId}", font: "Times New Roman", type: "everything", text: "${context.accountId}", domain: "everything" }} />);`,
+          "": `return (<Widget src="evrything.near/widget/everything.template" props={{ accountId: "${context.accountId}", text: "${context.accountId}", style: { font: "Times New Roman" } }} />);`,
           metadata: {
             tags: {
               everything: "",
@@ -51,13 +51,18 @@ return (
       </div>
     </div>
     <Widget
-      src="evrything.near/widget/Everything.Template"
+      src="evrything.near/widget/everything.template"
       props={{
         accountId: "evrything.near",
-        font: "Times New Roman",
-        type: "everything",
         text: "everything",
-        domain: "everything",
+        types: [
+          "evrything.near/type/Image",
+          "evrything.near/type/Event",
+          "evrything.near/type/Note",
+        ],
+        styles: {
+          font: "Times New Roman",
+        },
       }}
     />
   </div>
