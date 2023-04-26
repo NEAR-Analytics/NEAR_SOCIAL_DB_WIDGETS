@@ -179,7 +179,7 @@ return (
       >
         {state.uploading
           ? "Uploading"
-          : cid
+          : state.cid
             ? "Replace"
             : "Upload"}
       </Files> : <></>}
