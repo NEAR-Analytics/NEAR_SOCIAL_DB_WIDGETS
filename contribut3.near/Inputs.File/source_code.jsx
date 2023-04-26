@@ -157,7 +157,7 @@ return (
       </FileDetails>
       : <></>}
     {props.canEdit ?
-      <>
+      <Row>
         <Files
           multiple={false}
           accepts={["image/*", "video/*", ".pdf"]}
@@ -196,7 +196,7 @@ return (
         >
           Save
         </SaveButton>
-      </> : <></>}
+      </Row> : <></>}
     <Error className={error ? "show" : ""}>{error}</Error>
   </Container>
 );
