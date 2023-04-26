@@ -275,6 +275,27 @@ if (!state.projectsIsFetched) {
   return <>Loading...</>;
 }
 
+if (!state.projects.length) {
+  return (
+    <Widget
+      src={`${ownerId}/widget/InfoSegment`}
+      props={{
+        title: "No project to request for!",
+        description: (
+          <>
+            You need to log in with an account that has admin rights to a
+            project or create a{" "}
+            <a href={`${ownerId}/widget/Index?tab=createproject`}>
+              new project
+            </a>
+            !
+          </>
+        ),
+      }}
+    />
+  );
+}
+
 return (
   <Container>
     {/*<ProgressBar className={state.step === "step1" ? "half" : ""}><div /><div /></ProgressBar>*/}
