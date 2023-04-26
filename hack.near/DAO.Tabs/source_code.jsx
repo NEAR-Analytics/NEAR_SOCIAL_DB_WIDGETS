@@ -116,7 +116,7 @@ const VoteHistory = (
 
 const Tabs = (
   <Widget
-    src={`${widgetProvider}/widget/NDC-Tabs`}
+    src="hack.near/widget/DAO.Menu"
     props={{
       tabs: [
         {
