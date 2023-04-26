@@ -303,6 +303,24 @@ return (
           placeholder: "Looking for Rust developer to create smart contracts",
           value: state.title,
           onChange: (title) => State.update({ title }),
+          validate: () => {
+            if (state.title.length < 3) {
+              State.update({
+                titleError: "Name must be at least 3 characters",
+              });
+              return;
+            }
+
+            if (state.title.length > 50) {
+              State.update({
+                titleError: "Name must be less than 50 characters",
+              });
+              return;
+            }
+
+            State.update({ titleError: "" });
+          },
+          error: state.titleError,
         }}
       />
       <Widget
