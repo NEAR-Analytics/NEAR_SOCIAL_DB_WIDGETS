@@ -15,6 +15,7 @@ const FilterMenu = styled.div`
     width: 100%;
     padding: 20px;
     box-shadow: 3px 2px 24px rgba(68, 152, 224, 0.3);
+    border-radius: 4px;
 `;
 
 const FilterButton = styled.button`
