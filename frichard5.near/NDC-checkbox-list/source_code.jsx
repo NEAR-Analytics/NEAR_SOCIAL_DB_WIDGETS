@@ -1,9 +1,10 @@
-const { checkboxes, label, onChange, selectedBoxes } = props;
+const widgetProvider = props.widgetProvider;
+const { checkboxes, label, onChange } = props;
 console.log(checkboxes, selectedBoxes);
 State.init({
   checkboxes,
   title,
-  selectedBoxes,
+  selectedBoxes: ["All"],
 });
 
 const Input = styled.input``;
@@ -13,38 +14,39 @@ const Fieldset = styled.fieldset`
 `;
 
 const handleChange = (e) => {
+  console.log(`CHECKED-${e.target.value}`, e.target.checked);
   if (e.target.checked) {
-    onChange([...selectedBoxes, e.target.value]);
+    //onChange([...selectedBoxes, e.target.value]);
+    console.log("new state", [...state.selectedBoxes, e.target.value]);
+    State.update({
+      selectedBoxes: [...state.selectedBoxes, e.target.value],
+    });
   } else {
-    const selectedList = selectedBoxes.filter((b) => b != e.target.value);
-    onChange(selectedList);
+    const selectedList = state.selectedBoxes.filter((b) => b != e.target.value);
+    //onChange(selectedList);
+    console.log("new state", selectedList);
+    State.update({
+      selectedBoxes: [...selectedList],
+    });
   }
 };
 
-State.update({
-  selectedBoxes,
-});
-
 return (
-  <Fieldset>
+  <div>
     <p>{label}</p>
     {state.checkboxes.map((c) => {
-      console.log(c.value, selectedBoxes.includes(c.value));
+      console.log(c.value, state.selectedBoxes.includes(c.value));
       return (
-        <>
-          <input
-            id={`status-checkbox-${c.value}`}
-            className=""
-            type="checkbox"
-            value={c.value}
-            onChange={handleChange}
-            checked={state.selectedBoxes.includes(c.value)}
-          />
-          <label htmlFor={`status-checkbox-${c.value}`}>
-            {c.label} {JSON.stringify(selectedBoxes.includes(c.value))}
-          </label>
-        </>
+        <Widget
+          src={`${widgetProvider}/widget/NDC-checkbox`}
+          props={{
+            value: c.value,
+            onChange: handleChange,
+            label: c.label,
+            checked=state.selectedBoxes.includes(value)
+          }}
+        />
       );
     })}
-  </Fieldset>
+  </div>
 );
