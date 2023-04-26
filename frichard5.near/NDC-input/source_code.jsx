@@ -12,7 +12,7 @@ const InputWrapper = styled.div`
 `;
 
 const isValidDate = (dateString) => {
-  var regEx = /^\d{4}\/\d{2}\/\d{2}$/;
+  var regEx = validate;
   if (!dateString.match(regEx)) return false; // Invalid format
   return true;
 };
@@ -34,11 +34,9 @@ return (
     )}
     <input
       type="text"
-      placeholder="yyyy/mm/dd"
+      placeholder={placeholder}
       value={state.input}
       onChange={(e) => State.update({ input: e.target.value })}
-      pattern="[Bb]anana|[Cc]herry"
-      required
     />
     {state.error.length ? (
       <span style={{ color: "red" }}>{state.error}</span>
