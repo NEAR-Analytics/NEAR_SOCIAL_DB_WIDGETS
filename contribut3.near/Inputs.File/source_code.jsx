@@ -236,7 +236,7 @@ return (
       <Row>
         <Files
           multiple={false}
-          accepts={["image/*", "video/*", ".pdf"]}
+          accepts={props.fileAccept}
           minFileSize={1}
           clickable
           className="files-button"
