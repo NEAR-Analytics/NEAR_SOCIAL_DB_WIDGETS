@@ -183,12 +183,12 @@ return (
             : state.cid
               ? "Replace"
               : "Upload"}
-        </Files><SaveButton
+        </Files>
+        <SaveButton
           onClick={() => onSave(formatValue(state.cid, state.filename, state.size, state.uploaded))}
         >
           Save
         </SaveButton></> : <></>}
     <Error className={error ? "show" : ""}>{error}</Error>
-    {props.canEdit ?  : <></>}
   </Container>
 );
