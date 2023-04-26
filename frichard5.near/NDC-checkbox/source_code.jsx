@@ -4,6 +4,8 @@ const handleChange = (e) => {
   onChange(e);
 };
 
+State.update({ checked });
+
 return (
   <div key={`status-checkbox-${value}-wrapper`}>
     <input
@@ -13,7 +15,7 @@ return (
       type="checkbox"
       value={value}
       onChange={handleChange}
-      checked={checked}
+      checked={state.checked}
     />
     <label htmlFor={`status-checkbox-${value}`}>
       {label} {JSON.stringify(checked)}
