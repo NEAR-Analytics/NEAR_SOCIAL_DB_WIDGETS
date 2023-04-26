@@ -25,7 +25,7 @@ const CheckBoxWrapper = styled.div`
 
 const handleChange = (value) => {
   return (checked) => {
-    //onChange(checked, value);
+    onChange(checked, value);
   };
 };
 
