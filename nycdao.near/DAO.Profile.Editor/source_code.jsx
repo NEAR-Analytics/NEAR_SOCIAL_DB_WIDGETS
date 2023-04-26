@@ -1,13 +1,9 @@
-const accountId = props.accountId ?? context.accountId;
+const daoId = props.daoId;
 
-let profile = Social.getr(`${accountId}/profile`);
+let profile = Social.getr(`${daoId}/profile`);
 
 if (profile === null) {
   return "Loading...";
-}
-
-if (!accountId) {
-  return "Please connect your NEAR wallet :)";
 }
 
 State.init({
@@ -137,8 +133,8 @@ return (
       <div className="col-lg-6">
         <div>
           <Widget
-            src="mob.near/widget/ProfilePage"
-            props={{ accountId: daoId, profile: state.profile }}
+            src="hack.near/widget/DAO.ProfileLarge"
+            props={{ daoId: state.daoId, profile: state.profile }}
           />
         </div>
       </div>
