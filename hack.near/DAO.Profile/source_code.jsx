@@ -43,7 +43,8 @@ const profile = props.profile ?? Social.getr(`${daoId}/profile`);
 if (profile === null) {
   return "Loading...";
 }
-if (daoId) {
+
+if (daoId !== null) {
   return (
     <div className="py-1 px-1">
       <div className="mx-auto">
