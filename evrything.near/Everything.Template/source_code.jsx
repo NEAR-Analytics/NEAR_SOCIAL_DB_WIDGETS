@@ -99,6 +99,7 @@ const renderView = () => {
       } else {
         return (
           <div className="w-100">
+            // TODO: This should reference the Type itself
             <Widget
               src={`${accountId}/widget/Everything.Create.${state.type}`}
               props={{
