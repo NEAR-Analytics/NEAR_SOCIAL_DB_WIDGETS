@@ -2,7 +2,10 @@ const { widgetProvider, comps, filters, removeFilter } = props;
 
 State.init({
   isOpen: false,
+  filters,
 });
+
+State.update({ isOpen: false });
 
 const FilterMenu = styled.div`
     display: flex;
@@ -14,7 +17,7 @@ const FilterMenu = styled.div`
     box-shadow: 3px 2px 24px rgba(68, 152, 224, 0.3);
 `;
 
-const FilterButton = styled.div`
+const FilterButton = styled.button`
   color: black;
   background:rgba(255, 213, 13, 0.5);
   border: none;
