@@ -1,18 +1,9 @@
-State.init({
-  count: 0,
-})
-
 return <>
-  <button onClick={() => {
-    State.update({ count: state.count + 1 });
-    Storage.set("S", state.count);
-    console.log(nacl.sign);
-  }}>
-    Set
-  </button>
-  <button onClick={() => {
-    console.log(Storage.get("S"));
-  }}>
-    Get
-  </button>
+  <Widget src={`${ownerId}/widget/Inputs.File`} props={{
+    label: "Pitch deck",
+    id: "pitch-deck",
+    fileAccept: [".pdf"],
+    value: "",
+    onSave: (v) => { console.log(v); },
+  }} />
 </>;
