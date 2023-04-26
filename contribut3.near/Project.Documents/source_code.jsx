@@ -61,5 +61,49 @@ return (
         canEdit,
       }}
     />
+    <Widget
+      src={`${ownerId}/widget/Inputs.File`}
+      props={{
+        label: "White paper",
+        id: "white-paper",
+        fileAccept: [".pdf"],
+        value: state.project.application.graduation.white_paper,
+        onSave: (white_paper) => onSave({ application: { graduation: { white_paper } } }),
+        canEdit,
+      }}
+    />
+    <Widget
+      src={`${ownerId}/widget/Inputs.File`}
+      props={{
+        label: "Roadmap",
+        id: "roadmap",
+        fileAccept: [".pdf"],
+        value: state.project.application.graduation.roadmap,
+        onSave: (roadmap) => onSave({ application: { graduation: { roadmap } } }),
+        canEdit,
+      }}
+    />
+    <Widget
+      src={`${ownerId}/widget/Inputs.File`}
+      props={{
+        label: "Team",
+        id: "team",
+        fileAccept: [".pdf"],
+        value: state.project.application.graduation.team,
+        onSave: (team) => onSave({ application: { graduation: { team } } }),
+        canEdit,
+      }}
+    />
+    <Widget
+      src={`${ownerId}/widget/Inputs.File`}
+      props={{
+        label: "Demo video",
+        id: "demo-video",
+        fileAccept: ["video/*"],
+        value: state.project.application.graduation.demo,
+        onSave: (demo) => onSave({ application: { graduation: { demo } } }),
+        canEdit,
+      }}
+    />
   </>
 );
