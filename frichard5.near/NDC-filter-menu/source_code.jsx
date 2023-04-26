@@ -65,9 +65,11 @@ const FilterTag = styled.div`
   width: fit-content;
   border-radius: 4px;
   padding: 4px;
+  margin: 5px;
 `;
 
 const FilterTagsContainer = styled.div`
+    display: flex;
     padding: 10px;
 `;
 
