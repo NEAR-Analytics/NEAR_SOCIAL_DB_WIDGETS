@@ -23,7 +23,7 @@ const arraysEqual = (arr1, arr2) => {
 };
 
 if (!arraysEqual(filters, state.filters)) {
-  State.update({ isOpen: false });
+  State.update({ isOpen: false, filters: filters });
 }
 
 const FilterMenu = styled.div`
