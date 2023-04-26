@@ -41,6 +41,7 @@ const FilterButton = styled.button`
   color: black;
   background:rgba(255, 213, 13, 0.5);
   border: none;
+  border-radius: 4px;
   &:hover {
     background:rgba(255, 213, 13, 1);
     color: black;
@@ -58,7 +59,7 @@ const handleFilterRemove = (filter) => {
 return (
   <>
     <FilterButton onClick={() => State.update({ isOpen: !state.isOpen })}>
-      <span>open</span>
+      <span>Filters</span>
       <svg
         width="16"
         height="16"
