@@ -28,7 +28,7 @@ const TabButton = styled.button`
       props.selected ? "#FFD50D" : "transparent"} !important;
     border: none; 
     border-radius: 4px;
-    margin: 0 10px;
+    margin: 10px 10px;
     &:hover {
       background:rgba(255, 213, 13, 0.5);
     }
@@ -49,7 +49,7 @@ tabs.forEach((tab) => {
 
 return (
   <TabsContainer>
-    <div className="p-1">{tabList}</div>
+    <div>{tabList}</div>
     <div className="m-2">
       <Attribution>
         <Widget
