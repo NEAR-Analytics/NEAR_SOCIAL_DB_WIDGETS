@@ -1,4 +1,4 @@
-const { widgetProvider, comps } = props;
+const { widgetProvider, comps, filters, removeFilter } = props;
 
 State.init({
   isOpen: false,
@@ -14,11 +14,17 @@ const FilterMenu = styled.div`
     box-shadow: 3px 2px 24px rgba(68, 152, 224, 0.3);
 `;
 
+const handleFilterRemove = (filter) => {
+  removeFilter(filter);
+};
+
 return (
   <>
     <button onClick={() => State.update({ isOpen: !state.isOpen })}>
       open
     </button>
+    {filters &&
+      filters.map((f) => <div onClick={() => handleFilterRemove(f)}>{f}</div>)}
     {state.isOpen && <FilterMenu>{comps.map((c) => c)}</FilterMenu>}
   </>
 );
