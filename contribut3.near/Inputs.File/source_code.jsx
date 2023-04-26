@@ -134,6 +134,13 @@ const SaveButton = styled.button`
   color: #11181c;
 `;
 
+const Row = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+`;
+
 return (
   <Container>
     <Label>{label}</Label>
@@ -188,7 +195,8 @@ return (
           onClick={() => onSave(formatValue(state.cid, state.filename, state.size, state.uploaded))}
         >
           Save
-        </SaveButton></> : <></>}
+        </SaveButton>
+      </> : <></>}
     <Error className={error ? "show" : ""}>{error}</Error>
   </Container>
 );
