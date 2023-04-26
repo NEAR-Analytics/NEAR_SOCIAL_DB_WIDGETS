@@ -4,8 +4,11 @@ if (!accountId) {
   return "U need to login first or create new NEAR account here:https://shard.dog/go";
 }
 let dropInfo = Social.getr(`${accountId}/keypomConfig`);
-console.log("dropinfo", dropInfo);
 
+if (dropInfo === null) {
+  console.log("dropinfo", dropInfo);
+  return "Please wait...";
+}
 State.init({
   amount: "0.05",
   drops: "5",
