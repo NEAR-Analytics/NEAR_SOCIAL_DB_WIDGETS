@@ -119,7 +119,11 @@ return (
             </svg>
           </FilterTag>
         ))}
-        <ResetAllButton onClick={handleResetFilters}>Reset All</ResetAllButton>
+        {filters.length && (
+          <ResetAllButton onClick={handleResetFilters}>
+            Reset All
+          </ResetAllButton>
+        )}
       </FilterTagsContainer>
     )}
     {state.isOpen && <FilterMenu>{comps.map((c) => c)}</FilterMenu>}
