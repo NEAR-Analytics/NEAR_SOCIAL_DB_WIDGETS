@@ -11,8 +11,17 @@ const InputWrapper = styled.div`
   padding: 0px 10px;
 `;
 
+const getValidate = (validate) => {
+  switch (validate) {
+    case "date":
+      return /^\d{4}\/\d{2}\/\d{2}$/;
+    default:
+      return "";
+  }
+};
+
 const isValidDate = (dateString) => {
-  var regEx = validate;
+  var regEx = getValidate(validate);
   if (!dateString.match(regEx)) return false; // Invalid format
   return true;
 };
