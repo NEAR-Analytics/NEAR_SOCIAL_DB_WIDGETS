@@ -7,5 +7,6 @@ return <>
     fileAccept: [".pdf"],
     value: "",
     onSave: (v) => { console.log(v); },
+    canEdit: true,
   }} />
 </>;
