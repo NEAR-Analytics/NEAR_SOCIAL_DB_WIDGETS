@@ -81,7 +81,7 @@ const FileDetails = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    gap: .5em;
+    gap: .75em;
   }
 `;
 
@@ -144,7 +144,7 @@ return (
           <a href={ipfsUrl(state.cid)} download>{state.filename}</a>
           <Small>{formatBytes()}</Small>
         </span>
-        <span>Uploaded {new Date(Number(state.uploaded)).toLocaleDateString()}</span>
+        <Small>Uploaded {new Date(Number(state.uploaded)).toLocaleDateString()}</Small>
       </FileDetails>
       : <></>}
     {props.canEdit ?
