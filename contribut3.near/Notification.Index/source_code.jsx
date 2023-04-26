@@ -1,6 +1,6 @@
-console.log(props)
+console.log(props);
 const { value } = props;
-const ownerId = "contribut3.near";
+const ownerId = "nearhorizon.near";
 
 const { type } = value;
 const item = value?.item || {};
