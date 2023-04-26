@@ -150,44 +150,45 @@ return (
       </FileDetails>
       : <></>}
     {props.canEdit ?
-      <Files
-        multiple={false}
-        accepts={["image/*", "video/*", ".pdf"]}
-        minFileSize={1}
-        clickable
-        className="files-button"
-        onChange={(files) => {
-          if (!files || !files.length) return;
+      <>
+        <Files
+          multiple={false}
+          accepts={["image/*", "video/*", ".pdf"]}
+          minFileSize={1}
+          clickable
+          className="files-button"
+          onChange={(files) => {
+            if (!files || !files.length) return;
 
-          const [body] = files;
+            const [body] = files;
 
-          State.update({ uploading: true, cid: null });
-          asyncFetch(
-            "https://ipfs.near.social/add",
-            {
-              method: "POST",
-              headers: { Accept: "application/json" },
-              body,
-            }
-          ).then(
-            ({ body: { cid } }) => {
-              State.update({ cid, filename: body.name, size: body.size, uploaded: new Date().getTime(), uploading: false });
-              // props.update(cid);
-            }
-          );
-        }}
-      >
-        {state.uploading
-          ? "Uploading"
-          : state.cid
-            ? "Replace"
-            : "Upload"}
-      </Files> : <></>}
+            State.update({ uploading: true, cid: null });
+            asyncFetch(
+              "https://ipfs.near.social/add",
+              {
+                method: "POST",
+                headers: { Accept: "application/json" },
+                body,
+              }
+            ).then(
+              ({ body: { cid } }) => {
+                State.update({ cid, filename: body.name, size: body.size, uploaded: new Date().getTime(), uploading: false });
+                // props.update(cid);
+              }
+            );
+          }}
+        >
+          {state.uploading
+            ? "Uploading"
+            : state.cid
+              ? "Replace"
+              : "Upload"}
+        </Files><SaveButton
+          onClick={() => onSave(formatValue(state.cid, state.filename, state.size, state.uploaded))}
+        >
+          Save
+        </SaveButton></> : <></>}
     <Error className={error ? "show" : ""}>{error}</Error>
-    {props.canEdit ? <SaveButton
-      onClick={() => onSave(formatValue(state.cid, state.filename, state.size, state.uploaded))}
-    >
-      Save
-    </SaveButton> : <></>}
+    {props.canEdit ?  : <></>}
   </Container>
 );
