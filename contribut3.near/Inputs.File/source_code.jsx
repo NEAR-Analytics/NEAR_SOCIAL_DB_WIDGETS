@@ -171,7 +171,7 @@ return (
           ? "Uploading"
           : cid
             ? "Replace"
-            : buttonText}
+            : "Upload"}
       </Files> : <></>}
     <Error className={error ? "show" : ""}>{error}</Error>
     {props.canEdit ? <SaveButton
