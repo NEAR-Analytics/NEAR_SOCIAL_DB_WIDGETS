@@ -11,7 +11,7 @@ return (
       id={`status-checkbox-${value}`}
       className=""
       type="checkbox"
-      value={c.value}
+      value={value}
       onChange={handleChange}
       checked={checked}
     />
