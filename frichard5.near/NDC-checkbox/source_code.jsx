@@ -1,4 +1,4 @@
-const { onChange, value, label } = props;
+const { onChange, value, label, checked } = props;
 
 const handleChange = (e) => {
   onChange(e);
@@ -13,10 +13,10 @@ return (
       type="checkbox"
       value={c.value}
       onChange={handleChange}
-      checked={state.selectedBoxes.includes(value)}
+      checked={checked}
     />
     <label htmlFor={`status-checkbox-${value}`}>
-      {label} {JSON.stringify(state.selectedBoxes.includes(value))}
+      {label} {JSON.stringify(checked)}
     </label>
   </div>
 );
