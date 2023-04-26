@@ -20,6 +20,9 @@ const tabSelect = (selectedTab) => {
 const TabsContainer = styled.div``;
 const Tabs = styled.div`
     display:flex;
+`;
+const Attribution = styled.div`
+    display:flex;
     justify-content:flex-end;
 `;
 const Content = styled.div``;
@@ -51,7 +54,7 @@ return (
   <TabsContainer>
     <Tabs>{tabList}</Tabs>
     <div className="m-2">
-      <Tabs>
+      <Attribution>
         <Widget
           src="miraclx.near/widget/Attribution"
           props={{
@@ -59,7 +62,7 @@ return (
             authors: ["frichard2.near"],
           }}
         />
-      </Tabs>
+      </Attribution>
     </div>
     <Content>
       {tabs.find((t) => t.value === state.selectedTab).components}
