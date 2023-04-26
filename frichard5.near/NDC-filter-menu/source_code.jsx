@@ -74,6 +74,10 @@ const FilterTagsContainer = styled.div`
 `;
 
 const ResetAllButton = styled.button`
+    background: transparent;
+    border: none;
+    color: rgba(68, 152, 224, 1);
+    text-decoration: underline;
 `;
 
 const handleResetFilters = () => {
