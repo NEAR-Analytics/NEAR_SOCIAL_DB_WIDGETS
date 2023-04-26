@@ -18,9 +18,6 @@ const tabSelect = (selectedTab) => {
   };
 };
 const TabsContainer = styled.div``;
-const Tabs = styled.div`
-    display:flex;
-`;
 const Attribution = styled.div`
     display:flex;
     justify-content:flex-end;
@@ -52,7 +49,7 @@ tabs.forEach((tab) => {
 
 return (
   <TabsContainer>
-    <Tabs>{tabList}</Tabs>
+    <div>{tabList}</div>
     <div className="m-2">
       <Attribution>
         <Widget
