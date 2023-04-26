@@ -1,11 +1,13 @@
 const widgetProvider = props.widgetProvider;
-const { checkboxes, label, onChange } = props;
+const { checkboxes, label, onChange, selectedBoxes } = props;
 
 State.init({
   checkboxes,
   title,
   selectedBoxes: ["All"],
 });
+
+State.update({ selectedBoxes });
 
 const Input = styled.input``;
 const Fieldset = styled.fieldset`
@@ -16,15 +18,15 @@ const Fieldset = styled.fieldset`
 const handleChange = (checked, value) => {
   if (checked) {
     onChange([...state.selectedBoxes, e.target.value]);
-    State.update({
+    /*State.update({
       selectedBoxes: [...state.selectedBoxes, value],
-    });
+    });*/
   } else {
     const selectedList = state.selectedBoxes.filter((b) => b != value);
     onChange(selectedList);
-    State.update({
+    /*   State.update({
       selectedBoxes: [...selectedList],
-    });
+    });*/
   }
 };
 
