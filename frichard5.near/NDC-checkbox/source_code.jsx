@@ -15,7 +15,7 @@ return (
       type="checkbox"
       value={value}
       onClick={handleChange}
-      defaultChecked={state.checked}
+      checked={state.checked}
     />
     <label htmlFor={`status-checkbox-${value}`}>
       {label} {JSON.stringify(checked)}
