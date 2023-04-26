@@ -4,8 +4,8 @@ const fileAccept = props.fileAccept ?? ["images/*", "video/*", ".pdf"];
 const noLabel = props.noLabel ?? false;
 const value = props.value ?? "---";
 const [cid, filename, size, uploaded] = value.split("-");
-const onSave = props.onSave ?? (() => {});
-const validate = props.validate ?? (() => {});
+const onSave = props.onSave ?? (() => { });
+const validate = props.validate ?? (() => { });
 const error = props.error ?? "";
 
 const Container = styled.div`
@@ -116,18 +116,18 @@ const formatBytes = () => {
     size < 1000
       ? "byte"
       : size < 1000000
-      ? "kilobyte"
-      : size < 1000000000
-      ? "megabyte"
-      : "gigabyte";
+        ? "kilobyte"
+        : size < 1000000000
+          ? "megabyte"
+          : "gigabyte";
   const value =
     size < 1000
       ? size
       : size < 1000000
-      ? size / 1000
-      : size < 1000000000
-      ? size / 1000000
-      : size / 1000000000;
+        ? size / 1000
+        : size < 1000000000
+          ? size / 1000000
+          : size / 1000000000;
   return value.toLocaleString("en-US", {
     unit,
     style: "unit",
@@ -162,22 +162,33 @@ const Row = styled.div`
   justify-content: flex-start;
 `;
 
+const Empty = styled.div`
+  width: 24px;
+  height: 24px;
+  border-radius: 100%;
+  border: 1px solid #000000;
+`;
+
 return (
   <Container>
     <Label>
-      <svg
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <rect width="24" height="24" rx="12" fill="#00EC97" />
-        <path
-          d="M10.3333 16L7 12.5957L8.16667 11.4043L10.3333 13.617L15.8333 8L17 9.19149L10.3333 16Z"
-          fill="black"
-        />
-      </svg>
+      {cid ? (
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect width="24" height="24" rx="12" fill="#00EC97" />
+          <path
+            d="M10.3333 16L7 12.5957L8.16667 11.4043L10.3333 13.617L15.8333 8L17 9.19149L10.3333 16Z"
+            fill="black"
+          />
+        </svg>
+      ) : (
+        <Empty />
+      )}
       {label}
     </Label>
     {state.cid ? (
