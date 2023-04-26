@@ -17,7 +17,7 @@ const Fieldset = styled.fieldset`
 
 const handleChange = (checked, value) => {
   if (checked) {
-    onChange([...state.selectedBoxes, e.target.value]);
+    onChange([...state.selectedBoxes, value]);
     /*State.update({
       selectedBoxes: [...state.selectedBoxes, value],
     });*/
