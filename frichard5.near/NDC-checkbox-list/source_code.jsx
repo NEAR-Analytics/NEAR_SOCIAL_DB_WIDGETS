@@ -18,20 +18,14 @@ const Fieldset = styled.fieldset`
 const handleChange = (checked, value) => {
   if (checked) {
     onChange([...state.selectedBoxes, value]);
-    /*State.update({
-      selectedBoxes: [...state.selectedBoxes, value],
-    });*/
   } else {
     const selectedList = state.selectedBoxes.filter((b) => b != value);
     onChange(selectedList);
-    /*   State.update({
-      selectedBoxes: [...selectedList],
-    });*/
   }
 };
 
 return (
-  <div>
+  <div style={{ marginBottom: "5px" }}>
     <p>{label}</p>
     {state.checkboxes.map((c) => {
       return (
