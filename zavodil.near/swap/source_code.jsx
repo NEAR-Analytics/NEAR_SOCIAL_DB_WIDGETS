@@ -350,6 +350,7 @@ return (
           coinGeckoTokenId: state?.coinGeckoTokenIds?.[state.inputAssetTokenId],
           network: state.network,
           onLoad: (inputAsset) => {
+            console.log("TokenData onLoad inputAsset", inputAsset);
             inputAsset.metadata.symbol =
               inputAsset.metadata.symbol.toUpperCase();
             State.update({ inputAsset });
@@ -366,6 +367,7 @@ return (
             state?.coinGeckoTokenIds?.[state.outputAssetTokenId],
           network: state.network,
           onLoad: (outputAsset) => {
+            console.log("TokenData onLoad outputAsset", outputAsset);
             outputAsset.metadata.symbol =
               outputAsset.metadata.symbol.toUpperCase();
             State.update({ outputAsset });
@@ -405,6 +407,7 @@ return (
       state.inputAssetTokenId !== state.outputAssetTokenId &&
       state.inputAssetAmount &&
       state.inputAsset &&
+      state.inputAsset.metadata.decimals &&
       state.outputAsset &&
       state.outputAsset.metadata.decimals && (
         <>
@@ -433,7 +436,8 @@ return (
       state.inputAsset &&
       state.outputAsset &&
       state.inputAssetAmount &&
-      state.outputAsset.metadata.decimals &&
+      state.outputAsset.price &&
+      state.inputAsset.price &&
       state.loadRes({
         estimate: (
           (parseFloat(state.inputAssetAmount) *
@@ -471,76 +475,79 @@ return (
                     State.update({ outputAssetModalHidden: false });
                   }
                 )}
-                {!!state.outputAssetAmount && (
-                  <div class="swap-price-container">
-                    <div class="swap-price-block">
-                      <div class="swap-price-grid">
-                        <div class="swap-price-row">
-                          <div class="swap-price-details-container">
-                            <span>
-                              <div class="swap-price-details-icon">
-                                <div>
-                                  <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="#98A1C0"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    class="swap-price-details-svg"
-                                  >
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <line
-                                      x1="12"
-                                      y1="16"
-                                      x2="12"
-                                      y2="12"
-                                    ></line>
-                                    <line
-                                      x1="12"
-                                      y1="8"
-                                      x2="12.01"
-                                      y2="8"
-                                    ></line>
-                                  </svg>
+                {!!state.outputAssetAmount &&
+                  state.inputAssetTokenId !== state.outputAssetTokenId && (
+                    <div class="swap-price-container">
+                      <div class="swap-price-block">
+                        <div class="swap-price-grid">
+                          <div class="swap-price-row">
+                            <div class="swap-price-details-container">
+                              <span>
+                                <div class="swap-price-details-icon">
+                                  <div>
+                                    <svg
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      width="24"
+                                      height="24"
+                                      viewBox="0 0 24 24"
+                                      fill="none"
+                                      stroke="#98A1C0"
+                                      stroke-width="2"
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      class="swap-price-details-svg"
+                                    >
+                                      <circle cx="12" cy="12" r="10"></circle>
+                                      <line
+                                        x1="12"
+                                        y1="16"
+                                        x2="12"
+                                        y2="12"
+                                      ></line>
+                                      <line
+                                        x1="12"
+                                        y1="8"
+                                        x2="12.01"
+                                        y2="8"
+                                      ></line>
+                                    </svg>
+                                  </div>
                                 </div>
-                              </div>
-                            </span>
-                            <div class="swap-price-details-text">
-                              <button class="swap-price-details-text-button">
-                                <div class="swap-price-details-rate">
-                                  {Number(state.inputAssetAmount) === 0 ||
-                                  Number(state.outputAssetAmount) === 0
-                                    ? " "
-                                    : `1 ${
-                                        state.inputAsset.metadata.symbol
-                                      } ≈ ${new Big(
-                                        state.outputAssetAmount ?? 0
-                                      )
-                                        .div(state.inputAssetAmount ?? 1)
-                                        .toFixed(4, 0)}
+                              </span>
+                              <div class="swap-price-details-text">
+                                <button class="swap-price-details-text-button">
+                                  <div class="swap-price-details-rate">
+                                    {Number(state.inputAssetAmount) === 0 ||
+                                    Number(state.outputAssetAmount) === 0
+                                      ? " "
+                                      : `1 ${
+                                          state.inputAsset.metadata.symbol
+                                        } ≈ ${new Big(
+                                          state.outputAssetAmount ?? 0
+                                        )
+                                          .div(state.inputAssetAmount ?? 1)
+                                          .toFixed(4, 0)}
                                         ${state.outputAsset.metadata.symbol}`}
-                                </div>
-                                <div class="swap-price-details-price">
-                                  {Number(state.inputAssetAmount) === 0 ||
-                                  Number(state?.outputAsset?.price) === 0
-                                    ? ""
-                                    : `($${new Big(state.outputAssetAmount ?? 0)
-                                        .div(state.inputAssetAmount ?? 1)
-                                        .times(state?.outputAsset?.price ?? 1)
-                                        .toFixed(4)})`}
-                                </div>
-                              </button>
+                                  </div>
+                                  <div class="swap-price-details-price">
+                                    {Number(state.inputAssetAmount) === 0 ||
+                                    Number(state?.outputAsset?.price) === 0
+                                      ? ""
+                                      : `($${new Big(
+                                          state.outputAssetAmount ?? 0
+                                        )
+                                          .div(state.inputAssetAmount ?? 1)
+                                          .times(state?.outputAsset?.price ?? 1)
+                                          .toFixed(4)})`}
+                                  </div>
+                                </button>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                )}
+                  )}
               </div>
               <div class="swap-button-container">
                 {state.approvalNeeded === true && (
