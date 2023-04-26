@@ -1,6 +1,10 @@
 const { onChange, value, label, checked } = props;
 
 const CheckBoxWrapper = styled.div`
+  display: flex;
+  label {
+    margin-left: 10px;
+  }
   .CheckboxRoot {
     background-color: white;
     width: 25px;
@@ -58,8 +62,6 @@ return (
         </svg>
       </Checkbox.Indicator>
     </Checkbox.Root>
-    <label htmlFor={`status-checkbox-${value}`}>
-      {label} {JSON.stringify(checked)}
-    </label>
+    <label htmlFor={`status-checkbox-${value}`}>{label}</label>
   </CheckBoxWrapper>
 );
