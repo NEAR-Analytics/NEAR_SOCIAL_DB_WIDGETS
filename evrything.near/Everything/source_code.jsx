@@ -6,6 +6,9 @@ const Link = styled.a`
   text-decoration: none;
 `;
 
+const everythingExists =
+  !!Social.get(`${context.accountId}/widget/everything`) ?? false;
+
 const createEverything = () => {
   Social.set(
     {
@@ -31,11 +34,16 @@ return (
     <div className="mt-auto py-3">
       <div className="container">
         <div className="d-flex justify-content-end gap-2">
-          {context.accountId && (
-            <Button onClick={createEverything}>
-              create your own everything
-            </Button>
-          )}
+          {context.accountId &&
+            (everythingExists ? (
+              <a href={`/#/${context.accountId}/widget/everything`}>
+                <Button>{context.accountId}'s everything</Button>
+              </a>
+            ) : (
+              <Button onClick={createEverything}>
+                create your own everything
+              </Button>
+            ))}
           <a href={"/#/evrything-docs.near/widget/Everything.Documentation"}>
             <Button>documentation</Button>
           </a>
