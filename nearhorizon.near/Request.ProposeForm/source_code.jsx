@@ -381,8 +381,9 @@ return (
               Send proposal
             </>
           ),
-          disabled: !state.agree && !validateForm(),
-          onClick: () =>
+          disabled: !state.agree || !validateForm(),
+          onClick: () => {
+            if (!state.agree || !validateForm()) return;
             Near.call(ownerId, "add_proposal", {
               proposal: {
                 vendor_id: state.vendorId.value,
@@ -396,7 +397,8 @@ return (
                 start_date: `${new Date(state.startDate).getTime()}`,
                 end_date: `${new Date(state.endDate).getTime()}`,
               },
-            }),
+            });
+          },
         }}
       />
     </Footer>
