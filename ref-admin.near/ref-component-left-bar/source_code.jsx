@@ -6,10 +6,13 @@ State.init({
 
 const updateTag = (tag) => {
   if (!updateFilters) return;
-
+  let newFilters;
   let index = filters.indexOf(tag);
-  if (index === -1) return;
-  const newFilters = filters.splice(index, 1);
+  if (index === -1) {
+    newFilters = [...filters, tag];
+  } else {
+    newFilters = filters.splice(index, 1);
+  }
   updateFilters(newFilters);
 };
 
