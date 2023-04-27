@@ -1,14 +1,3 @@
-props = props || {
-  title: props.title,
-  link: props.link,
-  description: props.description,
-  img: props.img,
-  height: props.height || "375px",
-  video:
-    props.video ||
-    "https://youtu.be/QZLUQSOv7VY?origin=https://alpha.near.org/",
-};
-
 const title = props.title ?? "Title";
 const link = props.link ?? "*";
 const description = props.description ?? "Description";
@@ -67,18 +56,18 @@ const VideoAnchor = styled.a`
 
 return (
   <Card>
-    {props.img && props.video ? (
-      <VideoAnchor href={props.video}>
-        <img style={{ maxWidth: "80%", margin: "auto" }} src={props.img} />
+    {img && video ? (
+      <VideoAnchor href={video}>
+        <img style={{ maxWidth: "80%", margin: "auto" }} src={img} />
         <p>watch key takeaways</p>
       </VideoAnchor>
     ) : (
       <br />
     )}
 
-    <h4 style={{ textAlign: "left" }}>{props.title}</h4>
+    <h4 style={{ textAlign: "left" }}>{title}</h4>
     <hr />
-    <p style={{ textAlign: "left" }}>{props.description}</p>
+    <p style={{ textAlign: "left" }}>{description}</p>
     <Anchor href={props.link}>Visit Resource</Anchor>
   </Card>
 );
