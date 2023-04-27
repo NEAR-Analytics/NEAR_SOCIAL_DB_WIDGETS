@@ -105,9 +105,8 @@ return (
         <br />
       )}
 
-      <h4 style={{ textAlign: "left" }}>{title}</h4>
-      <hr />
-      <p style={{ textAlign: "left" }}>{description}</p>
+      <h4>{title}</h4>
+      <p>{description}</p>
     </DetailsSection>
     <LinkSection>
       <Link href={link}>Visit Resource</Link>
