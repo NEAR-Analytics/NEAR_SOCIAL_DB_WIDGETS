@@ -20,17 +20,21 @@ const Card = styled.button`
   width: 100%;
 
   > h4 {
-    text-align: left;
     font-style: normal;
     font-weight: 600;
-    font-size: 16px;
-    line-height: 19px;
+    font-size: 1em;
+    line-height: 1.125em;
     text-align: justify;
     color: #101828;
   }
 
   > p {
-    text-align: left;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.95em;
+    line-height: 150%;
+    text-align: justify;
+    color: #11181c;
   }
 `;
 
