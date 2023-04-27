@@ -285,7 +285,7 @@ return (
             props={{
               label: "Contract type",
               options: state.requestTypes,
-              value: state.requestTypes,
+              value: state.requestType,
               onChange: (requestType) => State.update({ requestType }),
             }}
           />
