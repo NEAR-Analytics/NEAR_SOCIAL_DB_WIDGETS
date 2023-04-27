@@ -64,10 +64,7 @@ const fetchVotersByProposal = () => {
     });
 };
 
-if (!state.voters || state.account != account) {
-  fetchVotersByProposal();
-  State.update({ account });
-}
+fetchVotersByProposal();
 
 return (
   <div>
