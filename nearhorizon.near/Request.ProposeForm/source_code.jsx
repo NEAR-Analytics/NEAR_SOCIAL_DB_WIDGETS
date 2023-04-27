@@ -88,6 +88,27 @@ State.init({
   endDate: "",
 });
 
+const validateForm = () => {
+  return (
+    state.message &&
+    state.messageError === "" &&
+    state.price &&
+    state.priceError === "" &&
+    state.vendorId &&
+    state.vendorIdError === "" &&
+    state.requestType &&
+    state.requestTypeError === "" &&
+    state.paymentType &&
+    state.paymentTypeError === "" &&
+    state.paymentSource &&
+    state.paymentSourceError === "" &&
+    state.startDate &&
+    state.startDateError === "" &&
+    state.endDate &&
+    state.endDateError === ""
+  );
+};
+
 if (!state.vendorsIsFetched) {
   Near.asyncView(ownerId, "get_payment_types", {}, "final", false).then(
     (paymentTypes) =>
