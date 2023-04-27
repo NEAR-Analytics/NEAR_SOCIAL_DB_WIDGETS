@@ -341,6 +341,7 @@ const Section = styled.div`
   align-items: flex-start;
   padding: 0px;
   gap: 1.5em;
+
   h3 {
     font-style: normal;
     font-weight: 700;
@@ -359,7 +360,7 @@ return (
         you where you need it most
       </h2>
     </Heading>
-    <h3 style={{ marginBottom: "20px" }}>Business Fundamentals</h3>
+    <h3>Business Fundamentals</h3>
     <Widget
       src={`${ownerId}/widget/Learn.List`}
       props={{ cardData: props.bdBasics }}
