@@ -88,10 +88,10 @@ const Video = styled.a`
 return (
   <Card>
     {img && video ? (
-      <VideoAnchor href={video}>
-        <img style={{ maxWidth: "80%", margin: "auto" }} src={img} />
+      <Video href={video}>
+        <img src={img} />
         <p>watch key takeaways</p>
-      </VideoAnchor>
+      </Video>
     ) : (
       <br />
     )}
