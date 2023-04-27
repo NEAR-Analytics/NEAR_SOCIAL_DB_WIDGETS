@@ -341,6 +341,15 @@ const Section = styled.div`
   align-items: flex-start;
   padding: 0px;
   gap: 1.5em;
+  h3 {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 36px;
+    /* identical to box height, or 144% */
+
+    color: #000000;
+  }
 `;
 
 return (
