@@ -32,6 +32,7 @@ const DetailsSection = styled.div`
   padding: 1.5em;
   gap: 1em;
   width: 100%;
+  flex-grow: 1;
 
   > h4 {
     font-style: normal;
