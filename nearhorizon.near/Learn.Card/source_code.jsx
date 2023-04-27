@@ -116,7 +116,7 @@ return (
       <p>{description}</p>
     </DetailsSection>
     <LinkSection>
-      <Link href={link}>Visit Resource</Link>
+      <Link href={link}>Learn more {linkIcon}</Link>
     </LinkSection>
   </Card>
 );
