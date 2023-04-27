@@ -1,16 +1,6 @@
 const ownerId = "nearhorizon.near";
 const accountId = props.accountId ?? context.accountId;
 
-const availableContent = ["overview", "contracts", "history"];
-
-const getContent = (content) => {
-  if (!content || !availableContent.includes(content)) {
-    return "overview";
-  }
-
-  return content;
-};
-
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -110,66 +100,26 @@ if (!state.isAdminIsFetched) {
   } else {
     Near.asyncView(
       ownerId,
-      "check_is_vendor_admin",
-      { vendor_id: accountId, account_id: context.accountId },
+      "check_is_investor_admin",
+      { investor_id: accountId, account_id: context.accountId },
       "final",
       false
     ).then((isAdmin) => State.update({ isAdmin, isAdminIsFetched: true }));
   }
 }
 
-const content = {
-  overview: (
-    <Widget
-      src={`${ownerId}/widget/Vendor.About`}
-      props={{ accountId, isAdmin: state.isAdmin }}
-    />
-  ),
-  contracts: (
-    <Widget
-      src={`${ownerId}/widget/Vendor.Contracts`}
-      props={{ accountId, isAdmin: state.isAdmin }}
-    />
-  ),
-  history: (
-    <Widget
-      src={`${ownerId}/widget/Vendor.History`}
-      props={{ accountId, isAdmin: state.isAdmin }}
-    />
-  ),
-}[getContent(props.content)];
-
 return (
   <Container>
     <Header>
       <HeaderDetails>
         <Widget
-          src={`${ownerId}/widget/Vendor.HeaderDetails`}
+          src={`${ownerId}/widget/Investor.HeaderDetails`}
           props={{ accountId, isAdmin: state.isAdmin }}
         />
-        <CTARow>
-          {state.isAdmin ? (
-            <></>
-          ) : (
-            <Widget
-              src={`${ownerId}/widget/Vendor.RequestSideWindow`}
-              props={{ accountId }}
-            />
-          )}
-          {/*<Widget
-            src={`${ownerId}/widget/Buttons.Grey`}
-            props={{
-              onClick: () => {
-                console.log("clicked");
-              },
-              text: <>{chat}Contact</>,
-            }}
-          />*/}
-        </CTARow>
       </HeaderDetails>
       <HeaderProgress>
         <Widget
-          src={`${ownerId}/widget/Vendor.Progress`}
+          src={`${ownerId}/widget/Investor.Progress`}
           props={{ accountId, isAdmin: state.isAdmin }}
         />
       </HeaderProgress>
@@ -177,34 +127,13 @@ return (
     <ContentContainer>
       <MainContent>
         <Widget
-          src={`${ownerId}/widget/TabSelector`}
-          props={{
-            tab: "vendor",
-            content: getContent(props.content),
-            search: props.search,
-            update: props.update,
-            accountId,
-            buttons: [
-              {
-                id: "overview",
-                text: "Overview",
-              },
-              {
-                id: "contracts",
-                text: "Contracts",
-              },
-              {
-                id: "history",
-                text: "Work history",
-              },
-            ],
-          }}
+          src={`${ownerId}/widget/Investor.About`}
+          props={{ accountId, isAdmin: state.isAdmin }}
         />
-        {content}
       </MainContent>
       <Sidebar>
         <Widget
-          src={`${ownerId}/widget/Vendor.Sidebar`}
+          src={`${ownerId}/widget/Investor.Sidebar`}
           props={{ accountId, isAdmin: state.isAdmin }}
         />
       </Sidebar>
