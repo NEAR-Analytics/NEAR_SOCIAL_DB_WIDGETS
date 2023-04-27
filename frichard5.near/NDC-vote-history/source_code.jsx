@@ -177,9 +177,9 @@ const fetchProposal = (id) => {
 };
 
 if (state.proposalId || !state.votes.length || state.account != account) {
-  fetchProposal(state.proposalId);
-  fetchVoteHistory(state.offset);
 }
+fetchProposal(state.proposalId);
+fetchVoteHistory(state.offset);
 
 const fetchPolicy = (daos) => {
   const policy = asyncFetch(apiPolicyUrl + `?daos=${daos}`, {
