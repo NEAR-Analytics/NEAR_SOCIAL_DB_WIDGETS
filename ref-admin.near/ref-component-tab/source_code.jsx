@@ -35,7 +35,7 @@ const BoxLine = styled.div`
 return (
   <div>
     <TagWrapper>
-      {["Components", "Templates", "My collections"].map((tabNew) => {
+      {["Templates", "Components"].map((tabNew) => {
         return (
           <div>
             <Box
