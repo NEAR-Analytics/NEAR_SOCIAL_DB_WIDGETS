@@ -107,6 +107,8 @@ return (
     <h4 style={{ textAlign: "left" }}>{title}</h4>
     <hr />
     <p style={{ textAlign: "left" }}>{description}</p>
-    <Anchor href={link}>Visit Resource</Anchor>
+    <LinkSection>
+      <Link href={link}>Visit Resource</Link>
+    </LinkSection>
   </Card>
 );
