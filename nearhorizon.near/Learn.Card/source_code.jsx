@@ -19,6 +19,20 @@ const Card = styled.button`
   border-radius: 8px;
   width: 100%;
 
+  > img {
+    max-width: 80%;
+    margin: auto;
+  }
+`;
+
+const DetailsSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1.5em;
+  gap: 1em;
+  width: 100%;
+
   > h4 {
     font-style: normal;
     font-weight: 600;
@@ -36,15 +50,6 @@ const Card = styled.button`
     text-align: justify;
     color: #11181c;
   }
-`;
-
-const DetailsSection = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 1.5em;
-  gap: 1em;
-  width: 100%;
 `;
 
 const LinkSection = styled.div`
@@ -96,12 +101,7 @@ const linkIcon = (
   </svg>
 );
 
-const Video = styled.a`
-  > img {
-    max-width: 80%;
-    margin: auto;
-  }
-`;
+const Video = styled.a``;
 
 return (
   <Card>
