@@ -228,14 +228,5 @@ return (
         </div>
       </CardContent>
     </CardBody>
-    //{" "}
-    <CardFooter>
-      // <ButtonLink href={detailsUrl}>View Details</ButtonLink>
-      //{" "}
-      <ButtonLink href={appUrl} primary>
-        // Open //{" "}
-      </ButtonLink>
-      //{" "}
-    </CardFooter>
   </Card>
 );
