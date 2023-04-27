@@ -19,7 +19,6 @@ const Card = styled.button`
   border-radius: 8px;
   width: 100%;
 
-  > img {
     max-width: 80%;
     margin: auto;
   }
