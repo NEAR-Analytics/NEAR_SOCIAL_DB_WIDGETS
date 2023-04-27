@@ -130,6 +130,7 @@ const Wrapper = styled.div`
     color: white;
     font-size: 15px;
     flex-shrink:0;
+    margin-right: 30px;
 `;
 
 const FirstClassNav = styled.div`
