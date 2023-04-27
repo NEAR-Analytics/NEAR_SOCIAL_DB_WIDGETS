@@ -72,7 +72,11 @@ const columns = [
       const proposalId = d.transaction_view.actProposal.id;
       const setModal = (proposalId) => {
         return () => {
-          State.update({ isModalOpen: true, proposalId: proposalId });
+          State.update({
+            isModalOpen: true,
+            proposalId: proposalId,
+            fetchingProposal: true,
+          });
         };
       };
       return <button onClick={setModal(proposalId)}>{proposalId}</button>;
@@ -109,6 +113,7 @@ State.init({
   isModalOpen: false,
   proposal: false,
   account,
+  fetchingProposal: false,
 });
 
 const nextPage = () => {
@@ -167,6 +172,7 @@ const fetchProposal = (id) => {
   proposal.body &&
     State.update({
       proposal: proposal.body.length ? proposal.body[0] : [],
+      fetchingProposal: false,
     });
 };
 
@@ -198,7 +204,10 @@ const toggleModal = (isOpen) => {
 
 return (
   <>
-    {state.proposal && state.isModalOpen && state.council ? (
+    {state.proposal &&
+    state.isModalOpen &&
+    state.council &&
+    !state.fetchingProposal ? (
       <Widget
         src={`${widgetProvider}/widget/NDC-modal`}
         props={{
