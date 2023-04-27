@@ -105,7 +105,7 @@ return (
         ></path>
       </svg>
     </FilterButton>
-    {filters && (
+    {filters && filters.length && (
       <FilterTagsContainer>
         {filters.map((f) => (
           <FilterTag>
