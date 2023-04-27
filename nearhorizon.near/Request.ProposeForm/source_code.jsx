@@ -4,8 +4,11 @@ const cid = props.cid;
 
 const createDate = (date) => {
   const d = date ? new Date(date) : new Date();
-  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2)}-${String(d.getDate()).padStart()}`;
-}
+  const month = `${d.getMonth() + 1}`;
+  return `${d.getFullYear()}-${month.padStart(2)}-${String(
+    d.getDate()
+  ).padStart()}`;
+};
 
 const LineContainer = styled.div`
   display: flex;
@@ -153,15 +156,17 @@ if (!state.requestIsFetched) {
     { account_id: accountId, cid },
     "final",
     false
-  ).then((request) => State.update({
-    request,
-    requestIsFetched: true,
-    requestType: { value: request.request_type, text: request.request_type },
-    paymentType: { value: request.payment_type, text: request.payment_type },
-    paymentSource: { value: request.source, text: request.source },
-    price: request.budget,
-    endDate: createDate(Number(request.deadline)),
-  }));
+  ).then((request) =>
+    State.update({
+      request,
+      requestIsFetched: true,
+      requestType: { value: request.request_type, text: request.request_type },
+      paymentType: { value: request.payment_type, text: request.payment_type },
+      paymentSource: { value: request.source, text: request.source },
+      price: request.budget,
+      endDate: createDate(Number(request.deadline)),
+    })
+  );
   return <>Loading...</>;
 }
 
