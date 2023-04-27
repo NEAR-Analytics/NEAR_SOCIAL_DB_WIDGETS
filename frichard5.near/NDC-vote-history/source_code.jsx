@@ -107,7 +107,7 @@ State.init({
   votes: [],
   offset: 0,
   isModalOpen: false,
-  proposal: [],
+  proposal: false,
   account,
 });
 
