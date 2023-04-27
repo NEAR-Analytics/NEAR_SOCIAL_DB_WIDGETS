@@ -4,12 +4,21 @@ return (
   <div>
     <h1>🌐 Cybernetic Organizations</h1>
 
-    <div className="mb-2">
+    <div className="mb-3">
       <Widget
         src="onboarder.near/widget/SputnikDAOProfileSearchStringMatch"
         props={{
           limit: 20,
           onChange: ({ result }) => State.update({ profiles: result }),
+        }}
+      />
+    </div>
+    <div>
+      <Widget
+        src="miraclx.near/widget/Attribution"
+        props={{
+          dep: true,
+          authors: ["onboarder.near"],
         }}
       />
     </div>
@@ -19,8 +28,7 @@ return (
       className="btn btn-outline-primary"
       href="/#/hack.near/widget/DAO.Profile.Editor"
     >
-      Submit Proposal to <b>Create a Profile</b> for a Decentralized Autonomous
-      Organization
+      <b>Suggest Changes to DAO Profiles</b>
     </a>
     <br />
 
