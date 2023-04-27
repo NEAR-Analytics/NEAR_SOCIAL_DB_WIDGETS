@@ -108,6 +108,7 @@ State.init({
   offset: 0,
   isModalOpen: false,
   proposal: [],
+  account,
 });
 
 const nextPage = () => {
@@ -155,7 +156,6 @@ const fetchVoteHistory = (offset) => {
       votes: voteHistory.body,
     });
 };
-!state.votes.length && fetchVoteHistory(state.offset);
 
 const fetchProposal = (id) => {
   const proposal = fetch(apiProposalUrl + `?id=${id}`, {
@@ -170,7 +170,10 @@ const fetchProposal = (id) => {
     });
 };
 
-state.proposalId && fetchProposal(state.proposalId);
+if (state.proposalId || !state.votes.length || state.account != account) {
+  fetchProposal(state.proposalId);
+  fetchVoteHistory(state.offset);
+}
 
 const fetchPolicy = (daos) => {
   const policy = asyncFetch(apiPolicyUrl + `?daos=${daos}`, {
