@@ -374,8 +374,14 @@ return (
       <Widget
         src={`${ownerId}/widget/Inputs.Checkbox`}
         props={{
-          label:
-            "Yes, I understand and agree with NEAR Horizon credit and payment system",
+          label: (
+            <>
+              Yes, I understand and agree with{" "}
+              <a href={`${ownerId}/widget/TNCPage`}>
+                NEAR Horizon credit and payment system
+              </a>
+            </>
+          ),
           value: state.agree,
           id: "agree",
           onChange: (agree) => State.update({ agree }),
