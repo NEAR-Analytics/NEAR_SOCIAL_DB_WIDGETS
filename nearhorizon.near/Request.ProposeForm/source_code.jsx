@@ -155,7 +155,7 @@ if (!state.requestIsFetched) {
     { account_id: accountId, cid },
     "final",
     false
-  ).then((request) => {
+  ).then((request) =>
     State.update({
       request,
       requestIsFetched: true,
@@ -165,8 +165,7 @@ if (!state.requestIsFetched) {
       price: request.budget,
       endDate: createDate(Number(request.deadline)),
     });
-    console.log(state.endDate);
-  });
+  );
   return <>Loading...</>;
 }
 
