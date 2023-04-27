@@ -1,4 +1,4 @@
-const { role, filiters, counts, filters, updateFilters } = props;
+const { counts, filters, updateFilters } = props;
 
 State.init({
   showItems: { Chain: true, Infrastructure: true, Dapps: true, NFT: true },
@@ -7,9 +7,9 @@ State.init({
 const updateTag = (tag) => {
   if (!updateFilters) return;
 
-  let index = filiters.indexOf(tag);
+  let index = filters.indexOf(tag);
   if (index === -1) return;
-  const newFilters = filiters.splice(index, 1);
+  const newFilters = filters.splice(index, 1);
   updateFilters(newFilters);
 };
 
