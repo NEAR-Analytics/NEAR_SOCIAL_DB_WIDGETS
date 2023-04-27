@@ -6,7 +6,7 @@ const height = props.height ?? "375px";
 const video =
   props.video ?? "https://youtu.be/QZLUQSOv7VY?origin=https://near.org/";
 
-const Card = styled.button`
+const Card = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -19,6 +19,7 @@ const Card = styled.button`
   border-radius: 8px;
   width: 100%;
 
+  img {
     max-width: 80%;
     margin: auto;
   }
