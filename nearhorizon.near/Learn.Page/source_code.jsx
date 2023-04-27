@@ -360,25 +360,33 @@ return (
         you where you need it most
       </h2>
     </Heading>
-    <h3>Business Fundamentals</h3>
-    <Widget
-      src={`${ownerId}/widget/Learn.List`}
-      props={{ cardData: props.bdBasics }}
-    />
-    <h3 style={{ marginBottom: "20px" }}>Growth & Marketing</h3>
-    <Widget
-      src={`${ownerId}/widget/Learn.List`}
-      props={{ cardData: props.growth }}
-    />
-    <h3 style={{ marginBottom: "20px" }}>Recruiting & Legal</h3>
-    <Widget
-      src={`${ownerId}/widget/Learn.List`}
-      props={{ cardData: props.legalHR }}
-    />
-    <h3 style={{ marginBottom: "20px" }}>Technical</h3>
-    <Widget
-      src={`${ownerId}/widget/Learn.List`}
-      props={{ cardData: props.technical }}
-    />
+    <Section>
+      <h3>Business Fundamentals</h3>
+      <Widget
+        src={`${ownerId}/widget/Learn.List`}
+        props={{ cardData: props.bdBasics }}
+      />
+    </Section>
+    <Section>
+      <h3>Growth & Marketing</h3>
+      <Widget
+        src={`${ownerId}/widget/Learn.List`}
+        props={{ cardData: props.growth }}
+      />
+    </Section>
+    <Section>
+      <h3>Recruiting & Legal</h3>
+      <Widget
+        src={`${ownerId}/widget/Learn.List`}
+        props={{ cardData: props.legalHR }}
+      />
+    </Section>
+    <Section>
+      <h3>Technical</h3>
+      <Widget
+        src={`${ownerId}/widget/Learn.List`}
+        props={{ cardData: props.technical }}
+      />
+    </Section>
   </Container>
 );
