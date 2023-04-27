@@ -344,10 +344,8 @@ const Section = styled.div`
   h3 {
     font-style: normal;
     font-weight: 700;
-    font-size: 25px;
+    font-size: 1.5em;
     line-height: 36px;
-    /* identical to box height, or 144% */
-
     color: #000000;
   }
 `;
