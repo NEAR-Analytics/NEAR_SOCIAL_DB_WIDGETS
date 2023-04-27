@@ -1,5 +1,7 @@
+const Container = styled.div``;
+
 return (
-  <>
+  <Container>
     <p class="c13 title" id="h.alotq4h5zy55">
       <span class="c23">NEAR Horizon Platform Terms and Conditions</span>
     </p>
@@ -1151,5 +1153,5 @@ return (
         <span class="c18"></span>
       </p>
     </div>
-  </>
+  </Container>
 );
