@@ -212,6 +212,17 @@ return (
           placeholder: "Describe the contribution you would like to request",
           value: state.message,
           onChange: (message) => State.update({ message }),
+          validate: () => {
+            if (state.message > 500) {
+              State.update({
+                messageError: "Message should be less than 500 characters",
+              });
+              return;
+            }
+
+            State.update({ messageError: "" });
+          },
+          error: state.messageError,
         }}
       />
     </Form>
