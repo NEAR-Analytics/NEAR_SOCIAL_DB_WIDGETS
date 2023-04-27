@@ -132,6 +132,8 @@ return (
         )}
       </FilterTagsContainer>
     )}
-    {state.isOpen && <FilterMenu>{comps.map((c) => c)}</FilterMenu>}
+    {state.isOpen && comps.length && (
+      <FilterMenu>{comps.map((c) => c)}</FilterMenu>
+    )}
   </>
 );
