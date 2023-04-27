@@ -47,6 +47,7 @@ return (
   <TabsContainer>
     <div>{tabList}</div>
     <div className="m-2">
+      DAO Stats{" "}
       <Widget
         src="miraclx.near/widget/Attribution"
         props={{
