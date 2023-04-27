@@ -193,13 +193,12 @@ return (
         />
       </Thumbnail>
 
-      {tags.length > 0 && (
-        <TagsWrapper>
-          {tags.map((t) => {
+      <TagsWrapper>
+        {tags.length > 0 &&
+          tags.map((t) => {
             return <Tag>{t}</Tag>;
           })}
-        </TagsWrapper>
-      )}
+      </TagsWrapper>
 
       <CardContent>
         <TextLink href={detailsUrl}>{metadata.name || widgetName}</TextLink>
