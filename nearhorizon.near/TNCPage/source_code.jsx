@@ -12,4 +12,4 @@ if (!state.codeIsFetched) {
   return <>Loading...</>;
 }
 
-return <iframe style={{ width: "100%" }} srcDoc={state.code} />;
+return <iframe style={{ width: "100%", height: "100%" }} srcDoc={state.code} />;
