@@ -1,5 +1,4 @@
 const ownerId = "nearhorizon.near";
-const creditsAccount = `credits.${ownerId}`;
 const accountId = props.accountId;
 
 const Container = styled.div`
@@ -98,35 +97,41 @@ if (!state.activeIsFetched) {
 return (
   <Container>
     <Row>
-      <Label>Earned:</Label>
-      <Value>
-        {state.earned} NHZN{" "}
-        <Widget
-          src={`${ownerId}/widget/Tooltip`}
-          props={{ content: "Test use case" }}
-        />
-      </Value>
-    </Row>
-    <Row>
-      <Label>Status:</Label>
+      <Label>Invested:</Label>
       <Value>
         <Widget
-          src={`${ownerId}/widget/Inputs.Viewable.Toggle`}
+          src={`${ownerId}/widget/Inputs.Viewable.Number`}
           props={{
-            id: "active",
-            value: state.active === "true",
-            onSave: (active) =>
+            id: "invested",
+            value: state.invested,
+            noLabel: true,
+            onSave: (invested) =>
               Near.call("social.near", "set", {
-                data: { [accountId]: { profile: { active: "" + active } } },
+                data: { [accountId]: { profile: { invested } } },
               }),
             canEdit: props.isAdmin,
+            isUSD: true,
           }}
         />
       </Value>
     </Row>
     <Row>
-      <Label>Profile:</Label>
-      <Value>60%</Value>
+      <Label>Projects:</Label>
+      <Value>
+        <Widget
+          src={`${ownerId}/widget/Inputs.Viewable.Number`}
+          props={{
+            id: "projects",
+            value: state.projects,
+            noLabel: true,
+            onSave: (projects) =>
+              Near.call("social.near", "set", {
+                data: { [accountId]: { profile: { projects } } },
+              }),
+            canEdit: props.isAdmin,
+          }}
+        />
+      </Value>
     </Row>
   </Container>
 );
