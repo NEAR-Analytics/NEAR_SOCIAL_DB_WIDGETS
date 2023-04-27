@@ -71,8 +71,6 @@ const items = state.searchResults || components;
 console.log(items);
 
 const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
   gap: 48px;
   padding-bottom: 48px;
   padding-top: 48px;
@@ -148,7 +146,7 @@ const Item = styled.div``;
 
 const ContentWrapper = styled.div`
   display: flex;
-  
+  margin-top: 20px;
   
 `;
 
