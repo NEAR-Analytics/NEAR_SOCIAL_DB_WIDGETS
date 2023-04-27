@@ -8,27 +8,14 @@ const video =
 
 const Card = styled.button`
   box-sizing: border-box;
-
-  /* Auto layout */
-
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   padding: 0px;
-
   width: 328.33px;
   height: 228px;
-
-  /* Base/White */
-
   background: #ffffff;
-  /* Slate/Light/4
-
-ECEEF0
-*/
   border: 1px solid #eceef0;
-  /* Shadow/sm */
-
   box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1),
     0px 1px 2px rgba(16, 24, 40, 0.06);
   border-radius: 8px;
