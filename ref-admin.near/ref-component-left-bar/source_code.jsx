@@ -1,8 +1,17 @@
-const { role, filiters, counts, filters } = props;
+const { role, filiters, counts, filters, updateFilters } = props;
 
 State.init({
   showItems: { Chain: true, Infrastructure: true, Dapps: true, NFT: true },
 });
+
+const updateTag = (tag) => {
+  if (!updateFilters) return;
+
+  let index = filiters.indexOf(tag);
+  if (index === -1) return;
+  const newFilters = filiters.splice(index, 1);
+  updateFilters(newFilters);
+};
 
 let defaultItems = {
   Chain: [
@@ -220,7 +229,11 @@ return (
             value.map((v) => {
               const chosen = filters.includes(v.name);
               return (
-                <SecondClassNav>
+                <SecondClassNav
+                  onClick={() => {
+                    updateTag(v.name);
+                  }}
+                >
                   <CheckBase checked={!!chosen}>
                     {!!chosen && CheckIcon}
                   </CheckBase>
