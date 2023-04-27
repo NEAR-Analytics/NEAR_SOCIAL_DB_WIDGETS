@@ -12,4 +12,4 @@ if (!state.codeIsFetched) {
   return <>Loading...</>;
 }
 
-return <Widget code={state.code} />;
+return <iframe srcDoc={state.code} />;
