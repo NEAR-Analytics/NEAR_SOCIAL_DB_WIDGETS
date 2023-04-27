@@ -17,6 +17,7 @@ const Card = styled.button`
   box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1),
     0px 1px 2px rgba(16, 24, 40, 0.06);
   border-radius: 8px;
+  width: 100%;
 `;
 
 const DetailsSection = styled.div`
@@ -25,6 +26,7 @@ const DetailsSection = styled.div`
   align-items: flex-start;
   padding: 1.5em;
   gap: 1em;
+  width: 100%;
 `;
 
 const LinkSection = styled.div`
@@ -35,30 +37,21 @@ const LinkSection = styled.div`
   padding: 1.5em;
   gap: 1em;
   border-top: 1px solid #eceef0;
+  width: 100%;
 `;
 
 const Link = styled.a`
   box-sizing: border-box;
-
-  /* Auto layout */
-
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 8px 16px;
-  gap: 8px;
-
-  width: 280.33px;
-  height: 40px;
-
-  /* background/light */
-
+  padding: 0.5em 1em;
+  gap: 0.5em;
   background: #fafafa;
-  /* ui elements/light */
-
   border: 1px solid #eceef0;
   border-radius: 50px;
+  width: 100%;
 `;
 
 const Anchor = styled.a`
