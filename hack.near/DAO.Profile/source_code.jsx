@@ -1,6 +1,6 @@
 const daoId = props.daoId;
 
-if (!daoId) {
+if (daoId === null) {
   return <Widget src="hack.near/widget/Onboard" />;
 }
 
