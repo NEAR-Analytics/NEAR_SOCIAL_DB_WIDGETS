@@ -1,11 +1,5 @@
 const daoId = props.daoId;
 
-const onChangeContract = (daoId) => {
-  State.update({
-    daoId,
-  });
-};
-
 if (!daoId) {
   return <Widget src="hack.near/widget/Onboard" />;
 }
