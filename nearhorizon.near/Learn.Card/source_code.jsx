@@ -95,18 +95,20 @@ const Video = styled.a`
 
 return (
   <Card>
-    {img && video ? (
-      <Video href={video}>
-        <img src={img} />
-        watch key takeaways
-      </Video>
-    ) : (
-      <br />
-    )}
+    <DetailsSection>
+      {img && video ? (
+        <Video href={video}>
+          <img src={img} />
+          watch key takeaways
+        </Video>
+      ) : (
+        <br />
+      )}
 
-    <h4 style={{ textAlign: "left" }}>{title}</h4>
-    <hr />
-    <p style={{ textAlign: "left" }}>{description}</p>
+      <h4 style={{ textAlign: "left" }}>{title}</h4>
+      <hr />
+      <p style={{ textAlign: "left" }}>{description}</p>
+    </DetailsSection>
     <LinkSection>
       <Link href={link}>Visit Resource</Link>
     </LinkSection>
