@@ -6,7 +6,7 @@ const createDate = (date) => {
   const d = date ? new Date(date) : new Date();
   const month = `${d.getMonth() + 1}`;
   const day = `${d.getDate()}`;
-  return `${d.getFullYear()}-${month.padStart(2)}-${day.padStart(2)}`;
+  return `${d.getFullYear()}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
 };
 
 const LineContainer = styled.div`
