@@ -52,6 +52,8 @@ return (
     ) : (
       ""
     )}
-    <button onClick={handleSubmit}>Apply</button>
+    <button style={{ marginLeft: "0px" }} onClick={handleSubmit}>
+      Apply
+    </button>
   </InputWrapper>
 );
