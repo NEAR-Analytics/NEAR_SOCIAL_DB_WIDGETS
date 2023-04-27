@@ -62,6 +62,7 @@ const LinkSection = styled.div`
   gap: 1em;
   border-top: 1px solid #eceef0;
   width: 100%;
+  flex-grow: 0;
 `;
 
 const Link = styled.a`
