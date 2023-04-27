@@ -81,6 +81,18 @@ return (
           placeholder: "Describe the contribution action",
           value: state.description,
           onChange: (description) => State.update({ description }),
+          validate: () => {
+            if (state.description.length > 500) {
+              State.update({
+                descriptionError:
+                  "Description must be less than 500 characters",
+              });
+              return;
+            }
+
+            State.update({ descriptionError: "" });
+          },
+          error: state.descriptionError,
         }}
       />
     </Form>
