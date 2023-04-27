@@ -129,17 +129,11 @@ const Text = styled.p`
 const Items = styled.div`
   display: grid;
   width: 100%;
-    grid-template-columns: repeat(auto-fill, 165px);
+    grid-template-columns: repeat(auto-fill, 350px);
 
   gap: 20px;
 
-  @media (max-width: 1200px) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
 
-  @media (max-width: 800px) {
-    grid-template-columns: minmax(0, 1fr);
-  }
 `;
 
 const Item = styled.div``;
@@ -186,7 +180,7 @@ return (
           {items.map((component, i) => (
             <Widget
               key={component.accountId + component.widgetName}
-              src="ref-admin.near/widget/ref-component-card"
+              src="ref-admin.near/widget/ref-component-card-wide"
               props={{
                 src: `${component.accountId}/widget/${component.widgetName}`,
                 blockHeight: component.blockHeight,
