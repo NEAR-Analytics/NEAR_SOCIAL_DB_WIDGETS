@@ -5,9 +5,8 @@ const cid = props.cid;
 const createDate = (date) => {
   const d = date ? new Date(date) : new Date();
   const month = `${d.getMonth() + 1}`;
-  return `${d.getFullYear()}-${month.padStart(2)}-${String(
-    d.getDate()
-  ).padStart()}`;
+  const day = `${d.getDate()}`;
+  return `${d.getFullYear()}-${month.padStart(2)}-${day.padStart(2)}`;
 };
 
 const LineContainer = styled.div`
