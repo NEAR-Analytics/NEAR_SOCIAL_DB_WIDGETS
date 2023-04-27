@@ -27,6 +27,16 @@ const DetailsSection = styled.div`
   gap: 1em;
 `;
 
+const LinkSection = styled.div`
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 1.5em;
+  gap: 1em;
+  border-top: 1px solid #eceef0;
+`;
+
 const Anchor = styled.a`
   color: #222;
   transition: all 0.2s ease-in-out;
