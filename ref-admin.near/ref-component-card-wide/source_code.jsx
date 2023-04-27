@@ -107,7 +107,7 @@ const Tag = styled.div`
     align-items:center;
     justify-center: center;
     margin-right: 5px;
-    padding: 2px 11px 2px 11px;
+    padding: 1px 11px 1px 11px;
 
 `;
 
