@@ -90,7 +90,7 @@ return (
     {img && video ? (
       <Video href={video}>
         <img src={img} />
-        <p>watch key takeaways</p>
+        watch key takeaways
       </Video>
     ) : (
       <br />
