@@ -18,6 +18,14 @@ const Card = styled.button`
     0px 1px 2px rgba(16, 24, 40, 0.06);
   border-radius: 8px;
   width: 100%;
+
+  > h4 {
+    text-align: left;
+  }
+
+  > p {
+    text-align: left;
+  }
 `;
 
 const DetailsSection = styled.div`
