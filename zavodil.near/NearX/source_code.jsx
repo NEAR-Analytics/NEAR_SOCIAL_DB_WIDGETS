@@ -390,7 +390,7 @@ return (
           }
           Near.call(
             CONTRACT_ID,
-            "deposit_and_stake",
+            "direct_deposit_and_stake",
             { validator: validatorRefId },
             undefined,
             Big(state.inputValue).mul(Big(10).pow(NEAR_DECIMALS)).toFixed(0)
