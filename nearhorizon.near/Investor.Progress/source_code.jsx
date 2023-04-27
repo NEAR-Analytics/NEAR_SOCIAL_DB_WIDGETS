@@ -54,43 +54,28 @@ const Value = styled.div`
 `;
 
 State.init({
-  earned: 0,
-  earnedIsFetched: false,
-  active: false,
-  activeIsFetched: false,
+  invested: 0,
+  projects: 0,
+  fetched: false,
 });
 
-if (!state.earnedIsFetched) {
-  Near.asyncView(
-    creditsAccount,
-    "ft_balance_of",
-    { account_id: accountId },
-    "final",
-    false
-  ).then((earned) =>
-    State.update({
-      earned: Number(earned) / 1000,
-      earnedIsFetched: true,
-    })
-  );
-}
-
-if (!state.activeIsFetched) {
+if (!state.fetched) {
   Near.asyncView(
     "social.near",
     "get",
-    { keys: [`${accountId}/profile/active`] },
+    { keys: [`${accountId}/profile/**`] },
     "final",
     false
   ).then((active) =>
     State.update({
-      active: active[accountId].profile.active,
-      activeIsFetched: true,
+      invested: active[accountId].profile.invested,
+      projects: active[accountId].profile.projects,
+      fetched: true,
     })
   );
 }
 
-if (!state.activeIsFetched) {
+if (!state.fetched) {
   return <>Loading...</>;
 }
 
