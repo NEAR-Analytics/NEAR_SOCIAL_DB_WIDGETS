@@ -310,7 +310,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  gap: 1em;
+  gap: 3em;
 `;
 
 const Heading = styled.div`
