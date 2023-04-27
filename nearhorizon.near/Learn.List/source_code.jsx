@@ -28,8 +28,6 @@ return (
       <div>
         <Widget src={`${ownerId}/widget/Learn.Card`} props={cardProps} />
       </div>
-    )}
+    ))}
   </List>
 );
-
-
