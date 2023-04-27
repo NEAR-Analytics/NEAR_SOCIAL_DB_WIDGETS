@@ -21,6 +21,12 @@ const Card = styled.button`
 
   > h4 {
     text-align: left;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: justify;
+    color: #101828;
   }
 
   > p {
@@ -104,7 +110,6 @@ return (
       ) : (
         <br />
       )}
-
       <h4>{title}</h4>
       <p>{description}</p>
     </DetailsSection>
