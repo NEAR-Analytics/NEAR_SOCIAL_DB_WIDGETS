@@ -173,7 +173,7 @@ const fetchProposal = (id) => {
 state.proposalId && fetchProposal(state.proposalId);
 
 const fetchPolicy = (daos) => {
-  const policy = asyncFetch(apiPolicyUrl + `daos=${daos}`, {
+  const policy = asyncFetch(apiPolicyUrl + `?daos=${daos}`, {
     mode: "cors",
     headers: {
       "x-api-key": publicApiKey,
