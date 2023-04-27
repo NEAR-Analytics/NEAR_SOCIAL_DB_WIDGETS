@@ -37,6 +37,30 @@ const LinkSection = styled.div`
   border-top: 1px solid #eceef0;
 `;
 
+const Link = styled.a`
+  box-sizing: border-box;
+
+  /* Auto layout */
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 16px;
+  gap: 8px;
+
+  width: 280.33px;
+  height: 40px;
+
+  /* background/light */
+
+  background: #fafafa;
+  /* ui elements/light */
+
+  border: 1px solid #eceef0;
+  border-radius: 50px;
+`;
+
 const Anchor = styled.a`
   color: #222;
   transition: all 0.2s ease-in-out;
