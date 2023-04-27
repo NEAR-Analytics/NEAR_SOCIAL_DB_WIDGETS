@@ -12,7 +12,6 @@ const accountUrl = `#/near/widget/ProfilePage?accountId=${accountId}`;
 
 const Card = styled.div`
   position: relative;
-  border: 1px solid #eceef0;
   display:block;
   overflow: hidden;
 width: 165px;
