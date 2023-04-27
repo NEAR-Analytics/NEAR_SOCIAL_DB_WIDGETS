@@ -179,6 +179,7 @@ const fetchProposal = (id) => {
 if (state.proposalId || !state.votes.length || state.account != account) {
   fetchProposal(state.proposalId);
   fetchVoteHistory(state.offset);
+  State.update({ account });
 }
 
 const fetchPolicy = (daos) => {
