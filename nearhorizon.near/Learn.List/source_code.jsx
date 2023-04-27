@@ -17,7 +17,7 @@ const List = styled.div`
     }
 
     @media (min-width: 1024px) {
-      width: 30%;
+      width: 33%;
     }
   }
 `;
