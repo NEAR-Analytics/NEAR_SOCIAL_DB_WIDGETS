@@ -52,6 +52,12 @@ const Link = styled.a`
   border: 1px solid #eceef0;
   border-radius: 50px;
   width: 100%;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.95em;
+  line-height: 1em;
+  text-align: justify;
+  color: #006adc;
 `;
 
 const Anchor = styled.a`
