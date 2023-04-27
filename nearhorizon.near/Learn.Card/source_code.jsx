@@ -38,7 +38,7 @@ const DetailsSection = styled.div`
     font-weight: 600;
     font-size: 1em;
     line-height: 1.125em;
-    text-align: justify;
+    text-align: left;
     color: #101828;
   }
 
@@ -47,7 +47,7 @@ const DetailsSection = styled.div`
     font-weight: 400;
     font-size: 0.95em;
     line-height: 150%;
-    text-align: justify;
+    text-align: left;
     color: #11181c;
   }
 `;
@@ -79,7 +79,7 @@ const Link = styled.a`
   font-weight: 600;
   font-size: 0.95em;
   line-height: 1em;
-  text-align: justify;
+  text-align: left;
   color: #006adc;
 `;
 
