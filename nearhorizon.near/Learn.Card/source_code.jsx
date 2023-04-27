@@ -34,7 +34,7 @@ const DetailsSection = styled.div`
   width: 100%;
   flex-grow: 1;
 
-  > h4 {
+  h4 {
     font-style: normal;
     font-weight: 600;
     font-size: 1em;
@@ -43,7 +43,7 @@ const DetailsSection = styled.div`
     color: #101828;
   }
 
-  > p {
+  p {
     font-style: normal;
     font-weight: 400;
     font-size: 0.95em;
