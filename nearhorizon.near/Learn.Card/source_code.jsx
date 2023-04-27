@@ -106,6 +106,8 @@ const linkIcon = (
 return (
   <Card>
     <DetailsSection>
+      <h4>{title}</h4>
+      <p>{description}</p>
       {img && video ? (
         <a href={video}>
           <img src={img} />
@@ -114,8 +116,6 @@ return (
       ) : (
         <></>
       )}
-      <h4>{title}</h4>
-      <p>{description}</p>
     </DetailsSection>
     <LinkSection>
       <Link href={link}>Learn more {linkIcon}</Link>
