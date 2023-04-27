@@ -1,10 +1,14 @@
 const daoId = props.daoId;
 
 if (!daoId) {
-  return <Widget src="hack.near/widget/Onboard" />;
+  return (
+    <div className="mt-3">
+      <Widget src="hack.near/widget/Cyborgs" />
+    </div>
+  );
 }
 
-const profile = props.profile ?? Social.getr(`${daoId}/profile`);
+const profile = Social.getr(`${daoId}/profile`);
 
 if (profile === null) {
   return "Loading...";
@@ -16,7 +20,7 @@ return (
       <Widget
         src="hack.near/widget/DAO.ProfileLarge"
         props={{
-          daoId: daoId,
+          daoId,
           profile,
           link: true,
           showEditButton: !props.profile,
@@ -24,10 +28,7 @@ return (
       />
 
       <div className="mt-3">
-        <Widget
-          src="hack.near/widget/DAO.Tabs"
-          props={{ daoId: daoId, profile }}
-        />
+        <Widget src="hack.near/widget/DAO.Tabs" props={{ daoId, profile }} />
       </div>
     </div>
   </div>
