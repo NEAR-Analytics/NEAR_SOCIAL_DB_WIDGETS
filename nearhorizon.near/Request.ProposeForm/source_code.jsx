@@ -74,18 +74,26 @@ State.init({
   request: null,
   requestIsFetched: false,
   message: "",
+  messageError: "",
   price: 0,
+  priceError: "",
   vendorId: [],
+  vendorIdError: "",
   vendors: [],
   vendorsIsFetched: false,
   requestTypes: [],
   requestType: [],
+  requestTypeError: "",
   paymentTypes: [],
   paymentType: [],
+  paymentTypeError: "",
   paymentSources: [],
   paymentSource: [],
+  paymentSourceError: "",
   startDate: createDate(null),
+  startDateError: "",
   endDate: "",
+  endDateError: "",
 });
 
 const validateForm = () => {
@@ -275,6 +283,17 @@ return (
           placeholder: "Describe the contribution you would like to request",
           value: state.message,
           onChange: (message) => State.update({ message }),
+          validate: () => {
+            if (state.message > 500) {
+              State.update({
+                messageError: "Message should be less than 500 characters",
+              });
+              return;
+            }
+
+            State.update({ messageError: "" });
+          },
+          error: state.messageError,
         }}
       />
       <Details>
@@ -297,6 +316,15 @@ return (
               label: "Price",
               value: state.price,
               onChange: (price) => State.update({ price }),
+              validate: () => {
+                if (state.price < 1) {
+                  State.update({ priceError: "Price should be more than 1" });
+                  return;
+                }
+
+                State.update({ priceError: "" });
+              },
+              error: state.priceError,
             }}
           />
         </DetailInput>
