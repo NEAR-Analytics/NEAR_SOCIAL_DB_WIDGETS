@@ -101,16 +101,14 @@ const linkIcon = (
   </svg>
 );
 
-const Video = styled.a``;
-
 return (
   <Card>
     <DetailsSection>
       {img && video ? (
-        <Video href={video}>
+        <a href={video}>
           <img src={img} />
           watch key takeaways
-        </Video>
+        </a>
       ) : (
         <></>
       )}
