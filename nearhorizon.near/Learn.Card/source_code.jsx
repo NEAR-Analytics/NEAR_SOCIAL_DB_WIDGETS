@@ -7,24 +7,31 @@ const video =
   props.video ?? "https://youtu.be/QZLUQSOv7VY?origin=https://near.org/";
 
 const Card = styled.button`
-  position: relative;
+  box-sizing: border-box;
+
+  /* Auto layout */
+
   display: flex;
   flex-direction: column;
-  background-color: white;
-  justify-content: top;
-  align-items: top;
-  width: 300px;
-  height: ${props.height};
-  border: 1px solid rgba(0, 0, 0, 0.15);
+  align-items: flex-end;
+  padding: 0px;
+
+  width: 328.33px;
+  height: 228px;
+
+  /* Base/White */
+
+  background: #ffffff;
+  /* Slate/Light/4
+
+ECEEF0
+*/
+  border: 1px solid #eceef0;
+  /* Shadow/sm */
+
+  box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1),
+    0px 1px 2px rgba(16, 24, 40, 0.06);
   border-radius: 8px;
-  color: black;
-  margin: 5px;
-  padding: 15px;
-  &:hover {
-    background-color: #efefef;
-    box-shadow: #444 1px 1px 5px;
-    cursor: auto;
-  }
 `;
 //  background-color: #e9ecef;
 
@@ -68,6 +75,6 @@ return (
     <h4 style={{ textAlign: "left" }}>{title}</h4>
     <hr />
     <p style={{ textAlign: "left" }}>{description}</p>
-    <Anchor href={props.link}>Visit Resource</Anchor>
+    <Anchor href={link}>Visit Resource</Anchor>
   </Card>
 );
