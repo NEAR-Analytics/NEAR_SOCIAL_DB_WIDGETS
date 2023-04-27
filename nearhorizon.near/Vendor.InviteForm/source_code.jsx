@@ -63,6 +63,7 @@ const createProjectLine = (accountId, name, image) => {
 
 State.init({
   message: "",
+  messageError: "",
   projectId: null,
   projects: [],
   projectsIsFetched: false,
@@ -70,6 +71,15 @@ State.init({
   requests: [],
   requestsIsFetched: false,
 });
+
+const validateForm = () => {
+  return (
+    state.projectId &&
+    state.message &&
+    state.messageError === "" &&
+    state.requestId
+  );
+};
 
 if (!state.projectsIsFetched) {
   Near.asyncView(
