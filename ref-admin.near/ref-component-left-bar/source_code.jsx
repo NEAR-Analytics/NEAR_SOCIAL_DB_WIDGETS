@@ -126,6 +126,7 @@ const Wrapper = styled.div`
     padding-right: 15px;
     color: white;
     font-size: 15px;
+    flex-shrink:0;
 `;
 
 const FirstClassNav = styled.div`
@@ -189,7 +190,7 @@ const ArrowWrapper = styled.div`
     display:flex;
     align-items: center;
     justify-content: center;
-    color:black;
+    color:white;
     opacity: ${(p) => (p.show ? 1 : 0.5)};
     transform: ${(p) => (p.show ? "" : "rotate(180deg)")}
 
