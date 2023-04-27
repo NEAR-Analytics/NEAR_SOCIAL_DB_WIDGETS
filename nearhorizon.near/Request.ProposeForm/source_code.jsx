@@ -164,7 +164,7 @@ if (!state.requestIsFetched) {
       paymentSource: { value: request.source, text: request.source },
       price: request.budget,
       endDate: createDate(Number(request.deadline)),
-    });
+    })
   );
   return <>Loading...</>;
 }
