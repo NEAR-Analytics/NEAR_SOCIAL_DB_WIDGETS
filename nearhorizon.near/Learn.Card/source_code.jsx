@@ -78,29 +78,10 @@ const linkIcon = (
   </svg>
 );
 
-const Anchor = styled.a`
-  color: #222;
-  transition: all 0.2s ease-in-out;
-  display: inline-block;
-  position: absolute;
-  bottom: 15px;
-  cursor: pointer;
-  left: 15px;
-  &:hover {
-    text-decoration: underline;
-    color: #66a0ff;
-    font-weight: bold;
-  }
-`;
-
-const VideoAnchor = styled.a`
-  color: #222;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  &:hover {
-    text-decoration: underline;
-    color: #66a0ff;
-    font-weight: bold;
+const Video = styled.a`
+  > img {
+    max-width: 80%;
+    margin: auto;
   }
 `;
 
