@@ -218,10 +218,12 @@ return (
             <div>{key}</div>
 
             <FlexWrapper>
-              <CountWrapper>
-                {" "}
-                <span>{count}</span>{" "}
-              </CountWrapper>
+              {count > 0 && (
+                <CountWrapper>
+                  {" "}
+                  <span>{count}</span>{" "}
+                </CountWrapper>
+              )}
 
               <ArrowWrapper show={!!state.showItems[key]}>{Arrow}</ArrowWrapper>
             </FlexWrapper>
