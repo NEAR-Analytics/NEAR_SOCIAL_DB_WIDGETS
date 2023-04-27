@@ -19,6 +19,14 @@ const Card = styled.button`
   border-radius: 8px;
 `;
 
+const DetailsSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1.5em;
+  gap: 1em;
+`;
+
 const Anchor = styled.a`
   color: #222;
   transition: all 0.2s ease-in-out;
