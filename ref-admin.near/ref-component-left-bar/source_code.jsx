@@ -11,7 +11,7 @@ const updateTag = (tag) => {
   if (index === -1) {
     newFilters = [...filters, tag];
   } else {
-    newFilters = filters.splice(index, 1);
+    newFilters = filters.slice(0, index).concat(filters.slice(index + 1));
   }
   updateFilters(newFilters);
 };
