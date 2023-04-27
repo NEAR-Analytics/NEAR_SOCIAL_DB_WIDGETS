@@ -112,7 +112,7 @@ return (
           watch key takeaways
         </Video>
       ) : (
-        <br />
+        <></>
       )}
       <h4>{title}</h4>
       <p>{description}</p>
