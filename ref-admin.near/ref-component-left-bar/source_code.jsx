@@ -124,7 +124,7 @@ const CheckBase = styled.div`
 const Wrapper = styled.div`
     width: 170px;
     padding-right: 15px;
-    color: #black;
+    color: white;
     font-size: 15px;
 `;
 
