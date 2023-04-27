@@ -100,7 +100,8 @@ const fetchPolicy = () => {
       config: policy.body.state.config,
     });
 };
-!state.policy && fetchPolicy();
+
+if (!state.policy || state.account != account) fetchPolicy();
 
 return (
   <div style={{ marginTop: "40px" }}>
