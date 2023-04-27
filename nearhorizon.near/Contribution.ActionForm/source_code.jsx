@@ -5,6 +5,7 @@ const cid = props.cid;
 
 State.init({
   description: "",
+  descriptionError: "",
 });
 
 const Container = styled.div`
