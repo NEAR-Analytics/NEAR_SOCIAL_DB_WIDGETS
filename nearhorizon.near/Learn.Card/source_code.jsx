@@ -12,15 +12,12 @@ const Card = styled.button`
   flex-direction: column;
   align-items: flex-end;
   padding: 0px;
-  width: 328.33px;
-  height: 228px;
   background: #ffffff;
   border: 1px solid #eceef0;
   box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1),
     0px 1px 2px rgba(16, 24, 40, 0.06);
   border-radius: 8px;
 `;
-//  background-color: #e9ecef;
 
 const Anchor = styled.a`
   color: #222;
