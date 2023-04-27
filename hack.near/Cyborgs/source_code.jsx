@@ -35,7 +35,7 @@ return (
           >
             <div className="me-2 text-truncate">
               <a
-                href={`#/hack.near/widget/DAO.Profile?accountId=${accountId}`}
+                href={`#/hack.near/widget/DAO.Profile?daoId=${accountId}`}
                 className="text-decoration-none link-dark text-truncate"
               >
                 <Widget
