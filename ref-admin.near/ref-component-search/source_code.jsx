@@ -155,7 +155,7 @@ if (JSON.stringify(requiredTags) !== JSON.stringify(state.oldFilters)) {
   State.update({
     oldFilters: requiredTags,
   });
-  computeResults(state.oldTerm);
+  computeResults(state.term);
 }
 
 const Wrapper = styled.div`
