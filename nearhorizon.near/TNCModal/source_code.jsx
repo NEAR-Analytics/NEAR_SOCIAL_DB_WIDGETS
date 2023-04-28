@@ -54,6 +54,12 @@ const Content = styled.div`
   }
 `;
 
+const Container = styled.div`
+  &.focus-visible {
+    outline: none !important;
+  }
+`;
+
 State.init({
   agree: false,
 });
@@ -61,55 +67,57 @@ State.init({
 console.log(props.open);
 
 return (
-  <Dialog.Root open={props.open}>
-    <Dialog.Trigger asChild>
-      <div style={{ display: "none" }} />
-    </Dialog.Trigger>
-    <Dialog.Overlay asChild>
-      <Overlay />
-    </Dialog.Overlay>
-    <Dialog.Content asChild>
-      <Content>
-        <Dialog.Title>Terms and Conditions</Dialog.Title>
-        <Dialog.Description>
-          <Widget
-            src={`${ownerId}/widget/Inputs.Checkbox`}
-            props={{
-              label: (
-                <>
-                  By checking this box you acknowledge that you understand and
-                  agree with{" "}
-                  <a href={`${ownerId}/widget/TNCPage`}>
-                    NEAR Horizon Terms and Conditions
-                  </a>
-                </>
-              ),
-              value: state.agree,
-              id: "agree",
-              onChange: (agree) => {
-                console.log(agree);
-                State.update({ agree: !state.agree });
-              },
-            }}
-          />
-        </Dialog.Description>
-        <Footer>
-          <Dialog.Close asChild>
-            <CloseButton href="/">Close</CloseButton>
-          </Dialog.Close>
-          <Widget
-            src={`${ownerId}/widget/Buttons.Green`}
-            props={{
-              text: <>Accept</>,
-              disabled: !state.agree,
-              onClick: () => {
-                if (!state.agree) return;
-                props.accept();
-              },
-            }}
-          />
-        </Footer>
-      </Content>
-    </Dialog.Content>
-  </Dialog.Root>
+  <Container>
+    <Dialog.Root open={props.open}>
+      <Dialog.Trigger asChild>
+        <div style={{ display: "none" }} />
+      </Dialog.Trigger>
+      <Dialog.Overlay asChild>
+        <Overlay />
+      </Dialog.Overlay>
+      <Dialog.Content asChild>
+        <Content>
+          <Dialog.Title>Terms and Conditions</Dialog.Title>
+          <Dialog.Description>
+            <Widget
+              src={`${ownerId}/widget/Inputs.Checkbox`}
+              props={{
+                label: (
+                  <>
+                    By checking this box you acknowledge that you understand and
+                    agree with{" "}
+                    <a href={`${ownerId}/widget/TNCPage`}>
+                      NEAR Horizon Terms and Conditions
+                    </a>
+                  </>
+                ),
+                value: state.agree,
+                id: "agree",
+                onChange: (agree) => {
+                  console.log(agree);
+                  State.update({ agree: !state.agree });
+                },
+              }}
+            />
+          </Dialog.Description>
+          <Footer>
+            <Dialog.Close asChild>
+              <CloseButton href="/">Close</CloseButton>
+            </Dialog.Close>
+            <Widget
+              src={`${ownerId}/widget/Buttons.Green`}
+              props={{
+                text: <>Accept</>,
+                disabled: !state.agree,
+                onClick: () => {
+                  if (!state.agree) return;
+                  props.accept();
+                },
+              }}
+            />
+          </Footer>
+        </Content>
+      </Dialog.Content>
+    </Dialog.Root>
+  </Container>
 );
