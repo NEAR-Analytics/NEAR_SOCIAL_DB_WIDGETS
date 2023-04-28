@@ -6,6 +6,9 @@ const componentsUrl = "#/near/widget/ComponentsPage";
 const searchPlaceholder = "Search";
 
 const refTags = [
+  "NEAR",
+  "Ethereum",
+  "Arbitrum",
   "Wallets",
   "Bridges",
   "Validators",
@@ -21,6 +24,22 @@ const refTags = [
   "NFT marketplace",
   "Collectibles",
 ];
+
+const filterMap = {
+  Chain: ["NEAR", "Ethereum", "Arbitrum"],
+  Infrastructure: ["Wallets", "Bridges", "Validators", "Expolorers"],
+  Dapps: [
+    "Liquid staking",
+    "Dex",
+    "Lending",
+    "Derivatives",
+    "Insurance",
+    "Stablecoins",
+    "Yield Aggregators",
+    "Launch Pad",
+  ],
+  NFT: ["NFT marketplace", "Collectibles"],
+};
 
 const { role } = props;
 
@@ -94,6 +113,7 @@ if (data) {
         accountId,
         widgetName,
         blockHeight: data[accountId].widget[widgetName],
+        tags: tags,
       });
     });
   });
@@ -111,6 +131,39 @@ function onSearchChange({ result, term }) {
 }
 
 const items = state.searchResults || components;
+
+const counts = {
+  Chain:
+    items?.filter((i) => {
+      return i.tags.some((i) =>
+        filterMap["Chain"].map((f) => f.toLowerCase()).includes(i.toLowerCase())
+      );
+    })?.length || 0,
+  Infrastructure:
+    items?.filter((i) => {
+      return i.tags.some((i) =>
+        filterMap["Infrastructure"]
+          .map((f) => f.toLowerCase())
+          .includes(i.toLowerCase())
+      );
+    })?.length || 0,
+
+  Dapps:
+    items?.filter((i) => {
+      return i.tags.some((i) =>
+        filterMap["Dapps"].map((f) => f.toLowerCase()).includes(i.toLowerCase())
+      );
+    })?.length || 0,
+
+  NFT:
+    items?.filter((i) => {
+      return i.tags.some((i) =>
+        filterMap["NFT"].map((f) => f.toLowerCase()).includes(i.toLowerCase())
+      );
+    })?.length || 0,
+};
+
+console.log(items, "items", counts);
 
 const Wrapper = styled.div`
   gap: 48px;
@@ -336,7 +389,7 @@ return (
         src="ref-admin.near/widget/ref-component-left-bar"
         props={{
           filters: state.filters,
-          counts: state.counts,
+          counts: counts,
           updateFilters: (newFilters) => {
             State.update({
               filters: newFilters,
