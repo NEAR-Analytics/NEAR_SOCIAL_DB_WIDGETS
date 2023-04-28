@@ -113,6 +113,8 @@ const _search = (term) => {
           boosted,
         });
       }
+
+      console.log(matchedWidgets, "math");
     });
   });
 
