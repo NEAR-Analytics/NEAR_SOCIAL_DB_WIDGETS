@@ -218,6 +218,7 @@ const CardFooter = styled.div`
     display: flex;
     align-items: center;
     gap:9px;
+    margin-top: 6px;
     
 
 `;
