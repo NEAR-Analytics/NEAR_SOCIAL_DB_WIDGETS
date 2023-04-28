@@ -97,6 +97,7 @@ return (
             }}
           />
         </Footer>
-    </Dialog.Content></Content>
-  </Dialog.Root >
+      </Content>
+    </Dialog.Content>
+  </Dialog.Root>
 );
