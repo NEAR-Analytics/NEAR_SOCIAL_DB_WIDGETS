@@ -14,7 +14,7 @@ const TextBlock = styled.div`
 `;
 
 const UserAmount = styled.div`
-    font-size: 11vw;
+    font-size: 10vw;
     font-weight: 500;
 `;
 
