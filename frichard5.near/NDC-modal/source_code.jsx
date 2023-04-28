@@ -10,7 +10,7 @@ const Modal = styled.div`
     position: absolute;
     z-index:101;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     display: ${state.isOpen ? "block" : "none"};
     background: rgba(128,128,128,0.65);
 `;
