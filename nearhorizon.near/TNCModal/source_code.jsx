@@ -48,6 +48,10 @@ const Content = styled.div`
   z-index: 10;
   min-width: ${minWidth};
   max-width: 800px;
+
+  &.focus-visible {
+    outline: none;
+  }
 `;
 
 State.init({
