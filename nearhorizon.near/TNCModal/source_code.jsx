@@ -22,7 +22,7 @@ const CloseButton = styled.a`
   color: #101828;
 `;
 
-const Overlay = styled(Dialog.Overlay)`
+const Overlay = styled.div`
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.5);
@@ -38,7 +38,9 @@ console.log(props.open);
 
 return (
   <Dialog.Root open={props.open}>
-    <Overlay />
+    <Dialog.Overlay asChild>
+      <Overlay />
+    </Dialog.Overlay>
     <Dialog.Content>
       <Dialog.Title>Terms and Conditions</Dialog.Title>
       <Dialog.Description>
