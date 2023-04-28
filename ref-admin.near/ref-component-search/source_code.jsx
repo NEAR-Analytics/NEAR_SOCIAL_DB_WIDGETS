@@ -151,7 +151,7 @@ if (props.term && props.term !== state.oldTerm) {
 
 console.log(requiredTags, state.oldFilters, "old filters");
 
-if (JSON.stringify(requiredTags) !== JSON.stringify(state.oldFilters)) {
+if (requiredTags?.length || 0 !== (state.oldFilters || []).length) {
   State.update({
     oldFilters: requiredTags,
   });
