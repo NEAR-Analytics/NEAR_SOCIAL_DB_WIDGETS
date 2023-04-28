@@ -149,11 +149,13 @@ if (props.term && props.term !== state.oldTerm) {
   }
 }
 
+console.log(requiredTags, state.oldFilters, "old filters");
+
 if (JSON.stringify(requiredTags) !== JSON.stringify(state.oldFilters)) {
   State.update({
     oldFilters: requiredTags,
   });
-  computeResults(props.term);
+  computeResults(state.oldTerm);
 }
 
 const Wrapper = styled.div`
