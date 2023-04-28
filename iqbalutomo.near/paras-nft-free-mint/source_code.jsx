@@ -134,7 +134,7 @@ return (
                         buy(priceYocto, token.token_series_id);
                       }}
                     >
-                      Buy
+                      Claim
                     </button>
                   </div>
                 </Content>
