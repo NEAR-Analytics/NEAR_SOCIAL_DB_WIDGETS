@@ -22,7 +22,7 @@ const CloseButton = styled.a`
   color: #101828;
 `;
 
-const Overlay = styled.(Dialog.Overlay)`
+const Overlay = styled(Dialog.Overlay)`
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.5);
