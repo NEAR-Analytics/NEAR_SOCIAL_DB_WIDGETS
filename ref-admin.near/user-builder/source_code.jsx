@@ -23,19 +23,21 @@ const Container = styled.div`
     }
 `;
 const { buttonStatus } = state;
-State.init({
-  buttonStatus: "user",
-});
+const current_mode = Storage.get(
+  "ref-mode",
+  "ref-admin.near/widget/user-builder"
+);
 function switchButton(type) {
   Storage.set("ref-mode", type);
   State.update({
     buttonStatus: type,
   });
 }
+const targetStatus = buttonStatus || current_mode;
 return (
   <Container>
     <span
-      class={`default ${buttonStatus == "user" ? "active" : ""}`}
+      class={`default ${targetStatus !== "builder" ? "active" : ""}`}
       onClick={() => {
         switchButton("user");
       }}
@@ -43,7 +45,7 @@ return (
       User
     </span>
     <span
-      class={`default ${buttonStatus == "builder" ? "active" : ""}`}
+      class={`default ${targetStatus == "builder" ? "active" : ""}`}
       onClick={() => {
         switchButton("builder");
       }}
