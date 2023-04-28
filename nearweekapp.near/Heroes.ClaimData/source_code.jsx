@@ -89,7 +89,7 @@ return (
             </span>{" "}
             <hr />
             <div class="blockquote-footer figcaption">
-              KYC is required for bounties over $150, please head to
+              KYC is required for bounties over $400, please head to
               <a href="https://heroes.build" target="_blank">
                 https://heroes.build/
               </a>{" "}
