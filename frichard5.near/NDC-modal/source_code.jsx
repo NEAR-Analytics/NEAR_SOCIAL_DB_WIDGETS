@@ -11,7 +11,7 @@ const Modal = styled.div`
     z-index:101;
     top: 0px;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     display: ${state.isOpen ? "block" : "none"};
     background: rgba(128,128,128,0.65);
 `;
@@ -20,7 +20,7 @@ const ComponentWrapper = styled.div`
     position:absolute;
     width: 100%;
     z-index: 100;
-    top: 50%;
+    top: 50vh;
     left: 50%;
     transform: translate(-50%,-50%);
 `;
