@@ -17,8 +17,6 @@ const accountUrl = `#/near/widget/ProfilePage?accountId=${accountId}`;
 
 const profile = Social.getr(`${accountId}/profile`);
 
-console.log(profile);
-
 const Card = styled.div`
   position: relative;
   display:block;
@@ -44,7 +42,8 @@ const CardBody = styled.div`
 const CardContent = styled.div`
   width: 100%;
   display: flex;
-  flex-direction:column
+  flex-direction:column;
+  justify-content: start;
 
 `;
 
@@ -59,22 +58,16 @@ const TextLink = styled.div`
 
 `;
 
-const Text = styled.p`
-  margin: 0;
-  font-size: 14px;
-  line-height: 20px;
-  color: ${(p) => (p.bold ? "#11181C" : "#687076")};
-  font-weight: ${(p) => (p.bold ? "600" : "400")};
-  font-size: ${(p) => (p.small ? "12px" : "14px")};
-  overflow: ${(p) => (p.ellipsis ? "hidden" : "")};
-  text-overflow: ${(p) => (p.ellipsis ? "ellipsis" : "")};
-  white-space: nowrap;
+const Text = styled.div`
 
-  i {
-    margin-right: 3px;
-  }
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 21px;
+
+  color: #FFFFFF;
+
 `;
-
 const Thumbnail = styled.a`
   display: block;
   width: 88px;
@@ -117,7 +110,7 @@ const Tag = styled.div`
 
 `;
 
-const FooterIcon = styled.div`
+const ProfileIcon = styled.div`
   width: 16px;
 height: 16px;
   flex-shrink: 0;
@@ -230,20 +223,20 @@ return (
       </Thumbnail>
 
       <CardContent>
-        <TextLink href={detailsUrl}>{metadata.name || widgetName}</TextLink>
+        <Text href={detailsUrl}>{metadata.name || widgetName}</Text>
         <div
           style={{
             display: "flex",
             alignItems: "center",
+            marginTop: "8px",
           }}
         >
-          <FooterIcon>
-            {" "}
+          <ProfileIcon>
             <Widget
               src="mob.near/widget/ProfileImage"
               props={{ accountId: accountId }}
             />
-          </FooterIcon>
+          </ProfileIcon>
 
           <TextLink href={accountUrl}>{accountId}</TextLink>
         </div>
