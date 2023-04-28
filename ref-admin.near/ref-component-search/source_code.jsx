@@ -87,7 +87,7 @@ const _search = (term) => {
       const hasRefTag = metadata.tags.some((t) =>
         requiredTags.map((f) => f.toLowerCase()).includes(t.toLowerCase())
       );
-      if (requiredTag && !(metadata.tags && hasRefTag)) {
+      if (requiredTags && !(metadata.tags && hasRefTag)) {
         return;
       }
       const boosted =
