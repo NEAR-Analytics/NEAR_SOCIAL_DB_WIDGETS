@@ -15,6 +15,10 @@ const forkUrl = `#/edit/${accountId}/widget/${widgetName}`;
 
 const accountUrl = `#/near/widget/ProfilePage?accountId=${accountId}`;
 
+const profile = Social.getr(`${accountId}/profile`);
+
+console.log(profile);
+
 const Card = styled.div`
   position: relative;
   display:block;
@@ -54,10 +58,6 @@ const TextLink = styled.div`
 
   color: #FFFFFF;
 
-  &:focus,
-  &:hover {
-    text-decoration: underline;
-  }
 `;
 
 const Text = styled.p`
@@ -241,13 +241,8 @@ return (
           <FooterIcon>
             {" "}
             <Widget
-              src="mob.near/widget/Image"
-              props={{
-                image: metadata.image,
-                fallbackUrl:
-                  "https://ipfs.near.social/ipfs/bafkreifc4burlk35hxom3klq4mysmslfirj7slueenbj7ddwg7pc6ixomu",
-                alt: metadata.name,
-              }}
+              src={`${accountId}r/widget/ProfileImage`}
+              props={{ accountId: "" }}
             />
           </FooterIcon>
 
