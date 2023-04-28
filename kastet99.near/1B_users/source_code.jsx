@@ -41,8 +41,6 @@ const response = fetch(
   }
 );
 
-console.log(response);
-
 return (
   <Container>
     {response ? (
