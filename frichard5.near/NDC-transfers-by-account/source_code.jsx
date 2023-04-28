@@ -40,7 +40,7 @@ const columns = [
         };
 
         return (
-          <>
+          <div style={{ display: "flex" }}>
             <Widget
               src={`${widgetProvider}/widget/table_ft_formatter`}
               props={{
@@ -50,8 +50,13 @@ const columns = [
                 isParsed: true,
               }}
             />
-            <button onClick={setModal(proposalId)}>{proposalId}</button>
-          </>
+            <button
+              onClick={setModal(proposalId)}
+              style={{ marginLeft: "10px" }}
+            >
+              {proposalId}
+            </button>
+          </div>
         );
       });
     },
