@@ -84,6 +84,8 @@ const _search = (term) => {
       const metadata = allMetadata[accountId].widget[componentId].metadata;
       const name = metadata.name || componentId;
 
+      console.log(metadata.tags, "tags", requiredTags);
+
       if (requiredTags) {
         if (!metadata.tags) return;
         const hasRefTag = metadata.tags.some((t) =>
