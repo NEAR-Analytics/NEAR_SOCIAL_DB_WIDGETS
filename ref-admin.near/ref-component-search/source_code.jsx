@@ -151,6 +151,14 @@ if (props.term && props.term !== state.oldTerm) {
   }
 }
 
+if (JSON.stringify(requiredTags) !== JSON.stringify(state.oldFilters)) {
+  State.update({
+    oldTerm: props.term,
+    oldFilters: requiredTags,
+  });
+  computeResults(props.term);
+}
+
 const Wrapper = styled.div`
 
 
