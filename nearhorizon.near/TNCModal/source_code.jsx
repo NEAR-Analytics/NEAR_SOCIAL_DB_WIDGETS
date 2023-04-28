@@ -50,7 +50,7 @@ const Content = styled.div`
   max-width: 800px;
 
   &.focus-visible {
-    outline: none;
+    outline: none !important;
   }
 `;
 
