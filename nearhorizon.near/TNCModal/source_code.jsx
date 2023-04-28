@@ -22,6 +22,14 @@ const CloseButton = styled.a`
   color: #101828;
 `;
 
+const Overlay = styled.(Dialog.Overlay)`
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  animation: ${fadeIn} 200ms ease-out;
+  z-index: 10;
+`;
+
 State.init({
   agree: false,
 });
