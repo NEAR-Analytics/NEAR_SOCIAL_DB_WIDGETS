@@ -165,6 +165,7 @@ const ProposalCard = (
   <Widget
     src={`${widgetProvider}/widget/NDC-proposal-card`}
     props={{
+      widgetProvider,
       proposal: state.proposal,
       council: state.council,
     }}
