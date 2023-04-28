@@ -124,7 +124,10 @@ return (
                         : token.metadata.collection}{" "}
                       #{token.token_series_id}
                     </h1>
-                    <p>Price {priceNear} N</p>
+                    <p>
+                      Edition {token.in_circulation + 1} of{" "}
+                      {token.metadata.copies}
+                    </p>
                   </div>
                   <div>
                     <button
