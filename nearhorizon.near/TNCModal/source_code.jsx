@@ -38,6 +38,7 @@ const Content = styled.div`
   position: fixed;
   inset: 50% auto auto 50%;
   transform: translate(-50%, -50%);
+  border: none;
   padding: 1.5em 2em 2em;
   gap: 0.625em;
   isolation: isolate;
