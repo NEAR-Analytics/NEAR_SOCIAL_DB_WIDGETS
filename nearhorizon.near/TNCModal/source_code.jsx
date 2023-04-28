@@ -30,6 +30,24 @@ const Overlay = styled.div`
   z-index: 10;
 `;
 
+const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  position: fixed;
+  inset: 74px 0 0 auto;
+  padding: 1.5em 2em 2em;
+  gap: 0.625em;
+  isolation: isolate;
+  animation: ${slideIn} 200ms ease-out;
+  overflow-y: auto;
+  background: #fff;
+  z-index: 10;
+  min-width: ${minWidth};
+  max-width: 800px;
+`;
+
 State.init({
   agree: false,
 });
@@ -41,43 +59,44 @@ return (
     <Dialog.Overlay asChild>
       <Overlay />
     </Dialog.Overlay>
-    <Dialog.Content>
-      <Dialog.Title>Terms and Conditions</Dialog.Title>
-      <Dialog.Description>
-        <Widget
-          src={`${ownerId}/widget/Inputs.Checkbox`}
-          props={{
-            label: (
-              <>
-                By checking this box you acknowledge that you understand and
-                agree with{" "}
-                <a href={`${ownerId}/widget/TNCPage`}>
-                  NEAR Horizon Terms and Conditions
-                </a>
-              </>
-            ),
-            value: state.agree,
-            id: "agree",
-            onChange: () => State.update({ agree: !state.agree }),
-          }}
-        />
-      </Dialog.Description>
-      <Footer>
-        <Dialog.Close asChild>
-          <CloseButton href="/">Close</CloseButton>
-        </Dialog.Close>
-        <Widget
-          src={`${ownerId}/widget/Buttons.Green`}
-          props={{
-            text: <>Accept</>,
-            disabled: !state.agree,
-            onClick: () => {
-              if (!state.agree) return;
-              props.accept();
-            },
-          }}
-        />
-      </Footer>
-    </Dialog.Content>
-  </Dialog.Root>
+    <Dialog.Content asChild>
+      <Content>
+        <Dialog.Title>Terms and Conditions</Dialog.Title>
+        <Dialog.Description>
+          <Widget
+            src={`${ownerId}/widget/Inputs.Checkbox`}
+            props={{
+              label: (
+                <>
+                  By checking this box you acknowledge that you understand and
+                  agree with{" "}
+                  <a href={`${ownerId}/widget/TNCPage`}>
+                    NEAR Horizon Terms and Conditions
+                  </a>
+                </>
+              ),
+              value: state.agree,
+              id: "agree",
+              onChange: () => State.update({ agree: !state.agree }),
+            }}
+          />
+        </Dialog.Description>
+        <Footer>
+          <Dialog.Close asChild>
+            <CloseButton href="/">Close</CloseButton>
+          </Dialog.Close>
+          <Widget
+            src={`${ownerId}/widget/Buttons.Green`}
+            props={{
+              text: <>Accept</>,
+              disabled: !state.agree,
+              onClick: () => {
+                if (!state.agree) return;
+                props.accept();
+              },
+            }}
+          />
+        </Footer>
+    </Dialog.Content></Content>
+  </Dialog.Root >
 );
