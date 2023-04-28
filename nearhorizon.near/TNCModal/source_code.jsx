@@ -24,6 +24,8 @@ State.init({
   agree: false,
 });
 
+console.log(props.open);
+
 return (
   <Dialog.Root open={props.open}>
     <Dialog.Overlay />
