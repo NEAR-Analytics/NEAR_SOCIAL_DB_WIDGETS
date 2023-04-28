@@ -29,7 +29,6 @@ const columns = [
 ];
 
 State.init({
-  ranking: [],
   offset: 0,
   account,
   displayedRank: [],
@@ -94,4 +93,11 @@ const GenericTable = (
   />
 );
 
-return <div>{GenericTable}</div>;
+return (
+  <div>
+    {state.displayedRank.length ? GenericTable : ""}
+    {state.ranking && state.ranking.length === 0 && (
+      <span>No Transfer Proposal Beneficiaries</span>
+    )}
+  </div>
+);
