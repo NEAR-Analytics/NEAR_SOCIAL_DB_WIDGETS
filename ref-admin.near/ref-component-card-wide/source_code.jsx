@@ -54,14 +54,9 @@ const TextLink = styled.div`
   font-weight: 500;
   font-size: 16px;
   line-height: 21px;
-  cursor:pointer;
 
   color: #FFFFFF;
 
-  &:focus,
-  &:hover {
-    text-decoration: underline;
-  }
 `;
 
 const Text = styled.p`
