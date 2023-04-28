@@ -40,7 +40,6 @@ width: 350px;
 background: #1A2E33;
 border-radius: 16px;
 padding: 16px;
-max-height:max-content;
 
 `;
 
