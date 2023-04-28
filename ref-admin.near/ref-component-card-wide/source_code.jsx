@@ -15,8 +15,6 @@ const forkUrl = `#/edit/${accountId}/widget/${widgetName}`;
 
 const accountUrl = `#/near/widget/ProfilePage?accountId=${accountId}`;
 
-const profile = Social.getr(`${accountId}/profile`);
-
 const Card = styled.div`
   position: relative;
   display:block;
@@ -234,7 +232,13 @@ return (
           <ProfileIcon>
             <Widget
               src="mob.near/widget/ProfileImage"
-              props={{ accountId: accountId }}
+              props={{
+                accountId: accountId,
+                style: {
+                  height: "16px",
+                  width: "16px",
+                },
+              }}
             />
           </ProfileIcon>
 
