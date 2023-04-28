@@ -108,6 +108,7 @@ const Tag = styled.div`
     justify-center: center;
     margin-right: 5px;
     padding: 1px 11px 1px 11px;
+    white-space: nowrap;
 
 `;
 
