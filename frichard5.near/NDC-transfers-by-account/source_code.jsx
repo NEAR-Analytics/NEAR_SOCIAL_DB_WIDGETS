@@ -25,13 +25,15 @@ const columns = [
     label: "Transfers",
     formatter: (d) => {
       return d.proposals.map((p) => {
+        console.log(p.kind);
+        const transferData = p.proposal.kind;
         return (
           <Widget
             src={`${widgetProvider}/widget/table_ft_formatter`}
             props={{
               ftList,
-              amount: p.kind.parsedAmount,
-              ft: p.kind.token_id,
+              amount: transferData.parsedAmount,
+              ft: transferData.token_id,
               isParsed: true,
             }}
           />
@@ -69,7 +71,6 @@ const nextPage = () => {
 };
 
 const previousPage = () => {
-  console.log("previous", state);
   const currentOffset = state.offset - resPerPage;
   State.update({
     offset: currentOffset,
