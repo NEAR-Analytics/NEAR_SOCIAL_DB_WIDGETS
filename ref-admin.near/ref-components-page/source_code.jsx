@@ -3,7 +3,6 @@ let components = [];
 let totalApps = 0;
 let totalComponents = 0;
 const componentsUrl = "#/near/widget/ComponentsPage";
-const searchRequiredTag = state.selectedTab === "apps" ? "app" : null;
 const searchPlaceholder = "Search";
 
 const refTags = [
@@ -52,6 +51,8 @@ State.init({
   },
 });
 
+console.log(state.filters);
+
 if (props.tab && props.tab !== state.selectedTab) {
   State.update({
     selectedTab: props.tab,
@@ -73,9 +74,7 @@ if (data) {
 
       //   if (state.selectedTab === "apps") {
 
-      const tags = Object.keys(
-        tagsData[accountId].widget[widgetName]?.metadata?.tags || {}
-      );
+      const tags = tagsData[accountId].widget[widgetName]?.metadata?.tags || [];
 
       const hasRefTag = tags.some((t) =>
         state.filters.map((f) => f.toLowerCase()).includes(t.toLowerCase())
@@ -170,9 +169,9 @@ const Text = styled.p`
 const Items = styled.div`
   display: grid;
   width: 100%;
-    grid-template-columns: repeat(auto-fill, 350px);
+  grid-template-columns: repeat(auto-fill, 350px);
   gap: 20px;
-
+  height: 100%
 
 `;
 
@@ -184,6 +183,7 @@ align-items:center;
 const ContentWrapper = styled.div`
   display: flex;
   margin-top: 20px;
+
   
 `;
 
@@ -305,7 +305,7 @@ return (
             limit: 21,
             onChange: onSearchChange,
             placeholder: searchPlaceholder,
-            filterTag: searchRequiredTag,
+            filterTags: state.filters.length === 0 ? null : state.filters,
           }}
         />
 
