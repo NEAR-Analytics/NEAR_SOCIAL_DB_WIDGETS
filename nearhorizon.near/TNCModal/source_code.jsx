@@ -56,6 +56,9 @@ console.log(props.open);
 
 return (
   <Dialog.Root open={props.open}>
+    <Dialog.Trigger asChild>
+      <div style={{ display: "none" }} />
+    </Dialog.Trigger>
     <Dialog.Overlay asChild>
       <Overlay />
     </Dialog.Overlay>
