@@ -4,8 +4,10 @@ const Container = styled.div`
     background: #0D1C1F;
     border-radius: 10px;
     padding:4px;
+    width:100%;
     .default{
         display:flex;
+        justify-content:center;
         align-items:center;
         border-radius: 6px;
         font-weight: 500;
@@ -14,6 +16,7 @@ const Container = styled.div`
         height:28px;
         padding:0 25px;
         cursor:pointer;
+        flex-grow:1;
     }
     .active{
         background: #0092FF;
