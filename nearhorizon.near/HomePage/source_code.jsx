@@ -1,4 +1,4 @@
-const ownerId = "contribut3.near";
+const ownerId = "nearhorizon.near";
 
 const Row = styled.div`
   display: flex;
@@ -303,6 +303,19 @@ const endingImage =
   "bafkreibfk6pkeoxsl6banldzxearj3swh53p3gmn7unhz7nag4nco4p2sm";
 const mapImage = (src) => `https://ipfs.near.social/ipfs/${src}`;
 
+State.init({
+  stats: null,
+  statsIsFetched: false,
+});
+
+if (!state.statsIsFetched) {
+  asyncFetch(
+    "https://api.flipsidecrypto.com/api/v2/queries/36637c73-6301-418b-ae83-7af6e8f34c0f/data/latest"
+  ).then((response) =>
+    State.update({ stats: response.body[0], statsIsFetched: true })
+  );
+}
+
 return (
   <Container>
     <Section style={{ marginTop: "2em 0 0 0" }}>
@@ -344,21 +357,29 @@ return (
         <Widget
           src={`${ownerId}/widget/Stats.Card`}
           props={{
-            value: "1077",
+            value: "750",
             label: "Projects",
           }}
         />
         <Widget
           src={`${ownerId}/widget/Stats.Card`}
           props={{
-            value: "1M+",
+            value: state.statsIsFetched
+              ? Number(state.stats.MAU).toLocaleString("en-US", {
+                notation: "compact",
+              }) + "+"
+              : "Loading...",
             label: "Monthly active accounts",
           }}
         />
         <Widget
           src={`${ownerId}/widget/Stats.Card`}
           props={{
-            value: "25M+",
+            value: state.statsIsFetched
+              ? Number(state.stats.TOTAL_ACCOUNTS).toLocaleString("en-US", {
+                notation: "compact",
+              }) + "+"
+              : "Loading...",
             label: "Total accounts",
           }}
         />
@@ -768,7 +789,11 @@ return (
         />
       </svg>
       <h2>Accelerate your Web3 Startup!</h2>
-      <Link href="/nearhorizon.near/widget/Index" className="white" style={{ marginTop: "1em" }}>
+      <Link
+        href="/nearhorizon.near/widget/Index"
+        className="white"
+        style={{ marginTop: "1em" }}
+      >
         Try it Now
       </Link>
     </Footer>
