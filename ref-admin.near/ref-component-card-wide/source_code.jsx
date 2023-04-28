@@ -263,20 +263,22 @@ return (
       </CardContent>
     </CardBody>
 
-    <CardFooter>
-      <BuilderView href={appUrl}>
-        {openIcon}
-        <span>Open</span>
-      </BuilderView>
+    {role === "Builder" && (
+      <CardFooter>
+        <BuilderView href={appUrl}>
+          {openIcon}
+          <span>Open</span>
+        </BuilderView>
 
-      <BuilderView href={forkUrl}>
-        {forkIcon}
-        <span>Fork</span>
-      </BuilderView>
-      <BuilderView href={detailsUrl}>
-        {sourceIcon}
-        <span>Source</span>
-      </BuilderView>
-    </CardFooter>
+        <BuilderView href={forkUrl}>
+          {forkIcon}
+          <span>Fork</span>
+        </BuilderView>
+        <BuilderView href={detailsUrl}>
+          {sourceIcon}
+          <span>Source</span>
+        </BuilderView>
+      </CardFooter>
+    )}
   </Card>
 );
