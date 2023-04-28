@@ -3,9 +3,10 @@ const allMetadata =
     ["*/widget/*/metadata/name", "*/widget/*/metadata/tags/*"],
     "final"
   ) || {};
+
 const keys = Social.keys(["*/widget/*"], "final", { values_only: true }) || {};
 
-const requiredTag = props.filterTag;
+const requiredTags = props.filterTags;
 const boostedTag = props.boostedTag;
 const inputTerm = props.term;
 
@@ -81,7 +82,13 @@ const _search = (term) => {
       const componentIdScore = computeScore(componentId);
       const metadata = allMetadata[accountId].widget[componentId].metadata;
       const name = metadata.name || componentId;
-      if (requiredTag && !(metadata.tags && requiredTag in metadata.tags)) {
+
+      const tagsOnMetadata = Object.keys(metadata.keys || {});
+
+      const hasRefTag = tagsOnMetadata.some((t) =>
+        requiredTags.map((f) => f.toLowerCase()).includes(t.toLowerCase())
+      );
+      if (requiredTag && !(metadata.tags && hasRefTag)) {
         return;
       }
       const boosted =
@@ -144,15 +151,15 @@ if (props.term && props.term !== state.oldTerm) {
 const Wrapper = styled.div`
 
 
-width: 482px;
-height: 36px;
-display:flex;
-align-items:center;
-padding: 0 0 0 14px;
+    width: 482px;
+    height: 36px;
+    display:flex;
+    align-items:center;
+    padding: 0 0 0 14px;
 
 
-background: #1A2E33;
-border-radius: 10px;
+    background: #1A2E33;
+    border-radius: 10px;
 
   @media (max-width: 500px) {
     width: 100%;
