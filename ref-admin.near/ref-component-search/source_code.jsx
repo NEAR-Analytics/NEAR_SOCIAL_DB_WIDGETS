@@ -84,9 +84,7 @@ const _search = (term) => {
       const metadata = allMetadata[accountId].widget[componentId].metadata;
       const name = metadata.name || componentId;
 
-      const tagsOnMetadata = Object.keys(metadata.keys || {});
-
-      const hasRefTag = tagsOnMetadata.some((t) =>
+      const hasRefTag = metadata.tags.some((t) =>
         requiredTags.map((f) => f.toLowerCase()).includes(t.toLowerCase())
       );
       if (requiredTag && !(metadata.tags && hasRefTag)) {
@@ -113,8 +111,6 @@ const _search = (term) => {
           boosted,
         });
       }
-
-      console.log(matchedWidgets, "math");
     });
   });
 
