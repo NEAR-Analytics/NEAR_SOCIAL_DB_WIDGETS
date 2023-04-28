@@ -1,5 +1,6 @@
 const widgetProvider = props.widgetProvider;
 const account = props.account || "marketing.sputnik-dao.near";
+const ftList = props.ftList;
 const resPerPage = 10;
 const apiUrl = `https://api.pikespeak.ai/daos/transfers-beneficiaries/${account}`;
 const publicApiKey = "36f2b87a-7ee6-40d8-80b9-5e68e587a5b5";
@@ -17,6 +18,25 @@ const columns = [
           {d.account}
         </a>
       );
+    },
+  },
+  {
+    id: "proposals",
+    label: "Transfers",
+    formatter: (d) => {
+      return d.proposals.map((p) => {
+        return (
+          <Widget
+            src={`${widgetProvider}/widget/table_ft_formatter`}
+            props={{
+              ftList,
+              amount: p.kind.parsedAmount,
+              ft: p.kind.token_id,
+              isParsed: true,
+            }}
+          />
+        );
+      });
     },
   },
   {
@@ -74,7 +94,7 @@ const fetchTransfersBeneficiaries = () => {
     });
 };
 
-fetchTransfersBeneficiaries(state.offset);
+!state.displayedRank.length && fetchTransfersBeneficiaries();
 
 console.log("ranking", state.displayedRank);
 
