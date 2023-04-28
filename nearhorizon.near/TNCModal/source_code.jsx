@@ -36,7 +36,8 @@ const Content = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   position: fixed;
-  inset: 74px 0 0 auto;
+  inset: 50% auto auto 50%;
+  transform: translate(-50%, -50%);
   padding: 1.5em 2em 2em;
   gap: 0.625em;
   isolation: isolate;
