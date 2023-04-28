@@ -38,7 +38,7 @@ console.log(props.open);
 
 return (
   <Dialog.Root open={props.open}>
-    <Dialog.Overlay />
+    <Overlay />
     <Dialog.Content>
       <Dialog.Title>Terms and Conditions</Dialog.Title>
       <Dialog.Description>
