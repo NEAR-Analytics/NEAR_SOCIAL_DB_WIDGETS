@@ -3,6 +3,8 @@ const account = props.account || "marketing.sputnik-dao.near";
 const ftList = props.ftList;
 const resPerPage = 10;
 const apiUrl = `https://api.pikespeak.ai/daos/transfers-beneficiaries/${account}`;
+const apiProposalUrl = `https://api.pikespeak.ai/daos/proposal/${account}`;
+const apiPolicyUrl = `https://api.pikespeak.ai/daos/policy`;
 const publicApiKey = "36f2b87a-7ee6-40d8-80b9-5e68e587a5b5";
 
 const columns = [
@@ -25,18 +27,31 @@ const columns = [
     label: "Transfers",
     formatter: (d) => {
       return d.proposals.map((p) => {
-        console.log(p.kind);
         const transferData = p.proposal.kind;
+        const proposalId = p.proposal_id;
+        const setModal = (proposalId) => {
+          return () => {
+            State.update({
+              isModalOpen: true,
+              proposalId: proposalId,
+              fetchingProposal: true,
+            });
+          };
+        };
+
         return (
-          <Widget
-            src={`${widgetProvider}/widget/table_ft_formatter`}
-            props={{
-              ftList,
-              amount: transferData.parsedAmount,
-              ft: transferData.token_id,
-              isParsed: true,
-            }}
-          />
+          <>
+            <Widget
+              src={`${widgetProvider}/widget/table_ft_formatter`}
+              props={{
+                ftList,
+                amount: transferData.parsedAmount,
+                ft: transferData.token_id,
+                isParsed: true,
+              }}
+            />
+            <button onClick={setModal(proposalId)}>{proposalId}</button>
+          </>
         );
       });
     },
@@ -54,14 +69,13 @@ State.init({
   offset: 0,
   account,
   displayedRank: [],
+  isModalOpen: false,
+  proposal: false,
+  fetchingProposal: false,
 });
 
 const nextPage = () => {
   const currentOffset = state.offset + resPerPage;
-  console.log(
-    state.offset,
-    state.ranking.slice(currentOffset, resPerPage + currentOffset)
-  );
   State.update({
     offset: currentOffset,
     displayedRank: [
@@ -81,6 +95,41 @@ const previousPage = () => {
   });
 };
 
+const fetchProposal = (id) => {
+  const proposal = fetch(apiProposalUrl + `?id=${id}`, {
+    mode: "cors",
+    headers: {
+      "x-api-key": publicApiKey,
+    },
+  });
+  proposal.body &&
+    State.update({
+      proposal: proposal.body.length ? proposal.body[0] : [],
+      fetchingProposal: false,
+    });
+};
+
+fetchProposal(state.proposalId);
+
+const fetchPolicy = (daos) => {
+  const policy = asyncFetch(apiPolicyUrl + `?daos=${daos}`, {
+    mode: "cors",
+    headers: {
+      "x-api-key": publicApiKey,
+    },
+  }).then(({ err, body, ok }) => {
+    if (ok) {
+      State.update({
+        council: body.state.policy.roles.find(
+          (r) => r.name === "Council" || r.name === "council"
+        ).kind,
+      });
+    }
+  });
+};
+
+!state.council && fetchPolicy([account]);
+
 const fetchTransfersBeneficiaries = () => {
   const beneficiaries = fetch(apiUrl, {
     mode: "cors",
@@ -97,8 +146,6 @@ const fetchTransfersBeneficiaries = () => {
 
 !state.displayedRank.length && fetchTransfersBeneficiaries();
 
-console.log("ranking", state.displayedRank);
-
 const GenericTable = (
   <Widget
     src={`${widgetProvider}/widget/generic_table`}
@@ -114,8 +161,37 @@ const GenericTable = (
   />
 );
 
+const ProposalCard = (
+  <Widget
+    src={`${widgetProvider}/widget/NDC-proposal-card`}
+    props={{
+      proposal: state.proposal,
+      council: state.council,
+    }}
+  />
+);
+
+const toggleModal = (isOpen) => {
+  State.update({ isModalOpen: isOpen });
+};
+
 return (
   <div>
+    {state.proposal &&
+    state.isModalOpen &&
+    state.council &&
+    !state.fetchingProposal ? (
+      <Widget
+        src={`${widgetProvider}/widget/NDC-modal`}
+        props={{
+          isOpen: state.isModalOpen,
+          toggleModal,
+          component: ProposalCard,
+        }}
+      />
+    ) : (
+      ""
+    )}
     {state.displayedRank.length ? GenericTable : ""}
     {state.ranking && state.ranking.length === 0 && (
       <span>No Transfer Proposal Beneficiaries</span>
