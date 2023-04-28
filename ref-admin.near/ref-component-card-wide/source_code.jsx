@@ -15,9 +15,12 @@ const Card = styled.div`
   display:block;
   overflow: hidden;
 width: 350px;
-background: radial-gradient(88.1% 88.1% at 49.7% 100%, #5B8088 0%, #091518 100%);
+background: #1A2E33;
 border-radius: 16px;
 padding: 16px;
+:hover{
+  background: #2D4348;
+}
 `;
 
 const CardBody = styled.div`
