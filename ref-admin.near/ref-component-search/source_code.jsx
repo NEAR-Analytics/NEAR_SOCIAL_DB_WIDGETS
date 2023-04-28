@@ -84,11 +84,13 @@ const _search = (term) => {
       const metadata = allMetadata[accountId].widget[componentId].metadata;
       const name = metadata.name || componentId;
 
-      const hasRefTag = metadata.tags.some((t) =>
-        requiredTags.map((f) => f.toLowerCase()).includes(t.toLowerCase())
-      );
-      if (requiredTags && !(metadata.tags && hasRefTag)) {
-        return;
+      if (requiredTags) {
+        if (!metadata.tags) return;
+        const hasRefTag = metadata.tags.some((t) =>
+          requiredTags.map((f) => f.toLowerCase()).includes(t.toLowerCase())
+        );
+
+        if (!(hasRefTag && metadata.tags)) return;
       }
       const boosted =
         boostedTag && metadata.tags && boostedTag in metadata.tags;
