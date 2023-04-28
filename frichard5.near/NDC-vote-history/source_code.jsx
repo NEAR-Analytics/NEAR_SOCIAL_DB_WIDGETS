@@ -188,7 +188,9 @@ const fetchPolicy = (daos) => {
   }).then(({ err, body, ok }) => {
     if (ok) {
       State.update({
-        council: body.state.policy.roles.find((r) => r.name === "Council").kind,
+        council: body.state.policy.roles.find(
+          (r) => r.name === "Council" || r.name === "council"
+        ).kind,
       });
     }
   });
