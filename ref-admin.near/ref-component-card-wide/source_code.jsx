@@ -3,6 +3,23 @@ const metadata = Social.get(
   `${accountId}/widget/${widgetName}/metadata/**`,
   "final"
 );
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+const candBg = [
+  "radial-gradient(88.1% 88.1% at 49.7% 100%, #5B8088 0%, #091518 100%)",
+  "radial-gradient(88.1% 88.1% at 49.7% 100%, #877366 0%, #1A1A1A 100%)",
+  "radial-gradient(88.1% 88.1% at 49.7% 100%, #F39BBB 0%, #380F1B 100%)",
+  "radial-gradient(88.1% 88.1% at 49.7% 100%, #2F629E 0%, #0A1420 100%)",
+  "radial-gradient(88.1% 88.1% at 49.7% 100%, #2B8888 0%, #071216 100%)",
+  "radial-gradient(88.1% 88.1% at 49.7% 100%, #9B6B42 0%, #221511 100%)",
+  "radial-gradient(88.1% 88.1% at 49.7% 100%, #5B887B 0%, #091815 100%)",
+  "radial-gradient(88.1% 88.1% at 49.7% 100%, #373589 0%, #0F0F23 100%)",
+  "radial-gradient(88.1% 88.1% at 49.7% 100%, #A3985F 0%, #2D261A 100%)",
+  "radial-gradient(88.1% 88.1% at 49.7% 100%, #B3699E 0%, #BE4A6D 0.01%, #200A0E 100%)",
+];
+
+const randomBg = getRandomInt(candBg.length);
 
 const role = props.role;
 
@@ -206,7 +223,11 @@ const CardFooter = styled.div`
 `;
 
 return (
-  <Card>
+  <Card
+    style={{
+      background: candBg[randomBg],
+    }}
+  >
     <CardBody>
       <Thumbnail href={detailsUrl}>
         <Widget
