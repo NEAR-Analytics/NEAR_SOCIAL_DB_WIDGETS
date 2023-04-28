@@ -40,7 +40,7 @@ const columns = [
         };
 
         return (
-          <div style={{ display: "flex" }}>
+          <div style={{ display: "flex", marginBottom: "5px" }}>
             <Widget
               src={`${widgetProvider}/widget/table_ft_formatter`}
               props={{
