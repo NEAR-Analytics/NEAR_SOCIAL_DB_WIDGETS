@@ -48,7 +48,7 @@ return (
             ),
             value: state.agree,
             id: "agree",
-            onChange: (agree) => State.update({ agree }),
+            onChange: () => State.update({ agree: !state.agree }),
           }}
         />
       </Dialog.Description>
