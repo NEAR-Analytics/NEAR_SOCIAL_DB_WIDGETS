@@ -1911,10 +1911,7 @@ return (
           Ltd) and the{" "}
         </span>
         <span class="c17">
-          <a
-            class="c24"
-            href="https://www.google.com/url?q=https://near.org/privacy/&amp;sa=D&amp;source=editors&amp;ust=1682590281284351&amp;usg=AOvVaw0YjMWWhzmy35kHyeiHNNcS"
-          >
+          <a class="c24" href="/privacy">
             Privacy Policy
           </a>
         </span>
