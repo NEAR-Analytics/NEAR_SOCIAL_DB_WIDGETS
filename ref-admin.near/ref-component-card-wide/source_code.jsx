@@ -58,6 +58,10 @@ const TextLink = styled.div`
 
   color: #FFFFFF;
 
+  &:focus,
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 const Text = styled.p`
@@ -241,8 +245,8 @@ return (
           <FooterIcon>
             {" "}
             <Widget
-              src={`${accountId}r/widget/ProfileImage`}
-              props={{ accountId: "" }}
+              src="mob.near/widget/ProfileImage"
+              props={{ accountId: accountId }}
             />
           </FooterIcon>
 
