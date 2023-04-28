@@ -4,9 +4,7 @@ State.init({
 });
 
 if (!state.codeIsFetched) {
-  asyncFetch(
-    "https://ipfs.io/ipfs/QmRQSP6FJHHyeQFDyspn4h9B9iszm2WMHYNZqwaVENguQ5?filename=NEARHorizonTCsv1.1Final.html"
-  ).then((res) => {
+  asyncFetch("").then((res) => {
     State.update({ code: res.body, codeIsFetched: true });
   });
   return <>Loading...</>;
