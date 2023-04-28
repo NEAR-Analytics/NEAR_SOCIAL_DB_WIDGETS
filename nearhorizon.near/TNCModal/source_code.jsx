@@ -1,3 +1,5 @@
+const ownerId = "nearhorizon.near";
+
 const Footer = styled.div`
   display: flex;
   flex-direction: row;
