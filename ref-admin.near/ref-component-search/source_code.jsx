@@ -86,9 +86,11 @@ const _search = (term) => {
 
       console.log(metadata.tags, "tags", requiredTags);
 
+      const metaTags = Object.keys(metadata.tags || {});
+
       if (requiredTags) {
         if (!metadata.tags) return;
-        const hasRefTag = metadata.tags.some((t) =>
+        const hasRefTag = metaTags.some((t) =>
           requiredTags.map((f) => f.toLowerCase()).includes(t.toLowerCase())
         );
 
