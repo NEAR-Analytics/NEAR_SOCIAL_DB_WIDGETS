@@ -6,7 +6,7 @@ const Footer = styled.div`
   width: 100%;
 `;
 
-const CloseButton = styled.button`
+const CloseButton = styled.a`
   padding: 0.75em 1em;
   gap: 0.5em;
   background: #fafafa;
@@ -50,7 +50,7 @@ return (
       </Dialog.Description>
       <Footer>
         <Dialog.Close asChild>
-          <CloseButton>Close</CloseButton>
+          <CloseButton href="/">Close</CloseButton>
         </Dialog.Close>
         <Widget
           src={`${ownerId}/widget/Buttons.Green`}
