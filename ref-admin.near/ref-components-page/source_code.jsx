@@ -74,7 +74,9 @@ if (data) {
 
       //   if (state.selectedTab === "apps") {
 
-      const tags = tagsData[accountId].widget[widgetName]?.metadata?.tags || [];
+      const tags = Object.keys(
+        tagsData[accountId].widget[widgetName]?.metadata?.tags || {}
+      );
 
       const hasRefTag = tags.some((t) =>
         state.filters.map((f) => f.toLowerCase()).includes(t.toLowerCase())
