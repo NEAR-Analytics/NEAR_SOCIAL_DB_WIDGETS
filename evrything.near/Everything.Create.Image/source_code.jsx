@@ -8,20 +8,6 @@ const ButtonRow = styled.div`
 
 const typeStr = "evrything.near/type/Image";
 
-const type = Type.get(typeStr);
-// const type = props.type;
-
-if (!type) {
-  return (
-    <Widget
-      src={ERROR_WIDGET}
-      props={{
-        message: `provided type: "${props.type}" is not valid.`,
-      }}
-    />
-  );
-}
-
 State.init({
   img: null,
 });
@@ -32,7 +18,7 @@ function composeData() {
       main: JSON.stringify({ img: state.img }),
     },
     index: {
-      tempeverything: JSON.stringify({
+      everything: JSON.stringify({
         key: "main",
         value: {
           type: typeStr,
