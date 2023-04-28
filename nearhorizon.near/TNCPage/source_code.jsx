@@ -784,7 +784,7 @@ return (
   <Container>
     <div class="c12 c20 doc-content">
       <p class="c13 title" id="h.alotq4h5zy55">
-        <span class="c23">NEAR Horizon Platform Terms and Conditions</span>
+        <h1 class="c23">NEAR Horizon Platform Terms and Conditions</span>
       </p>
       <p class="c3">
         <span class="c0"></span>
