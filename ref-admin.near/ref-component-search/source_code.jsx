@@ -8,8 +8,6 @@ const keys = Social.keys(["*/widget/*"], "final", { values_only: true }) || {};
 
 const requiredTags = props.filterTags;
 
-console.log(requiredTags, "requiredTags");
-
 const boostedTag = props.boostedTag;
 const inputTerm = props.term;
 
@@ -153,7 +151,6 @@ if (props.term && props.term !== state.oldTerm) {
 
 if (JSON.stringify(requiredTags) !== JSON.stringify(state.oldFilters)) {
   State.update({
-    oldTerm: props.term,
     oldFilters: requiredTags,
   });
   computeResults(props.term);
