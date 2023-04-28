@@ -25,7 +25,7 @@ State.init({
 });
 
 return (
-  <Dialog.Root open={props.open} onOpenChange={(open) => props.update(open)}>
+  <Dialog.Root open={props.open}>
     <Dialog.Overlay />
     <Dialog.Content>
       <Dialog.Title>Terms and Conditions</Dialog.Title>
