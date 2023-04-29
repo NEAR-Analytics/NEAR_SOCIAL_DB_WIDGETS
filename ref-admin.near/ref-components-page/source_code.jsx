@@ -249,6 +249,29 @@ const FunctionArea = styled.div`
 
 `;
 
+const AddComponentWrapper = styled.a`
+
+height: 36px;
+display:flex;
+align-items:center;
+background: #2D4348;
+border-radius: 10px;
+padding: 8px 16px 8px 16px;
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 19px;
+gap:10px;
+margin-left:12px;
+cursor:pointer;
+color: #FFFFFF;
+
+:hover{
+    color: white;
+    text-decoration:none;    
+}
+`;
+
 const FunctionWrapper = styled.div`
 
 height: 36px;
@@ -365,10 +388,10 @@ return (
         />
 
         {role === "Builder" && (
-          <FunctionWrapper>
+          <AddComponentWrapper href={"#edit"}>
             {addComponentIcon}
             <span>Add Component</span>
-          </FunctionWrapper>
+          </AddComponentWrapper>
         )}
       </FlexStart>
 
