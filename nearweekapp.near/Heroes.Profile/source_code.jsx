@@ -5,7 +5,7 @@ const profile = Social.getr(`${accountId}/profile`);
 const image = profile.image;
 const url =
   (image.ipfs_cid
-    ? `https://ipfs.near.social/ipfs/${image.ipfs_cid}`
+    ? `https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/${image.ipfs_cid}`
     : image.url) || "https://thewiki.io/static/media/sasha_anon.6ba19561.png";
 
 function formatDate(epoch) {
