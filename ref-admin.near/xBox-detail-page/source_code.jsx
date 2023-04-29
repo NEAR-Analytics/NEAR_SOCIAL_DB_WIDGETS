@@ -1,7 +1,7 @@
 const Wrapper = styled.div`
 `;
 const SummaryWrapper = styled.div`
-  margin-bottom: 32px;
+  margin-bottom: 50px;
 `;
 return (
   <Wrapper>
