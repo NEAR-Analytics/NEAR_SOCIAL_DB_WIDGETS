@@ -3,19 +3,31 @@ const metadata = Social.get(
   `${accountId}/widget/${widgetName}/metadata/**`,
   "final"
 );
-
 const role = props.role;
-
 const tags = Object.keys(metadata.tags || {});
-
 const detailsUrl = `#/near/widget/ComponentDetailsPage?src=${accountId}/widget/${widgetName}`;
 const appUrl = `#/${accountId}/widget/${widgetName}`;
-
 const forkUrl = `#/edit/${accountId}/widget/${widgetName}`;
 
-const accountUrl = `#/near/widget/ProfilePage?accountId=${accountId}`;
+const urls = [appUrl, detailsUrl, forkUrl];
 
-const Card = styled.a`
+const accountUrl = `#/near/widget/ProfilePage?accountId=${accountId}`;
+const Card =
+  role === "Builder"
+    ? styled.div`
+    position: relative;
+    display:block;
+    overflow: hidden;
+    width: 415px;
+    border-radius: 16px;
+    padding: 0px 0px 16px 0px;
+    background: #1C1E23;
+    border-radius: 16px;
+    :hover{
+        text-decoration: none
+    }
+`
+    : styled.a`
     position: relative;
     display:block;
     overflow: hidden;
@@ -32,81 +44,58 @@ const Card = styled.a`
 
 const CardBody = styled.div`
   display: flex;
-  gap: 13px;
+  gap: 6px;
   align-items: center;
   overflow: hidden;
   position: relative;
   bottom:16px;
   justify-center: center
-  > * {
-    min-width: 0;
-  }
 `;
-
 const CardContent = styled.div`
   width: 100%;
   display: flex;
   flex-direction:column;
-  justify-content: start;
   position: relative;
   top: 16px;
-
 `;
 
 const TextLink = styled.a`
-
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
-  line-height: 21px;
   color: #FFFFFF;
-
   :hover{
-  color: #FFFFFF;
-      
+    color: #FFFFFF;
   }
-
 `;
 
 const WidgetName = styled.div`
-font-style: normal;
-font-weight: 700;
-font-size: 18px;
-line-height: 24px;
-
-color: #FFFFFF;
-
-`;
-
-const WidgetIconWrapper = styled.div`
-    width: 86px;
-    height: 86px;
-    border-radius: 20px;
-    display:flex;
-    align-items:center;
-    justify-content: center;
-    margin-left:18px;
-    position: relative;
-    z-index: 50;
-    background: #1C1E23;
-    flex-shrink: 0;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  color: #FFFFFF;
 `;
 
 const Thumbnail = styled.a`
-  display: block;
-    width: 72px;
-    height: 72px;
+    align-items:center;
+    justify-content: center;
+  padding:10px;
+        width: 86px;
+    height: 86px;
   flex-shrink: 0;
+   z-index: 50;
+   background: #1C1E23;
  border-radius: 16px;
   overflow: hidden;
   outline: none;
   display:flex;
   margin:auto;
-
+  margin-left:16px;
   img {
     object-fit: cover;
     width: 100%;
     height: 100%;
+    border-radius: 16px;
   }
 `;
 
@@ -114,18 +103,15 @@ const TagsWrapper = styled.div`
   margin-top: 4px;
   display: flex;
   padding: 0px 20px 0px 20px
-  
 `;
 
 const Tag = styled.div`
-    box-sizing: border-box;
     color: #FFFFFF;
     font-weight: 500;
     font-size: 14px;
     text-center;
     display:flex;
     align-items:center;
-    justify-center: center;
     margin-right: 5px;
     padding: 4px 11px 4px 11px;
     white-space: nowrap;
@@ -151,25 +137,45 @@ const ProfileIcon = styled.div`
 `;
 
 const BuilderView = styled.a`
-    width: 100px;
-    height: 36px;
     display: flex;
     align-items:center;
     justify-content:center;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 10px;
-    gap:10px;
     color: #FFFFFF;
-    font-size: 14px;
     :hover{
-        color: white;
+      color: white;
     text-decoration: none;
     cursor:pointer;
     }
+    width: 50px;
+    height: 50px;
+    border-radius:100%;
+    border: 2px solid #FFFFFF;
+`;
+
+const BuilderViewWithText = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    font-weight: 500;
+    font-size: 14px;
+    gap: 8px;
+    color: #FFFFFF;
+`;
+
+const BuilderViewWrapper = styled.div`
+    display: flex;
+    align-items:center;
+    gap: 70px;
+    justify-content: center;
+    position: absolute;
+    z-index:20;
+    left:50%;
+    top: 80px;
+    transform: translateX(-50%)
 `;
 
 const Banner = styled.div`
-
+    position: relative;
     height: 200px;
     width: 100%;
     img {
@@ -177,19 +183,22 @@ const Banner = styled.div`
         width: 100%;
         height: 100%;
     }
-
 `;
 
 const openIcon = (
   <svg
-    width="12"
-    height="12"
-    viewBox="0 0 12 12"
+    width="20"
+    height="14"
+    viewBox="0 0 20 14"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
-      d="M5.09411 0.4668C3.48623 2.66122 1.87845 4.85542 0.270465 7.04958C-0.301894 7.83094 0.233009 8.95701 1.17669 8.95701H10.8236C11.7672 8.95701 12.3022 7.83094 11.7295 7.04958C10.1219 4.85542 8.51384 2.66126 6.90606 0.4668C6.44999 -0.1556 5.55032 -0.1556 5.09411 0.4668ZM0.751334 11.9861H10.3913C10.7746 11.9861 11.5722 12.1064 11.8719 11.6394C12.2055 11.12 11.8486 10.4239 11.2489 10.4239H1.60899C1.22547 10.4239 0.428086 10.3038 0.127975 10.7709C-0.205466 11.29 0.151429 11.9861 0.751334 11.9861Z"
+      d="M19.9497 6.49783C18.1899 2.57215 14.3317 0 10 0C5.66826 0 1.81015 2.57215 0.0503378 6.49783C-0.0167793 6.70097 -0.0167793 6.8361 0.0503378 7.03924C1.81015 10.9649 5.66804 13.5371 10 13.5371C14.332 13.5371 18.1899 10.9642 19.9497 7.03924C20.0168 6.8361 20.0168 6.70097 19.9497 6.49783ZM10 10.5613C7.914 10.5613 6.20721 8.85454 6.20721 6.76854C6.20721 4.68254 7.914 2.97575 10 2.97575C12.086 2.97575 13.7928 4.68254 13.7928 6.76854C13.7928 8.85454 12.086 10.5613 10 10.5613Z"
+      fill="white"
+    />
+    <path
+      d="M12.7071 6.76858C12.7071 8.25768 11.4887 9.47564 10 9.47564C8.51137 9.47564 7.29297 8.25768 7.29297 6.76858C7.29297 5.27948 8.51137 4.06152 10 4.06152C11.4887 4.06152 12.7071 5.2797 12.7071 6.76858Z"
       fill="white"
     />
   </svg>
@@ -197,16 +206,16 @@ const openIcon = (
 
 const forkIcon = (
   <svg
-    width="13"
-    height="15"
-    viewBox="0 0 13 15"
+    width="19"
+    height="22"
+    viewBox="0 0 19 22"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
-      d="M3.0577 4.49077C3.96403 4.17947 4.61538 3.31964 4.61538 2.30769C4.61538 1.03319 3.5822 0 2.30769 0C1.03319 0 0 1.03319 0 2.30769C0 3.31965 0.651363 4.17947 1.5577 4.49078V10.5092C0.651363 10.8205 0 11.6803 0 12.6923C0 13.9668 1.03319 15 2.30769 15C3.5822 15 4.61538 13.9668 4.61538 12.6923C4.61538 11.6959 3.98384 10.8469 3.09918 10.5239C3.1455 10.3199 3.23328 10.1384 3.37571 9.84396C3.39763 9.79866 3.42083 9.75069 3.44538 9.69955C3.72001 9.12741 4.08628 8.82692 4.61539 8.82692C4.80209 8.82692 5.02205 8.83183 5.25788 8.83709H5.2579C5.65829 8.84601 6.10443 8.85596 6.51122 8.84466C7.19222 8.82575 7.93763 8.74987 8.62873 8.49071C9.33703 8.2251 9.98776 7.76652 10.4491 7.00531C10.8454 6.35144 11.0727 5.52255 11.1236 4.49452C12.0357 4.18641 12.6923 3.32373 12.6923 2.30769C12.6923 1.03319 11.6591 0 10.3846 0C9.11011 0 8.07692 1.03319 8.07692 2.30769C8.07692 3.31491 8.7222 4.17142 9.62191 4.48637C9.57388 5.30047 9.39457 5.85122 9.1663 6.22786C8.90649 6.65655 8.5476 6.91913 8.10205 7.08621C7.63931 7.25974 7.08664 7.3281 6.46957 7.34524C6.08198 7.35601 5.72955 7.34749 5.37076 7.33881H5.37075C5.12628 7.3329 4.87887 7.32692 4.61539 7.32692C3.97828 7.32692 3.46507 7.52662 3.0577 7.8313V4.49077ZM3.46154 2.30769C3.46154 2.94494 2.94494 3.46154 2.30769 3.46154C1.67044 3.46154 1.15385 2.94494 1.15385 2.30769C1.15385 1.67044 1.67044 1.15385 2.30769 1.15385C2.94494 1.15385 3.46154 1.67044 3.46154 2.30769ZM11.5385 2.30769C11.5385 2.94494 11.0219 3.46154 10.3846 3.46154C9.74735 3.46154 9.23076 2.94494 9.23076 2.30769C9.23076 1.67044 9.74735 1.15385 10.3846 1.15385C11.0219 1.15385 11.5385 1.67044 11.5385 2.30769ZM2.30769 13.8461C2.94494 13.8461 3.46154 13.3295 3.46154 12.6923C3.46154 12.055 2.94494 11.5384 2.30769 11.5384C1.67044 11.5384 1.15385 12.055 1.15385 12.6923C1.15385 13.3295 1.67044 13.8461 2.30769 13.8461Z"
+      d="M4.35484 7.0323C5.64575 6.58895 6.57351 5.36431 6.57351 3.92298C6.57351 2.10776 5.10198 0.63623 3.28675 0.63623C1.47153 0.63623 0 2.10776 0 3.92298C0 5.36423 0.927654 6.58882 2.21845 7.03222V15.6041C0.927654 16.0475 0 17.2721 0 18.7134C0 20.5286 1.47153 22.0001 3.28675 22.0001C5.10198 22.0001 6.57351 20.5286 6.57351 18.7134C6.57351 17.2941 5.674 16.085 4.41399 15.625C4.47998 15.3345 4.60498 15.0761 4.80778 14.6569C4.83899 14.5923 4.87204 14.524 4.907 14.4512C5.29814 13.6363 5.81981 13.2083 6.5734 13.2083C6.83931 13.2083 7.1526 13.2153 7.4885 13.2228L7.48859 13.2228C8.05883 13.2355 8.69421 13.2497 9.27355 13.2336C10.2435 13.2067 11.3051 13.0986 12.2894 12.7295C13.2982 12.3512 14.225 11.698 14.8821 10.6139C15.4465 9.68261 15.7703 8.50207 15.8428 7.0379C17.1423 6.59935 18.078 5.37043 18.078 3.92298C18.078 2.10776 16.6064 0.63623 14.7912 0.63623C12.976 0.63623 11.5044 2.10776 11.5044 3.92298C11.5044 5.3572 12.4231 6.57685 13.704 7.02567C13.6357 8.18549 13.3802 8.97007 13.0551 9.50659C12.685 10.1172 12.1739 10.4911 11.5393 10.7291C10.8802 10.9763 10.0931 11.0736 9.21423 11.098C8.66222 11.1134 8.16026 11.1012 7.64928 11.0889H7.64922C7.30104 11.0805 6.94867 11.0719 6.5734 11.0719C5.66599 11.0719 4.93505 11.3564 4.35484 11.7903V7.0323ZM4.93088 3.92285C4.93088 4.83046 4.19512 5.56623 3.2875 5.56623C2.37989 5.56623 1.64413 4.83046 1.64413 3.92285C1.64413 3.01524 2.37989 2.27947 3.2875 2.27947C4.19512 2.27947 4.93088 3.01524 4.93088 3.92285ZM16.4353 3.92285C16.4353 4.83046 15.6996 5.56623 14.7919 5.56623C13.8843 5.56623 13.1486 4.83046 13.1486 3.92285C13.1486 3.01524 13.8843 2.27947 14.7919 2.27947C15.6996 2.27947 16.4353 3.01524 16.4353 3.92285ZM3.2875 20.3567C4.19512 20.3567 4.93088 19.6209 4.93088 18.7133C4.93088 17.8057 4.19512 17.0699 3.2875 17.0699C2.37989 17.0699 1.64413 17.8057 1.64413 18.7133C1.64413 19.6209 2.37989 20.3567 3.2875 20.3567Z"
       fill="white"
     />
   </svg>
@@ -214,29 +223,46 @@ const forkIcon = (
 
 const sourceIcon = (
   <svg
-    width="15"
-    height="15"
-    viewBox="0 0 15 15"
+    width="26"
+    height="20"
+    viewBox="0 0 26 20"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <g clip-path="url(#clip0_8_8732)">
-      <path
-        d="M5.33524 7.50357C5.33522 7.66313 5.39812 7.81627 5.51028 7.92977C5.62244 8.04326 5.77482 8.10797 5.93438 8.10984H9.27247C9.43232 8.10984 9.58562 8.04634 9.69865 7.93331C9.81168 7.82028 9.87518 7.66698 9.87518 7.50713C9.87518 7.34728 9.81168 7.19398 9.69865 7.08095C9.58562 6.96792 9.43232 6.90442 9.27247 6.90442H5.93438C5.77605 6.90627 5.62473 6.96999 5.51277 7.08195C5.40081 7.19392 5.33709 7.34524 5.33524 7.50357ZM2.33951 7.93866C2.39518 7.99451 2.46132 8.03883 2.53415 8.06907C2.60697 8.09931 2.68505 8.11488 2.76391 8.11488C2.84276 8.11488 2.92084 8.09931 2.99367 8.06907C3.0665 8.03883 3.13264 7.99451 3.1883 7.93866L5.53495 5.58488C5.59081 5.52922 5.63512 5.46307 5.66536 5.39025C5.6956 5.31742 5.71117 5.23934 5.71117 5.16048C5.71117 5.08163 5.6956 5.00355 5.66536 4.93072C5.63512 4.85789 5.59081 4.79175 5.53495 4.73609L3.1883 2.35378C3.13257 2.29758 3.06631 2.25291 2.99332 2.22231C2.92032 2.19172 2.84201 2.1758 2.76286 2.17547C2.68372 2.17514 2.60528 2.1904 2.53203 2.22038C2.45878 2.25036 2.39215 2.29448 2.33595 2.35021C2.27975 2.40595 2.23508 2.4722 2.20448 2.5452C2.17389 2.6182 2.15797 2.6965 2.15764 2.77565C2.15697 2.9355 2.21983 3.08907 2.33238 3.20257L4.2796 5.14979L2.33238 7.08274C2.27545 7.13852 2.23021 7.20511 2.19934 7.27859C2.16846 7.35208 2.15255 7.43099 2.15255 7.5107C2.15255 7.59041 2.16846 7.66932 2.19934 7.7428C2.23021 7.81629 2.27545 7.88287 2.33238 7.93866H2.33951ZM13.7946 13.7946H1.20542V1.20542H13.7946V13.7946ZM13.7946 0H1.20542C0.885723 0 0.57912 0.126999 0.35306 0.35306C0.126999 0.57912 0 0.885723 0 1.20542L0 13.7946C0.00560989 14.1106 0.135082 14.4117 0.360537 14.6331C0.585992 14.8546 0.889396 14.9787 1.20542 14.9786H13.7946C14.1069 14.9731 14.4049 14.8466 14.6257 14.6257C14.8466 14.4049 14.9731 14.1069 14.9786 13.7946V1.20542C14.9787 0.889396 14.8546 0.585992 14.6331 0.360537C14.4117 0.135082 14.1106 0.00560989 13.7946 0Z"
-        fill="white"
-      />
-    </g>
-    <defs>
-      <clipPath id="clip0_8_8732">
-        <rect width="15" height="15" fill="white" />
-      </clipPath>
-    </defs>
+    <path
+      d="M7.11123 2.79933C6.98124 2.69634 6.83191 2.61978 6.67185 2.57406C6.51178 2.52834 6.34415 2.51435 6.17859 2.53292C6.01303 2.55148 5.85283 2.60222 5.7072 2.68222C5.56158 2.76222 5.4334 2.86989 5.33007 2.99904L0.277123 9.2401C0.0977389 9.46149 0 9.73664 0 10.0202C0 10.3038 0.0977389 10.579 0.277123 10.8004L5.33007 17.0414C5.54319 17.288 5.84509 17.443 6.17183 17.4736C6.49858 17.5041 6.82452 17.4077 7.08064 17.205C7.33676 17.0022 7.50295 16.7089 7.54403 16.3871C7.58511 16.0654 7.49785 15.7404 7.30072 15.4812L2.87939 10.014L7.30072 4.54683C7.5087 4.28971 7.60548 3.96182 7.56999 3.63454C7.5345 3.30726 7.36962 3.00708 7.11123 2.79933ZM24.986 9.2401L19.9331 2.99904C19.72 2.75242 19.4181 2.59744 19.0913 2.56692C18.7646 2.5364 18.4386 2.63273 18.1825 2.83551C17.9264 3.0383 17.7602 3.33162 17.7191 3.65336C17.678 3.97511 17.7653 4.30002 17.9624 4.55931L22.3838 10.014L17.9624 15.4812C17.7653 15.7404 17.678 16.0654 17.7191 16.3871C17.7602 16.7089 17.9264 17.0022 18.1825 17.205C18.4386 17.4077 18.7646 17.5041 19.0913 17.4736C19.4181 17.443 19.72 17.288 19.9331 17.0414L24.986 10.8004C25.1654 10.579 25.2632 10.3038 25.2632 10.0202C25.2632 9.73664 25.1654 9.46149 24.986 9.2401ZM14.7917 0.0282989C14.6291 -0.00650719 14.4612 -0.00923443 14.2975 0.020274C14.1338 0.0497825 13.9777 0.110945 13.838 0.20025C13.6983 0.289556 13.5779 0.405244 13.4836 0.540673C13.3893 0.676102 13.323 0.828604 13.2885 0.989422L9.49875 18.4644C9.4559 18.6285 9.44731 18.7995 9.47352 18.967C9.49973 19.1345 9.56018 19.2949 9.65119 19.4386C9.7422 19.5822 9.86186 19.7061 10.0029 19.8025C10.1439 19.899 10.3033 19.9661 10.4714 19.9997H10.7367C11.0305 20.0062 11.3173 19.9112 11.5479 19.7312C11.7785 19.5513 11.9383 19.2975 12 19.0136L15.7897 1.53864C15.8284 1.37449 15.8331 1.20429 15.8034 1.0383C15.7738 0.872311 15.7104 0.713976 15.6172 0.572842C15.5239 0.431707 15.4027 0.310697 15.2608 0.217109C15.119 0.12352 14.9594 0.0592927 14.7917 0.0282989Z"
+      fill="white"
+    />
   </svg>
 );
 
+const icons = [openIcon, sourceIcon, forkIcon];
+State.init({
+  hoverBanner: false,
+});
+const hoverEnter = () => {
+  if (role !== "Builder") return;
+  else {
+    State.update({
+      hoverBanner: true,
+    });
+  }
+};
+const hoverLeave = () => {
+  if (role !== "Builder") return;
+  else {
+    State.update({
+      hoverBanner: false,
+    });
+  }
+};
 return (
   <Card href={appUrl}>
-    <Banner>
+    <Banner
+      hover={state.hoverBanner}
+      onMouseEnter={() => hoverEnter()}
+      onMouseLeave={() => hoverLeave()}
+    >
       <Widget
         src="mob.near/widget/Image"
         props={{
@@ -244,24 +270,37 @@ return (
           fallbackUrl:
             "https://ipfs.near.social/ipfs/bafkreifc4burlk35hxom3klq4mysmslfirj7slueenbj7ddwg7pc6ixomu",
           alt: metadata.name,
+          style: {
+            opacity: state.hoverBanner ? 0.5 : 1,
+          },
         }}
       />
+      {state.hoverBanner && (
+        <BuilderViewWrapper>
+          {["View", "Source", "Fork"].map((text, i) => {
+            return (
+              <BuilderViewWithText>
+                <BuilderView href={urls[i]}>{icons[i]}</BuilderView>
+                <span>{text}</span>
+              </BuilderViewWithText>
+            );
+          })}
+        </BuilderViewWrapper>
+      )}
     </Banner>
 
     <CardBody>
-      <WidgetIconWrapper>
-        <Thumbnail href={detailsUrl}>
-          <Widget
-            src="mob.near/widget/Image"
-            props={{
-              image: metadata.image,
-              fallbackUrl:
-                "https://ipfs.near.social/ipfs/bafkreifc4burlk35hxom3klq4mysmslfirj7slueenbj7ddwg7pc6ixomu",
-              alt: metadata.name,
-            }}
-          />
-        </Thumbnail>
-      </WidgetIconWrapper>
+      <Thumbnail href={detailsUrl}>
+        <Widget
+          src="mob.near/widget/Image"
+          props={{
+            image: metadata.image,
+            fallbackUrl:
+              "https://ipfs.near.social/ipfs/bafkreifc4burlk35hxom3klq4mysmslfirj7slueenbj7ddwg7pc6ixomu",
+            alt: metadata.name,
+          }}
+        />
+      </Thumbnail>
 
       <CardContent>
         <WidgetName href={detailsUrl}>{metadata.name || widgetName}</WidgetName>
