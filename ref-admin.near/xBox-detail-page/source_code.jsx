@@ -16,5 +16,6 @@ return (
         }}
       />
     </SummaryWrapper>
+    <Widget src="ref-admin.near/widget/xBox"></Widget>
   </Wrapper>
 );
