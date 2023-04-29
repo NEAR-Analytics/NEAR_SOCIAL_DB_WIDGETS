@@ -156,7 +156,7 @@ return (
       Purpose:
       <input type="text" onChange={(e) => onChangePurpose(e.target.value)} />
     </div>
-    <button className="btn btn-outline-danger mt-3" onClick={handleCreate}>
+    <button className="btn btn-outline-success mt-3" onClick={handleCreate}>
       Create DAO
     </button>
   </div>
