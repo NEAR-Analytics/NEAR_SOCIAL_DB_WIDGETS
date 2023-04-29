@@ -153,7 +153,7 @@ return (
             <div class="blockquote-footer figcaption">
               Bounty completed and can't be claimed any more, check details on
               <a
-                href={"https://heroes.build/bounties" + props.bountyId}
+                href={"https://heroes.build/bounties/" + props.bountyId}
                 target="_blank"
               >
                 https://heroes.build/bounties/{props.bountyId}
