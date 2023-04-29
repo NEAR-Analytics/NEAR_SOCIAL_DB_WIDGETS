@@ -5,25 +5,10 @@ let totalComponents = 0;
 const componentsUrl = "#/near/widget/ComponentsPage";
 const searchPlaceholder = "Search";
 
-const refTags = [
-  "NEAR",
-  "Ethereum",
-  "Arbitrum",
-  "Wallets",
-  "Bridges",
-  "Validators",
-  "Expolorers",
-  "Liquid staking",
-  "Dex",
-  "Lending",
-  "Derivatives",
-  "Insurance",
-  "Stablecoins",
-  "Yield Aggregators",
-  "Launch Pad",
-  "NFT marketplace",
-  "Collectibles",
-];
+const current_mode = Storage.get(
+  "ref-mode",
+  "ref-admin.near/widget/user-builder"
+);
 
 const filterMap = {
   Chain: ["NEAR", "Ethereum", "Arbitrum"],
