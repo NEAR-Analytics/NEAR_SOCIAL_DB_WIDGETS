@@ -163,8 +163,6 @@ const counts = {
     })?.length || 0,
 };
 
-console.log(items, "items", counts);
-
 const Wrapper = styled.div`
   gap: 48px;
   padding-bottom: 48px;
