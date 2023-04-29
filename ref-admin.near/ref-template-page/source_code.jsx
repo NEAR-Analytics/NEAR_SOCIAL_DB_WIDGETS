@@ -102,7 +102,7 @@ const items = state.searchResults || components;
 const Wrapper = styled.div`
   gap: 48px;
   padding-bottom: 48px;
-  padding-top: 48px;
+  padding-top: 18px;
   background: #101011;
 `;
 
