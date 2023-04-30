@@ -216,12 +216,8 @@ const TOKEN_LINEAR = { id: config.contractId, decimals: LiNEAR_DECIMALS };
 const TOKEN_NEAR = { id: "NEAR", decimals: NEAR_DECIMALS };
 const SLIPPAGE_TOLERANCE = 0.05;
 
-const REF_EXCHANGE_CONTRACT_ID =
-  context.networkId === "mainnet"
-    ? "v2.ref-finance.near"
-    : "ref-finance-101.testnet";
-const WNEAR_CONTRACT_ID =
-  context.networkId === "mainnet" ? "wrap.near" : "wrap.testnet";
+const REF_EXCHANGE_CONTRACT_ID = "v2.ref-finance.near";
+const WNEAR_CONTRACT_ID = "wrap.near";
 
 // Forked from weige.near/widget/ref-swap
 const registered = Near.view(WNEAR_CONTRACT_ID, "storage_balance_of", {
