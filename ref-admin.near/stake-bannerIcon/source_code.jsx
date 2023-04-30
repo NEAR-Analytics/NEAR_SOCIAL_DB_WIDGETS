@@ -38,6 +38,7 @@ const ExchangeRoute = styled.div`
       img{
         width:46px;
         height:46px;
+        border-radius:100px;
       }
     }
    .flex-center{
@@ -61,6 +62,7 @@ const ExchangeRoute = styled.div`
      width:26px;
      height:26px;
      margin-right:10px;
+     border-radius:100px;
   }
 `;
 const arrowIcon = (
