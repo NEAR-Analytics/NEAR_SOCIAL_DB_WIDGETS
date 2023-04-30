@@ -142,6 +142,14 @@ const Items = styled.div`
 
 `;
 
+const Item = styled.div`
+  :hover{
+  transform: ${(p) => (p.role === "Builder" ? "" : "scale(1.05)")}
+
+  }
+
+`;
+
 const FlexStart = styled.div`
     display:flex;
 align-items:center;
@@ -307,29 +315,32 @@ return (
       )}
 
       <Items>
-        <Widget
-          key={"juaner.near" + "ref-home"}
-          src="ref-admin.near/widget/ref-template-card"
-          props={{
-            src: `${"juaner.near"}/widget/${"ref-home"}`,
-            blockHeight: component.blockHeight,
-            banner: "null",
+        <Item role={role}>
+          <Widget
+            key={"juaner.near" + "ref-home"}
+            src="ref-admin.near/widget/ref-template-card"
+            props={{
+              src: `${"juaner.near"}/widget/${"ref-home"}`,
+              blockHeight: component.blockHeight,
+              banner: "null",
+              role: role,
+            }}
+          />
+        </Item>
 
-            role: role,
-          }}
-        />
+        <Item role={role}>
+          <Widget
+            key={"ref-admin.near/widget/xBox"}
+            src="ref-admin.near/widget/ref-template-card"
+            props={{
+              src: `ref-admin.near/widget/xBox`,
+              blockHeight: component.blockHeight,
+              banner: "null",
 
-        <Widget
-          key={"ref-admin.near/widget/xBox"}
-          src="ref-admin.near/widget/ref-template-card"
-          props={{
-            src: `ref-admin.near/widget/xBox`,
-            blockHeight: component.blockHeight,
-            banner: "null",
-
-            role: role,
-          }}
-        />
+              role: role,
+            }}
+          />
+        </Item>
       </Items>
     </ContentWrapper>
   </Wrapper>
