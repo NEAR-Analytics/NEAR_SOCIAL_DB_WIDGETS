@@ -138,7 +138,11 @@ const onClickStake = async () => {
       State.update({
         inputError: `Max is ${refBalance} REF`,
       });
-    } else setInputError("");
+    } else {
+      State.update({
+        inputError: "",
+      });
+    }
     return;
   }
   const transactions = [
