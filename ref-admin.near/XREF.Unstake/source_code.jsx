@@ -2,6 +2,7 @@
 State.init({
   inputValue: "",
   inputError: "",
+  unstakeMax: false,
 });
 /** state init end */
 // load config
@@ -38,8 +39,11 @@ function getxRefBalance(accountId) {
     account_id: accountId,
   });
   if (!balanceRaw) return "-";
-  const balance = Big(balanceRaw).div(Big(10).pow(REF_DECIMALS));
-  return balance.lt(0) ? "0" : balance.toFixed(5, BIG_ROUND_DOWN);
+  const balance = Big(balanceRaw).div(Big(10).pow(XREF_DECIMALS));
+  return [
+    balance.lt(0) ? "0" : balance.toFixed(5, BIG_ROUND_DOWN),
+    balance.lt(0) ? "0" : balance.toFixed(),
+  ];
 }
 function getRate() {
   const rateRow = Near.view(config.XREF_TOKEN_ID, "get_virtual_price");
@@ -49,13 +53,14 @@ function getRate() {
   return rate;
 }
 
-const xrefBalance = getxRefBalance(accountId);
+const [xrefBalance, xrefBalanceWhole] = getxRefBalance(accountId);
 const refToxrefRate = getRate();
 /** events start */
 const onChange = (e) => {
   // Has user signed in?
   if (!isSignedIn) {
     State.update({
+      unstakeMax: false,
       inputError: "Sign in please",
     });
     return;
@@ -83,11 +88,13 @@ const onChange = (e) => {
       Big(stakeAmount).lte(0)
     ) {
       State.update({
+        unstakeMax: false,
         inputValue: stakeAmount,
         inputError: "Stake at least greater than zero xREF",
       });
     } else {
       State.update({
+        unstakeMax: false,
         inputValue: stakeAmount,
         inputError: `Max is ${xrefBalance} REF`,
       });
@@ -95,6 +102,7 @@ const onChange = (e) => {
     return;
   }
   State.update({
+    unstakeMax: false,
     inputValue: stakeAmount,
     inputError: "",
   });
@@ -107,12 +115,14 @@ const onClickMax = () => {
     Big(xrefBalance).lte(0)
   ) {
     State.update({
+      unstakeMax: true,
       inputValue: xrefBalance,
       inputError: "Stake at least greater than zero xREF",
     });
     return;
   } else {
     State.update({
+      unstakeMax: true,
       inputValue: xrefBalance,
       inputError: "",
     });
@@ -120,7 +130,8 @@ const onClickMax = () => {
 };
 
 const onClickUnStake = async () => {
-  const stakeAmount = state.inputValue;
+  const { inputValue, unstakeMax } = state;
+  const stakeAmount = unstakeMax ? xrefBalanceWhole : inputValue;
   if (
     xrefBalance &&
     (isNaN(Number(stakeAmount)) ||
@@ -133,20 +144,19 @@ const onClickUnStake = async () => {
       stakeAmount === "" ||
       Big(stakeAmount).lte(0)
     ) {
-      State.update({ inputError: "Stake at least greater than zero REF" });
+      State.update({ inputError: "Stake at least greater than zero xREF" });
     } else if (Big(stakeAmount).gt(Big(xrefBalance))) {
       State.update({
-        inputError: `Max is ${xrefBalance} REF`,
+        inputError: `Max is ${xrefBalance} xREF`,
       });
     } else setInputError("");
     return;
   }
   const transactions = [
     {
-      contractName: config.REF_TOKEN_ID,
-      methodName: "ft_transfer_call",
+      contractName: config.XREF_TOKEN_ID,
+      methodName: "unstake",
       args: {
-        receiver_id: config.XREF_TOKEN_ID,
         amount: expandToken(stakeAmount, XREF_DECIMALS),
         msg: "",
       },
