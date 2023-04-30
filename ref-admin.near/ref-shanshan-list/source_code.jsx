@@ -5,9 +5,6 @@ const cur_mode = Storage.get("ref-mode", "ref-admin.near/widget/user-builder");
 const role = cur_mode === "builder" ? "Builder" : "user";
 
 const Wrapper = styled.div`
-  background: #101011;
-
-
 `;
 
 const Tab = (
