@@ -241,7 +241,7 @@ return (
         props={{
           onClick: onClickUnStake,
           disabled: disabledStakeButton,
-          text: "Stake",
+          text: "Unstake",
           type: "outline",
         }}
       />
