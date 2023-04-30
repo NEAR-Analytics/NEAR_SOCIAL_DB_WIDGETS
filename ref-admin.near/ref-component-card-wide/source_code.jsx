@@ -246,7 +246,9 @@ return (
       </Thumbnail>
 
       <CardContent>
-        <Text href={detailsUrl}>{metadata.name || widgetName}</Text>
+        <Text title={metadata.name || widgetName} href={detailsUrl}>
+          {metadata.name || widgetName}
+        </Text>
         <div
           style={{
             display: "flex",
