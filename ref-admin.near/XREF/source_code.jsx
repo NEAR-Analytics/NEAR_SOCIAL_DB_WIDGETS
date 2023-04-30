@@ -25,6 +25,7 @@ State.init({
 });
 
 const Main = styled.div`
+  width:500px;
   position: relative;
 `;
 
