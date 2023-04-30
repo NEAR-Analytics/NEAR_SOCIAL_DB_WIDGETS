@@ -69,7 +69,7 @@ return (
         value={props.value}
         onChange={props.onChange}
       />
-      <MaxTexture onClick={props.onClickMax}>MAX</MaxTexture>
+      <MaxTexture onClick={props.onClickMax}>Max</MaxTexture>
     </NEARInputContainer>
     <HorizentalLine />
     <BalanceContainer>
