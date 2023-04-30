@@ -70,7 +70,7 @@ function getReceivedInstantUnstakeNear() {
     !isValid(inputValue) ||
     !isValid(swapAmountOut)
   ) {
-    return "-";
+    return Big(0).toFixed(5);
   }
   return Big(swapAmountOut).toFixed(5);
 }
@@ -106,7 +106,6 @@ if (
     inputError: "",
   });
 }
-
 /** events start */
 const onChange = (e) => {
   // Has user signed in?
