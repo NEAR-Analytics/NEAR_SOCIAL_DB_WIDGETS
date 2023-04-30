@@ -3,6 +3,9 @@ const metadata = Social.get(
   `${accountId}/widget/${widgetName}/metadata/**`,
   "final"
 );
+
+console.log(props.banner, "banner");
+
 const role = props.role;
 const tags = Object.keys(metadata.tags || {});
 const detailsUrl = `#/near/widget/ComponentDetailsPage?src=${accountId}/widget/${widgetName}`;
