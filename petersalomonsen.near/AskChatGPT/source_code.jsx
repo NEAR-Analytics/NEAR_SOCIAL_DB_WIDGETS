@@ -28,6 +28,7 @@ function ask_ai() {
 
 function changeSecretKey(secretKey) {
   State.update({ secretKey });
+  Storage.privateSet("secretKey", secretKey);
   init_iframe();
 }
 
