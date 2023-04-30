@@ -269,7 +269,7 @@ return (
       <Widget
         src="mob.near/widget/Image"
         props={{
-          image: metadata.banner || props.banner,
+          imageUrl: metadata.banner || props.banner,
           fallbackUrl:
             "https://ipfs.near.social/ipfs/bafkreifc4burlk35hxom3klq4mysmslfirj7slueenbj7ddwg7pc6ixomu",
           alt: metadata.name,
