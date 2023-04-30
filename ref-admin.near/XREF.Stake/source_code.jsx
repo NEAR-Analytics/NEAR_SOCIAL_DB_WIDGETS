@@ -16,12 +16,13 @@ const REF_DECIMALS = 18;
 const XREF_DECIMALS = 18;
 const DECIMALS_XREF_REF_TRANSTER = 8;
 const BIG_ROUND_DOWN = 0;
+const storageToken = Near.view(config.XREF_TOKEN_ID, "storage_balance_of", {
+  account_id: accountId,
+});
 const shrinkToken = (value, decimals) => {
-  return new Big(value).div(new Big(10).pow(decimals));
+  return new Big(value).div(new Big(10).pow(decimals)).toFixed();
 };
 const expandToken = (value, decimals) => {
-  console.log("44444444444-value", value);
-  console.log("44444444444-decimals", decimals);
   return new Big(value).mul(new Big(10).pow(decimals)).toFixed();
 };
 function isValid(a) {
@@ -153,19 +154,19 @@ const onClickStake = async () => {
       gas: expandToken(50, 12),
     },
   ];
+  if (!storageToken || storageToken.total === "0") {
+    transactions.unshift({
+      contractName: config.XREF_TOKEN_ID,
+      methodName: "storage_deposit",
+      args: {
+        account_id: accountId,
+        registration_only: true,
+      },
+      deposit: expandToken(0.0125, 24),
+      gas: expandToken(50, 12),
+    });
+  }
   Near.call(transactions);
-  // // check and update balance
-  // const interval = setInterval(() => {
-  //   const balance = getRefBalance(accountId);
-  //   if (balance !== refBalance) {
-  //     clearInterval(interval);
-  //     State.update({
-  //       inputValue: "",
-  //       inputError: "",
-  //       refBalance: balance,
-  //     });
-  //   }
-  // }, 500);
 };
 /** events end */
 
