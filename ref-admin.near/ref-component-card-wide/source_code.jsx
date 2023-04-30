@@ -82,7 +82,7 @@ const Text = styled.div`
   text-overflow: ellipsis;
   overflow:hidden;
   color: #FFFFFF;
-  with: 220px;
+  width: 220px;
   white-space: nowrap;
 
 `;
