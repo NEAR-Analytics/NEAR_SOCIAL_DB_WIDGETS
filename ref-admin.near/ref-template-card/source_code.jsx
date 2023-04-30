@@ -4,8 +4,6 @@ const metadata = Social.get(
   "final"
 );
 
-console.log(props.banner, "banner");
-
 const role = props.role;
 const tags = Object.keys(metadata.tags || {});
 const detailsUrl = `#/near/widget/ComponentDetailsPage?src=${accountId}/widget/${widgetName}`;
@@ -267,9 +265,9 @@ return (
       onMouseLeave={() => hoverLeave()}
     >
       <Widget
-        src="mob.near/widget/Image"
+        src="ref-admin.near/widget/Image"
         props={{
-          imageUrl: metadata.banner || props.banner,
+          imageSrc: props.imageSrc,
           fallbackUrl:
             "https://ipfs.near.social/ipfs/bafkreifc4burlk35hxom3klq4mysmslfirj7slueenbj7ddwg7pc6ixomu",
           alt: metadata.name,
@@ -298,6 +296,7 @@ return (
           src="mob.near/widget/Image"
           props={{
             image: metadata.image,
+
             fallbackUrl:
               "https://ipfs.near.social/ipfs/bafkreifc4burlk35hxom3klq4mysmslfirj7slueenbj7ddwg7pc6ixomu",
             alt: metadata.name,
