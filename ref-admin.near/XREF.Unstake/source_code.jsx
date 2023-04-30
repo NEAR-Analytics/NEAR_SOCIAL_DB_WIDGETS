@@ -149,7 +149,11 @@ const onClickUnStake = async () => {
       State.update({
         inputError: `Max is ${xrefBalance} xREF`,
       });
-    } else setInputError("");
+    } else {
+      State.update({
+        inputError: "",
+      });
+    }
     return;
   }
   const transactions = [
@@ -166,7 +170,7 @@ const onClickUnStake = async () => {
   ];
   if (!storageToken || storageToken.total === "0") {
     transactions.unshift({
-      contractName: config.XREF_TOKEN_ID,
+      contractName: config.REF_TOKEN_ID,
       methodName: "storage_deposit",
       args: {
         account_id: accountId,
