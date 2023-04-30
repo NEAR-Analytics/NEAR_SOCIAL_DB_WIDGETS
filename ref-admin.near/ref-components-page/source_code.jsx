@@ -460,10 +460,15 @@ return (
         </Items>
       )}
     </ContentWrapper>
-    <ViewMoreWrapper>
-      <span>View More</span>
 
-      {arrowDown}
-    </ViewMoreWrapper>
+    {!state.searchResults && (
+      <ViewMoreWrapper
+        onClick={() => State.update({ currentPage: state.currentPage + 1 })}
+      >
+        <span>View More</span>
+
+        {arrowDown}
+      </ViewMoreWrapper>
+    )}
   </Wrapper>
 );
