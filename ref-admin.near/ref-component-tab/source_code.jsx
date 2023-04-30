@@ -7,15 +7,13 @@ const TagWrapper = styled.div`
   color: #FFFFFF;
   font-size: 18px;
   font-weight: 500;
+  margin-top: 55px;
 `;
 
 const Box = styled.div`
     opacity: ${(p) => (p.chosed ? "1" : "0.6")};
     margin-right: 70px;
     cursor: pointer;
-
-
-
 `;
 
 const SeperatorLine = styled.div`
