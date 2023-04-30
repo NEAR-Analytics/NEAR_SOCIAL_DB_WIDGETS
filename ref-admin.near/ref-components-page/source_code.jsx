@@ -55,8 +55,6 @@ State.init({
   },
 });
 
-console.log(state.filters);
-
 if (props.tab && props.tab !== state.selectedTab) {
   State.update({
     selectedTab: props.tab,
@@ -152,7 +150,6 @@ const Wrapper = styled.div`
   gap: 48px;
   padding-bottom: 48px;
   padding-top: 18px;
-  background: #101011;
 `;
 
 const Header = styled.div`
