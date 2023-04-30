@@ -9,13 +9,21 @@ const config = props.config;
 if (!config) {
   return "Component not be loaded. Missing `config` props";
 }
+
 const accountId = props.accountId || context.accountId;
 const isSignedIn = !!accountId;
 const REF_DECIMALS = 18;
 const XREF_DECIMALS = 18;
 const DECIMALS_XREF_REF_TRANSTER = 8;
 const BIG_ROUND_DOWN = 0;
-
+const shrinkToken = (value, decimals) => {
+  return new Big(value).div(new Big(10).pow(decimals));
+};
+const expandToken = (value, decimals) => {
+  console.log("44444444444-value", value);
+  console.log("44444444444-decimals", decimals);
+  return new Big(value).mul(new Big(10).pow(decimals)).toFixed();
+};
 function isValid(a) {
   if (!a) return false;
   if (isNaN(Number(a))) return false;
@@ -132,25 +140,32 @@ const onClickStake = async () => {
     } else setInputError("");
     return;
   }
-  Near.call(
-    config.contractId,
-    "deposit_and_stake",
-    {},
-    undefined,
-    Big(state.inputValue).mul(Big(10).pow(NEAR_DECIMALS)).toFixed(0)
-  );
-  // check and update balance
-  const interval = setInterval(() => {
-    const balance = getRefBalance(accountId);
-    if (balance !== refBalance) {
-      clearInterval(interval);
-      State.update({
-        inputValue: "",
-        inputError: "",
-        refBalance: balance,
-      });
-    }
-  }, 500);
+  const transactions = [
+    {
+      contractName: config.REF_TOKEN_ID,
+      methodName: "ft_transfer_call",
+      args: {
+        receiver_id: config.XREF_TOKEN_ID,
+        amount: expandToken(stakeAmount, XREF_DECIMALS),
+        msg: "",
+      },
+      deposit: new Big("1").toFixed(),
+      gas: expandToken(50, 12),
+    },
+  ];
+  Near.call(transactions);
+  // // check and update balance
+  // const interval = setInterval(() => {
+  //   const balance = getRefBalance(accountId);
+  //   if (balance !== refBalance) {
+  //     clearInterval(interval);
+  //     State.update({
+  //       inputValue: "",
+  //       inputError: "",
+  //       refBalance: balance,
+  //     });
+  //   }
+  // }, 500);
 };
 /** events end */
 
