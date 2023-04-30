@@ -6,7 +6,7 @@ const metadata = Social.get(
 
 const role = props.role;
 const tags = Object.keys(metadata.tags || {});
-const detailsUrl = `#/near/widget/ComponentDetailsPage?src=${accountId}/widget/${widgetName}`;
+const detailsUrl = `#/ref-admin.near/widget/ComponentDetailsPage?src=${accountId}/widget/${widgetName}`;
 const appUrl = `#/${accountId}/widget/${widgetName}`;
 const forkUrl = `#/edit/${accountId}/widget/${widgetName}`;
 
