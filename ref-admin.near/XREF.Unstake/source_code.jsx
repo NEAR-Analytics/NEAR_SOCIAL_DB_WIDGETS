@@ -137,7 +137,7 @@ const onClickUnStake = async () => {
     (isNaN(Number(stakeAmount)) ||
       stakeAmount === "" ||
       Big(stakeAmount).lte(0) ||
-      Big(stakeAmount).gt(Big(xrefBalance)))
+      Big(stakeAmount).gt(Big(xrefBalanceWhole)))
   ) {
     if (
       isNaN(Number(stakeAmount)) ||
@@ -145,7 +145,7 @@ const onClickUnStake = async () => {
       Big(stakeAmount).lte(0)
     ) {
       State.update({ inputError: "Stake at least greater than zero xREF" });
-    } else if (Big(stakeAmount).gt(Big(xrefBalance))) {
+    } else if (Big(stakeAmount).gt(Big(xrefBalanceWhole))) {
       State.update({
         inputError: `Max is ${xrefBalance} xREF`,
       });
@@ -251,7 +251,7 @@ return (
       src={`${config.ownerId}/widget/LiNEAR.Tab`}
       props={{
         updateTabName: props.updateTabName,
-        tabName: "unStake",
+        tabName: "unstake",
       }}
     ></Widget>
   </StakeFormWrapper>
