@@ -321,7 +321,7 @@ return (
             props={{
               src: `${"juaner.near"}/widget/${"ref-home"}`,
               blockHeight: component.blockHeight,
-              banner: "null",
+              imageSrc: "https://assets.ref.finance/images/ref_and_burrow.png",
               role: role,
             }}
           />
@@ -334,8 +334,7 @@ return (
             props={{
               src: `ref-admin.near/widget/xBox`,
               blockHeight: component.blockHeight,
-              banner: "null",
-
+              imageSrc: "https://assets.ref.finance/images/xbox.png",
               role: role,
             }}
           />
