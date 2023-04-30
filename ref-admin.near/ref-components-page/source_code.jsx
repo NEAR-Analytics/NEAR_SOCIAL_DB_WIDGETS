@@ -150,6 +150,8 @@ const Wrapper = styled.div`
   gap: 48px;
   padding-bottom: 48px;
   padding-top: 18px;
+  background:black
+
 `;
 
 const Header = styled.div`
@@ -331,7 +333,6 @@ const arrowDown = (
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
-      opacity="0.5"
       d="M4.53662 0.999998L4.53662 10.0732M4.53662 10.0732L7.78623 6.82363M4.53662 10.0732L1.0549 6.59152"
       stroke="white"
       stroke-width="2"
@@ -377,7 +378,13 @@ const ViewMoreWrapper = styled.div`
   border: 1px solid #FFFFFF;
   border-radius: 10px;
   cursor:pointer;
-
+color: #FFFFFF;
+padding: 0px 25px 0px 25px;
+max-width: max-content;
+margin: auto;
+margin-top: 20px;
+position: relative;
+left: 100px;
 `;
 
 return (
@@ -438,33 +445,25 @@ return (
       )}
 
       {items.length > 0 && (
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
-          <Items>
-            {items.map((component, i) => (
-              <Widget
-                key={component.accountId + component.widgetName}
-                src="ref-admin.near/widget/ref-component-card-wide"
-                props={{
-                  src: `${component.accountId}/widget/${component.widgetName}`,
-                  blockHeight: component.blockHeight,
-                  role: role,
-                }}
-              />
-            ))}
-          </Items>
-
-          <ViewMoreWrapper>
-            <span>View More</span>
-
-            {arrowDown}
-          </ViewMoreWrapper>
-        </div>
+        <Items>
+          {items.map((component, i) => (
+            <Widget
+              key={component.accountId + component.widgetName}
+              src="ref-admin.near/widget/ref-component-card-wide"
+              props={{
+                src: `${component.accountId}/widget/${component.widgetName}`,
+                blockHeight: component.blockHeight,
+                role: role,
+              }}
+            />
+          ))}
+        </Items>
       )}
     </ContentWrapper>
+    <ViewMoreWrapper>
+      <span>View More</span>
+
+      {arrowDown}
+    </ViewMoreWrapper>
   </Wrapper>
 );
