@@ -68,7 +68,7 @@ const TextLink = styled.div`
   font-weight: 500;
   font-size: 16px;
   line-height: 21px;
-
+  
   color: #FFFFFF;
 
 `;
@@ -79,7 +79,8 @@ const Text = styled.div`
   font-weight: 500;
   font-size: 20px;
   line-height: 21px;
-
+  text-overflow: ellipsis;
+  overflow:hidden;
   color: #FFFFFF;
 
 `;
