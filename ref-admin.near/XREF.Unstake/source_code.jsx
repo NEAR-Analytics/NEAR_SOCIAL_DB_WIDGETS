@@ -131,7 +131,7 @@ const onClickMax = () => {
 
 const onClickUnStake = async () => {
   const { inputValue, unstakeMax } = state;
-  const stakeAmount = unstakeMax ? xrefBalanceWhole : inputValue;
+  const stakeAmount = inputValue;
   if (
     xrefBalance &&
     (isNaN(Number(stakeAmount)) ||
@@ -161,7 +161,10 @@ const onClickUnStake = async () => {
       contractName: config.XREF_TOKEN_ID,
       methodName: "unstake",
       args: {
-        amount: expandToken(stakeAmount, XREF_DECIMALS),
+        amount: expandToken(
+          unstakeMax ? xrefBalanceWhole : stakeAmount,
+          XREF_DECIMALS
+        ),
         msg: "",
       },
       deposit: new Big("1").toFixed(),
