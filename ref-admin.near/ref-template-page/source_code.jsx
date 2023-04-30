@@ -313,7 +313,20 @@ return (
           props={{
             src: `${"juaner.near"}/widget/${"ref-home"}`,
             blockHeight: component.blockHeight,
-            banner: null,
+            banner: "null",
+
+            role: role,
+          }}
+        />
+
+        <Widget
+          key={"ref-admin.near/widget/xBox"}
+          src="ref-admin.near/widget/ref-template-card"
+          props={{
+            src: `ref-admin.near/widget/xBox`,
+            blockHeight: component.blockHeight,
+            banner: "null",
+
             role: role,
           }}
         />
