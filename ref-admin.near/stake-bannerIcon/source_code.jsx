@@ -89,8 +89,16 @@ function getAPY() {
   if (!apy) return "-";
   return Big(apy).mul(100).toFixed(2) + "%";
 }
-
-const apy = componentType == "liNEAR" ? getAPY() : "-%";
+function getxrefAPY() {
+  const result = Near.view("xtoken.ref-finance.near", "contract_metadata");
+  if (!result) return "-%";
+  const { locked_token_amount, reward_per_sec } = result;
+  const apr =
+    (1 / locked_token_amount) *
+    (Number(reward_per_sec) * 365 * 24 * 60 * 60 * 100);
+  return Big(apr).toFixed(2) + "%";
+}
+const apy = componentType == "liNEAR" ? getAPY() : getxrefAPY();
 return (
   <BannerData>
     <ExchangeRoute>
