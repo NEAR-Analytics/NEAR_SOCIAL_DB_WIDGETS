@@ -1,5 +1,8 @@
+const SECRET_KEY_STORAGE_KEY = "secretKey";
+Storage.privateGet(SECRET_KEY_STORAGE_KEY);
+
 State.init({
-  secretKey: Storage.privateGet("secretKey"),
+  secretKey: null,
   airesponse: "",
   aiquestion: "",
   accountId: "",
@@ -7,11 +10,14 @@ State.init({
 });
 
 function init_iframe() {
+  const secretKey = Storage.privateGet(SECRET_KEY_STORAGE_KEY);
+
   State.update({
-    iframeMessage: state.secretKey
+    secretKey,
+    iframeMessage: secretKey
       ? {
           command: "useaccount",
-          secretKey: state.secretKey,
+          secretKey: secretKey,
         }
       : {
           command: "createaccount",
@@ -28,14 +34,14 @@ function ask_ai() {
 
 function changeSecretKey(secretKey) {
   State.update({ secretKey });
-  Storage.privateSet("secretKey", secretKey);
+  Storage.privateSet(SECRET_KEY_STORAGE_KEY, secretKey);
   init_iframe();
 }
 
 function handleMessage(msg) {
   switch (msg.command) {
     case "accountcreated":
-      Storage.privateSet("secretKey", msg.secretKey);
+      Storage.privateSet(SECRET_KEY_STORAGE_KEY, msg.secretKey);
       State.update({ accountId: msg.accountId, secretKey: msg.secretKey });
       break;
     case "airesponse":
@@ -45,7 +51,9 @@ function handleMessage(msg) {
       State.update({ accountId: msg.accountId });
       break;
     case "ready":
+      console.log("ready");
       init_iframe();
+      break;
   }
 }
 
