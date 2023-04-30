@@ -47,6 +47,7 @@ function getxRefBalance(accountId) {
 }
 function getRate() {
   const rateRow = Near.view(config.XREF_TOKEN_ID, "get_virtual_price");
+  if (!rateRow) return 0;
   const rate = Big(rateRow)
     .div(Big(10).pow(DECIMALS_XREF_REF_TRANSTER))
     .toFixed();
@@ -192,7 +193,7 @@ const disabledStakeButton =
 
 const youWillReceive = (
   Big(refToxrefRate || 0).lte(0)
-    ? Big(0)
+    ? Big(0).toFixed(5, BIG_ROUND_DOWN)
     : Big(isValid(state.inputValue) ? state.inputValue : 0).mul(refToxrefRate)
 ).toFixed(5, BIG_ROUND_DOWN);
 const StakeFormWrapper = styled.div`
