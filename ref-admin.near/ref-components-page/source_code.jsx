@@ -322,6 +322,25 @@ const gridView = (
   </svg>
 );
 
+const arrowDown = (
+  <svg
+    width="9"
+    height="12"
+    viewBox="0 0 9 12"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      opacity="0.5"
+      d="M4.53662 0.999998L4.53662 10.0732M4.53662 10.0732L7.78623 6.82363M4.53662 10.0732L1.0549 6.59152"
+      stroke="white"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </svg>
+);
+
 const wideView = (
   <svg
     width="16"
@@ -345,6 +364,20 @@ border-radius: 10px;
 display:flex;
 align-items:center;
 justify-content: center
+`;
+
+const ViewMoreWrapper = styled.div`
+  white-space: nowrap;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  height: 36px;
+  opacity: 0.5;
+  border: 1px solid #FFFFFF;
+  border-radius: 10px;
+  cursor:pointer;
+
 `;
 
 return (
@@ -405,19 +438,32 @@ return (
       )}
 
       {items.length > 0 && (
-        <Items>
-          {items.map((component, i) => (
-            <Widget
-              key={component.accountId + component.widgetName}
-              src="ref-admin.near/widget/ref-component-card-wide"
-              props={{
-                src: `${component.accountId}/widget/${component.widgetName}`,
-                blockHeight: component.blockHeight,
-                role: role,
-              }}
-            />
-          ))}
-        </Items>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <Items>
+            {items.map((component, i) => (
+              <Widget
+                key={component.accountId + component.widgetName}
+                src="ref-admin.near/widget/ref-component-card-wide"
+                props={{
+                  src: `${component.accountId}/widget/${component.widgetName}`,
+                  blockHeight: component.blockHeight,
+                  role: role,
+                }}
+              />
+            ))}
+          </Items>
+
+          <ViewMoreWrapper>
+            <span>View More</span>
+
+            {arrowDown}
+          </ViewMoreWrapper>
+        </div>
       )}
     </ContentWrapper>
   </Wrapper>
