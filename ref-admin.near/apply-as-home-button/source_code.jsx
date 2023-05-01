@@ -1,4 +1,5 @@
 if (!props.src) return "";
+const { updateStatus } = props;
 const { commitLoading, fetchDataLoading } = state;
 State.init({
   commitLoading: false,
@@ -57,6 +58,9 @@ if (myHomePagePath == null || myHomePagePathDataFromCache == null) {
   State.update({
     fetchDataLoading: false,
   });
+  if (myHomePagePath == props.src) {
+    updateStatus && updateStatus(true);
+  }
 }
 function applyHomePage() {
   if (commitLoading) return;
@@ -72,8 +76,8 @@ function applyHomePage() {
     ...storageDataOldCopy,
     [context.accountId]: props.src,
   };
-  console.log("00000000000000-storageDataOldCopy", storageDataOldCopy);
-  console.log("00000000000000-storageDataNew", storageDataNew);
+  // console.log("00000000000000-storageDataOldCopy", storageDataOldCopy);
+  // console.log("00000000000000-storageDataNew", storageDataNew);
   Storage.set("myHomePagePathData", storageDataNew);
   Social.set(
     {
