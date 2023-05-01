@@ -72,7 +72,8 @@ function applyHomePage() {
     ...storageDataOldCopy,
     [context.accountId]: props.src,
   };
-
+  console.log("00000000000000-storageDataOldCopy", storageDataOldCopy);
+  console.log("00000000000000-storageDataNew", storageDataNew);
   Storage.set("myHomePagePathData", storageDataNew);
   Social.set(
     {
