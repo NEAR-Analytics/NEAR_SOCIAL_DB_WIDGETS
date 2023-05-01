@@ -45,6 +45,27 @@ const Card =
 
 `;
 
+const AppliedWrapper = styled.div`
+  position: absolute;
+  height: 35px;
+  width: 200px;
+  transform: rotate(-45deg);
+  background: #00FFD1;
+  font-style: normal;
+font-weight: 700;
+font-size: 14px;
+line-height: 19px;
+top: 15px;
+left:-70px;
+text-align: center;
+color: #101011;
+z-index:60;
+display: flex;
+align-items:center;
+justify-content: center;
+
+`;
+
 const CardBody = styled.div`
   display: flex;
   gap: 6px;
@@ -261,6 +282,7 @@ const hoverLeave = () => {
 };
 return (
   <Card href={appUrl}>
+    {props.isHome && <AppliedWrapper> Applied </AppliedWrapper>}
     <Banner
       hover={state.hoverBanner}
       onMouseEnter={() => hoverEnter()}
@@ -278,6 +300,7 @@ return (
           },
         }}
       />
+
       {state.hoverBanner && (
         <BuilderViewWrapper>
           {["View", "Source", "Fork"].map((text, i) => {
