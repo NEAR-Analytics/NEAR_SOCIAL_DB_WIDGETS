@@ -21,6 +21,11 @@ const Container = styled.div`
     .active{
         background: #0092FF;
     }
+    a{
+      :hover{
+        text-decoration: none;
+      }
+    }
 `;
 const { buttonStatus } = state;
 const current_mode = Storage.get(
@@ -33,24 +38,28 @@ function switchButton(type) {
     buttonStatus: type,
   });
 }
+
 const targetStatus = buttonStatus || current_mode;
 return (
   <Container>
-    <span
+    <a
+      href="/"
+      disabled={targetStatus !== "builder"}
       class={`default ${targetStatus !== "builder" ? "active" : ""}`}
-      onClick={() => {
+      onClick={(e) => {
         switchButton("user");
       }}
     >
       User
-    </span>
-    <span
+    </a>
+    <a
+      disabled={true}
       class={`default ${targetStatus == "builder" ? "active" : ""}`}
-      onClick={() => {
+      onClick={(e) => {
         switchButton("builder");
       }}
     >
       Builder
-    </span>
+    </a>
   </Container>
 );
