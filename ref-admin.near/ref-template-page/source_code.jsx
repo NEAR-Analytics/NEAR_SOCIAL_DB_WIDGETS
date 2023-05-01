@@ -272,6 +272,62 @@ const wideView = (
   </svg>
 );
 
+const isHomeIndex = [
+  Social.get(`${context.accountId}/myHomePagePath`) ===
+    `juaner.near/widget/ref-home`,
+
+  Social.get(`${context.accountId}/myHomePagePath`) ===
+    `ref-admin.near/widget/xBox`,
+];
+
+const itemList = [
+  <Item role={role}>
+    <Widget
+      key={"juaner.near" + "ref-home"}
+      src="ref-admin.near/widget/ref-template-card"
+      props={{
+        src: `juaner.near/widget/ref-home`,
+        isHome:
+          Social.get(`${context.accountId}/myHomePagePath`) ===
+          `juaner.near/widget/ref-home`,
+        blockHeight: component.blockHeight,
+        imageSrc: "https://assets.ref.finance/images/ref_and_burrow.png",
+        role: role,
+      }}
+    />
+  </Item>,
+
+  <Item role={role}>
+    <Widget
+      key={"ref-admin.near/widget/xBox"}
+      src="ref-admin.near/widget/ref-template-card"
+      props={{
+        src: `ref-admin.near/widget/xBox`,
+        isHome:
+          Social.get(`${context.accountId}/myHomePagePath`) ===
+          `ref-admin.near/widget/xBox`,
+        blockHeight: component.blockHeight,
+        imageSrc: "https://assets.ref.finance/images/xbox_banner.png",
+        role: role,
+      }}
+    />
+  </Item>,
+];
+
+const displayItems = [];
+
+if (
+  Social.get(`${context.accountId}/myHomePagePath`) ===
+    `juaner.near/widget/ref-home` ||
+  !Social.get(`${context.accountId}/myHomePagePath`)
+) {
+  displayItems.push(itemList[0]);
+  displayItems.push(itemList[1]);
+} else {
+  displayItems.push(itemList[1]);
+  displayItems.push(itemList[0]);
+}
+
 return (
   <Wrapper className="">
     <div
@@ -313,33 +369,7 @@ return (
         <Text>No components matched your search.</Text>
       )}
 
-      <Items>
-        <Item role={role}>
-          <Widget
-            key={"juaner.near" + "ref-home"}
-            src="ref-admin.near/widget/ref-template-card"
-            props={{
-              src: `${"juaner.near"}/widget/${"ref-home"}`,
-              blockHeight: component.blockHeight,
-              imageSrc: "https://assets.ref.finance/images/ref_and_burrow.png",
-              role: role,
-            }}
-          />
-        </Item>
-
-        <Item role={role}>
-          <Widget
-            key={"ref-admin.near/widget/xBox"}
-            src="ref-admin.near/widget/ref-template-card"
-            props={{
-              src: `ref-admin.near/widget/xBox`,
-              blockHeight: component.blockHeight,
-              imageSrc: "https://assets.ref.finance/images/xbox_banner.png",
-              role: role,
-            }}
-          />
-        </Item>
-      </Items>
+      <Items>{displayItems.map((item) => item)}</Items>
     </ContentWrapper>
   </Wrapper>
 );
