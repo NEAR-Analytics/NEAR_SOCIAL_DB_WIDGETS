@@ -97,6 +97,9 @@ function applyHomePage() {
     }
   );
 }
+
+if (!context.accountId) return <div />;
+
 return (
   <ButtonLink onClick={applyHomePage}>
     {commitLoading ? Loading : homeIcon}
