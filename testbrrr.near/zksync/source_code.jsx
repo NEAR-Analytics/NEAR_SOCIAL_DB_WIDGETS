@@ -36,6 +36,8 @@ const Theme = state.theme;
 
 const sender = Ethers.send("eth_requestAccounts", [])[0];
 
+const swapProps = { forceNetwork: "ZKSYNC" };
+
 return (
   <Theme>
     <div style={{ textAlign: "center", marginTop: 100 }}>
@@ -82,7 +84,7 @@ return (
         Explore the Wonders of the zkSync Ecosystem
       </h2>
     </div>
-    {!sender && <h2>Please Connect Your Wallet First to Canto Mainnet!</h2>}
+    {!sender && <h2>Please Connect Your Wallet First to zkSync Era!</h2>}
 
     <div class="flex">
       <div>
@@ -108,7 +110,7 @@ return (
         >
           2. Swap on SyncSwap
         </h2>
-        <Widget src="zavodil.near/widget/swap" />
+        <Widget src="zavodil.near/widget/swap" props={swapProps} />
       </div>
     </div>
   </Theme>
