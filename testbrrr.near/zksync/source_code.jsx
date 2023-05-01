@@ -84,7 +84,6 @@ return (
         Explore the Wonders of the zkSync Ecosystem
       </h2>
     </div>
-    {!sender && <h2>Please Connect Your Wallet First to zkSync Era!</h2>}
 
     <div class="flex">
       <div>
