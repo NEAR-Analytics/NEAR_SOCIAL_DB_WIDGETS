@@ -291,7 +291,7 @@ return (
     </Banner>
 
     <CardBody>
-      <Thumbnail href={detailsUrl}>
+      <Thumbnail href={appUrl}>
         <Widget
           src="mob.near/widget/Image"
           props={{
