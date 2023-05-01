@@ -1,4 +1,4 @@
-State.init({ tab: Storage.get("tab") || "Templates" });
+State.init({ tab: props.tab || Storage.get("tab") || "Templates" });
 
 const cur_mode = Storage.get("ref-mode", "ref-admin.near/widget/user-builder");
 
