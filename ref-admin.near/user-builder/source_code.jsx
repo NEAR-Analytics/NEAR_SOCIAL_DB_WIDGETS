@@ -42,24 +42,21 @@ function switchButton(type) {
 const targetStatus = buttonStatus || current_mode;
 return (
   <Container>
-    <a
-      href="/"
-      disabled={targetStatus !== "builder"}
+    <span
       class={`default ${targetStatus !== "builder" ? "active" : ""}`}
       onClick={(e) => {
         switchButton("user");
       }}
     >
       User
-    </a>
-    <a
-      disabled={true}
+    </span>
+    <span
       class={`default ${targetStatus == "builder" ? "active" : ""}`}
       onClick={(e) => {
         switchButton("builder");
       }}
     >
       Builder
-    </a>
+    </span>
   </Container>
 );
