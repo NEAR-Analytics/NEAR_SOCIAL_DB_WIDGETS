@@ -89,6 +89,7 @@ function applyHomePage() {
       force: true,
       onCommit: () => {
         State.update({ commitLoading: false });
+        updateStatus && updateStatus(false);
       },
       onCancel: () => {
         State.update({ commitLoading: false });
@@ -97,9 +98,6 @@ function applyHomePage() {
     }
   );
 }
-
-if (!context.accountId) return <div />;
-
 return (
   <ButtonLink onClick={applyHomePage}>
     {commitLoading ? Loading : homeIcon}
