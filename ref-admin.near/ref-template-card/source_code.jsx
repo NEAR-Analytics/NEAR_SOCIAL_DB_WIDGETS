@@ -12,6 +12,8 @@ const forkUrl = `#/edit/${accountId}/widget/${widgetName}`;
 
 const urls = [appUrl, detailsUrl, forkUrl];
 
+const isHome = props.isHome;
+
 const accountUrl = `#/near/widget/ProfilePage?accountId=${accountId}`;
 const Card =
   role === "Builder"
