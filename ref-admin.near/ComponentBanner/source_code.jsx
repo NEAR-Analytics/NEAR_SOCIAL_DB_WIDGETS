@@ -1,8 +1,9 @@
 if (!props.src) return "";
 
-const { commitLoading } = state;
+const { commitLoading, isItSet } = state;
 State.init({
   commitLoading: false,
+  isItSet: false,
 });
 const finalSrc = props.src;
 const [accountId, widget, widgetName] = finalSrc.split("/");
@@ -91,8 +92,14 @@ const Text = styled.p`
     margin-right: 4px;
   }
 `;
+function getIsItSet(status) {
+  State.update({
+    isItSet: status,
+  });
+}
+console.log("111111111111128-isItSet", isItSet);
 return (
-  <Wrapper>
+  <Wrapper style={{ display: isItSet ? "none" : "flex" }}>
     <Header size={size}>
       <Thumbnail size={size}>
         <Widget
@@ -113,7 +120,7 @@ return (
     </Header>
     <Widget
       src="ref-admin.near/widget/apply-as-home-button"
-      props={{ src: props.src }}
+      props={{ src: props.src, updateStatus: getIsItSet }}
     ></Widget>
   </Wrapper>
 );
