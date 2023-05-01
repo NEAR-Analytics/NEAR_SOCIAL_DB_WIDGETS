@@ -70,13 +70,13 @@ function applyHomePage() {
   }
   const storageDataNew = {
     ...storageDataOldCopy,
-    [context.accountId]: finalSrc,
+    [context.accountId]: props.src,
   };
 
   Storage.set("myHomePagePathData", storageDataNew);
   Social.set(
     {
-      myHomePagePath: finalSrc,
+      myHomePagePath: props.src,
     },
     {
       force: true,
