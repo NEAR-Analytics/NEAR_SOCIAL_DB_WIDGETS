@@ -96,7 +96,7 @@ function getIsItSet(status) {
     noSet: status,
   });
 }
-console.log("1111111111111280-noSet", noSet);
+// console.log("1111111111111280-noSet", noSet);
 return (
   <Wrapper style={{ display: noSet ? "flex" : "none" }}>
     <Header size={size}>
