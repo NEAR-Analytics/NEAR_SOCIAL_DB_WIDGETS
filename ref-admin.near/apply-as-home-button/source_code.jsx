@@ -58,8 +58,8 @@ if (myHomePagePath == null || myHomePagePathDataFromCache == null) {
   State.update({
     fetchDataLoading: false,
   });
-  console.log("8888888888-myHomePagePath", myHomePagePath);
-  console.log("8888888888-props.src", props.src);
+  // console.log("8888888888-myHomePagePath", myHomePagePath);
+  // console.log("8888888888-props.src", props.src);
   if (myHomePagePath !== props.src) {
     updateStatus && updateStatus(true);
   }
@@ -89,7 +89,6 @@ function applyHomePage() {
       force: true,
       onCommit: () => {
         State.update({ commitLoading: false });
-        updateStatus && updateStatus(false);
       },
       onCancel: () => {
         State.update({ commitLoading: false });
