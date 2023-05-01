@@ -1,4 +1,4 @@
-const accountId = "marco.near";
+const accountId = "reffer.near";
 const BURROW_CONTRACT = "contract.main.burrow.near";
 const netLiquidityFarm = Near.view(BURROW_CONTRACT, "get_asset_farm", {
   farm_id: "NetTvl",
