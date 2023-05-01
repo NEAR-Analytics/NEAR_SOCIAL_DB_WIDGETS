@@ -334,7 +334,7 @@ return (
             props={{
               src: `ref-admin.near/widget/xBox`,
               blockHeight: component.blockHeight,
-              imageSrc: "https://assets.ref.finance/images/xbox.png",
+              imageSrc: "https://assets.ref.finance/images/xbox_banner.png",
               role: role,
             }}
           />
