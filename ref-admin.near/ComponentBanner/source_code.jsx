@@ -98,7 +98,7 @@ function getIsItSet(status) {
 }
 // console.log("1111111111111280-noSet", noSet);
 return (
-  <Wrapper style={{ display: noSet ? "flex" : "none" }}>
+  <Wrapper style={{ display: noSet && context.accountId ? "flex" : "none" }}>
     <Header size={size}>
       <Thumbnail size={size}>
         <Widget
