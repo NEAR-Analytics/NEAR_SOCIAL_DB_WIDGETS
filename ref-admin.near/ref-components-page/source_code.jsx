@@ -475,7 +475,7 @@ return (
       )}
     </ContentWrapper>
 
-    {!state.searchResults && items.length > 18 && (
+    {!state.searchResults && items.length > 17 && (
       <ViewMoreWrapper
         onClick={() => State.update({ currentPage: state.currentPage + 1 })}
       >
