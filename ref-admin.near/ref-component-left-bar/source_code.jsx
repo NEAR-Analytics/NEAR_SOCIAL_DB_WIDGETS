@@ -52,6 +52,10 @@ let defaultItems = {
   ],
   Dapps: [
     {
+      name: "Defi",
+      chosen: false,
+    },
+    {
       name: "Liquid staking",
       chosen: false,
     },
