@@ -1,9 +1,8 @@
 if (!props.src) return "";
 
-const { commitLoading, isItSet } = state;
+const { commitLoading, noSet } = state;
 State.init({
   commitLoading: false,
-  isItSet: false,
 });
 const finalSrc = props.src;
 const [accountId, widget, widgetName] = finalSrc.split("/");
@@ -55,7 +54,7 @@ const sizes = {
   },
 };
 const Wrapper = styled.div`
-   display:flex;
+   display:none;
    justify-content:space-between;
    align-items:flex-end;
    background-repeat:no-repeat;
@@ -94,12 +93,12 @@ const Text = styled.p`
 `;
 function getIsItSet(status) {
   State.update({
-    isItSet: status,
+    noSet: status,
   });
 }
-console.log("111111111111128-isItSet", isItSet);
+console.log("1111111111111280-noSet", noSet);
 return (
-  <Wrapper style={{ display: isItSet ? "none" : "flex" }}>
+  <Wrapper style={{ display: noSet ? "flex" : "none" }}>
     <Header size={size}>
       <Thumbnail size={size}>
         <Widget
