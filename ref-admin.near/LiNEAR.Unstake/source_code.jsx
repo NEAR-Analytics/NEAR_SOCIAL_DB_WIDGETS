@@ -383,7 +383,7 @@ return (
           onChange,
           onClickMax,
           inputError: state.inputError,
-          balance: `${linearBalance} LiNEAR`,
+          balance: `${linearBalance}`,
         }}
       />
       <Widget
