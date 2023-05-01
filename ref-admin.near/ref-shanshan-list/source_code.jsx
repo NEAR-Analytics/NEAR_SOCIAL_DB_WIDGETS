@@ -1,4 +1,10 @@
+console.log(props.tab, "111111");
+
 State.init({ tab: props.tab || Storage.get("tab") || "Templates" });
+
+if (props.tab) {
+  State.update({ tab: props.tab });
+}
 
 const cur_mode = Storage.get("ref-mode", "ref-admin.near/widget/user-builder");
 
