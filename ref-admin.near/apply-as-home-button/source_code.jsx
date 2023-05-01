@@ -58,6 +58,8 @@ if (myHomePagePath == null || myHomePagePathDataFromCache == null) {
   State.update({
     fetchDataLoading: false,
   });
+  console.log("8888888888-myHomePagePath", myHomePagePath);
+  console.log("8888888888-props.src", props.src);
   if (myHomePagePath == props.src) {
     updateStatus && updateStatus(true);
   }
