@@ -15,6 +15,7 @@ const filterMap = {
   Infrastructure: ["Wallets", "Bridges", "Validators", "Expolorers"],
   Dapps: [
     "Liquid staking",
+    "Defi",
     "Dex",
     "Lending",
     "Derivatives",
@@ -46,7 +47,7 @@ const addComponentIcon = (
 State.init({
   currentPage: 0,
   selectedTab: props.tab || "all",
-  filters: [],
+  filters: ["Defi"],
   counts: {
     Chain: 0,
     Infrastructure: 0,
@@ -118,30 +119,44 @@ const items = state.searchResults || components;
 const counts = {
   Chain:
     items?.filter((i) => {
-      return i.tags.some((i) =>
-        filterMap["Chain"].map((f) => f.toLowerCase()).includes(i.toLowerCase())
+      return i.tags.some(
+        (i) =>
+          filterMap["Chain"]
+            .map((f) => f.toLowerCase())
+            .includes(i.toLowerCase()) &&
+          filterMap["Chain"].some((f) => state.filters.includes(f))
       );
     })?.length || 0,
   Infrastructure:
     items?.filter((i) => {
-      return i.tags.some((i) =>
-        filterMap["Infrastructure"]
-          .map((f) => f.toLowerCase())
-          .includes(i.toLowerCase())
+      return i.tags.some(
+        (i) =>
+          filterMap["Infrastructure"]
+            .map((f) => f.toLowerCase())
+            .includes(i.toLowerCase()) &&
+          filterMap["Infrastructure"].some((f) => state.filters.includes(f))
       );
     })?.length || 0,
 
   Dapps:
     items?.filter((i) => {
-      return i.tags.some((i) =>
-        filterMap["Dapps"].map((f) => f.toLowerCase()).includes(i.toLowerCase())
+      return i.tags.some(
+        (i) =>
+          filterMap["Dapps"]
+            .map((f) => f.toLowerCase())
+            .includes(i.toLowerCase()) &&
+          filterMap["Dapps"].some((f) => state.filters.includes(f))
       );
     })?.length || 0,
 
   NFT:
     items?.filter((i) => {
-      return i.tags.some((i) =>
-        filterMap["NFT"].map((f) => f.toLowerCase()).includes(i.toLowerCase())
+      return i.tags.some(
+        (i) =>
+          filterMap["NFT"]
+            .map((f) => f.toLowerCase())
+            .includes(i.toLowerCase()) &&
+          filterMap["NFT"].some((f) => state.filters.includes(f))
       );
     })?.length || 0,
 };
