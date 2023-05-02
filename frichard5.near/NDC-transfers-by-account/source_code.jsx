@@ -198,7 +198,7 @@ return (
     ) : (
       ""
     )}
-    {state.displayedRank.length ? GenericTable : ""}
+    {GenericTable}
     {state.ranking && state.ranking.length === 0 && (
       <span>No Transfer Proposal Beneficiaries</span>
     )}
