@@ -168,7 +168,7 @@ return (
       </Thumbnail>
 
       <CardContent>
-        <TextLink as="a" href={profileUrl} ellipsis>
+        <TextLink as="a" href={profileUrl} bold ellipsis>
           {profile.name}
         </TextLink>
         <TextLink small as="a" href={profileUrl} ellipsis>
