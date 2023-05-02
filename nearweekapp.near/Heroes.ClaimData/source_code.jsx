@@ -22,7 +22,7 @@ function dayToEpoch(days) {
   return epochSeconds.toString();
 }
 
-const kycMinAmount = 150;
+const kycMinAmount = 500;
 const matchToken = (token) => tokenMap[token].symbol;
 const convertAmount = (amount, token) =>
   amount / Math.pow(10, tokenMap[token].decimals);
@@ -89,7 +89,7 @@ return (
             </span>{" "}
             <hr />
             <div class="blockquote-footer figcaption">
-              KYC is required for bounties over $400, please head to
+              KYC is required for bounties over $500, please head to
               <a href="https://heroes.build" target="_blank">
                 https://heroes.build/
               </a>{" "}
