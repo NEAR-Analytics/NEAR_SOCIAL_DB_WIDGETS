@@ -67,7 +67,10 @@ function handleMessage(msg) {
       Near.call(
         "jsinrustnft.near",
         "nft_mint",
-        msg.args,
+        Object.assign({}, msg.args, {
+          title: msg.args.token_id,
+          description: state.aiquestion,
+        }),
         undefined,
         1_000_00000_00000_00000_00000n.toString()
       );
