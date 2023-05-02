@@ -3,9 +3,6 @@ initState({
 });
 
 const css = `
-  div {
-    background: black;
-  }
   .flex {
     display: flex;
     > div {
@@ -42,7 +39,7 @@ const sender = Ethers.send("eth_requestAccounts", [])[0];
 const swapProps = { forceNetwork: "Polygon zkEVM" };
 
 return (
-  <Theme>
+  <Theme style={{ background: "black" }}>
     <div style={{ textAlign: "center", marginTop: 100 }}>
       <img
         src="https://ecosystem.polygon.technology/assets/images/polygon-zkevm-logo.svg"
