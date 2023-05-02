@@ -1,10 +1,10 @@
 const tokenMap = {
   "a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48.factory.bridge.near": {
-    symbol: "USDT.e",
+    symbol: "USDC.e",
     decimals: 6,
   },
   "dac17f958d2ee523a2206206994597c13d831ec7.factory.bridge.near": {
-    symbol: "USDC.e",
+    symbol: "USDT.e",
     decimals: 6,
   },
   "6b175474e89094c44da98b954eedeac495271d0f.factory.bridge.near": {
