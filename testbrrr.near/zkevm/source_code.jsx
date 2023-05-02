@@ -3,9 +3,11 @@ initState({
 });
 
 const css = `
+  div {
+    background: black;
+  }
   .flex {
     display: flex;
-    background: black;
     > div {
         margin: 32px 0;
       margin-right: 32px;
