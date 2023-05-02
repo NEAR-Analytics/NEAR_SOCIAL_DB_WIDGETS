@@ -69,7 +69,7 @@ return (
         >
           1. Bridge to zkEVM
         </h2>
-        <Widget src="ciocan.near/widget/zk-bridge" />
+        <Widget src="testbrrr.near/widget/zk-bridge" />
       </div>
       <div>
         <h2
