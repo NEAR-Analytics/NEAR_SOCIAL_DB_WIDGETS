@@ -214,7 +214,7 @@ initState({
   withdraw: {
     network: {
       id: "l2",
-      name: "zkSync Era",
+      name: "Polygon zkEVM",
     },
     assets: [
       {
