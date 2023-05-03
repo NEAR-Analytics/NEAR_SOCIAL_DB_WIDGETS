@@ -28,6 +28,7 @@ const isValidDate = (dateString) => {
 };
 
 const handleSubmit = () => {
+  if (!validate) sendInput(state.input);
   if (isValidDate(state.input)) {
     sendInput(state.input);
   } else {
