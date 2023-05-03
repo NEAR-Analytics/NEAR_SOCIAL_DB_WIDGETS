@@ -3,7 +3,7 @@ const daoId = props.daoId ?? "multi.sputnik-dao.near";
 const defaultId = 1;
 
 State.init({
-  proposal_id: state.proposal_id ?? defaultId,
+  proposal_id: proposal_id ?? defaultId,
 });
 
 const onChangeProposal = (proposal_id) => {
