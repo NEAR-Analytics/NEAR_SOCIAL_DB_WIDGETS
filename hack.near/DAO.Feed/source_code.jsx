@@ -1,8 +1,6 @@
-const accountId = props.daoId ?? props.accountId ?? context.accountId;
+const daoId = props.daoId;
 
-const feed = accountId
-  ? Social.get(`${accountId}/settings/dao/feed`)
-  : undefined;
+const feed = daoId ? Social.get(`${daoId}/settings/dao/feed`) : undefined;
 
 if (feed === null) {
   return "Loading...";
