@@ -2,7 +2,7 @@ if (
   !props.src ||
   !props.istemplate ||
   props.istemplate === false ||
-  porps.istemplate === "false"
+  porps.istemplate.toString() === "false"
 )
   return "";
 
