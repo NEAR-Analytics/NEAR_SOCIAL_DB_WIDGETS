@@ -20,12 +20,14 @@ if (!state.followingIsFetched) {
     "final",
     false
   ).then((data) => {
-    console.log(data);
-    State.update({
-      following: (Object.keys(data).length > 0
+    const following = (
+      Object.keys(data).length > 0
         ? Object.keys(data[context.accountId]?.graph?.follow ?? {})
         : []
-      ).map((name) => ({ name })),
+    ).map((name) => ({ name }));
+    console.log({ following });
+    State.update({
+      following,
       followingIsFetched: true,
     });
   });
