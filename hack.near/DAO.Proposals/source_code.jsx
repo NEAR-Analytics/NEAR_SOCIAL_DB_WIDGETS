@@ -20,7 +20,7 @@ return (
     <div>
       <h3>DAO Proposals</h3>
       <div className="mb-2">
-        Sputnik Contract ID:
+        <p className="m-1">Sputnik Contract ID:</p>
         <input type="text" onChange={(e) => onChangeDAO(e.target.value)} />
       </div>
 
