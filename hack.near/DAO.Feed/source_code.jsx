@@ -6,9 +6,4 @@ if (feed === null) {
   return "Loading...";
 }
 
-return (
-  <Widget
-    src={feed ?? `hack.near/widget/DAO.Social?daoId=${daoId}`}
-    props={props}
-  />
-);
+return <Widget src={feed ?? "hack.near/widget/DAO.Social"} props={daoId} />;
