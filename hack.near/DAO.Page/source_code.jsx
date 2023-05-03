@@ -236,12 +236,10 @@ return (
         </Tabs>
 
         {state.selectedTab === "discussion" && (
-          <>
-            <Widget
-              src={feed ?? "hack.near/widget/DAO.Social"}
-              props={{ daoId }}
-            />
-          </>
+          <Widget
+            src={feed ?? "hack.near/widget/DAO.Social"}
+            props={{ daoId }}
+          />
         )}
 
         {state.selectedTab === "proposals" && (
