@@ -23,8 +23,10 @@ State.init({
 const profile_args = JSON.stringify({
   data: {
     [state.daoId]: {
-      dao: {
-        page: state.page,
+      settings: {
+        dao: {
+          page: state.page,
+        },
       },
     },
   },
@@ -35,7 +37,7 @@ const proposal_args = Buffer.from(profile_args, "utf-8").toString("base64");
 const handleProposal = () => {
   Near.call([
     {
-      contractName: state.daoId,
+      contractName: state.daoId ?? daoId,
       methodName: "add_proposal",
       args: {
         proposal: {
