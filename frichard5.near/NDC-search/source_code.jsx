@@ -31,7 +31,6 @@ const ProposalCard = (
       ftList,
       council:
         state.policy &&
-        state.proposal &&
         state.policy
           .filter((pol) => pol.dao_id === proposal.dao_id)
           .map((pol) => {
@@ -70,9 +69,7 @@ const fetchPolicy = (daos) => {
   }).then(({ err, body, ok }) => {
     if (ok) {
       State.update({
-        council: body.state.policy.roles.find(
-          (r) => r.name === "Council" || r.name === "council"
-        ).kind,
+        policy: body,
       });
     }
   });
@@ -81,11 +78,10 @@ const fetchPolicy = (daos) => {
 !state.council && fetchPolicy([account]);
 
 fetchProposal(state.proposal_id);
-
+console.log("state", state);
 return (
   <div>
     {Input}
-    <div>pokpozad</div>
     {!state.fetchingProposal && state.proposal && state.council && ProposalCard}
   </div>
 );
