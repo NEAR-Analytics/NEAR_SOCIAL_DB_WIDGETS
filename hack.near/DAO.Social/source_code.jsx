@@ -2,6 +2,15 @@ const daoId = props.daoId;
 
 const index = [
   {
+    action: "post",
+    key: "main",
+    options: {
+      limit: 10,
+      order: "desc",
+      accountId: daoId,
+    },
+  },
+  {
     action: "repost",
     key: "main",
     options: {
