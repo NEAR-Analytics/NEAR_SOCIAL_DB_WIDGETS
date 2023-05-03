@@ -7,6 +7,7 @@ console.log("PROPS SEEARCH", props);
 State.init({
   input: "",
   ftList: ftList,
+  proposal_id: proposal_id,
 });
 
 // Fetch
