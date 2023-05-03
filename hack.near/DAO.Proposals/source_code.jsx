@@ -19,7 +19,11 @@ return (
   <>
     <div>
       <h3>DAO Proposals</h3>
-      <hr />
+      <div className="mb-2">
+        Sputnik Contract ID:
+        <input type="text" onChange={(e) => onChangeDAO(e.target.value)} />
+      </div>
+
       <hr />
 
       <div>
@@ -27,7 +31,7 @@ return (
           <Widget
             key={i}
             src="hack.near/widget/DAO.Proposal"
-            props={{ daoId, id: i }}
+            props={{ daoId: state.daoId, id: i }}
           />
         ))}
       </div>
