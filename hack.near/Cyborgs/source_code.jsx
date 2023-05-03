@@ -23,12 +23,23 @@ return (
       />
     </div>
     <br />
-
+    <a
+      className="btn btn-outline-success"
+      href="/#/hack.near/widget/DAO.Factory"
+    >
+      <b>Create a New DAO</b>
+    </a>
     <a
       className="btn btn-outline-primary"
       href="/#/hack.near/widget/DAO.Profile.Editor"
     >
-      <b>Suggest Changes to DAO Profiles</b>
+      <b>Suggest Profile Updates</b>
+    </a>
+    <a
+      className="btn btn-outline-secondary"
+      href="/#/hack.near/widget/DAO.Page.Editor"
+    >
+      <b>Propose Featured Widget</b>
     </a>
     <br />
 
