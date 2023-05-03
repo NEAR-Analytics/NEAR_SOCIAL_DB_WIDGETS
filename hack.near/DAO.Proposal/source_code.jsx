@@ -48,6 +48,7 @@ return (
       <a className="btn btn-outline-danger" onClick={handleReject}>
         No
       </a>
+      <hr />
     </div>
   </>
 );
