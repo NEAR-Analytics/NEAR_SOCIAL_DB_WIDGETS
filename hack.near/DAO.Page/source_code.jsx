@@ -3,7 +3,7 @@ State.init({
 });
 
 const accountId = props.accountId ?? context.accountId;
-const daoId = props.daoId ?? "onboarddao.sputnik-dao.near";
+const daoId = props.daoId ?? "multi.sputnik-dao.near";
 
 const page = accountId
   ? Social.get(`${accountId}/settings/dao/page`)
