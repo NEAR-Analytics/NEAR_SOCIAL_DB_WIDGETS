@@ -18,7 +18,7 @@ const css = `
       margin-bottom: 16px !important;
   }
   .h2 {
-    font-family: 'Lato', sans-serif;
+    font-family: var(--bs-body-font-family), sans-serif;
     src: url('https://fonts.googleapis.com/css2?family=Lato&display=swap') format('css2');
     font-weight: 300;
     font-style: normal;
