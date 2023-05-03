@@ -87,10 +87,19 @@ fetchProposal(state.proposal_id);
 const Error = styled.div`
 `;
 
+const Content = styled.div`
+
+`;
+
 return (
   <div>
     {Input}
-    {!state.fetchingProposal && state.proposal && state.policy && ProposalCard}
+    <Content>
+      {!state.fetchingProposal &&
+        state.proposal &&
+        state.policy &&
+        ProposalCard}
+    </Content>
     {state.error && <Error>{state.error}</Error>}
   </div>
 );
