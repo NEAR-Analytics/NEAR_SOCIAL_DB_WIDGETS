@@ -2,7 +2,7 @@ State.init({
   copiedShareUrl: false,
 });
 
-const accountId = props.accountId ?? "multi.sputnik-dao.near";
+const accountId = props.daoId ?? props.accountId ?? "multi.sputnik-dao.near";
 const profile =
   props.profile || Social.get(`${accountId}/profile/**`, "final") || {};
 
