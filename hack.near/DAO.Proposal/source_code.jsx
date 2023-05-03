@@ -36,12 +36,14 @@ const handleReject = () => {
 
 return (
   <>
-    <p>Proposal #{proposal_id}</p>
-
-    <h5>by {proposal.proposer}</h5>
+    <h5>Proposal #{proposal_id}</h5>
+    <p>
+      <i>
+        by <b>{proposal.proposer}</b>
+      </i>
+    </p>
     <p>{proposal.description}</p>
     <div>
-      <h4>Vote Below</h4>
       <a className="btn btn-outline-success" onClick={handleApprove}>
         Yes
       </a>
