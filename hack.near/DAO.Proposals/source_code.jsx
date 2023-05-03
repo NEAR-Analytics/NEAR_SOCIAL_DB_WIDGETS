@@ -9,8 +9,6 @@ const proposals = Near.view(daoId, "get_proposals", {
   limit: 10,
 });
 
-console.log(proposals);
-
 const onChangeDAO = (daoId) => {
   State.update({
     daoId,
