@@ -1,4 +1,5 @@
 const { label, sendInput, placeholder, validate } = props;
+const buttonLabel = props.buttonLabel || "Apply";
 
 State.init({
   input: "",
@@ -53,7 +54,7 @@ return (
       ""
     )}
     <button style={{ marginLeft: "0px" }} onClick={handleSubmit}>
-      Apply
+      {buttonLabel}
     </button>
   </InputWrapper>
 );
