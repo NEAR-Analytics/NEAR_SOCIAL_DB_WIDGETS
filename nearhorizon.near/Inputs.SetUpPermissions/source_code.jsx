@@ -39,21 +39,15 @@ if (!state.accountsWithPermissionsIsFetched) {
     { account_id: context.accountId },
     "final",
     false
-  ).then((data) => {
-    console.log({
-      data: data
-        .map(([info]) => info)
-        .filter((info) => "AccountId" in info)
-        .map(({ AccountId }) => AccountId),
-    });
+  ).then((data) =>
     State.update({
       accountsWithPermissions: data
         .map(([info]) => info)
         .filter((info) => "AccountId" in info)
         .map(({ AccountId }) => AccountId),
       accountsWithPermissionsIsFetched: true,
-    });
-  });
+    })
+  );
 }
 
 // if (!state.followingIsFetched || !state.accountsWithPermissionsIsFetched) {
