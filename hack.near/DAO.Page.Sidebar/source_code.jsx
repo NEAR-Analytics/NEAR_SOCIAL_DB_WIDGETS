@@ -242,6 +242,14 @@ return (
 
         {accountFollowsYou && <TextBadge>Follows You</TextBadge>}
       </div>
+      {profile.description && (
+        <div>
+          <Widget
+            src="near/widget/SocialMarkdown"
+            props={{ text: profile.description }}
+          />
+        </div>
+      )}
 
       <Actions>
         {viewingOwnAccount ? (
@@ -304,17 +312,6 @@ return (
       </Actions>
     </Section>
 
-    {tags.length > 0 && (
-      <Section>
-        <Widget
-          src="near/widget/Tags"
-          props={{
-            tags,
-          }}
-        />
-      </Section>
-    )}
-
     <Section>
       <Stats>
         <Text as="a" href={`${accountUrl}&tab=following`}>
@@ -327,6 +324,14 @@ return (
           <b>{followersCount === null ? "--" : followersCount}</b> Followers
         </Text>
       </Stats>
+      {tags.length > 0 && (
+        <Widget
+          src="near/widget/Tags"
+          props={{
+            tags,
+          }}
+        />
+      )}
     </Section>
 
     {profile.linktree && (
