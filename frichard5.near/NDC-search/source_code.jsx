@@ -1,4 +1,4 @@
-const { account, widgetProvider, proposal_id, ftList } = props;
+const { account, widgetProvider, proposal_id } = props;
 const apiProposalUrl = `https://api.pikespeak.ai/daos/proposal/${account}`;
 const apiPolicyUrl = `https://api.pikespeak.ai/daos/policy`;
 const publicApiKey = "36f2b87a-7ee6-40d8-80b9-5e68e587a5b5";
@@ -6,6 +6,9 @@ const publicApiKey = "36f2b87a-7ee6-40d8-80b9-5e68e587a5b5";
 State.init({
   input: "",
 });
+
+// Fetch
+const ftList = fetch(refUrl);
 
 const Input = (
   <Widget
@@ -28,20 +31,13 @@ const ProposalCard = (
     props={{
       proposal: state.proposal,
       widgetProvider,
-      ftList,
+      ftList: ftList.body,
       council:
         state.policy &&
-        state.policy
-          .filter((pol) => pol.dao_id === proposal.dao_id)
-          .map((pol) => {
-            return pol.state.policy.roles.find(
-              (r) => r.name === "Council" || r.name === "council"
-            ).kind;
-          })[0],
-      voteExpired:
-        state.policy &&
-        state.policy.filter((pol) => pol.dao_id === proposal.dao_id)[0].state
-          .policy.proposal_period,
+        state.policy.state.policy.roles.find(
+          (r) => r.name === "Council" || r.name === "council"
+        ).kind,
+      voteExpired: state.policy && state.policy.state.policy.proposal_period,
     }}
   />
 );
@@ -75,13 +71,13 @@ const fetchPolicy = (daos) => {
   });
 };
 
-!state.council && fetchPolicy([account]);
+!state.policy && fetchPolicy([account]);
 
 fetchProposal(state.proposal_id);
-console.log("state", state);
+
 return (
   <div>
     {Input}
-    {!state.fetchingProposal && state.proposal && state.council && ProposalCard}
+    {!state.fetchingProposal && state.proposal && state.policy && ProposalCard}
   </div>
 );
