@@ -1,10 +1,4 @@
-if (
-  !props.src ||
-  !props.istemplate ||
-  props.istemplate === false ||
-  porps.istemplate.toString() === "false"
-)
-  return "";
+if (!props.src || !props.istemplate || props.istemplate === false) return "";
 
 console.log("istemplate apply", props.istemplate);
 const { updateStatus } = props;
