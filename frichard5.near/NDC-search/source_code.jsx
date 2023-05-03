@@ -1,14 +1,18 @@
-const { account, widgetProvider, proposal_id } = props;
+const { account, widgetProvider, proposal_id, ftList } = props;
 const apiProposalUrl = `https://api.pikespeak.ai/daos/proposal/${account}`;
 const apiPolicyUrl = `https://api.pikespeak.ai/daos/policy`;
 const publicApiKey = "36f2b87a-7ee6-40d8-80b9-5e68e587a5b5";
 
 State.init({
   input: "",
+  ftList: ftList,
 });
 
 // Fetch
-const ftList = fetch(refUrl);
+if (!ftList) {
+  const fetchedFtList = fetch(refUrl);
+  State.update({ ftList: fetchedFtList.body });
+}
 
 const Input = (
   <Widget
@@ -31,7 +35,7 @@ const ProposalCard = (
     props={{
       proposal: state.proposal,
       widgetProvider,
-      ftList: ftList.body,
+      ftList: state.ftList,
       council:
         state.policy &&
         state.policy.state.policy.roles.find(
