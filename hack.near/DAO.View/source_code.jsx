@@ -3,7 +3,7 @@ const daoId = props.daoId ?? "multi.sputnik-dao.near";
 const proposal_id = props.id ?? 1;
 
 const proposal = Near.view(daoId, "get_proposal", {
-  id: proposal_id,
+  id: JSON.parse(proposal_id),
 });
 
 const handleApprove = () => {
@@ -26,7 +26,7 @@ const handleReject = () => {
       contractName: daoId,
       methodName: "act_proposal",
       args: {
-        id: proposal_id,
+        id: JSON.parse(proposal_id),
         action: "VoteReject",
       },
       gas: 200000000000000,
