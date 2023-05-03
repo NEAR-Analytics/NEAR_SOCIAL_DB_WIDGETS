@@ -1,9 +1,7 @@
 const daoId = props.daoId ?? "multi.sputnik-dao.near";
 
-const id = props.id ?? 1;
-
 const proposal = Near.view(daoId, "get_proposal", {
-  id,
+  id: props.id,
 });
 
 const handleApprove = () => {
@@ -36,7 +34,7 @@ const handleReject = () => {
 
 return (
   <>
-    <p>Proposal #{id}</p>
+    <p>Proposal #{props.id}</p>
 
     <h5>by {proposal.proposer}</h5>
     <p>{proposal.description}</p>
