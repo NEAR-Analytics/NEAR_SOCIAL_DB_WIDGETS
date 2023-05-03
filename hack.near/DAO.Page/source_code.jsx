@@ -256,6 +256,10 @@ return (
           <Widget src="hack.near/widget/DAO.Proposals" props={{ daoId }} />
         )}
 
+        {state.selectedTab === "members" && (
+          <Widget src="near/widget/DAO.Members" props={{ daoId }} />
+        )}
+
         {state.selectedTab === "followers" && (
           <Widget
             src="near/widget/FollowersList"
