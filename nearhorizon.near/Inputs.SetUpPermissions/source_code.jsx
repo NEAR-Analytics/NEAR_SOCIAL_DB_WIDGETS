@@ -40,7 +40,12 @@ if (!state.accountsWithPermissionsIsFetched) {
     "final",
     false
   ).then((data) => {
-    console.log({ data });
+    console.log({
+      data: data
+        .map(([info]) => info)
+        .filter((info) => "AccountId" in info)
+        .map(({ AccountId }) => AccountId),
+    });
     State.update({
       accountsWithPermissions: data
         .map(([info]) => info)
