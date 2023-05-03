@@ -1,4 +1,7 @@
-const { account, widgetProvider, proposal_id } = props.account;
+const { account, widgetProvider, proposal_id, ftList } = props;
+const apiProposalUrl = `https://api.pikespeak.ai/daos/proposal/${account}`;
+const apiPolicyUrl = `https://api.pikespeak.ai/daos/policy`;
+const publicApiKey = "36f2b87a-7ee6-40d8-80b9-5e68e587a5b5";
 
 State.init({
   input: "",
@@ -12,6 +15,9 @@ const Input = (
       placeholder: "Enter an account address or a proposal id",
       sendInput: (i) => {
         console.log("input", i);
+        if (!isNaN(i)) {
+          State.update({ proposal_id: i, fetchingProposal: true });
+        }
       },
     }}
   />
@@ -75,10 +81,11 @@ const fetchPolicy = (daos) => {
 !state.council && fetchPolicy([account]);
 
 fetchProposal(state.proposal_id);
-
+console.log("iojzzzazd", !state.fetchingProposal && state.proposal);
 return (
   <div>
     {Input}
+    {ProposalCard}
     {!state.fetchingProposal && state.proposal && ProposalCard}
   </div>
 );
