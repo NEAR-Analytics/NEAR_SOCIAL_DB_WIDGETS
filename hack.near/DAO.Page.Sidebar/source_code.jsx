@@ -280,7 +280,7 @@ return (
           <Widget
             src="hack.near/widget/DAO.Join"
             props={{
-              accountId,
+              daoId: accountId,
             }}
           />
         </FollowButtonWrapper>
