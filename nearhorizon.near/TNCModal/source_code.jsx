@@ -50,7 +50,10 @@ return (
       <Dialog.Content asChild>
         <Content>
           <Dialog.Title>Terms and Conditions</Dialog.Title>
-          <Widget src={`${ownerId}/widget/TNCForm`} />
+          <Widget
+            src={`${ownerId}/widget/TNCForm`}
+            props={{ accept: props.accept }}
+          />
         </Content>
       </Dialog.Content>
     </Dialog.Root>
