@@ -115,7 +115,7 @@ return (
       props={{
         label: "Accounts to add permissions to",
         placeholder: "Add accounts",
-        options: [],
+        options: state.following,
         value: state.value,
         onChange: (value) => State.update({ value }),
       }}
