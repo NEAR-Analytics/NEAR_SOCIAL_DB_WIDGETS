@@ -109,7 +109,7 @@ const renderRepost = (a) => {
         />
       </div>
       <Widget
-        src="hack.near/widget/News.Post"
+        src="hack.near/widget/DAO.Social.Post"
         props={{ accountId: post.accountId, blockHeight: post.blockHeight }}
       />
     </div>
