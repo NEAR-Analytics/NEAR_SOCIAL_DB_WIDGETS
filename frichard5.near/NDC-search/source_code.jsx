@@ -21,7 +21,7 @@ const Input = (
     src={`${widgetProvider}/widget/NDC-input`}
     props={{
       buttonLabel: "Search",
-      placeholder: "Enter an account address or a proposal id",
+      placeholder: "Enter a proposal id",
       sendInput: (i) => {
         if (!isNaN(i)) {
           State.update({ proposal_id: i, fetchingProposal: true });
