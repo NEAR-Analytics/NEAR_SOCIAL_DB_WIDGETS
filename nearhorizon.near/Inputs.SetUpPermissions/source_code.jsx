@@ -21,7 +21,7 @@ if (!state.followingIsFetched) {
     false
   ).then((data) =>
     State.update({
-      following: Object.keys(data[context.accountId].graph?.follow ?? {}).map(
+      following: Object.keys(data[context.accountId]?.graph?.follow ?? {}).map(
         (name) => ({ name })
       ),
       followingIsFetched: true,
