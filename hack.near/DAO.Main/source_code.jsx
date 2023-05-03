@@ -1,11 +1,11 @@
 const accountId = props.accountId ?? context.accountId;
 
-const feed = accountId
-  ? Social.get(`${accountId}/settings/dao/page.feed`)
+const page = accountId
+  ? Social.get(`${accountId}/settings/dao/page`)
   : undefined;
 
-if (feed === null) {
+if (page === null) {
   return "Loading...";
 }
 
-return <Widget src={feed ?? "hack.near/widget/DAO.Social"} props={props} />;
+return <Widget src={page ?? "hack.near/widget/DAO.Profile"} props={props} />;
