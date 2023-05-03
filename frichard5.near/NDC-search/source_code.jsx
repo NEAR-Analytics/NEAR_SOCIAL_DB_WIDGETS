@@ -88,7 +88,11 @@ const Error = styled.div`
 `;
 
 const InputWrapper = styled.div`
-
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: fit-content;
+  margin-top: 40px;
 `;
 
 return (
