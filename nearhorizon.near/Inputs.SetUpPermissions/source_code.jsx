@@ -22,7 +22,7 @@ if (!state.followingIsFetched) {
   ).then((data) => {
     console.log(data);
     State.update({
-      following: (Objec.keys(data).length > 0
+      following: (Object.keys(data).length > 0
         ? Object.keys(data[context.accountId]?.graph?.follow ?? {})
         : []
       ).map((name) => ({ name })),
