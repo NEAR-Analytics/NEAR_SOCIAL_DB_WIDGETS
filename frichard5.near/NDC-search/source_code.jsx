@@ -57,7 +57,7 @@ const fetchProposal = (id) => {
   });
   proposal.body &&
     State.update({
-      proposal: proposal.body.length ? proposal.body[0] : [],
+      proposal: proposal.body.length ? proposal.body[0] : false,
       fetchingProposal: false,
     });
 };
