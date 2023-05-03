@@ -227,12 +227,6 @@ return (
           >
             Following
           </TabsButton>
-          <TabsButton
-            href={`${accountUrl}&tab=explorer`}
-            selected={state.selectedTab === "explorer"}
-          >
-            Explorer
-          </TabsButton>
         </Tabs>
 
         {state.selectedTab === "discussion" && (
@@ -271,18 +265,6 @@ return (
           <Widget
             src="near/widget/FollowingList"
             props={{ accountId: daoId }}
-          />
-        )}
-
-        {state.selectedTab === "explorer" && (
-          <Widget
-            src="near/widget/Explorer.Account"
-            props={{
-              accountId: daoId,
-              network: context.networkId,
-              language: "en",
-              baseUrl: props.baseUrl,
-            }}
           />
         )}
       </Content>
