@@ -8,7 +8,7 @@ const limit = 7;
 let totalIndexers = 0;
 const registry_contract_id =
   props.registry_contract_id || "queryapi.dataplatform.near";
-const APP_OWNER = "roshaan.near";
+const APP_OWNER = "dataplatform.near";
 
 State.init({
   activeTab: activeTab,
