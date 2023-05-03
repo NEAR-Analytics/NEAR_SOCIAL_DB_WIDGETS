@@ -12,7 +12,7 @@ const handleApprove = () => {
       contractName: daoId,
       methodName: "act_proposal",
       args: {
-        id: { proposal_id },
+        id: proposal_id,
         action: "VoteApprove",
       },
       gas: 200000000000000,
