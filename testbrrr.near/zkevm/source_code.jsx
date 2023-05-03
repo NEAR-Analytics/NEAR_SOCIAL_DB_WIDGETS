@@ -43,7 +43,7 @@ return (
     <div style={{ textAlign: "center", marginTop: 100 }}>
       <img
         src="https://ecosystem.polygon.technology/assets/images/polygon-zkevm-logo.svg"
-        style={{ width: 300 }}
+        style={{ width: 300, marginTop: 50 }}
       ></img>
       <h2
         style={{
