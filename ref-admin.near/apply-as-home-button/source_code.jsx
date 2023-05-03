@@ -5,6 +5,8 @@ if (
   porps.istemplate === "false"
 )
   return "";
+
+console.log("istemplate apply", props.istemplate);
 const { updateStatus } = props;
 const { commitLoading, fetchDataLoading } = state;
 State.init({
