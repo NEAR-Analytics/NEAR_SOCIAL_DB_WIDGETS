@@ -3,7 +3,7 @@ const ownerId = "nearhorizon.near";
 State.init({
   following: [],
   followingIsFetched: false,
-  value: [{ name: props.accountId }],
+  value: props.accountId ? [{ name: props.accountId }] : [],
   accountsWithPermissions: [],
   accountsWithPermissionsIsFetched: false,
 });
