@@ -64,8 +64,6 @@ State.init({
   agree: false,
 });
 
-console.log(props.open);
-
 return (
   <Container>
     <Dialog.Root open={props.open}>
