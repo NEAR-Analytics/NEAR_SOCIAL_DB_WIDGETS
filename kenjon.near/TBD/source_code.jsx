@@ -95,8 +95,8 @@ scene("game", () => {
 	const PIPE_OPEN = 35000
 	const PIPE_MIN = 60
 	const JUMP_FORCE = 1000
-	const SPEED = 32000
-	const CEILING = -60
+	const SPEED = 320000
+	const CEILING = -1000
 
 	gravity(4000)
 
