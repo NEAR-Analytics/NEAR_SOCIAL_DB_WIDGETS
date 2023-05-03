@@ -1,4 +1,4 @@
-const daoId = props.daoId ?? "multi.sputnik-dao.near";
+const daoId = props.daoId;
 
 const index = [
   {
