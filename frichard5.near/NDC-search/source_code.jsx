@@ -27,11 +27,12 @@ const ProposalCard = (
   <Widget
     src={`${widgetProvider}/widget/NDC-proposal-card`}
     props={{
-      proposal,
+      proposal: state.proposal,
       widgetProvider,
       ftList,
       council:
         state.policy &&
+        state.proposal &&
         state.policy
           .filter((pol) => pol.dao_id === proposal.dao_id)
           .map((pol) => {
@@ -81,11 +82,12 @@ const fetchPolicy = (daos) => {
 !state.council && fetchPolicy([account]);
 
 fetchProposal(state.proposal_id);
-console.log("iojzzzazd", !state.fetchingProposal && state.proposal);
+console.log("iojzzzazd", state);
 return (
   <div>
     {Input}
+    <div>pokpozad</div>
     {ProposalCard}
-    {!state.fetchingProposal && state.proposal && ProposalCard}
+    {!state.fetchingProposal && state.proposal && state.council && ProposalCard}
   </div>
 );
