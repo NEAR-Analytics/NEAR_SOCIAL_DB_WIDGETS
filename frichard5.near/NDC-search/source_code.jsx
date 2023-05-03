@@ -85,6 +85,8 @@ const fetchPolicy = (daos) => {
 fetchProposal(state.proposal_id);
 
 const Error = styled.div`
+  text-align: center;
+  margin-top: 40px;
 `;
 
 const InputWrapper = styled.div`
