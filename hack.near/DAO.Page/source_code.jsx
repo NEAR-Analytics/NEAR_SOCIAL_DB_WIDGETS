@@ -1,5 +1,5 @@
 State.init({
-  selectedTab: props.tab || "overview",
+  selectedTab: props.tab || "discussion",
 });
 
 const accountId = props.accountId ?? context.accountId;
