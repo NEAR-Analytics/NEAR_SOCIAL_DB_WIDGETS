@@ -194,10 +194,10 @@ return (
       <Content>
         <Tabs>
           <TabsButton
-            href={`${accountUrl}&tab=overview`}
-            selected={state.selectedTab === "overview"}
+            href={`${accountUrl}&tab=discussion`}
+            selected={state.selectedTab === "discussion"}
           >
-            Overview
+            Discussion
           </TabsButton>
 
           <TabsButton
@@ -235,23 +235,8 @@ return (
           </TabsButton>
         </Tabs>
 
-        {state.selectedTab === "overview" && (
+        {state.selectedTab === "discussion" && (
           <>
-            {profile.description && (
-              <>
-                <Title as="h2" size="19px" margin>
-                  About
-                </Title>
-
-                <Bio>
-                  <Widget
-                    src="near/widget/SocialMarkdown"
-                    props={{ text: profile.description }}
-                  />
-                </Bio>
-              </>
-            )}
-
             <Widget
               src={feed ?? "hack.near/widget/DAO.Social"}
               props={{ daoId }}
