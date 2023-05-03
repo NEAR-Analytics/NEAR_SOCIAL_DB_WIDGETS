@@ -5,6 +5,22 @@ State.init({
 const accountId = props.accountId ?? context.accountId;
 const daoId = props.daoId ?? "onboarddao.sputnik-dao.near";
 
+const page = accountId
+  ? Social.get(`${accountId}/settings/dao/page`)
+  : undefined;
+
+if (page === null) {
+  return "Loading...";
+}
+
+const feed = accountId
+  ? Social.get(`${accountId}/settings/dao/feed`)
+  : undefined;
+
+if (feed === null) {
+  return "Loading...";
+}
+
 if (props.tab && props.tab !== state.selectedTab) {
   State.update({
     selectedTab: props.tab,
@@ -185,13 +201,6 @@ return (
           </TabsButton>
 
           <TabsButton
-            href={`${accountUrl}&tab=communities`}
-            selected={state.selectedTab === "communities"}
-          >
-            Communities
-          </TabsButton>
-
-          <TabsButton
             href={`${accountUrl}&tab=proposals`}
             selected={state.selectedTab === "proposals"}
           >
@@ -199,8 +208,8 @@ return (
           </TabsButton>
 
           <TabsButton
-            href={`${accountUrl}&tab=following`}
-            selected={state.selectedTab === "following"}
+            href={`${accountUrl}&tab=members`}
+            selected={state.selectedTab === "members"}
           >
             Members
           </TabsButton>
@@ -209,9 +218,15 @@ return (
             href={`${accountUrl}&tab=followers`}
             selected={state.selectedTab === "followers"}
           >
-            Posts
+            Followers
           </TabsButton>
 
+          <TabsButton
+            href={`${accountUrl}&tab=posts`}
+            selected={state.selectedTab === "posts"}
+          >
+            Posts
+          </TabsButton>
           <TabsButton
             href={`${accountUrl}&tab=explorer`}
             selected={state.selectedTab === "explorer"}
@@ -238,8 +253,8 @@ return (
             )}
 
             <Widget
-              src="hack.near/widget/DAO.Social"
-              props={{ daoId: "multi.sputnik-dao.near" }}
+              src={feed ?? "hack.near/widget/DAO.Feed"}
+              props={{ daoId }}
             />
           </>
         )}
@@ -248,8 +263,11 @@ return (
           <Widget src="hack.near/widget/proposals" props={{ daoId }} />
         )}
 
-        {state.selectedTab === "communities" && (
-          <Widget src="mob.near/widget/People" props={{ daoId }} />
+        {state.selectedTab === "following" && (
+          <Widget
+            src="near/widget/FollowingList"
+            props={{ accountId: daoId }}
+          />
         )}
 
         {state.selectedTab === "followers" && (
@@ -259,11 +277,8 @@ return (
           />
         )}
 
-        {state.selectedTab === "following" && (
-          <Widget
-            src="near/widget/FollowingList"
-            props={{ accountId: daoId }}
-          />
+        {state.selectedTab === "posts" && (
+          <Widget src="near/widget/Posts" props={{ accountId: daoId }} />
         )}
 
         {state.selectedTab === "explorer" && (
