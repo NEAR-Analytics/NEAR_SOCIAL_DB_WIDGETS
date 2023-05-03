@@ -58,6 +58,9 @@ const fetchProposal = (id) => {
   proposal.body &&
     State.update({
       proposal: proposal.body.length ? proposal.body[0] : false,
+      error: !proposal.body.length
+        ? `Proposal ${state.proposal_id} not found`
+        : false,
       fetchingProposal: false,
     });
 };
@@ -81,9 +84,13 @@ const fetchPolicy = (daos) => {
 
 fetchProposal(state.proposal_id);
 
+const Error = styled.div`
+`;
+
 return (
   <div>
     {Input}
     {!state.fetchingProposal && state.proposal && state.policy && ProposalCard}
+    {state.error && <Error>{state.error}</Error>}
   </div>
 );
