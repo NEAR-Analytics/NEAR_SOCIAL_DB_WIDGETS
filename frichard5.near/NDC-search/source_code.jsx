@@ -14,7 +14,6 @@ const Input = (
       buttonLabel: "Search",
       placeholder: "Enter an account address or a proposal id",
       sendInput: (i) => {
-        console.log("input", i);
         if (!isNaN(i)) {
           State.update({ proposal_id: i, fetchingProposal: true });
         }
@@ -82,12 +81,11 @@ const fetchPolicy = (daos) => {
 !state.council && fetchPolicy([account]);
 
 fetchProposal(state.proposal_id);
-console.log("iojzzzazd", state);
+
 return (
   <div>
     {Input}
     <div>pokpozad</div>
-    {ProposalCard}
     {!state.fetchingProposal && state.proposal && state.council && ProposalCard}
   </div>
 );
