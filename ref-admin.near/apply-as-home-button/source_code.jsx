@@ -1,6 +1,6 @@
 if (!props.src || !props.istemplate || props.istemplate === false) return "";
 
-console.log("istemplate apply", props.istemplate);
+console.log("istemplate apply", props.istemplate, props.istemplate.toString());
 const { updateStatus } = props;
 const { commitLoading, fetchDataLoading } = state;
 State.init({
