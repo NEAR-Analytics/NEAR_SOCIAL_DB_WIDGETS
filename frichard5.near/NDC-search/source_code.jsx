@@ -2,6 +2,7 @@ const { account, widgetProvider, proposal_id, ftList } = props;
 const apiProposalUrl = `https://api.pikespeak.ai/daos/proposal/${account}`;
 const apiPolicyUrl = `https://api.pikespeak.ai/daos/policy`;
 const publicApiKey = "36f2b87a-7ee6-40d8-80b9-5e68e587a5b5";
+console.log("PROPS SEEARCH", props);
 
 State.init({
   input: "",
