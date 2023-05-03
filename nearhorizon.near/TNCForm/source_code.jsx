@@ -1,3 +1,7 @@
+State.init({
+  agree: false,
+});
+
 return (
   <>
     <Dialog.Description>
@@ -15,10 +19,7 @@ return (
           ),
           value: state.agree,
           id: "agree",
-          onChange: (agree) => {
-            console.log(agree);
-            State.update({ agree: !state.agree });
-          },
+          onChange: (agree) => State.update({ agree: !state.agree }),
         }}
       />
     </Dialog.Description>
