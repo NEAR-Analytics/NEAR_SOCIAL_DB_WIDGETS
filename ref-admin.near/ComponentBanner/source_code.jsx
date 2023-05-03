@@ -119,7 +119,7 @@ return (
     </Header>
     <Widget
       src="ref-admin.near/widget/apply-as-home-button"
-      props={{ src: props.src, updateStatus: getIsItSet }}
+      props={{ src: props.src, updateStatus: getIsItSet, istemplate: true }}
     ></Widget>
   </Wrapper>
 );
