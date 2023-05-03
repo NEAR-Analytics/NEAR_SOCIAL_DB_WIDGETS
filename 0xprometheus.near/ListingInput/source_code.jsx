@@ -6,7 +6,7 @@ return (
         <input
           type="text"
           placeholder={props.state.contractId}
-          onChange={(e) => onChangeContract(e.target.value)}
+          onChange={(e) => props.onChangeContract(e.target.value)}
         />
       </div>
       <div className="">
@@ -14,7 +14,7 @@ return (
         <input
           type="text"
           placeholder={props.state.tokenId}
-          onChange={(e) => onChangeToken(e.target.value)}
+          onChange={(e) => props.onChangeToken(e.target.value)}
         />
       </div>
 
@@ -24,7 +24,7 @@ return (
             className="form-check-input"
             type="checkbox"
             checked={props.state.fewfar}
-            onChange={selectFewFar}
+            onChange={props.selectFewFar}
             id="fewfarbox"
           />
           <label className="form-check-label" htmlFor="myCheckbox">
@@ -39,7 +39,7 @@ return (
               className="form-check-input"
               type="checkbox"
               checked={props.state.mintbase}
-              onChange={selectMintbase}
+              onChange={props.selectMintbase}
               id="mintbasebox"
             />
             <label className="form-check-label" htmlFor="myCheckbox">
@@ -54,7 +54,7 @@ return (
             className="form-check-input"
             type="checkbox"
             checked={props.state.tradeport}
-            onChange={selectTradeport}
+            onChange={props.selectTradeport}
             id="tradeportbox"
           />
           <label className="form-check-label" htmlFor="myCheckbox">
@@ -68,7 +68,7 @@ return (
             className="form-check-input"
             type="checkbox"
             checked={props.state.custom}
-            onChange={selectCustom}
+            onChange={props.selectCustom}
             id="custombox"
           />
           <label className="form-check-label" htmlFor="myCheckbox">
@@ -81,7 +81,7 @@ return (
             <input
               type="text"
               placeholder={props.state.customMarketLink}
-              onChange={(e) => onChangeCustomMarket(e.target.value)}
+              onChange={(e) => props.onChangeCustomMarket(e.target.value)}
             />
           </div>
         )}
@@ -96,7 +96,7 @@ return (
           <input
             type="number"
             placeholder={props.state.amount / 1e24}
-            onChange={(e) => onChangeAmount(e.target.value)}
+            onChange={(e) => props.onChangeAmount(e.target.value)}
           />
           <p>
             * You will pay some gas in Ⓝ to deposit NEAR to marketplace address
