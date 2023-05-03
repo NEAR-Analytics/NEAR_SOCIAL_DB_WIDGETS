@@ -41,7 +41,7 @@ const columns = [
 
         return (
           <div style={{ display: "flex", marginBottom: "5px" }}>
-            {/* <Widget
+            <Widget
               src={`${widgetProvider}/widget/table_ft_formatter`}
               props={{
                 ftList,
@@ -49,7 +49,7 @@ const columns = [
                 ft: transferData.token_id,
                 isParsed: true,
               }}
-            /> */}
+            />
             <button
               onClick={setModal(proposalId)}
               style={{ marginLeft: "10px" }}
@@ -198,7 +198,7 @@ return (
     ) : (
       ""
     )}
-    {GenericTable}
+    {state.displayedRank.length ? GenericTable : ""}
     {state.ranking && state.ranking.length === 0 && (
       <span>No Transfer Proposal Beneficiaries</span>
     )}
