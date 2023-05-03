@@ -1,3 +1,5 @@
+const ownerId = "nearhorizon.near";
+
 State.init({
   agree: false,
 });
