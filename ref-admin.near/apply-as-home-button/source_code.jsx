@@ -1,4 +1,10 @@
-if (!props.src) return "";
+if (
+  !props.src ||
+  !props.istemplate ||
+  props.istemplate === false ||
+  porps.istemplate === "false"
+)
+  return "";
 const { updateStatus } = props;
 const { commitLoading, fetchDataLoading } = state;
 State.init({
