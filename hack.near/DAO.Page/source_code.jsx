@@ -244,6 +244,7 @@ return (
             >
               <b>Update Feed</b>
             </a>
+            <hr />
             <Widget
               src={feed ?? "hack.near/widget/DAO.Social"}
               props={{ daoId }}
