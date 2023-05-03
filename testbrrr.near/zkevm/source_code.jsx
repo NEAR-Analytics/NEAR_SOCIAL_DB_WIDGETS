@@ -39,7 +39,7 @@ const sender = Ethers.send("eth_requestAccounts", [])[0];
 const swapProps = { forceNetwork: "Polygon zkEVM" };
 
 return (
-  <Theme style={{ background: "black" }}>
+  <Theme style={{ background: "black", color: "white" }}>
     <div style={{ textAlign: "center", marginTop: 100 }}>
       <img
         src="https://ecosystem.polygon.technology/assets/images/polygon-zkevm-logo.svg"
