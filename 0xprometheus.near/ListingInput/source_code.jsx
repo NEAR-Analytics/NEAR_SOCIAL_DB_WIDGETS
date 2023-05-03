@@ -165,5 +165,27 @@ return (
         </div>
       </div>
     </div>
+    <div className="row text-center">
+      {state.ownsNFT && (
+        <button className="btn btn-primary mt-3" onClick={list}>
+          List
+        </button>
+      )}
+
+      {!state.ownsNFT && (
+        <button className="btn btn-secondary mt-3">
+          You Can Only List An NFT You Own
+        </button>
+      )}
+
+      <a
+        href={state.tradeportLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn btn-dark mt-3"
+      >
+        View on Tradeport
+      </a>
+    </div>
   </div>
 );
