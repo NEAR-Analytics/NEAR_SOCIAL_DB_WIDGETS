@@ -5,6 +5,7 @@ initState({
 const css = `
   .flex {
     display: flex;
+    color: white;
     > div {
         margin: 32px 0;
       margin-right: 32px;
