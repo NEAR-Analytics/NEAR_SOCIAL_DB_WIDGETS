@@ -13,7 +13,7 @@ if (!accountId) {
 // Profile Data:
 const tags = Object.keys(profile.tags || {});
 const viewingOwnAccount = accountId === context.accountId;
-const accountUrl = `#/hack.near/widget/DAO.Page?daoId=${accountId}`;
+const accountUrl = `/#/hack.near/widget/DAO.Page?daoId=${accountId}`;
 const shareUrl = `https://near.org${accountUrl}`;
 
 // Follower Count:
