@@ -10,6 +10,9 @@ const Input = (
     props={{
       buttonLabel: "Search",
       placeholder: "Enter an account address or a proposal id",
+      sendInput: (i) => {
+        console.log("input", i);
+      },
     }}
   />
 );
