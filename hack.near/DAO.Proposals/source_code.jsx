@@ -21,12 +21,14 @@ return (
   <>
     <div>
       <h3>DAO Proposals</h3>
+      <hr />
+      <hr />
 
       <div>
         {proposals.map((proposal, i) => (
           <Widget
             key={i}
-            src="hack.near/widget/DAO.View"
+            src="hack.near/widget/DAO.Proposal"
             props={{ daoId, id: i }}
           />
         ))}
