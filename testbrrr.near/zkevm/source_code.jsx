@@ -36,7 +36,7 @@ const Theme = state.theme;
 
 const sender = Ethers.send("eth_requestAccounts", [])[0];
 
-const swapProps = { forceNetwork: "Polygon zkEVM" };
+const swapProps = { forceNetwork: "ZKSYNC" };
 
 return (
   <Theme
