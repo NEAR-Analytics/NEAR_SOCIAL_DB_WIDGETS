@@ -19,14 +19,15 @@ if (!state.followingIsFetched) {
     { keys: [`${context.accountId}/graph/follow/*`] },
     "final",
     false
-  ).then((data) =>
+  ).then((data) => {
+    console.log(data);
     State.update({
       following: Object.keys(data[context.accountId]?.graph?.follow ?? {}).map(
         (name) => ({ name })
       ),
       followingIsFetched: true,
-    })
-  );
+    });
+  });
 }
 
 if (!state.accountsWithPermissionsIsFetched) {
