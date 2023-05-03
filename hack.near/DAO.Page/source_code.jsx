@@ -257,7 +257,7 @@ return (
         )}
 
         {state.selectedTab === "members" && (
-          <Widget src="near/widget/DAO.Members" props={{ daoId }} />
+          <Widget src="hack.near/widget/DAO.Members" props={{ daoId }} />
         )}
 
         {state.selectedTab === "followers" && (
