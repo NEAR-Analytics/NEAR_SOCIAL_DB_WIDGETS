@@ -137,7 +137,8 @@ const Container = styled.div`
         color: gray;
         background: white !important;
         border: 1px solid black !important;
-
+        height: 38px;
+        
         &:hover {
           color: black;
         }
