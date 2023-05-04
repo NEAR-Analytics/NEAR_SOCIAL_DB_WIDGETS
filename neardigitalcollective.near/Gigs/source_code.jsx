@@ -13,8 +13,8 @@ const blockHeight = props.blockHeight ?? undefined;
 
 const updateGeneralState = props.updateGeneralState;
 
-const thisWidgetInlineStyles = props.allWidgetsInlineStyles.items;
-const thisWidgetClassNames = props.allWidgetsClassNames.items;
+const thisWidgetInlineStyles = props.allWidgetsInlineStyles.gigs;
+const thisWidgetClassNames = props.allWidgetsClassNames.gigs;
 
 const widgetOwner = props.widgetOwner;
 
@@ -88,7 +88,7 @@ State.init({
     State.update({ content });
   },
   display: blockHeight ? tabs.GIG.id : tabs.ALL_GIGS.id,
-  items: openItem,
+  gigs: openItem,
 });
 
 /* BEGIN Common.componse  */
