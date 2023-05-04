@@ -92,7 +92,7 @@ return (
           </div>
         )}
         <div className=" mb-2">
-          Enter Price You Want to List (In NEAR) (WIP-Buggy)
+          Enter Price You Want to List (In NEAR)
           <input
             type="number"
             placeholder={props.state.amount / 1e24}
