@@ -463,7 +463,7 @@ return (
               })
             }
           >
-            Create New Indexer Loaded
+            Create New Indexer
           </ButtonLink>
           {state.my_indexers.length > 0 && (
             <H2>
@@ -534,7 +534,7 @@ return (
                 <H2>{`${state.indexers[0].accountId}/${state.indexers[0].indexerName}`}</H2>
               ))}
             <Widget
-              src={`${APP_OWNER}/near/widget/QueryApi.Editor`}
+              src={`${APP_OWNER}/widget/QueryApi.Editor`}
               props={{
                 indexerName:
                   selected_indexerName ?? state.indexers[0].indexerName,
