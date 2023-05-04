@@ -11,17 +11,32 @@ const columns = [
     formatter: (d) => {
       return (
         <a
-          href={`https://explorer.near.org/accounts/${d.transaction_view.sender}`}
+          href={`https://explorer.near.org/accounts/${d.account}`}
           target="_blank"
         >
-          {d.transaction_view.sender}
+          {d.account}
         </a>
       );
     },
   },
   {
     id: "total",
-    label: "Total",
+    label: "Proposal count",
+  },
+  {
+    id: "total",
+    label: "Details",
+    formatter: (d) => {
+      const setModal = (d) => {
+        return () => {
+          State.update({
+            isModalOpen: true,
+            accountDetails: d,
+          });
+        };
+      };
+      return <button onClick={setModal(d)}>Show</button>;
+    },
   },
 ];
 
@@ -77,7 +92,8 @@ const fetchTopProposers = () => {
   });
   proposers.body &&
     State.update({
-      proposers: proposers.body.slice(0, resPerPage),
+      displayedProposers: proposers.body.slice(0, resPerPage),
+      proposers: proposers.body,
     });
 };
 
