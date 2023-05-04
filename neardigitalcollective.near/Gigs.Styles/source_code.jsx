@@ -320,7 +320,7 @@ return (
             }}
           />
         </div>
-        <h3 style={allWidgetsInlineStyles.styles.gigsTitle}>Gigs!</h3>
+        <h3 style={allWidgetsInlineStyles.styles.gigsTitle}>NDC Gigs!</h3>
       </div>
 
       <div className={allWidgetsClassNames.styles.userInfoContainer}>
