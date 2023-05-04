@@ -12,6 +12,11 @@ const ipfsImages = {
 
 const web3Teams = [
   {
+    url: "https://www.proximity.dev",
+    name: "Proximity",
+    ipfsImage: ipfsImages.logos.proximity,
+  },
+  {
     url: "https://www.banyan.gg",
     name: "Banyan",
     ipfsImage: ipfsImages.logos.banyan,
@@ -331,6 +336,7 @@ const LineRoundedCorners = (props) => {
 
 return (
   <Wrapper>
+    <Widget src="mob.near/widget/ProfileOnboarding" />
     <Container center>
       <Flex gap="29px" direction="column" alignItems="center">
         <H1>
@@ -378,7 +384,7 @@ return (
         Made Possible by NEAR Builders
       </Text>
 
-      <LogoLinks>
+      <LogoLinks alignItems="center">
         {web3Teams.map((team) => {
           return (
             <a href={team.url} target="_blank" title={team.name}>
