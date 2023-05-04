@@ -25,16 +25,16 @@ const metadata = props.metadata ?? Social.getr(`${widgetPath}/metadata`);
 const urlPrefix = "https://";
 const accountId = props.accountId ?? "*";
 
-const data = Social.index("kudo", "answer");
+const data = Social.index("gig", "answer");
 if (!data) {
   return "Loading answers";
 }
-const upvotes = Social.index("kudo", "upvote");
+const upvotes = Social.index("gig", "upvote");
 if (!upvotes) {
   return "Loading upvotes";
 }
 
-const commentAnswers = Social.index("kudo", "commentAnswers");
+const commentAnswers = Social.index("gig", "commentAnswers");
 if (!commentAnswers) {
   return "Loading commentAnswers";
 }
@@ -81,11 +81,11 @@ upvotes.forEach((upvote) => {
 
 const finalData = sortedData;
 
-const kudoBlockHeightFiltered = finalData.filter(
+const gigBlockHeightFiltered = finalData.filter(
   (d) => d.blockHeight == blockHeight
 );
 
-const openGig = kudoBlockHeightFiltered[0] ?? {};
+const openGig = gigBlockHeightFiltered[0] ?? {};
 
 State.init({
   hoveringElement: "",
@@ -153,7 +153,7 @@ const composeData = () => {
 const RenderGigBox = (d, index) => {
   return (
     <Widget
-      src={`${widgetOwner}/widget/kudoBox`}
+      src={`${widgetOwner}/widget/gigBox`}
       props={{
         tabs,
         oppenedTab: state.display,
@@ -185,7 +185,7 @@ return (
           className="bi bi-x-lg"
           style={thisWidgetInlineStyles.closeGigButton}
           onClick={() => {
-            State.update({ display: tabs.ALL_GIGS.id, kudo: {} });
+            State.update({ display: tabs.ALL_GIGS.id, gig: {} });
           }}
         ></i>
       )}
@@ -225,7 +225,7 @@ return (
           }
           data={{
             index: {
-              kudo: JSON.stringify(
+              gig: JSON.stringify(
                 {
                   key: "answer",
                   value: {
