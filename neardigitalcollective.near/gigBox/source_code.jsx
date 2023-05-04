@@ -114,7 +114,7 @@ return (
       }
     >
       <Widget
-        src={`${widgetOwner}/widget/MainPage.Post`}
+        src={`${widgetOwner}/widget/GigMainPage.Post`}
         props={{
           widgetOwner,
           content: d,
