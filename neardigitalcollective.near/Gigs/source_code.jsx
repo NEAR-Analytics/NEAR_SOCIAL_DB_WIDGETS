@@ -74,11 +74,11 @@ upvotes.forEach((upvote) => {
 
 const finalData = sortedData;
 
-const itemBlockHeightFiltered = finalData.filter(
+const gigBlockHeightFiltered = finalData.filter(
   (d) => d.blockHeight == blockHeight
 );
 
-const openGig = itemBlockHeightFiltered[0] ?? {};
+const openGig = gigBlockHeightFiltered[0] ?? {};
 
 State.init({
   hoveringElement: "",
