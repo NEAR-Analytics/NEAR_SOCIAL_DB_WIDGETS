@@ -336,8 +336,8 @@ return (
 
         <Text style={{ maxWidth: "670px" }}>
           Learn to create anything on the blockchain operating system (bOS), and
-          you can discover opportunities to help build a more open web, made of
-          composable multi-chain apps.
+          help build a more open web that is greater than the sum of its
+          components.
         </Text>
 
         <Widget
