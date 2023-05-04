@@ -1,19 +1,8 @@
 /**
  * Configure your community feed.
  */
-// const daoId = "liberty.sputnik-dao.near"; // restrict posting to members of a DAO (Optional)
-// const groupId = "community"; // which group can post?
 
-// const policy = Near.view(daoId, "get_policy");
-// const group = policy.roles
-//   .filter((role) => role.name === groupId)
-//   .map((role) => {
-//     const group = role.kind.Group;
-
-//     return group;
-//   });
-
-const defaultTag = props.defaultTag || "earthday";
+const defaultTag = props.defaultTag || "everything";
 
 const hashtags = [
   { name: "everything", required: true },
@@ -97,6 +86,15 @@ const Button = styled.button`
 return (
   <>
     <Container>
+      <div className="mt-auto py-3">
+        <div className="container">
+          <div className="d-flex justify-content-end">
+            <a href={"/#/evrything-docs.near/widget/Everything.Documentation"}>
+              <Button>documentation</Button>
+            </a>
+          </div>
+        </div>
+      </div>
       <Controller>
         <Typeahead
           size="large"
