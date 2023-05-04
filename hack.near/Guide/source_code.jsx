@@ -1,12 +1,6 @@
-let totalComponents = 0;
-const componentsData = Social.keys("*/widget/*", "final", {
-  return_type: "BlockHeight",
-});
-if (componentsData) {
-  Object.keys(componentsData).forEach((accountId) => {
-    totalComponents += Object.keys(componentsData[accountId].widget).length;
-  });
-}
+const accountId = props.accountId ?? context.accountId;
+const daoId = props.daoId ?? "build.sputnik-dao.near";
+const role = props.role ?? "community";
 
 const ipfsImages = {
   logos: {
@@ -39,6 +33,30 @@ function returnIpfsImage(cfid) {
     ipfs_cid: cfid,
   };
 }
+
+const handleJoin = () => {
+  const gas = 200000000000000;
+  const deposit = 100000000000000000000000;
+  Near.call([
+    {
+      contractName: daoId,
+      methodName: "add_proposal",
+      args: {
+        proposal: {
+          description: "potential member",
+          kind: {
+            AddMemberToRole: {
+              member_id: accountId,
+              role: role,
+            },
+          },
+        },
+      },
+      gas: gas,
+      deposit: deposit,
+    },
+  ]);
+};
 
 const Wrapper = styled.div`
   --section-gap: 69px;
@@ -355,7 +373,7 @@ return (
         <Widget
           src="near/widget/DIG.Button"
           props={{
-            href: "/#/hack.near/widget/CYOA",
+            onClick: { handleJoin },
             label: "Join the Community",
             variant: "negative",
             size: "large",
