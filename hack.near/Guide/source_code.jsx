@@ -321,7 +321,7 @@ return (
     <Container center>
       <Flex gap="32px" direction="column" alignItems="center">
         <H1>
-          Blockchain Development with
+          Blockchain for
           <span>
             JS{" "}
             <svg viewBox="0 0 26 24" fill="none" aria-hidden="true">
@@ -330,7 +330,8 @@ return (
                 fill="#7269E1"
               />
             </svg>
-          </span>{" "}
+          </span>
+          Developers
         </H1>
 
         <Text style={{ maxWidth: "670px" }}>
