@@ -18,7 +18,7 @@
       },
       {
         "id": "usdc",
-        "value": "USDC",
+        "name": "USDC",
         "selected": true,
         "balance": "42.00"
       }
@@ -128,13 +128,28 @@ const Container = styled.div`
     .actionTabs {
       border: 1px solid black;
       height: 38px;
+
+      input:checked + label {
+        color: black;
+      }
+
       label {
         color: gray;
+        background: white !important;
+        border: 1px solid black !important;
 
         &:hover {
           color: black;
         }
       }
+    }
+
+    button.max {
+      border: 1px solid black;
+    }
+
+    button.action {
+      background-color: black;
     }
 
     .action {
@@ -228,7 +243,7 @@ return (
               placeholder="0.00"
               onChange={handleAmountChange}
             />
-            <button className="btn btn-light btn-sm" onClick={handleMax}>
+            <button className="btn btn-light btn-sm max" onClick={handleMax}>
               max
             </button>
           </div>
