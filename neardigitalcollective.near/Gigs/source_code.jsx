@@ -1,7 +1,7 @@
 const tabs = {
   ALL_GIGS: {
     id: 0,
-    text: "All Gigs",
+    text: "NDC Gigs",
   },
   GIG: {
     id: 1,
@@ -25,16 +25,16 @@ const metadata = props.metadata ?? Social.getr(`${widgetPath}/metadata`);
 const urlPrefix = "https://";
 const accountId = props.accountId ?? "*";
 
-const data = Social.index("gig", "answer");
+const data = Social.index("kudo", "answer");
 if (!data) {
   return "Loading answers";
 }
-const upvotes = Social.index("gig", "upvote");
+const upvotes = Social.index("kudo", "upvote");
 if (!upvotes) {
   return "Loading upvotes";
 }
 
-const commentAnswers = Social.index("gig", "commentAnswers");
+const commentAnswers = Social.index("kudo", "commentAnswers");
 if (!commentAnswers) {
   return "Loading commentAnswers";
 }
@@ -81,11 +81,11 @@ upvotes.forEach((upvote) => {
 
 const finalData = sortedData;
 
-const gigBlockHeightFiltered = finalData.filter(
+const kudoBlockHeightFiltered = finalData.filter(
   (d) => d.blockHeight == blockHeight
 );
 
-const openGig = gigBlockHeightFiltered[0] ?? {};
+const openGig = kudoBlockHeightFiltered[0] ?? {};
 
 State.init({
   hoveringElement: "",
@@ -153,7 +153,7 @@ const composeData = () => {
 const RenderGigBox = (d, index) => {
   return (
     <Widget
-      src={`${widgetOwner}/widget/gigBox`}
+      src={`${widgetOwner}/widget/kudoBox`}
       props={{
         tabs,
         oppenedTab: state.display,
@@ -185,7 +185,7 @@ return (
           className="bi bi-x-lg"
           style={thisWidgetInlineStyles.closeGigButton}
           onClick={() => {
-            State.update({ display: tabs.ALL_GIGS.id, gig: {} });
+            State.update({ display: tabs.ALL_GIGS.id, kudo: {} });
           }}
         ></i>
       )}
@@ -225,7 +225,7 @@ return (
           }
           data={{
             index: {
-              gig: JSON.stringify(
+              kudo: JSON.stringify(
                 {
                   key: "answer",
                   value: {
@@ -250,7 +250,7 @@ return (
             });
           }}
         >
-          Gigs!
+          Send It!
         </CommitButton>
       </>
     )}
