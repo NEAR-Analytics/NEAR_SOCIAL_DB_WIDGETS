@@ -4,8 +4,8 @@ const index = props.index;
 const tabs = props.tabs;
 const oppenedTab = props.oppenedTab;
 
-const thisWidgetInlineStyles = props.allWidgetsInlineStyles.items;
-const thisWidgetClassNames = props.allWidgetsClassNames.items;
+const thisWidgetInlineStyles = props.allWidgetsInlineStyles.gigs;
+const thisWidgetClassNames = props.allWidgetsClassNames.gigs;
 
 const updateGeneralState = props.updateGeneralState;
 const upvotes = props.upvotes;
