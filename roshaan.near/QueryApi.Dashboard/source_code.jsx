@@ -304,11 +304,12 @@ const indexerView = (accountId, indexerName, idx, view) => {
 
   const editUrl = `https://near.org/#/${APP_OWNER}/widget/QueryApi.Dashboard?selectedIndexerPath=${accountId}/${indexerName}&view=editor-window`;
   const statusUrl = `https://near.org/#/${APP_OWNER}/widget/QueryApi.Dashboard?selectedIndexerPath=${accountId}/${indexerName}&view=indexer-status`;
-  // const playgroundLink = `https://near.org/#/${APP_OWNER}/widget/QueryApi.Dashboard?selectedIndexerPath=${accountId}/${indexerName}&view=editor-window&tab=playground`;
-  const playgroundLink = `https://cloud.hasura.io/public/graphiql?endpoint=https%3A%2F%2Fquery-api-hasura-24tefolwq-ew.a.run.app%2Fv1%2Fgraphql&header=x-hasura-role%3A${accountId.replaceAll(
+  // const playgroundLink = `https://near.org/#/${APP_OWNER}/widget/QueryApi.Dashboard?selectedIndexerPath=${accountId}/${indexerName}&view=indexer-window&tab=playground`;
+  const playgroundLink = `https://cloud.hasura.io/public/graphiql?endpoint=https://queryapi-hasura-graphql-24ktefolwq-ew.a.run.app/v1/graphql&header=x-hasura-role%3A${accountId.replaceAll(
     ".",
     "_"
   )}`;
+
   let removeIndexer = (name) => {
     const gas = 200000000000000;
     Near.call(
@@ -533,7 +534,7 @@ return (
                 <H2>{`${state.indexers[0].accountId}/${state.indexers[0].indexerName}`}</H2>
               ))}
             <Widget
-              src={`${APP_OWNER}/widget/QueryApi.Editor`}
+              src={`${APP_OWNER}/near/widget/QueryApi.Editor`}
               props={{
                 indexerName:
                   selected_indexerName ?? state.indexers[0].indexerName,
