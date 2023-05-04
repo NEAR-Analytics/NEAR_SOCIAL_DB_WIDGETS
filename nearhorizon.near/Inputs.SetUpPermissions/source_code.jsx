@@ -3,7 +3,7 @@ const ownerId = "nearhorizon.near";
 State.init({
   following: [],
   followingIsFetched: false,
-  value: props.accountIds.split(",").map((name) => ({ name })),
+  value: (props.accountIds ?? "").split(",").map((name) => ({ name })),
   accountsWithPermissions: [],
   accountsWithPermissionsIsFetched: false,
 });
