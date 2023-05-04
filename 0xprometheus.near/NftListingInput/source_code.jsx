@@ -167,7 +167,7 @@ return (
     </div>
     <div className="row text-center">
       {props.state.ownsNFT && (
-        <button className="btn btn-primary mt-3" onClick={list}>
+        <button className="btn btn-primary mt-3" onClick={props.list}>
           List
         </button>
       )}
