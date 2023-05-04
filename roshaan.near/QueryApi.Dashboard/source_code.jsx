@@ -179,7 +179,7 @@ const CardFooter = styled.div`
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  gap: 4px;
+  gap: 16px;
   padding: 16px;
   border-top: 1px solid #eceef0;
 `;
@@ -304,8 +304,11 @@ const indexerView = (accountId, indexerName, idx, view) => {
 
   const editUrl = `https://near.org/#/${APP_OWNER}/widget/QueryApi.Dashboard?selectedIndexerPath=${accountId}/${indexerName}&view=editor-window`;
   const statusUrl = `https://near.org/#/${APP_OWNER}/widget/QueryApi.Dashboard?selectedIndexerPath=${accountId}/${indexerName}&view=indexer-status`;
-  const playgroundLink = `https://near.org/#/${APP_OWNER}/widget/QueryApi.Dashboard?selectedIndexerPath=${accountId}/${indexerName}&view=editor-window&tab=playground`;
-
+  // const playgroundLink = `https://near.org/#/${APP_OWNER}/widget/QueryApi.Dashboard?selectedIndexerPath=${accountId}/${indexerName}&view=editor-window&tab=playground`;
+  const playgroundLink = `https://cloud.hasura.io/public/graphiql?endpoint=https%3A%2F%2Fquery-api-hasura-24tefolwq-ew.a.run.app%2Fv1%2Fgraphql&header=x-hasura-role%3A${accountId.replaceAll(
+    ".",
+    "_"
+  )}`;
   let removeIndexer = (name) => {
     const gas = 200000000000000;
     Near.call(
@@ -362,16 +365,9 @@ const indexerView = (accountId, indexerName, idx, view) => {
             })
           }
         >
-          {accountId === context.accountId ? "Edit Indexer" : "View Indexer"}
+          Edit Indexer
         </ButtonLink>
-        <ButtonLink
-          href={playgroundLink}
-          onClick={() =>
-            State.update({
-              activeTab: "editor-window",
-            })
-          }
-        >
+        <ButtonLink href={playgroundLink} target="_blank">
           View In Playground
         </ButtonLink>
         {view === "user" && (
@@ -466,7 +462,7 @@ return (
               })
             }
           >
-            Create New Indexer
+            Create New Indexer Loaded
           </ButtonLink>
           {state.my_indexers.length > 0 && (
             <H2>
@@ -524,7 +520,6 @@ return (
                   selected_indexerName ?? state.indexers[0].indexerName,
                 accountId: selected_accountId ?? state.indexers[0].accountId,
                 path: "query-api-editor",
-                tab: props.tab,
               }}
             />
           </div>
