@@ -179,7 +179,7 @@ const CardFooter = styled.div`
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 4px;
   padding: 16px;
   border-top: 1px solid #eceef0;
 `;
@@ -304,7 +304,7 @@ const indexerView = (accountId, indexerName, idx, view) => {
 
   const editUrl = `https://near.org/#/${APP_OWNER}/widget/QueryApi.Dashboard?selectedIndexerPath=${accountId}/${indexerName}&view=editor-window`;
   const statusUrl = `https://near.org/#/${APP_OWNER}/widget/QueryApi.Dashboard?selectedIndexerPath=${accountId}/${indexerName}&view=indexer-status`;
-  // const playgroundLink = `https://near.org/#/${APP_OWNER}/widget/QueryApi.Dashboard?selectedIndexerPath=${accountId}/${indexerName}&view=indexer-window&tab=playground`;
+  // const playgroundLink = `https://near.org/#/${APP_OWNER}/widget/QueryApi.Dashboard?selectedIndexerPath=${accountId}/${indexerName}&view=editor-window&tab=playground`;
   const playgroundLink = `https://cloud.hasura.io/public/graphiql?endpoint=https://queryapi-hasura-graphql-24ktefolwq-ew.a.run.app/v1/graphql&header=x-hasura-role%3A${accountId.replaceAll(
     ".",
     "_"
@@ -366,7 +366,7 @@ const indexerView = (accountId, indexerName, idx, view) => {
             })
           }
         >
-          Edit Indexer
+          {accountId === context.accountId ? "Edit Indexer" : "View Indexer"}
         </ButtonLink>
         <ButtonLink href={playgroundLink} target="_blank">
           View In Playground
@@ -521,6 +521,7 @@ return (
                   selected_indexerName ?? state.indexers[0].indexerName,
                 accountId: selected_accountId ?? state.indexers[0].accountId,
                 path: "query-api-editor",
+                tab: props.tab,
               }}
             />
           </div>
