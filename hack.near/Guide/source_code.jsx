@@ -370,15 +370,9 @@ return (
           Summer 2023
         </Text>
 
-        <Widget
-          src="near/widget/DIG.Button"
-          props={{
-            onClick: { handleJoin },
-            label: "Join the Community",
-            variant: "negative",
-            size: "large",
-          }}
-        />
+        <button className="btn btn-primary" onClick={handleJoin}>
+          Join the Community
+        </button>
       </Flex>
 
       <Text
