@@ -78,7 +78,7 @@ const itemBlockHeightFiltered = finalData.filter(
   (d) => d.blockHeight == blockHeight
 );
 
-const openItem = itemBlockHeightFiltered[0] ?? {};
+const openGig = itemBlockHeightFiltered[0] ?? {};
 
 State.init({
   hoveringElement: "",
@@ -88,7 +88,7 @@ State.init({
     State.update({ content });
   },
   display: blockHeight ? tabs.GIG.id : tabs.ALL_GIGS.id,
-  gigs: openItem,
+  gigs: openGig,
 });
 
 /* BEGIN Common.componse  */
@@ -143,7 +143,7 @@ const composeData = () => {
 
 /* END CommentButton  */
 
-const RenderItemBox = (d, index) => {
+const RenderGigBox = (d, index) => {
   return (
     <Widget
       src={`${widgetOwner}/widget/gigBox`}
@@ -176,7 +176,7 @@ return (
       {state.display == tabs.GIG.id && (
         <i
           className="bi bi-x-lg"
-          style={thisWidgetInlineStyles.closeItemButton}
+          style={thisWidgetInlineStyles.closeGigButton}
           onClick={() => {
             State.update({ display: tabs.ALL_GIGS.id, gig: {} });
           }}
