@@ -41,7 +41,7 @@ function returnIpfsImage(cfid) {
 }
 
 const Wrapper = styled.div`
-  --section-gap: 80px;
+  --section-gap: 69px;
   padding-top: 69px;
 
   @media (max-width: 1160px) {
