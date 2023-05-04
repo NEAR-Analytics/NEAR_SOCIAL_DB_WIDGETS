@@ -98,10 +98,12 @@ function applyHomePage() {
       force: true,
       onCommit: () => {
         State.update({ commitLoading: false });
+        console.log("保存成功......storageDataNew", storageDataNew);
       },
       onCancel: () => {
         State.update({ commitLoading: false });
         Storage.set("myHomePagePathData", storageDataOldCopy);
+        console.log("保存成功失败......storageDataOldCopy", storageDataOldCopy);
       },
     }
   );
