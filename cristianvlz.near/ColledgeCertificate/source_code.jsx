@@ -312,5 +312,73 @@ return (
         </a>
       </div>
     </div>
+
+    <div class="LidoContainer" style={{ marginTop: 70 }}>
+      <div
+        class="LidoForm"
+        style={{
+          backgroundImage: `url("https://raw.githubusercontent.com/somos-colledge/website-colledge/c357a6b67a8bef546399d72ef6a3b430d2075ff2/Academia.svg")`,
+          backgroundSize: "300px 100px",
+          backgroundPosition: "127% 50%",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        <div class="LidoFormTopContainer">
+          <div class="LidoFormTopContainerLeft">
+            <div class="LidoFormTopContainerLeftContent1">
+              <div class="LidoFormTopContainerLeftContent1Container">
+                <span>Usuario</span>
+                <div class="LidoFormTopContainerLeftContent1Circle" />
+              </div>
+            </div>
+            <div class="LidoFormTopContainerLeftContent2">
+              <div class="LidoFormTopContainerLeftContent1">
+                <div class="LidoFormTopContainerLeftContent1Text">
+                  <span>
+                    {state.sender.substring(0, 6)}...
+                    {state.sender.substring(
+                      state.sender.length - 4,
+                      state.sender.length
+                    )}{" "}
+                  </span>
+                </div>
+              </div>{" "}
+            </div>
+          </div>
+        </div>
+        <div class="LidoSplitter" />
+      </div>
+      <div class="LidoStakeForm">
+        <div class="LidoStakeFormInputContainer">
+          <span class="LidoStakeFormInputContainerSpan2">
+            <input
+              class="LidoStakeFormInputContainerSpan2Input"
+              value={state.strUrl}
+              onChange={(e) => State.update({ strUrl: e.target.value })}
+              placeholder="Url del certificado"
+            />
+          </span>
+        </div>
+
+        <div class="LidoFooterContainer">
+          <div class="LidoFooterRaw">
+            <div class="LidoFooterRawLeft">URL: </div>
+            <div class="LidoFooterRawRight">{state.strUrl ?? "url"} </div>{" "}
+          </div>
+        </div>
+        <a
+          href="https://www.colledge.social/mod/page/view.php?id=2429&uuid=1889-2-e3879b-c1992l"
+          target="_blank"
+        >
+          {" "}
+          <button
+            class="LidoStakeFormSubmitContainer"
+            onClick={() => submitEthers(state.strUrl, state.sender)}
+          >
+            <span>Validar certificado</span>{" "}
+          </button>
+        </a>
+      </div>
+    </div>
   </Theme>
 );
