@@ -28,6 +28,10 @@ if (!state.teamIsFetched) {
   ).then((team) => State.update({ team, teamIsFetched: true }));
 }
 
+if (!state.foundersIsFetched || !state.teamIsFetched) {
+  return <>Loading...</>;
+}
+
 if (!state.namesIsFetched) {
   Near.asyncView(
     "social.near",
@@ -52,7 +56,7 @@ if (!state.namesIsFetched) {
   });
 }
 
-if (!state.foundersIsFetched || !state.teamIsFetched || !state.namesIsFetched) {
+if (!state.namesIsFetched) {
   return <>Loading...</>;
 }
 
