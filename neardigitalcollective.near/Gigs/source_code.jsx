@@ -1,7 +1,7 @@
 const tabs = {
   ALL_GIGS: {
     id: 0,
-    text: "NDC Gigs",
+    text: "Gigs!",
   },
   GIG: {
     id: 1,
