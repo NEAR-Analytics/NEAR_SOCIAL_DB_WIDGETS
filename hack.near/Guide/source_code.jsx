@@ -12,19 +12,9 @@ const ipfsImages = {
 
 const web3Teams = [
   {
-    url: "https://www.proximity.dev",
-    name: "Proximity",
-    ipfsImage: ipfsImages.logos.proximity,
-  },
-  {
     url: "https://www.banyan.gg",
     name: "Banyan",
     ipfsImage: ipfsImages.logos.banyan,
-  },
-  {
-    url: "https://www.pagoda.co",
-    name: "Pagoda",
-    ipfsImage: ipfsImages.logos.pagoda,
   },
 ];
 
