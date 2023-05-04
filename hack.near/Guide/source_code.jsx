@@ -373,7 +373,7 @@ return (
         Made Possible by NEAR Builders
       </Text>
 
-      <LogoLinks>
+      <LogoLinks alignItems="center">
         {web3Teams.map((team) => {
           return (
             <a href={team.url} target="_blank" title={team.name}>
