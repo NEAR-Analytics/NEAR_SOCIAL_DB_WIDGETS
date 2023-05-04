@@ -16,6 +16,11 @@ const web3Teams = [
     name: "Banyan",
     ipfsImage: ipfsImages.logos.banyan,
   },
+  {
+    url: "https://www.pagoda.co",
+    name: "Pagoda",
+    ipfsImage: ipfsImages.logos.pagoda,
+  },
 ];
 
 function returnIpfsImage(cfid) {
@@ -373,7 +378,7 @@ return (
         Made Possible by NEAR Builders
       </Text>
 
-      <LogoLinks alignItems="center">
+      <LogoLinks>
         {web3Teams.map((team) => {
           return (
             <a href={team.url} target="_blank" title={team.name}>
