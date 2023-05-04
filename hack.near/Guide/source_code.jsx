@@ -59,7 +59,7 @@ const H1 = styled.h1`
   font-family: "FK Grotesk", sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 90px;
+  font-size: 80px;
   line-height: 1;
   text-align: center;
   letter-spacing: -0.03em;
