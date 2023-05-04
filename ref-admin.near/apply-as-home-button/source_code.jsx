@@ -97,6 +97,7 @@ function applyHomePage() {
   // console.log("00000000000000-storageDataNew", storageDataNew);
   Storage.set("myHomePagePathData", storageDataNew);
   console.log("保存开始了.....Storage.set-storageDataNew", storageDataNew);
+  console.log("保存开始了.....props.src", props.src);
   Social.set(
     {
       myHomePagePath: props.src,
