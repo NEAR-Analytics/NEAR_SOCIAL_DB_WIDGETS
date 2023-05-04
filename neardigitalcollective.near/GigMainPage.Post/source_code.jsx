@@ -95,7 +95,7 @@ const RenderGigBox = (d) => {
     <>
       <div className={thisWidgetClassNames.headerContainer}>
         <Widget
-          src={`${widgetOwner}/widget/MainPage.Post.Header`}
+          src={`${widgetOwner}/widget/GigMainPage.Post.Header`}
           props={{
             widgetOwner,
             accountId,
