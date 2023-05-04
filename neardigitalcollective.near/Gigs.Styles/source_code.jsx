@@ -107,7 +107,7 @@ const allWidgetsInlineStyles = {
       margin: "2rem 0 0.5rem 0",
       fontWeight: "700",
     },
-    closeKudoButton: {
+    closeGigButton: {
       margin: "2rem 0 0.5rem 0",
       cursor: "pointer",
     },
@@ -267,7 +267,7 @@ const allWidgetsClassNames = {
       cardContainer: "",
       userAnswerHeader: "d-flex flex-wrap align-items-center",
     },
-    renderKudoBox: {
+    renderGigBox: {
       cardContainer:
         "col-xxl-5 col-xl-5 col-lg-5 col-md-12 col-sm-12 col-xs-12",
       cardContainerSingleCard: "col-12",
