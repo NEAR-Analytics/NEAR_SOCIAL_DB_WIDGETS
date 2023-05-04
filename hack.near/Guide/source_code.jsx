@@ -340,11 +340,23 @@ return (
           components.
         </Text>
 
+        <Text size="23px" weight="600">
+          Workshops + Hackathon
+        </Text>
+
+        <Text
+          size="18px"
+          weight="600"
+          style={{ textTransform: "uppercase", letterSpacing: "0.17em" }}
+        >
+          Summer 2023
+        </Text>
+
         <Widget
           src="near/widget/DIG.Button"
           props={{
             href: "/#/hack.near/widget/CYOA",
-            label: "Sign Up",
+            label: "Join the Community",
             variant: "negative",
             size: "large",
           }}
