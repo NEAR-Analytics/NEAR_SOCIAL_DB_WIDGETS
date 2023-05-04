@@ -8,6 +8,8 @@ State.init({
   accountsWithPermissionsIsFetched: false,
 });
 
+console.log(state.value);
+
 if (!context.accountId) {
   return <>Please sign in to continue</>;
 }
