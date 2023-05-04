@@ -5,7 +5,7 @@ const tabs = {
   },
   GIG: {
     id: 1,
-    text: "GIG",
+    text: "Gig",
   },
 };
 
@@ -19,27 +19,34 @@ const thisWidgetClassNames = props.allWidgetsClassNames.gigs;
 const widgetOwner = props.widgetOwner;
 
 const widgetName = "Gigs";
-const widgetPath = `${widgetOwner}/widget/${widgetName}`;
+const widgetPath = `webuidl.near/widget/${widgetName}`;
 const metadata = props.metadata ?? Social.getr(`${widgetPath}/metadata`);
 
 const urlPrefix = "https://";
 const accountId = props.accountId ?? "*";
 
-const data = Social.index("gig", "answer");
+const data = Social.index("kudo", "answer");
 if (!data) {
   return "Loading answers";
 }
-const upvotes = Social.index("gig", "upvote");
+const upvotes = Social.index("kudo", "upvote");
 if (!upvotes) {
   return "Loading upvotes";
 }
 
-const commentAnswers = Social.index("gig", "commentAnswers");
+const commentAnswers = Social.index("kudo", "commentAnswers");
 if (!commentAnswers) {
   return "Loading commentAnswers";
 }
 
-let sortedData = data.sort((d1, d2) => d2.blockHeight - d1.blockHeight);
+const blackList = ["webuidl.near"];
+const whiteListData = data.filter((d) => !blackList.includes(d.accountId));
+const whiteListComments = commentAnswers.filter(
+  (d) => !blackList.includes(d.accountId)
+);
+let sortedData = whiteListData.sort(
+  (d1, d2) => d2.blockHeight - d1.blockHeight
+);
 
 sortedData.forEach((_, i) => {
   sortedData[i].value.comments = [];
@@ -56,7 +63,7 @@ for (let i = 0; i < upvotes.length; i++) {
   upvotesMap[upvoteBlockHeight] += 1;
 }
 
-commentAnswers.forEach((c) => {
+whiteListComments.forEach((c) => {
   const dataIndex = sortedData.findIndex(
     (d) => d.blockHeight == c.value.blockHeight
   );
@@ -74,11 +81,11 @@ upvotes.forEach((upvote) => {
 
 const finalData = sortedData;
 
-const gigBlockHeightFiltered = finalData.filter(
+const kudoBlockHeightFiltered = finalData.filter(
   (d) => d.blockHeight == blockHeight
 );
 
-const openGig = gigBlockHeightFiltered[0] ?? {};
+const openGig = kudoBlockHeightFiltered[0] ?? {};
 
 State.init({
   hoveringElement: "",
@@ -146,7 +153,7 @@ const composeData = () => {
 const RenderGigBox = (d, index) => {
   return (
     <Widget
-      src={`${widgetOwner}/widget/gigBox`}
+      src={`${widgetOwner}/widget/kudoBox`}
       props={{
         tabs,
         oppenedTab: state.display,
@@ -178,15 +185,15 @@ return (
           className="bi bi-x-lg"
           style={thisWidgetInlineStyles.closeGigButton}
           onClick={() => {
-            State.update({ display: tabs.ALL_GIGS.id, gig: {} });
+            State.update({ display: tabs.ALL_GIGS.id, kudo: {} });
           }}
         ></i>
       )}
     </div>
 
-    {state.display == tabs.ALL_S.id && (
+    {state.display == tabs.ALL_GIGS.id && (
       <>
-        <p>Gigs to BuiDL Web3 Gov on NEAR.</p>
+        <p>NDC Gigs to BuiDL NDC V1 Gov ON NEAR</p>
         <Widget
           src={`${widgetOwner}/widget/Common.Compose`}
           props={{
@@ -218,7 +225,7 @@ return (
           }
           data={{
             index: {
-              gig: JSON.stringify(
+              kudo: JSON.stringify(
                 {
                   key: "answer",
                   value: {
