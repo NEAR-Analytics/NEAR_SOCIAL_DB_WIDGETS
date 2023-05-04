@@ -41,8 +41,8 @@ function returnIpfsImage(cfid) {
 }
 
 const Wrapper = styled.div`
-  --section-gap: 82px;
-  padding-top: 100px;
+  --section-gap: 80px;
+  padding-top: 69px;
 
   @media (max-width: 1160px) {
     .line-rounded-corners {
@@ -319,7 +319,7 @@ const LineRoundedCorners = (props) => {
 return (
   <Wrapper>
     <Container center>
-      <Flex gap="32px" direction="column" alignItems="center">
+      <Flex gap="29px" direction="column" alignItems="center">
         <H1>
           Blockchain for
           <span>
