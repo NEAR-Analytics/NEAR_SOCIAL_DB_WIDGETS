@@ -99,6 +99,4 @@ const fetchTopProposers = () => {
 
 fetchTopProposers();
 
-console.log(state);
-
 return <div>{GenericTable}</div>;
