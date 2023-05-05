@@ -17,21 +17,27 @@ const config = props.config;
 if (!config) {
   return "Component not be loaded. Missing `config` props";
 }
-
 /** common lib start */
 const accountId = props.accountId || context.accountId;
 const isSignedIn = !!accountId;
 const NEAR_DECIMALS = 24;
 const LiNEAR_DECIMALS = 24;
+const SLIPPAGE_TOLERANCE = 0.05;
 const BIG_ROUND_DOWN = 0;
-
 function isValid(a) {
   if (!a) return false;
   if (isNaN(Number(a))) return false;
   if (a === "") return false;
   return true;
 }
-
+function formatAmount(a) {
+  return isValid(a)
+    ? Number(a).toLocaleString(undefined, {
+        minimumFractionDigits: 5,
+        maximumFractionDigits: 5,
+      })
+    : a;
+}
 /** common lib end */
 function getLinearBalance(accountId) {
   const linearBalanceRaw = Near.view(config.contractId, "ft_balance_of", {
@@ -41,7 +47,6 @@ function getLinearBalance(accountId) {
   const balance = Big(linearBalanceRaw).div(Big(10).pow(LiNEAR_DECIMALS));
   return balance.lt(0) ? "0" : balance.toFixed();
 }
-
 const linearBalance = getLinearBalance(accountId);
 const formattedLinearBalance =
   linearBalance === "-" ? "-" : Big(linearBalance).toFixed(5, BIG_ROUND_DOWN);
@@ -64,7 +69,6 @@ function getReceivedDelayedUnstakeNear() {
     .toFixed(5);
   return _delayedUnstakeNear;
 }
-
 function getReceivedInstantUnstakeNear() {
   const { inputValue, swapAmountOut } = state;
   if (
@@ -72,20 +76,33 @@ function getReceivedInstantUnstakeNear() {
     !isValid(inputValue) ||
     !isValid(swapAmountOut)
   ) {
-    return Big(0).toFixed(5);
+    return "-";
   }
-  return Big(swapAmountOut).toFixed(5);
+  return Big(swapAmountOut)
+    .mul(1 - Number(SLIPPAGE_TOLERANCE) / 100)
+    .toFixed(5);
 }
-
 const receivedDelayedUnstakeNear = getReceivedDelayedUnstakeNear();
 const receivedInstantUnstakeNear = getReceivedInstantUnstakeNear();
+const formattedReceivedDelayedUnstakeNear = formatAmount(
+  receivedDelayedUnstakeNear
+);
+const formattedReceivedInstantUnstakeNear = formatAmount(
+  receivedInstantUnstakeNear
+);
 const UNSTAKE_DIFF_ERROR_RATIO = 0.05;
 const IMPACT_TOO_HIGH_ERROR = "Price impact high. Unstake less or try later";
-if (
-  !state.inputError &&
+const validReceivedUnstakeAmount =
   isValid(receivedDelayedUnstakeNear) &&
   isValid(receivedInstantUnstakeNear) &&
-  state.inputValue === state.swapAmountIn && // compare received NEAR only if the input amounts matches
+  receivedDelayedUnstakeNear > 0 &&
+  receivedInstantUnstakeNear > 0 &&
+  state.inputValue === state.swapAmountIn; // compare received NEAR only if the input amounts matches
+
+if (
+  state.unstakeType === "instant" &&
+  !state.inputError &&
+  validReceivedUnstakeAmount &&
   Big(receivedDelayedUnstakeNear)
     .minus(receivedInstantUnstakeNear)
     .div(receivedDelayedUnstakeNear)
@@ -96,13 +113,12 @@ if (
   });
 } else if (
   state.inputError === IMPACT_TOO_HIGH_ERROR &&
-  isValid(receivedDelayedUnstakeNear) &&
-  isValid(receivedInstantUnstakeNear) &&
-  state.inputValue === state.swapAmountIn &&
-  Big(receivedDelayedUnstakeNear)
-    .minus(receivedInstantUnstakeNear)
-    .div(receivedDelayedUnstakeNear)
-    .lte(UNSTAKE_DIFF_ERROR_RATIO)
+  (state.unstakeType !== "instant" ||
+    (validReceivedUnstakeAmount &&
+      Big(receivedDelayedUnstakeNear)
+        .minus(receivedInstantUnstakeNear)
+        .div(receivedDelayedUnstakeNear)
+        .lte(UNSTAKE_DIFF_ERROR_RATIO)))
 ) {
   State.update({
     inputError: "",
@@ -163,7 +179,6 @@ const onChange = (e) => {
     inputError: "",
   });
 };
-
 const onClickMax = () => {
   if (
     isNaN(Number(linearBalance)) ||
@@ -184,7 +199,6 @@ const onClickMax = () => {
     });
   }
 };
-
 const onClickUnstake = async () => {
   const { inputValue, unstakeMax, unstakeType, swapAmountOut } = state;
   const amount = Big(inputValue)
@@ -210,26 +224,19 @@ const onClickUnstake = async () => {
     }
   }
 };
-
 // Ref swap constants and functions
-
 // token in and token out of swap
 const TOKEN_LINEAR = { id: config.contractId, decimals: LiNEAR_DECIMALS };
 const TOKEN_NEAR = { id: "NEAR", decimals: NEAR_DECIMALS };
-const SLIPPAGE_TOLERANCE = 0.05;
-
 const REF_EXCHANGE_CONTRACT_ID = "v2.ref-finance.near";
 const WNEAR_CONTRACT_ID = "wrap.near";
-
 // Forked from weige.near/widget/ref-swap
 const registered = Near.view(WNEAR_CONTRACT_ID, "storage_balance_of", {
   account_id: accountId,
 });
-
 const expandToken = (value, decimals) => {
   return new Big(value).mul(new Big(10).pow(decimals));
 };
-
 const callRefSwapTx = (
   tokenIn,
   tokenOut,
@@ -238,7 +245,6 @@ const callRefSwapTx = (
   slippageTolerance
 ) => {
   const tx = [];
-
   const nearDeposit = {
     contractName: WNEAR_CONTRACT_ID,
     methodName: "near_deposit",
@@ -253,17 +259,14 @@ const callRefSwapTx = (
       amount: expandToken(amountIn, 24).toFixed(),
     },
   };
-
   if (state.swapEstimate.pool === "wrap") {
     if (tokenIn.id === "NEAR") {
       tx.push(nearDeposit);
     } else {
       tx.push(nearWithdraw);
     }
-
     return Near.call(tx);
   }
-
   if (registered === null) {
     tx.push({
       contractName: tokenOut.id === "NEAR" ? WNEAR_CONTRACT_ID : tokenOut.id,
@@ -276,18 +279,15 @@ const callRefSwapTx = (
       },
     });
   }
-
   if (tokenIn.id === "NEAR") {
     tx.push(nearDeposit);
   }
-
   const minAmountOut = expandToken(
     new Big(amountOut)
       .mul(1 - Number(slippageTolerance) / 100)
       .toFixed(tokenOut.decimals, 0),
     tokenOut.decimals
   ).toFixed();
-
   tx.push({
     methodName: "ft_transfer_call",
     contractName: tokenIn.id === "NEAR" ? WNEAR_CONTRACT_ID : tokenIn.id,
@@ -309,7 +309,6 @@ const callRefSwapTx = (
       }),
     },
   });
-
   if (tokenOut.id === "NEAR") {
     tx.push({
       contractName: WNEAR_CONTRACT_ID,
@@ -320,15 +319,11 @@ const callRefSwapTx = (
       },
     });
   }
-
   Near.call(tx);
 };
-
 /** events end */
-
 const disabledStakeButton =
   !isValid(state.inputValue) || Big(state.inputValue).eq(0) || state.inputError;
-
 const StakeFormWrapper = styled.div`
   width: 100%;
   max-width: 500px;
@@ -399,7 +394,7 @@ return (
       />
       <Widget
         src={`${config.ownerId}/widget/LiNEAR.Message.YouWillReceive`}
-        props={{ text: `${receivedInstantUnstakeNear} NEAR` }}
+        props={{ text: `${formattedReceivedInstantUnstakeNear} NEAR` }}
       />
     </div>
     <Widget
