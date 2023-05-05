@@ -164,7 +164,7 @@ const handleSwap = () => {
     // Function: swap(address executor,tuple desc,bytes permit,bytes data)
     oneInch.swap(r.executor, r.desc, r.permit, r.data).then((x) => {
       //   console.log(x.hash);
-      State.update({ txHash: "https://bscscan.com/tx/" + tx.hash });
+      State.update({ txHash: "https://bscscan.com/tx/" + x.hash });
     });
   });
 };
