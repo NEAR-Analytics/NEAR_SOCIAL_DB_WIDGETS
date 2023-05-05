@@ -2,9 +2,9 @@ const addressForComments = "NDCDOCS-comments";
 const addressForArticles = "ndcWikiArticle";
 const authorForWidget = "neardigitalcollective.near";
 const accountId = props.accountId ?? context.accountId;
-if (!accountId) {
-  return "No account ID";
-}
+// if (!accountId) {
+//   return "No account ID";
+// }
 
 const lastEditor = props.lastEditor;
 const blockHeight =
