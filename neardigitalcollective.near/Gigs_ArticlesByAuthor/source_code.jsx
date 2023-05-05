@@ -1,4 +1,4 @@
-const addressForArticles = "gig";
+const addressForArticles = "ndcGigArticle";
 const authorForWidget = "neardigitalcollective.near";
 const authorId = props.author;
 const accountId = props.accountId ?? context.accountId;
