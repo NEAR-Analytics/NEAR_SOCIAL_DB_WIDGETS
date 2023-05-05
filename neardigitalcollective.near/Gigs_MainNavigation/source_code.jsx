@@ -11,13 +11,8 @@ const authorForWidget = "neardigitalcollective.near";
 const pills = [
   {
     id: "articles",
-    title: "Articles",
+    title: "Gigs",
     widgetName: "Gigs",
-  },
-  {
-    id: "authors",
-    title: "Authors",
-    widgetName: "Gigs_Authors",
   },
 ];
 
@@ -62,7 +57,7 @@ return (
         className="navbar-brand text-decoration-none"
         href={`#/${authorForWidget}/widget/Gigs`}
       >
-        {"<NDCGigs>"}
+        {"<NDC Gigs 🖳>"}
       </a>
       <button
         className="navbar-toggler"
