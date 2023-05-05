@@ -79,7 +79,7 @@ const GenericTable = (
     props={{
       title: "Proposers",
       columns,
-      data: state.displayedProposers,
+      data: state.displayedHistory,
       nextPage,
       previousPage,
       offset: state.offset,
@@ -114,6 +114,6 @@ return (
         {proposer} proposal history
       </a>
     </h2>
-    {state.displayedProposers && GenericTable}
+    {state.displayedHistory && GenericTable}
   </>
 );
