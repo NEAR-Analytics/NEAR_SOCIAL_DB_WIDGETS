@@ -7,7 +7,7 @@ const resPerPage = 10;
 
 const DetailWrapper = styled.div`
   position: relative;
-  height: 370px;
+  height: 500px;
   width: 80%;
   margin: 50px auto;
   box-shadow: 3px 2px 24px rgba(68, 152, 224, 0.3);
@@ -134,8 +134,9 @@ return (
         href={`https://explorer.near.org/accounts/${proposer}`}
         target="_blank"
       >
-        {proposer} proposal history
+        {proposer}
       </a>
+      <span> proposal history</span>
     </h2>
     {state.displayedHistory && GenericTable}
   </DetailWrapper>
