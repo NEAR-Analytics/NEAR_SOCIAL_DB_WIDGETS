@@ -23,6 +23,14 @@ function isValid(a) {
   if (a === "") return false;
   return true;
 }
+function formatAmount(a) {
+  return isValid(a)
+    ? Number(a).toLocaleString(undefined, {
+        minimumFractionDigits: 5,
+        maximumFractionDigits: 5,
+      })
+    : a;
+}
 
 /** common lib end */
 function getNearBalance(accountId) {
@@ -176,11 +184,12 @@ const linearPrice = Big(
   Near.view(config.contractId, "ft_price", `{}`) ?? "0"
 ).div(Big(10).pow(24));
 
-const youWillReceive = (
+const receivedLinear = (
   linearPrice.lte(0)
     ? Big(0)
     : Big(isValid(state.inputValue) ? state.inputValue : 0).div(linearPrice)
 ).toFixed(5, BIG_ROUND_DOWN);
+const formattedReceivedLinear = formatAmount(receivedLinear);
 
 const StakeFormWrapper = styled.div`
   width: 100%;
@@ -233,7 +242,7 @@ return (
       />
       <Widget
         src={`${config.ownerId}/widget/LiNEAR.Message.YouWillReceive`}
-        props={{ text: `${youWillReceive} LiNEAR` }}
+        props={{ text: `${formattedReceivedLinear} LiNEAR` }}
       />
     </div>
     <Widget
