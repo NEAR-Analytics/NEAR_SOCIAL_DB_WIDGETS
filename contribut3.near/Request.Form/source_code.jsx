@@ -1,6 +1,13 @@
 const ownerId = "contribut3.near";
 const accountId = props.accountId;
 
+const createDate = (date) => {
+  const d = date ? new Date(date) : new Date();
+  const month = `${d.getMonth() + 1}`;
+  const day = `${d.getDate()}`;
+  return `${d.getFullYear()}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
+};
+
 const LineContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -189,7 +196,7 @@ State.init({
   paymentSourceError: "",
   budget: null,
   budgetError: "",
-  deadline: null,
+  deadline: createDate(),
   deadlineError: "",
 });
 
