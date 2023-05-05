@@ -31,7 +31,7 @@ const columns = [
         return () => {
           State.update({
             isModalOpen: true,
-            accountDetails: d,
+            currentProposerDetail: d.account,
           });
         };
       };
@@ -83,6 +83,17 @@ const GenericTable = (
   />
 );
 
+const ProposerDetails = (
+  <Widget
+    src={`${widgetProvider}/widget/generic_table`}
+    props={{
+      proposer: state.currentProposerDetail,
+      account,
+      widgetProvider,
+    }}
+  />
+);
+
 const fetchTopProposers = () => {
   const proposers = fetch(apiUrl, {
     mode: "cors",
@@ -99,4 +110,24 @@ const fetchTopProposers = () => {
 
 fetchTopProposers();
 
-return <div>{GenericTable}</div>;
+const toggleModal = (isOpen) => {
+  State.update({ isModalOpen: isOpen });
+};
+
+return (
+  <>
+    {state.currentProposerDetail && state.isModalOpen ? (
+      <Widget
+        src={`${widgetProvider}/widget/NDC-modal`}
+        props={{
+          isOpen: state.isModalOpen,
+          toggleModal,
+          component: ProposerDetails,
+        }}
+      />
+    ) : (
+      ""
+    )}
+    {GenericTable}
+  </>
+);
