@@ -101,6 +101,7 @@ const Container = styled.div`
   justify-content: center;
   width: 100%;
   gap: 3em;
+  padding-top: 3em;
   padding-bottom: 3em;
 `;
 
