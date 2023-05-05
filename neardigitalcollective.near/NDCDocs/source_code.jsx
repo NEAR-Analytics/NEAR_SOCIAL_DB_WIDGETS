@@ -33,7 +33,7 @@ return (
     />
     <div style={{ margin: "0 auto", width: "90%", minWidth: "360px" }}>
       <Widget
-        src={`${authorForWidget}/widget/WikiOnSocialDB_AllArticlesList`}
+        src={`${authorForWidget}/widget/NDCDocs_AllArticlesList`}
         props={{ writersWhiteList }}
       />
     </div>
