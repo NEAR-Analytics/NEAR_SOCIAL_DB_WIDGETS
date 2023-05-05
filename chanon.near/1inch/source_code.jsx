@@ -1,3 +1,4 @@
+// เหลือ State.update({ txHash: "https://bscscan.com/tx/" + tx.hash }); หลัง Swap
 // เหลือ ปุ่ม Max
 // เหลือ ใส่ Amount
 // เหลือ Swap ไม่ได้ถ้าไม่ใส่ เหรียญปลายทาง หรือ เหรียญ ต้นทางกับ ปลายทางเหมือนกัน
@@ -69,7 +70,6 @@ function checkAllowance(token) {
           ? State.update({ toggleAmount: true })
           : State.update({ toggleAmount: false });
       }
-      // State.update({ allowance: res.body.allowance });
     } // TODO :: need to handle error ?
   });
 }
