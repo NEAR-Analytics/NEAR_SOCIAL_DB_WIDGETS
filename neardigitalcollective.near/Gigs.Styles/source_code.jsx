@@ -16,7 +16,7 @@ const updateGeneralState = props.updateGeneralState;
 const thisWidgetInlineStyles = props.allWidgetsInlineStyles.gigs;
 const thisWidgetClassNames = props.allWidgetsClassNames.gigs;
 
-const widgetOwner = props.widgetOwner;
+const widgetOwner = "neardigitalcollective.near";
 
 const widgetName = "Gigs";
 const widgetPath = `webuidl.near/widget/${widgetName}`;
