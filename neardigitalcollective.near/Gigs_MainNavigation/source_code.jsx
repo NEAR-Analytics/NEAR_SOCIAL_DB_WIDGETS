@@ -9,11 +9,16 @@ const writersWhiteList = props.writersWhiteList ?? [
 ];
 const authorForWidget = "neardigitalcollective.near";
 const pills = [
-  {
-    id: "articles",
-    title: "Gigs",
-    widgetName: "Gigs",
-  },
+  // {
+  //   id: "articles",
+  //   title: "Gigs",
+  //   widgetName: "Gigs",
+  // },
+  // {
+  //   id: "authors",
+  //   title: "Authors",
+  //   widgetName: "Gigs_Authors",
+  // },
 ];
 
 const Button = styled.button`
