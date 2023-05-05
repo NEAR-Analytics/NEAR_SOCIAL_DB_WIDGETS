@@ -101,7 +101,7 @@ const Container = styled.div`
   justify-content: center;
   width: 100%;
   gap: 3em;
-  padding-top: 3em;
+  padding-top: 2em;
   padding-bottom: 3em;
 `;
 
@@ -110,6 +110,7 @@ const Header = styled.h1`
   font-weight: 700;
   font-size: 2em;
   line-height: 1.4em;
+  margin-bottom: 0.5em;
   text-align: center;
   color: #000000;
 `;
