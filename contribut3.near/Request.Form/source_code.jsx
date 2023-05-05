@@ -65,7 +65,7 @@ const createProjectLine = (accountId, name, image) => {
 const Form = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
   width: 60%;
   gap: 1em;
@@ -297,10 +297,6 @@ if (!state.projects.length) {
 }
 
 const HalfWidth = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
   width: 50%;
 `;
 
