@@ -85,7 +85,7 @@ const GenericTable = (
 
 const ProposerDetails = (
   <Widget
-    src={`${widgetProvider}/widget/generic_table`}
+    src={`${widgetProvider}/widget/NDC-proposer-detail`}
     props={{
       proposer: state.currentProposerDetail,
       account,
