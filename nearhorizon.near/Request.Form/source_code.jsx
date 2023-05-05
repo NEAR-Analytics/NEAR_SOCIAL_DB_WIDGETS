@@ -259,15 +259,15 @@ if (!state.projectsIsFetched) {
         projectsIsFetched: true,
         ...(accountId
           ? {
-              projectId: {
-                text: createProjectLine(
-                  accountId,
-                  data[accountId].profile.name,
-                  data[accountId].profile.image
-                ),
-                value: accountId,
-              },
-            }
+            projectId: {
+              text: createProjectLine(
+                accountId,
+                data[accountId].profile.name,
+                data[accountId].profile.image
+              ),
+              value: accountId,
+            },
+          }
           : {}),
       })
     );
@@ -295,6 +295,14 @@ if (!state.projects.length) {
     />
   );
 }
+
+const HalfWidth = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 50%;
+`;
 
 return (
   <Container>
@@ -362,7 +370,8 @@ return (
 
             if (state.description.length > 500) {
               State.update({
-                descriptionError: "Name must be less than 500 characters",
+                descriptionError:
+                  "Description must be less than 500 characters",
               });
               return;
             }
@@ -376,7 +385,7 @@ return (
         src={`${ownerId}/widget/Inputs.MultiSelect`}
         props={{
           label: "Tags",
-          placeholder: "DeFi, Gaming...",
+          placeholder: "Start typing",
           options: [{ name: "Wallets" }, { name: "Games" }],
           value: state.tags,
           onChange: (tags) =>
@@ -387,72 +396,82 @@ return (
             }),
         }}
       />
-      <Widget
-        src={`${ownerId}/widget/Inputs.Select`}
-        props={{
-          label: "Request type *",
-          options: state.requestTypes,
-          value: state.requestType,
-          onChange: (requestType) => State.update({ requestType }),
-        }}
-      />
-      <Widget
-        src={`${ownerId}/widget/Inputs.Select`}
-        props={{
-          label: "Payment type *",
-          options: state.paymentTypes,
-          value: state.paymentType,
-          onChange: (paymentType) => State.update({ paymentType }),
-        }}
-      />
-      <Widget
-        src={`${ownerId}/widget/Inputs.Select`}
-        props={{
-          label: "Payment source *",
-          options: state.paymentSources,
-          value: state.paymentSource,
-          onChange: (paymentSource) => State.update({ paymentSource }),
-        }}
-      />
-      <Widget
-        src={`${ownerId}/widget/Inputs.Number`}
-        props={{
-          label: "Budget *",
-          placeholder: 1500,
-          value: state.budget,
-          onChange: (budget) => State.update({ budget }),
-          validate: () => {
-            if (state.budget < 1) {
-              State.update({
-                budgetError: "Budget must be at least 1",
-              });
-              return;
-            }
+      <HalfWidth>
+        <Widget
+          src={`${ownerId}/widget/Inputs.Select`}
+          props={{
+            label: "Request type *",
+            options: state.requestTypes,
+            value: state.requestType,
+            onChange: (requestType) => State.update({ requestType }),
+          }}
+        />
+      </HalfWidth>
+      <HalfWidth>
+        <Widget
+          src={`${ownerId}/widget/Inputs.Select`}
+          props={{
+            label: "Payment type *",
+            options: state.paymentTypes,
+            value: state.paymentType,
+            onChange: (paymentType) => State.update({ paymentType }),
+          }}
+        />
+      </HalfWidth>
+      <HalfWidth>
+        <Widget
+          src={`${ownerId}/widget/Inputs.Select`}
+          props={{
+            label: "Payment source *",
+            options: state.paymentSources,
+            value: state.paymentSource,
+            onChange: (paymentSource) => State.update({ paymentSource }),
+          }}
+        />
+      </HalfWidth>
+      <HalfWidth>
+        <Widget
+          src={`${ownerId}/widget/Inputs.Number`}
+          props={{
+            label: "Budget *",
+            placeholder: 0.0,
+            value: state.budget,
+            onChange: (budget) => State.update({ budget }),
+            validate: () => {
+              if (state.budget < 1) {
+                State.update({
+                  budgetError: "Budget must be at least 1",
+                });
+                return;
+              }
 
-            State.update({ budgetError: "" });
-          },
-          error: state.budgetError,
-        }}
-      />
-      <Widget
-        src={`${ownerId}/widget/Inputs.Date`}
-        props={{
-          label: "Deadline *",
-          value: state.deadline,
-          onChange: (deadline) => State.update({ deadline }),
-          validate: () => {
-            if (new Date(state.deadline) < new Date()) {
-              State.update({
-                deadlineError: "Deadline must be in the future",
-              });
-              return;
-            }
+              State.update({ budgetError: "" });
+            },
+            error: state.budgetError,
+          }}
+        />
+      </HalfWidth>
+      <HalfWidth>
+        <Widget
+          src={`${ownerId}/widget/Inputs.Date`}
+          props={{
+            label: "Deadline *",
+            value: state.deadline,
+            onChange: (deadline) => State.update({ deadline }),
+            validate: () => {
+              if (new Date(state.deadline) < new Date()) {
+                State.update({
+                  deadlineError: "Deadline must be in the future",
+                });
+                return;
+              }
 
-            State.update({ deadlineError: "" });
-          },
-          error: state.deadlineError,
-        }}
-      />
+              State.update({ deadlineError: "" });
+            },
+            error: state.deadlineError,
+          }}
+        />
+      </HalfWidth>
       <FormFooter>
         <Widget
           src={`${ownerId}/widget/Buttons.Green`}
