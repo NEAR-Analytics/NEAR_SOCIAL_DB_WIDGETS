@@ -180,7 +180,7 @@ return (
     style={{ backgroundColor: "rgb(230, 230, 230)", padding: "0 0 1rem 0" }}
   >
     <Widget
-      src={`${authorForWidget}/widget/Gig_MainNavigation`}
+      src={`${authorForWidget}/widget/Gigs_MainNavigation`}
       props={{ currentNavPill: "articles" }}
     />
     <div
@@ -401,7 +401,7 @@ return (
                 </button>
               </div>
               <Widget
-                src={`${authorForWidget}/widget/Gig_History.History`}
+                src={`${authorForWidget}/widget/Gigs_History.History`}
                 props={{
                   articleId: state.article.articleId,
                   resultArticles,
@@ -425,7 +425,7 @@ return (
             {state.showReply && (
               <div className="mb-2">
                 <Widget
-                  src={`${authorForWidget}/widget/Gig_Comment.Compose`}
+                  src={`${authorForWidget}/widget/Gigs_Comment.Compose`}
                   props={{
                     notifyAccountId,
                     item,
