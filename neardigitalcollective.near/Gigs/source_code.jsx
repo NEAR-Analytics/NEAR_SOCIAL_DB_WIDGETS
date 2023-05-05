@@ -33,7 +33,7 @@ return (
     />
     <div style={{ margin: "0 auto", width: "90%", minWidth: "360px" }}>
       <Widget
-        src={`${authorForWidget}/widget/Gigs_AllArticlesList`}
+        src={`${authorForWidget}/widget/Gigs_AllArticleList`}
         props={{ writersWhiteList }}
       />
     </div>
