@@ -1,269 +1,350 @@
-const tabs = {
-  ALL_GIGS: {
-    id: 0,
-    text: "Gigs!",
-  },
-  GIG: {
-    id: 1,
-    text: "Gig",
-  },
-};
-
-const blockHeight = props.blockHeight ?? undefined;
-
-const updateGeneralState = props.updateGeneralState;
-
-const thisWidgetInlineStyles = props.allWidgetsInlineStyles.gigs;
-const thisWidgetClassNames = props.allWidgetsClassNames.gigs;
-
 const widgetOwner = "neardigitalcollective.near";
-
+const profile = Social.getr(`${context.accountId}/profile`);
 const widgetName = "Gigs";
-const widgetPath = `webuidl.near/widget/${widgetName}`;
+const widgetPath = `${widgetOwner}/widget/${widgetName}`;
 const metadata = props.metadata ?? Social.getr(`${widgetPath}/metadata`);
 
 const urlPrefix = "https://";
 const accountId = props.accountId ?? "*";
 
-const data = Social.index("gig", "answer");
-if (!data) {
-  return "Loading answers";
-}
-const upvotes = Social.index("gig", "upvote");
-if (!upvotes) {
-  return "Loading upvotes";
-}
-
-const commentAnswers = Social.index("gig", "commentAnswers");
-if (!commentAnswers) {
-  return "Loading commentAnswers";
-}
-
-const blackList = ["webuidl.near"];
-const whiteListData = data.filter((d) => !blackList.includes(d.accountId));
-const whiteListComments = commentAnswers.filter(
-  (d) => !blackList.includes(d.accountId)
-);
-let sortedData = whiteListData.sort(
-  (d1, d2) => d2.blockHeight - d1.blockHeight
-);
-
-sortedData.forEach((_, i) => {
-  sortedData[i].value.comments = [];
-  sortedData[i].value.upvotes = 0;
-});
-
-let upvotesMap = {};
-for (let i = 0; i < upvotes.length; i++) {
-  const vote = upvotes[i];
-  const upvoteBlockHeight = vote.value.blockHeight;
-  if (!upvotesMap[upvoteBlockHeight]) {
-    upvotesMap[upvoteBlockHeight] = 0;
-  }
-  upvotesMap[upvoteBlockHeight] += 1;
-}
-
-whiteListComments.forEach((c) => {
-  const dataIndex = sortedData.findIndex(
-    (d) => d.blockHeight == c.value.blockHeight
-  );
-  if (dataIndex === -1) return;
-  sortedData[dataIndex].value.comments.push(c);
-});
-
-upvotes.forEach((upvote) => {
-  const dataIndex = sortedData.findIndex(
-    (d) => d.blockHeight == upvote.value.blockHeight
-  );
-  if (dataIndex === -1) return;
-  sortedData[dataIndex].value.upvotes += 1;
-});
-
-const finalData = sortedData;
-
-const gigBlockHeightFiltered = finalData.filter(
-  (d) => d.blockHeight == blockHeight
-);
-
-const openGig = gigBlockHeightFiltered[0] ?? {};
+const sharedBlockHeight = Number(props.sharedBlockHeight);
+const blockHeight = Number.isNaN(sharedBlockHeight)
+  ? undefined
+  : Number(sharedBlockHeight);
 
 State.init({
-  hoveringElement: "",
-  input: "",
-  url: "",
-  onChange: ({ content }) => {
-    State.update({ content });
-  },
-  display: blockHeight ? tabs.GIG.id : tabs.ALL_GIGS.id,
-  gigs: openGig,
+  metadata: {},
+  profile: {},
 });
 
-/* BEGIN Common.componse  */
-const composeData = () => {
-  const data = {
-    post: {
-      main: JSON.stringify(state.content),
-    },
-    index: {
-      post: JSON.stringify({
-        key: "main",
-        value: {
-          type: "md",
-        },
-      }),
-    },
-  };
+if (JSON.stringify(profile) != JSON.stringify(state.profile)) {
+  State.update({ profile: profile });
+}
 
-  const item = {
-    type: "social",
-    path: `${context.accountId}/post/main`,
-  };
+if (JSON.stringify(metadata) != JSON.stringify(state.metadata)) {
+  State.update({ metadata: metadata });
+}
 
-  const notifications = state.extractMentionNotifications(
-    state.content.text,
-    item
-  );
+if (!state.metadata) {
+  return "Loading metadata";
+}
 
-  if (notifications.length) {
-    data.index.notify = JSON.stringify(
-      notifications.length > 1 ? notifications : notifications[0]
-    );
-  }
+//=============================================================================Start inline styles=======================================================================================================
 
-  const hashtags = state.extractHashtags(state.content.text);
-
-  if (hashtags.length) {
-    data.index.hashtag = JSON.stringify(
-      hashtags.map((hashtag) => ({
-        key: hashtag,
-        value: item,
-      }))
-    );
-  }
-
-  return data;
+const standardButtonStyles = {
+  border: "2px solid transparent",
+  fontWeight: "500",
+  fontSize: font_big,
+  padding: "0.3rem 0.5rem",
+  backgroundColor: "#010A2D",
+  borderRadius: "12px",
+  color: "white",
+  textDecoration: "none",
+  margin: "0 1rem",
 };
 
-/* END Common.componse  */
+const hoveringButtonStyles = {
+  border: "2px solid black",
+  color: "black",
+  backgroundColor: "white",
+  fontWeight: "500",
+  fontSize: font_big,
+  padding: "0.3rem 0.5rem",
+  borderRadius: "12px",
+  textDecoration: "none",
+  margin: "0 1rem",
+};
 
-/* BEGIN CommentButton  */
+const allWidgetsInlineStyles = {
+  standardButtonStyles: standardButtonStyles,
+  hoveringButtonStyles: hoveringButtonStyles,
+  styles: {
+    container: {
+      position: "relative",
+      zIndex: "1",
+      backgroundColor: "rgb(230, 230, 230)",
+      fontFamily: "Onest",
+      fontStyle: "normal",
+      borderRadius: "20px",
+      overflowY: "scroll",
+    },
+    headerContainer: {
+      backgroundColor: "white",
+      boxShadow: "0px 4px 28px rgba(43, 68, 106, 0.04)",
+    },
+    widgetImageContainer: {
+      backgroundColor: "#010A2D",
+      color: "white",
+      height: "40px",
+      minWidth: "2.5rem",
+      aspectRatio: "1",
+      borderRadius: "12px",
+    },
+    gigsTitle: {
+      margin: "0 0.5rem",
+      color: "#010A2D",
+      fontWeight: "700",
+      fontSize: "1.3rem",
+      letterSpacing: "0.1px",
+    },
+    userName: {
+      margin: "0",
+      fontSize: "0.8rem",
+      textOverflow: "ellipsis",
+      overflow: "hidden",
+      maxWidth: "120px",
+    },
+    gigsImage: {
+      borderRadius: "12px",
+    },
+  },
 
-/* END CommentButton  */
+  //======================================================================================================================================================================================================
 
-const RenderGigBox = (d, index) => {
-  return (
-    <Widget
-      src={`${widgetOwner}/widget/gigBox`}
-      props={{
-        tabs,
-        oppenedTab: state.display,
-        widgetOwner,
-        d,
-        index,
-        upvotes,
-        updateGeneralState,
-        allWidgetsInlineStyles: props.allWidgetsInlineStyles,
-        allWidgetsClassNames: props.allWidgetsClassNames,
-      }}
-    />
-  );
+  gigs: {
+    generalContainer: {
+      height: "max-content",
+      minHeight: "80vh",
+    },
+    selectedTab: {
+      margin: "2rem 0 0.5rem 0",
+      fontWeight: "700",
+    },
+    closeGigButton: {
+      margin: "2rem 0 0.5rem 0",
+      cursor: "pointer",
+    },
+    allCommentAnswerBox: {
+      cardsContainer: {
+        boxShadow: "1px 0px 8px -3px rgba(0,0,0,0.44) inset",
+        maxHeight: "75vh",
+        overflowY: "scroll",
+        transform: "translateY(calc(100% - 12px))",
+        position: "absolute",
+        width: "calc(100% + 2px)",
+        bottom: "0",
+        left: "-1px",
+        backgroundColor: "white",
+        borderWidth: "0 1px 1px 1px",
+        borderStyle: "solid",
+        borderColor: "lightGray",
+        borderBottomRightRadius: "5px",
+        borderBottomLeftRadius: "5px",
+        padding: "10px",
+      },
+      cardContainer: {
+        marginTop: "0.5rem",
+        textAlign: "start",
+        width: "100%",
+        borderBottom: "1px solid black",
+      },
+      profileImageStyles: {
+        width: "1.5em",
+        height: "1.5em",
+      },
+      commentUserNick: {
+        maxWidth: "10rem",
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        margin: "0 0.5rem",
+      },
+      comment: {
+        margin: "1rem",
+      },
+    },
+    urlTextarea: {
+      backgroundColor: "#fafafa",
+      border: "1px solid #fafafa",
+      borderRadius: "0.375rem",
+    },
+    renderItemBox: {
+      cardContainer: {
+        position: "relative",
+        boxSizing: "border-box",
+        boxShadow: "0px 8px 28px rgba(43, 68, 106, 0.05)",
+        backgroundColor: "white",
+        borderRadius: "1rem",
+        textAlign: "center",
+        padding: "10px",
+        margin: "1rem 0.5rem",
+        height: "max-content",
+      },
+      showCommentsButtonContainerNoComments: {
+        margin: "0.5rem auto",
+        padding: "0.3rem 0.5rem",
+        borderRadius: "12px",
+        width: "max-content",
+      },
+      showCommentsButtonContainer: {
+        margin: "0.5rem auto",
+        padding: "0.3rem 0.5rem",
+        cursor: "pointer",
+        borderRadius: "12px",
+        width: "max-content",
+      },
+      hoveringShowCommentsButtonContainer: {
+        margin: "0.5rem auto",
+        padding: "0.3rem 0.5rem",
+        cursor: "pointer",
+        borderRadius: "12px",
+        width: "max-content",
+        color: "rgba(0,191,255,255)",
+        backgroundColor: "rgba(229, 248, 255, 255)",
+      },
+      textShowComment: {
+        margin: "0",
+        userSelect: "none",
+      },
+      flipButton: {
+        transform: "rotate(180deg)",
+        transition: "transform 1s",
+      },
+    },
+  },
+
+  //======================================================================================================================================================================================================
+
+  mainPage_post: {
+    cardContent: {
+      width: "100%",
+    },
+    postUrl: {
+      margin: "1rem",
+    },
+    postUrlSpan: {
+      marginRigth: "0.5rem",
+    },
+    postContentContainer: {
+      textAlign: "start",
+      marginLeft: "1rem",
+    },
+    followButtonContainer: {
+      marginLeft: "0.5rem",
+    },
+    upVoteContainer: {
+      width: "100%",
+    },
+    upVoteCounter: {
+      marginLeft: "1rem",
+    },
+    commentInput: {
+      container: {
+        margin: "10px 0px",
+        width: "100%",
+      },
+      textArea: {
+        backgroundColor: "rgb(230, 230, 230)",
+        border: "1px solid #ced4da",
+        borderRadius: "0.375rem",
+        width: "100%",
+        verticalAlign: "middle",
+        marginBottom: "0.5rem",
+      },
+    },
+  },
+};
+
+//===============================================================================End inline styles=======================================================================================================
+
+//==============================================================================Start class styles=======================================================================================================
+a;
+const allWidgetsClassNames = {
+  styles: {
+    container: "pb-5",
+    headerContainer:
+      "d-flex justify-content-between align-items-center px-4 py-3",
+    widgetPresentationContainer: "d-flex align-items-center",
+    widgetImageContainer: "d-flex align-items-center justify-content-center",
+    gigsImage: "w-100 h-100 shadow",
+    userInfoContainer: "p-2",
+  },
+
+  //======================================================================================================================================================================================================
+
+  gigs: {
+    selectedTabContainer: "d-flex justify-content-between",
+    generalContainer: "px-4 pt-2",
+    urlTextareaContainer: "d-flex flex-column my-3 justify-content-around",
+    allCardsContainer: "d-flex flex-wrap justify-content-around",
+    allCommentAnswerBox: {
+      cardContainer: "",
+      userAnswerHeader: "d-flex flex-wrap align-items-center",
+    },
+    renderGigBox: {
+      cardContainer:
+        "col-xxl-5 col-xl-5 col-lg-5 col-md-12 col-sm-12 col-xs-12",
+      cardContainerSingleCard: "col-12",
+      showCommentsButtonContainer: "d-flex flex-column align-items-center ",
+    },
+  },
+
+  mainPage_post: {
+    headerContainer: "d-flex justify-content-between",
+    cardContent: "mt-3 text-break w-100 d-flex justify-content-between",
+    postUrl: "d-flex",
+    upVoteContainer:
+      "d-flex flex-row-reverse align-items-center justify-content-end",
+    commentInput: {
+      container: "d-flex align-items-end flex-column",
+    },
+  },
+};
+
+//================================================================================End class styles=======================================================================================================
+
+const updateGeneralState = (object) => {
+  State.update(object);
 };
 
 return (
   <div
-    style={thisWidgetInlineStyles.generalContainer}
-    className={thisWidgetClassNames.generalContainer}
+    className={allWidgetsClassNames.styles.container}
+    style={allWidgetsInlineStyles.styles.container}
   >
-    <div className={thisWidgetClassNames.selectedTabContainer}>
-      <h2 style={thisWidgetInlineStyles.selectedTab}>
-        {state.display == tabs.ALL_GIGS.id
-          ? tabs.ALL_GIGS.text
-          : `${tabs.GIG.text}`}
-      </h2>
-      {state.display == tabs.GIG.id && (
-        <i
-          className="bi bi-x-lg"
-          style={thisWidgetInlineStyles.closeGigButton}
-          onClick={() => {
-            State.update({ display: tabs.ALL_GIGS.id, gig: {} });
-          }}
-        ></i>
-      )}
-    </div>
-
-    {state.display == tabs.ALL_GIGS.id && (
-      <>
-        <p>NDC Gigs to BuiDL NDC V1 Gov ON NEAR</p>
-        <Widget
-          src={`${widgetOwner}/widget/Common.Compose`}
-          props={{
-            id: "main",
-            textAreaOnly: true,
-            onChange: state.onChange,
-            onHelper: ({ extractMentionNotifications, extractHashtags }) => {
-              State.update({ extractMentionNotifications, extractHashtags });
-            },
-          }}
-        />
-
-        <div className={thisWidgetClassNames.urlTextareaContainer}>
-          <p>Url:</p>
-          <textarea
-            style={thisWidgetInlineStyles.urlTextarea}
-            rows="1"
-            value={state.url}
-            onChange={(e) => {
-              State.update({ url: e.target.value });
+    <div
+      className={allWidgetsClassNames.styles.headerContainer}
+      style={allWidgetsInlineStyles.styles.headerContainer}
+    >
+      <div className={allWidgetsClassNames.styles.widgetPresentationContainer}>
+        <div
+          className={allWidgetsClassNames.styles.widgetImageContainer}
+          style={allWidgetsInlineStyles.styles.widgetImageContainer}
+        >
+          <Widget
+            src="mob.near/widget/Image"
+            props={{
+              image: metadata.image,
+              className: allWidgetsClassNames.styles.gigsImage,
+              thumbnail: false,
+              fallbackUrl:
+                "https://ipfs.near.social/ipfs/bafkreido7gsk4dlb63z3s5yirkkgrjs2nmyar5bxyet66chakt2h5jve6e",
+              alt: "gigs image",
+              style: allWidgetsInlineStyles.styles.gigsImage,
             }}
           />
         </div>
-        <CommitButton
-          style={
-            state.hoveringElement == "commitButton"
-              ? props.allWidgetsInlineStyles.hoveringButtonStyles
-              : props.allWidgetsInlineStyles.standardButtonStyles
-          }
-          data={{
-            index: {
-              gig: JSON.stringify(
-                {
-                  key: "answer",
-                  value: {
-                    answer: state.content.text,
-                    url: state.url,
-                  },
-                },
-                undefined,
-                0
-              ),
-            },
-          }}
-          onMouseEnter={() => {
-            State.update({ hoveringElement: "commitButton" });
-          }}
-          onMouseLeave={() => {
-            State.update({ hoveringElement: "" });
-          }}
-          onCommit={() => {
-            State.update({
-              reloadData: true,
-            });
-          }}
-        >
-          Send It!
-        </CommitButton>
-      </>
-    )}
-
-    {state.display == tabs.ALL_GIGS.id && (
-      <div className={thisWidgetClassNames.allCardsContainer}>
-        {sortedData
-          ? sortedData.map((d, index) => {
-              return RenderGigBox(d, index);
-            })
-          : "Loading..."}
+        <h3 style={allWidgetsInlineStyles.styles.gigsTitle}>NDC Gigs!</h3>
       </div>
-    )}
-    {state.display == tabs.GIG.id && RenderGigBox(state.gigs, 0)}
+
+      <div className={allWidgetsClassNames.styles.userInfoContainer}>
+        <p style={allWidgetsInlineStyles.styles.userName}>
+          {state.profile.name}
+        </p>
+        <p style={allWidgetsInlineStyles.styles.userName}>
+          @{context.accountId}
+        </p>
+      </div>
+    </div>
+
+    <Widget
+      src={`${widgetOwner}/widget/Gigs.Controller`}
+      props={{
+        blockHeight,
+        widgetOwner,
+        allWidgetsInlineStyles,
+        allWidgetsClassNames,
+        updateGeneralState,
+      }}
+    />
   </div>
 );
