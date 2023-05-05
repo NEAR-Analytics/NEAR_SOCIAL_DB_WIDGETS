@@ -52,6 +52,10 @@ const Input = styled.input`
   border-radius: 4px;
   color: #101828;
   width: 100%;
+
+  &::-webkit-calendar-picker-indicator {
+    display: none;
+  }
 `;
 
 return (
