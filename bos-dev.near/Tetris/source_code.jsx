@@ -2,7 +2,7 @@ const srcCode = `
 
 <div class="canvas_wrap">
 	<canvas id="tetris" width="240" height="400"></canvas>
-	<button type="button" id="start_game">Play</button>
+	<button type="button" id="start_game">Start</button>
 </div>
 
 <style>
@@ -29,7 +29,7 @@ body {
 }
 .canvas_wrap>button{
 	font-family:Inconsolata, monospace;
-	font-size:33px;
+	font-size:22px;
 	color:#000000
 	background-color:black;
 	border:none;
@@ -38,11 +38,12 @@ body {
 	border-radius: 12px;
 	padding: 5px 12px;
 	margin-top: 5px;
+	margin-bottom: 10px;
 }
 
 .canvas_wrap>button:hover {
-  background-color: yellow;
-  color: black;
+  background-color: black;
+  color: white;
 }
 
 }
@@ -244,7 +245,7 @@ body {
 		context.fillStyle="#ffffff";
 		context.textAlign="left";
 		context.textBaseline="top";
-		context.fillText("Score:"+player.score,0.2,0);
+		context.fillText(player.score,0.2,0);
 	};
 	let gameOver=function(){
 		clearInterval(gameLoop);
