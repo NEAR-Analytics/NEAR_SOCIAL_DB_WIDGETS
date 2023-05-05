@@ -62,7 +62,7 @@ return (
         className="navbar-brand text-decoration-none"
         href={`#/${authorForWidget}/widget/Gigs`}
       >
-        {"<NDCDocs>"}
+        {"<NDCGigs>"}
       </a>
       <button
         className="navbar-toggler"
