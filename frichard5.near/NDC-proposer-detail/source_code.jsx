@@ -7,7 +7,7 @@ const resPerPage = 10;
 
 const DetailWrapper = styled.div`
   position: relative;
-  height: 500px;
+  height: 400px;
   width: 80%;
   margin: 50px auto;
   box-shadow: 3px 2px 24px rgba(68, 152, 224, 0.3);
@@ -51,21 +51,6 @@ const columns = [
       );
     },
   },
-  {
-    id: "total",
-    label: "Details",
-    formatter: (d) => {
-      const setModal = (d) => {
-        return () => {
-          State.update({
-            isModalOpen: true,
-            currentProposerDetail: d.account,
-          });
-        };
-      };
-      return <button onClick={setModal(d)}>Show</button>;
-    },
-  },
 ];
 
 State.init({
@@ -100,7 +85,6 @@ const GenericTable = (
   <Widget
     src={`${widgetProvider}/widget/generic_table`}
     props={{
-      title: "Proposers",
       columns,
       data: state.displayedHistory,
       nextPage,
