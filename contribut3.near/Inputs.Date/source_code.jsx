@@ -54,7 +54,8 @@ const Input = styled.input`
   width: 100%;
 
   &::-webkit-calendar-picker-indicator {
-    display: none;
+    position: absolute;
+    right: 0;
   }
 `;
 
