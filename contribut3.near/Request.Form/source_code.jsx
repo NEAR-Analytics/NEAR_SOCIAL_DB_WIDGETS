@@ -439,6 +439,7 @@ return (
           props={{
             label: "Budget *",
             placeholder: 0.0,
+            hasDollar: true,
             value: state.budget,
             onChange: (budget) => State.update({ budget }),
             validate: () => {
