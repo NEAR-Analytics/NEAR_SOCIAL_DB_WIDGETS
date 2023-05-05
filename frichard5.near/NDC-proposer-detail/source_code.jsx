@@ -114,6 +114,6 @@ return (
         {proposer} proposal history
       </a>
     </h2>
-    {GenericTable}
+    {state.displayedProposers && GenericTable}
   </>
 );
