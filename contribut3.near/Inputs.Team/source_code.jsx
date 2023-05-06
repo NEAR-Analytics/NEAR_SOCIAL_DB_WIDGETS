@@ -98,6 +98,12 @@ const SaveButton = styled.button`
 
 const teamMembers = Object.keys(team);
 
+const getPermission = (accountId) => {
+  const { permissions } = team[accountId] ?? {};
+  const [permission = "Member"] = permissions ?? [];
+  return { id: permission, text: permission };
+};
+
 return (
   <Container>
     <Widget
@@ -123,6 +129,7 @@ return (
         props={{
           accountId,
           name: team[accountId]?.name ?? accountId,
+          permission: getPermission(accountId),
           onToggle: ({ id }) => {
             const permissions = id === "Admin" ? ["Admin"] : [];
             update(Object.assign(team, { [accountId]: { permissions } }));
