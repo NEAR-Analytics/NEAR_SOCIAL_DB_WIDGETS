@@ -41,7 +41,7 @@ if (finalData) {
       </a>
       <Widget
         src="miraclx.near/widget/Attribution"
-        props={{ authors: [ownerId], dep: true }}
+        props={{ authors: [props.ownerId], dep: true }}
       />
     </div>
   );
