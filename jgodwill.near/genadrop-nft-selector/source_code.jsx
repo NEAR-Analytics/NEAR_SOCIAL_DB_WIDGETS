@@ -34,15 +34,18 @@ const finalData = data?.body?.data;
 
 if (finalData) {
   return (
-    <div className="d-flex flex-wrap gap-2 justify-content-center">
-      You own no NFT yet. You can mint an NFT on 💧
-      <a href="https://genadrop.io" target="_blank" rel="noopener noreferrer">
-        GenaDrop
-      </a>
-      <Widget
-        src="miraclx.near/widget/Attribution"
-        props={{ authors: [props.ownerId], dep: true }}
-      />
+    <div className="d-flex flex-wrap gap-2 justify-content-center align-items-center flex-column">
+      <p>You own no NFT yet.</p>
+      <p>
+        You can mint an NFT on 💧
+        <a href="https://genadrop.io" target="_blank" rel="noopener noreferrer">
+          GenaDrop
+        </a>
+        <Widget
+          src="miraclx.near/widget/Attribution"
+          props={{ authors: [props.ownerId], dep: true }}
+        />
+      </p>
     </div>
   );
 }
