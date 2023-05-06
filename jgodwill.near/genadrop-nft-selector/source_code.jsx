@@ -32,7 +32,7 @@ const data = fetch("https://graph.mintbase.xyz", {
 
 const finalData = data?.body?.data;
 
-if (finalData) {
+if (!finalData) {
   return (
     <div className="d-flex flex-wrap gap-2 justify-content-center align-items-center flex-column">
       <p>You own no NFT yet.</p>
