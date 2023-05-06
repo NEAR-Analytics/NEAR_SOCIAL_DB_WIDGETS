@@ -133,7 +133,7 @@ return (
           accountId,
           name: team[accountId]?.name ?? accountId,
           permission: getPermission(accountId),
-          onToggle: ({ id }) => {
+          onToggle: (id) => {
             const permissions = id === "Admin" ? ["Admin"] : [];
             Object.assign(team, { [accountId]: { permissions } });
             console.log(team);
