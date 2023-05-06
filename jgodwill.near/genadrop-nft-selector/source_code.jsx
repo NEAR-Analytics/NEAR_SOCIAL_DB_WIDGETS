@@ -41,7 +41,7 @@ const NFTImageButton = styled.div`
 `;
 
 const NFTs = styled.div`
-  height:100vw;
+  height:100vh;
 `;
 
 const finalData = data?.body?.data;
