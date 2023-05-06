@@ -55,15 +55,26 @@ const NFTImageButton = styled.button`
 `;
 
 const NFTs = styled.div`
-  height:100vh;
+  height:90vh;
+`;
+
+const Heading = styled.p`
+  margin: 10px auto 10px auto;
+  font-size: 1em;
+  color:#0f1d40;
+  width:60%;
+  text-align: center;
+  font-family: "SF Pro Display",sans-serif;
 `;
 
 const finalData = data?.body?.data;
 
 if (!finalData) {
   return (
-    <div className="d-flex flex-wrap gap-2 justify-content-center align-items-center flex-column">
-      <p>You own no NFT yet.</p>
+    <NFTs className="d-flex flex-wrap gap-2 justify-content-center align-items-center flex-column">
+      <Heading className="text-center fs-2 fw-bold">
+        You own no NFT yet.
+      </Heading>
       <p>
         You can mint an NFT on 💧
         <a href="https://genadrop.io" target="_blank" rel="noopener noreferrer">
@@ -74,12 +85,15 @@ if (!finalData) {
           props={{ authors: [props.ownerId], dep: true }}
         />
       </p>
-    </div>
+    </NFTs>
   );
 }
 
 return (
   <>
+    <Heading className="text-center fs-2 fw-bold">
+      Select the NFT you want to list
+    </Heading>
     <NFTs className="d-flex flex-wrap gap-2 justify-content-center align-items-center">
       {finalData.tokens.map((nft, index) => (
         <NFTImageButton
