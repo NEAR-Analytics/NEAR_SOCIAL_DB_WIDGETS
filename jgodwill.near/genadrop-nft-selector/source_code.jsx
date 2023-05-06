@@ -31,9 +31,11 @@ const data = fetch("https://graph.mintbase.xyz", {
 });
 
 const NFTImageButton = styled.div`
-  width: 6vw;
+  width: 8vw;
   aspect-ratio: 1/1;
-  height: 6vw;
+  height: 8vw;
+  min-width:200px
+  min-height:200px
   transition: all 0.3s ease-in;
   &:hover{
     transform: scale(1.06);
