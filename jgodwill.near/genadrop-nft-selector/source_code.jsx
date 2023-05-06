@@ -36,9 +36,9 @@ const NFTImageButton = styled.div`
   height: 8vw;
   min-width:200px
   min-height:200px
-  transition: all 0.3s ease-in;
+  transition: all 0.4s ease-in-out;
   &:hover{
-    transform: scale(1.06);
+    transform: scale(1.02);
   }
 `;
 
