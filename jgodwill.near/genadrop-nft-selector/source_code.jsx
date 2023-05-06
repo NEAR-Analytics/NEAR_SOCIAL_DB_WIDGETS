@@ -32,8 +32,19 @@ const data = fetch("https://graph.mintbase.xyz", {
 
 const finalData = data?.body?.data;
 
-if (!finalData) {
-  return <></>;
+if (finalData) {
+  return (
+    <div className="d-flex flex-wrap gap-2 justify-content-center">
+      You own no NFT yet. You can mint an NFT on 💧
+      <a href="https://genadrop.io" target="_blank" rel="noopener noreferrer">
+        GenaDrop
+      </a>
+      <Widget
+        src="miraclx.near/widget/Attribution"
+        props={{ authors: [ownerId], dep: true }}
+      />
+    </div>
+  );
 }
 
 return (
