@@ -18,7 +18,9 @@ const Toast = styled.div`
 return (
   <>
     <Toast>
-      <p>{props.toastMessage || "This is me!"}</p>
+      <p>
+        {props.toastMessage || "Make sure all required fields are popuplated!"}
+      </p>
     </Toast>
   </>
 );
