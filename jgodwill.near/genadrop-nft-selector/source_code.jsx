@@ -30,6 +30,20 @@ const data = fetch("https://graph.mintbase.xyz", {
   }),
 });
 
+const NFTImageButton = styled.div`
+  width: 6vw;
+  aspect-ratio: 1/1;
+  height: 6vw;
+  transition: all 0.3s ease-in;
+  &:hover{
+    transform: scale(1.06);
+  }
+`;
+
+const NFTs = styled.div`
+  height:100vw;
+`;
+
 const finalData = data?.body?.data;
 
 if (!finalData) {
@@ -52,18 +66,11 @@ if (!finalData) {
 
 return (
   <>
-    <div
-      className="d-flex flex-wrap gap-2 justify-content-center"
-      style={{
-        height: "334px",
-        overflow: "auto",
-      }}
-    >
+    <NFTs className="d-flex flex-wrap gap-2 justify-content-center align-items-center">
       {finalData.tokens.map((nft, index) => (
-        <div
+        <NFTImageButton
           key={`${nft.contractId}-${nft.tokenId}-${index}`}
           role="button"
-          style={{ width: "15%", aspectRatio: "1/1" }}
           onClick={() => {
             onChange({
               contractId: nft.contractId,
@@ -84,6 +91,7 @@ return (
                 maxWidth: size,
                 maxHeight: size,
                 overflowWrap: "break-word",
+                borderRadius: "10px",
               },
               className: "",
               fallbackUrl:
@@ -91,8 +99,8 @@ return (
               alt: `NFT ${nft.contractId} ${nft.tokenId}`,
             }}
           />
-        </div>
+        </NFTImageButton>
       ))}
-    </div>
+    </NFTs>
   </>
 );
