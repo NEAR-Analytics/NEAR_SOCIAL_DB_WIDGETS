@@ -152,8 +152,7 @@ return (
             state.team.map(({ name }) => [name, { permissions: ["Admin"] }])
           )
         );
-        update(team);
-        onSave();
+        onSave(team);
       }}
     >
       Save changes
