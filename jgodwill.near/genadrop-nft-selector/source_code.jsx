@@ -41,6 +41,8 @@ const NFTImageButton = styled.button`
   background:transparent;
   opacity:0.9;
   object-fit: cover;
+  padding:unset;
+  overflow:hidden;
   &:hover{
     opacity:1;
   }
@@ -65,7 +67,7 @@ const NFTs = styled.div`
 
 const Heading = styled.p`
   margin: 10px auto 10px auto;
-  font-size: 1em;
+  font-size: 1.3em;
   color:#0f1d40;
   width:60%;
   text-align: center;
@@ -78,9 +80,7 @@ const finalData = data?.body?.data;
 if (!finalData) {
   return (
     <div className="d-flex vh-100 flex-wrap gap-2 justify-content-center align-items-center flex-column">
-      <Heading className="text-center fs-2 fw-bold">
-        You own no NFT yet.
-      </Heading>
+      <Heading className="text-center fw-bold">You own no NFT yet.</Heading>
       <p>
         You can mint an NFT on 💧
         <a href="https://genadrop.io" target="_blank" rel="noopener noreferrer">
@@ -97,7 +97,7 @@ if (!finalData) {
 
 return (
   <>
-    <Heading className="text-center fs-2 fw-bold">
+    <Heading className="text-center fw-bold">
       Select the NFT you want to list
     </Heading>
     <NFTs className="d-flex flex-wrap gap-2 justify-content-center align-items-center">
