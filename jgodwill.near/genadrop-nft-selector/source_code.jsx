@@ -30,15 +30,27 @@ const data = fetch("https://graph.mintbase.xyz", {
   }),
 });
 
-const NFTImageButton = styled.div`
+const NFTImageButton = styled.button`
   width: 8vw;
   aspect-ratio: 1/1;
   height: 8vw;
   min-width:200px
   min-height:200px
   transition: all 0.4s ease-in-out;
+  border: 1.41429px solid rgba(28,27,28,.1);
+  border-radius: 10px;
+  outline:none;
+  background:transparent;
+  opacity:0.9;
+  object-fit: cover;
   &:hover{
-    transform: scale(1.02);
+    opacity:1;
+  }
+  &>img{
+  transition: all 0.3s ease-in-out;
+  }
+  &>img:hover{
+    transform:scale(1.05);
   }
 `;
 
@@ -72,7 +84,6 @@ return (
       {finalData.tokens.map((nft, index) => (
         <NFTImageButton
           key={`${nft.contractId}-${nft.tokenId}-${index}`}
-          role="button"
           onClick={() => {
             onChange({
               contractId: nft.contractId,
@@ -93,7 +104,7 @@ return (
                 maxWidth: size,
                 maxHeight: size,
                 overflowWrap: "break-word",
-                borderRadius: "10px",
+                borderRadius: "inherit",
               },
               className: "",
               fallbackUrl:
