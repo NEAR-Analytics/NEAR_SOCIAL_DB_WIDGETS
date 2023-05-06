@@ -100,7 +100,10 @@ const teamMembers = Object.keys(team);
 
 const getPermission = (accountId) => {
   const { permissions } = team[accountId] ?? {};
-  const [permission = "Member"] = permissions ?? [];
+  let [permission] = permissions ?? [];
+  if (!permission) {
+    permission = "Member";
+  }
   return { id: permission, text: permission };
 };
 
