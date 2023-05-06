@@ -31,11 +31,9 @@ const data = fetch("https://graph.mintbase.xyz", {
 });
 
 const NFTImageButton = styled.button`
-  width: 8vw;
+  width: 25%;
   aspect-ratio: 1/1;
-  height: 8vw;
-  min-width:200px
-  min-height:200px
+  height: 25%;
   transition: all 0.4s ease-in-out;
   border: 1.41429px solid rgba(28,27,28,.1);
   border-radius: 10px;
@@ -55,7 +53,14 @@ const NFTImageButton = styled.button`
 `;
 
 const NFTs = styled.div`
-  height:90vh;
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  justify-content: center;
+  // background: linear-gradient(180deg,#e4f1fb,hsla(0,0%,85.1%,0));
+  margin-top: 20px;
+  width:100%;
+  padding: 1rem;
 `;
 
 const Heading = styled.p`
@@ -65,13 +70,14 @@ const Heading = styled.p`
   width:60%;
   text-align: center;
   font-family: "SF Pro Display",sans-serif;
+  line-height: 1.02;
 `;
 
 const finalData = data?.body?.data;
 
 if (!finalData) {
   return (
-    <NFTs className="d-flex flex-wrap gap-2 justify-content-center align-items-center flex-column">
+    <div className="d-flex vh-100 flex-wrap gap-2 justify-content-center align-items-center flex-column">
       <Heading className="text-center fs-2 fw-bold">
         You own no NFT yet.
       </Heading>
@@ -85,7 +91,7 @@ if (!finalData) {
           props={{ authors: [props.ownerId], dep: true }}
         />
       </p>
-    </NFTs>
+    </div>
   );
 }
 
