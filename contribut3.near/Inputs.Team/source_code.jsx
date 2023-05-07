@@ -151,18 +151,6 @@ return (
         }}
       />
     ))}
-    <SaveButton
-      onClick={() => {
-        Object.assign(
-          team,
-          Object.fromEntries(
-            state.team.map(({ name }) => [name, { permissions: ["Admin"] }])
-          )
-        );
-        onSave(team);
-      }}
-    >
-      Save changes
-    </SaveButton>
+    <SaveButton onClick={() => onSave(team)}>Save changes</SaveButton>
   </Container>
 );
