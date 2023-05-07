@@ -94,7 +94,7 @@ const SaveButton = styled.button`
   line-height: 1em;
   text-align: center;
   color: #11181c;
-  margin-top: 2em;
+  margin-top: 1em;
 `;
 
 const teamMembers = Object.keys(team);
