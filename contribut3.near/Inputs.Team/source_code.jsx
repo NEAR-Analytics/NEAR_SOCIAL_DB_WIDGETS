@@ -99,8 +99,7 @@ const SaveButton = styled.button`
 const teamMembers = Object.keys(team);
 
 const getPermission = (accountId) => {
-  const { permissions } = team[accountId] ?? {};
-  let [permission] = permissions ?? [];
+  let [permission] = team[accountId] ?? [];
   if (!permission) {
     permission = "Member";
   }
@@ -136,7 +135,6 @@ return (
           onToggle: (id) => {
             const permissions = id === "Admin" ? ["Admin"] : [];
             Object.assign(team, { [accountId]: permissions });
-            console.log(team);
             update(team);
           },
           onRemove: () => {
