@@ -117,7 +117,14 @@ return (
           ({ name }) => !teamMembers.includes(name)
         ),
         value: state.team,
-        onChange: (team) => State.update({ team }),
+        onChange: (team) => {
+          State.update({ team });
+          Object.assign(
+            props.team,
+            ...team.map(({ name }) => ({ [name]: [] }))
+          );
+          update(props.team);
+        },
       }}
     />
     <Header>
