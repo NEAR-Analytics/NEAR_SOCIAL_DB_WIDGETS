@@ -1,5 +1,5 @@
 const ownerId = "contribut3.near";
-const founders = props.founders ?? {};
+const founders = props.founders ?? [];
 const update = props.update ?? (() => {});
 const onSave = props.onSave ?? (() => {});
 
