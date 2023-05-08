@@ -65,6 +65,7 @@ const NFTs = styled.div`
   padding: 1rem;
   overflow-x:scroll;
   align-content: center;
+  flex-wrap: nowrap;
 `;
 
 const Heading = styled.p`
