@@ -1,7 +1,7 @@
 const ownerId = "contribut3.near";
 const permissions = props.permissions ?? {};
-const update = props.update ?? (() => { });
-const onSave = props.onSave ?? (() => { });
+const update = props.update ?? (() => {});
+const onSave = props.onSave ?? (() => {});
 
 const Header = styled.div`
   display: flex;
