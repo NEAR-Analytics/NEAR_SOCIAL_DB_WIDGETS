@@ -118,14 +118,14 @@ const handleDeleteCard = (request, response) => {
 const handleMoveCardAcrossLanes = (request, response, Utils) => {
   const { payload } = request;
   if (payload) {
-    Utils.promisify(() => {
-      if (props.onCardMoveAcrossLanes) {
+    if (props.onCardMoveAcrossLanes) {
+      Utils.promisify(() => {
         const resp = props.onCardMoveAcrossLanes(payload);
         response(request).send({ success: resp });
-      } else {
-        console.log(payload);
-      }
-    });
+      });
+    } else {
+      console.log(payload);
+    }
   } else {
     response(request).send({ error: "payload not provided" });
   }
