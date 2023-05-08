@@ -102,7 +102,7 @@ return (
     <Widget
       src={`${ownerId}/widget/Inputs.MultiSelect`}
       props={{
-        label: "Add team members",
+        label: "Add founders",
         placeholder: "Start typing",
         options: [...state.followers, ...state.following].filter(
           ({ name }) => !founders.includes(name)
@@ -110,8 +110,11 @@ return (
         value: state.founders,
         onChange: (founders) => {
           State.update({ founders });
-          props.founders.push(founders);
-          update(props.founders);
+          update(
+            Array.from(
+              new Set([...props.founders, ...founders.map(({ name }) => name)])
+            )
+          );
         },
       }}
     />
