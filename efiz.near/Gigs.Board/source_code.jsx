@@ -115,7 +115,7 @@ const handleDeleteCard = (request, response) => {
  *
  * Pass a custom function via props.onCardMoveAcrossLanes
  */
-const handleMoveCardAcrossLanes = (request, response) => {
+const handleMoveCardAcrossLanes = (request, response, Utils) => {
   const { payload } = request;
   if (payload) {
     Utils.promisify(() => {
