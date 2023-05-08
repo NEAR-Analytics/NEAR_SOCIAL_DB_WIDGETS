@@ -123,14 +123,16 @@ return (
       <Other />
     </Header>
     {founders.map((accountId) => (
-      <Widget
-        src={`${ownerId}/widget/Inputs.Founder`}
-        props={{
-          accountId,
-          onRemove: () =>
-            update(props.founders.filter((id) => id !== accountId)),
-        }}
-      />
+      <div key={accountId}>
+        <Widget
+          src={`${ownerId}/widget/Inputs.Founder`}
+          props={{
+            accountId,
+            onRemove: () =>
+              update(props.founders.filter((id) => id !== accountId)),
+          }}
+        />
+      </div>
     ))}
     <SaveButton onClick={() => onSave(founders)}>Save changes</SaveButton>
   </Container>
