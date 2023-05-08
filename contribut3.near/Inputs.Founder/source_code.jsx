@@ -1,6 +1,6 @@
 const ownerId = "contribut3.near";
 const accountId = props.accountId;
-const name = props.name;
+const name = props.name ?? accountId;
 const onRemove = props.onRemove;
 
 const Name = styled.a`
