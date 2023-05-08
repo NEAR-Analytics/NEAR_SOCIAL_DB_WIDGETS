@@ -7,7 +7,7 @@
  *      lanes: template for react-trello lanes, fully customizable, see https://github.com/rcdexta/react-trello/tree/master#usage
  *      onCardAdd: optional custom function called when a card is added
  *      onCardDelete: optional custom function called when a card is deleted
- *      loadCardData: optional custom function called to load card data
+ *      loadCards: optional custom function called to load cards
  *
  * Note: Customize how lanes look via lanes prop, customize how cards look via a repository fork
  */
@@ -96,7 +96,7 @@ const handleDeleteCard = (request, response) => {
   if (payload) {
     if (props.onCardDelete) {
       // TODO: What should happen when a card is deleted?
-      props.onCardDelete(request, response);
+      props.onCardDelete(payload);
     } else {
       console.log(payload);
     }
@@ -108,90 +108,18 @@ const handleDeleteCard = (request, response) => {
 /**
  * Called on load to populate data.
  *
- * Pass a custom function via props.loadCardData
+ * Pass a custom function via props.loadCards
  */
 const handleGetCards = (request, response, Utils) => {
   // We can put a data cache here
   Utils.promisify(() => {
-    const addressForArticles = "ndcGigArticle";
-    const authorsWhitelist = props.writersWhiteList ?? [
-      "neardigitalcollective.near",
-      "blaze.near",
-      "jlw.near",
-      "kazanderdad.near",
-      "joep.near",
-      "sarahkornfeld.near",
-      "yuensid.near",
-    ];
-    const articleBlackList = [91092435, 91092174, 91051228, 91092223, 91051203];
-    const authorForWidget = "neardigitalcollective.near";
-    // ========== GET INDEX ARRAY FOR ARTICLES ==========
-    const postsIndex = Social.index(addressForArticles, "main", {
-      order: "desc",
-    });
-    // ========== GET ALL ARTICLES ==========
-    const resultArticles =
-      postsIndex &&
-      postsIndex
-        .reduce((acc, { accountId, blockHeight }) => {
-          const postData = Social.get(
-            `${accountId}/${addressForArticles}/main`,
-            blockHeight
-          );
-          const postDataWithBlockHeight = {
-            ...JSON.parse(postData),
-            blockHeight,
-          };
-          return [...acc, postDataWithBlockHeight];
-        }, [])
-        .filter((article) =>
-          authorsWhitelist.some((addr) => addr === article.author)
-        )
-        .filter((article) => !articleBlackList.includes(article.blockHeight));
-
-    // ========== FILTER DUPLICATES ==========
-    const filteredArticles =
-      resultArticles.length &&
-      resultArticles.reduce((acc, article) => {
-        if (!acc.some(({ articleId }) => articleId === article.articleId)) {
-          return [...acc, article];
-        } else {
-          return acc;
-        }
-      }, []);
-
-    const getDateLastEdit = (timestamp) => {
-      const date = new Date(Number(timestamp));
-      const dateString = {
-        date: date.toLocaleDateString(),
-        time: date.toLocaleTimeString(),
-      };
-      return dateString;
-    };
-
-    const convertData = (inputData) => {
-      const outputData = { cards: [] };
-      inputData.forEach((item) => {
-        const card = {
-          id: item.articleId,
-          title: item.articleId,
-          laneId: "proposed",
-          author: item.author,
-          blockHeight: item.blockHeight,
-          body: item.body,
-          lastEditor: item.lastEditor,
-          timeCreate: item.timeCreate,
-          timeLastEdit: item.timeLastEdit,
-          version: item.version,
-        };
-        outputData.cards.push(card);
-      });
-      return outputData;
-    };
-
-    const data = convertData(filteredArticles);
-
-    response(request).send({ data: data.cards });
+    if (props.loadCards) {
+      const cards = props.loadCards();
+      response(request).send({ data: cards });
+    } else {
+      console.log("no function provided to load cards!");
+      response(request).send({ data: [] });
+    }
   });
 };
 
