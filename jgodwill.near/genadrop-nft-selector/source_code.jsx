@@ -79,7 +79,7 @@ const finalData = data?.body?.data;
 
 if (!finalData) {
   return (
-    <div className="d-flex vh-100 flex-wrap gap-2 justify-content-center align-items-center flex-column">
+    <div className="d-flex flex-wrap gap-2 justify-content-center align-items-center flex-column">
       <Heading className="text-center fw-bold">You own no NFT yet.</Heading>
       <p>
         You can mint an NFT on 💧
