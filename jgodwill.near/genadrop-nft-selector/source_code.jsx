@@ -77,6 +77,14 @@ const Heading = styled.p`
   font-family: "SF Pro Display",sans-serif;
   line-height: 1.02;
 `;
+const Text = styled.p`
+  margin: 10px auto 10px auto;
+  font-size: 1em;
+  color:#0f1d40;
+  width:60%;
+  text-align: center;
+  font-family: "SF Pro Display",sans-serif;
+`;
 
 const finalData = data?.body?.data;
 
@@ -100,9 +108,7 @@ if (!finalData) {
 
 return (
   <>
-    <Heading className="text-center fw-bold">
-      Select the NFT you want to list
-    </Heading>
+    <Text className="text-center">Select the NFT you want to list</Text>
     <NFTs>
       {finalData.tokens.map((nft, index) => (
         <NFTImageButton
