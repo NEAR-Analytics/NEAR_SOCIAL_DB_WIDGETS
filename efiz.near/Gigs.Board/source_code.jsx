@@ -7,6 +7,7 @@
  *      lanes: template for react-trello lanes, fully customizable, see https://github.com/rcdexta/react-trello/tree/master#usage
  *      onCardAdd: optional custom function called when a card is added
  *      onCardDelete: optional custom function called when a card is deleted
+ *      onCardMoveAcrossLanes: optional custom function called when a card is moves across lanes
  *      loadCards: optional custom function called to load cards
  *
  * Note: Customize how lanes look via lanes prop, customize how cards look via a repository fork
@@ -59,6 +60,9 @@ const requestHandler = (request, response, Utils) => {
     case "delete-card":
       handleDeleteCard(request, response);
       break;
+    case "move-card-across-lanes":
+      handleMoveCardAcrossLanes(request, response, Utils);
+      break;
     case "get-cards":
       handleGetCards(request, response, Utils);
       break;
@@ -100,6 +104,27 @@ const handleDeleteCard = (request, response) => {
     } else {
       console.log(payload);
     }
+  } else {
+    response(request).send({ error: "payload not provided" });
+  }
+};
+
+/**
+ * Called when a card is moved across lanes: onCardMoveAcrossLanes(fromLaneId, toLaneId, cardId, index)
+ * https://github.com/rcdexta/react-trello/tree/master#callbacks-and-handlers
+ *
+ * Pass a custom function via props.onCardMoveAcrossLanes
+ */
+const handleMoveCardAcrossLanes = (request, response) => {
+  const { payload } = request;
+  if (payload) {
+    Utils.promisify(() => {
+      if (props.onCardMoveAcrossLanes) {
+        props.onCardMoveAcrossLanes(payload);
+      } else {
+        console.log(payload);
+      }
+    });
   } else {
     response(request).send({ error: "payload not provided" });
   }
