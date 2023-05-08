@@ -1,14 +1,58 @@
-const externalAppUrl = "https://b54103fcb629.ngrok.app";
+/**
+ * Serves a simple react app with react-trello, hooked up via near-social-bridge.
+ * Repository: https://github.com/near-everything/gigs-board
+ *
+ * Props:
+ *      lanes: template for react-trello lanes, fully customizable, see https://github.com/rcdexta/react-trello/tree/master#usage
+ *      onCardAdd: optional custom function called when a card is added
+ *      onCardDelete: optional custom function called when a card is deleted
+ *      loadCardData: optional custom function called to load card data
+ *
+ * Note: Customize how lanes look via lanes prop, customize how cards look via a repository fork
+ */
 
-/**
- * Initial Path (optional but recommended)
- */
-const path = props.path;
-/**
- * Initial view height (optional but recommended)
- */
-const initialViewHeight = 500;
-const initialPayload = {};
+const isDev = true;
+const externalAppUrl = isDev
+  ? "https://b54103fcb629.ngrok.app" // place your own ngrok url here
+  : "https://gigs-board.vercel.app"; // or your fork of gigs-board
+
+// Define your template here:
+const lanes = props.lanes || {
+  lanes: [
+    {
+      currentPage: 1,
+      id: "proposed",
+      style: {
+        border: 0,
+        backgroundColor: "initial",
+      },
+      title: "Proposed",
+      cards: [],
+    },
+    {
+      currentPage: 1,
+      id: "in-progress",
+      style: {
+        border: 0,
+        backgroundColor: "initial",
+      },
+      title: "In Progress",
+      disallowAddingCard: true,
+      cards: [],
+    },
+    {
+      currentPage: 1,
+      id: "completed",
+      style: {
+        border: 0,
+        backgroundColor: "initial",
+      },
+      title: "Completed",
+      disallowAddingCard: true,
+      cards: [],
+    },
+  ],
+};
 
 const requestHandler = (request, response, Utils) => {
   switch (request.type) {
@@ -24,24 +68,51 @@ const requestHandler = (request, response, Utils) => {
   }
 };
 
-const handleAddCard = (request, response) => {
+/**
+ * Called when a new card is added: onCardAdd(card, laneId)
+ * https://github.com/rcdexta/react-trello/tree/master#callbacks-and-handlers
+ *
+ * Pass a custom function via props.onCardAdd
+ */
+const handleAddCard = (request, response, Utils) => {
   const { payload } = request;
   if (payload) {
-    console.log(payload);
+    if (props.onCardAdd) {
+      props.onCardAdd(payload);
+    } else {
+      // add to everything, unassigned
+      console.log(payload);
+    }
   } else {
     response(request).send({ error: "payload not provided" });
   }
 };
 
+/**
+ * Called when a card is deleted: onCardDelete(cardId, laneId)
+ * https://github.com/rcdexta/react-trello/tree/master#callbacks-and-handlers
+ *
+ * Pass a custom function via props.onCardDelete
+ */
 const handleDeleteCard = (request, response) => {
   const { payload } = request;
   if (payload) {
-    console.log(payload);
+    if (props.onCardDelete) {
+      // TODO: What should happen when a card is deleted?
+      props.onCardDelete(request, response);
+    } else {
+      console.log(payload);
+    }
   } else {
     response(request).send({ error: "payload not provided" });
   }
 };
 
+/**
+ * Called on load to populate data.
+ *
+ * Pass a custom function via props.loadCardData
+ */
 const handleGetCards = (request, response, Utils) => {
   // We can put a data cache here
   Utils.promisify(() => {
@@ -133,8 +204,8 @@ return (
     props={{
       externalAppUrl,
       path,
-      initialViewHeight,
-      initialPayload,
+      initialViewHeight: 600,
+      initialPayload: lanes,
       requestHandler,
     }}
   />
