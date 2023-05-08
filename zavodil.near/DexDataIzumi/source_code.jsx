@@ -369,7 +369,7 @@ if (ethers !== undefined && Ethers.send("eth_requestAccounts", [])[0]) {
             },
             inputAssetTokenId: "0x3355df6D4c9C3035724Fd0e3914dE96A5a83aaf4",
             outputAssetTokenId: "0x5AEa5775959fBC2557Cc8789bC1bf90A239D9a91",
-            routerContract: "0xC319755Dff1601b3D0520B421A281B11bF22E80F",
+            routerContract: "0x9606eC131EeC0F84c95D82c9a63959F2331cF2aC",
             dexName: "Izumi",
             routerAbi: state.routerAbi,
             factoryAbi: state.factoryAbi,
