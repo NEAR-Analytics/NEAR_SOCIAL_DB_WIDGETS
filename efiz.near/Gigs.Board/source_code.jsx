@@ -120,7 +120,8 @@ const handleMoveCardAcrossLanes = (request, response) => {
   if (payload) {
     Utils.promisify(() => {
       if (props.onCardMoveAcrossLanes) {
-        props.onCardMoveAcrossLanes(payload);
+        const preventDefault = props.onCardMoveAcrossLanes(payload);
+        response(request).send({ success: { preventDefault } });
       } else {
         console.log(payload);
       }
