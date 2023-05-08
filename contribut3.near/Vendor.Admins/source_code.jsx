@@ -87,9 +87,9 @@ return (
   <Container>
     <Heading>Admins</Heading>
     <Widget
-      src={`${ownerId}/widget/Inputs.Team`}
+      src={`${ownerId}/widget/Inputs.Admins`}
       props={{
-        team: state.team,
+        permissions: state.permissions,
         update: (permissions) => State.update({ permissions }),
         onSave: (permissions) =>
           Near.call(ownerId, "edit_vendor", {
