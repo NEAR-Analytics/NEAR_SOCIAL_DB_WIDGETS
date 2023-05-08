@@ -1,4 +1,4 @@
-const externalAppUrl = "https://gigs-board.vercel.app";
+const externalAppUrl = "https://b54103fcb629.ngrok.app";
 
 /**
  * Initial Path (optional but recommended)
@@ -8,71 +8,7 @@ const path = props.path;
  * Initial view height (optional but recommended)
  */
 const initialViewHeight = 500;
-const initialPayload = {
-  lanes: [
-    {
-      currentPage: 1,
-      id: "proposed",
-      style: {
-        width: 280,
-      },
-      title: "Proposed",
-      cards: [
-        {
-          description: "Sort out recyclable and waste as needed",
-          id: "Plan2",
-          label: "10 mins",
-          laneId: "PLANNED",
-          title: "Dispose Garbage",
-        },
-        {
-          description: "Can AI make memes?",
-          id: "Plan3",
-          label: "30 mins",
-          laneId: "PLANNED",
-          title: "Write Blog",
-        },
-        {
-          description: "Transfer to bank account",
-          id: "Plan4",
-          label: "5 mins",
-          laneId: "PLANNED",
-          title: "Pay Rent",
-        },
-      ],
-    },
-    {
-      currentPage: 1,
-      id: "in-progress",
-      label: "10/20",
-      style: {
-        width: 280,
-      },
-      title: "In Progress",
-      disallowAddingCard: true,
-      cards: [
-        {
-          description:
-            "Soap wash and polish floor. Polish windows and doors. Scrap all broken glasses",
-          id: "Wip1",
-          label: "30 mins",
-          laneId: "WIP",
-          title: "Clean House",
-        },
-      ],
-    },
-    {
-      currentPage: 1,
-      id: "completed",
-      style: {
-        width: 280,
-      },
-      title: "Completed",
-      disallowAddingCard: true,
-      cards: [],
-    },
-  ],
-};
+const initialPayload = {};
 
 const requestHandler = (request, response, Utils) => {
   switch (request.type) {
@@ -83,7 +19,7 @@ const requestHandler = (request, response, Utils) => {
       handleDeleteCard(request, response);
       break;
     case "get-cards":
-      handleGetCards(request, response);
+      handleGetCards(request, response, Utils);
       break;
   }
 };
@@ -106,34 +42,89 @@ const handleDeleteCard = (request, response) => {
   }
 };
 
-const handleGetCards = (request, response) => {
-  const { payload } = request;
-  if (payload) {
-    //      asyncFetch("https://monkfish-app-ginhc.ondigitalocean.app/graphql", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //       "X-Everything": "simple",
-    //     },
-    //     body: JSON.stringify({
-    //       query:
-    //         "mutation createEvent($allDay: Boolean = false, $startStr: String, $endStr: String, $source: String, $title: String, $url: String) { events { create(allDay: $allDay, endStr: $endStr, source: $source, startStr: $startStr, title: $title, url: $url) { entities { id } } } }",
-    //       variables: {
-    //         source: context.accountId,
-    //         ...request.payload,
-    //       },
-    //     }),
-    //   }).then((resp) => {
-    //     if (resp.body.errors) {
-    //       response(request).send({ error: resp.body.errors[0].message });
-    //     } else {
-    //       response(request).send({ success: true });
-    //     }
-    //   });
-    //     response(request).send({ cards: })
-  } else {
-    response(request).send({ error: "payload not provided" });
-  }
+const handleGetCards = (request, response, Utils) => {
+  // We can put a data cache here
+  Utils.promisify(() => {
+    const addressForArticles = "ndcGigArticle";
+    const authorsWhitelist = props.writersWhiteList ?? [
+      "neardigitalcollective.near",
+      "blaze.near",
+      "jlw.near",
+      "kazanderdad.near",
+      "joep.near",
+      "sarahkornfeld.near",
+      "yuensid.near",
+    ];
+    const articleBlackList = [91092435, 91092174, 91051228, 91092223, 91051203];
+    const authorForWidget = "neardigitalcollective.near";
+    // ========== GET INDEX ARRAY FOR ARTICLES ==========
+    const postsIndex = Social.index(addressForArticles, "main", {
+      order: "desc",
+    });
+    // ========== GET ALL ARTICLES ==========
+    const resultArticles =
+      postsIndex &&
+      postsIndex
+        .reduce((acc, { accountId, blockHeight }) => {
+          const postData = Social.get(
+            `${accountId}/${addressForArticles}/main`,
+            blockHeight
+          );
+          const postDataWithBlockHeight = {
+            ...JSON.parse(postData),
+            blockHeight,
+          };
+          return [...acc, postDataWithBlockHeight];
+        }, [])
+        .filter((article) =>
+          authorsWhitelist.some((addr) => addr === article.author)
+        )
+        .filter((article) => !articleBlackList.includes(article.blockHeight));
+
+    // ========== FILTER DUPLICATES ==========
+    const filteredArticles =
+      resultArticles.length &&
+      resultArticles.reduce((acc, article) => {
+        if (!acc.some(({ articleId }) => articleId === article.articleId)) {
+          return [...acc, article];
+        } else {
+          return acc;
+        }
+      }, []);
+
+    const getDateLastEdit = (timestamp) => {
+      const date = new Date(Number(timestamp));
+      const dateString = {
+        date: date.toLocaleDateString(),
+        time: date.toLocaleTimeString(),
+      };
+      return dateString;
+    };
+
+    const convertData = (inputData) => {
+      const outputData = { cards: [] };
+      inputData.forEach((item) => {
+        const card = {
+          id: item.articleId,
+          title: item.articleId,
+          laneId: "proposed",
+          author: item.author,
+          blockHeight: item.blockHeight,
+          body: item.body,
+          lastEditor: item.lastEditor,
+          timeCreate: item.timeCreate,
+          timeLastEdit: item.timeLastEdit,
+          version: item.version,
+        };
+        outputData.cards.push(card);
+      });
+      return outputData;
+    };
+
+    const data = convertData(filteredArticles);
+
+    response(request).send({ data: data.cards });
+  });
 };
 
 return (
