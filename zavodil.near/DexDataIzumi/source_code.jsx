@@ -319,9 +319,16 @@ if (ethers !== undefined && Ethers.send("eth_requestAccounts", [])[0]) {
         // ZKSYNC
 
         if (state.routerAbi == undefined) {
-          const routerAbi = fetch(
-            "https://gist.githubusercontent.com/0xnakato/80ca6221ef258b7b27bf309c8a3eeff2/raw/50b1b27d5a5741a37667d35e62b7f9bccd0c5847/SyncSwapRouter.json"
-          );
+          // syncSwap
+          let routerSrc =
+            "https://gist.githubusercontent.com/0xnakato/80ca6221ef258b7b27bf309c8a3eeff2/raw/50b1b27d5a5741a37667d35e62b7f9bccd0c5847/SyncSwapRouter.json";
+
+          if (forcedDexName === "izumi") {
+            routerSrc =
+              "https://gist.githubusercontent.com/zavodil/14d14ac2f996a247e569f8ff3e901598/raw/7739079f35448040a5157ae2b9e2d8baf2e44f85/izumiSwapAbi.json";
+          }
+
+          const routerAbi = fetch(routerSrc);
           if (!routerAbi.ok) {
             return "Loading";
           }
