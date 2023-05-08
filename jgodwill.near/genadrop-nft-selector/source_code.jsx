@@ -31,9 +31,9 @@ const data = fetch("https://graph.mintbase.xyz", {
 });
 
 const NFTImageButton = styled.button`
-  width: 25%;
+  width: 15vw;
   aspect-ratio: 1/1;
-  height: 25%;
+  height: 15vw;
   transition: all 0.4s ease-in-out;
   border: 1.41429px solid rgba(28,27,28,.1);
   border-radius: 10px;
@@ -55,14 +55,16 @@ const NFTImageButton = styled.button`
 `;
 
 const NFTs = styled.div`
-  display: grid;
+  display: flex;
   gap: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-  justify-content: center;
+  align-items:center;
+  justify-content:center;
   // background: linear-gradient(180deg,#e4f1fb,hsla(0,0%,85.1%,0));
   margin-top: 20px;
   width:100%;
   padding: 1rem;
+  overflow-x:scroll;
+  align-content: center;
 `;
 
 const Heading = styled.p`
@@ -100,7 +102,7 @@ return (
     <Heading className="text-center fw-bold">
       Select the NFT you want to list
     </Heading>
-    <NFTs className="d-flex flex-wrap gap-2 justify-content-center align-items-center">
+    <NFTs>
       {finalData.tokens.map((nft, index) => (
         <NFTImageButton
           key={`${nft.contractId}-${nft.tokenId}-${index}`}
