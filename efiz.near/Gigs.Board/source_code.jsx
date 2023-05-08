@@ -1,8 +1,9 @@
 /**
  * Serves a simple react app with react-trello, hooked up via near-social-bridge.
- * Repository: https://github.com/near-everything/gigs-board
+ *
  *
  * Props:
+ *      gigsBoardUrl: app url for the bridged gigs app (default repository: https://github.com/near-everything/gigs-board)
  *      lanes: template for react-trello lanes, fully customizable, see https://github.com/rcdexta/react-trello/tree/master#usage
  *      onCardAdd: optional custom function called when a card is added
  *      onCardDelete: optional custom function called when a card is deleted
@@ -10,11 +11,7 @@
  *
  * Note: Customize how lanes look via lanes prop, customize how cards look via a repository fork
  */
-
-const isDev = true;
-const externalAppUrl = isDev
-  ? "https://b54103fcb629.ngrok.app" // place your own ngrok url here
-  : "https://gigs-board.vercel.app"; // or your fork of gigs-board
+const gigsBoardUrl = props.gigsBoardUrl || "https://gigs-board.vercel.app";
 
 // Define your template here:
 const lanes = props.lanes || {
@@ -202,7 +199,7 @@ return (
   <Widget
     src={"wendersonpires.near/widget/NearSocialBridgeCore"}
     props={{
-      externalAppUrl,
+      externalAppUrl: gigsBoardUrl,
       path,
       initialViewHeight: 600,
       initialPayload: lanes,
