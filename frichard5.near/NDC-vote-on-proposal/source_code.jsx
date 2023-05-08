@@ -1,4 +1,4 @@
-const { daoId, proposal_id } = props;
+const { daoId, proposal_id, widgetProvider } = props;
 
 const handleApprove = () => {
   Near.call([
