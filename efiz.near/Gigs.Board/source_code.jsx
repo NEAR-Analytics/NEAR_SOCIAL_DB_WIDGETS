@@ -155,7 +155,7 @@ return (
     props={{
       externalAppUrl: gigsBoardUrl,
       path,
-      initialViewHeight: 600,
+      initialViewHeight: 1000,
       initialPayload: lanes,
       requestHandler,
     }}
