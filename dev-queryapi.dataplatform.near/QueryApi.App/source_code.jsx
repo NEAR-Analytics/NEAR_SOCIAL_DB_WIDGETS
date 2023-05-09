@@ -1,12 +1,8 @@
-// const GRAPHQL_ENDPOINT =
-//   "https://queryapi-hasura-graphql-24ktefolwq-ew.a.run.app";
-// const APP_OWNER = "dataplatform.near";
-// const EXTERNAL_APP_URL = "https://queryapi-frontend-24ktefolwq-ew.a.run.app";
-// const REGISTRY_CONTRACT_ID = "queryapi.dataplatform.near";
-const GRAPHQL_ENDPOINT = "https://query-api-graphql-vcqilefdcq-uc.a.run.app";
-const APP_OWNER = "dev-queryapi.dataplatform.near";
-const EXTERNAL_APP_URL = "https://queryapi-frontend-vcqilefdcq-ew.a.run.app";
-const REGISTRY_CONTRACT_ID = "dev-queryapi.dataplatform.near";
+const GRAPHQL_ENDPOINT =
+  "https://queryapi-hasura-graphql-24ktefolwq-ew.a.run.app";
+const APP_OWNER = "dataplatform.near";
+const EXTERNAL_APP_URL = "https://queryapi-frontend-24ktefolwq-ew.a.run.app";
+const REGISTRY_CONTRACT_ID = "queryapi.dataplatform.near";
 
 const view = props.view;
 const path = props.path;
