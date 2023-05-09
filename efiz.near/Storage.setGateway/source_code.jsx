@@ -1,5 +1,3 @@
 return (
-  <button onClick={() => Storage.setGateway("one", "hello world")}>
-    click
-  </button>
+  <button onClick={() => Storage.setGateway("hi", "hello world")}>click</button>
 );
