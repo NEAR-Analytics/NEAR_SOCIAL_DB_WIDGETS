@@ -8,6 +8,7 @@ const tokenName = props.tokenName;
 const wrapTokenName = props.wrapTokenName;
 const imgWrapTokenSrc = props.imgWrapTokenSrc;
 const imgTokenSrc = props.imgTokenSrc;
+const isSignedIn = props.isSignedIn;
 
 State.init({
   unwrap: false,
@@ -58,7 +59,7 @@ const swapInputOnChange = (event) => {
 const updateSwapButton = () => {
   State.update({ swapReady: false });
 
-  if (!signer) {
+  if (!isSignedIn()) {
     State.update({ swapButtonText: "Connect Wallet" });
     return;
   }
