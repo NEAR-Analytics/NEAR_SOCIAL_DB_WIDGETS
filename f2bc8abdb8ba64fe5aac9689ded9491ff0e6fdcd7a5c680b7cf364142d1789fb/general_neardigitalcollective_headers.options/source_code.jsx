@@ -73,7 +73,7 @@ const renderOptions = () => {
 };
 
 return (
-  <span>
+  <span className="col flex-grow-0">
     <a
       href="javascript:void"
       className="link-secondary ms-2"
