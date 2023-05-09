@@ -6,6 +6,8 @@ const REGISTRY_CONTRACT_ID = "queryapi.dataplatform.near";
 const view = props.view;
 const path = props.path;
 const tab = props.tab;
+const selectedIndexerPath = props.selectedIndexerPath;
+
 return (
   <Widget
     src={`${APP_OWNER}/widget/QueryApi.Dashboard`}
