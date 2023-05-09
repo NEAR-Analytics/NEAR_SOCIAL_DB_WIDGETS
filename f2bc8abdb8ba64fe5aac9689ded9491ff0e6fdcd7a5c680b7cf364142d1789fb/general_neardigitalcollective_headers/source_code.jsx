@@ -6,7 +6,33 @@ const timeCreate = props.timeCreate ?? {
   date: 2000,
   time: 2000,
 };
-const headerOptionsItems = props.headerOptionsItems;
+const headerOptionsItems = props.headerOptionsItems ?? [
+  {
+    type: "copyLink",
+    link: "https://near.social/#/f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/Kudos.Styles?sharedBlockHeight=91076343",
+    text: "Copy kudo link",
+    iconBeforeText: "bi bi-clipboard",
+  },
+  {
+    type: "markdownSource",
+    link: "https://near.social/#/mob.near/widget/MainPage.Post.Page?accountId=blaze.near&blockHeight=91076343&raw=true",
+    text: "View raw markdown source",
+    iconBeforeText: "bi bi-filetype-raw",
+  },
+  {
+    type: "hideAccount",
+    accountId: "silkking.near",
+  },
+  {
+    type: "flagItem",
+    flagItem: {
+      type: "social",
+      path: "silkking.near/post/main",
+      postBlockHeight: 1111111111111,
+    },
+    postType: "post",
+  },
+];
 
 const widgetOwner =
   "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
