@@ -16,6 +16,10 @@ return (
       APP_OWNER,
       EXTERNAL_APP_URL,
       REGISTRY_CONTRACT_ID,
+      view,
+      path,
+      tab,
+      selectedIndexerPath,
     }}
   />
 );
