@@ -14,17 +14,10 @@ if (!items) {
   );
 }
 
-return (
-  <span>
-    <a
-      href="javascript:void"
-      className="link-secondary ms-2"
-      data-bs-toggle="dropdown"
-      aria-expanded="false"
-    >
-      <i className="fs-6 bi bi-three-dots" />
-    </a>
-    <ul className="dropdown-menu">
+const renderOptions = () => {
+  return (
+    <>
+      {console.log(items)}
       {items.map((item) => {
         if (item.type == "copyLink") {
           return (
@@ -35,40 +28,60 @@ return (
                 clipboard.writeText(item.link);
               }}
             >
-              {iconBeforeText && <i className={item.iconBeforeText}></i>}
+              {item.iconBeforeText && <i className={item.iconBeforeText}></i>}
               <span>{item.text}</span>
-              {iconAfterText && <i className={item.iconAfterText}></i>}
+              {item.iconAfterText && <i className={item.iconAfterText}></i>}
             </li>
           );
-        } else if (item.type == "mardownSource") {
+        } else if (item.type == "markdownSource") {
           return (
             <li className="dropdown-item">
               <a className="link-dark text-decoration-none" href={item.link}>
-                {iconBeforeText && <i className={item.iconBeforeText}></i>}
+                {item.iconBeforeText && <i className={item.iconBeforeText}></i>}
                 <span>{item.text}</span>
-                {iconAfterText && <i className={item.iconAfterText}></i>}
+                {item.iconAfterText && <i className={item.iconAfterText}></i>}
               </a>
             </li>
           );
         } else if (item.type == "hideAccount") {
-          <li>
-            <Widget
-              src="mob.near/widget/MainPage.Common.HideAccount"
-              props={{ accountId: item.accountId }}
-            />
-          </li>;
+          return (
+            <li>
+              <Widget
+                src="mob.near/widget/MainPage.Common.HideAccount"
+                props={{ accountId: item.accountId }}
+              />
+            </li>
+          );
         } else if (item.type == "flagItem") {
-          <li>
-            <Widget
-              src="mob.near/widget/MainPage.Common.FlagContent"
-              props={{
-                item: item.flagItem,
-                label: `Flag ${item.postType} for moderation`,
-              }}
-            />
-          </li>;
+          return (
+            <li>
+              <Widget
+                src="mob.near/widget/MainPage.Common.FlagContent"
+                props={{
+                  item: item.flagItem,
+                  label: `Flag ${item.postType} for moderation`,
+                }}
+              />
+            </li>
+          );
+        } else {
+          return <li className="text-danger">Item not recognized</li>;
         }
       })}
-    </ul>
+    </>
+  );
+};
+
+return (
+  <span>
+    <a
+      href="javascript:void"
+      className="link-secondary ms-2"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
+    >
+      <i className="fs-6 bi bi-three-dots" />
+    </a>
+    <ul className="dropdown-menu">{renderOptions()}</ul>
   </span>
 );
