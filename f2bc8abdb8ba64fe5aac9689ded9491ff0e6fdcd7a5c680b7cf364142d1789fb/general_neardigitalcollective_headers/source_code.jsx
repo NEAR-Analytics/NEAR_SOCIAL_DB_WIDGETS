@@ -73,11 +73,13 @@ return (
       </p>
     </div>
 
-    <Widget
-      src={`${widgetOwner}/widget/general_neardigitalcollective_headers.options`}
-      props={{
-        items: headerOptionsItems,
-      }}
-    />
+    {headerOptionsItems && (
+      <Widget
+        src={`${widgetOwner}/widget/general_neardigitalcollective_headers.options`}
+        props={{
+          items: headerOptionsItems,
+        }}
+      />
+    )}
   </div>
 );
