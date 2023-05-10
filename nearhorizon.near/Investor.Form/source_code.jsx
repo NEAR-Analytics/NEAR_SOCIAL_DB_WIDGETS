@@ -177,9 +177,9 @@ return (
               return;
             }
 
-            if (state.name.length > 70) {
+            if (state.name.length > 100) {
               State.update({
-                nameError: "Name must be less than 70 characters",
+                nameError: "Name must be less than 100 characters",
               });
               return;
             }
