@@ -3,13 +3,14 @@ const getWrapTokenBalance = props.getWrapTokenBalanceFn;
 const wrapFn = props.wrapFn;
 const unwrapFn = props.unwrapFn;
 const parseToUnits = props.parseToUnitsFn;
+const formatUnitsFn = props.formatUnitsFn;
 const isValidAmout = props.isValidAmountFn;
 const tokenName = props.tokenName;
 const wrapTokenName = props.wrapTokenName;
-const imgWrapTokenSrc = props.imgWrapTokenSrc;
-const imgTokenSrc = props.imgTokenSrc;
+const imgWrapTokenSvg = props.imgWrapTokenSvg;
+const imgTokenSvg = props.imgTokenSvg;
 const isSignedIn = props.isSignedIn;
-
+const accountId = context.accountId;
 State.init({
   unwrap: false,
   balanceToken: null,
@@ -21,44 +22,26 @@ State.init({
   swapReady: false,
 });
 
-const updateBalances = async (address) => {
-  const tokenBalance = await getTokenBalance(address);
-  const wrapTokenBalance = await getWrapTokenBalance(address);
+const updateBalances = (address) => {
+  const balanceToken = getTokenBalance(address);
+  const balanceWrapToken = getWrapTokenBalance(address);
   State.update({
-    balanceToken: tokenBalance,
-    balanceWrapToken: wrapTokenBalance,
+    balanceToken,
+    balanceWrapToken,
   });
 };
 
 if (!state.intervalStarted) {
   State.update({ intervalStarted: true });
-
-  updateBalances();
+  updateBalances(accountId);
 
   setInterval(() => {
-    updateBalances();
+    updateBalances(accountId);
   }, 2000);
 }
 
-const swapInputOnChange = (event) => {
-  let re = /^[0-9]*[.,]?[0-9]*$/;
-
-  if (re.test(event.target.value)) {
-    try {
-      State.update({
-        amountIn: event.target.value,
-        amountOut: event.target.value,
-        swapButtonText: null,
-      });
-
-      updateSwapButton();
-    } catch (e) {}
-  }
-};
-
 const updateSwapButton = () => {
   State.update({ swapReady: false });
-
   if (!isSignedIn()) {
     State.update({ swapButtonText: "Connect Wallet" });
     return;
@@ -68,8 +51,7 @@ const updateSwapButton = () => {
     return;
   }
 
-  let amountIn = parseToUnits(state.amountIn);
-
+  let amountIn = state.amountIn;
   if (!isValidAmout(amountIn)) {
     State.update({ swapButtonText: "Invalid Amount" });
     return;
@@ -90,6 +72,19 @@ const updateSwapButton = () => {
         state.unwrap ? wrapTokenName : tokenName
       } Balance`,
     });
+  }
+};
+
+const swapInputOnChange = (event) => {
+  let re = /^[0-9]*[.,]?[0-9]*$/;
+  if (re.test(event.target.value)) {
+    State.update({
+      amountIn: event.target.value,
+      amountOut: event.target.value,
+      swapButtonText: null,
+    });
+
+    updateSwapButton();
   }
 };
 
@@ -310,10 +305,7 @@ return (
               <CurrencyPillContainer>
                 <CurrencyPillWrapper>
                   <CurrencyPillImageWrapper>
-                    <CurrencyPillImage
-                      alt={state.unwrap ? "token" : "wrap token"}
-                      src={state.unwrap ? imgWrapTokenSrc : imgTokenSrc}
-                    />
+                    {state.unwrap ? imgWrapTokenSvg : imgTokenSvg}
                     <CurrencyPillText>
                       {state.unwrap ? wrapTokenName : tokenName}
                     </CurrencyPillText>
@@ -326,12 +318,10 @@ return (
                 <TextSmall></TextSmall>
                 {state.unwrap ? (
                   state.balanceWrapToken ? (
-                    <TextSmall>
-                      Balance: {formatUnits(balanceWrapToken)}
-                    </TextSmall>
+                    <TextSmall>Balance: {state.balanceWrapToken}</TextSmall>
                   ) : null
                 ) : state.balanceToken ? (
-                  <TextSmall>Balance: {formatUnits(balanceToken)}</TextSmall>
+                  <TextSmall>Balance: {state.balanceToken}</TextSmall>
                 ) : null}
               </SwapDetailsWrapper>
             </SwapDetailsContainer>
@@ -384,10 +374,7 @@ return (
               <CurrencyPillContainer>
                 <CurrencyPillWrapper>
                   <CurrencyPillImageWrapper>
-                    <CurrencyPillImage
-                      alt={state.unwrap ? "token" : "wrap token"}
-                      src={state.unwrap ? imgTokenSrc : imgWrapTokenSrc}
-                    />
+                    {state.unwrap ? imgTokenSvg : imgWrapTokenSvg}
                     <CurrencyPillText>
                       {state.unwrap ? tokenName : wrapTokenName}
                     </CurrencyPillText>
@@ -400,12 +387,10 @@ return (
                 <TextSmall></TextSmall>
                 {state.unwrap ? (
                   state.balanceToken ? (
-                    <TextSmall>Balance: {formatUnits(balanceToken)}</TextSmall>
+                    <TextSmall>Balance: {state.balanceToken}</TextSmall>
                   ) : null
                 ) : state.balanceWrapToken ? (
-                  <TextSmall>
-                    Balance: {formatUnits(balanceWrapToken)}
-                  </TextSmall>
+                  <TextSmall>Balance: {state.balanceWrapToken}</TextSmall>
                 ) : null}
               </SwapDetailsWrapper>
             </SwapDetailsContainer>
