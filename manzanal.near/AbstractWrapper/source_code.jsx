@@ -10,7 +10,7 @@ const wrapTokenName = props.wrapTokenName;
 const imgWrapTokenSvg = props.imgWrapTokenSvg;
 const imgTokenSvg = props.imgTokenSvg;
 const isSignedIn = props.isSignedIn;
-const accountId = context.accountId;
+const accountId = props.signerAddress || context.accountId;
 State.init({
   unwrap: false,
   balanceToken: null,
