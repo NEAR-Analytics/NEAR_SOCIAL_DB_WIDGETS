@@ -29,7 +29,7 @@ return (
       <div>
         <Actions>
           <Widget
-            src="near/widget/CommentButton"
+            src={`${widgetProvider}/widget/CommentButton`}
             props={{
               item,
               onClick: () => State.update({ showReply: !state.showReply }),
