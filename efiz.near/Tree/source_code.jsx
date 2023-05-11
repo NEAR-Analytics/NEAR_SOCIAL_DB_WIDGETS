@@ -6,44 +6,61 @@ State.init({
 });
 
 function setPath(path) {
-  console.log(`setting path to ${path}`);
   State.update({ path });
 }
 
 function setHistory(history) {
-  console.log(`setting history to ${JSON.stringify(history)}`);
   State.update({ history });
 }
 
-function getNodeValue(path) {
+function getNode(path) {
   const parts = path.split("/");
   if (parts.length === 1) {
-    parts.push("**");
-
+    // ACCOUNT LEVEL //
+    if (parts[0] !== "*") {
+      // Otherwise will crash cuz it'll grab all accounts
+      parts.push("**");
+    }
     const value = Social.get(parts.join("/"), "final");
+    return value;
+  } else if (parts.length === 2) {
+    // STANDARD LEVEL //
+    parts.push("**");
+    const value = Social.get(parts.join("/"), "final");
+    return value;
+  } else if (parts.length > 2) {
+    // This is to refetch the data necessary for the route
+    const standard = parts[1];
+    let value = {};
+    let type = standard;
+    if (standard === "graph") {
+      parts.push("**");
+      value = Social.get(parts.join("/"), "final");
+    } else if (standard === "profile") {
+      value = Social.get(parts.join("/"), "final");
+    } else if (standard === "post") {
+      value = path;
+    } else {
+      value = Social.get(parts.join("/"), "final");
+      value = JSON.parse(value);
+    }
     return value;
   }
 }
 
-const node = getNodeValue(state.path);
-console.log(node);
-
-console.log(
-  `starting root at path: ${state.path}, with history: ${JSON.stringify(
-    state.history
-  )}`
-);
+const node = getNode(state.path);
 
 return (
   <Widget
     src="efiz.near/widget/Node"
     props={{
       label: state.path,
-      value: node,
+      node,
       path: state.path,
       setPath: setPath,
       history: state.history,
       setHistory: setHistory,
+      isRoot: true,
     }}
   />
 );
