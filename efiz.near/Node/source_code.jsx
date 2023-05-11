@@ -12,12 +12,12 @@ function handleExpand() {
   State.update({ expanded: !state.expanded });
 }
 
-function handleInto(key, path, history) {
+function handleInto() {
   console.log(`going into ${key} from current path ${path}`);
   traverseInto(key, path, history);
 }
 
-function handleBack(history) {
+function handleBack() {
   console.log(`going back, out of ${key} and current path ${path}`);
   traverseBack(history);
 }
