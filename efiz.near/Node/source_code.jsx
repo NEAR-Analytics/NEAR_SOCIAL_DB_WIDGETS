@@ -63,7 +63,7 @@ function buildPath(current, key) {
 
 return (
   <div>
-    {history.length > 0 && <Button onClick={handleBack}>back</Button>}
+    {history.length > 1 && <Button onClick={handleBack}>back</Button>}
     <Button onClick={handleInto}>{key}</Button>
     <Button onClick={handleExpand}>{state.expanded ? "-" : "+"}</Button>
     {state.expanded && (
