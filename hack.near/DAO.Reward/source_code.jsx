@@ -17,6 +17,7 @@ const handleClaim = () => {
       methodName: "bounty_claim",
       args: {
         id: JSON.parse(bounty.id),
+        deadline: bounty.max_deadline,
       },
       gas: 150000000000000,
     },
