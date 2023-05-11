@@ -19,7 +19,7 @@ function getNodeValue(path) {
     parts.push("**");
 
     const value = Social.get(parts.join("/"), "final");
-    return JSON.stringify(value, undefined, 2);
+    return value;
   }
 }
 
