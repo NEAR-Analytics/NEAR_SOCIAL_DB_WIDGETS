@@ -74,7 +74,7 @@ return (
               src="efiz.near/widget/Node"
               props={{
                 key,
-                path: `${path}/${key}`,
+                path,
                 history,
                 traverseInto,
                 traverseBack,
