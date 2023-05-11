@@ -65,7 +65,7 @@ return (
                 key,
                 label: key,
                 value: val,
-                path: `${path}/${label}`,
+                path: `${path}/${key}`,
                 setPath: setPath,
                 history,
                 setHistory: setHistory,
