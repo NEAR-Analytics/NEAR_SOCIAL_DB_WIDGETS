@@ -77,12 +77,10 @@ const renderThing = () => {
       function renderItem(a) {
         if (a.value.type === "md") {
           return (
-            <Post className="post" key={JSON.stringify(a)}>
-              <Widget
-                src="near/widget/Posts.Post"
-                props={{ accountId: a.accountId, blockHeight: a.blockHeight }}
-              />
-            </Post>
+            <Widget
+              src="near/widget/Posts.Post"
+              props={{ accountId: a.accountId, blockHeight: a.blockHeight }}
+            />
           );
         } else {
           return <p>lol no</p>;
