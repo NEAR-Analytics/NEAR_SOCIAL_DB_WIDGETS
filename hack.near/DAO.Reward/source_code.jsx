@@ -47,8 +47,6 @@ const Wrapper = styled.div`
   border-radius: 16px;
   padding: 24px;
   box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
-  display: flex;
-  flex-direction: column;
   gap: 24px;
 
   p {
