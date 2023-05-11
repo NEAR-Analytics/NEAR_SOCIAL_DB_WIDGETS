@@ -15,7 +15,7 @@ function setSubject(path) {
 }
 
 function handleTraverse() {
-  traverse(path, node, setSubject);
+  onTraverse(path, node, setSubject);
 }
 
 const Button = styled.button`
