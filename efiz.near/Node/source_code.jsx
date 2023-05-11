@@ -10,8 +10,12 @@ function handleExpand() {
   State.update({ expanded: !state.expanded });
 }
 
+function setSubject(path) {
+  console.log("set to " + path);
+}
+
 function handleTraverse() {
-  traverse(path, node);
+  traverse(path, node, setSubject);
 }
 
 const Button = styled.button`
@@ -52,7 +56,7 @@ return (
           Object.entries(node).map(([key, val]) => (
             <Widget
               src="efiz.near/widget/Node"
-              props={{ path: buildPath(path, key), label: key, node: val }}
+              props={{ path: buildPath(path, key), node: val, onTraverse }}
             />
           ))
         ) : (
