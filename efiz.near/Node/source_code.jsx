@@ -46,13 +46,16 @@ const ChildNode = styled.div`
 
 const renderThing = (node) => {
   console.log("this is the node: " + node);
-  const text = `
+  if (type === "widget") {
+    return <Widget src={node.value} />;
+  } else {
+    const text = `
 \`\`\`json
 ${JSON.stringify(node.value, undefined, 2)}
 \`\`\`
 `;
-
-  return <Markdown text={text} />;
+    return <Markdown text={text} />;
+  }
 };
 
 return (
