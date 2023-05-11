@@ -47,10 +47,9 @@ function buildPath(current, key) {
   }
   return parts.join("/");
 }
-
+// {prevPath && <Button onClick={handleTraverse}>back</Button>}
 return (
   <div>
-    {prevPath && <Button onClick={handleTraverse}>back</Button>}
     <Button onClick={handleTraverse}>{key}</Button>
     <Button onClick={handleExpand}>{state.expanded ? "-" : "+"}</Button>
     {state.expanded && (
