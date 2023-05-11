@@ -5,6 +5,7 @@ const path = props.path;
 const setPath = props.setPath;
 const history = props.history;
 const setHistory = props.setHistory;
+const isRoot = props.isRoot;
 
 State.init({
   expanded: false,
@@ -55,7 +56,7 @@ ${JSON.stringify(value, undefined, 2)}
 
 return (
   <div>
-    {history.length > 1 && <Button onClick={handleBack}>back</Button>}
+    {history.length > 1 && isRoot && <Button onClick={handleBack}>back</Button>}
     <Button onClick={handleInto}>{label}</Button>
     <Button onClick={handleExpand}>{state.expanded ? "-" : "+"}</Button>
     {state.expanded && (
@@ -73,6 +74,7 @@ return (
                   setPath: setPath,
                   history,
                   setHistory: setHistory,
+                  isRoot: false,
                 }}
               />
             </ChildNode>
