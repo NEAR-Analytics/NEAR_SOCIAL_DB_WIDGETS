@@ -45,7 +45,7 @@ const ChildNode = styled.div`
 `;
 
 const renderThing = (node) => {
-  console.log(node);
+  console.log("this is the node: " + node);
   const text = `
 \`\`\`json
 ${JSON.stringify(node.value, undefined, 2)}
