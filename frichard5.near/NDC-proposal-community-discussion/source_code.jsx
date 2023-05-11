@@ -11,7 +11,7 @@ const item = {
 };
 
 const Actions = styled.div`
-  margin-top: 40px;
+  margin-top: 20px;
   display: flex;
   align-items: center;
   gap: 12px;
