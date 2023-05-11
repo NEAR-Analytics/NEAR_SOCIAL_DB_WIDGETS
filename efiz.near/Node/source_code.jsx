@@ -65,7 +65,15 @@ return (
           Object.entries(node).map(([key, val]) => (
             <Widget
               src="efiz.near/widget/Node"
-              props={{ key, path: buildPath(path, key), node: val, onTraverse }}
+              props={{
+                key,
+                path: buildPath(path, key),
+                node: val,
+                prevKey: props.key,
+                prevPath: props.prevPath,
+                prevNode: props.prevNode,
+                onTraverse,
+              }}
             />
           ))
         ) : (
