@@ -51,7 +51,7 @@ const onChangeDAO = (newDaoId) => {
 return (
   <>
     <div>
-      <h3>Earn Rewards</h3>
+      <h3>Available Rewards</h3>
       <div className="mb-2">
         <input
           type="text"
@@ -60,10 +60,7 @@ return (
         />
       </div>
 
-      <hr />
-
       <div>
-        <h5>Discover Opportunities</h5>
         <InfiniteScroll loadMore={loadBounties} hasMore={state.hasMore}>
           {state.bounties.map((bounty, i) => (
             <Widget
