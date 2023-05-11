@@ -11,6 +11,7 @@ const Button = styled.button`
 `;
 
 const renderItem = (val) => {
+  console.log(val);
   if (val.type === "reference") {
     if (val.ref.type === "meme") {
       return (
