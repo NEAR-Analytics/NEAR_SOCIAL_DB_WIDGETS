@@ -71,26 +71,15 @@ const renderThing = () => {
             order: "desc",
             accountId: undefined,
           });
-          console.log("edges: " + JSON.stringify(edges));
-          // {edges.map(([key, val]) => (
-          //       <ChildNode>
-          //         <Widget
-          //           src="efiz.near/widget/Node"
-          //           props={{
-          //             key,
-          //             label: key,
-          //             node: val,
-          //             path: `${path}/${key}`,
-          //             setPath: setPath,
-          //             history,
-          //             setHistory: setHistory,
-          //             isRoot: false,
-          //           }}
-          //         />
-          //       </ChildNode>
-          //     ))}
           return (
             <>
+              <div>
+                {edges?.map(() => (
+                  <ChildNode>
+                    <p>hello</p>
+                  </ChildNode>
+                ))}
+              </div>
               <Widget
                 src="near/widget/Posts.Post"
                 props={{ accountId: a.accountId, blockHeight: a.blockHeight }}
