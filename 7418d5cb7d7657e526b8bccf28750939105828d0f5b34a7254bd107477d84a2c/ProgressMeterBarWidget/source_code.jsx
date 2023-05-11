@@ -55,11 +55,13 @@ const ContentBox = styled.div`
   `;
 
 const PercentageNum = styled.p`
-    font-size: 24px;
+    font-size: ${({ size }) => (size == "large" ? "38px" : "24px")};
     font-weight: bold;
   `;
 
 const TotalRegNum = styled.p`
+font-size: ${({ size }) => (size == "large" ? "22px" : "16px")};
+
   color: #9FA7AD;
 `;
 const sizes = {
@@ -90,8 +92,8 @@ const percentage = (registerUsersNum / 1000) * 100;
 return (
   <HalfArch percentage={25} props={sizes[propsSize]}>
     <ContentBox size={propsSize}>
-      <PercentageNum>{Math.round(percentage)}%</PercentageNum>
-      <TotalRegNum>
+      <PercentageNum size={propsSize}>{Math.round(percentage)}%</PercentageNum>
+      <TotalRegNum size={propsSize}>
         {registerUsersNum}/{totalUsrNum}
       </TotalRegNum>
     </ContentBox>
