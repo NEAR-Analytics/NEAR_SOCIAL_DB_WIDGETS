@@ -81,7 +81,7 @@ return (
     props={{
       key: state.key,
       path: state.path,
-      node: state.node,
+      node: state.node ?? rootNode,
       prevPath: state.prevPath,
       onTraverse: handleTraverse,
     }}
