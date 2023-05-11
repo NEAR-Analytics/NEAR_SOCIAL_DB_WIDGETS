@@ -12,14 +12,14 @@ const Button = styled.button`
 
 const renderItem = (val) => {
   console.log(val);
-  if (val.type === "reference") {
-    if (val.ref.type === "meme") {
+  if (val.value.type === "reference") {
+    if (val.value.ref.type === "meme") {
       return (
         <Widget
           src="mob.near/widget/Meme"
           props={{
-            accountId: val.ref.accountId,
-            blockHeight: val.ref.blockHeight,
+            accountId: val.value.ref.accountId,
+            blockHeight: val.value.ref.blockHeight,
           }}
         />
       );
