@@ -1,8 +1,7 @@
-const { widgetProvider, proposal_id } = props;
+const { widgetProvider, proposal_id, displayComments } = props;
 
 State.init({
   showReply: false,
-  displayComments: props.displayComments,
 });
 
 const item = {
@@ -26,13 +25,7 @@ const Comments = styled.div`
 
 return (
   <>
-    <button
-      onClick={() => State.update({ displayComments: !state.displayComments })}
-    >
-      {" "}
-      Comments{" "}
-    </button>
-    {state.displayComments ? (
+    {props.displayComments ? (
       <div>
         <Actions>
           <Widget
