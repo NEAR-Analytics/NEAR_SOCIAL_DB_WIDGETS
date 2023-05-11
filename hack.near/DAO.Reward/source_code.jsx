@@ -250,7 +250,7 @@ return (
       <CardFooter>
         <ButtonLink onClick={handleClaim}>Claim</ButtonLink>
         <ButtonLink onClick={handleUnclaim}>Unclaim</ButtonLink>
-        {check && (
+        {!check && (
           <Button>
             <a className="btn btn-success " onClick={handleSubmit}>
               Submit
