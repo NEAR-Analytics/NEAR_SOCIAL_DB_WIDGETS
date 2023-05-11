@@ -19,7 +19,7 @@ const handleProposal = () => {
     token: state.token ?? "",
     amount: state.amount,
     times: JSON.parse(state.times),
-    max_deadline: state.max_deadline * 3600000000000,
+    max_deadline: JSON.stringify(state.max_deadline * 3600000000000),
   };
   const gas = 200000000000000;
   const deposit = 100000000000000000000000;
