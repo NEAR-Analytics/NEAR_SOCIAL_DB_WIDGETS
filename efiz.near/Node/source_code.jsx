@@ -1,10 +1,7 @@
 const path = props.path;
-const node = props.node;
-const key = props.key;
-const prevKey = props.prevKey;
-const prevPath = props.prevPath;
-const prevNode = props.prevNode;
-const onTraverse = props.onTraverse;
+const history = props.history;
+const traverseInto = props.traverseInto;
+const traverseBack = props.traverseBack;
 
 State.init({
   expanded: false,
@@ -14,9 +11,23 @@ function handleExpand() {
   State.update({ expanded: !state.expanded });
 }
 
-function setSubject(path) {
-  console.log("set to " + path);
+function handleInto(key, path, history) {
+  traverseInto(key, path, history);
 }
+
+function handleBack(history) {
+  traverseBack(history);
+}
+
+const parts = path.split("/");
+if (parts.length === 1) {
+  if (parts[0] !== "*") {
+    parts.push("**");
+  }
+}
+
+const value = Social.get(parts.join("/"), "final");
+console.log(value);
 
 const Button = styled.button`
   text-transform: lowercase !important;
@@ -34,14 +45,6 @@ ${JSON.stringify(value, undefined, 2)}
   return <Markdown text={text} />;
 };
 
-function handleInto() {
-  onTraverse(key, path, node);
-}
-
-function handleBack() {
-  onTraverse(prevKey, prevPath, prevNode);
-}
-
 function buildPath(current, key) {
   const parts = current.split("/");
   const suffix = parts[parts.length - 1];
@@ -58,20 +61,20 @@ function buildPath(current, key) {
 
 return (
   <div>
-    {prevPath !== path && <Button onClick={handleBack}>back</Button>}
-    <Button onClick={handleInto}>{key}</Button>
+    {history.length && <Button onClick={handleBack}>back</Button>}
+    <Button onClick={handleInto}>{path}</Button>
     <Button onClick={handleExpand}>{state.expanded ? "-" : "+"}</Button>
     {state.expanded && (
       <div>
-        {typeof node === "object" ? (
-          Object.entries(node).map(([key, val]) => (
+        {typeof value === "object" ? (
+          Object.entries(value).map(([key, val]) => (
             <Widget
               src="efiz.near/widget/Node"
               props={{
                 key,
-                path: buildPath(path, key),
-                node: val,
-                onTraverse,
+                history,
+                traverseInto,
+                traverseBack,
               }}
             />
           ))
