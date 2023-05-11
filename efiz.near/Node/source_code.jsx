@@ -28,6 +28,10 @@ ${JSON.stringify(value, undefined, 2)}
   return <Markdown text={text} />;
 };
 
+function buildPath(current, key) {
+  return `${current}/${key}`;
+}
+
 return (
   <div>
     <Button onClick={handleTraverse}>{path}</Button>
@@ -38,7 +42,7 @@ return (
           Object.entries(node).map(([key, val]) => (
             <Widget
               src="efiz.near/widget/Node"
-              props={{ path: `${path}/${key}`, label: key, node: val }}
+              props={{ path: buildPath(path, key), label: key, node: val }}
             />
           ))
         ) : (
