@@ -45,8 +45,6 @@ const ChildNode = styled.div`
 `;
 
 const renderThing = () => {
-  console.log(JSON.stringify(node));
-  console.log(typeof node);
   const parts = path.split("/");
   if (parts.length > 2) {
     const standard = parts[1];
@@ -66,6 +64,7 @@ const renderThing = () => {
     } else if (standard === "post") {
       value = Social.get(path, "final");
       value = JSON.parse(value);
+      console.log(value);
     } else {
       value = Social.get(parts.join("/"), "final");
       value = JSON.parse(value);
