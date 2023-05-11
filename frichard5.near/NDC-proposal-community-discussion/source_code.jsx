@@ -51,7 +51,7 @@ return (
         )}
         <Comments>
           <Widget
-            src="near/widget/Comments.Feed"
+            src={`${widgetProvider}/widget/Comments.Feed`}
             props={{
               item,
               subscribe: true,
