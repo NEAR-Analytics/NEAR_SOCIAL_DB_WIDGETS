@@ -90,7 +90,7 @@ return (
     <div>
       <h5>Amount</h5>
       <p>
-        {bounty.amount}
+        {bounty.amount / 100000000000000000000000}
         {bounty.token_id === "" ? "NEAR" : ""}
       </p>
     </div>
