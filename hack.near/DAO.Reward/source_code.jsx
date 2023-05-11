@@ -2,7 +2,6 @@ const daoId = props.daoId ?? "multi.sputnik-dao.near";
 
 const bounty = props.bounty ?? {
   id: 1,
-  proposer: "hack.near",
   description:
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ut pharetra orci. Aliquam vitae enim tincidunt sapien fermentum scelerisque.",
 };
@@ -81,57 +80,6 @@ const Wrapper = styled.div`
   }
 `;
 
-const RenderBountyDetails = () => {
-  if (proposal_type === "AddBounty")
-    return (
-      <>
-        <div>
-          <h5>Amount</h5>
-          <p>
-            {proposal.kind.AddBounty.bounty.amount}
-            {proposal.kind.AddBounty.bounty.token_id === "" ? "NEAR" : ""}
-          </p>
-        </div>
-        <div>
-          <h5>Times</h5>
-          <p>{proposal.kind.AddBounty.bounty.times}</p>
-        </div>
-        <div>
-          <h5>Deadline</h5>
-          <p>
-            {new Date(
-              proposal.kind.AddBounty.bounty.max_deadline
-            ).toLocaleString()}
-          </p>
-        </div>
-        <div>
-          <h5>Bounty Description</h5>
-          <p>{proposal.kind.AddBounty.bounty.description}</p>
-        </div>
-      </>
-    );
-
-  if (proposal_type === "BountyDone")
-    return (
-      <>
-        <div>
-          <h5>Receiver</h5>
-          <Widget
-            src="mob.near/widget/Profile.ShortInlineBlock"
-            props={{
-              accountId: proposal.kind.BountyDone.receiver_id,
-              tooltip: true,
-            }}
-          />
-        </div>
-        <div>
-          <h5>Bounty ID</h5>
-          <p>{proposal.kind.BountyDone.bounty_id}</p>
-        </div>
-      </>
-    );
-};
-
 return (
   <Wrapper>
     <div className="d-flex justify-content-between align-items-center">
@@ -147,7 +95,22 @@ return (
       />
     </div>
     <div>
-      <h5>Description</h5>
+      <h5>Amount</h5>
+      <p>
+        {bounty.amount}
+        {bounty.token_id === "" ? "NEAR" : ""}
+      </p>
+    </div>
+    <div>
+      <h5>Times</h5>
+      <p>{bounty.times}</p>
+    </div>
+    <div>
+      <h5>Deadline</h5>
+      <p>{new Date(bounty.max_deadline).toLocaleString()}</p>
+    </div>
+    <div>
+      <h5>Bounty Description</h5>
       <p>{bounty.description}</p>
     </div>
     <div className="d-flex gap-5 flex-wrap align-items-center"></div>
