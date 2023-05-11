@@ -173,8 +173,8 @@ return (
               <p>{bounty.times}</p>
             </div>
             <div className="col-sm">
-              <h5>Time</h5>
-              <p>{new Date(bounty.max_deadline).toLocaleString()}</p>
+              <h5>Timeline</h5>
+              <p>{bounty.max_deadline / 3600000000000}</p>
             </div>
           </div>
         </CardContent>
