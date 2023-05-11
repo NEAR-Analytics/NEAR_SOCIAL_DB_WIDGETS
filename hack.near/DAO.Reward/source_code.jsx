@@ -80,38 +80,117 @@ const Wrapper = styled.div`
   }
 `;
 
+const Card = styled.div`
+  position: relative;
+  width: 100%;
+  border-radius: 12px;
+  background: #fff;
+  overflow: hidden;
+`;
+
+const CardBody = styled.div`
+  padding: 16px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+
+  > * {
+    min-width: 0;
+  }
+`;
+
+const CardContent = styled.div`
+  width: 100%;
+`;
+
+const CardFooter = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 16px;
+  border-top: 1px solid #eceef0;
+`;
+
+const CardTag = styled.p`
+  margin: 0;
+  font-size: 9px;
+  line-height: 14px;
+  color: #687076;
+  font-weight: 400;
+  white-space: nowrap;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-bottom-left-radius: 3px;
+  padding: 0 4px;
+
+  i {
+    margin-right: 3px;
+  }
+`;
+
+const ButtonLink = styled.a`
+  padding: 8px;
+  height: 32px;
+  border: 1px solid #d7dbdf;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 15px;
+  text-align: center;
+  cursor: pointer;
+  color: ${(p) => (p.primary ? "#006ADC" : "#11181C")} !important;
+  background: #fbfcfd;
+  white-space: nowrap;
+
+  &:hover,
+  &:focus {
+    background: #ecedee;
+    text-decoration: none;
+    outline: none;
+  }
+`;
+
 return (
   <Wrapper>
-    <div className="d-flex justify-content-between align-items-center">
-      <div>
-        <h5>Bounty ID: {bounty.id}</h5>
-      </div>
-    </div>
-    <div>
-      <h5>Amount</h5>
-      <p>
-        {bounty.amount / 1000000000000000000000000}
-        {bounty.token_id === "" ? "NEAR" : ""}
-      </p>
-    </div>
-    <div>
-      <h5>Times</h5>
-      <p>{bounty.times}</p>
-    </div>
-    <div>
-      <h5>Deadline</h5>
-      <p>{new Date(bounty.max_deadline).toLocaleString()}</p>
-    </div>
-    <div>
-      <h5>Bounty Description</h5>
-      <p>{bounty.description}</p>
-    </div>
-    <div className="d-flex gap-5 flex-wrap align-items-center"></div>
-    <a className="btn btn-outline-success" onClick={handleClaim}>
-      Claim
-    </a>
-    <a className="btn btn-outline-danger" onClick={handleUnclaim}>
-      Unclaim
-    </a>
+    <Card>
+      <CardTag>
+        <div className="d-flex justify-content-between align-items-center">
+          <h5>Bounty ID: {bounty.id}</h5>
+        </div>
+      </CardTag>
+      <CardBody>
+        <CardContent>
+          <div className="row">
+            <div className="col-sm">
+              <h5>Amount</h5>
+              <p>
+                {bounty.amount / 1000000000000000000000000}
+                {bounty.token_id === "" ? "NEAR" : ""}
+              </p>
+            </div>
+            <div className="col-sm">
+              <h5>Claims</h5>
+              <p>{bounty.times}</p>
+            </div>
+            <div className="col-sm">
+              <h5>Time</h5>
+              <p>{new Date(bounty.max_deadline).toLocaleString()}</p>
+            </div>
+          </div>
+        </CardContent>
+
+        <CardContent>
+          <div>
+            <h5>Job Description</h5>
+            <p>{bounty.description}</p>
+          </div>
+        </CardContent>
+      </CardBody>
+      <CardFooter>
+        <ButtonLink onClick={handleClaim}>Claim</ButtonLink>
+        <ButtonLink onClick={handleUnclaim}>Unclaim</ButtonLink>
+      </CardFooter>
+    </Card>
   </Wrapper>
 );
