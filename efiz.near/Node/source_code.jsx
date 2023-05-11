@@ -58,7 +58,11 @@ const renderThing = () => {
     } else if (standard === "profile") {
       value = Social.get(parts.join("/"), "final");
     } else if (standard === "widget") {
-      return <Widget src={parts.join("/")} />;
+      // This is a hack because a widget is saved under ""
+      if (path.endsWith("/")) {
+        path = path.slice(0, -1);
+      }
+      return <Widget src={path} />;
     } else if (standard === "post") {
       value = Social.get(path, "final");
       value = JSON.parse(value);
