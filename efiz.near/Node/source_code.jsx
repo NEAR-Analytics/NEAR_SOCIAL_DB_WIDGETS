@@ -62,10 +62,12 @@ return (
               src="efiz.near/widget/Node"
               props={{
                 key,
-                path,
+                label: key,
+                value: val,
+                path: `${path}/${label}`,
+                setPath: setPath,
                 history,
-                traverseInto,
-                traverseBack,
+                setHistory: setHistory,
               }}
             />
           ))
