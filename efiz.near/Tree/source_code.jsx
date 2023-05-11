@@ -30,7 +30,8 @@ return (
     props={{
       path: state.rootPath,
       history: state.history,
-      onTraverse: handleTraverse,
+      traverseInto,
+      traverseBack,
     }}
   />
 );
