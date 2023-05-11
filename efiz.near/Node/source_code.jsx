@@ -85,15 +85,15 @@ return (
     <Button onClick={handleExpand}>{state.expanded ? "-" : "+"}</Button>
     {state.expanded && (
       <div>
-        {node && typeof node.value === "object" ? (
-          Object.entries(node.value).map(([key, val]) => (
+        {node && typeof node === "object" ? (
+          Object.entries(node).map(([key, val]) => (
             <ChildNode>
               <Widget
                 src="efiz.near/widget/Node"
                 props={{
                   key,
                   label: key,
-                  node: { value: val, type: null },
+                  node: val,
                   path: `${path}/${key}`,
                   setPath: setPath,
                   history,
