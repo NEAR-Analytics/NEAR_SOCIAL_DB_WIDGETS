@@ -13,18 +13,23 @@ function handleExpand() {
 }
 
 function handleInto(key, path, history) {
+  console.log(`going into ${key} from current path ${path}`);
   traverseInto(key, path, history);
 }
 
 function handleBack(history) {
+  console.log(`going back, out of ${key} and current path ${path}`);
   traverseBack(history);
 }
 
 const parts = path.split("/");
 if (parts.length === 1) {
+  // account
   if (parts[0] !== "*") {
     parts.push("**");
   }
+} else if (parts.length === 2) {
+  parts.push("**");
 }
 
 const value = Social.get(parts.join("/"), "final");
