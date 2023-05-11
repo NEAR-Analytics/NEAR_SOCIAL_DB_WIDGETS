@@ -17,7 +17,7 @@ function setSubject(path) {
 }
 
 function handleTraverse() {
-  onTraverse(path, node);
+  onTraverse(key, path, node);
 }
 
 const Button = styled.button`
@@ -48,7 +48,7 @@ function buildPath(current, key) {
   return parts.join("/");
 }
 // {prevPath && <Button onClick={handleTraverse}>back</Button>}
-console.log(node);
+
 return (
   <div>
     <Button onClick={handleTraverse}>{key}</Button>
