@@ -81,7 +81,7 @@ return (
             </ChildNode>
           ))
         ) : (
-          <div>{renderThing()}</div>
+          <div>{renderThing(node)}</div>
         )}
       </div>
     )}
