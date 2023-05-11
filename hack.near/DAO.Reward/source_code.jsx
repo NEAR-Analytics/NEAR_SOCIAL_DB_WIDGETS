@@ -51,7 +51,7 @@ const handleSubmit = () => {
         proposal: {
           description: "work submitted",
           kind: {
-            AddBounty: {
+            BountyDone: {
               receiver_id: accountId,
               bounty_id: JSON.parse(bounty.id),
             },
