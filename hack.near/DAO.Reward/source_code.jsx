@@ -46,10 +46,17 @@ const handleSubmit = () => {
   Near.call([
     {
       contractName: daoId,
-      methodName: "bounty_claim",
+      methodName: "add_proposal",
       args: {
-        id: JSON.parse(bounty.id),
-        deadline: bounty.max_deadline,
+        proposal: {
+          description: "work submitted",
+          kind: {
+            AddBounty: {
+              receiver_id: accountId,
+              bounty_id: JSON.parse(bounty.id),
+            },
+          },
+        },
       },
       deposit: 100000000000000000000000,
       gas: 150000000000000,
@@ -211,8 +218,6 @@ const check = claims.map((claim) => {
 
 return (
   <Wrapper>
-    <h1>{check}</h1>
-
     <Card>
       <CardTag>
         <div className="d-flex justify-content-between align-items-center">
