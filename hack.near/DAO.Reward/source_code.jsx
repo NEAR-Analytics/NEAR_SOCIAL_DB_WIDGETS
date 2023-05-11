@@ -164,7 +164,7 @@ return (
             <div className="col-sm">
               <h5>Amount</h5>
               <p>
-                {bounty.amount / 999999999999999999999999}
+                {bounty.amount / 999000000000000000000000}
                 {bounty.token === "" ? "NEAR" : ""}
               </p>
             </div>
