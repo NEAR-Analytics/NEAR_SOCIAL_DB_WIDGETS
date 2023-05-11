@@ -44,18 +44,38 @@ const ChildNode = styled.div`
   margin-left: ${path.split("/").length * 4}px
 `;
 
-const renderThing = (node) => {
-  console.log("this is the node: " + JSON.stringify(node));
-  if (node.type === "widget") {
-    return <Widget src={node.value} />;
+const renderThing = () => {
+  console.log(JSON.stringify(node));
+  console.log(typeof node);
+  const parts = path.split("/");
+  if (parts.length > 2) {
+    const standard = parts[1];
+    let value = {};
+    let type = standard;
+    if (standard === "graph") {
+      parts.push("**");
+      value = Social.get(parts.join("/"), "final");
+    } else if (standard === "profile") {
+      value = Social.get(parts.join("/"), "final");
+    } else if (standard === "widget") {
+      return <Widget src={path} />;
+    } else if (standard === "post") {
+      value = Social.get(path, "final");
+      value = JSON.parse(value);
+    } else {
+      value = Social.get(parts.join("/"), "final");
+      value = JSON.parse(value);
+    }
   } else {
-    const text = `
+    console.log("uncaught path: ", path);
+  }
+
+  const text = `
 \`\`\`json
-${JSON.stringify(node.value, undefined, 2)}
+${JSON.stringify(value, undefined, 2)}
 \`\`\`
 `;
-    return <Markdown text={text} />;
-  }
+  return <Markdown text={text} />;
 };
 
 return (
@@ -84,7 +104,7 @@ return (
             </ChildNode>
           ))
         ) : (
-          <div>{renderThing(node)}</div>
+          <div>{renderThing()}</div>
         )}
       </div>
     )}
