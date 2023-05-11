@@ -1,4 +1,4 @@
-const rootPath = "efiz.near";
+const rootPath = context.accountId ?? "evrything.near";
 
 State.init({
   path: rootPath,
