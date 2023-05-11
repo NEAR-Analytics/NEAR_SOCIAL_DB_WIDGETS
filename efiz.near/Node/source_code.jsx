@@ -52,6 +52,7 @@ ${JSON.stringify(value, undefined, 2)}
 return (
   <div>
     {history.length > 1 && <Button onClick={handleBack}>back</Button>}
+    {path}
     <Button onClick={handleInto}>{label}</Button>
     <Button onClick={handleExpand}>{state.expanded ? "-" : "+"}</Button>
     {state.expanded && (
