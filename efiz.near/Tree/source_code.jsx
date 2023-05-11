@@ -79,7 +79,7 @@ return (
   <Widget
     src="efiz.near/widget/Node"
     props={{
-      key: "evrything.near",
+      key: state.key,
       path: state.path,
       node: state.node,
       prevPath: state.prevPath,
