@@ -63,6 +63,7 @@ const renderThing = () => {
           accountId: parts[0],
         },
       };
+      console.log(JSON.stringify(index));
       function renderItem(a) {
         if (a.value.type === "md") {
           return (
