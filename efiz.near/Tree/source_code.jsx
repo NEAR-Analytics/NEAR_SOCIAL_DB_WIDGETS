@@ -30,6 +30,12 @@ function traverseInto(key, path, history) {
   });
 }
 
+console.log(
+  `starting root at key: ${state.rootKey}, path: ${
+    state.rootPath
+  }, with history: ${JSON.stringify(state.history)}`
+);
+
 return (
   <Widget
     src="efiz.near/widget/Node"
@@ -37,8 +43,8 @@ return (
       key: state.rootKey,
       path: state.rootPath,
       history: state.history,
-      traverseInto,
-      traverseBack,
+      traverseInto: traverseInto,
+      traverseBack: traverseBack,
     }}
   />
 );
