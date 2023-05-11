@@ -1,24 +1,30 @@
-const rootPath = "efiz.near";
+const rootKey = "efiz.near";
 
 State.init({
-  rootPath,
+  rootKey,
+  rootPath: rootKey,
   history: [],
 });
 
 function traverseBack(history) {
-  const prevPath = history.pop();
+  const prevNode = history.pop();
   State.update({
-    rootPath: prevPath,
+    rootKey: prevNode.key,
+    rootPath: prevNode.path,
     history,
   });
 }
 
 function traverseInto(key, path, history) {
-  history.push(path);
+  history.push({
+    key,
+    path,
+  });
   const parts = path.split("/");
   parts.push(key);
 
   State.update({
+    rootKey: key,
     rootPath: parts.join("/"),
     history,
   });
@@ -28,6 +34,7 @@ return (
   <Widget
     src="efiz.near/widget/Node"
     props={{
+      key: state.rootKey,
       path: state.rootPath,
       history: state.history,
       traverseInto,
