@@ -23,6 +23,7 @@ const Button = styled.button`
 `;
 
 const defaultRender = (value) => {
+  console.log("hello: " + value);
   const text = `
 \`\`\`json
 ${JSON.stringify(value, undefined, 2)}
@@ -54,10 +55,9 @@ function buildPath(current, key) {
   return parts.join("/");
 }
 
-// This was my back button :)
-// {prevPath !== path && <Button onClick={handleBack}>back</Button>}
 return (
   <div>
+    {prevPath !== path && <Button onClick={handleBack}>back</Button>}
     <Button onClick={handleInto}>{key}</Button>
     <Button onClick={handleExpand}>{state.expanded ? "-" : "+"}</Button>
     {state.expanded && (
