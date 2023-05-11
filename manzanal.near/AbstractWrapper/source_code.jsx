@@ -23,15 +23,17 @@ State.init({
 });
 
 const updateBalances = (address) => {
-  console.log("address", address);
   if (!address) return;
-  const balanceToken = getTokenBalance(address);
-  const balanceWrapToken = getWrapTokenBalance(address);
-  console.log("balances", balanceToken, balanceWrapToken);
-  State.update({
-    balanceToken,
-    balanceWrapToken,
-  });
+  getTokenBalance(address, (balance) =>
+    State.update({
+      balanceToken: balance,
+    })
+  );
+  getWrapTokenBalance(address, (balance) =>
+    State.update({
+      balanceWrapToken: balance,
+    })
+  );
 };
 
 if (!state.intervalStarted) {
