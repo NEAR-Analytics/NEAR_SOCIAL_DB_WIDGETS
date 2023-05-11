@@ -6,7 +6,7 @@ State.init({
 
 const item = {
   type: "sputnik_proposal_comment",
-  path: `${context.accountId}/proposal/main`,
+  path: `${proposal_id}/proposal/main`,
   proposal_id,
 };
 
