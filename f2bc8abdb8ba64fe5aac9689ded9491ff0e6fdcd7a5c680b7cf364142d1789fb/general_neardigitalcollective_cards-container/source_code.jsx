@@ -1,15 +1,30 @@
-const cards = props.cards;
+const widgetOwner =
+  props.widgetOwner ??
+  "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
+
+const headerWidgetName = props.headerWidgetName ?? "minimalistQuestionHeader";
+
+const contentWidgetName =
+  props.contentWidgetName ?? "minimalistQuestionGeneralInfo";
+
+const cardsData = props.cardsData;
 
 return (
   <div className="row card-group py-3">
-    {cards.map((card) => {
+    {cardsData.map((cardData) => {
       return (
         <>
+          <Widget
+            src={`${widgetOwner}/widget/${headerWidgetName}`}
+            props={{ ...cardData }}
+          />
+          <Widget
+            src={`${widgetOwner}/widget/${contentWidgetName}`}
+            props={{ ...cardData }}
+          />
+
           {
-            //<Widget src="" props={}/>
-          }
-          {
-            // Example
+            // Example how should cards container be like
             //
             //
             //
