@@ -54,38 +54,7 @@ const renderThing = () => {
       parts.push("**");
       value = Social.get(parts.join("/"), "final");
     } else if (standard === "index") {
-      if (parts.length > 3) {
-        const index = {
-          action: parts[2],
-          key: parts[3],
-          options: {
-            limit: 10,
-            order: "desc",
-            accountId: parts[0],
-          },
-        };
-        console.log(JSON.stringify(index));
-        function renderItem(a) {
-          if (a.value.type === "md") {
-            return (
-              <Post className="post" key={JSON.stringify(a)}>
-                <Widget
-                  src="near/widget/Posts.Post"
-                  props={{ accountId: a.accountId, blockHeight: a.blockHeight }}
-                />
-              </Post>
-            );
-          } else {
-            return <p>lol no</p>;
-          }
-        }
-        return (
-          <Widget
-            src="efiz.near/widget/MergedIndexFeed"
-            props={{ index, renderItem, disableCaching: true }}
-          />
-        );
-      }
+      return null;
     } else if (standard === "profile") {
       value = Social.get(parts.join("/"), "final");
     } else if (standard === "widget") {
@@ -95,9 +64,40 @@ const renderThing = () => {
       }
       return <Widget src={path} />;
     } else if (standard === "post") {
-      value = Social.get(path, "final");
-      value = JSON.parse(value);
-      return <Widget src="efiz.near/widget/Post.View" props={{ value }} />;
+      const index = {
+        action: parts[2],
+        key: parts[3],
+        options: {
+          limit: 10,
+          order: "desc",
+          accountId: parts[0],
+        },
+      };
+      console.log(JSON.stringify(index));
+      function renderItem(a) {
+        if (a.value.type === "md") {
+          return (
+            <Post className="post" key={JSON.stringify(a)}>
+              <Widget
+                src="near/widget/Posts.Post"
+                props={{ accountId: a.accountId, blockHeight: a.blockHeight }}
+              />
+            </Post>
+          );
+        } else {
+          return <p>lol no</p>;
+        }
+      }
+      return (
+        <Widget
+          src="efiz.near/widget/MergedIndexFeed"
+          props={{ index, renderItem, disableCaching: true }}
+        />
+      );
+
+      //   value = Social.get(path, "final");
+      //   value = JSON.parse(value);
+      //   return <Widget src="efiz.near/widget/Post.View" props={{ value }} />;
     } else {
       value = Social.get(parts.join("/"), "final");
       value = JSON.parse(value);
