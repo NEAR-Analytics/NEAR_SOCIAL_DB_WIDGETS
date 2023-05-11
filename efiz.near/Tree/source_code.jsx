@@ -34,8 +34,15 @@ function getNode(path) {
     let value = {};
     let type = standard;
     if (standard === "graph") {
-      parts.push("**");
-      value = Social.get(parts.join("/"), "final");
+      if (parts.length > 3) {
+        if (parts[2] === "follow") {
+          setPath(parts[3]);
+          setHistory([...history, parts[3]]);
+        }
+      } else {
+        parts.push("**");
+        value = Social.get(parts.join("/"), "final");
+      }
     } else if (standard === "profile") {
       value = Social.get(parts.join("/"), "final");
     } else if (standard === "post") {
