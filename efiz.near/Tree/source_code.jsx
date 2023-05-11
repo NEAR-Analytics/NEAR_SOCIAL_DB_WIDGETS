@@ -1,39 +1,35 @@
-const key = props.key || context.accountId;
-const path = `${context.accountId}/**`;
-const rootNode = Social.get(path, "final");
+const rootPath = "efiz.near";
 
 State.init({
-  node: rootNode,
-  prevPath: path,
-  path,
-  key,
+  rootPath,
+  history: [],
 });
 
-function traverse(key, path, node) {
+function traverseBack(history) {
+  const prevPath = history.pop();
   State.update({
-    path,
-    node,
-    key,
-    prevPath: state.path,
-    prevKey: state.key,
-    prevNode: state.node,
+    rootPath: prevPath,
+    history,
   });
 }
 
-function handleTraverse(key, path, node) {
-  traverse(key, path, node);
+function traverseInto(key, path, history) {
+  history.push(path);
+  const parts = path.split("/");
+  parts.push(key);
+
+  State.update({
+    rootPath: parts.join("/"),
+    history,
+  });
 }
 
 return (
   <Widget
     src="efiz.near/widget/Node"
     props={{
-      key: state.key,
-      path: state.path,
-      node: state.node ?? rootNode,
-      prevPath: state.prevPath,
-      prevKey: state.prevKey,
-      prevNode: state.prevNode,
+      path: state.rootPath,
+      history: state.history,
       onTraverse: handleTraverse,
     }}
   />
