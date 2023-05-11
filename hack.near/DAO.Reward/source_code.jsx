@@ -19,6 +19,8 @@ const handleClaim = () => {
         id: JSON.parse(bounty.id),
         deadline: bounty.max_deadline,
       },
+      deposit: 100000000000000000000000,
+
       gas: 150000000000000,
     },
   ]);
