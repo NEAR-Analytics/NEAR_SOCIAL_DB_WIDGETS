@@ -182,39 +182,9 @@ const ButtonLink = styled.a`
   }
 `;
 
-const handleProposal = () => {
-  const gas = state.gas ?? 150000000000000;
-  const deposit = state.deposit ?? 100000000000000000000000;
-  Near.call([
-    {
-      contractName: daoId,
-      methodName: "add_proposal",
-      args: {
-        proposal: {
-          description: "submit for council review",
-          kind: {
-            BountyDone: {
-              receiver_id: accountId,
-              bounty_id: bounty.id,
-            },
-          },
-        },
-      },
-      gas: gas,
-      deposit: deposit,
-    },
-  ]);
-};
-
 const claims = Near.view(daoId, "get_bounty_claims", {
   account_id: accountId,
 });
-
-const check = claims.map((claim) => {
-  return !claim
-    ? false
-    : claim.filter((address) => address === accountId).length > 0;
-})?.[0];
 
 return (
   <Wrapper>
@@ -253,14 +223,14 @@ return (
         </CardContent>
       </CardBody>
       <CardFooter>
-        <ButtonLink onClick={handleClaim}>Claim</ButtonLink>
-        <ButtonLink onClick={handleUnclaim}>Unclaim</ButtonLink>
-        {!check && (
-          <Button>
-            <a className="btn btn-success " onClick={handleSubmit}>
-              Submit
-            </a>
-          </Button>
+        {!claims.length > 0 && (
+          <ButtonLink onClick={handleClaim}>Claim</ButtonLink>
+        )}
+        {claims.length > 0 && (
+          <ButtonLink onClick={handleSubmit}>Submit</ButtonLink>
+        )}
+        {claims.length > 0 && (
+          <ButtonLink onClick={handleUnclaim}>Unclaim</ButtonLink>
         )}
       </CardFooter>
     </Card>
