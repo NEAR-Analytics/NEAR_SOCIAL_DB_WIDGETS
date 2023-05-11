@@ -17,7 +17,7 @@ const handleProposal = () => {
   const bounty = {
     description: state.description,
     token: state.token ?? "",
-    amount: state.amount,
+    amount: JSON.stringify(state.amount * 1000000000000000000000000),
     times: JSON.parse(state.times),
     max_deadline: JSON.stringify(state.max_deadline * 3600000000000),
   };
