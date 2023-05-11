@@ -1,9 +1,8 @@
 const daoId = props.daoId ?? "multi.sputnik-dao.near";
 
 const bounty = props.bounty ?? {
-  id: 1,
-  description:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ut pharetra orci. Aliquam vitae enim tincidunt sapien fermentum scelerisque.",
+  id: 888,
+  description: "xyz",
 };
 
 // ==============================
