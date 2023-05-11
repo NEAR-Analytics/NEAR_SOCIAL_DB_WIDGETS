@@ -1,6 +1,7 @@
 const path = props.path;
 const prevPath = props.prevPath ?? null;
 const node = props.node;
+const key = props.key;
 const onTraverse = props.onTraverse;
 
 State.init({
@@ -50,7 +51,7 @@ function buildPath(current, key) {
 return (
   <div>
     {prevPath && <Button onClick={handleTraverse}>back</Button>}
-    <Button onClick={handleTraverse}>{path}</Button>
+    <Button onClick={handleTraverse}>{key}</Button>
     <Button onClick={handleExpand}>{state.expanded ? "-" : "+"}</Button>
     {state.expanded && (
       <div>
@@ -58,7 +59,7 @@ return (
           Object.entries(node).map(([key, val]) => (
             <Widget
               src="efiz.near/widget/Node"
-              props={{ path: buildPath(path, key), node: val, onTraverse }}
+              props={{ key, path: buildPath(path, key), node: val, onTraverse }}
             />
           ))
         ) : (
