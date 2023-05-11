@@ -64,6 +64,7 @@ const RegisterdNumber = styled.div`
 `;
 
 const width = props.widgetBarWidth;
+console.log("Props", props);
 const registerUsersNum = Near.view("registry.i-am-human.near", "sbt_supply", {
   issuer: "gooddollar-v1.i-am-human.near",
 });
