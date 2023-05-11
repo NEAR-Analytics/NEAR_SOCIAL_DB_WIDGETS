@@ -58,6 +58,7 @@ return (
         ) : (
           <div>{defaultRender()}</div>
         )}
+        {/** Render "View.Thing" */}
       </div>
     )}
   </div>
