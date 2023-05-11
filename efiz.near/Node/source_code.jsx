@@ -1,5 +1,5 @@
-const node = props.node;
 const path = props.path;
+const node = props.node;
 const onTraverse = props.onTraverse;
 
 State.init({
@@ -11,7 +11,7 @@ function handleExpand() {
 }
 
 function handleTraverse() {
-  traverse(node);
+  traverse(path, node);
 }
 
 const Button = styled.button`
@@ -29,7 +29,17 @@ ${JSON.stringify(value, undefined, 2)}
 };
 
 function buildPath(current, key) {
-  return `${current}/${key}`;
+  const parts = current.split("/");
+  const suffix = parts[parts.length - 1];
+  if (suffix === "*" || suffix === "**") {
+    parts.pop();
+  }
+  parts.push(key);
+
+  if (parts.length < 3) {
+    parts.push("**");
+  }
+  return parts.join("/");
 }
 
 return (
