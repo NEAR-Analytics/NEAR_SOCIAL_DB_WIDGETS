@@ -65,8 +65,8 @@ const renderThing = () => {
       return <Widget src={path} />;
     } else if (standard === "post") {
       const index = {
-        action: parts[2],
-        key: parts[3],
+        action: parts[1],
+        key: parts[2],
         options: {
           limit: 10,
           order: "desc",
