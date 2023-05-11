@@ -6,10 +6,12 @@ State.init({
 });
 
 function setPath(path) {
+  console.log(`setting path to ${path}`);
   State.update({ path });
 }
 
 function setHistory(history) {
+  console.log(`setting history to ${JSON.stringify(history)}`);
   State.update({ history });
 }
 
@@ -24,6 +26,7 @@ function getNodeValue(path) {
 }
 
 const node = getNodeValue(state.path);
+console.log(node);
 
 console.log(
   `starting root at path: ${state.path}, with history: ${JSON.stringify(
@@ -35,8 +38,8 @@ return (
   <Widget
     src="efiz.near/widget/Node"
     props={{
-      label: node && Object.keys(node)[0],
-      value: node && Object.values(node)[0],
+      label: state.path,
+      value: node,
       path: state.path,
       setPath: setPath,
       history: state.history,
