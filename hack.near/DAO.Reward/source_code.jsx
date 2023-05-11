@@ -1,9 +1,13 @@
+const accountId = props.accountId ?? context.accountId;
+
 const daoId = props.daoId ?? "multi.sputnik-dao.near";
 
 const bounty = props.bounty ?? {
   id: 888,
   description: "xyz",
-  deadline: "86400000000000",
+  times: 1,
+  amount: "1000000000000000000000000",
+  max_deadline: "86400000000000",
 };
 
 // ==============================
@@ -20,7 +24,6 @@ const handleClaim = () => {
         deadline: bounty.max_deadline,
       },
       deposit: 100000000000000000000000,
-
       gas: 150000000000000,
     },
   ]);
@@ -34,6 +37,21 @@ const handleUnclaim = () => {
       args: {
         id: JSON.parse(bounty.id),
       },
+      gas: 150000000000000,
+    },
+  ]);
+};
+
+const handleSubmit = () => {
+  Near.call([
+    {
+      contractName: daoId,
+      methodName: "bounty_claim",
+      args: {
+        id: JSON.parse(bounty.id),
+        deadline: bounty.max_deadline,
+      },
+      deposit: 100000000000000000000000,
       gas: 150000000000000,
     },
   ]);
@@ -131,6 +149,10 @@ const CardTag = styled.p`
   }
 `;
 
+const Button = styled.div`
+  width: 100%;
+`;
+
 const ButtonLink = styled.a`
   padding: 8px;
   height: 32px;
@@ -153,8 +175,44 @@ const ButtonLink = styled.a`
   }
 `;
 
+const handleProposal = () => {
+  const gas = state.gas ?? 150000000000000;
+  const deposit = state.deposit ?? 100000000000000000000000;
+  Near.call([
+    {
+      contractName: daoId,
+      methodName: "add_proposal",
+      args: {
+        proposal: {
+          description: "submit for council review",
+          kind: {
+            BountyDone: {
+              receiver_id: accountId,
+              bounty_id: bounty.id,
+            },
+          },
+        },
+      },
+      gas: gas,
+      deposit: deposit,
+    },
+  ]);
+};
+
+const claims = Near.view(daoId, "get_bounty_claims", {
+  account_id: accountId,
+});
+
+const check = claims.map((claim) => {
+  return !claim
+    ? false
+    : claim.filter((address) => address === accountId).length > 0;
+})?.[0];
+
 return (
   <Wrapper>
+    <h1>{check}</h1>
+
     <Card>
       <CardTag>
         <div className="d-flex justify-content-between align-items-center">
@@ -192,6 +250,13 @@ return (
       <CardFooter>
         <ButtonLink onClick={handleClaim}>Claim</ButtonLink>
         <ButtonLink onClick={handleUnclaim}>Unclaim</ButtonLink>
+        {check && (
+          <Button>
+            <a className="btn btn-success " onClick={handleSubmit}>
+              Submit
+            </a>
+          </Button>
+        )}
       </CardFooter>
     </Card>
   </Wrapper>
