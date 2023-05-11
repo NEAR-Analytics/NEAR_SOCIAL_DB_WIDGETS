@@ -6,7 +6,7 @@ State.init({
 });
 
 function handleExpand() {
-  setExpanded(!expanded);
+  setExpanded(!state.expanded);
 }
 
 function handleTraverse() {
@@ -18,14 +18,18 @@ return (
     <div onClick={handleExpand}>
       {expanded ? "-" : "+"} {node.value}
     </div>
-    {expanded && node.children && (
+    {expanded && (
       <div>
-        {node.children.map((child) => (
-          <Widget
-            src="efiz.near/widget/Node"
-            props={{ key: child.id, onTraverse }}
-          />
-        ))}
+        {typeof value === "object" ? (
+          Object.entries(value).map(([key, val]) => (
+            <Widget
+              src="efiz.near/widget/Node"
+              props={{ key, label: key, value: val }}
+            />
+          ))
+        ) : (
+          <div>{value}</div>
+        )}
       </div>
     )}
     <button onClick={handleTraverse}>Traverse</button>
