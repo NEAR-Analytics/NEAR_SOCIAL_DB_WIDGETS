@@ -1,6 +1,6 @@
 const key = props.key;
 const label = props.label;
-const value = props.value;
+const node = props.node;
 const path = props.path;
 const setPath = props.setPath;
 const history = props.history;
@@ -62,15 +62,15 @@ return (
     <Button onClick={handleExpand}>{state.expanded ? "-" : "+"}</Button>
     {state.expanded && (
       <div>
-        {typeof value === "object" ? (
-          Object.entries(value).map(([key, val]) => (
+        {node && typeof node.value === "object" ? (
+          Object.entries(node.value).map(([key, val]) => (
             <ChildNode>
               <Widget
                 src="efiz.near/widget/Node"
                 props={{
                   key,
                   label: key,
-                  value: val,
+                  node: { value: val, type: null },
                   path: `${path}/${key}`,
                   setPath: setPath,
                   history,
@@ -81,7 +81,7 @@ return (
             </ChildNode>
           ))
         ) : (
-          <div>{renderThing(value)}</div>
+          <div>{renderThing()}</div>
         )}
       </div>
     )}
