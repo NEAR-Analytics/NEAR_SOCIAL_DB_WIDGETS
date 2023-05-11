@@ -1,55 +1,46 @@
-const rootKey = "efiz.near";
+const rootPath = "efiz.near";
 
 State.init({
-  rootKey,
-  rootPath: rootKey,
-  history: [],
+  path: rootPath,
+  history: [rootPath],
 });
 
-function traverseBack(history) {
-  const prevNode = history.pop();
-  State.update({
-    rootKey: prevNode.key,
-    rootPath: prevNode.path,
-    history,
-  });
+function setPath(path) {
+  State.update({ path });
 }
 
-function traverseInto(key, currKey, currPath, history) {
-  console.log(
-    `traversing into ${key} from current path ${currPath} and history: ${JSON.stringify(
-      history
-    )}`
-  );
-  history.push({
-    key: currKey,
-    path: currPath,
-  });
-  const parts = currPath.split("/");
-  parts.push(key);
-
-  State.update({
-    rootKey: key,
-    rootPath: parts.join("/"),
-    history,
-  });
+function setHistory(history) {
+  State.update({ history });
 }
+
+function getNodeValue(path) {
+  const parts = path.split("/");
+  if (parts.length === 1) {
+    parts.push("**");
+
+    const value = Social.get(parts.join("/"), "final");
+    return JSON.stringify(value, undefined, 2);
+  }
+}
+
+const node = getNodeValue(state.path);
 
 console.log(
-  `starting root at key: ${state.rootKey}, path: ${
-    state.rootPath
-  }, with history: ${JSON.stringify(state.history)}`
+  `starting root at path: ${state.path}, with history: ${JSON.stringify(
+    state.history
+  )}`
 );
 
 return (
   <Widget
     src="efiz.near/widget/Node"
     props={{
-      key: state.rootKey,
-      path: state.rootPath,
+      label: node && Object.keys(node)[0],
+      value: node && Object.values(node)[0],
+      path: state.path,
+      setPath: setPath,
       history: state.history,
-      traverseInto: traverseInto,
-      traverseBack: traverseBack,
+      setHistory: setHistory,
     }}
   />
 );
