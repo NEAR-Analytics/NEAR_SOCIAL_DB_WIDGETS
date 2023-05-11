@@ -40,7 +40,7 @@ const Button = styled.button`
 `;
 
 const ChildNode = styled.div`
-  margin-left: ${path.split("/").length}em
+  margin-left: ${path.split("/").length * 4}px
 `;
 
 const renderThing = (value) => {
