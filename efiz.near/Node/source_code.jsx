@@ -54,9 +54,10 @@ function buildPath(current, key) {
   return parts.join("/");
 }
 
+// This was my back button :)
+// {prevPath !== path && <Button onClick={handleBack}>back</Button>}
 return (
   <div>
-    {prevPath !== path && <Button onClick={handleBack}>back</Button>}
     <Button onClick={handleInto}>{key}</Button>
     <Button onClick={handleExpand}>{state.expanded ? "-" : "+"}</Button>
     {state.expanded && (
