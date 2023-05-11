@@ -26,16 +26,6 @@ function handleBack() {
   setHistory(history.slice(0, -1));
 }
 
-// const parts = path.split("/");
-// if (parts.length === 1) {
-//   // account
-//   if (parts[0] !== "*") {
-//     parts.push("**");
-//   }
-// } else if (parts.length === 2) {
-//   parts.push("**");
-// }
-
 const Button = styled.button`
   text-transform: lowercase !important;
 `;
@@ -76,11 +66,36 @@ const renderThing = () => {
       console.log(JSON.stringify(index));
       function renderItem(a) {
         if (a.value.type === "md") {
+          const edges = Social.index("edge", a.blockHeight, {
+            limit: 10,
+            order: "desc",
+            accountId: undefined,
+          });
+          console.log(JSON.stringify(edges));
+          // {edges.map(([key, val]) => (
+          //       <ChildNode>
+          //         <Widget
+          //           src="efiz.near/widget/Node"
+          //           props={{
+          //             key,
+          //             label: key,
+          //             node: val,
+          //             path: `${path}/${key}`,
+          //             setPath: setPath,
+          //             history,
+          //             setHistory: setHistory,
+          //             isRoot: false,
+          //           }}
+          //         />
+          //       </ChildNode>
+          //     ))}
           return (
-            <Widget
-              src="near/widget/Posts.Post"
-              props={{ accountId: a.accountId, blockHeight: a.blockHeight }}
-            />
+            <>
+              <Widget
+                src="near/widget/Posts.Post"
+                props={{ accountId: a.accountId, blockHeight: a.blockHeight }}
+              />
+            </>
           );
         } else {
           return <p>lol no</p>;
