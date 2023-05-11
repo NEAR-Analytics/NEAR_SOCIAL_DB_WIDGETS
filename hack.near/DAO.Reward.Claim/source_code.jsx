@@ -51,9 +51,8 @@ const onChangeDAO = (newDaoId) => {
 return (
   <>
     <div>
-      <h3>DAO Bounties</h3>
+      <h3>Earn Rewards</h3>
       <div className="mb-2">
-        <p className="m-1">Sputnik Contract ID:</p>
         <input
           type="text"
           placeholder="example.sputnik-dao.near"
@@ -61,16 +60,10 @@ return (
         />
       </div>
 
-      <div className="mb-3">
-        <h4>{latest_bounty_id}</h4>
-
-        <button className="btn btn-success" onClick={handleClaim}>
-          Claim Bounty
-        </button>
-      </div>
       <hr />
 
       <div>
+        <h5>Discover Opportunities</h5>
         <InfiniteScroll loadMore={loadBounties} hasMore={state.hasMore}>
           {state.bounties.map((bounty, i) => (
             <Widget
