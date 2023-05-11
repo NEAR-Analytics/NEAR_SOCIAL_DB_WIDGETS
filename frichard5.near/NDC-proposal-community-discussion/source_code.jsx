@@ -40,7 +40,7 @@ return (
         {state.showReply && (
           <div className="mb-2">
             <Widget
-              src="near/widget/Comments.Compose"
+              src={`${widgetProvider}/widget/Comments.Compose`}
               props={{
                 //notifyAccountId,
                 item,
