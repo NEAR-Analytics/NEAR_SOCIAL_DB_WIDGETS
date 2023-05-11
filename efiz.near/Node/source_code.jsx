@@ -64,7 +64,7 @@ const renderThing = () => {
     } else if (standard === "post") {
       value = Social.get(path, "final");
       value = JSON.parse(value);
-      console.log(value);
+      return <Widget src="efiz.near/widget/Post.View" props={{ value }} />;
     } else {
       value = Social.get(parts.join("/"), "final");
       value = JSON.parse(value);
