@@ -48,6 +48,7 @@ function buildPath(current, key) {
   return parts.join("/");
 }
 // {prevPath && <Button onClick={handleTraverse}>back</Button>}
+console.log(node);
 return (
   <div>
     <Button onClick={handleTraverse}>{key}</Button>
