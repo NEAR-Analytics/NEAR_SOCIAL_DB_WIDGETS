@@ -45,8 +45,8 @@ const ChildNode = styled.div`
 `;
 
 const renderThing = (node) => {
-  console.log("this is the node: " + node);
-  if (type === "widget") {
+  console.log("this is the node: " + JSON.stringify(node));
+  if (node.type === "widget") {
     return <Widget src={node.value} />;
   } else {
     const text = `
