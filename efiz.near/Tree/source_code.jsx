@@ -10,12 +10,15 @@ State.init({
 });
 
 // newPath, data, callback
-function traverse(path, node) {
+function traverse(key, path, node) {
   console.log(JSON.stringify(node));
   State.update({
     path,
     node,
+    key,
     prevPath: state.path,
+    prevKey: state.key,
+    prevNode: state.node,
   });
   //   const parts = newPath.split("/");
 
@@ -70,8 +73,8 @@ function traverse(path, node) {
   //   }
 }
 
-function handleTraverse(path, node) {
-  traverse(path, node, (node) => console.log(node.value));
+function handleTraverse(key, path, node) {
+  traverse(key, path, node, (node) => console.log(node.value));
   // could check the type, return the correct data.
 }
 
@@ -83,6 +86,8 @@ return (
       path: state.path,
       node: state.node ?? rootNode,
       prevPath: state.prevPath,
+      prevKey: state.prevKey,
+      prevNode: state.prevNode,
       onTraverse: handleTraverse,
     }}
   />
