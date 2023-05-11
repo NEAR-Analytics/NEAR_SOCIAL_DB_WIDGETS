@@ -1,3 +1,4 @@
+const key = props.key;
 const path = props.path;
 const history = props.history;
 const traverseInto = props.traverseInto;
@@ -61,8 +62,8 @@ function buildPath(current, key) {
 
 return (
   <div>
-    {history.length && <Button onClick={handleBack}>back</Button>}
-    <Button onClick={handleInto}>{path}</Button>
+    {history.length > 0 && <Button onClick={handleBack}>back</Button>}
+    <Button onClick={handleInto}>{key}</Button>
     <Button onClick={handleExpand}>{state.expanded ? "-" : "+"}</Button>
     {state.expanded && (
       <div>
@@ -72,6 +73,7 @@ return (
               src="efiz.near/widget/Node"
               props={{
                 key,
+                path: `${path}/${key}`,
                 history,
                 traverseInto,
                 traverseBack,
