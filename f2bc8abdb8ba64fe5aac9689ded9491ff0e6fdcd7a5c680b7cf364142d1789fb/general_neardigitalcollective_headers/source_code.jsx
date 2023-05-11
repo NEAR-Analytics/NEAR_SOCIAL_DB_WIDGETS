@@ -2,10 +2,7 @@ const articleId = props.articleId ?? "Test";
 const author =
   props.author ??
   "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
-const timeCreate = props.timeCreate ?? {
-  date: 2000,
-  time: 2000,
-};
+const timestamp = props.timestamp ?? 1683752206000;
 const headerOptionsItems = props.headerOptionsItems ?? [
   {
     type: "copyLink",
@@ -40,12 +37,6 @@ const widgetOwner =
 const propsPassedWrongFeedback = () => {
   let feedbackArray = [];
 
-  if (!timeCreate.date) {
-    feedbackArray.push("Time creation date passed wrongly");
-  }
-  if (!timeCreate.time) {
-    feedbackArray.push("Time creation time passed wrongly");
-  }
   if (!author) {
     feedbackArray.push("Author passed wrongly");
   }
@@ -62,7 +53,7 @@ const propsPassedWrongFeedback = () => {
   );
 };
 
-if (!timeCreate.time || !timeCreate.date || !author) {
+if (!author) {
   return <>{propsPassedWrongFeedback()}</>;
 }
 
@@ -90,14 +81,16 @@ return (
       />
     </div>
 
-    <div className="d-none d-lg-block col flex-grow-0">
-      <p className="card-subtitle text-muted text-end">
-        {getDateLastEdit(article.timeCreate).date}
-      </p>
-      <p className="card-subtitle text-muted text-end">
-        {getDateLastEdit(article.timeCreate).time}
-      </p>
-    </div>
+    {timestamp && (
+      <div className="d-none d-lg-block col flex-grow-0">
+        <p className="card-subtitle text-muted text-end">
+          {getDateLastEdit(timestamp).date}
+        </p>
+        <p className="card-subtitle text-muted text-end">
+          {getDateLastEdit(timestamp).time}
+        </p>
+      </div>
+    )}
 
     {headerOptionsItems && (
       <Widget
