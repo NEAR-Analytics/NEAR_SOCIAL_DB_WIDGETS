@@ -17,7 +17,6 @@ if (!items) {
 const renderOptions = () => {
   return (
     <>
-      {console.log(items)}
       {items.map((item) => {
         if (item.type == "copyLink") {
           return (
@@ -82,6 +81,8 @@ return (
     >
       <i className="fs-6 bi bi-three-dots" />
     </a>
-    <ul className="dropdown-menu">{renderOptions()}</ul>
+    <ul className="dropdown-menu" style={{ zIndex: "1" }}>
+      {renderOptions()}
+    </ul>
   </span>
 );
