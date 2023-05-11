@@ -53,6 +53,36 @@ const renderThing = () => {
     if (standard === "graph") {
       parts.push("**");
       value = Social.get(parts.join("/"), "final");
+    } else if (standard === "index") {
+      const index = {
+        action: parts[2],
+        key: parts[3],
+        options: {
+          limit: 10,
+          order: "desc",
+          accountId: parts[0],
+        },
+      };
+      function renderItem(a) {
+        if (a.value.type === "md") {
+          return (
+            <Post className="post" key={JSON.stringify(a)}>
+              <Widget
+                src="near/widget/Posts.Post"
+                props={{ accountId: a.accountId, blockHeight: a.blockHeight }}
+              />
+            </Post>
+          );
+        } else {
+          return <p>lol no</p>;
+        }
+      }
+      return (
+        <Widget
+          src="efiz.near/widget/MergedIndexFeed"
+          props={{ index, renderItem, disableCaching: true }}
+        />
+      );
     } else if (standard === "profile") {
       value = Social.get(parts.join("/"), "final");
     } else if (standard === "widget") {
