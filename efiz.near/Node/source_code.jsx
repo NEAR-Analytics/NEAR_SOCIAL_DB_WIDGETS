@@ -1,8 +1,9 @@
-const key = props.key;
+const label = props.label;
+const value = props.value;
 const path = props.path;
+const setPath = props.setPath;
 const history = props.history;
-const traverseInto = props.traverseInto;
-const traverseBack = props.traverseBack;
+const setHistory = props.setHistory;
 
 State.init({
   expanded: false,
@@ -13,25 +14,26 @@ function handleExpand() {
 }
 
 function handleInto() {
-  traverseInto(key, path, history);
+  const newPath = `${path}/${label}`;
+  setPath(newPath);
+  setHistory([...history, newPath]);
 }
 
 function handleBack() {
-  console.log(`going back, out of ${key} and current path ${path}`);
-  traverseBack(history);
+  const newPath = history[history.length - 2] || "";
+  setPath(newPath);
+  setHistory(history.slice(0, -1));
 }
 
-const parts = path.split("/");
-if (parts.length === 1) {
-  // account
-  if (parts[0] !== "*") {
-    parts.push("**");
-  }
-} else if (parts.length === 2) {
-  parts.push("**");
-}
-
-const value = Social.get(parts.join("/"), "final");
+// const parts = path.split("/");
+// if (parts.length === 1) {
+//   // account
+//   if (parts[0] !== "*") {
+//     parts.push("**");
+//   }
+// } else if (parts.length === 2) {
+//   parts.push("**");
+// }
 
 const Button = styled.button`
   text-transform: lowercase !important;
@@ -46,20 +48,6 @@ ${JSON.stringify(value, undefined, 2)}
 
   return <Markdown text={text} />;
 };
-
-function buildPath(current, key) {
-  const parts = current.split("/");
-  const suffix = parts[parts.length - 1];
-  if (suffix === "*" || suffix === "**") {
-    parts.pop();
-  }
-  parts.push(key);
-
-  if (parts.length < 3) {
-    parts.push("**");
-  }
-  return parts.join("/");
-}
 
 return (
   <div>
