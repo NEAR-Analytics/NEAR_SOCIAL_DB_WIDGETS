@@ -5,8 +5,8 @@ const rootNode = Social.get(path, "final");
 State.init({
   node: rootNode,
   prevNode: rootNode,
-  path,
-  key,
+  path: path,
+  key: key,
 });
 
 // newPath, data, callback
