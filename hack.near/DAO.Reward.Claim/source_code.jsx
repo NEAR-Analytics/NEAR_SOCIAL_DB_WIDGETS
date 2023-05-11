@@ -72,11 +72,11 @@ return (
 
       <div>
         <InfiniteScroll loadMore={loadBounties} hasMore={state.hasMore}>
-          {state.bounties.map((proposal, i) => (
+          {state.bounties.map((bounty, i) => (
             <Widget
               key={i}
               src={WIDGET_AUTHOR + "/widget/DAO.Reward"}
-              props={{ daoId: state.daoId, proposal: proposal }}
+              props={{ daoId: state.daoId, bounty: bounty }}
             />
           ))}
         </InfiniteScroll>
