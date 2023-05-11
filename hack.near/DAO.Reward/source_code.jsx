@@ -173,7 +173,7 @@ return (
               <p>{bounty.times}</p>
             </div>
             <div className="col-sm">
-              <h5>Timeline</h5>
+              <h5>Hours</h5>
               <p>{bounty.max_deadline / 3600000000000}</p>
             </div>
           </div>
