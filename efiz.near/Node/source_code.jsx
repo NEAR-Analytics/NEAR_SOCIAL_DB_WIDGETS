@@ -13,7 +13,6 @@ function handleExpand() {
 }
 
 function handleInto() {
-  console.log(`going into ${key} from current path ${path}`);
   traverseInto(key, path, history);
 }
 
@@ -33,15 +32,12 @@ if (parts.length === 1) {
 }
 
 const value = Social.get(parts.join("/"), "final");
-console.log(value);
 
 const Button = styled.button`
   text-transform: lowercase !important;
 `;
 
 const renderThing = (value) => {
-  console.log(path);
-  console.log(value);
   const text = `
 \`\`\`json
 ${JSON.stringify(value, undefined, 2)}
