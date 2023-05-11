@@ -55,6 +55,7 @@ return (
             props={{
               item,
               subscribe: true,
+              widgetProvider,
             }}
           />
         </Comments>
