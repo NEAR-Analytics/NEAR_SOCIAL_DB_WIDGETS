@@ -1,9 +1,9 @@
 const path = props.path;
-const prevPath = props.prevPath;
-const prevKey = props.prevKey;
-const prevNode = props.prevNode;
 const node = props.node;
 const key = props.key;
+const prevKey = props.prevKey;
+const prevPath = props.prevPath;
+const prevNode = props.prevNode;
 const onTraverse = props.onTraverse;
 
 State.init({
@@ -33,11 +33,11 @@ ${JSON.stringify(value, undefined, 2)}
 };
 
 function handleInto() {
-  onTraverse(prevKey, prevPath, prevNode);
+  onTraverse(key, path, node);
 }
 
 function handleBack() {
-  onTraverse(key, path, node);
+  onTraverse(prevKey, prevPath, prevNode);
 }
 
 function buildPath(current, key) {
