@@ -6,7 +6,7 @@ State.init({
 });
 
 function handleExpand() {
-  setExpanded(!state.expanded);
+  State.update({ expanded: !state.expanded });
 }
 
 function handleTraverse() {
