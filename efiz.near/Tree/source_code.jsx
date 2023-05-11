@@ -15,12 +15,17 @@ function traverseBack(history) {
   });
 }
 
-function traverseInto(key, path, history) {
+function traverseInto(key, currKey, currPath, history) {
+  console.log(
+    `traversing into ${key} from current path ${currPath} and history: ${JSON.stringify(
+      history
+    )}`
+  );
   history.push({
-    key,
-    path,
+    key: currKey,
+    path: currPath,
   });
-  const parts = path.split("/");
+  const parts = currPath.split("/");
   parts.push(key);
 
   State.update({
