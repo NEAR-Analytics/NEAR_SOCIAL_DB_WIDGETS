@@ -88,13 +88,6 @@ return (
       </div>
     </div>
     <div>
-      <h5>Proposer</h5>
-      <Widget
-        src="mob.near/widget/Profile.ShortInlineBlock"
-        props={{ accountId: bounty.proposer, tooltip: true }}
-      />
-    </div>
-    <div>
       <h5>Amount</h5>
       <p>
         {bounty.amount}
