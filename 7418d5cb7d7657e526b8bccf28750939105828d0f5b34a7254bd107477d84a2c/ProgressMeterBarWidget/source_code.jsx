@@ -83,10 +83,12 @@ const sizes = {
 };
 
 const propsSize = props.size;
+console.log("propsSize", propsSize);
 const registerUsersNum = Near.view("registry.i-am-human.near", "sbt_supply", {
   issuer: "gooddollar-v1.i-am-human.near",
 });
 
+console.log("Sizes", sizes);
 console.log("Sizes", sizes[propsSize]);
 const totalUsrNum = 1000;
 const percentage = (registerUsersNum / 1000) * 100;
