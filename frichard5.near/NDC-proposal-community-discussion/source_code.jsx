@@ -32,6 +32,7 @@ return (
             src={`${widgetProvider}/widget/CommentButton`}
             props={{
               item,
+              hideCount: true,
               onClick: () => State.update({ showReply: !state.showReply }),
             }}
           />
