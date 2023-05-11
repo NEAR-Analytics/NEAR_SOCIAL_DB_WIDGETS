@@ -101,7 +101,7 @@ return (
     <div className="row mb-3">
       <div className="col-sm mb-3">
         Token reward amount per bounty claim:
-        <input type="number" onChange={(e) => onChangeAmount(e.target.value)} />
+        <input type="test" onChange={(e) => onChangeAmount(e.target.value)} />
       </div>
       <div className="col-sm mb-3">
         Number of times the bounty can be claimed:
