@@ -90,6 +90,8 @@ const onChangeGas = (gas) => {
 return (
   <div className="mb-3">
     <h2>Propose New Bounty</h2>
+    <h3>{daoId}</h3>
+
     <h5>Bounty Description:</h5>
     <div className="mb-2">
       <textarea onChange={(e) => onChangeDescription(e.target.value)} />
