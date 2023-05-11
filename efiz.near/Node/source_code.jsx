@@ -66,7 +66,7 @@ const renderThing = () => {
 
       function renderItem(a) {
         if (a.value.type === "md") {
-          const edges = Social.index("edge", a.blockHeight, {
+          const edges = Social.index("edge", a.blockHeight.toString(), {
             limit: 10,
             order: "desc",
             accountId: undefined,
