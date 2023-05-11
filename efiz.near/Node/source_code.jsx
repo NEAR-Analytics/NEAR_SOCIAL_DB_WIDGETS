@@ -1,4 +1,5 @@
 const node = props.node;
+const path = props.path;
 const onTraverse = props.onTraverse;
 
 State.init({
@@ -10,28 +11,40 @@ function handleExpand() {
 }
 
 function handleTraverse() {
-  onTraverse(node);
+  traverse(node);
 }
+
+const Button = styled.button`
+  text-transform: lowercase !important;
+`;
+
+const defaultRender = (value) => {
+  const text = `
+\`\`\`json
+${JSON.stringify(value, undefined, 2)}
+\`\`\`
+`;
+
+  return <Markdown text={text} />;
+};
 
 return (
   <div>
-    <div onClick={handleExpand}>
-      {expanded ? "-" : "+"} {node.value}
-    </div>
-    {expanded && (
+    <Button onClick={handleTraverse}>{path}</Button>
+    <Button onClick={handleExpand}>{state.expanded ? "-" : "+"}</Button>
+    {state.expanded && (
       <div>
-        {typeof value === "object" ? (
-          Object.entries(value).map(([key, val]) => (
+        {typeof node === "object" ? (
+          Object.entries(node).map(([key, val]) => (
             <Widget
               src="efiz.near/widget/Node"
-              props={{ key, label: key, value: val }}
+              props={{ path: `${path}/${key}`, label: key, node: val }}
             />
           ))
         ) : (
-          <div>{value}</div>
+          <div>{defaultRender()}</div>
         )}
       </div>
     )}
-    <button onClick={handleTraverse}>Traverse</button>
   </div>
 );
