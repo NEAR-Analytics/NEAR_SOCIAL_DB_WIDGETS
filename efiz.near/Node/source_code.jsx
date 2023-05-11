@@ -66,20 +66,12 @@ const renderThing = () => {
 
       function renderItem(a) {
         if (a.value.type === "md") {
-          const edges = Social.index("edge", a.blockHeight.toString(), {
-            limit: 10,
-            order: "desc",
-            accountId: undefined,
-          });
           return (
             <>
-              <div>
-                {edges?.map(() => (
-                  <ChildNode>
-                    <p>hello</p>
-                  </ChildNode>
-                ))}
-              </div>
+              <Widget
+                src="efiz.near/widget/Edge"
+                props={{ blockHeight: a.blockHeight }}
+              />
               <Widget
                 src="near/widget/Posts.Post"
                 props={{ accountId: a.accountId, blockHeight: a.blockHeight }}
