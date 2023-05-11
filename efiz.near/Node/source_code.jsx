@@ -22,8 +22,9 @@ const Button = styled.button`
   text-transform: lowercase !important;
 `;
 
-const defaultRender = (value) => {
-  console.log("hello: " + value);
+const renderThing = (value) => {
+  console.log(path);
+  console.log(value);
   const text = `
 \`\`\`json
 ${JSON.stringify(value, undefined, 2)}
@@ -75,7 +76,7 @@ return (
             />
           ))
         ) : (
-          <div>{defaultRender()}</div>
+          <div>{renderThing()}</div>
         )}
       </div>
     )}
