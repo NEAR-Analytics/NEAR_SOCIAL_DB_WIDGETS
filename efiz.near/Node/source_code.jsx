@@ -1,5 +1,7 @@
 const path = props.path;
-const prevPath = props.prevPath ?? null;
+const prevPath = props.prevPath;
+const prevKey = props.prevKey;
+const prevNode = props.prevNode;
 const node = props.node;
 const key = props.key;
 const onTraverse = props.onTraverse;
@@ -16,10 +18,6 @@ function setSubject(path) {
   console.log("set to " + path);
 }
 
-function handleTraverse() {
-  onTraverse(key, path, node);
-}
-
 const Button = styled.button`
   text-transform: lowercase !important;
 `;
@@ -34,6 +32,14 @@ ${JSON.stringify(value, undefined, 2)}
   return <Markdown text={text} />;
 };
 
+function handleInto() {
+  onTraverse(prevKey, prevPath, prevNode);
+}
+
+function handleBack() {
+  onTraverse(key, path, node);
+}
+
 function buildPath(current, key) {
   const parts = current.split("/");
   const suffix = parts[parts.length - 1];
@@ -47,11 +53,11 @@ function buildPath(current, key) {
   }
   return parts.join("/");
 }
-// {prevPath && <Button onClick={handleTraverse}>back</Button>}
 
 return (
   <div>
-    <Button onClick={handleTraverse}>{key}</Button>
+    {prevPath !== path && <Button onClick={handleBack}>back</Button>}
+    <Button onClick={handleInto}>{key}</Button>
     <Button onClick={handleExpand}>{state.expanded ? "-" : "+"}</Button>
     {state.expanded && (
       <div>
