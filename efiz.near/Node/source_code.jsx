@@ -63,7 +63,7 @@ const renderThing = () => {
           accountId: parts[0],
         },
       };
-      console.log(JSON.stringify(index));
+
       function renderItem(a) {
         if (a.value.type === "md") {
           const edges = Social.index("edge", a.blockHeight, {
@@ -71,7 +71,7 @@ const renderThing = () => {
             order: "desc",
             accountId: undefined,
           });
-          console.log(JSON.stringify(edges));
+          console.log("edges: " + JSON.stringify(edges));
           // {edges.map(([key, val]) => (
           //       <ChildNode>
           //         <Widget
