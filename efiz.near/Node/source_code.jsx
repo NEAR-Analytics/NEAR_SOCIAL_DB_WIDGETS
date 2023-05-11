@@ -69,9 +69,6 @@ return (
                 key,
                 path: buildPath(path, key),
                 node: val,
-                prevKey: props.key,
-                prevPath: props.prevPath,
-                prevNode: props.prevNode,
                 onTraverse,
               }}
             />
