@@ -58,7 +58,7 @@ const renderThing = () => {
     } else if (standard === "profile") {
       value = Social.get(parts.join("/"), "final");
     } else if (standard === "widget") {
-      return <Widget src={path} />;
+      return <Widget src={parts.join("/")} />;
     } else if (standard === "post") {
       value = Social.get(path, "final");
       value = JSON.parse(value);
