@@ -1,3 +1,4 @@
+const key = props.key;
 const label = props.label;
 const value = props.value;
 const path = props.path;
@@ -14,9 +15,8 @@ function handleExpand() {
 }
 
 function handleInto() {
-  const newPath = `${path}/${label}`;
-  setPath(newPath);
-  setHistory([...history, newPath]);
+  setPath(path);
+  setHistory([...history, path]);
 }
 
 function handleBack() {
