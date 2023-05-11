@@ -1,4 +1,5 @@
 const path = props.path;
+const prevPath = props.prevPath ?? null;
 const node = props.node;
 const onTraverse = props.onTraverse;
 
@@ -48,6 +49,7 @@ function buildPath(current, key) {
 
 return (
   <div>
+    {prevPath && <Button onClick={handleTraverse}>back</Button>}
     <Button onClick={handleTraverse}>{path}</Button>
     <Button onClick={handleExpand}>{state.expanded ? "-" : "+"}</Button>
     {state.expanded && (
