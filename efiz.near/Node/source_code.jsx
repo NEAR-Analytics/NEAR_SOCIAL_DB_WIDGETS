@@ -44,11 +44,11 @@ const ChildNode = styled.div`
   margin-left: ${path.split("/").length * 4}px
 `;
 
-const renderThing = (value) => {
-  console.log(value);
+const renderThing = (node) => {
+  console.log(node);
   const text = `
 \`\`\`json
-${JSON.stringify(value, undefined, 2)}
+${JSON.stringify(node.value, undefined, 2)}
 \`\`\`
 `;
 
@@ -81,7 +81,7 @@ return (
             </ChildNode>
           ))
         ) : (
-          <div>{renderThing()}</div>
+          <div>{renderThing(value)}</div>
         )}
       </div>
     )}
