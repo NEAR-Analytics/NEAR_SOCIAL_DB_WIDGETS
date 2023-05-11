@@ -3,6 +3,7 @@ const daoId = props.daoId ?? "multi.sputnik-dao.near";
 const bounty = props.bounty ?? {
   id: 888,
   description: "xyz",
+  deadline: "86400000000000",
 };
 
 // ==============================
