@@ -16,7 +16,7 @@ State.init({
 const handleProposal = () => {
   const bounty = {
     description: state.description,
-    token: state.token,
+    token: state.token ?? "",
     amount: state.amount,
     times: state.times,
     max_deadline: state.max_deadline,
