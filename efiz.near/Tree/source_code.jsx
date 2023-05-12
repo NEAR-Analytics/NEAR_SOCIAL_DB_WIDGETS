@@ -46,6 +46,7 @@ function getNode(path) {
         value = Social.get(parts.join("/"), "final");
       }
     } else if (standard === "profile") {
+      console.log(parts.join("/"));
       value = Social.get(parts.join("/"), "final");
     } else if (standard === "post") {
       value = path;
@@ -59,6 +60,38 @@ function getNode(path) {
 
 const node = getNode(state.path);
 
+function renderView(nodePath) {
+  const ChildNode = styled.div`
+  margin-left: ${nodePath.split("/").length * 4}px
+`;
+  return (
+    <>
+      {node && typeof node === "object" ? (
+        Object.entries(node).map(([key, val]) => (
+          <ChildNode>
+            <Widget
+              src="efiz.near/widget/Node"
+              props={{
+                key,
+                label: key,
+                node: val,
+                type: key,
+                path: `${nodePath}/${key}`,
+                setPath: setPath,
+                history,
+                setHistory: setHistory,
+                isRoot: false,
+              }}
+            />
+          </ChildNode>
+        ))
+      ) : (
+        <div>{renderView()}</div>
+      )}
+    </>
+  );
+}
+
 return (
   <Widget
     src="efiz.near/widget/Node"
@@ -71,6 +104,7 @@ return (
       history: state.history,
       setHistory: setHistory,
       isRoot: true,
+      renderView: renderView,
     }}
   />
 );
