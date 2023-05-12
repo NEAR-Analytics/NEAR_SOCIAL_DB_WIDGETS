@@ -1,6 +1,7 @@
 const key = props.key;
 const label = props.label;
 const node = props.node;
+const type = props.type;
 const path = props.path;
 const setPath = props.setPath;
 const history = props.history;
@@ -36,24 +37,25 @@ const ChildNode = styled.div`
 
 const renderThing = () => {
   const parts = path.split("/");
-  if (parts.length > 2) {
-    const standard = parts[1];
-    let value = {};
-    let type = standard;
-    if (standard === "graph") {
-      parts.push("**");
-      value = Social.get(parts.join("/"), "final");
-    } else if (standard === "index") {
-      return null;
-    } else if (standard === "profile") {
-      value = Social.get(parts.join("/"), "final");
-    } else if (standard === "widget") {
-      // This is a hack because a widget is saved under ""
+  let value = {};
+
+  if (parts.length < 2) {
+    if (type === "account") {
+      // return default profile or setting's profile
+    } else if (type === "widget") {
       if (path.endsWith("/")) {
         path = path.slice(0, -1);
       }
       return <Widget src={path} />;
+    } else if (type === "graph") {
+      parts.push("**");
+      value = Social.get(parts.join("/"), "final");
+    } else if (type === "index") {
+      return null;
+    } else if (type === "profile") {
+      value = Social.get(parts.join("/"), "final");
     } else if (standard === "post") {
+      // return default post or post from settings
       const index = {
         action: parts[1],
         key: parts[2],
@@ -111,7 +113,7 @@ ${JSON.stringify(value, undefined, 2)}
 return (
   <div>
     {history.length > 1 && isRoot && <Button onClick={handleBack}>back</Button>}
-    <Button onClick={handleInto}>{label}</Button>
+    {isRoot ? <p>{label}</p> : <Button onClick={handleInto}>{label}</Button>}
     <Button onClick={handleExpand}>{state.expanded ? "-" : "+"}</Button>
     {state.expanded && (
       <div>
@@ -124,6 +126,7 @@ return (
                   key,
                   label: key,
                   node: val,
+                  type: key,
                   path: `${path}/${key}`,
                   setPath: setPath,
                   history,
