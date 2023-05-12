@@ -1,7 +1,9 @@
 const rootPath = props.rootPath || context.accountId || "evrything.near";
+const type = props.type || "account";
 
 State.init({
   path: rootPath,
+  type,
   history: [rootPath],
 });
 
@@ -15,26 +17,26 @@ function setHistory(history) {
 
 function getNode(path) {
   const parts = path.split("/");
-  if (parts.length === 1) {
+  let value = {};
+
+  if (state.type === "account") {
     // ACCOUNT LEVEL //
     if (parts[0] !== "*") {
-      // Otherwise will crash cuz it'll grab all accounts
       parts.push("**");
     }
-    const value = Social.get(parts.join("/"), "final");
+    value = Social.get(parts.join("/"), "final");
     return value;
   } else if (parts.length === 2) {
     // STANDARD LEVEL //
     parts.push("**");
-    const value = Social.get(parts.join("/"), "final");
+    value = Social.get(parts.join("/"), "final");
     return value;
   } else if (parts.length > 2) {
-    // This is to refetch the data necessary for the route
+    // EVERYTHING ELSE //
     const standard = parts[1];
-    let value = {};
-    let type = standard;
     if (standard === "graph") {
       if (parts.length > 3) {
+        // BACK TO ACCOUNT
         if (parts[2] === "follow") {
           setPath(parts[3]);
           setHistory([...history, parts[3]]);
@@ -63,6 +65,7 @@ return (
     props={{
       label: state.path,
       node,
+      type: state.type,
       path: state.path,
       setPath: setPath,
       history: state.history,
