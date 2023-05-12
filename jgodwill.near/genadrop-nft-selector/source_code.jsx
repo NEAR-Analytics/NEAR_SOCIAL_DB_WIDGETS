@@ -84,7 +84,7 @@ const Text = styled.p`
   color:#0f1d40;
   width:60%;
   text-align: center;
-  font-family: "SF Pro Display",sans-serif;
+  font-family: "SF Pro Display", sans-serif;
 `;
 
 const finalData = data?.body?.data;
