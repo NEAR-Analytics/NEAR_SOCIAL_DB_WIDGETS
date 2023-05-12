@@ -15,6 +15,10 @@ function setHistory(history) {
   State.update({ history });
 }
 
+function setType(type) {
+  State.update({ type });
+}
+
 // HOW TO GET DATA AT ANY GIVEN NODE //
 function getNode(path) {
   const parts = path.split("/");
@@ -39,10 +43,12 @@ function getNode(path) {
     if (standard === "graph") {
       if (parts.length > 3) {
         // FOLLOW
+        console.log("hello");
         if (parts[2] === "follow") {
           // BACK TO ACCOUNT
           setPath(parts[3]);
           setHistory([...history, parts[3]]);
+          setType("account");
         }
       } else {
         parts.push("**");
@@ -76,6 +82,7 @@ return (
       setPath: setPath,
       history: state.history,
       setHistory: setHistory,
+      setType: setType,
       isRoot: true,
     }}
   />
