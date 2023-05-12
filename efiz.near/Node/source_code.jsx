@@ -32,10 +32,6 @@ const Button = styled.button`
   text-transform: lowercase !important;
 `;
 
-const ChildNode = styled.div`
-  margin-left: ${path.split("/").length * 4}px
-`;
-
 return (
   <div>
     {history.length > 1 && isRoot && <Button onClick={handleBack}>back</Button>}
