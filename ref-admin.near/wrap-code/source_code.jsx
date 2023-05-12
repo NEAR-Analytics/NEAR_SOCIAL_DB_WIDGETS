@@ -6,7 +6,7 @@ const current_mode = Storage.get(
 return (
   <div
     style={{
-      display: current_mode == "builder" ? "block" : "none",
+      display: current_mode == "builder" && context.accountId ? "block" : "none",
     }}
   >
     {code}
