@@ -39,13 +39,16 @@ function renderView() {
   return <Widget src="efiz.near/widget/View" props={{ path, type }} />;
 }
 
-function getType(key) {
+function getType() {
   const parts = path.split("/");
   if (parts.length === 1) {
     return "account";
   } else if (parts.length === 2) {
     return parts[1];
   } else {
+    if (parts[1] === "thing") {
+      // We're gonna grab the type from the thing itself
+    }
     return parts[1];
   }
 }
@@ -66,7 +69,7 @@ return (
                   key,
                   label: key,
                   node: val,
-                  type: getType(key),
+                  type: getType(),
                   path: `${path}/${key}`,
                   setPath: setPath,
                   history,
