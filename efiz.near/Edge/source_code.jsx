@@ -11,28 +11,26 @@ const Button = styled.button`
 `;
 
 const renderItem = (val) => {
-  console.log(val);
   if (val.value.type === "reference") {
     if (val.value.ref.type === "meme") {
       return (
         <Widget
-          src="mob.near/widget/Meme"
+          src="cuongdcdev.near/widget/linkdrop-viewer"
           props={{
-            accountId: val.value.ref.accountId,
-            blockHeight: val.value.ref.blockHeight,
+            k: "eyJ1IjoiZWZpei5uZWFyIiwiayI6InJrR3ViYUh1cXFqSFVHdW5SN3ZNR0tOeG5pd05NTFE5RU5aV3MxOUU4QUVZM0x0Vkg1TURuY0xLUDhzQ3BlMXZUWUYxUWp4WmpOTEs2M3Z4dTFjb210NCJ9",
           }}
         />
       );
     }
   } else {
-    return <p>hello</p>;
+    return;
   }
 };
 
 return (
   <div>
     {edges?.map((val) => (
-      <div>{renderItem(val)}</div>
+      <>{renderItem(val)}</>
     ))}
   </div>
 );
