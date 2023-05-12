@@ -48,10 +48,11 @@ function getType() {
   } else if (parts.length === 2) {
     return parts[1];
   } else {
-    if (parts[1] === "thing") {
+    const standard = parts[1];
+    if (standard === "thing") {
       // We're gonna grab the type from the thing itself
     }
-    return parts[1];
+    return standard;
   }
 }
 
