@@ -45,6 +45,7 @@ const NFTImageButton = styled.button`
   object-fit: cover;
   padding:unset;
   overflow:hidden;
+  margin: 0 auto;
   &:hover{
     opacity:1;
   }
@@ -60,15 +61,12 @@ const NFTs = styled.div`
   display: flex;
   gap: 2rem;
   align-items:center;
-  justify-content:space-evenly;
-  // background: linear-gradient(180deg,#e4f1fb,hsla(0,0%,85.1%,0));
   margin-top: 20px;
   width:100%;
-  padding: 6rem 1rem;
+  padding: 1rem;
   overflow-y:scroll;
-  align-content: center;
   flex-wrap: wrap;
-  height:400px;
+  height:300px;
 `;
 
 const Heading = styled.p`
