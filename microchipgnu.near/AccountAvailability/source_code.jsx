@@ -1,4 +1,4 @@
-const accountId = params.accountId || "near";
+const accountId = props?.accountId || "near";
 
 State.init({ isAvailable: false, isLoading: true });
 
