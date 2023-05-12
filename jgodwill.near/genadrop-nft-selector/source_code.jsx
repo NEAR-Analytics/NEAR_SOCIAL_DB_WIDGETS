@@ -58,14 +58,15 @@ const NFTs = styled.div`
   display: flex;
   gap: 2rem;
   align-items:center;
-  justify-content:center;
+  justify-content:space-evenly;
   // background: linear-gradient(180deg,#e4f1fb,hsla(0,0%,85.1%,0));
   margin-top: 20px;
   width:100%;
   padding: 1rem;
-  overflow-x:scroll;
+  overflow-y:scroll;
   align-content: center;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
+  height:25vw;
 `;
 
 const Heading = styled.p`
