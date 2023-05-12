@@ -19,6 +19,7 @@ function handleExpand() {
 function handleInto() {
   setPath(path);
   setHistory([...history, path]);
+  setType(type);
 }
 
 function handleBack() {
