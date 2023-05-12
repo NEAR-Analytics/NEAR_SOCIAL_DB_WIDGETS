@@ -35,9 +35,20 @@ const ChildNode = styled.div`
   margin-left: ${path.split("/").length * 4}px
 `;
 
-const renderView = () => {
+function renderView() {
   return <Widget src="efiz.near/widget/View" props={{ path, type }} />;
-};
+}
+
+function getType(key) {
+  const parts = path.split("/");
+  if (parts.length === 1) {
+    return "account";
+  } else if (parts.length === 2) {
+    return parts[1];
+  } else {
+    return parts[1];
+  }
+}
 
 return (
   <div>
@@ -55,7 +66,7 @@ return (
                   key,
                   label: key,
                   node: val,
-                  type: key,
+                  type: getType(key),
                   path: `${path}/${key}`,
                   setPath: setPath,
                   history,
