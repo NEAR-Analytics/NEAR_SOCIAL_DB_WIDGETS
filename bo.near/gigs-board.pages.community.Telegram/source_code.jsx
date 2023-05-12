@@ -118,7 +118,7 @@ return (
           <iframe
             id={"telegram-post-" + i}
             key={"telegram-post-" + i}
-            src={"https://t.me/cryptonear/" + i + "?embed=1&userpic=true"}
+            src={"https://t.me/" + group + "/" + i + "?embed=1&userpic=true"}
             scrolling="no"
             style={{
               overflow: "hidden",
