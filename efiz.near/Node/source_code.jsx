@@ -6,6 +6,7 @@ const path = props.path;
 const setPath = props.setPath;
 const history = props.history;
 const setHistory = props.setHistory;
+const setType = props.setType;
 const isRoot = props.isRoot;
 
 State.init({
