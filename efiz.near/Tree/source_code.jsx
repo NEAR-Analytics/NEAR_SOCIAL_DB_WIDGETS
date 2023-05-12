@@ -1,4 +1,4 @@
-const rootPath = context.accountId ?? "evrything.near";
+const rootPath = props.rootPath || context.accountId || "evrything.near";
 
 State.init({
   path: rootPath,
