@@ -110,7 +110,7 @@ if (groupInfo === null || !groupInfo.ok) {
 
 const messageIds = groupInfo.body.messageIds;
 
-return (
+const Telegram = (
   <div class="">
     {messageIds.map((i) => (
       <div class="row">
@@ -136,3 +136,9 @@ return (
     ))}
   </div>
 );
+
+return widget("components.community.Layout", {
+  label: props.label,
+  tab: "Telegram",
+  children: Telegram,
+});
