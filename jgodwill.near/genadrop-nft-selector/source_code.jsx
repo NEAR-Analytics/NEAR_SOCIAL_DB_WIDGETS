@@ -31,15 +31,18 @@ const data = fetch("https://graph.mintbase.xyz", {
 });
 
 const NFTImageButton = styled.button`
-  width: 15vw;
   aspect-ratio: 1/1;
-  height: 15vw;
+  height:15vw;
+  max-height: 400px;
   transition: all 0.4s ease-in-out;
   border: 1.41429px solid rgba(28,27,28,.1);
   border-radius: 10px;
   outline:none;
   background:transparent;
   opacity:0.9;
+  flex: 1;
+  min-width: 300px;
+  max-width: 400px;
   object-fit: cover;
   padding:unset;
   overflow:hidden;
