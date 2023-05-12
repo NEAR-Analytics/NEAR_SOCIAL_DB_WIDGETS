@@ -1,9 +1,9 @@
 const rootPath = props.rootPath || context.accountId || "evrything.near";
-const type = props.type || "account";
+const rootType = props.rootType || "account";
 
 State.init({
   path: rootPath,
-  type,
+  type: rootType,
   history: [rootPath],
 });
 
@@ -19,8 +19,17 @@ function setType(type) {
   State.update({ type });
 }
 
-// HOW TO GET DATA AT ANY GIVEN NODE //
+function setRoot(newPath, newType) {
+  State.update({
+    path: newPath,
+    type: newType,
+  });
+}
+
+// WHEN A NEW ROOT IS SET //
+// HOW TO GET DATA AT THIS ROOT //
 function getNode(path) {
+  // SPLIT THE PATH
   const parts = path.split("/");
   let value = {};
 
@@ -31,12 +40,9 @@ function getNode(path) {
     if (standard === "graph") {
       if (parts.length > 3) {
         // FOLLOW
-        console.log("hello");
         if (parts[2] === "follow") {
           // BACK TO ACCOUNT
-          setPath(parts[3]);
-          setHistory([...history, parts[3]]);
-          setType("account");
+          setRoot(parts[3], "account");
         }
       } else {
         parts.push("**");
@@ -49,6 +55,20 @@ function getNode(path) {
       // POST //
     } else if (standard === "post") {
       value = path;
+      // NAMETAG //
+    } else if (standard === "nametag") {
+      if (parts.length > 2) {
+        if (parts.length === 3) {
+          // BACK TO ACCOUNT
+          setRoot(parts[3], "account");
+        } else if (parts.length === 4) {
+          // ALL TAGS BY ACCOUNT
+          value = Social.keys(`${parts[0]}/profile/tags/*`, "final");
+        } else {
+          // THIS TAG
+          value = parts[5];
+        }
+      }
     } else {
       value = Social.get(parts.join("/"), "final");
       value = JSON.parse(value);
