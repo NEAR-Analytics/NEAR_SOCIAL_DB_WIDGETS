@@ -24,19 +24,7 @@ function getNode(path) {
   const parts = path.split("/");
   let value = {};
 
-  if (state.type === "account") {
-    // ACCOUNT LEVEL //
-    if (parts[0] !== "*") {
-      parts.push("**");
-    }
-    value = Social.get(parts.join("/"), "final");
-    return value;
-  } else if (parts.length === 2) {
-    // STANDARD LEVEL //
-    parts.push("**");
-    value = Social.get(parts.join("/"), "final");
-    return value;
-  } else if (parts.length > 2) {
+  if (parts.length > 2) {
     // EVERYTHING ELSE //
     const standard = parts[1];
     // GRAPH //
@@ -66,6 +54,20 @@ function getNode(path) {
       value = JSON.parse(value);
     }
     return value;
+  } else {
+    if (state.type === "account") {
+      // ACCOUNT LEVEL //
+      if (parts[0] !== "*") {
+        parts.push("**");
+      }
+      value = Social.get(parts.join("/"), "final");
+      return value;
+    } else if (parts.length === 2) {
+      // STANDARD LEVEL //
+      parts.push("**");
+      value = Social.get(parts.join("/"), "final");
+      return value;
+    }
   }
 }
 
