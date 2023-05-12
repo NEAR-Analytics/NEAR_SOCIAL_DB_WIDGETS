@@ -277,7 +277,7 @@ return (
           error: state.descriptionError,
         }}
       />
-      <Widget
+      {/*<Widget
         src={`${ownerId}/widget/Inputs.MultiSelect`}
         props={{
           label: "Tags",
@@ -291,7 +291,7 @@ return (
               })),
             }),
         }}
-      />
+      />*/}
       <Widget
         src={`${ownerId}/widget/Inputs.Text`}
         props={{
@@ -348,32 +348,32 @@ return (
                       : {}),
                     ...(state.tags.length
                       ? {
-                          tags: state.tags.reduce(
-                            (acc, { name }) =>
-                              Object.assign(acc, { [name]: "" }),
-                            {}
-                          ),
-                        }
+                        tags: state.tags.reduce(
+                          (acc, { name }) =>
+                            Object.assign(acc, { [name]: "" }),
+                          {}
+                        ),
+                      }
                       : {}),
                     ...(state.website || state.socials
                       ? {
-                          ...state.socials,
-                          ...(state.website
-                            ? {
-                                website: state.website.startsWith("http://")
-                                  ? state.website.substring(7)
-                                  : state.website.startsWith("https://")
-                                  ? state.website.substring(8)
-                                  : state.website,
-                              }
-                            : {}),
-                        }
+                        ...state.socials,
+                        ...(state.website
+                          ? {
+                            website: state.website.startsWith("http://")
+                              ? state.website.substring(7)
+                              : state.website.startsWith("https://")
+                                ? state.website.substring(8)
+                                : state.website,
+                          }
+                          : {}),
+                      }
                       : {}),
                   },
                 },
               };
               const deposit = Big(JSON.stringify(data).length * 3).mul(
-                Big(10).pow(19)
+                Big(10).pow(20)
               );
               const transactions = [
                 {
