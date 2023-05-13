@@ -77,8 +77,18 @@ const handleJoin = () => {
 };
 
 const Wrapper = styled.div`
-  --section-gap: 55px;
-  padding-top: 55px;
+  --section-gap: 69px;
+  padding-top: 69px;
+
+  @media (max-width: 1160px) {
+    .line-rounded-corners {
+      display: none !important;
+    }
+  }
+
+  @media (max-width: 900px) {
+    padding-top: 0;
+  }
 
   .button {
     display: inline-flex;
@@ -238,22 +248,7 @@ const InputContainer = styled.div`
   width: 320px;
 `;
 
-const CheckWrapper = styled.div`
-display: flex;
-flex-direction: row;
-align-items: center;
-color: ${state.agreeIsChecked ? "#26A65A" : "inherit"}
-`;
-
-const Button = styled.button`
-  border: none;
-  --bs-btn-hover-bg: transparent;
-  --bs-btn-active-bg: transparent;
-  --bs-btn-color: ${state.agreeIsChecked ? "#26A65A" : "black"};
-  --bs-btn-hover-color: ${state.agreeIsChecked ? "#26A65A" : "var(--bs-green)"};
-`;
-
-const hasAccepted = Social.get(`${accountId}/policyAccept/email`);
+const hasAccepted = Social.get(`${accountId}/index/policyAccept/email`);
 
 return (
   <Wrapper>
@@ -300,26 +295,15 @@ return (
               }}
             />
           </InputContainer>
-          {!hasAccepted && (
-            <CommitButton
-              data={{
-                policyAccept: {
-                  email: true,
-                },
-              }}
-            >
-              Agree
-            </CommitButton>
-          )}
           {hasAccepted && (
             <CommitButton
               data={{
-                policyAccept: {
-                  email: false,
-                },
+                  policyAccept: {
+                    email: true,
+                  },
               }}
             >
-              Opt Out
+              Agree
             </CommitButton>
           )}
           <a
@@ -329,16 +313,6 @@ return (
           >
             Get Email Updates
           </a>
-        </div>
-        <div className="row">
-          <div className="col-lg">
-            <Widget src="hack.near/widget/Build.Follow" props={{ daoId }} />
-          </div>
-          <div className="col-lg">
-            <a className="btn btn-outline-primary" onClick={handleJoin}>
-              Join
-            </a>
-          </div>
         </div>
       </Flex>
       <Flex>
