@@ -276,7 +276,6 @@ const CheckButton = styled.button`
 const showRegistration =
   !state.hasRegistered &&
   context.accountId &&
-  latestPolicyVersion &&
   agreementsForUser &&
   (!agreementsForUser.length ||
     agreementsForUser[agreementsForUser.length - 1].value < latestTosVersion);
@@ -352,8 +351,8 @@ return (
               data={{
                 index: {
                   policyAccept: JSON.stringify({
-                    key: acceptanceKey,
-                    value: latestPolicyVersion,
+                    key: email,
+                    value: true,
                   }),
                 },
               }}
