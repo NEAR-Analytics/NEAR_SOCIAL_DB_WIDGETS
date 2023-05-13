@@ -4,14 +4,6 @@ const role = props.role ?? "community";
 
 State.init({
   email: "",
-  hasAccepted: false,
-  hasRegistered: false,
-  agreeIsChecked: false,
-});
-
-const agreementsForUser = Social.index("policyAccept", "email", {
-  accountId: context.accountId,
-  subscribe: true,
 });
 
 const ipfsImages = {
@@ -271,13 +263,7 @@ const Button = styled.button`
   --bs-btn-hover-color: ${state.agreeIsChecked ? "#26A65A" : "var(--bs-green)"};
 `;
 
-const showRegistration =
-  !state.hasAccepted &&
-  context.accountId &&
-  agreementsForUser &&
-  (!agreementsForUser.length ||
-    agreementsForUser[agreementsForUser.length - 1].value <
-      latestPolicyVersion);
+const hasAccepted = Social.get(`${accountId}/index`, "policyAccept");
 
 return (
   <Wrapper>
@@ -313,41 +299,50 @@ return (
           Summer 2023
         </Text>
         <div>
-          {showRegistration && (
-            <InputContainer>
-              <Widget
-                src={"nearhorizon.near/widget/Inputs.Text"}
-                props={{
-                  label: "",
-                  placeholder: "Your Email Address",
-                  value: state.email,
-                  onChange: (email) => State.update({ email }),
-                }}
-              />
-            </InputContainer>
+          <InputContainer>
+            <Widget
+              src={"nearhorizon.near/widget/Inputs.Text"}
+              props={{
+                label: "",
+                placeholder: "Your Email Address",
+                value: state.email,
+                onChange: (email) => State.update({ email }),
+              }}
+            />
+          </InputContainer>
+          {hasAccepted.value && (
+            <CommitButton
+              data={{
+                index: {
+                  policyAccept: {
+                    email: true,
+                  },
+                },
+              }}
+            >
+              Agree
+            </CommitButton>
           )}
-          <CommitButton
-            onCommit={() => {
-              State.update({ hasAccepted: true });
-            }}
-            data={{
-              index: {
-                policyAccept: JSON.stringify({
-                  key: "email",
-                  value: true,
-                }),
-              },
-            }}
-          >
-            Agree
-          </CommitButton>
-          <Button
+          {!hasAccepted.value && (
+            <CommitButton
+              data={{
+                index: {
+                  policyAccept: {
+                    email: false,
+                  },
+                },
+              }}
+            >
+              Opt Out
+            </CommitButton>
+          )}
+          <a
             className="btn btn-success m-2"
-            disabled={!state.hasAccepted}
+            disabled={hasAccepted}
             onClick={handleSignup}
           >
             Get Email Updates
-          </Button>
+          </a>
         </div>
         <div className="row">
           <div className="col-lg">
