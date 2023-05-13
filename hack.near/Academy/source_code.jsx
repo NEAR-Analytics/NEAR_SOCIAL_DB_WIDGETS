@@ -202,26 +202,6 @@ const LogoLinks = styled.div`
   }
 `;
 
-const IconAndContent = styled.div`
-  display: flex;
-  gap: 32px;
-  align-items: flex-start;
-  position: relative;
-
-  svg {
-    width: 48px;
-    flex-shrink: 0;
-    flex-grow: 0;
-  }
-
-  div {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    align-items: flex-start;
-  }
-`;
-
 const InputContainer = styled.div`
   width: 320px;
 `;
@@ -293,7 +273,6 @@ return (
             onClick={() => {
               State.update({ agreeIsChecked: !state.agreeIsChecked });
             }}
-            className="btn btn-outline-dark"
           >
             <div className="d-flex flex-row align-items-center gap-3">
               <i
