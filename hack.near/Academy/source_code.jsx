@@ -363,11 +363,8 @@ return (
                     }),
                   },
                 }}
-                onCommit={() => {
+                onCommit={(handleSignup) => {
                   State.update({ hasCommittedAcceptance: true });
-                  {
-                    handleSignup;
-                  }
                 }}
               >
                 Get Email Updates
