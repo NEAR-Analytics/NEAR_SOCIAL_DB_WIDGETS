@@ -248,7 +248,7 @@ const InputContainer = styled.div`
   width: 320px;
 `;
 
-const hasAccepted = Social.get(`${accountId}/index/policyAccept/email`);
+const hasAccepted = Social.get(`${accountId}/policyAccept/email`);
 
 return (
   <Wrapper>
@@ -295,24 +295,27 @@ return (
               }}
             />
           </InputContainer>
-          {hasAccepted && (
+          {!hasAccepted && (
             <CommitButton
               data={{
-                  policyAccept: {
-                    email: true,
-                  },
+                policyAccept: {
+                  email: true,
+                },
               }}
             >
               Agree
             </CommitButton>
           )}
-          <a
-            className="btn btn-success m-2"
-            disabled={hasAccepted}
-            onClick={handleSignup}
-          >
-            Get Email Updates
-          </a>
+          {!hasAccepted && (
+            <a className="btn disabled m-2" onClick={handleSignup}>
+              Get Email Updates
+            </a>
+          )}
+          {hasAccepted && (
+            <a className="btn btn-success m-2" onClick={handleSignup}>
+              Get Email Updates
+            </a>
+          )}
         </div>
       </Flex>
       <Flex>
