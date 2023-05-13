@@ -2,11 +2,9 @@ const accountId = props.accountId ?? context.accountId;
 const daoId = props.daoId ?? "build.sputnik-dao.near";
 const role = props.role ?? "community";
 
-const policyName = "email";
-const acceptanceKey = policyName;
-
 State.init({
   email: "",
+  hasAccepted: false,
   hasRegistered: false,
   agreeIsChecked: false,
 });
@@ -265,13 +263,20 @@ align-items: center;
 color: ${state.agreeIsChecked ? "#26A65A" : "inherit"}
 `;
 
-const CheckButton = styled.button`
+const Button = styled.button`
   border: none;
   --bs-btn-hover-bg: transparent;
   --bs-btn-active-bg: transparent;
   --bs-btn-color: ${state.agreeIsChecked ? "#26A65A" : "black"};
   --bs-btn-hover-color: ${state.agreeIsChecked ? "#26A65A" : "var(--bs-green)"};
 `;
+
+const showAgreement =
+  !state.hasAccepted &&
+  context.accountId &&
+  agreementsForUser &&
+  (!agreementsForUser.length ||
+    agreementsForUser[agreementsForUser.length - 1].value < latestTosVersion);
 
 const showRegistration =
   !state.hasRegistered &&
@@ -314,55 +319,41 @@ return (
           Summer 2023
         </Text>
         <div>
-          <InputContainer>
-            <Widget
-              src={"nearhorizon.near/widget/Inputs.Text"}
-              props={{
-                label: "",
-                placeholder: "Your Email Address",
-                value: state.email,
-                onChange: (email) => State.update({ email }),
-              }}
-            />
-          </InputContainer>
-          <CheckWrapper>
-            <CheckButton
-              onClick={() => {
-                State.update({ agreeIsChecked: !state.agreeIsChecked });
-              }}
-              className="btn btn-outline-dark"
-            >
-              <div className="d-flex flex-row align-items-center gap-3">
-                <i
-                  className={`bi bi-${
-                    state.agreeIsChecked ? "check-square" : "square"
-                  }`}
-                  style={{ fontSize: "1.5rem" }}
-                />
-                <span style={{ textAlign: "left" }}>Agree</span>
-              </div>
-            </CheckButton>
-            <CommitButton
-              style={{
-                flexGrow: 1,
-                flexBasis: "10rem",
-              }}
-              disabled={!state.agreeIsChecked}
-              data={{
-                index: {
-                  policyAccept: JSON.stringify({
-                    key: email,
-                    value: true,
-                  }),
-                },
-              }}
-              onCommit={() => {
-                State.update({ hasRegistered: true });
-              }}
-            >
-              Get Email Updates
-            </CommitButton>
-          </CheckWrapper>
+          {hasAccepted && (
+            <InputContainer>
+              <Widget
+                src={"nearhorizon.near/widget/Inputs.Text"}
+                props={{
+                  label: "",
+                  placeholder: "Your Email Address",
+                  value: state.email,
+                  onChange: (email) => State.update({ email }),
+                }}
+              />
+            </InputContainer>
+          )}
+          <CommitButton
+            onCommit={() => {
+              State.update({ hasAccepted: true });
+            }}
+            data={{
+              index: {
+                policyAccept: JSON.stringify({
+                  key: "email",
+                  value: true,
+                }),
+              },
+            }}
+          >
+            Agree
+          </CommitButton>
+          <Button
+            className="btn btn-success m-2"
+            disabled={!state.hasAccepted}
+            onClick={handleSignup}
+          >
+            Get Email Updates
+          </Button>
         </div>
         <div className="row">
           <div className="col-lg">
