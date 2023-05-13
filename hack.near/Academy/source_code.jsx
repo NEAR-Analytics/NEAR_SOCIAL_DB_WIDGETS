@@ -366,17 +366,14 @@ return (
           </span>
           Developers
         </H1>
-
         <Text style={{ maxWidth: "670px" }}>
           Learn to create anything on the blockchain operating system (bOS), and
           help build a more open web that is greater than the sum of its
           components.
         </Text>
-
         <Text size="23px" weight="600">
           Workshops + Hackathon
         </Text>
-
         <Text
           size="18px"
           weight="600"
@@ -384,56 +381,61 @@ return (
         >
           Summer 2023
         </Text>
-        <InputContainer>
-          <Widget
-            src={"nearhorizon.near/widget/Inputs.Text"}
-            props={{
-              label: "",
-              placeholder: "Your Email Address",
-              value: state.email,
-              onChange: (email) => State.update({ email }),
-            }}
-          />
-        </InputContainer>
-        <CheckWrapper>
-          <CheckButton
-            onClick={() => {
-              State.update({ agreeIsChecked: !state.agreeIsChecked });
-            }}
-            className="btn btn-outline-dark"
-          >
-            <div className="d-flex flex-row align-items-center gap-3">
-              <i
-                className={`bi bi-${
-                  state.agreeIsChecked ? "check-square" : "square"
-                }`}
-                style={{ fontSize: "1.5rem" }}
-              />
-              <span style={{ textAlign: "left" }}>Agree</span>
-              <CommitButton
-                style={{
-                  flexGrow: 1,
-                  flexBasis: "10rem",
-                }}
-                disabled={!state.agreeIsChecked}
-                data={{
-                  index: {
-                    agreements: JSON.stringify({
-                      key: acceptanceKey,
-                      value: latestPolicyVersion,
-                    }),
-                  },
-                }}
-                onClick={handleSignup}
-                onCommit={() => {
-                  State.update({ hasCommittedAcceptance: true });
-                }}
-              >
-                Register for Updates
-              </CommitButton>
-            </div>
-          </CheckButton>
-        </CheckWrapper>
+        {!hasCommittedAcceptance && (
+          <InputContainer>
+            <Widget
+              src={"nearhorizon.near/widget/Inputs.Text"}
+              props={{
+                label: "",
+                placeholder: "Your Email Address",
+                value: state.email,
+                onChange: (email) => State.update({ email }),
+              }}
+            />
+          </InputContainer>
+        )}
+        {hasCommittedAcceptance && <p>Stay tuned for updates!</p>}
+        {!hasCommittedAcceptance && (
+          <CheckWrapper>
+            <CheckButton
+              onClick={() => {
+                State.update({ agreeIsChecked: !state.agreeIsChecked });
+              }}
+              className="btn btn-outline-dark"
+            >
+              <div className="d-flex flex-row align-items-center gap-3">
+                <i
+                  className={`bi bi-${
+                    state.agreeIsChecked ? "check-square" : "square"
+                  }`}
+                  style={{ fontSize: "1.5rem" }}
+                />
+                <span style={{ textAlign: "left" }}>Agree</span>
+                <CommitButton
+                  style={{
+                    flexGrow: 1,
+                    flexBasis: "10rem",
+                  }}
+                  disabled={!state.agreeIsChecked}
+                  data={{
+                    index: {
+                      agreements: JSON.stringify({
+                        key: acceptanceKey,
+                        value: latestPolicyVersion,
+                      }),
+                    },
+                  }}
+                  onClick={handleSignup}
+                  onCommit={() => {
+                    State.update({ hasCommittedAcceptance: true });
+                  }}
+                >
+                  Get Email Updates
+                </CommitButton>
+              </div>
+            </CheckButton>
+          </CheckWrapper>
+        )}
         <div className="row">
           <div className="col-lg">
             <Widget src="hack.near/widget/Build.Follow" props={{ daoId }} />
