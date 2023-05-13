@@ -50,6 +50,7 @@ function returnIpfsImage(cfid) {
 
 const handleSignup = () => {
   if (state.email !== "") {
+    State.update({ hasCommittedAcceptance: true });
     asyncFetch("https://monkfish-app-ginhc.ondigitalocean.app/graphql", {
       method: "POST",
       headers: {
@@ -64,7 +65,6 @@ const handleSignup = () => {
         },
       }),
     });
-    State.update({ hasCommittedAcceptance: true });
   }
 };
 
