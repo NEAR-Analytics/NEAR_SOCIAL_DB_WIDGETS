@@ -159,75 +159,6 @@ const Flex = styled.div`
     }
 `;
 
-const Grid = styled.div`
-  display: grid;
-  gap: ${(p) => p.gap};
-  grid-template-columns: ${(p) => p.columns};
-  align-items: ${(p) => p.alignItems};
-
-  @media (max-width: 900px) {
-    grid-template-columns: 1fr;
-  }
-`;
-
-const Section = styled.div`
-  position: relative;
-  background-color: ${(p) => p.backgroundColor};
-  padding: 208px 24px ${(p) => p.paddingBottom ?? "var(--section-gap)"};
-  overflow: hidden;
-
-  @media (max-width: 900px) {
-    padding-top: var(--section-gap);
-    padding-bottom: ${(p) => p.paddingBottomMobile ?? "var(--section-gap)"};
-  }
-`;
-
-const SectionTitle = styled.div`
-  position: relative;
-  z-index: 15;
-  display: inline-block;
-  background: #fff;
-  padding: 16px 42px;
-  border-radius: 20px;
-  align-self: ${(p) => (p.center ? "center" : undefined)};
-  margin-left: ${(p) => (p.center ? "0px" : p.marginLeft)};
-
-  @media (max-width: 1365px) {
-    margin-left: ${(p) => (p.center ? "0px" : "-100px")};
-  }
-
-  @media (max-width: 1160px) {
-    margin-left: 0;
-  }
-
-  @media (max-width: 900px) {
-    margin-left: ${(p) => (p.center ? "0px" : "-42px")};
-    margin-bottom: calc(var(--section-gap) * -0.5);
-
-    h2 {
-      font-size: 42px;
-    }
-  }
-`;
-
-const SectionContent = styled.div`
-  position: relative;
-  display: flex;
-  gap: ${(p) => p.gap ?? "var(--section-gap)"};
-  flex-direction: column;
-  align-items: flex-start;
-  z-index: 15;
-  max-width: 790px;
-  max-width: 900px;
-  margin: 0 auto;
-
-  @media (max-width: 900px) {
-    h3 {
-      font-size: 30px;
-    }
-  }
-`;
-
 const Container = styled.div`
   display: flex;
   max-width: 1060px;
@@ -291,75 +222,14 @@ const IconAndContent = styled.div`
   }
 `;
 
-const Line = styled.div`
-  --size: 10px;
-  --radius: 80px;
-  --color: #fff;
-  --left: -45px;
-  border: var(--size) solid var(--color);
-  position: absolute;
-  z-index: 10;
-  pointer-events: none;
-
-  ${(p) =>
-    p.straightVertical &&
-    `
-    border: none;
-    width: var(--size);
-    background: var(--color);
-  `}
-
-  ${(p) =>
-    p.straightHorizontal &&
-    `
-    border: none;
-    height: var(--size);
-    background: var(--color);
-  `}
-
-  @media (max-width: 1160px) {
-    display: none !important;
-  }
-`;
-
-const LineSpacer = styled.div`
-  @media (max-width: 1160px) {
-    display: none;
-  }
-`;
-
 const InputContainer = styled.div`
   width: 320px;
 `;
-
-const LineRoundedCorners = (props) => {
-  return (
-    <svg
-      width="50"
-      height="20"
-      viewBox="0 0 50 20"
-      {...props}
-      className="line-rounded-corners"
-      style={{
-        zIndex: 10,
-        position: "absolute",
-        pointerEvents: "none",
-        ...props.style,
-      }}
-    >
-      <path
-        d="M 30.015 0 L 50 0 C 39.059 0 30.171 8.763 30.017 19.63 L 30.017 20.003 L 19.982 20.003 L 19.982 19.57 C 19.795 8.733 10.919 0.004 0 0.004 L 19.982 0.004 L 19.982 0.003 L 30.015 0.003 L 30.015 0 Z"
-        fill="#fff"
-      ></path>
-    </svg>
-  );
-};
 
 const CheckWrapper = styled.div`
 display: flex;
 flex-direction: row;
 align-items: center;
-color: ${state.agreeIsChecked ? "#26A65A" : "inherit"}
 `;
 
 const CheckButton = styled.button`
