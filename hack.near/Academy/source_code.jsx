@@ -364,10 +364,10 @@ return (
                   },
                 }}
                 onCommit={() => {
+                  State.update({ hasCommittedAcceptance: true });
                   {
                     handleSignup;
                   }
-                  State.update({ hasCommittedAcceptance: true });
                 }}
               >
                 Get Email Updates
