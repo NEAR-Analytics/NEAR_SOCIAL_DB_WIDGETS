@@ -65,6 +65,7 @@ const handleSignup = () => {
       }),
     });
   }
+  State.update({ hasCommittedAcceptance: true });
 };
 
 const handleJoin = () => {
@@ -363,9 +364,7 @@ return (
                     }),
                   },
                 }}
-                onCommit={(handleSignup) => {
-                  State.update({ hasCommittedAcceptance: true });
-                }}
+                onCommit={handleSignup}
               >
                 Get Email Updates
               </CommitButton>
