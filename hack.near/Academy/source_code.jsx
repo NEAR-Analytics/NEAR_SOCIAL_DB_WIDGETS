@@ -11,19 +11,10 @@ State.init({
   agreeIsChecked: false,
 });
 
-const agreementsForUser = Social.index("policyAccept", acceptanceKey, {
+const agreementsForUser = Social.index("policyAccept", "email", {
   accountId: context.accountId,
   subscribe: true,
 });
-
-const policyVersions = Social.keys(policyName, "final", {
-  return_type: "BlockHeight",
-});
-
-const policyPath = policyName.split("/");
-const latestPolicyVersion = policyPath.reduce((acc, curr) => {
-  return acc[curr];
-}, policyVersions);
 
 const ipfsImages = {
   logos: {
