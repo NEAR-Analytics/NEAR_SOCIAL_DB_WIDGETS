@@ -77,18 +77,8 @@ const handleJoin = () => {
 };
 
 const Wrapper = styled.div`
-  --section-gap: 69px;
-  padding-top: 69px;
-
-  @media (max-width: 1160px) {
-    .line-rounded-corners {
-      display: none !important;
-    }
-  }
-
-  @media (max-width: 900px) {
-    padding-top: 0;
-  }
+  --section-gap: 55px;
+  padding-top: 55px;
 
   .button {
     display: inline-flex;
@@ -263,7 +253,7 @@ const Button = styled.button`
   --bs-btn-hover-color: ${state.agreeIsChecked ? "#26A65A" : "var(--bs-green)"};
 `;
 
-const hasAccepted = Social.get(`${accountId}/index`, "policyAccept");
+const hasAccepted = Social.get(`${accountId}/policyAccept/email`);
 
 return (
   <Wrapper>
