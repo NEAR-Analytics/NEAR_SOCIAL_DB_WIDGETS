@@ -44,7 +44,13 @@ const data = {
 };
 
 return (
-  <CommitButton disabled={loading} data={data}>
+  <CommitButton
+    disabled={loading}
+    className={`btn ${
+      loading || follow ? "btn-outline-dark" : "btn-outline-secondary"
+    }`}
+    data={data}
+  >
     {loading
       ? "Loading"
       : follow
