@@ -148,7 +148,7 @@ const Text = styled.p`
 
 const Flex = styled.div`
   display: flex;
-  gap: 29px;
+  gap: 23px;
   align-items: center;
   flex-direction: column;
   flex-wrap: "nowrap";
@@ -282,7 +282,9 @@ return (
                 }`}
                 style={{ fontSize: "1.5rem" }}
               />
-              <span style={{ textAlign: "left" }}>Agree to Receive Emails</span>
+              <span style={{ textAlign: "left" }}>
+                I would like to receive more info about participating.
+              </span>
             </div>
           </CheckButton>
         </CheckWrapper>
