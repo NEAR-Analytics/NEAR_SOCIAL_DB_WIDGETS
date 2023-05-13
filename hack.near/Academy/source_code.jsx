@@ -16,6 +16,10 @@ const agreementsForUser = Social.index("policyAccept", acceptanceKey, {
   subscribe: true,
 });
 
+const policyVersions = Social.keys(policyName, "final", {
+  return_type: "BlockHeight",
+});
+
 const policyPath = policyName.split("/");
 const latestPolicyVersion = policyPath.reduce((acc, curr) => {
   return acc[curr];
