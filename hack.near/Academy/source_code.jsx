@@ -2,16 +2,24 @@ const accountId = props.accountId ?? context.accountId;
 const daoId = props.daoId ?? "build.sputnik-dao.near";
 const role = props.role ?? "community";
 
+const policyName = "email";
+const acceptanceKey = policyName;
+
 State.init({
   email: "",
   hasCommittedAcceptance: false,
   agreeIsChecked: false,
 });
 
-const agreementsForUser = Social.index("agreements", acceptanceKey, {
+const agreementsForUser = Social.index("policyAccept", acceptanceKey, {
   accountId: context.accountId,
   subscribe: true,
 });
+
+const policyPath = policyName.split("/");
+const latestPolicyVersion = policyPath.reduce((acc, curr) => {
+  return acc[curr];
+}, policyVersions);
 
 const ipfsImages = {
   logos: {
@@ -39,15 +47,6 @@ function returnIpfsImage(cfid) {
     ipfs_cid: cfid,
   };
 }
-
-const showAccept =
-  !state.hasCommittedAcceptance &&
-  context.accountId &&
-  latestPolicyVersion &&
-  agreementsForUser &&
-  (!agreementsForUser.length ||
-    agreementsForUser[agreementsForUser.length - 1].value <
-      latestPolicyVersion);
 
 const handleSignup = () => {
   if (state.email !== "") {
@@ -217,75 +216,6 @@ const Flex = styled.div`
     }
 `;
 
-const Grid = styled.div`
-  display: grid;
-  gap: ${(p) => p.gap};
-  grid-template-columns: ${(p) => p.columns};
-  align-items: ${(p) => p.alignItems};
-
-  @media (max-width: 900px) {
-    grid-template-columns: 1fr;
-  }
-`;
-
-const Section = styled.div`
-  position: relative;
-  background-color: ${(p) => p.backgroundColor};
-  padding: 208px 24px ${(p) => p.paddingBottom ?? "var(--section-gap)"};
-  overflow: hidden;
-
-  @media (max-width: 900px) {
-    padding-top: var(--section-gap);
-    padding-bottom: ${(p) => p.paddingBottomMobile ?? "var(--section-gap)"};
-  }
-`;
-
-const SectionTitle = styled.div`
-  position: relative;
-  z-index: 15;
-  display: inline-block;
-  background: #fff;
-  padding: 16px 42px;
-  border-radius: 20px;
-  align-self: ${(p) => (p.center ? "center" : undefined)};
-  margin-left: ${(p) => (p.center ? "0px" : p.marginLeft)};
-
-  @media (max-width: 1365px) {
-    margin-left: ${(p) => (p.center ? "0px" : "-100px")};
-  }
-
-  @media (max-width: 1160px) {
-    margin-left: 0;
-  }
-
-  @media (max-width: 900px) {
-    margin-left: ${(p) => (p.center ? "0px" : "-42px")};
-    margin-bottom: calc(var(--section-gap) * -0.5);
-
-    h2 {
-      font-size: 42px;
-    }
-  }
-`;
-
-const SectionContent = styled.div`
-  position: relative;
-  display: flex;
-  gap: ${(p) => p.gap ?? "var(--section-gap)"};
-  flex-direction: column;
-  align-items: flex-start;
-  z-index: 15;
-  max-width: 790px;
-  max-width: 900px;
-  margin: 0 auto;
-
-  @media (max-width: 900px) {
-    h3 {
-      font-size: 30px;
-    }
-  }
-`;
-
 const Container = styled.div`
   display: flex;
   max-width: 1060px;
@@ -348,6 +278,14 @@ const CheckButton = styled.button`
   --bs-btn-hover-color: ${state.agreeIsChecked ? "#26A65A" : "var(--bs-green)"};
 `;
 
+const showRegistration =
+  !state.hasCommittedAcceptance &&
+  context.accountId &&
+  latestPolicyVersion &&
+  agreementsForUser &&
+  (!agreementsForUser.length ||
+    agreementsForUser[agreementsForUser.length - 1].value < latestTosVersion);
+
 return (
   <Wrapper>
     <Widget src="mob.near/widget/ProfileOnboarding" />
@@ -381,60 +319,59 @@ return (
         >
           Summer 2023
         </Text>
-        {!hasCommittedAcceptance && (
-          <InputContainer>
-            <Widget
-              src={"nearhorizon.near/widget/Inputs.Text"}
-              props={{
-                label: "",
-                placeholder: "Your Email Address",
-                value: state.email,
-                onChange: (email) => State.update({ email }),
-              }}
-            />
-          </InputContainer>
-        )}
-        {hasCommittedAcceptance && <p>Stay tuned for updates!</p>}
-        {!hasCommittedAcceptance && (
-          <CheckWrapper>
-            <CheckButton
-              onClick={() => {
-                State.update({ agreeIsChecked: !state.agreeIsChecked });
-              }}
-              className="btn btn-outline-dark"
-            >
-              <div className="d-flex flex-row align-items-center gap-3">
-                <i
-                  className={`bi bi-${
-                    state.agreeIsChecked ? "check-square" : "square"
-                  }`}
-                  style={{ fontSize: "1.5rem" }}
-                />
-                <span style={{ textAlign: "left" }}>Agree</span>
-                <CommitButton
-                  style={{
-                    flexGrow: 1,
-                    flexBasis: "10rem",
-                  }}
-                  disabled={!state.agreeIsChecked}
-                  data={{
-                    index: {
-                      agreements: JSON.stringify({
-                        key: acceptanceKey,
-                        value: latestPolicyVersion,
-                      }),
-                    },
-                  }}
-                  onClick={handleSignup}
-                  onCommit={() => {
-                    State.update({ hasCommittedAcceptance: true });
-                  }}
-                >
-                  Get Email Updates
-                </CommitButton>
-              </div>
-            </CheckButton>
-          </CheckWrapper>
+        {!showRegistration && (
+          <div>
+            <InputContainer>
+              <Widget
+                src={"nearhorizon.near/widget/Inputs.Text"}
+                props={{
+                  label: "",
+                  placeholder: "Your Email Address",
+                  value: state.email,
+                  onChange: (email) => State.update({ email }),
+                }}
+              />
+            </InputContainer>
+            <CheckWrapper>
+              <CheckButton
+                onClick={() => {
+                  State.update({ agreeIsChecked: !state.agreeIsChecked });
+                }}
+                className="btn btn-outline-dark"
+              >
+                <div className="d-flex flex-row align-items-center gap-3">
+                  <i
+                    className={`bi bi-${
+                      state.agreeIsChecked ? "check-square" : "square"
+                    }`}
+                    style={{ fontSize: "1.5rem" }}
+                  />
+                  <span style={{ textAlign: "left" }}>Agree</span>
+                </div>
+              </CheckButton>
+              <CommitButton
+                style={{
+                  flexGrow: 1,
+                  flexBasis: "10rem",
+                }}
+                disabled={!state.agreeIsChecked}
+                data={{
+                  index: {
+                    policyAccept: JSON.stringify({
+                      key: acceptanceKey,
+                      value: latestPolicyVersion,
+                    }),
+                  },
+                }}
+                onClick={handleSignup}
+                onCommit={() => {
+                  State.update({ hasCommittedAcceptance: true });
+                }}
+              >
+                Get Email Updates
+              </CommitButton>
+            </CheckWrapper>
+          </div>
         )}
         <div className="row">
           <div className="col-lg">
