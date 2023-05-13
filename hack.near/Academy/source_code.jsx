@@ -55,6 +55,7 @@ const handleSignup = () => {
       }),
     });
   }
+  State.update({ hasRegistered: !state.hasRegistered });
 };
 
 const handleJoin = () => {
@@ -297,9 +298,7 @@ return (
             <button
               className="btn btn-success"
               disabled={!state.agreeIsChecked}
-              onClick={(handleSignup) => {
-                State.update({ hasRegistered: !state.hasRegistered });
-              }}
+              onClick={handleSignup}
             >
               Register for Updates
             </button>
