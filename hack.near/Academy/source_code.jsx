@@ -310,7 +310,7 @@ return (
               }}
             />
           </InputContainer>
-          {hasAccepted.value && (
+          {!hasAccepted && (
             <CommitButton
               data={{
                 index: {
@@ -323,7 +323,7 @@ return (
               Agree
             </CommitButton>
           )}
-          {!hasAccepted.value && (
+          {hasAccepted && (
             <CommitButton
               data={{
                 index: {
