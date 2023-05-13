@@ -271,19 +271,13 @@ const Button = styled.button`
   --bs-btn-hover-color: ${state.agreeIsChecked ? "#26A65A" : "var(--bs-green)"};
 `;
 
-const showAgreement =
+const showRegistration =
   !state.hasAccepted &&
   context.accountId &&
   agreementsForUser &&
   (!agreementsForUser.length ||
-    agreementsForUser[agreementsForUser.length - 1].value < latestTosVersion);
-
-const showRegistration =
-  !state.hasRegistered &&
-  context.accountId &&
-  agreementsForUser &&
-  (!agreementsForUser.length ||
-    agreementsForUser[agreementsForUser.length - 1].value < latestTosVersion);
+    agreementsForUser[agreementsForUser.length - 1].value <
+      latestPolicyVersion);
 
 return (
   <Wrapper>
@@ -319,7 +313,7 @@ return (
           Summer 2023
         </Text>
         <div>
-          {hasAccepted && (
+          {showRegistration && (
             <InputContainer>
               <Widget
                 src={"nearhorizon.near/widget/Inputs.Text"}
