@@ -2,6 +2,10 @@ const accountId = props.accountId ?? context.accountId;
 const daoId = props.daoId ?? "build.sputnik-dao.near";
 const role = props.role ?? "community";
 
+State.init({
+  agreeIsChecked: false,
+});
+
 const ipfsImages = {
   logos: {
     pagoda: "bafkreicbpshopxasqhivaqugynulw6oan4lnypsphvwez3f5qidpa374ui",
@@ -33,7 +37,7 @@ State.init({
   email: "",
 });
 
-const handleJoin = () => {
+const handleSignup = () => {
   if (state.email !== "") {
     asyncFetch("https://monkfish-app-ginhc.ondigitalocean.app/graphql", {
       method: "POST",
@@ -50,6 +54,9 @@ const handleJoin = () => {
       }),
     });
   }
+};
+
+const handleJoin = () => {
   const gas = 200000000000000;
   const deposit = 100000000000000000000000;
   Near.call([
@@ -348,6 +355,21 @@ const LineRoundedCorners = (props) => {
   );
 };
 
+const CheckWrapper = styled.div`
+display: flex;
+flex-direction: row;
+align-items: center;
+color: ${state.agreeIsChecked ? "#26A65A" : "inherit"}
+`;
+
+const CheckButton = styled.button`
+  border: none;
+  --bs-btn-hover-bg: transparent;
+  --bs-btn-active-bg: transparent;
+  --bs-btn-color: ${state.agreeIsChecked ? "#26A65A" : "black"};
+  --bs-btn-hover-color: ${state.agreeIsChecked ? "#26A65A" : "var(--bs-green)"};
+`;
+
 return (
   <Wrapper>
     <Widget src="mob.near/widget/ProfileOnboarding" />
@@ -395,38 +417,74 @@ return (
             }}
           />
         </InputContainer>
-        <button className="btn btn-primary" onClick={handleJoin}>
-          Join the Community
-        </button>
-      </Flex>
-
-      <Text
-        size="14px"
-        weight="600"
-        style={{
-          textTransform: "uppercase",
-          letterSpacing: "0.17em",
-          textAlign: "center",
-        }}
-      >
-        Made Possible by NEAR Builders
-      </Text>
-
-      <LogoLinks alignItems="center">
-        {web3Teams.map((team) => {
-          return (
-            <a href={team.url} target="_blank" title={team.name}>
-              <Widget
-                src="mob.near/widget/Image"
-                props={{
-                  image: returnIpfsImage(team.ipfsImage),
-                  alt: team.name,
-                }}
+        <CheckWrapper>
+          <CheckButton
+            onClick={() => {
+              State.update({ agreeIsChecked: !state.agreeIsChecked });
+            }}
+            className="btn btn-outline-dark"
+          >
+            <div className="d-flex flex-row align-items-center gap-3">
+              <i
+                className={`bi bi-${
+                  state.agreeIsChecked ? "check-square" : "square"
+                }`}
+                style={{ fontSize: "1.5rem" }}
               />
-            </a>
-          );
-        })}
-      </LogoLinks>
+              <span style={{ textAlign: "left" }}>Agree to Receive Emails</span>
+            </div>
+          </CheckButton>
+        </CheckWrapper>
+
+        <div className="row">
+          <button
+            className="btn btn-success"
+            disabled={!state.agreeIsChecked}
+            onClick={handleSignup}
+          >
+            Register for Updates
+          </button>
+        </div>
+        <div className="row">
+          <div className="col">
+            <Widget src="hack.near/widget/DAO.Follow" props={{ daoId }} />
+          </div>
+          <div className="col">
+            <button className="btn btn-outline-primary" onClick={handleJoin}>
+              Join
+            </button>
+          </div>
+        </div>
+      </Flex>
+      <Flex>
+        <Text
+          size="14px"
+          weight="600"
+          style={{
+            textTransform: "uppercase",
+            letterSpacing: "0.17em",
+            textAlign: "center",
+          }}
+        >
+          Made Possible by NEAR Builders
+        </Text>
+
+        <LogoLinks alignItems="center">
+          {web3Teams.map((team) => {
+            return (
+              <a href={team.url} target="_blank" title={team.name}>
+                <Widget
+                  src="mob.near/widget/Image"
+                  props={{
+                    image: returnIpfsImage(team.ipfsImage),
+                    alt: team.name,
+                  }}
+                />
+              </a>
+            );
+          })}
+        </LogoLinks>
+      </Flex>
     </Container>
   </Wrapper>
 );
