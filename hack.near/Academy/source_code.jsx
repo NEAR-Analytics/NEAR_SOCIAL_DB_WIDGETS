@@ -363,8 +363,10 @@ return (
                     }),
                   },
                 }}
-                onClick={handleSignup}
                 onCommit={() => {
+                  {
+                    handleSignup;
+                  }
                   State.update({ hasCommittedAcceptance: true });
                 }}
               >
