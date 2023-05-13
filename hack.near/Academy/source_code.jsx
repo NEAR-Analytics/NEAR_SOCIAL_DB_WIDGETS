@@ -3,7 +3,14 @@ const daoId = props.daoId ?? "build.sputnik-dao.near";
 const role = props.role ?? "community";
 
 State.init({
+  email: "",
+  hasCommittedAcceptance: false,
   agreeIsChecked: false,
+});
+
+const agreementsForUser = Social.index("agreements", acceptanceKey, {
+  accountId: context.accountId,
+  subscribe: true,
 });
 
 const ipfsImages = {
@@ -33,9 +40,14 @@ function returnIpfsImage(cfid) {
   };
 }
 
-State.init({
-  email: "",
-});
+const showAccept =
+  !state.hasCommittedAcceptance &&
+  context.accountId &&
+  latestPolicyVersion &&
+  agreementsForUser &&
+  (!agreementsForUser.length ||
+    agreementsForUser[agreementsForUser.length - 1].value <
+      latestPolicyVersion);
 
 const handleSignup = () => {
   if (state.email !== "") {
@@ -92,6 +104,52 @@ const Wrapper = styled.div`
 
   @media (max-width: 900px) {
     padding-top: 0;
+  }
+
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 16px;
+    height: 32px;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: center;
+    cursor: pointer;
+    background: #fbfcfd;
+    border: 1px solid #d7dbdf;
+    color: #11181c !important;
+
+    &.button--primary {
+      width: 100%;
+      color: #006adc !important;
+
+      @media (max-width: 1200px) {
+        width: auto;
+      }
+    }
+
+    &:hover,
+    &:focus {
+      background: #ecedee;
+      text-decoration: none;
+      outline: none;
+    }
+
+    i {
+      color: #7e868c;
+    }
+
+    .bi-16 {
+      font-size: 16px;
+    }
+  }
+
+  @media (max-width: 900px) {
+    gap: 24px;
   }
 `;
 
@@ -271,89 +329,9 @@ const LogoLinks = styled.div`
   }
 `;
 
-const IconAndContent = styled.div`
-  display: flex;
-  gap: 32px;
-  align-items: flex-start;
-  position: relative;
-
-  svg {
-    width: 48px;
-    flex-shrink: 0;
-    flex-grow: 0;
-  }
-
-  div {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    align-items: flex-start;
-  }
-`;
-
-const Line = styled.div`
-  --size: 10px;
-  --radius: 80px;
-  --color: #fff;
-  --left: -45px;
-  border: var(--size) solid var(--color);
-  position: absolute;
-  z-index: 10;
-  pointer-events: none;
-
-  ${(p) =>
-    p.straightVertical &&
-    `
-    border: none;
-    width: var(--size);
-    background: var(--color);
-  `}
-
-  ${(p) =>
-    p.straightHorizontal &&
-    `
-    border: none;
-    height: var(--size);
-    background: var(--color);
-  `}
-
-  @media (max-width: 1160px) {
-    display: none !important;
-  }
-`;
-
-const LineSpacer = styled.div`
-  @media (max-width: 1160px) {
-    display: none;
-  }
-`;
-
 const InputContainer = styled.div`
   width: 320px;
 `;
-
-const LineRoundedCorners = (props) => {
-  return (
-    <svg
-      width="50"
-      height="20"
-      viewBox="0 0 50 20"
-      {...props}
-      className="line-rounded-corners"
-      style={{
-        zIndex: 10,
-        position: "absolute",
-        pointerEvents: "none",
-        ...props.style,
-      }}
-    >
-      <path
-        d="M 30.015 0 L 50 0 C 39.059 0 30.171 8.763 30.017 19.63 L 30.017 20.003 L 19.982 20.003 L 19.982 19.57 C 19.795 8.733 10.919 0.004 0 0.004 L 19.982 0.004 L 19.982 0.003 L 30.015 0.003 L 30.015 0 Z"
-        fill="#fff"
-      ></path>
-    </svg>
-  );
-};
 
 const CheckWrapper = styled.div`
 display: flex;
@@ -431,28 +409,39 @@ return (
                 }`}
                 style={{ fontSize: "1.5rem" }}
               />
-              <span style={{ textAlign: "left" }}>Agree to Receive Emails</span>
+              <span style={{ textAlign: "left" }}>Agree</span>
+              <CommitButton
+                style={{
+                  flexGrow: 1,
+                  flexBasis: "10rem",
+                }}
+                disabled={!state.agreeIsChecked}
+                data={{
+                  index: {
+                    agreements: JSON.stringify({
+                      key: acceptanceKey,
+                      value: latestPolicyVersion,
+                    }),
+                  },
+                }}
+                onClick={handleSignup}
+                onCommit={() => {
+                  State.update({ hasCommittedAcceptance: true });
+                }}
+              >
+                Register for Updates
+              </CommitButton>
             </div>
           </CheckButton>
         </CheckWrapper>
-
         <div className="row">
-          <button
-            className="btn btn-success"
-            disabled={!state.agreeIsChecked}
-            onClick={handleSignup}
-          >
-            Register for Updates
-          </button>
-        </div>
-        <div className="row">
-          <div className="col">
-            <Widget src="hack.near/widget/DAO.Follow" props={{ daoId }} />
+          <div className="col-lg">
+            <Widget src="hack.near/widget/Build.Follow" props={{ daoId }} />
           </div>
-          <div className="col">
-            <button className="btn btn-outline-primary" onClick={handleJoin}>
+          <div className="col-lg">
+            <a className="btn btn-outline-primary" onClick={handleJoin}>
               Join
-            </button>
+            </a>
           </div>
         </div>
       </Flex>
