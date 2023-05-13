@@ -55,7 +55,7 @@ const handleSignup = () => {
       }),
     });
   }
-  State.update({ hasRegistered: !state.hasRegistered });
+  State.update({ hasRegistered: true });
 };
 
 const handleJoin = () => {
