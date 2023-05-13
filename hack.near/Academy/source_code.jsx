@@ -411,7 +411,7 @@ return (
             src={"nearhorizon.near/widget/Inputs.Text"}
             props={{
               label: "",
-              placeholder: "Email",
+              placeholder: "Your Email Address",
               value: state.email,
               onChange: (email) => State.update({ email }),
             }}
