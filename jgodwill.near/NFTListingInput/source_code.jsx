@@ -128,6 +128,7 @@ const BlueSub = styled.div`
  color: #0d99ff;
  font-size: .8rem;
 `;
+console.log(props.state.nftMetadata);
 // {props.state.tokenId && (
 return (
   <>
