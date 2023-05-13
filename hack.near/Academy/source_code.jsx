@@ -35,6 +35,7 @@ function returnIpfsImage(cfid) {
 
 State.init({
   email: "",
+  hasRegistered: false,
 });
 
 const handleSignup = () => {
@@ -54,6 +55,7 @@ const handleSignup = () => {
       }),
     });
   }
+  State.update({ hasRegistered: true });
 };
 
 const handleJoin = () => {
@@ -222,7 +224,6 @@ const CheckButton = styled.button`
 
 return (
   <Wrapper>
-    <Widget src="mob.near/widget/ProfileOnboarding" />
     <Container>
       <Flex>
         <H1>
@@ -256,48 +257,53 @@ return (
         >
           Summer 2023
         </Text>
-        <InputContainer>
-          <Widget
-            src={"nearhorizon.near/widget/Inputs.Text"}
-            props={{
-              label: "",
-              placeholder: "Email",
-              placeholder: "Your Email Address",
-              value: state.email,
-              onChange: (email) => State.update({ email }),
-            }}
-          />
-        </InputContainer>
-        <CheckWrapper>
-          <CheckButton
-            onClick={() => {
-              State.update({ agreeIsChecked: !state.agreeIsChecked });
-            }}
-            className="btn"
-          >
-            <div className="d-flex flex-row align-items-center gap-3">
-              <i
-                className={`bi bi-${
-                  state.agreeIsChecked ? "check-square" : "square"
-                }`}
-                style={{ fontSize: "1.5rem" }}
-              />
-              <span style={{ textAlign: "left" }}>
-                I would like to receive more info about participating.
-              </span>
-            </div>
-          </CheckButton>
-        </CheckWrapper>
-
-        <div className="row">
-          <button
-            className="btn btn-success"
-            disabled={!state.agreeIsChecked}
-            onClick={handleSignup}
-          >
-            Register for Updates
-          </button>
-        </div>
+        {!hasRegistered && (
+          <InputContainer>
+            <Widget
+              src={"nearhorizon.near/widget/Inputs.Text"}
+              props={{
+                label: "",
+                placeholder: "Email",
+                placeholder: "Your Email Address",
+                value: state.email,
+                onChange: (email) => State.update({ email }),
+              }}
+            />
+          </InputContainer>
+        )}
+        {!hasRegistered && (
+          <CheckWrapper>
+            <CheckButton
+              onClick={() => {
+                State.update({ agreeIsChecked: !state.agreeIsChecked });
+              }}
+              className="btn"
+            >
+              <div className="d-flex flex-row align-items-center gap-3">
+                <i
+                  className={`bi bi-${
+                    state.agreeIsChecked ? "check-square" : "square"
+                  }`}
+                  style={{ fontSize: "1.5rem" }}
+                />
+                <span style={{ textAlign: "left" }}>
+                  I would like to receive more info about participating.
+                </span>
+              </div>
+            </CheckButton>
+          </CheckWrapper>
+        )}
+        {!hasRegistered && (
+          <div className="row">
+            <button
+              className="btn btn-success"
+              disabled={!state.agreeIsChecked}
+              onClick={handleSignup}
+            >
+              Register for Updates
+            </button>
+          </div>
+        )}
         <div className="row">
           <div className="col">
             <Widget src="hack.near/widget/DAO.Follow" props={{ daoId }} />
