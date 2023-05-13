@@ -32,7 +32,7 @@ const data = fetch("https://graph.mintbase.xyz", {
 
 const NFTImageButton = styled.button`
   aspect-ratio: 1/1;
-  height: 200px;
+  height: 100px;
   transition: all 0.4s ease-in-out;
   border: 1.41429px solid rgba(28,27,28,.1);
   border-radius: 10px;
@@ -40,8 +40,8 @@ const NFTImageButton = styled.button`
   background:transparent;
   opacity:0.9;
   flex: 1;
-  min-width: 200px;
-  max-width: 300px;
+  min-width: 100px;
+  max-width: 200px;
   object-fit: cover;
   padding:unset;
   overflow:hidden;
@@ -66,7 +66,7 @@ const NFTs = styled.div`
   padding: 1rem;
   overflow-y:scroll;
   flex-wrap: wrap;
-  height:300px;
+  height:200px;
 `;
 
 const Heading = styled.p`
