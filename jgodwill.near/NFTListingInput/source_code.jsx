@@ -160,7 +160,7 @@ return (
                 {props.state.contractId.length > 6
                   ? `...${props.state.contractId?.slice(
                       props.state.contractId.length - 4
-                    )} ${props.state.nftMetadata.name}`
+                    )}`
                   : props.state.contractId || "Sample Contract"}
               </SecondaryText>
             </span>
