@@ -319,59 +319,57 @@ return (
         >
           Summer 2023
         </Text>
-        {!showRegistration && (
-          <div>
-            <InputContainer>
-              <Widget
-                src={"nearhorizon.near/widget/Inputs.Text"}
-                props={{
-                  label: "",
-                  placeholder: "Your Email Address",
-                  value: state.email,
-                  onChange: (email) => State.update({ email }),
-                }}
-              />
-            </InputContainer>
-            <CheckWrapper>
-              <CheckButton
-                onClick={() => {
-                  State.update({ agreeIsChecked: !state.agreeIsChecked });
-                }}
-                className="btn btn-outline-dark"
-              >
-                <div className="d-flex flex-row align-items-center gap-3">
-                  <i
-                    className={`bi bi-${
-                      state.agreeIsChecked ? "check-square" : "square"
-                    }`}
-                    style={{ fontSize: "1.5rem" }}
-                  />
-                  <span style={{ textAlign: "left" }}>Agree</span>
-                </div>
-              </CheckButton>
-              <CommitButton
-                style={{
-                  flexGrow: 1,
-                  flexBasis: "10rem",
-                }}
-                disabled={!state.agreeIsChecked}
-                data={{
-                  index: {
-                    policyAccept: JSON.stringify({
-                      key: acceptanceKey,
-                      value: latestPolicyVersion,
-                    }),
-                  },
-                }}
-                onCommit={() => {
-                  State.update({ hasRegistered: true });
-                }}
-              >
-                Get Email Updates
-              </CommitButton>
-            </CheckWrapper>
-          </div>
-        )}
+        <div>
+          <InputContainer>
+            <Widget
+              src={"nearhorizon.near/widget/Inputs.Text"}
+              props={{
+                label: "",
+                placeholder: "Your Email Address",
+                value: state.email,
+                onChange: (email) => State.update({ email }),
+              }}
+            />
+          </InputContainer>
+          <CheckWrapper>
+            <CheckButton
+              onClick={() => {
+                State.update({ agreeIsChecked: !state.agreeIsChecked });
+              }}
+              className="btn btn-outline-dark"
+            >
+              <div className="d-flex flex-row align-items-center gap-3">
+                <i
+                  className={`bi bi-${
+                    state.agreeIsChecked ? "check-square" : "square"
+                  }`}
+                  style={{ fontSize: "1.5rem" }}
+                />
+                <span style={{ textAlign: "left" }}>Agree</span>
+              </div>
+            </CheckButton>
+            <CommitButton
+              style={{
+                flexGrow: 1,
+                flexBasis: "10rem",
+              }}
+              disabled={!state.agreeIsChecked}
+              data={{
+                index: {
+                  policyAccept: JSON.stringify({
+                    key: acceptanceKey,
+                    value: latestPolicyVersion,
+                  }),
+                },
+              }}
+              onCommit={() => {
+                State.update({ hasRegistered: true });
+              }}
+            >
+              Get Email Updates
+            </CommitButton>
+          </CheckWrapper>
+        </div>
         <div className="row">
           <div className="col-lg">
             <Widget src="hack.near/widget/Build.Follow" props={{ daoId }} />
