@@ -363,7 +363,7 @@ return (
                     }),
                   },
                 }}
-                onCommit={(handleSignup) => {
+                onCommit={() => {
                   State.update({ hasRegistered: true });
                 }}
               >
