@@ -298,7 +298,9 @@ return (
             <button
               className="btn btn-success"
               disabled={!state.agreeIsChecked}
-              onClick={handleSignup}
+              onClick={(handleSignup) => {
+                State.update({ hasRegistered: !state.hasRegistered });
+              }}
             >
               Register for Updates
             </button>
