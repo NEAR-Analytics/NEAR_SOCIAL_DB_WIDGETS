@@ -64,8 +64,8 @@ const handleSignup = () => {
         },
       }),
     });
+    State.update({ hasCommittedAcceptance: true });
   }
-  State.update({ hasCommittedAcceptance: true });
 };
 
 const handleJoin = () => {
