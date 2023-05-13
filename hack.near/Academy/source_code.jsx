@@ -7,7 +7,7 @@ const acceptanceKey = policyName;
 
 State.init({
   email: "",
-  hasCommittedAcceptance: false,
+  hasRegistered: false,
   agreeIsChecked: false,
 });
 
@@ -50,7 +50,6 @@ function returnIpfsImage(cfid) {
 
 const handleSignup = () => {
   if (state.email !== "") {
-    State.update({ hasCommittedAcceptance: true });
     asyncFetch("https://monkfish-app-ginhc.ondigitalocean.app/graphql", {
       method: "POST",
       headers: {
@@ -280,7 +279,7 @@ const CheckButton = styled.button`
 `;
 
 const showRegistration =
-  !state.hasCommittedAcceptance &&
+  !state.hasRegistered &&
   context.accountId &&
   latestPolicyVersion &&
   agreementsForUser &&
@@ -364,7 +363,9 @@ return (
                     }),
                   },
                 }}
-                onCommit={handleSignup}
+                onCommit={(handleSignup) => {
+                  State.update({ hasRegistered: true });
+                }}
               >
                 Get Email Updates
               </CommitButton>
