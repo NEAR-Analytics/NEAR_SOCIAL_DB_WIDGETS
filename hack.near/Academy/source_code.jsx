@@ -273,6 +273,7 @@ return (
             onClick={() => {
               State.update({ agreeIsChecked: !state.agreeIsChecked });
             }}
+            className="btn"
           >
             <div className="d-flex flex-row align-items-center gap-3">
               <i
