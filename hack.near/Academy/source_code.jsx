@@ -3,7 +3,7 @@ const daoId = props.daoId ?? "build.sputnik-dao.near";
 const role = props.role ?? "community";
 
 State.init({
-  email: "",
+  agreeIsChecked: false,
 });
 
 const ipfsImages = {
@@ -32,6 +32,10 @@ function returnIpfsImage(cfid) {
     ipfs_cid: cfid,
   };
 }
+
+State.init({
+  email: "",
+});
 
 const handleSignup = () => {
   if (state.email !== "") {
@@ -77,8 +81,8 @@ const handleJoin = () => {
 };
 
 const Wrapper = styled.div`
-  --section-gap: 42px;
-  padding-top: 42px;
+  --section-gap: 69px;
+  padding-top: 69px;
 
   @media (max-width: 1160px) {
     .line-rounded-corners {
@@ -88,52 +92,6 @@ const Wrapper = styled.div`
 
   @media (max-width: 900px) {
     padding-top: 0;
-  }
-
-  .button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 8px 16px;
-    height: 32px;
-    border-radius: 100px;
-    font-weight: 600;
-    font-size: 12px;
-    line-height: 15px;
-    text-align: center;
-    cursor: pointer;
-    background: #fbfcfd;
-    border: 1px solid #d7dbdf;
-    color: #11181c !important;
-
-    &.button--primary {
-      width: 100%;
-      color: #006adc !important;
-
-      @media (max-width: 1200px) {
-        width: auto;
-      }
-    }
-
-    &:hover,
-    &:focus {
-      background: #ecedee;
-      text-decoration: none;
-      outline: none;
-    }
-
-    i {
-      color: #7e868c;
-    }
-
-    .bi-16 {
-      font-size: 16px;
-    }
-  }
-
-  @media (max-width: 900px) {
-    gap: 24px;
   }
 `;
 
@@ -201,6 +159,75 @@ const Flex = styled.div`
     }
 `;
 
+const Grid = styled.div`
+  display: grid;
+  gap: ${(p) => p.gap};
+  grid-template-columns: ${(p) => p.columns};
+  align-items: ${(p) => p.alignItems};
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const Section = styled.div`
+  position: relative;
+  background-color: ${(p) => p.backgroundColor};
+  padding: 208px 24px ${(p) => p.paddingBottom ?? "var(--section-gap)"};
+  overflow: hidden;
+
+  @media (max-width: 900px) {
+    padding-top: var(--section-gap);
+    padding-bottom: ${(p) => p.paddingBottomMobile ?? "var(--section-gap)"};
+  }
+`;
+
+const SectionTitle = styled.div`
+  position: relative;
+  z-index: 15;
+  display: inline-block;
+  background: #fff;
+  padding: 16px 42px;
+  border-radius: 20px;
+  align-self: ${(p) => (p.center ? "center" : undefined)};
+  margin-left: ${(p) => (p.center ? "0px" : p.marginLeft)};
+
+  @media (max-width: 1365px) {
+    margin-left: ${(p) => (p.center ? "0px" : "-100px")};
+  }
+
+  @media (max-width: 1160px) {
+    margin-left: 0;
+  }
+
+  @media (max-width: 900px) {
+    margin-left: ${(p) => (p.center ? "0px" : "-42px")};
+    margin-bottom: calc(var(--section-gap) * -0.5);
+
+    h2 {
+      font-size: 42px;
+    }
+  }
+`;
+
+const SectionContent = styled.div`
+  position: relative;
+  display: flex;
+  gap: ${(p) => p.gap ?? "var(--section-gap)"};
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 15;
+  max-width: 790px;
+  max-width: 900px;
+  margin: 0 auto;
+
+  @media (max-width: 900px) {
+    h3 {
+      font-size: 30px;
+    }
+  }
+`;
+
 const Container = styled.div`
   display: flex;
   max-width: 1060px;
@@ -244,14 +271,108 @@ const LogoLinks = styled.div`
   }
 `;
 
+const IconAndContent = styled.div`
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+  position: relative;
+
+  svg {
+    width: 48px;
+    flex-shrink: 0;
+    flex-grow: 0;
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+`;
+
+const Line = styled.div`
+  --size: 10px;
+  --radius: 80px;
+  --color: #fff;
+  --left: -45px;
+  border: var(--size) solid var(--color);
+  position: absolute;
+  z-index: 10;
+  pointer-events: none;
+
+  ${(p) =>
+    p.straightVertical &&
+    `
+    border: none;
+    width: var(--size);
+    background: var(--color);
+  `}
+
+  ${(p) =>
+    p.straightHorizontal &&
+    `
+    border: none;
+    height: var(--size);
+    background: var(--color);
+  `}
+
+  @media (max-width: 1160px) {
+    display: none !important;
+  }
+`;
+
+const LineSpacer = styled.div`
+  @media (max-width: 1160px) {
+    display: none;
+  }
+`;
+
 const InputContainer = styled.div`
   width: 320px;
 `;
 
-const hasAccepted = Social.get(`${accountId}/policyAccept/email`);
+const LineRoundedCorners = (props) => {
+  return (
+    <svg
+      width="50"
+      height="20"
+      viewBox="0 0 50 20"
+      {...props}
+      className="line-rounded-corners"
+      style={{
+        zIndex: 10,
+        position: "absolute",
+        pointerEvents: "none",
+        ...props.style,
+      }}
+    >
+      <path
+        d="M 30.015 0 L 50 0 C 39.059 0 30.171 8.763 30.017 19.63 L 30.017 20.003 L 19.982 20.003 L 19.982 19.57 C 19.795 8.733 10.919 0.004 0 0.004 L 19.982 0.004 L 19.982 0.003 L 30.015 0.003 L 30.015 0 Z"
+        fill="#fff"
+      ></path>
+    </svg>
+  );
+};
+
+const CheckWrapper = styled.div`
+display: flex;
+flex-direction: row;
+align-items: center;
+color: ${state.agreeIsChecked ? "#26A65A" : "inherit"}
+`;
+
+const CheckButton = styled.button`
+  border: none;
+  --bs-btn-hover-bg: transparent;
+  --bs-btn-active-bg: transparent;
+  --bs-btn-color: ${state.agreeIsChecked ? "#26A65A" : "black"};
+  --bs-btn-hover-color: ${state.agreeIsChecked ? "#26A65A" : "var(--bs-green)"};
+`;
 
 return (
   <Wrapper>
+    <Widget src="mob.near/widget/ProfileOnboarding" />
     <Container>
       <Flex>
         <H1>
@@ -267,14 +388,17 @@ return (
           </span>
           Developers
         </H1>
+
         <Text style={{ maxWidth: "670px" }}>
           Learn to create anything on the blockchain operating system (bOS), and
           help build a more open web that is greater than the sum of its
           components.
         </Text>
+
         <Text size="23px" weight="600">
           Workshops + Hackathon
         </Text>
+
         <Text
           size="18px"
           weight="600"
@@ -282,39 +406,55 @@ return (
         >
           Summer 2023
         </Text>
-        <div>
-          <InputContainer>
-            <Widget
-              src={"nearhorizon.near/widget/Inputs.Text"}
-              props={{
-                label: "",
-                placeholder: "Your Email Address",
-                value: state.email,
-                onChange: (email) => State.update({ email }),
-              }}
-            />
-          </InputContainer>
-          {!hasAccepted && (
-            <CommitButton
-              data={{
-                policyAccept: {
-                  email: true,
-                },
-              }}
-            >
-              Agree
-            </CommitButton>
-          )}
-          {!hasAccepted && (
-            <a className="btn disabled m-2" onClick={handleSignup}>
-              Get Email Updates
-            </a>
-          )}
-          {hasAccepted && (
-            <a className="btn btn-success m-2" onClick={handleSignup}>
-              Get Email Updates
-            </a>
-          )}
+        <InputContainer>
+          <Widget
+            src={"nearhorizon.near/widget/Inputs.Text"}
+            props={{
+              label: "",
+              placeholder: "Email",
+              placeholder: "Your Email Address",
+              value: state.email,
+              onChange: (email) => State.update({ email }),
+            }}
+          />
+        </InputContainer>
+        <CheckWrapper>
+          <CheckButton
+            onClick={() => {
+              State.update({ agreeIsChecked: !state.agreeIsChecked });
+            }}
+            className="btn btn-outline-dark"
+          >
+            <div className="d-flex flex-row align-items-center gap-3">
+              <i
+                className={`bi bi-${
+                  state.agreeIsChecked ? "check-square" : "square"
+                }`}
+                style={{ fontSize: "1.5rem" }}
+              />
+              <span style={{ textAlign: "left" }}>Agree to Receive Emails</span>
+            </div>
+          </CheckButton>
+        </CheckWrapper>
+
+        <div className="row">
+          <button
+            className="btn btn-success"
+            disabled={!state.agreeIsChecked}
+            onClick={handleSignup}
+          >
+            Register for Updates
+          </button>
+        </div>
+        <div className="row">
+          <div className="col">
+            <Widget src="hack.near/widget/DAO.Follow" props={{ daoId }} />
+          </div>
+          <div className="col">
+            <button className="btn btn-outline-primary" onClick={handleJoin}>
+              Join
+            </button>
+          </div>
         </div>
       </Flex>
       <Flex>
