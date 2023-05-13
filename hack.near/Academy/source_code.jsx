@@ -313,10 +313,8 @@ return (
           {!hasAccepted && (
             <CommitButton
               data={{
-                index: {
-                  policyAccept: {
-                    email: true,
-                  },
+                policyAccept: {
+                  email: true,
                 },
               }}
             >
@@ -326,10 +324,8 @@ return (
           {hasAccepted && (
             <CommitButton
               data={{
-                index: {
-                  policyAccept: {
-                    email: false,
-                  },
+                policyAccept: {
+                  email: false,
                 },
               }}
             >
