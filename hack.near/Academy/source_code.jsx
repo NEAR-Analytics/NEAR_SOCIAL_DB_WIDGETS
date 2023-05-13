@@ -252,7 +252,6 @@ const hasAccepted = Social.get(`${accountId}/policyAccept/email`);
 
 return (
   <Wrapper>
-    <Widget src="mob.near/widget/ProfileOnboarding" />
     <Container>
       <Flex>
         <H1>
