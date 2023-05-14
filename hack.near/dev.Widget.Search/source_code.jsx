@@ -16,7 +16,7 @@ return (
         {state.components.map((component, i) => (
           <div key={i}>
             <Widget
-              src="mob.near/widget/Welcome.RHS.Editor.ComponentSearch.Item"
+              src="hack.near/widget/dev.Widget.Search.Item"
               props={{
                 accountId: component.accountId,
                 widgetName: component.widgetName,
