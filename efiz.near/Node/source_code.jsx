@@ -82,13 +82,17 @@ const ButtonRow = styled.div`
 
 return (
   <Container>
-    <Controller>
+    <div>
       {history.length > 1 && isRoot && (
         <Button onClick={handleBack}>back</Button>
       )}
-      {isRoot ? <p>{label}</p> : <Button onClick={handleInto}>{label}</Button>}
+      {isRoot ? (
+        <Controller>{label}</Controller>
+      ) : (
+        <Button onClick={handleInto}>{label}</Button>
+      )}
       <Button onClick={handleExpand}>{state.expanded ? "-" : "+"}</Button>
-    </Controller>
+    </div>
     {state.expanded && (
       <div>
         {node && typeof node === "object" ? (
