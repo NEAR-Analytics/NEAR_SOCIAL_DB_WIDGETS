@@ -56,11 +56,39 @@ function getType() {
   }
 }
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+`;
+
+const Controller = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin-top: 160px;
+`;
+
+const ButtonRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 0 4px;
+`;
+
 return (
-  <div>
-    {history.length > 1 && isRoot && <Button onClick={handleBack}>back</Button>}
-    {isRoot ? <p>{label}</p> : <Button onClick={handleInto}>{label}</Button>}
-    <Button onClick={handleExpand}>{state.expanded ? "-" : "+"}</Button>
+  <Container>
+    <Controller>
+      {history.length > 1 && isRoot && (
+        <Button onClick={handleBack}>back</Button>
+      )}
+      {isRoot ? <p>{label}</p> : <Button onClick={handleInto}>{label}</Button>}
+      <Button onClick={handleExpand}>{state.expanded ? "-" : "+"}</Button>
+    </Controller>
     {state.expanded && (
       <div>
         {node && typeof node === "object" ? (
@@ -87,5 +115,5 @@ return (
         )}
       </div>
     )}
-  </div>
+  </Container>
 );
