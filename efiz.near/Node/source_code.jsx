@@ -56,32 +56,8 @@ function getType() {
   }
 }
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  width: 100%;
-`;
-
-const Controller = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  margin-top: 160px;
-`;
-
-const ButtonRow = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 4px;
-  margin: 0 4px;
-`;
-
 return (
-  <Container>
+  <div>
     <div>
       {history.length > 1 && isRoot && (
         <Button onClick={handleBack}>back</Button>
@@ -119,5 +95,5 @@ return (
         )}
       </div>
     )}
-  </Container>
+  </div>
 );
