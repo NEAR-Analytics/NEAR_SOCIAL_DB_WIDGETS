@@ -64,6 +64,7 @@ function getNode(path) {
         } else if (parts.length === 4) {
           // ALL TAGS BY ACCOUNT
           value = Social.keys(`${parts[0]}/profile/tags/*`, "final");
+          //   value = JSON.stringify
         } else {
           // THIS TAG
           value = parts[5];
@@ -106,6 +107,15 @@ return (
       setHistory: setHistory,
       setType: setType,
       isRoot: true,
+      styles: {
+        subject: {
+          fontFamily: "Times New Roman",
+          fontSize: "4em",
+          lineHeight: "1.25",
+          fontWeight: 400,
+          cursor: "pointer",
+        },
+      },
     }}
   />
 );
