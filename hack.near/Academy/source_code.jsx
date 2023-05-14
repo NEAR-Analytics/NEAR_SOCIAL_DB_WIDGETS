@@ -163,7 +163,7 @@ const CheckButton = styled.button`
   --bs-btn-hover-bg: transparent;
   --bs-btn-active-bg: transparent;
   --bs-btn-color: ${state.agreeIsChecked ? "#26A65A" : "black"};
-  --bs-btn-hover-color: ${state.agreeIsChecked ? "#26A65A" : "var(--bs-green)"};
+  --bs-btn-hover-color: ${state.agreeIsChecked ? "#26A65A" : "var(--bs-blue)"};
 `;
 
 const isValidEmail = (value) => {
