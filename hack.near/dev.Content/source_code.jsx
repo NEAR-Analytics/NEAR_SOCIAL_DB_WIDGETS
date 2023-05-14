@@ -1,8 +1,20 @@
-const accountId = props.accountId ?? "build.sputnik-dao.near";
+const accountId = props.accountId ?? context.accountId;
+const daoId = props.daoId ?? "build.sputnik-dao.near";
 const hashtags = [
   { name: "dev", required: true },
   { name: "bos", required: true },
 ];
+
+const groupId = "community"; // which group can post?
+
+const policy = Near.view(daoId, "get_policy");
+const group = policy.roles
+  .filter((role) => role.name === groupId)
+  .map((role) => {
+    const group = role.kind.Group;
+
+    return group;
+  });
 
 const content = context.accountId
   ? Social.get(`${context.accountId}/settings/dev/content`)
@@ -15,14 +27,15 @@ if (content === null) {
 const defaultWidgets = [
   {
     src: "hack.near/widget/dev.Page.Header",
-    props: { hashtags, accountId },
   },
   {
-    src: "efiz.near/widget/Community.Posts",
+    src: "hack.near/widget/dev.Posts",
     props: {
       communityHashtags: hashtags,
-      exclusive: false,
-      allowPublicPosting: true,
+      communityDomain: "bos",
+      communityMembers: group[0],
+      exclusive: true,
+      allowPublicPosting: false,
     },
   },
 ];
@@ -50,7 +63,7 @@ return (
         src="miraclx.near/widget/Attribution"
         props={{
           dep: true,
-          authors: [accountId],
+          authors: [daoId],
         }}
       />
       {context.accountId && (
