@@ -1,10 +1,10 @@
 const accountId = context.accountId;
 
-const side = context.accountId
-  ? Social.get(`${context.accountId}/settings/dev/menu`)
+const guide = context.accountId
+  ? Social.get(`${context.accountId}/settings/dev/guide`)
   : undefined;
 
-if (side === null) {
+if (guide === null) {
   return "";
 }
 
@@ -20,7 +20,7 @@ const defaultWidgets = [
   },
 ];
 
-const settingWidgets = side && JSON.parse(side);
+const settingWidgets = guide && JSON.parse(guide);
 
 if (state.widgets === undefined) {
   const widgets = settingWidgets ?? defaultWidgets;
@@ -82,13 +82,14 @@ const renderMenu = (src, requireLogin, index) => {
   );
 };
 
-const openButton = ({ widgetPath: src, onHide }) => {
+const addWidget = ({ widgetPath: widget, onHide }) => {
   return (
     <button
       className="btn btn-primary"
       onClick={() => {
-        state.widgets.splice(0, 0, { src });
-        State.update();
+        State.update({
+          widget,
+        });
         onHide();
       }}
     >
@@ -99,22 +100,24 @@ const openButton = ({ widgetPath: src, onHide }) => {
 
 return (
   <>
-    <h3>Menu Editor</h3>
-    <div className="mb-2">
-      <Widget
-        src="mob.near/widget/Welcome.RHS.Editor.ComponentSearch"
-        props={{ extraButtons: openButton }}
-      />
-    </div>
-    <div className="mb-2">
+    <h2>Guidebook Editor</h2>
+    <h3>FEATURED TUTORIAL</h3>
+    <h5>Update Widget Source Path:</h5>
+    <input
+      type="text"
+      value={state.widget}
+      placeholder="account.near/widget/Example"
+    />
+    <div className="mt-2">
       <CommitButton
+        disabled={state.widget === widget}
         data={{
           settings: {
-            every: { "page.side": JSON.stringify(state.widgets) },
+            dev: { guide: JSON.stringify(state.widgets) },
           },
         }}
       >
-        Save Changes
+        Save
       </CommitButton>
       {settingWidgets &&
         JSON.stringify(state.widgets) !== JSON.stringify(settingWidgets) && (
@@ -134,7 +137,15 @@ return (
         </button>
       )}
     </div>
+    <div className="mb-2 mt-3">
+      <Widget
+        src="hack.near/widget/dev.Widget.Search"
+        props={{ extraButtons: addWidget }}
+      />
+    </div>
     <hr />
+    <h4>ADDITIONAL RESOURCES</h4>
+
     {state.widgets.map(({ src, requiresLogin }, i) => (
       <div key={src} className="border rounded-4 p-3 mb-3">
         {renderMenu(src, requireLogin, i)}
