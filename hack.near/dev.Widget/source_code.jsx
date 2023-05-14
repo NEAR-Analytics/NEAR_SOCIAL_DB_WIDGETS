@@ -101,7 +101,7 @@ const Div = styled.div`
   }
 `;
 
-const addWidget = ({ widgetPath: widget, onHide }) => {
+const addWidget = ({ widget, onHide }) => {
   return (
     <button
       className="btn btn-primary"
