@@ -1,10 +1,11 @@
 const accountId = props.accountId ?? context.accountId;
+const daoId = props.daoId ?? "build.sputnik-dao.near";
 
 if (!accountId) {
   return "Please connect your NEAR wallet :)";
 }
 
-const defaultGuide = "hack.near/widget/ForkThis";
+const defaultGuide = "hack.near/widget/DAO.Profile";
 const defaultBuilder = "hack.near";
 
 const guide = Social.get(`${accountId}/settings/dev/guide`);
@@ -42,33 +43,6 @@ const H1 = styled.h1`
   margin: 0;
 `;
 
-const Text = styled.p`
-  margin: 0;
-  line-height: 1.5rem;
-  color: ${(p) => (p.bold ? "#11181C" : "#687076")} !important;
-  font-weight: ${(p) => (p.bold ? "600" : "400")};
-  font-size: ${(p) => (p.small ? "12px" : "14px")};
-  overflow: ${(p) => (p.ellipsis ? "hidden" : "")};
-  text-overflow: ${(p) => (p.ellipsis ? "ellipsis" : "")};
-  white-space: ${(p) => (p.ellipsis ? "nowrap" : "")};
-  overflow-wrap: anywhere;
-
-  b {
-    font-weight: 600;
-    color: #11181c;
-  }
-
-  &[href] {
-    display: inline-flex;
-    gap: 0.25rem;
-
-    &:hover,
-    &:focus {
-      text-decoration: underline;
-    }
-  }
-`;
-
 const Items = styled.div`
   display: flex;
   flex-direction: column;
@@ -98,10 +72,7 @@ return (
         <H1>Guide for Builders</H1>
 
         <Header>
-          <a
-            className="btn btn-success"
-            href="#/edit/hack.near/widget/ForkThis"
-          >
+          <a className="btn btn-success" href={`#/edit/${state.guide}`}>
             Start Here
           </a>
           <a
@@ -111,11 +82,9 @@ return (
             bOS Documentation
           </a>
         </Header>
-
-        <Text>
-          <h3>Featured Tutorial</h3>
-        </Text>
         <Div>
+          <h3>Featured Tutorial</h3>
+
           <div>
             <Widget
               src="miraclx.near/widget/Attribution"
