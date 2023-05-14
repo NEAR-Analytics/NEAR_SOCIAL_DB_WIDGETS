@@ -118,22 +118,29 @@ return (
             authors: [daoId],
           }}
         />
-        <b className="mt-2">INPUT NEW SOURCE PATH:</b>
-        <input type="text" value={state.widget} placeholder={defaultWidget} />
-        {context.accountId && (
-          <button
-            key="edit"
-            onClick={submit}
-            disabled={state.widget === defaultWidget}
-            className="btn btn-success edit-link position-absolute top-0 end-0 me-2 mt-1"
-          >
-            <i class="bi bi-patch-plus" /> Submit Proposal
-          </button>
-        )}
+        <div>
+          <p className="mb-1">
+            <b>INPUT NEW SOURCE PATH:</b>
+          </p>
+          <input type="text" value={state.widget} placeholder={defaultWidget} />
+        </div>
+        <div className="mb-1">
+          {context.accountId && (
+            <button
+              key="edit"
+              onClick={submit}
+              disabled={state.widget === defaultWidget}
+              className="btn btn-success me-2 mt-1"
+            >
+              <i class="bi bi-patch-plus" /> Submit Proposal
+            </button>
+          )}
+        </div>
+        <hr />
         <Items>
           <Item>
             <Widget
-              src="adminalpha.near/widget/ComponentCard"
+              src="adminalpha.near/widget/ComponentSummary"
               props={{
                 src: `${state.widget}`,
               }}
@@ -141,7 +148,7 @@ return (
           </Item>
         </Items>
       </Header>
-      <div className="mt-5">
+      <div className="mt-3">
         <Widget src={state.widget} props={{ accountId, daoId }} />
       </div>
     </Wrapper>
