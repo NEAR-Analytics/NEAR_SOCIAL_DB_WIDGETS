@@ -4,6 +4,20 @@ if (!accountId) {
   return "No account ID";
 }
 
+const daoId = props.daoId ?? "multi.sputnik-dao.near";
+const groupId = props.groupId ?? "community";
+
+const policy = Near.view(daoId, "get_policy");
+const group = policy.roles
+  .filter((role) => role.name === groupId)
+  .map((role) => {
+    const group = role.kind.Group;
+
+    return group;
+  });
+
+const hashtags = [{ name: "dev", required: true }];
+
 const page = props.page ?? Social.getr(`${accountId}/dev/page`);
 
 if (page === null) {
@@ -43,7 +57,7 @@ return (
         </li>
       ))}
     </ul>
-    <div className="tab-learn" id="pills-tabLearn">
+    <div className="tab-content" id="pills-tabContent">
       <div
         className="tab-pane fade show active"
         id="pills-learn"
@@ -63,9 +77,7 @@ return (
         role="tabpanel"
         aria-labelledby="pills-build-tab"
       >
-        <div className="mx-auto">
-          <Widget src="hack.near/widget/DAO.Rewards" />
-        </div>
+        <Widget src="sking.near/widget/DAO.Rewards" props={{ daoId }} />
       </div>
       <div
         className="tab-pane fade"
@@ -74,7 +86,16 @@ return (
         aria-labelledby="pills-feed-tab"
       >
         <div className="mx-auto">
-          <Widget src="efiz.near/widget/Community.Posts" props={{ hashtag }} />
+          <Widget
+            src="efiz.near/widget/Community.Posts"
+            props={{
+              communityHashtags: hashtag,
+              communityDomain: "hack.near",
+              communityMembers: group[0],
+              exclusive: true,
+              allowPublicPosting: true,
+            }}
+          />
         </div>
       </div>
       <div
