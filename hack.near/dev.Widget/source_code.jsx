@@ -106,6 +106,22 @@ const Div = styled.div`
   }
 `;
 
+const addWidget = ({ widgetPath: widget, onHide }) => {
+  return (
+    <button
+      className="btn btn-primary"
+      onClick={() => {
+        State.update({
+          widget,
+        });
+        onHide();
+      }}
+    >
+      <i className="bi bi-plus-lg" /> Add
+    </button>
+  );
+};
+
 return (
   <div>
     <Wrapper>
@@ -135,6 +151,12 @@ return (
               <i class="bi bi-patch-plus" /> Submit Proposal
             </button>
           )}
+        </div>
+        <div className="mt-2">
+          <Widget
+            src="hack.near/widget/dev.Widget.Search"
+            props={{ extraButtons: addWidget }}
+          />
         </div>
         <hr />
         <Items>
