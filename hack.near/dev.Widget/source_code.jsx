@@ -47,7 +47,7 @@ const handleProposal = () => {
                   method_name: "set",
                   args: proposal_args,
                   deposit: "50000000000000000000000",
-                  gas: "280000000000000",
+                  gas: "200000000000000",
                 },
               ],
             },
