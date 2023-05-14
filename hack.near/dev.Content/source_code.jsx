@@ -1,4 +1,4 @@
-const accountId = props.accountId ?? "hack.near";
+const accountId = props.accountId ?? "build.sputnik-dao.near";
 const hashtag = props.hashtag ?? "builders";
 
 const content = context.accountId
