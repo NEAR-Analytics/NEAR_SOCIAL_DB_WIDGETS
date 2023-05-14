@@ -144,7 +144,7 @@ return (
           {context.accountId && (
             <button
               key="edit"
-              onClick={submit}
+              onClick={handleProposal}
               disabled={state.widget === defaultWidget}
               className="btn btn-success me-2 mt-1"
             >
