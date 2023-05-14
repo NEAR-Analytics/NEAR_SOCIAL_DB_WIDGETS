@@ -22,7 +22,7 @@ const Badge = styled.div`
 
 return (
   <Badge>
-    <div>
+    <a href="https://www.near.org">
       <Widget
         src="mob.near/widget/Image"
         props={{
@@ -33,7 +33,7 @@ return (
           alt: "Built on NEAR",
         }}
       />
-    </div>
+    </a>
     {authors && (
       <div className="attribution">
         <Widget
