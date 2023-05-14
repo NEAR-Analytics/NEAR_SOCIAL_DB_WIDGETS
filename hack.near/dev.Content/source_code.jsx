@@ -1,5 +1,8 @@
 const accountId = props.accountId ?? "build.sputnik-dao.near";
-const hashtag = props.hashtag ?? "builders";
+const hashtags = [
+  { name: "dev", required: true },
+  { name: "bos", required: true },
+];
 
 const content = context.accountId
   ? Social.get(`${context.accountId}/settings/dev/page.content`)
@@ -11,8 +14,16 @@ if (content === null) {
 
 const defaultWidgets = [
   {
-    src: "hack.near/widget/dev.Page.Tabs",
-    props: { hashtag, accountId },
+    src: "hack.near/widget/dev.Page.Header",
+    props: { hashtags, accountId },
+  },
+  {
+    src: "efiz.near/widget/Community.Posts",
+    props: {
+      communityHashtags: hashtags,
+      exclusive: false,
+      allowPublicPosting: true,
+    },
   },
 ];
 
@@ -55,8 +66,8 @@ return (
     {widgets.map(
       ({ src, requiresLogin }, i) =>
         (!requiresLogin || context.accountId) && (
-          <div key={i} className="text-bg-light rounded-4 p-3 mb-3">
-            <Widget src={src} props={{ hashtag, accountId }} />
+          <div key={i} className="text rounded-4 p-3 mb-3">
+            <Widget src={src} props={props} />
           </div>
         )
     )}
