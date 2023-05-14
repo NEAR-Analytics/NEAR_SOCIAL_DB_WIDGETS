@@ -244,7 +244,7 @@ return (
         {!hasRegistered && (
           <div className="row">
             <button
-              className="btn btn-success"
+              className="btn btn-primary"
               disabled={!state.agreeIsChecked}
               onClick={handleSignup}
             >
