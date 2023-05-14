@@ -16,7 +16,6 @@ if (guide === null) {
 
 State.init({
   guide: guide ?? defaultGuide,
-  builder: builder ?? defaultBuilder,
 });
 
 const resetGuide = () => {
@@ -90,16 +89,16 @@ return (
               src="miraclx.near/widget/Attribution"
               props={{
                 dep: true,
-                authors: [state.builder],
+                authors: [daoId],
               }}
             />
             {context.accountId && (
               <a
                 key="edit"
-                href={"#/hack.near/widget/dev.Guide.Editor"}
+                href={"#/edit/{hack.near/widget/dev.Guide.Editor"}
                 className="edit-link position-absolute top-0 end-0 link-secondary me-2 mt-1"
               >
-                <i class="bi bi-patch-plus" /> Suggest New Tutorial
+                <i class="bi bi-patch-plus" /> Make Changes
               </a>
             )}
           </div>
