@@ -1,13 +1,3 @@
-/*
-
-Here are a few styled components for you.
-
-These allow using CSS in your JavaScript!
-
-Learn more: https://styled-components.com
-
-*/
-
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
