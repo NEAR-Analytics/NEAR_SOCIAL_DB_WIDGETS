@@ -304,16 +304,27 @@ return (
             </button>
           </div>
         )}
-        <div className="row">
-          <div className="col">
-            <Widget src="hack.near/widget/DAO.Follow" props={{ daoId }} />
-          </div>
-          <div className="col">
-            <button className="btn btn-outline-primary" onClick={handleJoin}>
-              Join
-            </button>
-          </div>
-        </div>
+        {!accountId ? (
+          <Widget
+            src="hack.near/widget/DIG.Button"
+            props={{
+              href: "https://wallet.near.org/create",
+              label: "Create Account",
+              variant: "primary",
+              size: "large",
+            }}
+          />
+        ) : (
+          <Widget
+            src="hack.near/widget/DIG.Button"
+            props={{
+              href: "/sandbox",
+              label: "Get Started",
+              variant: "primary",
+              size: "large",
+            }}
+          />
+        )}
       </Flex>
       <Flex>
         <Text
