@@ -210,9 +210,8 @@ return (
           Developers
         </H1>
         <Text style={{ maxWidth: "670px" }}>
-          Learn to create anything on the blockchain operating system (bOS), and
-          help build a more open web that is greater than the sum of its
-          components.
+          Learn to create anything on the blockchain operating system, and help
+          build a more open web that is greater than the sum of its components.
         </Text>
         <Text size="23px" weight="600">
           Workshops + Hackathon
@@ -269,7 +268,7 @@ return (
             textAlign: "center",
           }}
         >
-          Made Possible by Open Collaborations
+          Made Possible by Collaboration
         </Text>
 
         <Widget src="hack.near/widget/dev.Badge" />
