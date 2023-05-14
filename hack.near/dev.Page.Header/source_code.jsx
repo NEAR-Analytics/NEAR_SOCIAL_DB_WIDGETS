@@ -6,7 +6,6 @@ if (!accountId) {
 }
 
 const defaultGuide = "hack.near/widget/DAO.Profile";
-const defaultBuilder = "hack.near";
 
 const guide = Social.get(`${accountId}/settings/dev/guide`);
 
@@ -71,7 +70,7 @@ return (
         <H1>Guide for Builders</H1>
 
         <Header>
-          <a className="btn btn-success" href={`#/edit/${state.guide}`}>
+          <a className="btn btn-success" href={state.guide}>
             Start Here
           </a>
           <a
@@ -95,7 +94,7 @@ return (
             {context.accountId && (
               <a
                 key="edit"
-                href={"#/edit/{hack.near/widget/dev.Guide.Editor"}
+                href={"#/{hack.near/widget/dev.Guide.Editor"}
                 className="edit-link position-absolute top-0 end-0 link-secondary me-2 mt-1"
               >
                 <i class="bi bi-patch-plus" /> Make Changes
