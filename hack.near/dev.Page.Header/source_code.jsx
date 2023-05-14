@@ -1,8 +1,6 @@
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 48px;
-  padding-bottom: 48px;
 `;
 
 const Header = styled.div`
@@ -49,7 +47,7 @@ const Text = styled.p`
 const Items = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 23px;
 `;
 
 const Item = styled.div``;
