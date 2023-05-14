@@ -5,7 +5,7 @@ return (
         src="hack.near/widget/ComponentSearch"
         props={{
           limit: 10,
-          term: state.term,
+          term: props.term ?? state.term,
           onChange: ({ result: components, term }) =>
             State.update({ components, term }),
         }}
