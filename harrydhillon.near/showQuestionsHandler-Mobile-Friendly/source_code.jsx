@@ -177,7 +177,6 @@ const renderPolls = (onlyUsersPolls) => {
                 borderRadius: "1rem",
               }}
             >
-              {console.log(polls)}
               <Widget
                 src={`${widgetOwner}/widget/displayQuestionHeader`}
                 props={{ allUsersQuestions: polls, accountId }}
