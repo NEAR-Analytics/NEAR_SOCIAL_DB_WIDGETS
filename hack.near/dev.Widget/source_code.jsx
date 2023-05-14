@@ -17,11 +17,6 @@ State.init({
   widget: widget ?? defaultWidget,
 });
 
-const resetWidget = () => {
-  state.widget = defaultWidget;
-  State.update();
-};
-
 const widget_args = JSON.stringify({
   data: {
     [state.daoId]: {
