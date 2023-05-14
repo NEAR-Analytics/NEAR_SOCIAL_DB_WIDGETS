@@ -12,7 +12,7 @@ if (widget === null) {
 }
 
 State.init({
-  widget: widget ?? "hack.near/widget/DAO.Profile",
+  widget,
 });
 
 const widget_args = JSON.stringify({
