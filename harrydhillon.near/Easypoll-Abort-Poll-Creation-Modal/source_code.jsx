@@ -115,14 +115,14 @@ return (
             onClick={() => {
               if (props.state.abortThroughAllExistingPolls) {
                 props.stateUpdate({
-                  displaying: tabs.ALL_EXISTING_POLLS.id,
+                  displaying: props.tabs.GET_VERIGIED_AS_A_HUMAN.id,
                   abortThroughAllExistingPolls: false,
                   hoveringElement: "",
                   showAbortPollCreation: false,
                 });
               } else {
                 props.stateUpdate({
-                  displaying: tabs.MY_POLLS.id,
+                  displaying: props.tabs.MY_POLLS.id,
                   hoveringElement: "",
                   showAbortPollCreation: false,
                 });
