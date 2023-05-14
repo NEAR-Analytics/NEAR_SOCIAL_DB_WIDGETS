@@ -5,7 +5,7 @@ const hashtags = [
 ];
 
 const content = context.accountId
-  ? Social.get(`${context.accountId}/settings/dev/page.content`)
+  ? Social.get(`${context.accountId}/settings/dev/content`)
   : undefined;
 
 if (content === null) {
@@ -59,7 +59,7 @@ return (
           href={"#/hack.near/widget/dev.Page.Editor"}
           className="edit-link position-absolute top-0 end-0 link-secondary me-2 mt-1"
         >
-          <i class="bi bi-pencil" /> Edit Page
+          <i class="bi bi-pencil" /> Edit Content
         </a>
       )}
     </div>
