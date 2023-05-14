@@ -7,7 +7,7 @@ if (!accountId) {
 
 const defaultGuide = "hack.near/widget/DAO.Profile";
 
-const guide = Social.get(`${accountId}/settings/dev/guide`);
+const guide = Social.get(`${daoId}/settings/dev/guide`);
 
 if (guide === null) {
   return "Loading...";
