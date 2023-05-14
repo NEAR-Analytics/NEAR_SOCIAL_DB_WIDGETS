@@ -142,7 +142,7 @@ return (
             <button
               key="edit"
               onClick={handleProposal}
-              disabled={state.widget === defaultWidget}
+              disabled={state.widget === widget}
               className="btn btn-success me-2 mt-1"
             >
               <i class="bi bi-patch-plus" /> Submit Proposal
