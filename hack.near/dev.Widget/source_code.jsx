@@ -5,15 +5,14 @@ if (!accountId) {
   return "Please connect your NEAR wallet :)";
 }
 
-const widget =
-  Social.get(`${daoId}/settings/dao/widget`) ?? "hack.near/widget/DAO.Profile";
+const widget = Social.get(`${daoId}/settings/dao/widget`);
 
 if (widget === null) {
   return "Loading...";
 }
 
 State.init({
-  widget,
+  widget: widget ?? "hack.near/widget/DAO.Profile",
 });
 
 const widget_args = JSON.stringify({
