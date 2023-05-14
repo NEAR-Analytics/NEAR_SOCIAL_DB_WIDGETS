@@ -87,7 +87,7 @@ return (
         <Button onClick={handleBack}>back</Button>
       )}
       {isRoot ? (
-        <Controller>{label}</Controller>
+        <div style={props.styles?.subject}>{label}</div>
       ) : (
         <Button onClick={handleInto}>{label}</Button>
       )}
