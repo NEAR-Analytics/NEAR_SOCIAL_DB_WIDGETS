@@ -5,16 +5,15 @@ if (!accountId) {
   return "Please connect your NEAR wallet :)";
 }
 
-const defaultWidget = "hack.near/widget/DAO.Profile";
-
-const widget = Social.get(`${daoId}/settings/dao/widget`);
+const widget =
+  Social.get(`${daoId}/settings/dao/widget`) ?? "hack.near/widget/DAO.Profile";
 
 if (widget === null) {
   return "Loading...";
 }
 
 State.init({
-  widget: widget ?? defaultWidget,
+  widget: widget,
 });
 
 const widget_args = JSON.stringify({
@@ -101,16 +100,14 @@ const Div = styled.div`
   }
 `;
 
-const addWidget = ({ widget, onHide }) => {
+const addWidget = ({ widgetPath: widget, onHide }) => {
   return (
     <button
       className="btn btn-primary"
       onClick={() => {
         State.update({
           widget,
-          search,
         });
-        resetSearch;
         onHide();
       }}
     >
@@ -135,7 +132,11 @@ return (
           <p className="mb-1">
             <b>INPUT NEW SOURCE PATH:</b>
           </p>
-          <input type="text" value={state.widget} placeholder={defaultWidget} />
+          <input
+            type="text"
+            value={state.widget}
+            placeholder="account.near/widget/Example"
+          />
         </div>
         <div className="mb-1">
           {context.accountId && (
