@@ -13,7 +13,7 @@ if (widget === null) {
 }
 
 State.init({
-  widget: widget,
+  widget,
 });
 
 const widget_args = JSON.stringify({
