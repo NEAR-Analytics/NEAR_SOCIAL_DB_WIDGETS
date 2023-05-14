@@ -6,33 +6,6 @@ State.init({
   email: "",
 });
 
-const ipfsImages = {
-  logos: {
-    pagoda: "bafkreicbpshopxasqhivaqugynulw6oan4lnypsphvwez3f5qidpa374ui",
-    banyan: "Qmb1dfewMhs9VyBbwvQJFnn2BxQbRWnfHS7Cugqc96TTcD",
-    proximity: "bafkreibi3xrwxlf5betvgmetaruwvpllc2ila4bg5ehfszoqow7f6edvom",
-  },
-};
-
-const web3Teams = [
-  {
-    url: "https://www.pagoda.co",
-    name: "Pagoda",
-    ipfsImage: ipfsImages.logos.pagoda,
-  },
-  {
-    url: "https://www.banyan.gg",
-    name: "Banyan",
-    ipfsImage: ipfsImages.logos.banyan,
-  },
-];
-
-function returnIpfsImage(cfid) {
-  return {
-    ipfs_cid: cfid,
-  };
-}
-
 const handleSignup = () => {
   if (state.email !== "") {
     asyncFetch("https://monkfish-app-ginhc.ondigitalocean.app/graphql", {
@@ -213,37 +186,6 @@ const Container = styled.div`
   padding: var(--section-gap) 24px;
 `;
 
-const LogoLinks = styled.div`
-  display: flex;
-  gap: 72px;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  width: 100%;
-
-  a {
-    display: block;
-    height: 24px;
-    color: var(--sand10);
-
-    img {
-      display: block;
-      height: 100%;
-      margin: 0 auto;
-    }
-  }
-
-  @media (max-width: 550px) {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
-
-    a {
-      height: 20px;
-    }
-  }
-`;
-
 const InputContainer = styled.div`
   width: 320px;
 `;
@@ -327,24 +269,10 @@ return (
             textAlign: "center",
           }}
         >
-          Made Possible by NEAR Builders
+          Made Possible by Open Collaborations
         </Text>
 
-        <LogoLinks alignItems="center">
-          {web3Teams.map((team) => {
-            return (
-              <a href={team.url} target="_blank" title={team.name}>
-                <Widget
-                  src="mob.near/widget/Image"
-                  props={{
-                    image: returnIpfsImage(team.ipfsImage),
-                    alt: team.name,
-                  }}
-                />
-              </a>
-            );
-          })}
-        </LogoLinks>
+        <Widget src="hack.near/widget/dev.Badge" />
       </Flex>
     </Container>
   </Wrapper>
