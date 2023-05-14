@@ -38,7 +38,9 @@ State.init({
   hasRegistered: false,
 });
 
-const handleSignup = () => {
+const register = State.update({ hasRegistered: true });
+
+const handleSignup = (register) => {
   if (state.email !== "") {
     asyncFetch("https://monkfish-app-ginhc.ondigitalocean.app/graphql", {
       method: "POST",
@@ -53,8 +55,8 @@ const handleSignup = () => {
           email: state.email,
         },
       }),
+      register,
     });
-    State.update({ hasRegistered: true });
   }
 };
 
