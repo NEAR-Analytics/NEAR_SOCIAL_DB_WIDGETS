@@ -84,7 +84,7 @@ return (
     </Header>
 
     <Items>
-      <h3>Create Your First App</h3>
+      <h3>Create bOS Apps</h3>
       <Item>
         <Widget
           src="adminalpha.near/widget/ComponentCard"
