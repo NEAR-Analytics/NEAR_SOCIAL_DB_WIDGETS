@@ -1,3 +1,7 @@
+State.init({
+  term: props.term ?? "",
+});
+
 return (
   <div>
     <div className="mb-2">
