@@ -17,20 +17,20 @@ return (
                 <p
                   ariaCurrent="page"
                   onMouseEnter={() => {
-                    props.State.update({ hoveringElement: tab.id });
+                    props.stateUpdate({ hoveringElement: tab.id });
                   }}
                   onMouseLeave={() => {
-                    props.State.update({ hoveringElement: "" });
+                    props.stateUpdate({ hoveringElement: "" });
                   }}
                   onClick={() => {
                     props.state.displaying != tabs.NEW_POLL.id
-                      ? props.State.update({ displaying: tab.id })
+                      ? props.stateUpdate({ displaying: tab.id })
                       : tab.id == props.tabs.ALL_EXISTING_POLLS.id
-                      ? props.State.update({
+                      ? props.stateUpdate({
                           showAbortPollCreation: true,
                           abortThroughAllExistingPolls: true,
                         })
-                      : props.State.update({ showAbortPollCreation: true });
+                      : props.stateUpdate({ showAbortPollCreation: true });
                   }}
                   style={{
                     fontWeight: "500",
@@ -66,13 +66,13 @@ return (
       <div className="d-flex">
         <button
           onMouseEnter={() => {
-            props.State.update({ hoveringElement: props.tabs.NEW_POLL.id });
+            props.stateUpdate({ hoveringElement: props.tabs.NEW_POLL.id });
           }}
           onMouseLeave={() => {
-            props.State.update({ hoveringElement: "" });
+            props.stateUpdate({ hoveringElement: "" });
           }}
           onClick={() => {
-            props.State.update({ displaying: props.tabs.NEW_POLL.id });
+            props.stateUpdate({ displaying: props.tabs.NEW_POLL.id });
           }}
           style={
             props.state.hoveringElement == props.tabs.NEW_POLL.id ||
@@ -115,15 +115,15 @@ return (
       <div className="d-flex">
         <button
           onMouseEnter={() => {
-            props.State.update({
+            props.stateUpdate({
               hoveringElement: props.tabs.GET_VERIGIED_AS_A_HUMAN.id,
             });
           }}
           onMouseLeave={() => {
-            props.State.update({ hoveringElement: "" });
+            props.stateUpdate({ hoveringElement: "" });
           }}
           onClick={() => {
-            props.State.update({
+            props.stateUpdate({
               displaying: props.tabs.GET_VERIGIED_AS_A_HUMAN.id,
             });
           }}
