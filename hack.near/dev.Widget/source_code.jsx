@@ -13,6 +13,7 @@ if (widget === null) {
 
 State.init({
   widget: widget ?? "hack.near/widget/DAO.Profile",
+  term: "",
 });
 
 const widget_args = JSON.stringify({
@@ -106,6 +107,7 @@ const addWidget = ({ widgetPath: widget, onHide }) => {
       onClick={() => {
         State.update({
           widget,
+          term: "",
         });
         onHide();
       }}
@@ -152,7 +154,7 @@ return (
         <div className="mt-2">
           <Widget
             src="hack.near/widget/dev.Widget.Search"
-            props={{ extraButtons: addWidget }}
+            props={{ extraButtons: addWidget, term }}
           />
         </div>
         <hr />
