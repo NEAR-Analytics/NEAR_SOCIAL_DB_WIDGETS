@@ -108,7 +108,9 @@ const addWidget = ({ widgetPath: widget, onHide }) => {
       onClick={() => {
         State.update({
           widget,
+          search,
         });
+        resetSearch;
         onHide();
       }}
     >
