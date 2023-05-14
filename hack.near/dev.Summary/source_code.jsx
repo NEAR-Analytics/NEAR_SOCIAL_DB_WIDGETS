@@ -30,6 +30,12 @@ return (
       </a>
       <a
         className="btn btn-outline-secondary border-0"
+        href="https://github.com/NEARbuilders"
+      >
+        <i className="bi bi-github"></i>
+      </a>
+      <a
+        className="btn btn-outline-secondary border-0"
         href="https://twitter.com/NEARHACKS"
       >
         <i className="bi bi-twitter"></i>
