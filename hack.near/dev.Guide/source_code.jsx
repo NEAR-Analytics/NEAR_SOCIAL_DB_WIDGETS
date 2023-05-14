@@ -5,20 +5,20 @@ if (!accountId) {
   return "Please connect your NEAR wallet :)";
 }
 
-const defaultGuide = "hack.near/widget/DAO.Profile";
+const defaultProject = "hack.near/widget/DAO.Profile";
 
-const guide = Social.get(`${accountId}/settings/dev/guide`);
+const project = Social.get(`${accountId}/settings/dev/project`);
 
-if (guide === null) {
+if (project === null) {
   return "Loading...";
 }
 
 State.init({
-  guide: guide ?? defaultGuide,
+  project: project ?? defaultProject,
 });
 
-const resetGuide = () => {
-  state.guide = defaultGuide;
+const resetProject = () => {
+  state.project = defaultProject;
   State.update();
 };
 
@@ -39,6 +39,33 @@ return (
     <Header>
       <Widget src="hack.near/widget/dev.Page.Header" />
     </Header>
-    <Widget src={state.guide} props={{ accountId }} />
+    <div>
+      <h4>Edit Your Portfolio</h4>
+      <input type="text" value={state.project} placeholder={defaultProject} />
+      <CommitButton
+        className="btn btn-outline-success ms-2 mt-3"
+        disabled={state.project === defaultProject}
+        data={{ settings: { dev: { project: state.project } } }}
+      >
+        Save
+      </CommitButton>
+      {state.project !== defaultProject && (
+        <button
+          className="btn btn-outline-secondary ms-2 mt-3"
+          onClick={resetProject}
+        >
+          Reset
+        </button>
+      )}
+      {state.project !== defaultProject && (
+        <button
+          className="btn btn-outline-primary ms-2 mt-3"
+          onClick={handleProposal}
+        >
+          Propose to Be Featured
+        </button>
+      )}
+    </div>
+    <Widget src={state.project} props={{ accountId, daoId }} />
   </Wrapper>
 );
