@@ -1,12 +1,8 @@
-State.init({
-  term: props.term ?? "",
-});
-
 return (
   <div>
     <div className="mb-2">
       <Widget
-        src="mob.near/widget/ComponentSearch"
+        src="hack.near/widget/ComponentSearch"
         props={{
           limit: 10,
           term: state.term,
