@@ -166,6 +166,11 @@ const CheckButton = styled.button`
   --bs-btn-hover-color: ${state.agreeIsChecked ? "#26A65A" : "var(--bs-green)"};
 `;
 
+const isValidEmail = (value) => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(value);
+};
+
 return (
   <Wrapper>
     <Container>
@@ -214,7 +219,7 @@ return (
             />
           </InputContainer>
         )}
-        {!hasRegistered && (
+        {isValidEmail(state.email) && (
           <CheckWrapper>
             <CheckButton
               onClick={() => {
