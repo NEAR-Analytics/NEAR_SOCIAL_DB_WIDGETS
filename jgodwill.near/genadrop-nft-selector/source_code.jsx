@@ -45,6 +45,7 @@ const NFTImageButton = styled.button`
   object-fit: cover;
   padding:unset;
   overflow:hidden;
+  box-shadow: 4px 4px 20px 6px rgba(0,0,0,.2);
   margin: 0 auto;
   &:hover{
     opacity:1;
