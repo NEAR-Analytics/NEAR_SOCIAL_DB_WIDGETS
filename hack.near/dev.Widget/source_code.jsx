@@ -120,18 +120,16 @@ return (
         />
         <b className="mt-2">INPUT NEW SOURCE PATH:</b>
         <input type="text" value={state.widget} placeholder={defaultWidget} />
-        <div>
-          {context.accountId && (
-            <button
-              key="edit"
-              onClick={submit}
-              disabled={state.widget === defaultWidget}
-              className="btn btn-success edit-link position-absolute top-0 end-0 me-2 mt-1"
-            >
-              <i class="bi bi-patch-plus" /> Submit Proposal
-            </button>
-          )}
-        </div>
+        {context.accountId && (
+          <button
+            key="edit"
+            onClick={submit}
+            disabled={state.widget === defaultWidget}
+            className="btn btn-success edit-link position-absolute top-0 end-0 me-2 mt-1"
+          >
+            <i class="bi bi-patch-plus" /> Submit Proposal
+          </button>
+        )}
         <Items>
           <Item>
             <Widget
