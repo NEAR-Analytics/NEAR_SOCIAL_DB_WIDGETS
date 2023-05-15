@@ -306,6 +306,7 @@ return (
         state,
         stateUpdate: (data) => State.update(data),
         sliceString,
+        profile,
         isUpcoming,
         isActive,
         widgetOwner,
