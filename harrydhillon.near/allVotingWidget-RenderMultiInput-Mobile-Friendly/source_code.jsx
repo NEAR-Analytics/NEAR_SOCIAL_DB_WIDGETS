@@ -32,7 +32,7 @@ const renderMultipleChoiceInput = (
             className="form-check-input"
             id={`${questionNumber}-${optionNumber}`}
             name={`${questionNumber}-${questionType}`}
-            key={`${questionNumber}-${optionNumber}-${state.vote}`}
+            key={`${questionNumber}-${optionNumber}-${props.state.vote}`}
             style={props.getInputStyles(
               questionType,
               questionNumber,
