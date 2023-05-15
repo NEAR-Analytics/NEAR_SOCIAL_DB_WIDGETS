@@ -1,3 +1,16 @@
+const ResponsiveText = styled.span`
+  @media screen and (max-width: 1024px)  {
+      font-size: 11px;
+  }
+`;
+const TopMarginPercentage = styled.span`
+  margin: 0.5rem 0px 0.4rem 0.3rem;
+  @media screen and (max-width: 1024px)  {
+      margin: 0.6rem 0px 0.4rem 0.3rem;
+      font-size: 11px;
+  }
+`;
+
 return (
   <div>
     <div className="d-flex align-content-center">
