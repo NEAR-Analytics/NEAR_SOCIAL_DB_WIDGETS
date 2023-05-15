@@ -55,17 +55,17 @@ const descriptionKey = `${widgetPath}-description`.replaceAll(/[._\/-]/g, "--");
 
 const item = {
   type: "dev",
-  path: `${accountId}/widget/starred`,
+  path: `${accountId}/widget`,
   blockHeight,
 };
 
 return (
   <div
     className="card"
-    style={{ borderRadius: "2em", maxWidth: "39em", align: "center" }}
+    style={{ borderRadius: "1em", maxWidth: "39em", align: "center" }}
   >
     <div className="row py-3 g-1">
-      <div className="col-3 m-auto text-center" style={{ maxWidth: "12em" }}>
+      <div className="m-auto text-center" style={{ maxWidth: "12em" }}>
         <div
           className="d-inline-block"
           style={{ width: "10em", height: "10em" }}
@@ -75,7 +75,7 @@ return (
             props={{
               image,
               className: "w-100 h-100",
-              style: { objectFit: "cover", borderRadius: "2em" },
+              style: { objectFit: "cover", borderRadius: "1em" },
               thumbnail: false,
               fallbackUrl:
                 "https://ipfs.near.social/ipfs/bafkreido7gsk4dlb63z3s5yirkkgrjs2nmyar5bxyet66chakt2h5jve6e",
