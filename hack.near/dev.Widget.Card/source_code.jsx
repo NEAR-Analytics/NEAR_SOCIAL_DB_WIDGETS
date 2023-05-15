@@ -59,6 +59,8 @@ const item = {
   blockHeight,
 };
 
+const widget = { widgetPath };
+
 return (
   <div
     className="card"
@@ -145,6 +147,10 @@ return (
         <Widget
           src="hack.near/widget/StarButton"
           props={{ notifyAccountId, item }}
+        />
+        <Widget
+          src="hack.near/widget/dev.Widget.Vouch"
+          props={{ widget, item }}
         />
       </div>
     </div>
