@@ -3,6 +3,13 @@ const ResponsiveText = styled.span`
       font-size: 11px;
   }
 `;
+const ResponsiveTextOption = styled.span`
+  width:100px;
+  whitespace: pre-wrap;
+  @media screen and (max-width: 1024px)  {
+      font-size: 11px;
+  }
+`;
 const TopMarginPercentage = styled.span`
   margin: 0.5rem 0px 0.4rem 0.3rem;
   @media screen and (max-width: 1024px)  {
@@ -50,7 +57,7 @@ return (
               borderRadius: "4px",
             }}
           >
-            <ResponsiveText
+            <ResponsiveTextOption
               style={{
                 overflow: "visible",
                 fontWeight: "500",
@@ -58,7 +65,7 @@ return (
               }}
             >
               {props.option} •
-            </ResponsiveText>
+            </ResponsiveTextOption>
             <ResponsiveText
               className="text-secondary"
               style={{
