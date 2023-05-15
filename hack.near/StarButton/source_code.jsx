@@ -40,7 +40,7 @@ const StarButton = styled.button`
     color: red;
     background: pink;
   }
-  .bi-heart-fill {
+  .bi-star-fill {
     color: red;
   }
 `;
@@ -95,9 +95,7 @@ return (
           aria-hidden="true"
         />
       ) : (
-        <i
-          className={`bi fs-4 pt-1 ${starred ? "bi-heart-fill" : "bi-heart"}`}
-        />
+        <i className={`bi fs-4 pt-1 ${starred ? "bi-star-fill" : "bi-star"}`} />
       )}
     </StarButton>
     <Widget src="hack.near/widget/StarButton.Faces" props={{ starsByUsers }} />
