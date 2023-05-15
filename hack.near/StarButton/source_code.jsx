@@ -57,6 +57,7 @@ const StarButton = styled.button`
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  border-radius: 23%;
   width: 2.5em;
   height: 2.5em;
 `;
@@ -67,7 +68,7 @@ return (
   <div className="d-inline-flex align-items-center">
     <StarButton
       title={title}
-      className=" btn btn-outline-dark me-1"
+      className=" btn btn-outline-warning"
       disabled={!context.accountId}
       onClick={starClick}
     >
