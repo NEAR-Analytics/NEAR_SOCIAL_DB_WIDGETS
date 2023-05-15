@@ -45,13 +45,10 @@ return (
               height: "100%",
               padding: "0.01em 22px 0.01em 11px",
               display: "block",
-              width: `${props.calculatePercentageOfOption(
-                props.countVotes(props.questionNumber, props.questionType),
-                props.optionNumber
-              )}%`,
+              width: "50%",
               textAlign: "center",
               overflow: "visible",
-              whiteSpace: "initial",
+              whiteSpace: "pre-wrap",
               textAlign: "left",
               backgroundColor: `${props.getBgColor(props.optionNumber, true)}`,
               borderRadius: "4px",
