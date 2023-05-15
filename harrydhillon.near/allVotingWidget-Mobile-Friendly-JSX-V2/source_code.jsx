@@ -11,7 +11,7 @@ const renderTextInput = (questionNumber) => {
             value={props.state.vote[questionNumber]}
             onChange={(e) => {
               let newVote = props.state.vote;
-              props.newVote[questionNumber] = e.target.value;
+              newVote[questionNumber] = e.target.value;
 
               props.stateUpdate({ vote: newVote });
             }}
