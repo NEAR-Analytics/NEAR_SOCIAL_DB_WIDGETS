@@ -44,7 +44,7 @@ return (
               )}%`,
               textAlign: "center",
               overflow: "visible",
-              whiteSpace: "pre-line",
+              whiteSpace: "nowrap",
               textAlign: "left",
               backgroundColor: `${props.getBgColor(props.optionNumber, true)}`,
               borderRadius: "4px",
