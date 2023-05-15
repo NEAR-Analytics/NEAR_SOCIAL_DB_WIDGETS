@@ -303,7 +303,7 @@ return (
             src={`harrydhillon.near/widget/allVotingWidget-Mobile-Friendly`}
             props={{
               poll: props.state.poll,
-              isPreview,
+              isPreview: props.isPreview,
             }}
           />
         }
