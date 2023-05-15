@@ -58,8 +58,8 @@ const handleJoin = () => {
 };
 
 const Wrapper = styled.div`
-  --section-gap: 69px;
-  padding-top: 69px;
+  --section-gap: 42px;
+  padding-top: 42px;
 
   @media (max-width: 1160px) {
     .line-rounded-corners {
@@ -125,7 +125,7 @@ const Text = styled.p`
 
 const Flex = styled.div`
   display: flex;
-  gap: 23px;
+  gap: 15px;
   align-items: center;
   flex-direction: column;
   flex-wrap: "nowrap";
