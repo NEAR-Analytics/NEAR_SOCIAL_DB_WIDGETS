@@ -55,7 +55,7 @@ const descriptionKey = `${widgetPath}-description`.replaceAll(/[._\/-]/g, "--");
 
 const item = {
   type: "dev",
-  path: `${accountId}/widget`,
+  path: widgetPath,
   blockHeight,
 };
 
