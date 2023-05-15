@@ -316,8 +316,8 @@ return (
         shouldDisplayViewAll: true,
         renderQuestionsByThisCreator,
         isPreview,
+        renderModal,
       }}
     />
-    {state.showQuestionsByThisUser && renderModal()}
   </>
 );
