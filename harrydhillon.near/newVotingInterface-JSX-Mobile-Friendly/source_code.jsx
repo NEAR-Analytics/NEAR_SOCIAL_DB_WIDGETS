@@ -31,7 +31,7 @@ return (
             <Widget
               src="mob.near/widget/ProfileImage"
               props={{
-                profile,
+                profile: props.profile,
                 question: props.state.poll.accountId,
                 className: "float-start d-inline-block me-2",
                 style: {
