@@ -73,7 +73,6 @@ return (
       onClick={starClick}
     >
       <i className={`bi fs-6 p-1 ${starred ? "bi-star-fill" : "bi-star"}`} />
-      {`${starred ? "Starred" : "Star"}`}
     </StarButton>
   </div>
 );
