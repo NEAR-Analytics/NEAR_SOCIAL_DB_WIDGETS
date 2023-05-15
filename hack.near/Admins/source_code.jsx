@@ -168,7 +168,7 @@ return (
           </button>
         )}
 
-        {accountId && !isHuman && (
+        {!accountId && !isHuman && (
           <div className="row">
             <div className="col-6 mt-5">
               <Widget
