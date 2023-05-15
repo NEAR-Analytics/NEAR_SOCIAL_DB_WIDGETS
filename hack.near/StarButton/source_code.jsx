@@ -65,7 +65,7 @@ const title = starred ? "Starred" : "Star";
 
 return (
   <div className="d-inline-flex align-items-center">
-    <button
+    <CommitButton
       disabled={state.loading || dataLoading || !context.accountId}
       className="btn me-1"
       title={title}
@@ -80,7 +80,7 @@ return (
       ) : (
         <i className={`bi fs-4 pt-1 ${starred ? "bi-star-fill" : "bi-star"}`} />
       )}
-    </button>
+    </CommitButton>
     <Widget src="hack.near/widget/StarButton.Faces" props={{ starsByUsers }} />
   </div>
 );
