@@ -32,7 +32,7 @@ const starClick = () => {
       star: JSON.stringify({
         key: item,
         value: {
-          type: starred ? false : true,
+          type: starred ? "unstar" : "star",
         },
       }),
     },
@@ -57,7 +57,7 @@ const title = starred ? "Starred" : "Star";
 return (
   <div className="d-inline-flex align-items-center">
     <CommitButton title={title} onCommit={starClick}>
-      <i className={`bi fs-6 pt-1 ${starred ? "bi-star-fill" : "bi-star"}`} />
+      <i className={`bi fs-6 p-1 ${starred ? "bi-star-fill" : "bi-star"}`} />
       {`${starred ? "Starred" : "Star"}`}
     </CommitButton>
   </div>
