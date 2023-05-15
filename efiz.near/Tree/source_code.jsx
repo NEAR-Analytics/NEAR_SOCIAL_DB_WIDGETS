@@ -110,7 +110,15 @@ return (
       setHistory: setHistory,
       setType: setType,
       isRoot: true,
-      styles: JSON.parse(styles),
+      styles: {
+        subject: {
+          fontFamily: "Times New Roman",
+          fontSize: "4em",
+          lineHeight: "1.25",
+          fontWeight: 400,
+          cursor: "pointer",
+        },
+      },
     }}
   />
 );
