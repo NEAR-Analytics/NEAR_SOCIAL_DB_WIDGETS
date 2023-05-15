@@ -136,13 +136,11 @@ return (
             <i className="bi bi-pencil-square me-1"></i>
             {accountId === context.accountId ? "Edit" : "Fork"}
           </a>
+          <Widget
+            src="hack.near/widget/StarButton"
+            props={{ notifyAccountId, item }}
+          />
         </div>
-      </div>
-      <div className="col-2">
-        <Widget
-          src="hack.near/widget/StarButton"
-          props={{ notifyAccountId, item }}
-        />
       </div>
     </div>
 
