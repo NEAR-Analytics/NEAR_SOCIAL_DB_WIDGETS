@@ -30,6 +30,7 @@ const authorsWhiteList = [
   "joep.near",
   "sarahkornfeld.near",
   "yuensid.near",
+  "shubham007.near",
 ];
 const doesUserCanEditArticle = () => {
   const isAccountIdInWhiteList = authorsWhiteList.some(
