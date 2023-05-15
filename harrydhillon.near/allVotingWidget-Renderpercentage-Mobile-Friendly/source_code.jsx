@@ -64,17 +64,17 @@ return (
                 lineHeight: "2.5rem",
               }}
             >
-              {props.option.length > 20 ? (
+              {props.option.length > 15 ? (
                 <OverlayTrigger
                   key={placement}
                   placement={placement}
                   overlay={
                     <Tooltip id={`tooltip-${placement}`}>
-                      {props.option.length}
+                      {props.option}
                     </Tooltip>
                   }
                 >
-                  <span>{props.option.slice(0, 20)}...</span>
+                  <span>{props.option.slice(0, 15)}...</span>
                 </OverlayTrigger>
               ) : (
                 props.option.length
