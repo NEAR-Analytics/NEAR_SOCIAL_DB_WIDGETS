@@ -57,7 +57,6 @@ const StarButton = styled.button`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
   width: 2.5em;
   height: 2.5em;
 `;
