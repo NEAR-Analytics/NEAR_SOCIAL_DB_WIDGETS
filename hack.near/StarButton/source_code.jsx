@@ -61,7 +61,7 @@ const StarButton = styled.button`
   width: 2.5em;
   height: 2.5em;
   &:hover {
-    bi-star-fill
+    i: bi-star-fill
   }
 `;
 
