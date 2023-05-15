@@ -54,7 +54,7 @@ const linktreeObjects = linktree.map((o, i) => {
 const descriptionKey = `${widgetPath}-description`.replaceAll(/[._\/-]/g, "--");
 
 const item = {
-  type: "social",
+  type: "dev",
   path: `${accountId}/widget/starred`,
   blockHeight,
 };
@@ -138,7 +138,7 @@ return (
           </a>
         </div>
       </div>
-      <div className="col-sm-2">
+      <div className="col-2">
         <Widget
           src="hack.near/widget/StarButton"
           props={{ notifyAccountId, item }}
