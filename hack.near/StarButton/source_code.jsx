@@ -60,6 +60,9 @@ const StarButton = styled.button`
   border-radius: 50%;
   width: 2.5em;
   height: 2.5em;
+  &:hover {
+    bi-star-fill
+  }
 `;
 
 const title = starred ? "Starred" : "Star";
