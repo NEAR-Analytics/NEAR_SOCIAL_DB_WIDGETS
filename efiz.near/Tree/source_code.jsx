@@ -1,3 +1,6 @@
+/**
+ *
+ */
 const rootPath = props.rootPath || context.accountId || "evrything.near";
 const rootType = props.rootType || "account";
 const style = props.style;
@@ -107,7 +110,15 @@ return (
       setHistory: setHistory,
       setType: setType,
       isRoot: true,
-      style: style,
+      styles: {
+        subject: {
+          fontFamily: "Times New Roman",
+          fontSize: "4em",
+          lineHeight: "1.25",
+          fontWeight: 400,
+          cursor: "pointer",
+        },
+      },
     }}
   />
 );
