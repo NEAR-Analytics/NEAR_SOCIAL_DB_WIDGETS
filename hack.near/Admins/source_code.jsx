@@ -1,6 +1,6 @@
 const accountId = props.accountId ?? context.accountId;
 const daoId = props.daoId ?? "rc-dao.sputnik-dao.near";
-const role = props.role ?? "council";
+const role = props.role ?? "admin";
 
 const sbtData = Near.view("registry.i-am-human.near", "sbt_supply_by_owner", {
   account: accountId,
