@@ -1,9 +1,9 @@
 /**
- *
+ * Takes in a rootPath and rootType
  */
 const rootPath = props.rootPath || context.accountId || "evrything.near";
 const rootType = props.rootType || "account";
-const styles = props.styles;
+const rootNode = props.rootNode || {};
 
 State.init({
   path: rootPath,
@@ -32,70 +32,55 @@ function setRoot(newPath, newType) {
 
 // WHEN A NEW ROOT IS SET //
 // GET DATA AT THIS PATH //
-function getNode(path) {
-  // SPLIT THE PATH
+function getNode(path, type) {
   const parts = path.split("/");
   let value = {};
 
-  if (parts.length > 2) {
-    // EVERYTHING ELSE //
-    const standard = parts[1];
-    // GRAPH //
-    if (standard === "graph") {
-      if (parts.length > 3) {
-        // FOLLOW
-        if (parts[2] === "follow") {
-          // BACK TO ACCOUNT
-          setRoot(parts[3], "account");
-        }
-      } else {
-        parts.push("**");
-        value = Social.get(parts.join("/"), "final");
-      }
-      // PROFILE //
-    } else if (standard === "profile") {
-      value = Social.get(parts.join("/"), "final");
-      // POST //
-    } else if (standard === "post") {
-      value = path;
-      // NAMETAG //
-    } else if (standard === "nametag") {
-      if (parts.length > 2) {
-        if (parts.length === 3) {
-          // BACK TO ACCOUNT
-          setRoot(parts[3], "account");
-        } else if (parts.length === 4) {
-          // ALL TAGS BY ACCOUNT
-          value = Social.keys(`${parts[0]}/profile/tags/*`, "final");
-          //   value = JSON.stringify
-        } else {
-          // THIS TAG
-          value = parts[5];
-        }
-      }
+  // ACCOUNT //
+  if (type === "account") {
+    if (parts.length > 1) {
+      // GRAPH // FOLLOW // BACK TO ACCOUNT : WORKING
+      setRoot(parts[3], "account");
     } else {
-      value = Social.get(parts.join("/"), "final");
-      value = JSON.parse(value);
-    }
-    return value;
-  } else {
-    if (state.type === "account") {
-      // ACCOUNT LEVEL //
       if (parts[0] !== "*") {
         parts.push("**");
       }
       value = Social.get(parts.join("/"), "final");
       return value;
-    } else if (parts.length === 2) {
-      // STANDARD LEVEL //
-      parts.push("**");
-      value = Social.get(parts.join("/"), "final");
-      return value;
     }
+    // THING //
+  } else if (type === "thing") {
+    // path: "everything"
+    // type: "thing"
+    return rootNode;
+    // PROFILE //
+  } else if (type === "profile") {
+    value = Social.get(parts.join("/"), "final");
+    // POST : WIP //
+  } else if (type === "post") {
+    value = path;
+    // NAMETAG : WIP //
+  } else if (type === "nametag") {
+    if (parts.length > 2) {
+      if (parts.length === 3) {
+        // BACK TO ACCOUNT
+        setRoot(parts[3], "account");
+      } else if (parts.length === 4) {
+        // ALL TAGS BY ACCOUNT
+        value = Social.keys(`${parts[0]}/profile/tags/*`, "final");
+      } else {
+        // THIS TAG
+        value = parts[5];
+      }
+    }
+  } else {
+    parts.push("**");
+    value = Social.get(parts.join("/"), "final");
+    return value;
   }
 }
 
-const node = getNode(state.path);
+const node = getNode(state.path, state.type);
 
 return (
   <Widget
