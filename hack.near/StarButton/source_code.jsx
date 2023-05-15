@@ -61,7 +61,7 @@ const StarButton = styled.button`
   width: 2.5em;
   height: 2.5em;
 
-  .bi i:hover {
+  .star i:hover {
     fill: green;
   }
 `;
@@ -72,7 +72,7 @@ return (
   <div className="d-inline-flex align-items-center">
     <StarButton
       title={title}
-      className="btn me-1"
+      className="star btn me-1"
       disabled={!context.accountId}
       onClick={starClick}
     >
