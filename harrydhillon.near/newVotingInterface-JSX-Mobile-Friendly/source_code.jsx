@@ -298,7 +298,15 @@ return (
               </div>
             </div>
           )}
-        {}
+        {
+          <Widget
+            src={`harrydhillon.near/widget/allVotingWidget-Mobile-Friendly`}
+            props={{
+              poll: props.state.poll,
+              isPreview: props.isPreview,
+            }}
+          />
+        }
       </VotingContainer>
       <Widget
         src="harrydhillon.near/widget/newVotingInterface-Polls-By-Creator-Mobile-Friendly"
