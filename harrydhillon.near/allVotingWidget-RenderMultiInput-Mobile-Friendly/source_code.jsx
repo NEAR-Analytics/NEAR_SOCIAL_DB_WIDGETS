@@ -27,7 +27,7 @@ const renderMultipleChoiceInput = (
           }}
         />
       ) : (
-        <>
+        <div className="d-flex align-content-center">
           <input
             className="form-check-input"
             id={`${questionNumber}-${optionNumber}`}
@@ -55,7 +55,7 @@ const renderMultipleChoiceInput = (
             }
           />
           <label for={`${questionNumber}-${optionNumber}`}>{option}</label>
-        </>
+        </div>
       )}
     </>
   );
