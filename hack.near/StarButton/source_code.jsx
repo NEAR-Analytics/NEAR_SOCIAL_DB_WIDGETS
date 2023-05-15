@@ -60,10 +60,6 @@ const StarButton = styled.button`
   border-radius: 50%;
   width: 2.5em;
   height: 2.5em;
-
-  .star i:hover {
-    fill: green;
-  }
 `;
 
 const title = starred ? "Starred" : "Star";
@@ -72,7 +68,7 @@ return (
   <div className="d-inline-flex align-items-center">
     <StarButton
       title={title}
-      className="star btn me-1"
+      className=" btn btn-outline-dark me-1"
       disabled={!context.accountId}
       onClick={starClick}
     >
