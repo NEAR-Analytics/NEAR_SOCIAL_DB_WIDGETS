@@ -15,16 +15,16 @@ const starsByUsers = {};
     delete starsByUsers[star.accountId];
   }
 });
-if (state.hasLike === true) {
+if (state.starred === true) {
   starsByUsers[context.accountId] = {
     accountId: context.accountId,
   };
-} else if (state.hasLike === false) {
+} else if (state.starred === false) {
   delete starsByUsers[context.accountId];
 }
 
-const accountsWithLikes = Object.keys(starsByUsers);
-const hasLike = context.accountId && !!starsByUsers[context.accountId];
+const accountsWithStars = Object.keys(starsByUsers);
+const starred = context.accountId && !!starsByUsers[context.accountId];
 
 const starClick = () => {
   const data = {
@@ -75,9 +75,6 @@ return (
       <i className={`bi fs-2 p-1 ${starred ? "bi-star-fill" : "bi-star"}`} />
       {`${starred ? "Unstar" : "Star"}`}
     </StarButton>
-    <Widget
-      src="hack.near/widget/StarButton.Faces"
-      props={{ likesByUsers: starsByUsers }}
-    />
+    <Widget src="hack.near/widget/StarButton.Faces" props={{ starsByUsers }} />
   </div>
 );
