@@ -8,7 +8,13 @@ const history = props.history;
 const setHistory = props.setHistory;
 const setType = props.setType;
 const isRoot = props.isRoot;
-const style = JSON.parse(props.style || "null");
+const styles = props.styles;
+
+// if (type === "account") {
+//   type = {};
+// } else {
+//   Type.get();
+// }
 
 State.init({
   expanded: false,
@@ -66,7 +72,7 @@ return (
         <Button onClick={handleBack}>back</Button>
       )}
       {isRoot ? (
-        <div style={style?.subject}>{label}</div>
+        <div style={styles?.subject}>{label}</div>
       ) : (
         <Button onClick={handleInto}>{label}</Button>
       )}
@@ -90,6 +96,7 @@ return (
                   history,
                   setHistory: setHistory,
                   isRoot: false,
+                  styles: styles,
                 }}
               />
             </ChildNode>
