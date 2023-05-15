@@ -52,7 +52,7 @@ function getNode(path, type) {
   } else if (type === "thing") {
     // path: "everything"
     // type: "thing"
-    return rootNode;
+    return rootNode; // Or should "everything" be "*"?
     // PROFILE //
   } else if (type === "profile") {
     value = Social.get(parts.join("/"), "final");
