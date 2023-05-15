@@ -1,5 +1,6 @@
 const rootPath = props.rootPath || context.accountId || "evrything.near";
 const rootType = props.rootType || "account";
+const styles = props.styles;
 
 State.init({
   path: rootPath,
@@ -27,7 +28,7 @@ function setRoot(newPath, newType) {
 }
 
 // WHEN A NEW ROOT IS SET //
-// HOW TO GET DATA AT THIS ROOT //
+// GET DATA AT THIS PATH //
 function getNode(path) {
   // SPLIT THE PATH
   const parts = path.split("/");
@@ -50,7 +51,6 @@ function getNode(path) {
       }
       // PROFILE //
     } else if (standard === "profile") {
-      console.log(parts.join("/"));
       value = Social.get(parts.join("/"), "final");
       // POST //
     } else if (standard === "post") {
@@ -107,15 +107,7 @@ return (
       setHistory: setHistory,
       setType: setType,
       isRoot: true,
-      styles: {
-        subject: {
-          fontFamily: "Times New Roman",
-          fontSize: "4em",
-          lineHeight: "1.25",
-          fontWeight: 400,
-          cursor: "pointer",
-        },
-      },
+      styles: styles,
     }}
   />
 );
