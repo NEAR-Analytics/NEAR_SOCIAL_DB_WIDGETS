@@ -27,35 +27,7 @@ const renderMultipleChoiceInput = (
           }}
         />
       ) : (
-        <>
-          <input
-            className="form-check-input"
-            id={`${questionNumber}-${optionNumber}`}
-            name={`${questionNumber}-${questionType}`}
-            key={`${questionNumber}-${optionNumber}-${props.state.vote}`}
-            style={props.getInputStyles(
-              questionType,
-              questionNumber,
-              optionNumber
-            )}
-            type={questionType == "2" ? "checkbox" : "radio"}
-            value={optionNumber}
-            checked={
-              questionType == "2"
-                ? props.state.vote[questionNumber].includes(optionNumber + "")
-                : props.state.vote[questionNumber] == optionNumber + ""
-            }
-            onClick={
-              questionType != "2" &&
-              props.clickRadioInputHandler(questionNumber, optionNumber)
-            }
-            onChange={
-              questionType == "2" &&
-              props.clickCheckboxInputHandler(questionNumber, optionNumber)
-            }
-          />
-          <label for={`${questionNumber}-${optionNumber}`}>{option}</label>
-        </>
+        <></>
       )}
     </>
   );
