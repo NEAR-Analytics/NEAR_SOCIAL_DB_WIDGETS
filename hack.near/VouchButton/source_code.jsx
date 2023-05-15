@@ -136,7 +136,7 @@ return (
       ) : (
         <span className={`bi fs-3 ${hasVouch ? "vouched" : ""}`}>
           {vouchSvg}
-          {`${hasVouch ? "" : "Star"}`}
+          Vouch
         </span>
       )}
     </VouchButton>
