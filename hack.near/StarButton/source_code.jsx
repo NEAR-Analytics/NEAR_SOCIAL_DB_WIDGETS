@@ -28,16 +28,6 @@ if (state.starred === true) {
 const accountsWithStars = Object.keys(starsByUsers);
 const starred = context.accountId && !!starsByUsers[context.accountId];
 
-const StarButton = styled.button`
-  border: 0 !important;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  width: 2.5em;
-  height: 2.5em;
-`;
-
 const starClick = () => {
   if (state.loading) {
     return;
