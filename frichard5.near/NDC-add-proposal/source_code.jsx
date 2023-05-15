@@ -9,6 +9,9 @@ const ftList = fetch(refUrl);
 
 State.init({
   type: "Vote",
+  data: {
+    token: "",
+  },
 });
 
 const forgeUrl = (apiUrl, params) =>
