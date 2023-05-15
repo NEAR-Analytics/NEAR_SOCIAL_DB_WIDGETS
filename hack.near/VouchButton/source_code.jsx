@@ -138,8 +138,8 @@ return (
       )}
     </VouchButton>
     <Widget
-      src="mob.near/widget/LikeButton.Faces"
-      props={{ likesByUsers: vouchesByUsers }}
+      src="hack.near/widget/StarButton.Faces"
+      props={{ starsByUsers: vouchesByUsers }}
     />
   </div>
 );
