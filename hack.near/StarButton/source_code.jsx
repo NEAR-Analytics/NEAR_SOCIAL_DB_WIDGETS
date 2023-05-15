@@ -15,16 +15,16 @@ const starsByUsers = {};
     delete starsByUsers[star.accountId];
   }
 });
-if (state.starred === true) {
+if (state.hasLike === true) {
   starsByUsers[context.accountId] = {
     accountId: context.accountId,
   };
-} else if (state.starred === false) {
+} else if (state.hasLike === false) {
   delete starsByUsers[context.accountId];
 }
 
-const accountsWithStars = Object.keys(starsByUsers);
-const starred = context.accountId && !!starsByUsers[context.accountId];
+const accountsWithLikes = Object.keys(starsByUsers);
+const hasLike = context.accountId && !!starsByUsers[context.accountId];
 
 const starClick = () => {
   const data = {
@@ -51,6 +51,23 @@ const starClick = () => {
     onCommit: () => State.update({ starred: !starred }),
   });
 };
+
+const StarButton = styled.button`
+  border: 0 !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 2.5em;
+  height: 2.5em;
+  &:hover {
+    color: red;
+    background: pink;
+  }
+  .bi-heart-fill {
+    color: red;
+  }
+`;
 
 const title = starred ? "Starred" : "Star";
 
