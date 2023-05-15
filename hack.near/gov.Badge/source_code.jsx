@@ -7,8 +7,8 @@ const Badge = styled.div`
 
   .image {
     display: block;
-    height: 2em;
-    margin: 0.5em;
+    height: 8em;
+    margin: 1em;
   }
 
   .attribution {
