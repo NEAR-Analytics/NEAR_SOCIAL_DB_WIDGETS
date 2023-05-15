@@ -428,6 +428,7 @@ return (
         stateUpdate: (data) => State.update(data),
         isQuestionOpen,
         isVoteValid,
+        validAnswersToThisPoll,
       }}
     />
   </>
