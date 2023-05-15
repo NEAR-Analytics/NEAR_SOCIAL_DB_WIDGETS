@@ -3,7 +3,7 @@ const ResponsiveText = styled.span`
       font-size: 11px;
   }
 `;
-const ResponsiveTextOption = styled.p`
+const ResponsiveTextOption = styled.span`
   width:100px;
   whitespace: pre-wrap;
   @media screen and (max-width: 1024px)  {
@@ -31,8 +31,7 @@ return (
             color: `${props.getFontColor(props.optionNumber)}`,
             width: "100%",
             margin: "0.3rem 0px",
-
-            height: "fit-content",
+            height: "2.4rem",
             borderRadius: `${props.getBorderRadious(
               props.questionNumber,
               props.optionNumber
