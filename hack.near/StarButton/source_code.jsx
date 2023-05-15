@@ -58,6 +58,7 @@ return (
   <div className="d-inline-flex align-items-center">
     <CommitButton title={title} onCommit={starClick}>
       <i className={`bi fs-4 pt-1 ${starred ? "bi-star-fill" : "bi-star"}`} />
+      <p>{`${starred ? "Starred" : "Star"}`}</p>
     </CommitButton>
     <Widget src="hack.near/widget/StarButton.Faces" props={{ starsByUsers }} />
   </div>
