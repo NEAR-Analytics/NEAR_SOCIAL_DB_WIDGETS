@@ -47,10 +47,10 @@ return (
         </div>
       );
     })}
-    {isQuestionOpen ? (
-      hasVoted ? (
+    {props.isQuestionOpen ? (
+      props.hasVoted ? (
         ""
-      ) : isVoteValid() ? (
+      ) : props.isVoteValid() ? (
         <CommitButton
           className="w-100"
           style={
@@ -107,9 +107,11 @@ return (
                     border: "1.5px solid #000000",
                   }
             }
-            onMouseEnter={() => State.update({ hoveringElement: "voteButton" })}
-            onMouseLeave={() => State.update({ hoveringElement: "" })}
-            onClick={() => State.update({ showErrorsInForm: true })}
+            onMouseEnter={() =>
+              props.stateUpdate({ hoveringElement: "voteButton" })
+            }
+            onMouseLeave={() => props.stateUpdate({ hoveringElement: "" })}
+            onClick={() => props.stateUpdate({ showErrorsInForm: true })}
           >
             Vote
           </button>
