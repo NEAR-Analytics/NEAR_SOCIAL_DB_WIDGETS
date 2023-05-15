@@ -300,7 +300,7 @@ return (
           )}
         {
           <Widget
-            src={`harrydhillon.near/widget/allVotingWidget-Mobile-Friendly`}
+            src={`harrydhillon.near/widget/allVotingWidget-Mobile-Friendly-v2`}
             props={{
               poll: props.state.poll,
               isPreview: props.isPreview,
