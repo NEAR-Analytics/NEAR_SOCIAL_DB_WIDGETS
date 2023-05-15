@@ -48,7 +48,7 @@ return (
               width: "50%",
               textAlign: "center",
               overflow: "visible",
-              whiteSpace: "pre-wrap",
+              whiteSpace: "pre",
               textAlign: "left",
               backgroundColor: `${props.getBgColor(props.optionNumber, true)}`,
               borderRadius: "4px",
