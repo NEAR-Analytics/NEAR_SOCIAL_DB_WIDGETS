@@ -33,8 +33,8 @@ return (
           boxShadow: "0px 8px 28px rgba(43, 68, 106, 0.05)",
         }}
       >
-        <NoFlexInMobile className="d-flex justify-content-between">
-          <NoFlexInMobile className="d-flex">
+        <NoFlexInMobile className="justify-content-between">
+          <NoFlexInMobile>
             <Widget
               src="mob.near/widget/ProfileImage"
               props={{
