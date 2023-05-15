@@ -58,21 +58,21 @@ return (
               }}
             >
               {props.option} •
-              <ResponsiveText
-                className="text-secondary"
-                style={{
-                  marginLeft: "1rem",
-                  fontWeight: "400",
-                }}
-              >
-                (
-                {
-                  props.countVotes(props.questionNumber, props.questionType)[
-                    props.optionNumber
-                  ]
-                }{" "}
-                votes)
-              </ResponsiveText>
+            </ResponsiveText>
+            <ResponsiveText
+              className="text-secondary"
+              style={{
+                marginLeft: "1rem",
+                fontWeight: "400",
+              }}
+            >
+              (
+              {
+                props.countVotes(props.questionNumber, props.questionType)[
+                  props.optionNumber
+                ]
+              }{" "}
+              votes)
             </ResponsiveText>
           </div>
           <TopMarginPercentage
