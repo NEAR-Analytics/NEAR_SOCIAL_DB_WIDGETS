@@ -62,7 +62,7 @@ const item = {
 return (
   <div className="card" style={{ borderRadius: "2em" }}>
     <div className="row py-3 g-1">
-      <div className="m-auto text-center" style={{ maxWidth: "12em" }}>
+      <div className="col-3 m-auto text-center" style={{ maxWidth: "12em" }}>
         <div
           className="d-inline-block"
           style={{ width: "10em", height: "10em" }}
@@ -71,7 +71,7 @@ return (
             src="mob.near/widget/Image"
             props={{
               image,
-              className: "w-100 h-100 shadow",
+              className: "w-100 h-100",
               style: { objectFit: "cover", borderRadius: "2em" },
               thumbnail: false,
               fallbackUrl:
@@ -81,7 +81,7 @@ return (
           />
         </div>
       </div>
-      <div className="col px-3">
+      <div className="col-6 px-5">
         <div className="position-relative">
           <h5 className="card-title">{name}</h5>
           <div className="text-truncate mb-1">
@@ -138,7 +138,7 @@ return (
           </a>
         </div>
       </div>
-      <div className="col">
+      <div className="col-2">
         <Widget
           src="hack.near/widget/StarButton"
           props={{ notifyAccountId, item }}
