@@ -1,7 +1,7 @@
 const Badge = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: top;
   width: 100%;
 
   .image {
