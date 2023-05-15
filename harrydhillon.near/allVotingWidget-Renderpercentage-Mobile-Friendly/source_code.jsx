@@ -55,9 +55,9 @@ return (
           >
             <ResponsiveTextOption
               style={{
-                overflow: "visible",
                 fontWeight: "500",
                 lineHeight: "2.5rem",
+                whiteSpace: "pre-wrap",
               }}
             >
               {props.option} •
