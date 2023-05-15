@@ -68,7 +68,7 @@ return (
   <div className="d-inline-flex align-items-center">
     <StarButton
       title={title}
-      className=" btn btn-outline-warning"
+      className=" btn me-1"
       disabled={!context.accountId}
       onClick={starClick}
     >
