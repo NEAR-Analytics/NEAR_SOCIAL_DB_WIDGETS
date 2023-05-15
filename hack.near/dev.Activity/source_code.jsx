@@ -57,7 +57,7 @@ if (tag) {
   );
 
   if (taggedWidgets === null) {
-    return render("Loading tags");
+    return render("Loading tags...");
   }
 
   keys = Object.entries(taggedWidgets)
