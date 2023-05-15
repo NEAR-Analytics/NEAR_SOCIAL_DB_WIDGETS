@@ -17,7 +17,7 @@ const starsByUsers = {};
     delete starsByUsers[star.accountId];
   }
 });
-if (state.hastar === true) {
+if (state.starred === true) {
   starsByUsers[context.accountId] = {
     accountId: context.accountId,
   };
