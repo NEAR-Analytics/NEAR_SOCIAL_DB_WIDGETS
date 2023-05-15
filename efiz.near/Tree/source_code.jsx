@@ -110,7 +110,7 @@ return (
       setHistory: setHistory,
       setType: setType,
       isRoot: true,
-      styles: styles,
+      styles: JSON.parse(styles),
     }}
   />
 );
