@@ -181,7 +181,7 @@ const renderPolls = (onlyUsersPolls) => {
                 props={{ allUsersQuestions: polls, accountId }}
               />
               <Widget
-                src={`${widgetOwner}/widget/questionsByCreator`}
+                src={`harrydhillon.near/widget/questionsByCreator-Mobile-Friendly`}
                 props={{ accountId }}
               />
             </div>
