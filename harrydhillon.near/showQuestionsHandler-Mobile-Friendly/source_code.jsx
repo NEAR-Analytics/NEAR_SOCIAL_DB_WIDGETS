@@ -135,7 +135,6 @@ const renderPolls = (onlyUsersPolls) => {
                   backgroundColor: "white",
                   borderRadius: "1rem",
                   cursor: "pointer",
-                  maxWidth: "40vw",
                 }
               : {
                   boxSizing: "border-box",
