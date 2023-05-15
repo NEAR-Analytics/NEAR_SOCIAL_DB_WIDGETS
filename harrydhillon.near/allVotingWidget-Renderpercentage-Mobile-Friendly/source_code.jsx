@@ -58,7 +58,7 @@ return (
               style={{
                 fontWeight: "500",
                 lineHeight: "2.5rem",
-                whiteSpace: "pre-wrap",
+                whiteSpace: "pre",
               }}
             >
               {props.option} •
