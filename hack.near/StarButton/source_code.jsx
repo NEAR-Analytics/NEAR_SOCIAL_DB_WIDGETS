@@ -73,6 +73,7 @@ return (
       onClick={starClick}
     >
       <i className={`bi fs-3 p-1 ${starred ? "bi-star-fill" : "bi-star"}`} />
+      {`${starred ? "Unstar" : "Star"}`}
     </StarButton>
     <Widget src="hack.near/widget/StarButton.Faces" props={{ likesByUsers }} />
   </div>
