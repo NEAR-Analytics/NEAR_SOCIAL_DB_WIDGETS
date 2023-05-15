@@ -73,9 +73,14 @@ const title = starred ? "Starred" : "Star";
 
 return (
   <div className="d-inline-flex align-items-center">
-    <CommitButton title={title} onCommit={starClick}>
+    <StarButton
+      title={title}
+      className="btn me-1"
+      disabled={!context.accountId}
+      onClick={starClick}
+    >
       <i className={`bi fs-6 p-1 ${starred ? "bi-star-fill" : "bi-star"}`} />
       {`${starred ? "Starred" : "Star"}`}
-    </CommitButton>
+    </StarButton>
   </div>
 );
