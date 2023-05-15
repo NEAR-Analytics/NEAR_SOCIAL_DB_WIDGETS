@@ -72,7 +72,7 @@ return (
       disabled={!context.accountId}
       onClick={starClick}
     >
-      <i className={`bi fs-6 p-1 ${starred ? "bi-star-fill" : "bi-star"}`} />
+      <i className={`bi fs-3 p-1 ${starred ? "bi-star-fill" : "bi-star"}`} />
     </StarButton>
   </div>
 );
