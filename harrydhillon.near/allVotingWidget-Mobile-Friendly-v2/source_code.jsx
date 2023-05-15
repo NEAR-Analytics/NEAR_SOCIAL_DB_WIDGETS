@@ -384,6 +384,7 @@ return (
       isQuestionOpen: isQuestionOpen,
       isVoteValid: isVoteValid,
       validAnswersToThisPoll: validAnswersToThisPoll,
+      renderAnswers,
     }}
   />
 );
