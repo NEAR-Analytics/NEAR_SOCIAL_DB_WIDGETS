@@ -8,6 +8,7 @@ const history = props.history;
 const setHistory = props.setHistory;
 const setType = props.setType;
 const isRoot = props.isRoot;
+const style = JSON.parse(props.style || "null");
 
 State.init({
   expanded: false,
@@ -38,6 +39,7 @@ const ChildNode = styled.div`
 `;
 
 function renderView() {
+  // Root vs Leaf?
   return <Widget src="efiz.near/widget/View" props={{ path, type }} />;
 }
 
@@ -59,11 +61,12 @@ function getType() {
 return (
   <div>
     <div>
+      {/** CONTROLLER */}
       {history.length > 1 && isRoot && (
         <Button onClick={handleBack}>back</Button>
       )}
       {isRoot ? (
-        <div style={props.styles?.subject}>{label}</div>
+        <div style={style?.subject}>{label}</div>
       ) : (
         <Button onClick={handleInto}>{label}</Button>
       )}
@@ -71,6 +74,7 @@ return (
     </div>
     {state.expanded && (
       <div>
+        {/** EDGES */}
         {node && typeof node === "object" ? (
           Object.entries(node).map(([key, val]) => (
             <ChildNode>
@@ -91,7 +95,10 @@ return (
             </ChildNode>
           ))
         ) : (
-          <div>{renderView()}</div>
+          <>
+            {/** VIEW */}
+            <div>{renderView()}</div>
+          </>
         )}
       </div>
     )}
