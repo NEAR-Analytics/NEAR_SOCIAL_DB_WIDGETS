@@ -100,6 +100,6 @@ return (
         />
       )}
     </StarButton>
-    <Widget src="mob.near/widget/StarButton.Faces" props={{ starsByUsers }} />
+    <Widget src="hack.near/widget/StarButton.Faces" props={{ starsByUsers }} />
   </div>
 );
