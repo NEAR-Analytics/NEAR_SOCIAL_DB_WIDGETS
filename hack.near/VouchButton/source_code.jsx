@@ -134,8 +134,9 @@ return (
           aria-hidden="true"
         />
       ) : (
-        <span className={`bi fs-4 ${hasVouch ? "vouched" : ""}`}>
+        <span className={`bi fs-3 ${hasVouch ? "vouched" : ""}`}>
           {vouchSvg}
+          {`${hasVouch ? "" : "Star"}`}
         </span>
       )}
     </VouchButton>
