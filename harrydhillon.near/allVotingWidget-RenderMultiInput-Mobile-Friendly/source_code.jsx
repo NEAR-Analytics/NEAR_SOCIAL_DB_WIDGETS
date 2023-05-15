@@ -28,21 +28,33 @@ const renderMultipleChoiceInput = (
         />
       ) : (
         <>
-          <Widget
-            src={
-              "harrydhillon.near/widget/allVotingWidget-Input-Mobile-Friendly"
+          <input
+            className="form-check-input"
+            id={`${questionNumber}-${optionNumber}`}
+            name={`${questionNumber}-${questionType}`}
+            key={`${questionNumber}-${optionNumber}-${state.vote}`}
+            style={props.getInputStyles(
+              questionType,
+              questionNumber,
+              optionNumber
+            )}
+            type={questionType == "2" ? "checkbox" : "radio"}
+            value={optionNumber}
+            checked={
+              questionType == "2"
+                ? props.state.vote[questionNumber].includes(optionNumber + "")
+                : props.state.vote[questionNumber] == optionNumber + ""
             }
-            props={{
-              state: props.state,
-              questionNumber: questionNumber,
-              questionNumber: questionType,
-              option: option,
-              optionNumber: optionNumber,
-              clickRadioInputHandler: props.clickRadioInputHandler,
-              clickCheckboxInputHandler: props.clickCheckboxInputHandler,
-              getInputStyles: props.getInputStyles,
-            }}
+            onClick={
+              questionType != "2" &&
+              props.clickRadioInputHandler(questionNumber, optionNumber)
+            }
+            onChange={
+              questionType == "2" &&
+              props.clickCheckboxInputHandler(questionNumber, optionNumber)
+            }
           />
+          <label for={`${questionNumber}-${optionNumber}`}>{option}</label>
         </>
       )}
     </>
