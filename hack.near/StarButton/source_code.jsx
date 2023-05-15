@@ -67,7 +67,7 @@ return (
   <div className="d-inline-flex align-items-center">
     <CommitButton
       disabled={state.loading || dataLoading || !context.accountId}
-      className="btn me-1"
+      className="me-1"
       title={title}
       onClick={starClick}
     >
