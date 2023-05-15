@@ -315,6 +315,6 @@ return (
         }}
       />
     </FlexContainer>
-    {props.state.showQuestionsByThisUser && renderModal()}
+    {props.state.showQuestionsByThisUser && props.renderModal()}
   </div>
 );
