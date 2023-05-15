@@ -60,8 +60,9 @@ const StarButton = styled.button`
   border-radius: 50%;
   width: 2.5em;
   height: 2.5em;
-  &:hover {
-    i: bi-star-fill
+
+  .icon i:hover {
+    fill: gray;
   }
 `;
 
@@ -75,7 +76,9 @@ return (
       disabled={!context.accountId}
       onClick={starClick}
     >
-      <i className={`bi fs-6 p-1 ${starred ? "bi-star-fill" : "bi-star"}`} />
+      <i
+        className={`icon bi fs-6 p-1 ${starred ? "bi-star-fill" : "bi-star"}`}
+      />
       {`${starred ? "Starred" : "Star"}`}
     </StarButton>
   </div>
