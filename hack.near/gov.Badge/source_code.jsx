@@ -28,6 +28,7 @@ return (
           image: {
             ipfs_cid: "QmR4U2XnTSCCUhQRcC1Hh5SRwMndtAGYuVzphc2QuiRJrJ",
           },
+          alt: "I am human.",
         }}
       />
     </a>
