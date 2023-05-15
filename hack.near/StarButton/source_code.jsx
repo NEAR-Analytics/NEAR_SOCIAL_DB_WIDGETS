@@ -74,5 +74,6 @@ return (
     >
       <i className={`bi fs-3 p-1 ${starred ? "bi-star-fill" : "bi-star"}`} />
     </StarButton>
+    <Widget src="hack.near/widget/StarButton.Faces" props={{ likesByUsers }} />
   </div>
 );
