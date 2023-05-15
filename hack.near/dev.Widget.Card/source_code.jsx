@@ -81,7 +81,7 @@ return (
           />
         </div>
       </div>
-      <div className="col-6 px-5">
+      <div className="col-6 px-2">
         <div className="position-relative">
           <h5 className="card-title">{name}</h5>
           <div className="text-truncate mb-1">
@@ -138,7 +138,7 @@ return (
           </a>
         </div>
       </div>
-      <div className="col-2">
+      <div className="col-2 mt-2">
         <Widget
           src="hack.near/widget/StarButton"
           props={{ notifyAccountId, item }}
