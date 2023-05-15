@@ -5,6 +5,8 @@ const blockHeight = props.blockHeight;
 const metadata = props.metadata ?? Social.getr(`${widgetPath}/metadata`);
 const renderTag = props.renderTag;
 
+const notifyAccountId = accountId;
+
 const name = metadata.name ?? widgetName;
 const description = metadata.description;
 const image = metadata.image;
@@ -51,7 +53,11 @@ const linktreeObjects = linktree.map((o, i) => {
 
 const descriptionKey = `${widgetPath}-description`.replaceAll(/[._\/-]/g, "--");
 
-/// const starred = Social.set(`${accountId}/widget/starred`);
+const item = {
+  type: "social",
+  path: `${accountId}/widget/starred`,
+  blockHeight,
+};
 
 return (
   <div className="card" style={{ borderRadius: "2em" }}>
@@ -133,7 +139,10 @@ return (
         </div>
       </div>
       <div className="col-sm-2">
-        <Widget src="hack.near/widget/StarButton" props={{ accountId, item }} />
+        <Widget
+          src="hack.near/widget/StarButton"
+          props={{ notifyAccountId, item }}
+        />
       </div>
     </div>
 
