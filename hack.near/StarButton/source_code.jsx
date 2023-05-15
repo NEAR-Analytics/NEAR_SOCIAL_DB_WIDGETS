@@ -56,11 +56,7 @@ const title = starred ? "Starred" : "Star";
 
 return (
   <div className="d-inline-flex align-items-center">
-    <CommitButton
-      disabled={!context.accountId}
-      title={title}
-      onCommit={starClick}
-    >
+    <CommitButton title={title} onCommit={starClick}>
       <span
         className="spinner-grow spinner-grow-sm p-2"
         role="status"
