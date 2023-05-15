@@ -60,7 +60,7 @@ const item = {
 };
 
 return (
-  <div className="card" style={{ borderRadius: "2em" }}>
+  <div className="card" style={{ borderRadius: "2em", maxWidth: "39em" }}>
     <div className="row py-3 g-1">
       <div className="col-3 m-auto text-center" style={{ maxWidth: "12em" }}>
         <div
