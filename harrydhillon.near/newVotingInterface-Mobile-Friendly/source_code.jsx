@@ -313,10 +313,11 @@ return (
         questionBlockHeight,
         showDescription,
         questionsByCreator,
-        shouldDisplayViewAll,
+        shouldDisplayViewAll: true,
         renderQuestionsByThisCreator,
         isPreview,
       }}
     />
+    {state.showQuestionsByThisUser && renderModal()}
   </>
 );
