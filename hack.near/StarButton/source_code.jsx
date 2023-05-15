@@ -40,7 +40,7 @@ const starClick = () => {
       star: JSON.stringify({
         key: item,
         value: {
-          type: starred ? "false" : "true",
+          type: starred ? false : true,
         },
       }),
     },
@@ -69,7 +69,7 @@ return (
       disabled={state.loading || dataLoading || !context.accountId}
       className="me-1"
       title={title}
-      onClick={starClick}
+      onCommit={starClick}
     >
       {state.loading || dataLoading ? (
         <span
