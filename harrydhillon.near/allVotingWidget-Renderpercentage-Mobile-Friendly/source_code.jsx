@@ -37,7 +37,7 @@ return (
             style={{
               height: "100%",
               padding: "0.01em 22px 0.01em 11px",
-              display: "inline-block",
+              display: "block",
               width: `${props.calculatePercentageOfOption(
                 props.countVotes(props.questionNumber, props.questionType),
                 props.optionNumber
