@@ -64,7 +64,22 @@ return (
                 lineHeight: "2.5rem",
               }}
             >
-              {props.option} •
+              {props.option.length > 20 ? (
+                <OverlayTrigger
+                  key={placement}
+                  placement={placement}
+                  overlay={
+                    <Tooltip id={`tooltip-${placement}`}>
+                      {props.option.length}
+                    </Tooltip>
+                  }
+                >
+                  <span>{props.option.slice(0, 20)}...</span>
+                </OverlayTrigger>
+              ) : (
+                props.option.length
+              )}{" "}
+              •
             </ResponsiveTextOption>
             <ResponsiveText
               className="text-secondary"
