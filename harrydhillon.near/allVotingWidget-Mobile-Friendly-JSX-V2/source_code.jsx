@@ -29,25 +29,27 @@ const renderMultipleChoiceInput = (
   option,
   optionNumber
 ) => (
-  <Widget
-    src="harrydhillon.near/widget/allVotingWidget-RenderMultiInput-Mobile-Friendly"
-    props={{
-      questionNumber,
-      questionType,
-      option,
-      optionNumber,
-      canVote: props.canVote,
-      getBgColor: props.getBgColor,
-      getFontColor: props.getFontColor,
-      countVotes: props.countVotes,
-      getBorderRadious: props.getBorderRadious,
-      calculatePercentageOfOption: props.calculatePercentageOfOption,
-      getBlockTimestamp: props.getBlockTimestamp,
-      clickCheckboxInputHandler: props.clickCheckboxInputHandler,
-      clickRadioInputHandler: props.clickRadioInputHandler,
-      getInputStyles: props.getInputStyles,
-    }}
-  />
+  <>
+    <Widget
+      src="harrydhillon.near/widget/allVotingWidget-RenderMultiInput-Mobile-Friendly"
+      props={{
+        questionNumber,
+        questionType,
+        option,
+        optionNumber,
+        canVote: props.canVote,
+        getBgColor: props.getBgColor,
+        getFontColor: props.getFontColor,
+        countVotes: props.countVotes,
+        getBorderRadious: props.getBorderRadious,
+        calculatePercentageOfOption: props.calculatePercentageOfOption,
+        getBlockTimestamp: props.getBlockTimestamp,
+        clickCheckboxInputHandler: props.clickCheckboxInputHandler,
+        clickRadioInputHandler: props.clickRadioInputHandler,
+        getInputStyles: props.getInputStyles,
+      }}
+    />
+  </>
 );
 
 return (
