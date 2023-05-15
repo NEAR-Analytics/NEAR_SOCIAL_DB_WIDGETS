@@ -46,6 +46,7 @@ return (
               padding: "0.01em 22px 0.01em 11px",
               display: "block",
               width: "50%",
+              overflow: "visible",
               textAlign: "center",
               overflow: "visible",
               textAlign: "left",
