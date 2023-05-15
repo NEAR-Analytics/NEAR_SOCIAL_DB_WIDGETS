@@ -45,10 +45,13 @@ return (
               height: "100%",
               padding: "0.01em 22px 0.01em 11px",
               display: "block",
-              width: "50%",
-              overflow: "visible",
+              width: `${props.calculatePercentageOfOption(
+                props.countVotes(props.questionNumber, props.questionType),
+                props.optionNumber
+              )}%`,
               textAlign: "center",
               overflow: "visible",
+              whiteSpace: "nowrap",
               textAlign: "left",
               backgroundColor: `${props.getBgColor(props.optionNumber, true)}`,
               borderRadius: "4px",
@@ -56,9 +59,9 @@ return (
           >
             <ResponsiveTextOption
               style={{
+                overflow: "visible",
                 fontWeight: "500",
                 lineHeight: "2.5rem",
-                whiteSpace: "pre",
               }}
             >
               {props.option} •
