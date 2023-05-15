@@ -3,7 +3,6 @@ const Badge = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  padding: 0.5em 1em;
 
   .image {
     display: block;
