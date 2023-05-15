@@ -57,7 +57,7 @@ const starClick = () => {
       star: JSON.stringify({
         key: item,
         value: {
-          type: starred ? "unstar" : "star",
+          type: starred ? "false" : "true",
         },
       }),
     },
@@ -78,7 +78,7 @@ const starClick = () => {
   });
 };
 
-const title = starred ? "Unstar" : "Star";
+const title = starred ? "Starred" : "Star";
 
 return (
   <div className="d-inline-flex align-items-center">
