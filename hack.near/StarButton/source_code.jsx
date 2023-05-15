@@ -60,13 +60,6 @@ const StarButton = styled.button`
   border-radius: 50%;
   width: 2.5em;
   height: 2.5em;
-  &:hover {
-    color: red;
-    background: pink;
-  }
-  .bi-heart-fill {
-    color: red;
-  }
 `;
 
 const title = starred ? "Starred" : "Star";
