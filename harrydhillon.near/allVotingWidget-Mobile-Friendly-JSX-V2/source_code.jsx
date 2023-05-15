@@ -23,6 +23,35 @@ const renderTextInput = (questionNumber) => {
   );
 };
 
+const renderMultipleChoiceInput = (
+  questionNumber,
+  questionType,
+  option,
+  optionNumber
+) => (
+  <Widget
+    src="harrydhillon.near/widget/allVotingWidget-RenderMultiInput-Mobile-Friendly"
+    props={{
+      questionNumber,
+      questionType,
+      option,
+      optionNumber,
+      canVote: props.canVote,
+      getBgColor: props.getBgColor,
+      getFontColor: props.getFontColor,
+      countVotes: props.countVotes,
+      getBorderRadious: props.getBorderRadious,
+      calculatePercentageOfOption: props.calculatePercentageOfOption,
+      getBlockTimestamp: props.getBlockTimestamp,
+      clickRadioInputHandler: props.clickRadioInputHandler,
+      clickCheckboxInputHandler: props.clickCheckboxInputHandler,
+      clickRadioInputHandler: props.clickRadioInputHandler,
+      clickCheckboxInputHandler: props.clickCheckboxInputHandler,
+      getInputStyles: props.getInputStyles,
+    }}
+  />
+);
+
 return (
   <>
     <Widget
@@ -31,34 +60,7 @@ return (
         state: props.state,
         poll: props.poll,
         renderTextInput,
-        renderMultipleChoiceInput: (
-          questionNumber,
-          questionType,
-          option,
-          optionNumber
-        ) => (
-          <Widget
-            src="harrydhillon.near/widget/allVotingWidget-RenderMultiInput-Mobile-Friendly"
-            props={{
-              questionNumber,
-              questionType,
-              option,
-              optionNumber,
-              canVote: props.canVote,
-              getBgColor: props.getBgColor,
-              getFontColor: props.getFontColor,
-              countVotes: props.countVotes,
-              getBorderRadious: props.getBorderRadious,
-              calculatePercentageOfOption: props.calculatePercentageOfOption,
-              getBlockTimestamp: props.getBlockTimestamp,
-              clickRadioInputHandler: props.clickRadioInputHandler,
-              clickCheckboxInputHandler: props.clickCheckboxInputHandler,
-              clickRadioInputHandler: props.clickRadioInputHandler,
-              clickCheckboxInputHandler: props.clickCheckboxInputHandler,
-              getInputStyles: props.getInputStyles,
-            }}
-          />
-        ),
+        renderMultipleChoiceInput,
         getInputStyles: props.getInputStyles,
         hasVoted: props.hasVoted,
         getPublicationParams: props.getPublicationParams,
