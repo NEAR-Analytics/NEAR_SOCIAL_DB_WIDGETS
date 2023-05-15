@@ -75,6 +75,9 @@ return (
       <i className={`bi fs-2 p-1 ${starred ? "bi-star-fill" : "bi-star"}`} />
       {`${starred ? "Unstar" : "Star"}`}
     </StarButton>
-    <Widget src="hack.near/widget/StarButton.Faces" props={{ likesByUsers }} />
+    <Widget
+      src="hack.near/widget/StarButton.Faces"
+      props={{ likesByUsers: starsByUsers }}
+    />
   </div>
 );
