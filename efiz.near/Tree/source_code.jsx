@@ -1,6 +1,6 @@
 const rootPath = props.rootPath || context.accountId || "evrything.near";
 const rootType = props.rootType || "account";
-const styles = props.styles;
+const style = props.style;
 
 State.init({
   path: rootPath,
@@ -107,7 +107,7 @@ return (
       setHistory: setHistory,
       setType: setType,
       isRoot: true,
-      styles: styles,
+      style: style,
     }}
   />
 );
