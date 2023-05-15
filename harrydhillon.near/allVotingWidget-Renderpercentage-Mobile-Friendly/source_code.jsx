@@ -43,6 +43,7 @@ return (
                 props.optionNumber
               )}%`,
               textAlign: "center",
+              overflow: "visible",
               textAlign: "left",
               backgroundColor: `${props.getBgColor(props.optionNumber, true)}`,
               borderRadius: "4px",
