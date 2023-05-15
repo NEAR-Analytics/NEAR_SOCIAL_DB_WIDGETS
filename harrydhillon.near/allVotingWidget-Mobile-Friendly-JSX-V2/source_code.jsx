@@ -43,10 +43,8 @@ const renderMultipleChoiceInput = (
       getBorderRadious: props.getBorderRadious,
       calculatePercentageOfOption: props.calculatePercentageOfOption,
       getBlockTimestamp: props.getBlockTimestamp,
-      clickRadioInputHandler: props.clickRadioInputHandler,
       clickCheckboxInputHandler: props.clickCheckboxInputHandler,
       clickRadioInputHandler: props.clickRadioInputHandler,
-      clickCheckboxInputHandler: props.clickCheckboxInputHandler,
       getInputStyles: props.getInputStyles,
     }}
   />
