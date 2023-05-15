@@ -57,11 +57,6 @@ const title = starred ? "Starred" : "Star";
 return (
   <div className="d-inline-flex align-items-center">
     <CommitButton title={title} onCommit={starClick}>
-      <span
-        className="spinner-grow spinner-grow-sm p-2"
-        role="status"
-        aria-hidden="true"
-      />
       <i className={`bi fs-4 pt-1 ${starred ? "bi-star-fill" : "bi-star"}`} />
     </CommitButton>
     <Widget src="hack.near/widget/StarButton.Faces" props={{ starsByUsers }} />
