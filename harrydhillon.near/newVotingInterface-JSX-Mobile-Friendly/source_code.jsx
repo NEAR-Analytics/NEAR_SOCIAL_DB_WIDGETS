@@ -1,6 +1,6 @@
 const FlexContainer = styled.div`
     display:flex;
-    @media screen and (max-width: 5000px)  {
+    @media screen and (max-width: 768px)  {
       display: block;
       padding: 1rem;
     }
@@ -10,9 +10,16 @@ const VotingContainer = styled.div`
     width: 75%;
     margin: 2rem 0.5rem 2rem 2rem;
     padding: 2rem;
-    @media screen and (max-width: 5000px)  {
+    @media screen and (max-width: 768px)  {
       width: 100%;
       margin: 0rem;
+    }
+`;
+
+const NoFlexInMobile = styled.div`
+  display:flex;
+   @media screen and (max-width: 768px)  {
+     display: block;
     }
 `;
 
@@ -26,8 +33,8 @@ return (
           boxShadow: "0px 8px 28px rgba(43, 68, 106, 0.05)",
         }}
       >
-        <div className="d-flex justify-content-between">
-          <div className="d-flex">
+        <NoFlexInMobile className="d-flex justify-content-between">
+          <NoFlexInMobile className="d-flex">
             <Widget
               src="mob.near/widget/ProfileImage"
               props={{
@@ -49,7 +56,7 @@ return (
                 {props.sliceString(props.state.poll.accountId, 18)}
               </p>
             </div>
-          </div>
+          </NoFlexInMobile>
 
           {Date.now() < props.state.poll.value.endTimestamp && (
             <>
@@ -108,7 +115,7 @@ return (
               ? "Active"
               : "Closed"}
           </span>
-        </div>
+        </NoFlexInMobile>
         <div className="d-flex my-3">
           <div
             style={{
