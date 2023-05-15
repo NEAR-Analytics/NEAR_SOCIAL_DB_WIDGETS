@@ -98,7 +98,7 @@ const renderModal = () => {
           <div className="modal-body" style={{ backgroundColor: "#FAFAFB" }}>
             consol
             <Widget
-              src={`${widgetOwner}/widget/newVotingInterface`}
+              src={`harrydhillon.near/widget/newVotingInterface-Mobile-Friendly`}
               props={{
                 blockHeight: state.modalBlockHeight,
                 shouldDisplayViewAll: false,
