@@ -33,6 +33,7 @@ const renderMultipleChoiceInput = (
     <Widget
       src="harrydhillon.near/widget/allVotingWidget-RenderMultiInput-Mobile-Friendly"
       props={{
+        state: props.state,
         questionNumber,
         questionType,
         option,
