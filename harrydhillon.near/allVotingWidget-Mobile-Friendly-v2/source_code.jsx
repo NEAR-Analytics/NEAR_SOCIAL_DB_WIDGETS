@@ -194,20 +194,6 @@ function getOptionRelatedValidAnswers(answers) {
   });
 }
 
-function getValidAnswers() {
-  let validTimeAnswers = getTimeRelatedValidAnswers(answersToThisPoll);
-  let validOptionAndTimeAnswers =
-    getOptionRelatedValidAnswers(validTimeAnswers);
-  const validate_addresees = validOptionAndTimeAnswers.filter((item) => {
-    const view = Near.view("registry.i-am-human.near", "sbt_tokens_by_owner", {
-      account: item.accountId,
-      issuer: "gooddollar-v1.i-am-human.near",
-    });
-    return view?.[0]?.[1]?.[0];
-  });
-  return validate_addresees;
-}
-
 // Getting valid answers
 const answers = Social.index("poll_question", "answer-v3.1.0");
 
@@ -221,6 +207,19 @@ if (!state.answers) {
 const answersToThisPoll = state.answers.filter(
   (a) => a.value.questionBlockHeight == props.poll.blockHeight
 );
+function getValidAnswers() {
+  let validTimeAnswers = getTimeRelatedValidAnswers(answersToThisPoll);
+  let validOptionAndTimeAnswers =
+    getOptionRelatedValidAnswers(validTimeAnswers);
+  const validate_addresees = validOptionAndTimeAnswers.filter((item) => {
+    const view = Near.view("registry.i-am-human.near", "sbt_tokens_by_owner", {
+      account: item.accountId,
+      issuer: "gooddollar-v1.i-am-human.near",
+    });
+    return view?.[0]?.[1]?.[0];
+  });
+  return validate_addresees;
+}
 const validAnswersToThisPoll = getValidAnswers(answersToThisPoll);
 
 let userVote;
