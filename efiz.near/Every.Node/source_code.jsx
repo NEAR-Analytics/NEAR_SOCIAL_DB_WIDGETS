@@ -109,6 +109,7 @@ if (isRoot) {
 }
 
 function renderEdges(edges) {
+  console.log(edges);
   return (
     <ButtonRow>
       {edges?.map(([label, path]) => (
