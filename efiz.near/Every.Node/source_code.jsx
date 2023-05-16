@@ -71,7 +71,7 @@ function getNode(path, type) {
   if (type === "account") {
     if (parts.length > 1) {
       // GRAPH // FOLLOW // BACK TO ACCOUNT : WORKING
-      setRoot(parts[3], "account");
+      //   setRoot(parts[3], "account");
     } else {
       if (parts[0] !== "*") {
         parts.push("**");
@@ -95,7 +95,7 @@ function getNode(path, type) {
     if (parts.length > 2) {
       if (parts.length === 3) {
         // BACK TO ACCOUNT
-        setRoot(parts[3], "account");
+        // setRoot(parts[3], "account");
       } else if (parts.length === 4) {
         // ALL TAGS BY ACCOUNT
         value = Social.keys(`${parts[0]}/profile/tags/*`, "final");
