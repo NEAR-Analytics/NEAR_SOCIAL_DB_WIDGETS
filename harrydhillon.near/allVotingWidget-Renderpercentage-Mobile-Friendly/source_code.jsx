@@ -40,6 +40,14 @@ return (
             position: "relative",
           }}
         >
+          <ResponsiveTextOption
+            style={{
+              fontWeight: "500",
+              lineHeight: "2.5rem",
+            }}
+          >
+            {props.option} •
+          </ResponsiveTextOption>
           <div
             style={{
               height: "100%",
@@ -57,34 +65,9 @@ return (
               borderRadius: "4px",
             }}
           >
-            <ResponsiveTextOption
-              style={{
-                overflow: "visible",
-                fontWeight: "500",
-                lineHeight: "2.5rem",
-              }}
-            >
-              {props.option.length > 15 ? (
-                <OverlayTrigger
-                  key={placement}
-                  placement={placement}
-                  overlay={
-                    <Tooltip id={`tooltip-${placement}`}>
-                      {props.option}
-                    </Tooltip>
-                  }
-                >
-                  <span>{props.option.slice(0, 15)}...</span>
-                </OverlayTrigger>
-              ) : (
-                props.option.length
-              )}{" "}
-              •
-            </ResponsiveTextOption>
             <ResponsiveText
               className="text-secondary"
               style={{
-                marginLeft: "1rem",
                 fontWeight: "400",
               }}
             >
