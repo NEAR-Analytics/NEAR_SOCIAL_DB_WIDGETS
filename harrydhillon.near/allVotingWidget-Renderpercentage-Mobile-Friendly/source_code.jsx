@@ -108,8 +108,8 @@ return (
                   props.calculatePercentageOfOption(
                     props.countVotes(props.questionNumber, props.questionType),
                     props.optionNumber
-                  ) < 10
-                    ? 10
+                  ) < 5
+                    ? 5
                     : props.calculatePercentageOfOption(
                         props.countVotes(
                           props.questionNumber,
