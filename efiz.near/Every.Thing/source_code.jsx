@@ -61,15 +61,6 @@ console.log(widgetSrc);
 return (
   <div>
     <div>
-      {/** CONTROLLER */}
-      {history.length > 1 && isRoot && (
-        <Button onClick={handleBack}>back</Button>
-      )}
-      {isRoot ? (
-        <div style={styles?.subject}>{label}</div>
-      ) : (
-        <Button onClick={handleInto}>{label}</Button>
-      )}
       <Button onClick={handleExpand}>{state.expanded ? "-" : "+"}</Button>
     </div>
     {state.expanded && (
