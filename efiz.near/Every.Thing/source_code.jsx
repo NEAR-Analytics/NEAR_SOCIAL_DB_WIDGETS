@@ -1,11 +1,29 @@
-const dataSource = props.dataSource;
-const dataSourceArgs = props.dataSourceArgs;
-const type = props.type;
-const renderEdges = props.renderEdges;
+const key = props.key;
+const label = props.label;
+const path = props.path;
+const setPath = props.setPath;
+const history = props.history;
+const setHistory = props.setHistory;
+const isRoot = props.isRoot;
 
 State.init({
   expanded: false,
 });
+
+function handleExpand() {
+  State.update({ expanded: !state.expanded });
+}
+
+function handleInto() {
+  setPath(path);
+  setHistory([...history, path]);
+}
+
+function handleBack() {
+  const newPath = history[history.length - 2] || "";
+  setPath(newPath);
+  setHistory(history.slice(0, -1));
+}
 
 const Button = styled.button`
   text-transform: lowercase !important;
@@ -18,89 +36,140 @@ const ButtonRow = styled.div`
   gap: 4px;
 `;
 
-function handleExpand() {
-  State.update({ expanded: !state.expanded });
+function getType(path) {
+  const parts = path.split("/");
+  if (parts.length === 1) {
+    return "account";
+  } else if (parts.length === 2) {
+    return parts[1];
+  } else {
+    const standard = parts[1];
+    if (standard === "thing") {
+      // We're gonna grab the type from the thing itself
+    }
+    return standard;
+  }
 }
 
-function getData(dataSource, dataSourceArgs, type) {
+const type = getType(path);
+
+// WHEN A NEW ROOT IS SET //
+// GET DATA AT THIS PATH //
+function getNode(path, type) {
+  const parts = path.split("/");
   let value = {};
+
+  // ACCOUNT //
   if (type === "account") {
-    if (dataSource === "SOCIALDB") {
-      const path = dataSourceArgs.arg1;
-      const parts = path.split("/");
+    if (parts.length > 1) {
+      // GRAPH // FOLLOW // BACK TO ACCOUNT : WORKING
+      //   setRoot(parts[3], "account");
+    } else {
       if (parts[0] !== "*") {
         parts.push("**");
       }
-      // value = Social.get(parts.join("/"), "final");
-      value = props.value;
+      value = Social.get(parts.join("/"), "final");
       return value;
     }
+    // THING //
+  } else if (type === "thing") {
+    // path: "everything"
+    // type: "thing"
+    return rootNode; // Or should "everything" be "*"?
+    // PROFILE //
+  } else if (type === "profile") {
+    value = Social.get(parts.join("/"), "final");
+    // POST : WIP //
+  } else if (type === "post") {
+    value = path;
+    // NAMETAG : WIP //
+  } else if (type === "nametag") {
+    if (parts.length > 2) {
+      if (parts.length === 3) {
+        // BACK TO ACCOUNT
+        // setRoot(parts[3], "account");
+      } else if (parts.length === 4) {
+        // ALL TAGS BY ACCOUNT
+        value = Social.keys(`${parts[0]}/profile/tags/*`, "final");
+      } else {
+        // THIS TAG
+        value = parts[5];
+      }
+    }
+  } else {
+    parts.push("**");
+    value = Social.get(parts.join("/"), "final");
+    return value;
   }
 }
+let node = {};
+if (isRoot) {
+  console.log(`getting node for ${path} and ${type}`);
+  node = getNode(path, type);
+}
 
-const data = getData(dataSource, dataSourceArgs, type);
+function renderEdges(edges) {
+  return (
+    <ButtonRow>
+      {edges?.map(([label, path]) => (
+        <Widget
+          src="efiz.near/widget/Every.Node"
+          props={{
+            label: label,
+            path: path,
+            setPath: setPath,
+            history,
+            setHistory: setHistory,
+            isRoot: false,
+          }}
+        />
+      ))}
+    </ButtonRow>
+  );
+}
 
-function getTypeDetails(type) {
+function renderThing(path, type) {
+  let dataSource;
+  let dataSourceArgs = {};
   if (type === "account") {
-    return {
-      properties: [],
-      widgets: {
-        view: "efiz.near/widget/Every.Account",
-      },
+    dataSource = "SOCIALDB";
+    dataSourceArgs = {
+      arg1: path,
     };
   }
-}
-
-const typeDetails = getTypeDetails(type);
-console.log(typeDetails);
-
-const widgetSrc = typeDetails?.widgets?.view;
-console.log(widgetSrc);
-
-function getEdges(data) {
-  console.log(data);
-  return [{ label: "efiz", path: "efiz.near" }];
+  return (
+    <Widget
+      src="efiz.near/widget/Every.Thing"
+      props={{ dataSource, dataSourceArgs, type, renderEdges: renderEdges }}
+    />
+  );
 }
 
 return (
-  <>
+  <div>
     <div>
-      <div>
-        <Button onClick={handleExpand}>{state.expanded ? "-" : "+"}</Button>
-      </div>
-      {/** show edges */}
-      {state.expanded && <>{renderEdges && renderEdges(getEdges(data))}</>}
+      {isRoot ? (
+        <>
+          {/** render root view, is there a way to make the label better? get it from a map? */}
+          <div
+            style={{
+              fontFamily: "Times New Roman",
+              fontSize: "4em",
+              lineHeight: "1.25",
+              fontWeight: 400,
+              cursor: "pointer",
+            }}
+          >
+            {label}
+          </div>
+        </>
+      ) : (
+        <Button onClick={handleInto}>{label}</Button>
+      )}
+      {history.length > 1 && isRoot && (
+        <Button onClick={handleBack}>back</Button>
+      )}
     </div>
-  </>
+    {renderThing(path, type)}
+  </div>
 );
-if (widgetSrc) {
-  // return custom display
-  return <Widget src={widgetSrc} props={{ data }} />;
-} else {
-  // or basic node
-  // return (
-  //   <Widget
-  //     src="efiz.testnet/widget/Every.Node"
-  //     props={{
-  //       label: path,
-  //       type: type,
-  //       path: path,
-  //       setPath: setPath,
-  //       history: history,
-  //       setHistory: setHistory,
-  //       setRoot: setRoot,
-  //       setType: setType,
-  //       isRoot: true,
-  //       styles: {
-  //         subject: {
-  //           fontFamily: "Times New Roman",
-  //           fontSize: "4em",
-  //           lineHeight: "1.25",
-  //           fontWeight: 400,
-  //           cursor: "pointer",
-  //         },
-  //       },
-  //     }}
-  //   />
-  // );
-}
