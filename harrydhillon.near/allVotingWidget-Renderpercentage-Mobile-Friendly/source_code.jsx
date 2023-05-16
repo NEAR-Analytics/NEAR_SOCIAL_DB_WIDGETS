@@ -18,6 +18,78 @@ const TopMarginPercentage = styled.span`
   }
 `;
 
+const VoteButton = styled.button`
+  border-radius: 20px;
+  border: none;
+  display: flex;
+  padding: 0;
+  position: relative;
+  background: #f3f3f2;
+  width: 100%;
+  margin-bottom: 14px;
+  cursor: pointer;
+
+  .button {
+    border-radius: 20px;
+    padding: 12px 20px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 15px;
+    transition: all 0.4s ease-in-out;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    min-width: 90px;
+    width: 90px;
+
+    @media (max-width: 600px) {
+      justify-content: start;
+    }
+  }
+
+  .vote {
+    opacity: 0;
+    transition: all 0.4s ease-in-out;
+    max-width: 0;
+    display: block;
+    margin-right: 3px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .votes {
+    text-align: right;
+    padding: 12px 16px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    color: rgb(27, 27, 24);
+  }
+
+  .preview {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    border-radius: 20px;
+    transition: all 0.4s ease-in-out;
+    z-index: 0;
+  }
+
+  &:hover {
+    .button {
+      width: 100%;
+    }
+    .vote {
+      opacity: 1;
+      max-width: 100px;
+    }
+  }
+
+`;
+
 console.log(props, "final check");
 
 return (
@@ -50,54 +122,81 @@ return (
         </ResponsiveTextOption>
       )}
       {!props.canVote ? (
-        <div
-          style={{
-            display: "flex",
-            alignContent: "center",
-            backgroundColor: `${props.getBgColor(props.optionNumber, false)}`,
-            color: `${props.getFontColor(props.optionNumber)}`,
-            width: "100%",
-            height: "2.4rem",
-            borderRadius: `${props.getBorderRadious(
-              props.questionNumber,
-              props.optionNumber
-            )}`,
-            overflow: "hidden",
-            position: "relative",
-          }}
-        >
+        <>
           <div
             style={{
-              height: "100%",
-              padding: "0.01em 22px 0.01em 11px",
-              display: "block",
-              width: `${props.calculatePercentageOfOption(
-                props.countVotes(props.questionNumber, props.questionType),
+              display: "flex",
+              alignContent: "center",
+
+              color: `${props.getFontColor(props.optionNumber)}`,
+              width: "100%",
+              height: "2.4rem",
+              borderRadius: `${props.getBorderRadious(
+                props.questionNumber,
                 props.optionNumber
-              )}%`,
-              textAlign: "center",
-              overflow: "visible",
-              whiteSpace: "nowrap",
-              textAlign: "left",
-              backgroundColor: `${props.getBgColor(props.optionNumber, true)}`,
-              borderRadius: "4px",
-            }}
-          ></div>
-          <TopMarginPercentage
-            style={{
-              minWidth: "max-content",
-              fontWeight: "500",
-              position: "absolute",
-              right: "1.7rem",
+              )}`,
+              overflow: "hidden",
+              position: "relative",
             }}
           >
-            {props.calculatePercentageOfOption(
-              props.countVotes(props.questionNumber, props.questionType),
-              props.optionNumber
-            )}
-            %
-          </TopMarginPercentage>
-        </div>
+            <div
+              style={{
+                height: "100%",
+                padding: "0.01em 22px 0.01em 11px",
+                display: "block",
+                width: `${props.calculatePercentageOfOption(
+                  props.countVotes(props.questionNumber, props.questionType),
+                  props.optionNumber
+                )}%`,
+                textAlign: "center",
+                overflow: "visible",
+                whiteSpace: "nowrap",
+                textAlign: "left",
+                backgroundColor: `${props.getBgColor(
+                  props.optionNumber,
+                  true
+                )}`,
+                borderRadius: "4px",
+              }}
+            ></div>
+            <TopMarginPercentage
+              style={{
+                minWidth: "max-content",
+                fontWeight: "500",
+                position: "absolute",
+                right: "1.7rem",
+              }}
+            >
+              {props.calculatePercentageOfOption(
+                props.countVotes(props.questionNumber, props.questionType),
+                props.optionNumber
+              )}
+              %
+            </TopMarginPercentage>
+          </div>
+          <VoteButton
+            style={{
+              backgroundColor: `${props.getBgColor(props.optionNumber, false)}`,
+            }}
+          >
+            <span
+              style={{
+                width: `${props.calculatePercentageOfOption(
+                  props.countVotes(props.questionNumber, props.questionType),
+                  props.optionNumber
+                )}%`,
+              }}
+              className="button"
+            >
+              <span className="vote">Vote </span> Yes
+            </span>
+            <span className="votes">
+              <span className="preview" />
+              {totalYesVotes} Votes (
+              {Math.round((totalYesVotes / totalVotes) * 100 || 0)}%)
+            </span>
+          </VoteButton>
+        </>
       ) : (
         <>
           <input
