@@ -64,7 +64,6 @@ return (
             position: "relative",
           }}
         >
-          {console.log(props)}
           <div
             style={{
               height: "100%",
