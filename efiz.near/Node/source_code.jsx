@@ -42,13 +42,6 @@ const Button = styled.button`
   color: #333;
 `;
 
-const ButtonRow = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 4px;
-`;
-
 const ChildNode = styled.div`
   margin-left: ${path.split("/").length * 4}px
 `;
@@ -88,32 +81,34 @@ return (
       <Button onClick={handleExpand}>{state.expanded ? "-" : "+"}</Button>
     </div>
     {state.expanded && (
-      <>
-        <div>
-          {/** EDGES */}
-          <ButtonRow>
-            {node && typeof node === "object"
-              ? Object.entries(node).map(([key, val]) => (
-                  <Widget
-                    src="efiz.near/widget/Node"
-                    props={{
-                      key,
-                      label: key,
-                      node: val,
-                      type: getType(),
-                      path: `${path}/${key}`,
-                      setPath: setPath,
-                      history,
-                      setHistory: setHistory,
-                      isRoot: false,
-                    }}
-                  />
-                ))
-              : null}
-          </ButtonRow>
-        </div>
-        <div>{renderView()}</div>
-      </>
+      <div>
+        {/** EDGES */}
+        {node && typeof node === "object" ? (
+          Object.entries(node).map(([key, val]) => (
+            <ChildNode>
+              <Widget
+                src="efiz.near/widget/Node"
+                props={{
+                  key,
+                  label: key,
+                  node: val,
+                  type: getType(),
+                  path: `${path}/${key}`,
+                  setPath: setPath,
+                  history,
+                  setHistory: setHistory,
+                  isRoot: false,
+                }}
+              />
+            </ChildNode>
+          ))
+        ) : (
+          <>
+            {/** VIEW */}
+            <div>{renderView()}</div>
+          </>
+        )}
+      </div>
     )}
   </div>
 );
