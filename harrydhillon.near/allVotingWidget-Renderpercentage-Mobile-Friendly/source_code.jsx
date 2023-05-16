@@ -121,7 +121,7 @@ return (
                 opacity: 1,
                 backgroundColor: `${props.getBgColor(
                   props.optionNumber,
-                  false
+                  true
                 )}`,
               }}
               className="button"
