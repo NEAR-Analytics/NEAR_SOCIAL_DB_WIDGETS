@@ -25,7 +25,7 @@ return (
       {!props.canVote && (
         <ResponsiveTextOption
           style={{
-            marginTop: 5,
+            marginTop: 15,
             fontWeight: "500",
           }}
         >
@@ -71,6 +71,7 @@ return (
               className="text-secondary"
               style={{
                 fontWeight: "400",
+                marginTop: "0.8rem",
               }}
             >
               (
