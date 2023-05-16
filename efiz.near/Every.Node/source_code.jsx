@@ -104,12 +104,11 @@ function getNode(path, type) {
 }
 let node = {};
 if (isRoot) {
-  console.log(`getting node for ${path} and ${type}`);
   node = getNode(path, type);
 }
 
 function renderEdges(edges) {
-  console.log(edges);
+  console.log(`edges: ${edges}`);
   return (
     <ButtonRow>
       {edges?.map(([label, path]) => (
