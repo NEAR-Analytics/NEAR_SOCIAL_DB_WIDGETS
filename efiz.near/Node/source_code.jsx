@@ -32,7 +32,7 @@ function handleBack() {
 
 const Button = styled.button`
   text-transform: lowercase !important;
-  -webkit-appearance: none;
+  // -webkit-appearance: none;
   display: inline-block;
   text-align: center;
   text-decoration: none;
