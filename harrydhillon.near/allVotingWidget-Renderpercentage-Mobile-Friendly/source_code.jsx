@@ -4,7 +4,6 @@ const ResponsiveText = styled.span`
   }
 `;
 const ResponsiveTextOption = styled.p`
-  width:100px;
   whitespace: pre-wrap;
   @media screen and (max-width: 1024px)  {
       font-size: 11px;
