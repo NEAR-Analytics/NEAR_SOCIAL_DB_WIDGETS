@@ -47,16 +47,6 @@ const VoteButton = styled.button`
     }
   }
 
-  .vote {
-    opacity: 0;
-    transition: all 0.4s ease-in-out;
-    max-width: 0;
-    display: block;
-    margin-right: 3px;
-    position: relative;
-    z-index: 1;
-  }
-
   .votes {
     text-align: right;
     padding: 12px 16px;
@@ -81,10 +71,6 @@ const VoteButton = styled.button`
   &:hover {
     .button {
       width: 100%;
-    }
-    .vote {
-      opacity: 1;
-      max-width: 100px;
     }
   }
 
@@ -187,7 +173,7 @@ return (
               }}
               className="button"
             >
-              <span className="vote">Vote </span> Yes
+              <></>
             </span>
             <span className="votes">
               <span className="preview" />
