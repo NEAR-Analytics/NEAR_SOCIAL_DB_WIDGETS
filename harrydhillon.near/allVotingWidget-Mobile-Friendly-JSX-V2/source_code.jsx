@@ -23,12 +23,12 @@ const renderTextInput = (questionNumber) => {
   );
 };
 
-const renderMultipleChoiceInput = (
+const renderMultipleChoiceInput = ({
   questionNumber,
   questionType,
   option,
-  optionNumber
-) => (
+  optionNumber,
+}) => (
   <>
     <Widget
       src="harrydhillon.near/widget/allVotingWidget-RenderMultiInput-Mobile-Friendly"
