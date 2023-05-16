@@ -112,6 +112,7 @@ function getNode(path, type) {
 }
 let node = {};
 if (isRoot) {
+  console.log(`getting node for ${path} and ${type}`);
   node = getNode(path, type);
 }
 
