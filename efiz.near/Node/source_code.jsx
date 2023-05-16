@@ -110,7 +110,6 @@ return (
               ))
             : null}
         </ButtonRow>
-        <div>{renderView()}</div>
       </div>
     )}
   </div>
