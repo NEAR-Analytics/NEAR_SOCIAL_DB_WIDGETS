@@ -59,31 +59,35 @@ const widgetSrc = typeDetails?.widgets?.view;
 console.log(widgetSrc);
 
 return (
-  <div>
-    <div>
-      <Button onClick={handleExpand}>{state.expanded ? "-" : "+"}</Button>
-    </div>
-    {state.expanded && (
-      <ButtonRow>
-        {node && typeof node === "object"
-          ? Object.entries(node).map(([key, val]) => (
-              <Widget
-                src="efiz.near/widget/Every.Node"
-                props={{
-                  key,
-                  label: key,
-                  path: `${path}/${key}`,
-                  setPath: setPath,
-                  history,
-                  setHistory: setHistory,
-                  isRoot: false,
-                }}
-              />
-            ))
-          : null}
-      </ButtonRow>
-    )}
-  </div>
+  <>
+    {isRoot ? (
+      <div>
+        <div>
+          <Button onClick={handleExpand}>{state.expanded ? "-" : "+"}</Button>
+        </div>
+        {state.expanded && (
+          <ButtonRow>
+            {node && typeof node === "object"
+              ? Object.entries(node).map(([key, val]) => (
+                  <Widget
+                    src="efiz.near/widget/Every.Node"
+                    props={{
+                      key,
+                      label: key,
+                      path: `${path}/${key}`,
+                      setPath: setPath,
+                      history,
+                      setHistory: setHistory,
+                      isRoot: false,
+                    }}
+                  />
+                ))
+              : null}
+          </ButtonRow>
+        )}
+      </div>
+    ) : null}
+  </>
 );
 if (widgetSrc) {
   // return custom display
