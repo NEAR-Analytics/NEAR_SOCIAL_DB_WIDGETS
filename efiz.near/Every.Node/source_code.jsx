@@ -106,7 +106,7 @@ const type = getType(path);
 // }
 
 function renderEdges(edges) {
-  console.log(`edges: ${edges}`);
+  console.log(`edges: ${JSON.stringify(edges)}`);
   return (
     <ButtonRow>
       {edges?.map(([label, path]) => (
