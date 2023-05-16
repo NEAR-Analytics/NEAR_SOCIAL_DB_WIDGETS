@@ -66,7 +66,7 @@ return (
               borderRadius: "4px",
             }}
           >
-            <ResponsiveText
+            <TopMarginPercentage
               className="text-secondary"
               style={{
                 fontWeight: "400",
@@ -79,7 +79,7 @@ return (
                 ]
               }{" "}
               votes)
-            </ResponsiveText>
+            </TopMarginPercentage>
           </div>
           <TopMarginPercentage
             style={{
