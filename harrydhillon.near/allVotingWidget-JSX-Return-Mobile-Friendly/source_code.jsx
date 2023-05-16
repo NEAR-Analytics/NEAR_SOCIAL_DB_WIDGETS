@@ -36,12 +36,12 @@ return (
           )}
           {question.questionType != "3"
             ? question.choicesOptions.map((option, optionNumber) => {
-                return props.renderMultipleChoiceInput(
-                  questionNumber,
-                  question.questionType,
+                return props.renderMultipleChoiceInput({
+                  questionNumber: questionNumber,
+                  questionType: question.questionType,
                   option,
-                  optionNumber
-                );
+                  optionNumber,
+                });
               })
             : props.renderTextInput(questionNumber)}
         </div>
