@@ -30,9 +30,9 @@ function handleBack() {
   setHistory(history.slice(0, -1));
 }
 
+// Basic Button Style
 const Button = styled.button`
   text-transform: lowercase !important;
-  // -webkit-appearance: none;
   display: inline-block;
   text-align: center;
   text-decoration: none;
@@ -40,6 +40,13 @@ const Button = styled.button`
   background-color: #f5f5f5;
   cursor: pointer;
   color: #333;
+`;
+
+const ButtonRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 4px;
 `;
 
 const ChildNode = styled.div`
@@ -83,31 +90,27 @@ return (
     {state.expanded && (
       <div>
         {/** EDGES */}
-        {node && typeof node === "object" ? (
-          Object.entries(node).map(([key, val]) => (
-            <ChildNode>
-              <Widget
-                src="efiz.near/widget/Node"
-                props={{
-                  key,
-                  label: key,
-                  node: val,
-                  type: getType(),
-                  path: `${path}/${key}`,
-                  setPath: setPath,
-                  history,
-                  setHistory: setHistory,
-                  isRoot: false,
-                }}
-              />
-            </ChildNode>
-          ))
-        ) : (
-          <>
-            {/** VIEW */}
-            <div>{renderView()}</div>
-          </>
-        )}
+        <ButtonRow>
+          {node && typeof node === "object"
+            ? Object.entries(node).map(([key, val]) => (
+                <Widget
+                  src="efiz.near/widget/Node"
+                  props={{
+                    key,
+                    label: key,
+                    node: val,
+                    type: getType(),
+                    path: `${path}/${key}`,
+                    setPath: setPath,
+                    history,
+                    setHistory: setHistory,
+                    isRoot: false,
+                  }}
+                />
+              ))
+            : null}
+        </ButtonRow>
+        <div>{renderView()}</div>
       </div>
     )}
   </div>
