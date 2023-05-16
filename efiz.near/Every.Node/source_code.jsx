@@ -120,7 +120,7 @@ function renderThing(path, type) {
   return (
     <Widget
       src="efiz.near/widget/Every.Thing"
-      props={{ dataSource, dataSourceArgs, type, node }}
+      props={{ dataSource, dataSourceArgs, type, node, isRoot }}
     />
   );
 }
