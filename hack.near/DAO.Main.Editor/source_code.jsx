@@ -15,7 +15,7 @@ State.init({
   main: main ?? defaultMain,
   prop: state.prop,
   value: state.value,
-  typeTag: typeTag,
+  typeTag,
 });
 
 const main_args = JSON.stringify({
@@ -140,7 +140,7 @@ return (
     <div className="mt-2">
       <h5>Property</h5>
 
-      <input type="text" value={state.domain} placeholder="daoId" />
+      <input type="text" value={state.prop} placeholder="daoId" />
     </div>
     <div className="mt-2">
       <h5>Value</h5>
