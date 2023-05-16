@@ -41,15 +41,21 @@ const containerStyle = {
   backgroundColor: "#f5f5f5",
 };
 
+const labelStyle = {
+  display: "block",
+  fontWeight: "bold",
+  marginBottom: "0.5rem",
+};
+
 return data !== null && accountId !== null ? (
   <>
     <div style={containerStyle}>
       <h1>NFT Viewer</h1>
-      <p>Displays all your NFTs from nft.harmonic1.near Contract.</p>
+      <p style={labelStyle}>Your NFTs from nft.harmonic1.near Contract.</p>
       <div className="d-flex gap-4 flex-wrap">
         {data.body.data?.mb_views_nft_tokens.map((listing, i) => {
           return (
-            <div className="d-flex flex-column gap-1">
+            <div className="my-3 d-flex flex-column gap-1">
               <Widget
                 src="mob.near/widget/NftImage"
                 props={{
