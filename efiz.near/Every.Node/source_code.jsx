@@ -34,7 +34,6 @@ const ButtonRow = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   gap: 4px;
-  margin: 0 4px;
 `;
 
 function getType(path) {
