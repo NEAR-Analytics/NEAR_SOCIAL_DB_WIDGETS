@@ -109,12 +109,12 @@ function renderEdges(edges) {
   console.log(`edges: ${JSON.stringify(edges)}`);
   return (
     <ButtonRow>
-      {edges?.map(([label, path]) => (
+      {edges?.map((it) => (
         <Widget
           src="efiz.near/widget/Every.Node"
           props={{
-            label: label,
-            path: path,
+            label: it.label,
+            path: it.path,
             setPath: setPath,
             history,
             setHistory: setHistory,
