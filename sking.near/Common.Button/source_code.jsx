@@ -1,9 +1,11 @@
 const children = props.children ?? "Button";
 const onClick = props.onClick ?? (() => {});
-const href = props.href ?? "#";
+const href = props.href;
 const variant = props.variant ?? "primary"; // primary, success, danger
 
-const Wrapper = styled.a`
+const tag = href ? "a" : "button";
+
+const Wrapper = styled[tag]`
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -39,7 +41,6 @@ const Wrapper = styled.a`
     }
   }};
 
-
   &:hover,
   &:focus {
     text-decoration: none;
@@ -49,7 +50,7 @@ const Wrapper = styled.a`
 `;
 
 return (
-  <Wrapper onClick={()=>onClick} href={href} variant={variant} {...props}>
+  <Wrapper onClick={() => onClick} href={href} variant={variant} {...props}>
     {children}
   </Wrapper>
 );
