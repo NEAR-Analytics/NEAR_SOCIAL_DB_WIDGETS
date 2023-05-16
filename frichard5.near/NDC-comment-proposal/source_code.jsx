@@ -1,13 +1,13 @@
+const dataa = Social.get("frichard5.near/widget/**");
+console.log("data", dataa);
 const comment = () => {
-  const dataa = Social.get("frichard5.near/**");
-  console.log("uhm", dataa);
   const index = {
     action: "post",
     key: "main",
     options: {
       limit: 10,
       order: "desc",
-      accountId: props.accounts,
+      accountId: "frichard5.near",
     },
   };
   const initialItems = Social.index(index.action, index.key, index.options);
@@ -15,18 +15,18 @@ const comment = () => {
   //const setPost = Social.set();
   const data = {
     post: {
-      main: JSON.stringify({ type: "md", test: "test wrong zkey" }),
+      main: JSON.stringify({ type: "md", text: "test wrong zkey" }),
     },
     index: {
       post: JSON.stringify({
         key: "main",
         value: {
-          type: "mid",
+          type: "midd",
         },
       }),
     },
   };
-  Social.set(data, { force: true });
+  //Social.set(data, { force: true });
   //Social.set({ ndcTest: "hello" });
   /*const item = {
     type: "social",
