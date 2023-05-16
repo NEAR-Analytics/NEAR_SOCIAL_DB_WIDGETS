@@ -3,6 +3,7 @@ const dataSourceArgs = props.dataSourceArgs;
 const type = props.type;
 const node = props.node;
 const isRoot = props.isRoot;
+const renderEdges = props.renderEdges;
 
 State.init({
   expanded: false,
@@ -67,24 +68,9 @@ return (
           <Button onClick={handleExpand}>{state.expanded ? "-" : "+"}</Button>
         </div>
         {state.expanded && (
-          <ButtonRow>
-            {node && typeof node === "object"
-              ? Object.entries(node).map(([key, val]) => (
-                  <Widget
-                    src="efiz.near/widget/Every.Node"
-                    props={{
-                      key,
-                      label: key,
-                      path: `${path}/${key}`,
-                      setPath: setPath,
-                      history,
-                      setHistory: setHistory,
-                      isRoot: false,
-                    }}
-                  />
-                ))
-              : null}
-          </ButtonRow>
+          <>
+            {renderEdges && renderEdges([{ label: "efiz", path: "efiz.near" }])}
+          </>
         )}
       </div>
     ) : null}
