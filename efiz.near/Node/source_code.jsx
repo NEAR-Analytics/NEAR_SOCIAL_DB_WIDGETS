@@ -10,12 +10,6 @@ const setType = props.setType;
 const isRoot = props.isRoot;
 const styles = props.styles;
 
-// if (type === "account") {
-//   type = {};
-// } else {
-//   Type.get();
-// }
-
 State.init({
   expanded: false,
 });
@@ -38,6 +32,7 @@ function handleBack() {
 
 const Button = styled.button`
   text-transform: lowercase !important;
+  -webkit-appearance: none;
 `;
 
 const ChildNode = styled.div`
@@ -96,7 +91,6 @@ return (
                   history,
                   setHistory: setHistory,
                   isRoot: false,
-                  styles: styles,
                 }}
               />
             </ChildNode>
