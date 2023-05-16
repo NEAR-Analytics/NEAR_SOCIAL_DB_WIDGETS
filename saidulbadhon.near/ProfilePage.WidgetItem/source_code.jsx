@@ -23,8 +23,24 @@ return (
     href={`${gateway + props.accountId}/widget/${props.name}`}
     target="_blank"
   >
-    <h3 className="max1Lines">{props.name}</h3>
-    <p className="max1Lines">{`${props.accountId}/widget/${props.name}`}</p>
+    <h3
+      className="max1Lines"
+      style={{
+        color: "#24292f",
+        fontSize: "1.17em",
+        fontWeight: "bold",
+      }}
+    >
+      {props.name}
+    </h3>
+    <p
+      className="max1Lines"
+      sstyle={{
+        fontSize: "0.9rem",
+        color: "#57606a",
+        overflowWrap: "break-word",
+      }}
+    >{`${props.accountId}/widget/${props.name}`}</p>
 
     <div
       style={{
