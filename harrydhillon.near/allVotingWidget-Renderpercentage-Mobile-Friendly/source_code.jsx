@@ -39,7 +39,6 @@ return (
             backgroundColor: `${props.getBgColor(props.optionNumber, false)}`,
             color: `${props.getFontColor(props.optionNumber)}`,
             width: "100%",
-            margin: "0.3rem 0px",
             height: "2.4rem",
             borderRadius: `${props.getBorderRadious(
               props.questionNumber,
