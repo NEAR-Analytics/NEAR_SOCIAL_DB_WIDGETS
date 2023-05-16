@@ -198,7 +198,15 @@ function getValidAnswers() {
   let validTimeAnswers = getTimeRelatedValidAnswers(answersToThisPoll);
   let validOptionAndTimeAnswers =
     getOptionRelatedValidAnswers(validTimeAnswers);
-  return validOptionAndTimeAnswers;
+  const validate_addresees = validOptionAndTimeAnswers.filter((item) => {
+    const view = Near.view("registry.i-am-human.near", "sbt_tokens_by_owner", {
+      account: item.accountId,
+      issuer: "gooddollar-v1.i-am-human.near",
+    });
+    return view?.[0]?.[1]?.[0];
+  });
+  console.log(validate_addresees);
+  return validate_addresees;
 }
 
 // Getting valid answers
