@@ -26,7 +26,6 @@ return (
         <ResponsiveTextOption
           style={{
             fontWeight: "500",
-            lineHeight: "2.5rem",
           }}
         >
           {props.option} •
