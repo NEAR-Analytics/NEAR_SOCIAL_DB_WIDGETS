@@ -173,7 +173,7 @@ return (
               }}
               className="button"
             >
-              <span className="vote">Vote </span> Yes
+              <span className="vote" />
             </span>
             <span className="votes">
               <span className="preview" />
