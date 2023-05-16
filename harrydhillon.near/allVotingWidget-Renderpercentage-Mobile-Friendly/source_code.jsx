@@ -107,57 +107,6 @@ return (
       )}
       {!props.canVote ? (
         <>
-          <div
-            style={{
-              display: "flex",
-              alignContent: "center",
-
-              color: `${props.getFontColor(props.optionNumber)}`,
-              width: "100%",
-              height: "2.4rem",
-              borderRadius: `${props.getBorderRadious(
-                props.questionNumber,
-                props.optionNumber
-              )}`,
-              overflow: "hidden",
-              position: "relative",
-            }}
-          >
-            <div
-              style={{
-                height: "100%",
-                padding: "0.01em 22px 0.01em 11px",
-                display: "block",
-                width: `${props.calculatePercentageOfOption(
-                  props.countVotes(props.questionNumber, props.questionType),
-                  props.optionNumber
-                )}%`,
-                textAlign: "center",
-                overflow: "visible",
-                whiteSpace: "nowrap",
-                textAlign: "left",
-                backgroundColor: `${props.getBgColor(
-                  props.optionNumber,
-                  true
-                )}`,
-                borderRadius: "4px",
-              }}
-            ></div>
-            <TopMarginPercentage
-              style={{
-                minWidth: "max-content",
-                fontWeight: "500",
-                position: "absolute",
-                right: "1.7rem",
-              }}
-            >
-              {props.calculatePercentageOfOption(
-                props.countVotes(props.questionNumber, props.questionType),
-                props.optionNumber
-              )}
-              %
-            </TopMarginPercentage>
-          </div>
           <VoteButton>
             <span
               style={{
