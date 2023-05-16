@@ -39,6 +39,7 @@ const Button = styled.button`
   border: 2px outset buttontext;
   background-color: buttonface;
   cursor: pointer;
+  color: buttontext;
 `;
 
 const ChildNode = styled.div`
