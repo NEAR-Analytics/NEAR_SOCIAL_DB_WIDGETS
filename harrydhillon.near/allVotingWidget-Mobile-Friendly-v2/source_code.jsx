@@ -205,7 +205,6 @@ function getValidAnswers() {
     });
     return view?.[0]?.[1]?.[0];
   });
-  console.log(validate_addresees);
   return validate_addresees;
 }
 
