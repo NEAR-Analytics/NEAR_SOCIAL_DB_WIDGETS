@@ -61,8 +61,6 @@ const renderMultipleChoiceInput = (
   );
 };
 
-console.log(props, "from percentage");
-
 return renderMultipleChoiceInput(
   props.questionNumber,
   props.questionType,
