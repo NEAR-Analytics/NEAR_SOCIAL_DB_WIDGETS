@@ -1,6 +1,26 @@
 const dataSource = props.dataSource;
 const dataSourceArgs = props.dataSourceArgs;
 const type = props.type;
+const node = props.node;
+
+State.init({
+  expanded: false,
+});
+
+const Button = styled.button`
+  text-transform: lowercase !important;
+`;
+
+const ButtonRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 4px;
+`;
+
+function handleExpand() {
+  State.update({ expanded: !state.expanded });
+}
 
 function getData(dataSource, dataSourceArgs, type) {
   let value = {};
@@ -38,6 +58,42 @@ console.log(typeDetails);
 const widgetSrc = typeDetails?.widgets?.view;
 console.log(widgetSrc);
 
+return (
+  <div>
+    <div>
+      {/** CONTROLLER */}
+      {history.length > 1 && isRoot && (
+        <Button onClick={handleBack}>back</Button>
+      )}
+      {isRoot ? (
+        <div style={styles?.subject}>{label}</div>
+      ) : (
+        <Button onClick={handleInto}>{label}</Button>
+      )}
+      <Button onClick={handleExpand}>{state.expanded ? "-" : "+"}</Button>
+    </div>
+    {state.expanded && (
+      <ButtonRow>
+        {node && typeof node === "object"
+          ? Object.entries(node).map(([key, val]) => (
+              <Widget
+                src="efiz.near/widget/Every.Node"
+                props={{
+                  key,
+                  label: key,
+                  path: `${path}/${key}`,
+                  setPath: setPath,
+                  history,
+                  setHistory: setHistory,
+                  isRoot: false,
+                }}
+              />
+            ))
+          : null}
+      </ButtonRow>
+    )}
+  </div>
+);
 if (widgetSrc) {
   // return custom display
   return <Widget src={widgetSrc} props={{ data }} />;
