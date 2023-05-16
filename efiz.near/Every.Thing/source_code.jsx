@@ -1,8 +1,6 @@
 const dataSource = props.dataSource;
 const dataSourceArgs = props.dataSourceArgs;
 const type = props.type;
-const node = props.node;
-const isRoot = props.isRoot;
 const renderEdges = props.renderEdges;
 
 State.init({
@@ -41,7 +39,6 @@ function getData(dataSource, dataSourceArgs, type) {
 }
 
 const data = getData(dataSource, dataSourceArgs, type);
-console.log(data);
 
 function getTypeDetails(type) {
   if (type === "account") {
@@ -62,18 +59,16 @@ console.log(widgetSrc);
 
 return (
   <>
-    {isRoot ? (
+    <div>
       <div>
-        <div>
-          <Button onClick={handleExpand}>{state.expanded ? "-" : "+"}</Button>
-        </div>
-        {state.expanded && (
-          <>
-            {renderEdges && renderEdges([{ label: "efiz", path: "efiz.near" }])}
-          </>
-        )}
+        <Button onClick={handleExpand}>{state.expanded ? "-" : "+"}</Button>
       </div>
-    ) : null}
+      {state.expanded && (
+        <>
+          {renderEdges && renderEdges([{ label: "efiz", path: "efiz.near" }])}
+        </>
+      )}
+    </div>
   </>
 );
 if (widgetSrc) {
