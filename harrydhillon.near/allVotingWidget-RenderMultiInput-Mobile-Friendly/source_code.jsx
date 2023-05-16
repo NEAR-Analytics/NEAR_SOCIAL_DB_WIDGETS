@@ -1,9 +1,9 @@
-const renderMultipleChoiceInput = (
+const renderMultipleChoiceInput = ({
   questionNumber,
   questionType,
   option,
-  optionNumber
-) => {
+  optionNumber,
+}) => {
   return (
     <>
       {!props.canVote ? (
@@ -61,9 +61,9 @@ const renderMultipleChoiceInput = (
   );
 };
 
-return renderMultipleChoiceInput(
-  props.questionNumber,
-  props.questionType,
-  props.option,
-  props.optionNumber
-);
+return renderMultipleChoiceInput({
+  questionNumber: props.questionNumber,
+  questionType: props.questionType,
+  option: props.option,
+  optionNumber: props.optionNumber,
+});
