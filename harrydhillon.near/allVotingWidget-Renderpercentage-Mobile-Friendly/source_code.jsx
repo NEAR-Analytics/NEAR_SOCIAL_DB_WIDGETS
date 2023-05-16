@@ -68,12 +68,6 @@ const VoteButton = styled.button`
     z-index: 0;
   }
 
-  &:hover {
-    .button {
-      width: 100%;
-    }
-  }
-
 `;
 
 return (
