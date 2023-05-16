@@ -22,6 +22,16 @@ return (
   <div>
     <div className="d-flex align-content-center">
       {/* Set the width of the next div to make the bar grow. At the same, use the same value to fill the span tag */}
+      {!props.canVote && (
+        <ResponsiveTextOption
+          style={{
+            fontWeight: "500",
+            lineHeight: "2.5rem",
+          }}
+        >
+          {props.option} •
+        </ResponsiveTextOption>
+      )}
       {!props.canVote ? (
         <div
           style={{
@@ -40,14 +50,6 @@ return (
             position: "relative",
           }}
         >
-          <ResponsiveTextOption
-            style={{
-              fontWeight: "500",
-              lineHeight: "2.5rem",
-            }}
-          >
-            {props.option} •
-          </ResponsiveTextOption>
           <div
             style={{
               height: "100%",
