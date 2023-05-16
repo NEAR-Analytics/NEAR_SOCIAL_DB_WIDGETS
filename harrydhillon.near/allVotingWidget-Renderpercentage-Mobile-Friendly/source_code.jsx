@@ -66,6 +66,8 @@ return (
         >
           {console.log(
             props.countVotes(props.questionNumber, props.questionType),
+            props.questionNumber,
+            props.questionType,
             "render percentage"
           )}
           <div
