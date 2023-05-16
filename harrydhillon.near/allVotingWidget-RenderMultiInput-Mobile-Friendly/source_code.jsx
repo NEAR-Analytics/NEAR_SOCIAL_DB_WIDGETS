@@ -60,7 +60,7 @@ const renderMultipleChoiceInput = ({
     </>
   );
 };
-
+console.log(props, "multi");
 return renderMultipleChoiceInput({
   questionNumber: props.questionNumber,
   questionType: props.questionType,
