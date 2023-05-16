@@ -32,7 +32,9 @@ return (
       style={{
         color: props.theme.textColor,
         fontSize: "1.17em",
-        fontWeight: "bold",
+        fontWeight: 600,
+        margin: 0,
+        padding: 0,
       }}
     >
       {props.name}
@@ -43,6 +45,8 @@ return (
         fontSize: "0.9rem",
         color: props.theme.textColor3,
         overflowWrap: "break-word",
+        margin: 0,
+        padding: 0,
       }}
     >{`${props.accountId}/widget/${props.name}`}</p>
 
