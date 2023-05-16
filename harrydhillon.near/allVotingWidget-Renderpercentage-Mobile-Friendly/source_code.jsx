@@ -185,6 +185,11 @@ return (
                   props.countVotes(props.questionNumber, props.questionType),
                   props.optionNumber
                 )}%`,
+                opacity: 1,
+                backgroundColor: `${props.getBgColor(
+                  props.optionNumber,
+                  false
+                )}`,
               }}
               className="button"
             >
