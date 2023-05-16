@@ -17,7 +17,6 @@ function handleExpand() {
 function handleInto() {
   setPath(path);
   setHistory([...history, path]);
-  //   setType(type);
 }
 
 function handleBack() {
@@ -37,11 +36,6 @@ const ButtonRow = styled.div`
   gap: 4px;
   margin: 0 4px;
 `;
-
-function renderView() {
-  // Root vs Leaf?
-  return <Widget src="efiz.near/widget/Every.Thing" props={{ path, type }} />;
-}
 
 function getType(path) {
   const parts = path.split("/");
@@ -120,7 +114,7 @@ return (
     <div>
       {isRoot ? (
         <>
-          {/** render root view */}
+          {/** render root view, is there a way to make the label better? get it from a map? */}
           <div
             style={{
               fontFamily: "Times New Roman",
@@ -159,5 +153,6 @@ return (
           : null}
       </ButtonRow>
     </div>
+    <Widget src="efiz.near/widget/Every.Thing" props={{ path, type }} />
   </div>
 );
