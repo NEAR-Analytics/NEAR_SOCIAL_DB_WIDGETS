@@ -1,5 +1,3 @@
-console.log(props, "fromm renderpercentage muti mobile");
-
 const renderMultipleChoiceInput = (
   questionNumber,
   questionType,
