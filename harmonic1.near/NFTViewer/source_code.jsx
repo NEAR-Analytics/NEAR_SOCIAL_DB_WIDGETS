@@ -87,5 +87,11 @@ return data !== null && accountId !== null ? (
     </div>
   </>
 ) : (
-  <p>Loading... If you are not logged in, please do.</p>
+  <div style={containerStyle}>
+    <h1>NFT Viewer</h1>
+    <p style={labelStyle}>
+      Loading... <br />
+      (If you are not logged in, please do.)
+    </p>
+  </div>
 );
