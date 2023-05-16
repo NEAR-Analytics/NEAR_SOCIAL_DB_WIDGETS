@@ -36,8 +36,8 @@ const Button = styled.button`
   display: inline-block;
   text-align: center;
   text-decoration: none;
-  border: 2px outset buttontext;
-  background-color: buttonface;
+  border: 2px outset #333;
+  background-color: #f5f5f5;
   cursor: pointer;
   color: #333;
 `;
