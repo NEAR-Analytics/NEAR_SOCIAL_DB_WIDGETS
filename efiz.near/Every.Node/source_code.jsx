@@ -110,8 +110,10 @@ function getNode(path, type) {
     return value;
   }
 }
-
-const node = getNode(path, type);
+let node = {};
+if (isRoot) {
+  node = getNode(path, type);
+}
 
 return (
   <div>
