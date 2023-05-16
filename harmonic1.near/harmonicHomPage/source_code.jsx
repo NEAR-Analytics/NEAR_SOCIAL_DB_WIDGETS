@@ -26,15 +26,33 @@ const paragraphStyles = {
   marginTop: "20px",
 };
 
+const paragraphStyles2 = {
+  fontSize: "1em",
+  textAlign: "center",
+  color: "#000", // Black color
+  marginTop: "20px",
+};
+
 //const App = () => {
 return (
-  <div style={containerStyles}>
-    <h1 style={heroStyles}>
-      <span>Welcome to </span>
-      <span style={blueTextStyles}>Harmonic Guild</span>
-      <span>Gateway</span>
-    </h1>
-    <p style={paragraphStyles}>Stay tuned for more exciting things.</p>
+  <div>
+    <div style={containerStyles}>
+      <h1 style={heroStyles}>
+        <span>Welcome to </span>
+        <span style={blueTextStyles}>Harmonic Guild</span>
+        <span>Gateway</span>
+      </h1>
+      <p style={paragraphStyles}>
+        Check our latest Apps below and Stay Tuned for more.
+      </p>
+    </div>
+    <div className="mb-5">
+      <Widget src="harmonic1.near/widget/NFTMinter" />
+      <p className="mt-5" style={paragraphStyles2}>
+        Contact us at hello@harmonicguild.io to get a trial account to use our
+        Minter for free. No passphrase, no crypto needed.
+      </p>
+    </div>
   </div>
 );
 //};
