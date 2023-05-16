@@ -18,9 +18,9 @@ function handleExpand() {
 }
 
 function handleInto() {
-  setPath(path);
+  setRoot(path, type);
   setHistory([...history, path]);
-  setType(type);
+  //   setType(type);
 }
 
 function handleBack() {
