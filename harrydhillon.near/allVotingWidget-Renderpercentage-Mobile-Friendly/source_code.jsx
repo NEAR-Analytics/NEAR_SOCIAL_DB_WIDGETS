@@ -122,7 +122,9 @@ return (
               }}
               className="button"
             >
-              <span className="vote" />
+              <span className="vote">
+                <span style={{ opacity: 0 }}>Vote Bar</span>
+              </span>
             </span>
             <span className="votes">
               <span className="preview" />
