@@ -3,7 +3,7 @@ const ResponsiveText = styled.span`
       font-size: 11px;
   }
 `;
-const ResponsiveTextOption = styled.span`
+const ResponsiveTextOption = styled.p`
   width:100px;
   whitespace: pre-wrap;
   @media screen and (max-width: 1024px)  {
