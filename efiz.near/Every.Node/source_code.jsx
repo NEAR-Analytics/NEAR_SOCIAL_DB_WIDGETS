@@ -1,13 +1,10 @@
 const key = props.key;
 const label = props.label;
-const type = props.type;
 const path = props.path;
 const setPath = props.setPath;
 const history = props.history;
 const setHistory = props.setHistory;
-const setType = props.setType;
 const isRoot = props.isRoot;
-const setRoot = props.setRoot;
 
 State.init({
   expanded: false,
@@ -18,7 +15,7 @@ function handleExpand() {
 }
 
 function handleInto() {
-  setRoot(path, type);
+  setPath(path);
   setHistory([...history, path]);
   //   setType(type);
 }
@@ -60,6 +57,8 @@ function getType(path) {
     return standard;
   }
 }
+
+const type = getType(path);
 
 // WHEN A NEW ROOT IS SET //
 // GET DATA AT THIS PATH //
@@ -149,14 +148,11 @@ return (
                 props={{
                   key,
                   label: key,
-                  node: val,
-                  type: getType(`${path}/${key}`),
                   path: `${path}/${key}`,
                   setPath: setPath,
                   history,
                   setHistory: setHistory,
                   isRoot: false,
-                  setRoot: setRoot,
                 }}
               />
             ))
