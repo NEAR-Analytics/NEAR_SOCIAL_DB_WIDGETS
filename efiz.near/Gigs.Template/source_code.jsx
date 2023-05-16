@@ -3,8 +3,36 @@ const gigsBoardUrl = isDev
   ? "https://b54103fcb629.ngrok.app" // place your own ngrok url here
   : "https://gigs-board.vercel.app"; // or your fork of gigs-board
 
+const daoId = "liberty.sputnik-dao.near"; // owner of the gigs board
+
 function onCardAdd(payload) {
   console.log(JSON.stringify(payload));
+  // Generate UUID (can just be plain text for now, may need to integrate uuid.generate() into VM)
+  const uuid = 12345;
+
+  // Function call proposal to the DAO with payload
+  Social.set(
+    {
+      thing: {
+        [uuid]: JSON.stringify({
+          // save thing at uuid
+          payload,
+        }),
+      },
+      index: {
+        [daoId]: JSON.stringify({
+          // index key at daomain
+          key: uuid,
+          value: {
+            type: "every.near/type/problem", // What type should this be? Depends on the Kanban board...
+          },
+        }),
+      },
+    },
+    {
+      force: true,
+    }
+  );
 }
 
 function onCardDelete(payload) {
@@ -13,10 +41,13 @@ function onCardDelete(payload) {
 
 function onCardMoveAcrossLanes(payload) {
   console.log(JSON.stringify(payload));
+  // function call proposal t
   return { preventDefault: true };
 }
 
 function loadCards() {
+  // this should just get the ids from the DAO
+  // Then Social.index(daoId, {key}) on each key to get each "gig" and it's history
   const addressForArticles = "ndcGigArticle";
   const authorsWhitelist = props.writersWhiteList ?? [
     "neardigitalcollective.near",
@@ -73,6 +104,7 @@ function loadCards() {
     return dateString;
   };
 
+  // Then convert into cards
   const convertData = (inputData) => {
     const cards = [];
     inputData.forEach((item, index) => {
