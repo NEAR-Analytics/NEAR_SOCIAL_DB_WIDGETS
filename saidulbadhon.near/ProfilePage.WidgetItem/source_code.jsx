@@ -1,7 +1,7 @@
 const gateway = "https://near.social/#/";
 
 const WidgetItem = styled.a`
-  border: 1px solid #363b42;
+  border: 1px solid ${props.theme.borderColor};
 
   gap: 5px;
   padding: 15px 20px 20px 20px;
@@ -11,11 +11,15 @@ const WidgetItem = styled.a`
   flex-direction: column;
   justify-content: center;
   transition: all 0.2s ease-in-out;
+  text-decoration: none;
+
 
   &:hover: {
     border: 1px solid #828a94;
     cursor: pointer;
+    text-decoration: none;
   }
+
 `;
 
 return (
@@ -26,7 +30,7 @@ return (
     <h3
       className="max1Lines"
       style={{
-        color: "#24292f",
+        color: props.theme.textColor,
         fontSize: "1.17em",
         fontWeight: "bold",
       }}
@@ -35,9 +39,9 @@ return (
     </h3>
     <p
       className="max1Lines"
-      sstyle={{
+      style={{
         fontSize: "0.9rem",
-        color: "#57606a",
+        color: props.theme.textColor3,
         overflowWrap: "break-word",
       }}
     >{`${props.accountId}/widget/${props.name}`}</p>
@@ -50,7 +54,13 @@ return (
         marginTop: 15,
       }}
     >
-      <div style={{ display: "flex", alignItems: "center", gap: 2.5 }}>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 5,
+        }}
+      >
         <img
           className="invertColor"
           style={{ height: 16, opacity: 0.5 }}
@@ -58,7 +68,17 @@ return (
           alt="commit icon"
         />
 
-        <p style={{ fontWeight: 600 }}>{props.commits.length || 0}</p>
+        <p
+          style={{
+            fontSize: "0.9rem",
+            color: props.theme.textColor3,
+            overflowWrap: "break-word",
+            margin: 0,
+            fontWeight: 500,
+          }}
+        >
+          {props.commits.length || 0}
+        </p>
       </div>
 
       <img
@@ -68,7 +88,14 @@ return (
         alt="dot icon"
       />
 
-      <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 5,
+          color: props.theme.textColor3,
+        }}
+      >
         <img
           className="invertColor"
           style={{ height: 14, opacity: 0.5 }}
@@ -79,7 +106,6 @@ return (
           src={`mob.near/widget/TimeAgo`}
           props={{
             blockHeight: props.commits[props.commits.length - 1],
-            className: "description",
           }}
         />
       </div>
