@@ -1,3 +1,13 @@
+const viewFVTokens = () => {
+  const view = Near.view("registry.i-am-human.near", "sbt_tokens_by_owner", {
+    account: `${context.accountId}`,
+    issuer: "gooddollar-v1.i-am-human.near",
+  });
+  return view?.[0]?.[1]?.[0];
+};
+
+const fvTokens = viewFVTokens();
+
 return (
   <>
     {props.poll.value.questions.map((question, questionNumber) => {
@@ -50,7 +60,7 @@ return (
     {props.isQuestionOpen ? (
       props.hasVoted ? (
         ""
-      ) : props.isVoteValid() ? (
+      ) : props.isVoteValid() && fvTokens ? (
         <CommitButton
           className="w-100"
           style={
@@ -84,37 +94,47 @@ return (
         </CommitButton>
       ) : (
         <>
-          <button
-            className="w-100"
-            style={
-              props.state.hoveringElement != "voteButton"
-                ? {
-                    marginTop: "0.5rem",
-                    padding: "0.5rem",
-                    backgroundColor: "#000000",
-                    color: "#FFFFFF",
-                    fontSize: "1rem",
-                    borderRadius: "9px",
-                    border: "1.5px solid transparent",
-                  }
-                : {
-                    marginTop: "0.5rem",
-                    padding: "0.5rem",
-                    backgroundColor: "#FFFFFF",
-                    color: "#000000",
-                    fontSize: "1rem",
-                    borderRadius: "9px",
-                    border: "1.5px solid #000000",
-                  }
-            }
-            onMouseEnter={() =>
-              props.stateUpdate({ hoveringElement: "voteButton" })
-            }
-            onMouseLeave={() => props.stateUpdate({ hoveringElement: "" })}
-            onClick={() => props.stateUpdate({ showErrorsInForm: true })}
-          >
-            Vote
-          </button>
+          {fvTokens ? (
+            <button
+              className="w-100"
+              style={
+                props.state.hoveringElement != "voteButton"
+                  ? {
+                      marginTop: "0.5rem",
+                      padding: "0.5rem",
+                      backgroundColor: "#000000",
+                      color: "#FFFFFF",
+                      fontSize: "1rem",
+                      borderRadius: "9px",
+                      border: "1.5px solid transparent",
+                    }
+                  : {
+                      marginTop: "0.5rem",
+                      padding: "0.5rem",
+                      backgroundColor: "#FFFFFF",
+                      color: "#000000",
+                      fontSize: "1rem",
+                      borderRadius: "9px",
+                      border: "1.5px solid #000000",
+                    }
+              }
+              onMouseEnter={() =>
+                props.stateUpdate({ hoveringElement: "voteButton" })
+              }
+              onMouseLeave={() => props.stateUpdate({ hoveringElement: "" })}
+              onClick={() => props.stateUpdate({ showErrorsInForm: true })}
+            >
+              Vote
+            </button>
+          ) : (
+            <>
+              <p className="p-2">
+                In order to vote get verified on{" "}
+                <a href="https://i-am-human.app">i-am-human.app</a> and get a FV
+                SBT
+              </p>
+            </>
+          )}
           {props.state.showErrorsInForm && (
             <span className="text-danger">Please answer all the questions</span>
           )}
