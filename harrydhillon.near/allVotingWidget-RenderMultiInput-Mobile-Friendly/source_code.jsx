@@ -13,7 +13,7 @@ const renderMultipleChoiceInput = ({
           props={{
             state: props.state,
             questionNumber: questionNumber,
-            questionNumber: questionType,
+            questionType: questionType,
             option: option,
             optionNumber: optionNumber,
             canVote: props.canVote,
