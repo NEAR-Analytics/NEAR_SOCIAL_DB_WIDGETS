@@ -3,36 +3,55 @@ const gigsBoardUrl = isDev
   ? "https://b54103fcb629.ngrok.app" // place your own ngrok url here
   : "https://gigs-board.vercel.app"; // or your fork of gigs-board
 
-const daoId = "liberty.sputnik-dao.near"; // owner of the gigs board
+const daoId = "liberty.sputnik-dao.near"; // DAO owner of the gigs board
 
+/**
+ * Scroll to the bottom of a "lane" and you'll see "Click to Add Card"
+ * Calls this function with the payload
+ */
 function onCardAdd(payload) {
   console.log(JSON.stringify(payload));
-  // Generate UUID (can just be plain text for now, may need to integrate uuid.generate() into VM)
-  const uuid = 12345;
+  // Generate thingId (plain text for now, will integrate uuid.generate() into VM)
+  const thingId = 12345;
 
-  // Function call proposal to the DAO with payload
-  Social.set(
-    {
+  // Save the payload to SocialDB under thingId
+  const data = {
+    [context.accountId]: {
       thing: {
-        [uuid]: JSON.stringify({
-          // save thing at uuid
+        [thingId]: JSON.stringify({
+          // save the thing at key: uuid
           payload,
         }),
       },
       index: {
         [daoId]: JSON.stringify({
-          // index key at daomain
-          key: uuid,
+          // index thing's key at daomain
+          key: thingId,
           value: {
-            type: "every.near/type/problem", // What type should this be? Depends on the Kanban board...
+            type: "every.near/type/problem", // What type should this be?
           },
         }),
       },
     },
+  };
+  // (below is referenced from https://near.org/near/widget/ComponentDetailsPage?src=nearhorizon.near/widget/Project.Form&tab=source)
+  const deposit = Big(JSON.stringify(data).length * 16).mul(Big(10).pow(20));
+  const transactions = [
     {
-      force: true,
-    }
-  );
+      // Social.set
+      contractName: "social.near",
+      methodName: "set",
+      deposit,
+      args: { data },
+    },
+    {
+      // REPLACE WITH FUNCTION CALL TO DAO CONTRACT
+      contractName: ownerId,
+      methodName: "add_project",
+      args: { account_id: state.accountId },
+    },
+  ];
+  Near.call(transactions);
 }
 
 function onCardDelete(payload) {
