@@ -25,6 +25,7 @@ return (
       {!props.canVote && (
         <ResponsiveTextOption
           style={{
+            marginTop: 5,
             fontWeight: "500",
           }}
         >
