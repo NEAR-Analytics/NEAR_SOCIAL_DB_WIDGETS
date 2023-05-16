@@ -104,10 +104,20 @@ return (
           <VoteButton>
             <span
               style={{
-                width: `${props.calculatePercentageOfOption(
-                  props.countVotes(props.questionNumber, props.questionType),
-                  props.optionNumber
-                )}%`,
+                width: `${
+                  props.calculatePercentageOfOption(
+                    props.countVotes(props.questionNumber, props.questionType),
+                    props.optionNumber
+                  ) > 10
+                    ? 10
+                    : props.calculatePercentageOfOption(
+                        props.countVotes(
+                          props.questionNumber,
+                          props.questionType
+                        ),
+                        props.optionNumber
+                      )
+                }%`,
                 opacity: 1,
                 backgroundColor: `${props.getBgColor(
                   props.optionNumber,
@@ -117,7 +127,7 @@ return (
               className="button"
             >
               <span className="vote">
-                <span style={{ opacity: 0 }}>Vote Bar</span>
+                <span style={{ opacity: 0 }}>b</span>
               </span>
             </span>
             <span className="votes">
