@@ -64,6 +64,10 @@ return (
             position: "relative",
           }}
         >
+          {console.log(
+            props.countVotes(props.questionNumber, props.questionType),
+            "render percentage"
+          )}
           <div
             style={{
               height: "100%",
