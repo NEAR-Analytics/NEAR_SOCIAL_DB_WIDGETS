@@ -18,7 +18,7 @@ const TopMarginPercentage = styled.span`
   }
 `;
 
-const VoteButton = styled.button`
+const VoteButton = styled.div`
   border-radius: 20px;
   border: none;
   display: flex;
