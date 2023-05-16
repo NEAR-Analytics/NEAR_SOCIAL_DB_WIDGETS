@@ -57,17 +57,19 @@ console.log(typeDetails);
 const widgetSrc = typeDetails?.widgets?.view;
 console.log(widgetSrc);
 
+function getEdges(data) {
+  console.log(data);
+  return [{ label: "efiz", path: "efiz.near" }];
+}
+
 return (
   <>
     <div>
       <div>
         <Button onClick={handleExpand}>{state.expanded ? "-" : "+"}</Button>
       </div>
-      {state.expanded && (
-        <>
-          {renderEdges && renderEdges([{ label: "efiz", path: "efiz.near" }])}
-        </>
-      )}
+      {/** show edges */}
+      {state.expanded && <>{renderEdges && renderEdges(getEdges(data))}</>}
     </div>
   </>
 );
