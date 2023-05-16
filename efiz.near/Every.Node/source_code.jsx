@@ -6,19 +6,17 @@ const history = props.history;
 const setHistory = props.setHistory;
 const isRoot = props.isRoot;
 
-State.init({
-  expanded: false,
-});
-
-function handleExpand() {
-  State.update({ expanded: !state.expanded });
-}
-
+/**
+ * Navigate into a Node
+ */
 function handleInto() {
   setPath(path);
   setHistory([...history, path]);
 }
 
+/**
+ * Navigate back in history
+ */
 function handleBack() {
   const newPath = history[history.length - 2] || "";
   setPath(newPath);
@@ -53,59 +51,59 @@ function getType(path) {
 
 const type = getType(path);
 
-// WHEN A NEW ROOT IS SET //
-// GET DATA AT THIS PATH //
-function getNode(path, type) {
-  const parts = path.split("/");
-  let value = {};
+// // WHEN A NEW ROOT IS SET //
+// // GET DATA AT THIS PATH //
+// function getNode(path, type) {
+//   const parts = path.split("/");
+//   let value = {};
 
-  // ACCOUNT //
-  if (type === "account") {
-    if (parts.length > 1) {
-      // GRAPH // FOLLOW // BACK TO ACCOUNT : WORKING
-      //   setRoot(parts[3], "account");
-    } else {
-      if (parts[0] !== "*") {
-        parts.push("**");
-      }
-      value = Social.get(parts.join("/"), "final");
-      return value;
-    }
-    // THING //
-  } else if (type === "thing") {
-    // path: "everything"
-    // type: "thing"
-    return rootNode; // Or should "everything" be "*"?
-    // PROFILE //
-  } else if (type === "profile") {
-    value = Social.get(parts.join("/"), "final");
-    // POST : WIP //
-  } else if (type === "post") {
-    value = path;
-    // NAMETAG : WIP //
-  } else if (type === "nametag") {
-    if (parts.length > 2) {
-      if (parts.length === 3) {
-        // BACK TO ACCOUNT
-        // setRoot(parts[3], "account");
-      } else if (parts.length === 4) {
-        // ALL TAGS BY ACCOUNT
-        value = Social.keys(`${parts[0]}/profile/tags/*`, "final");
-      } else {
-        // THIS TAG
-        value = parts[5];
-      }
-    }
-  } else {
-    parts.push("**");
-    value = Social.get(parts.join("/"), "final");
-    return value;
-  }
-}
-let node = {};
-if (isRoot) {
-  node = getNode(path, type);
-}
+//   // ACCOUNT //
+//   if (type === "account") {
+//     if (parts.length > 1) {
+//       // GRAPH // FOLLOW // BACK TO ACCOUNT : WORKING
+//       //   setRoot(parts[3], "account");
+//     } else {
+//       if (parts[0] !== "*") {
+//         parts.push("**");
+//       }
+//       value = Social.get(parts.join("/"), "final");
+//       return value;
+//     }
+//     // THING //
+//   } else if (type === "thing") {
+//     // path: "everything"
+//     // type: "thing"
+//     return rootNode; // Or should "everything" be "*"?
+//     // PROFILE //
+//   } else if (type === "profile") {
+//     value = Social.get(parts.join("/"), "final");
+//     // POST : WIP //
+//   } else if (type === "post") {
+//     value = path;
+//     // NAMETAG : WIP //
+//   } else if (type === "nametag") {
+//     if (parts.length > 2) {
+//       if (parts.length === 3) {
+//         // BACK TO ACCOUNT
+//         // setRoot(parts[3], "account");
+//       } else if (parts.length === 4) {
+//         // ALL TAGS BY ACCOUNT
+//         value = Social.keys(`${parts[0]}/profile/tags/*`, "final");
+//       } else {
+//         // THIS TAG
+//         value = parts[5];
+//       }
+//     }
+//   } else {
+//     parts.push("**");
+//     value = Social.get(parts.join("/"), "final");
+//     return value;
+//   }
+// }
+// let node = {};
+// if (isRoot) {
+//   node = getNode(path, type);
+// }
 
 function renderEdges(edges) {
   console.log(`edges: ${edges}`);
