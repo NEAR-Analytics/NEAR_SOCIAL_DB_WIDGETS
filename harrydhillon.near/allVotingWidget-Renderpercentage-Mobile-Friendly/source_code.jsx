@@ -172,11 +172,7 @@ return (
               %
             </TopMarginPercentage>
           </div>
-          <VoteButton
-            style={{
-              backgroundColor: `${props.getBgColor(props.optionNumber, false)}`,
-            }}
-          >
+          <VoteButton>
             <span
               style={{
                 width: `${props.calculatePercentageOfOption(
