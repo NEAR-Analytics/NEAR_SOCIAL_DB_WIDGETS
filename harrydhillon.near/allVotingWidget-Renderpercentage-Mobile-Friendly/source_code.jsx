@@ -192,8 +192,11 @@ return (
             </span>
             <span className="votes">
               <span className="preview" />
-              {totalYesVotes} Votes (
-              {Math.round((totalYesVotes / totalVotes) * 100 || 0)}%)
+              {props.calculatePercentageOfOption(
+                props.countVotes(props.questionNumber, props.questionType),
+                props.optionNumber
+              )}
+              %
             </span>
           </VoteButton>
         </>
