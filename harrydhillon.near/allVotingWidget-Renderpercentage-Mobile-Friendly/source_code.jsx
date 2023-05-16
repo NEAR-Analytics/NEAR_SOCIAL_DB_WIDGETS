@@ -18,6 +18,8 @@ const TopMarginPercentage = styled.span`
   }
 `;
 
+console.log(props, "final check");
+
 return (
   <div>
     <div className="align-content-center">
