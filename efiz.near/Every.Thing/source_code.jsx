@@ -2,6 +2,7 @@ const dataSource = props.dataSource;
 const dataSourceArgs = props.dataSourceArgs;
 const type = props.type;
 const node = props.node;
+const isRoot = props.isRoot;
 
 State.init({
   expanded: false,
