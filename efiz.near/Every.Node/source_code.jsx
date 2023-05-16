@@ -108,6 +108,26 @@ if (isRoot) {
   node = getNode(path, type);
 }
 
+function renderEdges(edges) {
+  return (
+    <ButtonRow>
+      {edges?.map(([label, path]) => (
+        <Widget
+          src="efiz.near/widget/Every.Node"
+          props={{
+            label: label,
+            path: path,
+            setPath: setPath,
+            history,
+            setHistory: setHistory,
+            isRoot: false,
+          }}
+        />
+      ))}
+    </ButtonRow>
+  );
+}
+
 function renderThing(path, type) {
   let dataSource;
   let dataSourceArgs = {};
@@ -120,7 +140,7 @@ function renderThing(path, type) {
   return (
     <Widget
       src="efiz.near/widget/Every.Thing"
-      props={{ dataSource, dataSourceArgs, type, node, isRoot }}
+      props={{ dataSource, dataSourceArgs, type, renderEdges: renderEdges }}
     />
   );
 }
