@@ -33,6 +33,12 @@ function handleBack() {
 const Button = styled.button`
   text-transform: lowercase !important;
   -webkit-appearance: none;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  border: 2px outset buttontext;
+  background-color: buttonface;
+  cursor: pointer;
 `;
 
 const ChildNode = styled.div`
@@ -69,9 +75,7 @@ return (
       {isRoot ? (
         <div style={styles?.subject}>{label}</div>
       ) : (
-        <Button type="button" onClick={handleInto}>
-          {label}
-        </Button>
+        <Button onClick={handleInto}>{label}</Button>
       )}
       <Button onClick={handleExpand}>{state.expanded ? "-" : "+"}</Button>
     </div>
