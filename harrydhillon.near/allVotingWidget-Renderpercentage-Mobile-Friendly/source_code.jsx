@@ -90,8 +90,6 @@ const VoteButton = styled.button`
 
 `;
 
-console.log(props, "final check");
-
 return (
   <div>
     <div className="align-content-center">
