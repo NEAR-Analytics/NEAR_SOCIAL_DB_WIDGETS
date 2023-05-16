@@ -20,7 +20,7 @@ const TopMarginPercentage = styled.span`
 
 return (
   <div>
-    <div className="d-flex align-content-center">
+    <div className="align-content-center">
       {/* Set the width of the next div to make the bar grow. At the same, use the same value to fill the span tag */}
       {!props.canVote && (
         <ResponsiveTextOption
