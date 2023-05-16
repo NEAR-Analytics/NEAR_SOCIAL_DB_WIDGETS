@@ -88,29 +88,32 @@ return (
       <Button onClick={handleExpand}>{state.expanded ? "-" : "+"}</Button>
     </div>
     {state.expanded && (
-      <div>
-        {/** EDGES */}
-        <ButtonRow>
-          {node && typeof node === "object"
-            ? Object.entries(node).map(([key, val]) => (
-                <Widget
-                  src="efiz.near/widget/Node"
-                  props={{
-                    key,
-                    label: key,
-                    node: val,
-                    type: getType(),
-                    path: `${path}/${key}`,
-                    setPath: setPath,
-                    history,
-                    setHistory: setHistory,
-                    isRoot: false,
-                  }}
-                />
-              ))
-            : null}
-        </ButtonRow>
-      </div>
+      <>
+        <div>
+          {/** EDGES */}
+          <ButtonRow>
+            {node && typeof node === "object"
+              ? Object.entries(node).map(([key, val]) => (
+                  <Widget
+                    src="efiz.near/widget/Node"
+                    props={{
+                      key,
+                      label: key,
+                      node: val,
+                      type: getType(),
+                      path: `${path}/${key}`,
+                      setPath: setPath,
+                      history,
+                      setHistory: setHistory,
+                      isRoot: false,
+                    }}
+                  />
+                ))
+              : null}
+          </ButtonRow>
+        </div>
+        <div>{renderView()}</div>
+      </>
     )}
   </div>
 );
