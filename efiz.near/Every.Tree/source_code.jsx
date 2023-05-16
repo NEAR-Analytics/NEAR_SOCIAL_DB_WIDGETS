@@ -1,8 +1,7 @@
 /**
- * Takes in a rootPath and rootType
+ * Takes in a rootPath
  */
 const rootPath = props.rootPath || context.accountId || "evrything.near";
-const rootNode = props.rootNode || {};
 
 State.init({
   path: rootPath,
@@ -27,7 +26,6 @@ return (
       history: state.history,
       setHistory: setHistory,
       isRoot: true,
-      setRoot: setRoot,
     }}
   />
 );
