@@ -26,7 +26,7 @@ function getTypeDetails(type) {
     return {
       properties: [],
       widgets: {
-        view: "efiz.testnet/widget/Every.Account",
+        view: "efiz.near/widget/Every.Account",
       },
     };
   }
