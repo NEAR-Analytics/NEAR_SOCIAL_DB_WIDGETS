@@ -5,7 +5,7 @@ const ResponsiveText = styled.span`
 `;
 const ResponsiveTextOption = styled.p`
   whitespace: pre-wrap;
-  margin-bottom: 0px !important;
+  margin-bottom: 2px !important;
   @media screen and (max-width: 1024px)  {
       font-size: 11px;
   }
