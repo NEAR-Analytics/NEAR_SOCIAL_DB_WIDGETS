@@ -108,6 +108,23 @@ if (isRoot) {
   node = getNode(path, type);
 }
 
+function renderThing(path, type) {
+  let dataSource;
+  let dataSourceArgs = {};
+  if (type === "account") {
+    dataSource = "SOCIALDB";
+    dataSourceArgs = {
+      arg1: path,
+    };
+  }
+  return (
+    <Widget
+      src="efiz.near/widget/Every.Thing"
+      props={{ dataSource, dataSourceArgs, type, node }}
+    />
+  );
+}
+
 return (
   <div>
     <div>
@@ -129,29 +146,10 @@ return (
       ) : (
         <Button onClick={handleInto}>{label}</Button>
       )}
-      <ButtonRow>
-        {/** CONTROLLER */}
-        {history.length > 1 && isRoot && (
-          <Button onClick={handleBack}>back</Button>
-        )}
-        {node && typeof node === "object"
-          ? Object.entries(node).map(([key, val]) => (
-              <Widget
-                src="efiz.near/widget/Every.Node"
-                props={{
-                  key,
-                  label: key,
-                  path: `${path}/${key}`,
-                  setPath: setPath,
-                  history,
-                  setHistory: setHistory,
-                  isRoot: false,
-                }}
-              />
-            ))
-          : null}
-      </ButtonRow>
+      {history.length > 1 && isRoot && (
+        <Button onClick={handleBack}>back</Button>
+      )}
     </div>
-    <Widget src="efiz.near/widget/Every.Thing" props={{ path, type }} />
+    {renderThing(path, type)}
   </div>
 );
