@@ -74,11 +74,11 @@ return (
 
         <p
           style={{
-            fontSize: "0.9rem",
+            // fontSize: "0.9rem",
             color: props.theme.textColor3,
             overflowWrap: "break-word",
             margin: 0,
-            fontWeight: 500,
+            fontWeight: 400,
           }}
         >
           {props.commits.length || 0}
