@@ -48,6 +48,10 @@ return (
     </div>
     <div className="mb-5">
       <Widget src="harmonic1.near/widget/NFTMinter" />
+      <div className="my-3">
+        <Widget src="harmonic1.near/widget/NFTViewer" />
+      </div>
+
       <p className="mt-5" style={paragraphStyles2}>
         Contact us at hello@harmonicguild.io to get a trial account to use our
         Minter for free. No passphrase, no crypto needed.
