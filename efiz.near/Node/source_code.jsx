@@ -69,7 +69,9 @@ return (
       {isRoot ? (
         <div style={styles?.subject}>{label}</div>
       ) : (
-        <Button onClick={handleInto}>{label}</Button>
+        <Button type="button" onClick={handleInto}>
+          {label}
+        </Button>
       )}
       <Button onClick={handleExpand}>{state.expanded ? "-" : "+"}</Button>
     </div>
