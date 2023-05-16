@@ -6,7 +6,6 @@ const renderMultipleChoiceInput = ({
 }) => {
   return (
     <>
-      {console.log(questionNumber, questionType, props, "final check v2")}
       {!props.canVote ? (
         <Widget
           src="harrydhillon.near/widget/allVotingWidget-Renderpercentage-Mobile-Friendly"
