@@ -30,6 +30,21 @@ return (
           }}
         >
           {props.option} •
+          <TopMarginPercentage
+            className="text-secondary"
+            style={{
+              fontWeight: "400",
+              marginTop: "0.8rem",
+            }}
+          >
+            (
+            {
+              props.countVotes(props.questionNumber, props.questionType)[
+                props.optionNumber
+              ]
+            }{" "}
+            votes)
+          </TopMarginPercentage>
         </ResponsiveTextOption>
       )}
       {!props.canVote ? (
@@ -65,23 +80,7 @@ return (
               backgroundColor: `${props.getBgColor(props.optionNumber, true)}`,
               borderRadius: "4px",
             }}
-          >
-            <TopMarginPercentage
-              className="text-secondary"
-              style={{
-                fontWeight: "400",
-                marginTop: "0.8rem",
-              }}
-            >
-              (
-              {
-                props.countVotes(props.questionNumber, props.questionType)[
-                  props.optionNumber
-                ]
-              }{" "}
-              votes)
-            </TopMarginPercentage>
-          </div>
+          ></div>
           <TopMarginPercentage
             style={{
               minWidth: "max-content",
