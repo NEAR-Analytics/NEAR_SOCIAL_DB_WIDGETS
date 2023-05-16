@@ -40,7 +40,6 @@ const VoteButton = styled.button`
     display: flex;
     justify-content: center;
     min-width: 90px;
-    width: 90px;
 
     @media (max-width: 600px) {
       justify-content: start;
@@ -77,17 +76,6 @@ const VoteButton = styled.button`
     transition: all 0.4s ease-in-out;
     z-index: 0;
   }
-
-  &:hover {
-    .button {
-      width: 100%;
-    }
-    .vote {
-      opacity: 1;
-      max-width: 100px;
-    }
-  }
-
 `;
 
 return (
@@ -186,9 +174,7 @@ return (
                 )}`,
               }}
               className="button"
-            >
-              <span className="vote">Vote </span> Yes
-            </span>
+            />
             <span className="votes">
               <span className="preview" />
               {props.calculatePercentageOfOption(
