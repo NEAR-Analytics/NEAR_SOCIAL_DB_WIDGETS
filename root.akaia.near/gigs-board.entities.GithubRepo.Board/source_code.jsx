@@ -7,6 +7,30 @@ const nearDevGovGigsWidgetsAccountId =
   props.nearDevGovGigsWidgetsAccountId ||
   (context.widgetSrc ?? "devgovgigs.near").split("/", 1)[0];
 
+/**
+ * Reads a board config from DevHub contract storage.
+ * Currently a mock.
+ *
+ * Boards are indexed by their ids.
+ */
+const boardConfigByBoardId = ({ boardId }) => {
+  return {
+    probablyUUIDv4: {
+      id: "probablyUUIDv4",
+
+      columns: [
+        { title: "Draft", labelFilters: ["S-draft"] },
+        { title: "Review", labelFilters: ["S-review"] },
+      ],
+
+      dataTypes: { Issue: true, PullRequest: true },
+      description: "Latest NEAR Enhancement Proposals by status",
+      repoURL: "https://github.com/near/NEPs",
+      title: "NEAR Protocol NEPs",
+    },
+  }[boardId];
+};
+
 function widget(widgetName, widgetProps, key) {
   widgetProps = {
     ...widgetProps,
@@ -42,32 +66,61 @@ function href(widgetName, linkProps) {
   }
 
   const linkPropsQuery = Object.entries(linkProps)
-    .map(([key, value]) => `${key}=${value}`)
+    .map(([key, value]) => (value === null ? null : `${key}=${value}`))
+    .filter((nullable) => nullable !== null)
     .join("&");
 
-  return `#/${nearDevGovGigsWidgetsAccountId}/widget/gigs-board.pages.${widgetName}${
+  return `/#/${nearDevGovGigsWidgetsAccountId}/widget/gigs-board.pages.${widgetName}${
     linkPropsQuery ? "?" : ""
   }${linkPropsQuery}`;
 }
+
+const CompactContainer = styled.div`
+  width: fit-content !important;
+  max-width: 100%;
+`;
+
+const FormCheckLabel = styled.label`
+  white-space: nowrap;
+`;
 /* END_INCLUDE: "common.jsx" */
 
 const GithubRepoBoard = ({
   boardId,
-  contentTypes,
+  dataTypes,
   columns,
   linkedPage,
   name,
   repoURL,
 }) => {
   State.init({
-    ticketByColumn: columns.reduce(
-      (registry, { title }) => ({ ...registry, [title]: [] }),
-      {}
-    ),
+    pullRequestByColumn: {},
+    issueByColumn: {},
   });
 
+  const dataToColumns = (data) =>
+    columns.reduce(
+      (registry, column) => ({
+        ...registry,
+
+        [column.title]: [
+          ...(registry[column.title] ?? []),
+
+          ...data.filter((pullRequest) =>
+            pullRequest.labels.some((label) =>
+              column?.labelFilters.some((searchTerm) =>
+                label.name.includes(searchTerm)
+              )
+            )
+          ),
+        ],
+      }),
+
+      {}
+    );
+
   if (repoURL) {
-    if (contentTypes.PullRequest) {
+    if (dataTypes.PullRequest) {
       const pullRequests = (
         fetch(
           `https://api.github.com/repos/${repoURL
@@ -78,31 +131,13 @@ const GithubRepoBoard = ({
       ).map((pullRequest) => ({ ...pullRequest, type: "PullRequest" }));
 
       State.update({
-        ticketByColumn: columns.reduce(
-          (registry, column) => ({
-            ...registry,
-
-            [column.title]: [
-              ...(registry[column.title] ?? []),
-
-              ...pullRequests.filter((pullRequest) =>
-                pullRequest.labels.some((label) =>
-                  column?.labelFilters.some((searchTerm) =>
-                    label.name.includes(searchTerm)
-                  )
-                )
-              ),
-            ],
-          }),
-
-          ticketByColumn
-        ),
+        pullRequestByColumn: dataToColumns(pullRequests),
       });
     }
 
-    console.log(state.ticketByColumn);
+    console.log(state.pullRequestByColumn);
 
-    if (contentTypes.Issue) {
+    if (dataTypes.Issue) {
       const issues = (
         fetch(
           `https://api.github.com/repos/${repoURL
@@ -111,51 +146,57 @@ const GithubRepoBoard = ({
             .join("/")}/issues`
         ).body ?? []
       ).map((issue) => ({ ...issue, type: "Issue" }));
+
+      State.update({
+        issueByColumn: dataToColumns(issues),
+      });
     }
+
+    console.log(state.issueByColumn);
   }
 
   return (
-    <div>
-      <div class="row mb-2">
-        {boardId ? (
-          <div class="col">
-            <small class="text-muted">
+    <div className="d-flex gap-3">
+      {boardId ? (
+        <div className="row">
+          <div className="col">
+            <small className="text-muted">
               <a
-                class="card-link"
+                className="card-link"
                 href={href(linkedPage, { boardId })}
                 rel="noreferrer"
                 role="button"
                 target="_blank"
                 title="Link to this board"
               >
-                <span class="hstack gap-3">
-                  <i class="bi bi-share" />
+                <span className="hstack gap-3">
+                  <i className="bi bi-share" />
                   <span>Link to this board</span>
                 </span>
               </a>
             </small>
           </div>
-        ) : null}
-      </div>
+        </div>
+      ) : null}
 
-      <div class="row">
+      <div className="row">
         {columns.map((column) => (
-          <div class="col-3" key={column.title}>
-            <div class="card">
-              <div class="card-body border-secondary">
-                <h6 class="card-title d-flex align-items-center gap-2">
+          <div className="col-3" key={column.title}>
+            <CompactContainer className="card">
+              <CompactContainer className="card-body d-flex flex-column gap-3 border-secondary">
+                <h6 className="card-title d-flex align-items-center gap-2">
                   {column.title}
 
-									<span class="badge rounded-pill bg-secondary">
-										{state.ticketByColumn[column.title].length}
-									</span>
+                  <span className="badge rounded-pill bg-secondary">
+                    {state.pullRequestByColumn[column.title]?.length ?? 0}
+                  </span>
                 </h6>
 
-                {(state.ticketByColumn[column.title] ?? []).map((data) =>
+                {(state.pullRequestByColumn[column.title] ?? []).map((data) =>
                   widget("entities.GithubRepo.TicketCard", { data }, data.id)
                 )}
-              </div>
-            </div>
+              </CompactContainer>
+            </CompactContainer>
           </div>
         ))}
       </div>
