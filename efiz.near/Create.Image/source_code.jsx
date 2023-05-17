@@ -44,17 +44,10 @@ const filesOnChange = (file) => {
 
 return (
   <div className="d-inline-block">
-    {state.file?.cid && (
-      <div
-        className="d-inline-block me-2 overflow-hidden align-middle"
-        style={{ width: "2.5em", height: "2.5em" }}
-      >
-        <i class={`bi fs-3 ${fileIcon}`} />
-      </div>
-    )}
+    {state.file.cid ? <img src={ipfsUrl(state.file.cid)} /> : <></>}
     <Files
       multiple={false}
-      accepts={[fileAccept]}
+      accepts={["image/*", "video/*", ".pdf"]}
       minFileSize={1}
       clickable
       className="btn btn-outline-primary"
