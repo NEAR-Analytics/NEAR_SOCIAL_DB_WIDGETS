@@ -160,7 +160,7 @@ const callTxUni = (input, onComplete, gasPrice) => {
         [input.inputAssetTokenId, input.outputAssetTokenId],
         input.sender,
         {
-          gasPrice: ethers.utils.parseUnits(gweiPrice ?? "0.5", "gwei"),
+          gasPrice: expandToken(gasPrice ?? "0.5", 9).toFixed(),
           gasLimit: 20000000,
         }
       )
