@@ -269,7 +269,7 @@ return (
               <Widget
                 src="near/widget/DIG.Button"
                 props={{
-                  href: "/onboarding",
+                  href: "https://near.org/onboarding",
                   label: "Get Started",
                   variant: "outline-secondary",
                   size: "large",
