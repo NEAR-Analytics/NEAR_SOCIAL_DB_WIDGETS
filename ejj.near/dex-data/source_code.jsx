@@ -141,6 +141,7 @@ const callTxUni = (input, onComplete, gasPrice) => {
       const deadline = `0x${(
         Math.floor(new Date().getTime() / 1000) + 3600
       ).toString(16)}`;
+
       swapContract
         .swapExactTokensForTokens(
           value,
@@ -149,8 +150,8 @@ const callTxUni = (input, onComplete, gasPrice) => {
           input.sender,
           deadline,
           {
-            gasPrice: ethers.utils.parseUnits(gweiPrice ?? "0.5", "gwei"),
-            gasLimit: 20000000,
+            gasPrice: ethers.utils.parseUnits(gweiPrice ?? "0.1", "gwei"),
+            gasLimit: 700000,
           }
         )
         .then((transactionHash) => {
