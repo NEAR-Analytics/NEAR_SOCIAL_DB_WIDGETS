@@ -213,7 +213,7 @@ return (
             />
           </InputContainer>
         )}
-        {!state.hasRegistered && (
+        {isValidEmail(state.email) && (
           <div>
             {!agreeIsChecked ? (
               <CheckWrapper>
