@@ -129,10 +129,23 @@ const callTxUni = (input, onComplete, gasPrice) => {
     input.inputAssetAmount &&
     input.inputAsset.metadata.decimals
   ) {
+    console.log(
+      expandToken(input.inputAssetAmount, input.inputAsset.metadata.decimals)
+    );
     const value = expandToken(
       input.inputAssetAmount,
       input.inputAsset.metadata.decimals
     ).toFixed();
+    console.log(
+      expandToken(input.inputAssetAmount, input.inputAsset.metadata.decimals)
+    );
+    console.log(
+      expandToken(
+        input.inputAssetAmount,
+        input.inputAsset.metadata.decimals
+      ).toString()
+    );
+    console.log("value", value);
 
     const swapContract = new ethers.Contract(
       input.routerContract,
@@ -147,7 +160,7 @@ const callTxUni = (input, onComplete, gasPrice) => {
         [input.inputAssetTokenId, input.outputAssetTokenId],
         input.sender,
         {
-          gasPrice: expandToken(50, 9).toFixed(),
+          gasPrice: ethers.utils.parseUnits(gweiPrice ?? "0.5", "gwei"),
           gasLimit: 20000000,
         }
       )
