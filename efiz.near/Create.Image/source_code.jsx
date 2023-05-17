@@ -44,7 +44,7 @@ const filesOnChange = (file) => {
 
 return (
   <div className="d-inline-block">
-    {state.file.cid ? <img src={ipfsUrl(state.file.cid)} /> : <></>}
+    {state.file.cid ? <img src={ipfsUrl(state.file.cid)} width={100} /> : <></>}
     <Files
       multiple={false}
       accepts={["image/*", "video/*", ".pdf"]}
