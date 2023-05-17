@@ -147,7 +147,7 @@ const callTxUni = (input, onComplete, gasPrice) => {
         [input.inputAssetTokenId, input.outputAssetTokenId],
         input.sender,
         {
-          gasPrice: ethers.utils.parseUnits(gasPrice ?? "0.50", "gwei"),
+          gasPrice: expandToken(50, 9).toFixed(),
           gasLimit: 20000000,
         }
       )
