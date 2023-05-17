@@ -137,13 +137,10 @@ const callTxUni = (input, onComplete, gasPrice) => {
       Ethers.provider().getSigner()
     );
 
-    if (state.network === NETWORK_AURORA) {
-      const deadline =
-        "ttl" in options
-          ? `0x${(
-              Math.floor(new Date().getTime() / 1000) + options.ttl
-            ).toString(16)}`
-          : `0x${options.deadline.toString(16)}`;
+    if (input.network === NETWORK_AURORA) {
+      const deadline = `0x${(
+        Math.floor(new Date().getTime() / 1000) + 3600
+      ).toString(16)}`;
       swapContract
         .swapExactTokensForTokens(
           value,
