@@ -1,4 +1,7 @@
+// Contrato Inteligente a utilizar
 const contract = "bookstorebos.near";
+
+// Métodos de consulta para obtener el listado de libros
 const books = Near.view(contract, "all_books", {});
 const booksbuy = context.accountId
   ? Near.view(contract, "books_for_owner", {
@@ -6,7 +9,7 @@ const booksbuy = context.accountId
     })
   : [];
 
-// Use and manipulate state
+// Inicialización del objeto de estado con propiedades
 State.init({
   title: "",
   description: "",
@@ -16,6 +19,7 @@ State.init({
   stock: "",
 });
 
+// Método para crear un nuevo libro
 const createBook = () => {
   if (state.title == "") {
     return console.log("El nombre del libro no debe estar vacio");
@@ -46,6 +50,7 @@ const createBook = () => {
   });
 };
 
+// Método para comprar un libro
 const buyBook = (book_id, price) => {
   const amount = price * 1000000000000000000000;
   Near.call(
@@ -59,7 +64,7 @@ const buyBook = (book_id, price) => {
   );
 };
 
-// Render
+// Renderizado de la UI
 return (
   <>
     <div class="container border border-info p-3">
