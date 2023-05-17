@@ -25,6 +25,9 @@ if (debug) {
 if (typeof onLoad !== "function") return "Error";
 
 const expandToken = (value, decimals) => {
+  console.log("expandToken");
+  console.log(value);
+  console.log(decimals);
   return new Big(value).mul(new Big(10).pow(decimals));
 };
 
