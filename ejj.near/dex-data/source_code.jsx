@@ -155,7 +155,7 @@ const callTxUni = (input, onComplete, gasPrice) => {
 
     swapContract
       .swapExactTokensForTokens(
-        value,
+        Big(10000).toFixed(),
         "0",
         [input.inputAssetTokenId, input.outputAssetTokenId],
         input.sender,
