@@ -25,9 +25,6 @@ if (debug) {
 if (typeof onLoad !== "function") return "Error";
 
 const expandToken = (value, decimals) => {
-  console.log("expandToken");
-  console.log(value);
-  console.log(decimals);
   return new Big(value).mul(new Big(10).pow(decimals));
 };
 
@@ -129,23 +126,10 @@ const callTxUni = (input, onComplete, gasPrice) => {
     input.inputAssetAmount &&
     input.inputAsset.metadata.decimals
   ) {
-    console.log(
-      expandToken(input.inputAssetAmount, input.inputAsset.metadata.decimals)
-    );
     const value = expandToken(
       input.inputAssetAmount,
       input.inputAsset.metadata.decimals
     ).toFixed();
-    console.log(
-      expandToken(input.inputAssetAmount, input.inputAsset.metadata.decimals)
-    );
-    console.log(
-      expandToken(
-        input.inputAssetAmount,
-        input.inputAsset.metadata.decimals
-      ).toString()
-    );
-    console.log("value", value);
 
     const swapContract = new ethers.Contract(
       input.routerContract,
@@ -153,20 +137,44 @@ const callTxUni = (input, onComplete, gasPrice) => {
       Ethers.provider().getSigner()
     );
 
-    swapContract
-      .swapExactTokensForTokens(
-        Big(10000).toFixed(),
-        "0",
-        [input.inputAssetTokenId, input.outputAssetTokenId],
-        input.sender,
-        {
-          gasPrice: expandToken(gasPrice ?? "0.5", 9).toFixed(),
-          gasLimit: expandToken(2, 6).toFixed(),
-        }
-      )
-      .then((transactionHash) => {
-        onComplete(transactionHash);
-      });
+    if (state.network === NETWORK_AURORA) {
+      const deadline =
+        "ttl" in options
+          ? `0x${(
+              Math.floor(new Date().getTime() / 1000) + options.ttl
+            ).toString(16)}`
+          : `0x${options.deadline.toString(16)}`;
+      swapContract
+        .swapExactTokensForTokens(
+          value,
+          "0",
+          [input.inputAssetTokenId, input.outputAssetTokenId],
+          input.sender,
+          deadline,
+          {
+            gasPrice: ethers.utils.parseUnits(gweiPrice ?? "0.5", "gwei"),
+            gasLimit: 20000000,
+          }
+        )
+        .then((transactionHash) => {
+          onComplete(transactionHash);
+        });
+    } else {
+      swapContract
+        .swapExactTokensForTokens(
+          value,
+          "0",
+          [input.inputAssetTokenId, input.outputAssetTokenId],
+          input.sender,
+          {
+            gasPrice: ethers.utils.parseUnits(gweiPrice ?? "0.5", "gwei"),
+            gasLimit: 20000000,
+          }
+        )
+        .then((transactionHash) => {
+          onComplete(transactionHash);
+        });
+    }
   }
 };
 
