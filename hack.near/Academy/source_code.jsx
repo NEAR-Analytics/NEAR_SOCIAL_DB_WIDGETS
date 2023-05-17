@@ -26,6 +26,7 @@ const handleSignup = () => {
     }).then((resp) => {
       // Storage.privateSet()
       State.update({ hasRegistered: true });
+      State.update({ email: "" });
     });
   }
 };
