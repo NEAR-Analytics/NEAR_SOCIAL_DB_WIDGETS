@@ -161,7 +161,7 @@ const callTxUni = (input, onComplete, gasPrice) => {
         input.sender,
         {
           gasPrice: expandToken(gasPrice ?? "0.5", 9).toFixed(),
-          gasLimit: 20000000,
+          gasLimit: expandToken(2, 6).toFixed(),
         }
       )
       .then((transactionHash) => {
