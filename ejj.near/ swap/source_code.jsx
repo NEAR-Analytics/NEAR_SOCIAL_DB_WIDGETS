@@ -35,14 +35,6 @@ State.init({
 const refReferralId = props.refReferralId ?? "ukraine";
 const forceNetwork = props.forceNetwork;
 
-//
-//
-//
-// DEX DATA BELOW
-//
-
-// // SUBMIT TX EVENTS
-
 const onLoad = (data) => {
   console.log("onLoad", data);
   if (state.loadComplete === false) {
@@ -87,7 +79,7 @@ const callTxSyncSwap = (input, onComplete, gweiPrice) => {
 
         const swapData = ethers.utils.defaultAbiCoder.encode(
           ["address", "address", "uint8"],
-          [tokenIn, input.sender, withdrawMode] // tokenIn, to, withdraw mode
+          [tokenIn, input.sender, withdrawMode]
         );
 
         const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
@@ -364,9 +356,9 @@ if (ethers !== undefined && Ethers.send("eth_requestAccounts", [])[0]) {
         onLoad({
           network: NETWORK_ZKSYNC,
           assets: [
-            "0x3355df6D4c9C3035724Fd0e3914dE96A5a83aaf4", // USDC
-            "0x5AEa5775959fBC2557Cc8789bC1bf90A239D9a91", // WETH
-            "0x7400793aAd94C8CA801aa036357d10F5Fd0ce08f", // BNB
+            "0x3355df6D4c9C3035724Fd0e3914dE96A5a83aaf4",
+            "0x5AEa5775959fBC2557Cc8789bC1bf90A239D9a91",
+            "0x7400793aAd94C8CA801aa036357d10F5Fd0ce08f",
           ],
           coinGeckoTokenIds: {
             "0x3355df6D4c9C3035724Fd0e3914dE96A5a83aaf4":
@@ -416,10 +408,10 @@ if (ethers !== undefined && Ethers.send("eth_requestAccounts", [])[0]) {
         onLoad({
           network: NETWORK_ETH,
           assets: [
-            "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48", // USDC
-            "0x6B175474E89094C44Da98b954EedeAC495271d0F", // DAI
+            "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+            "0x6B175474E89094C44Da98b954EedeAC495271d0F",
             "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
-            "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984", // Uni
+            "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984",
           ],
           inputAssetTokenId: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
           outputAssetTokenId: "0x6B175474E89094C44Da98b954EedeAC495271d0F",
@@ -470,11 +462,11 @@ if (ethers !== undefined && Ethers.send("eth_requestAccounts", [])[0]) {
         onLoad({
           network: NETWORK_AURORA,
           assets: [
-            "0xB12BFcA5A55806AaF64E99521918A4bf0fC40802", // USDC
-            "0x0b20972B45ffB8e5d4D37AF4024E1bf0b03f15ae", // WETH
-            "0xF4eB217Ba2454613b15dBdea6e5f22276410e89e", // WBTC
-            "0xC42C30aC6Cc15faC9bD938618BcaA1a1FaE8501d", // WNEAR
-            "0xFa94348467f64D5A457F75F8bc40495D33c65aBB", // TRI
+            "0xB12BFcA5A55806AaF64E99521918A4bf0fC40802",
+            "0x0b20972B45ffB8e5d4D37AF4024E1bf0b03f15ae",
+            "0xF4eB217Ba2454613b15dBdea6e5f22276410e89e",
+            "0xC42C30aC6Cc15faC9bD938618BcaA1a1FaE8501d",
+            "0xFa94348467f64D5A457F75F8bc40495D33c65aBB",
           ],
           inputAssetTokenId: "0xB12BFcA5A55806AaF64E99521918A4bf0fC40802",
           outputAssetTokenId: "0xC42C30aC6Cc15faC9bD938618BcaA1a1FaE8501d",
@@ -508,7 +500,6 @@ if (ethers !== undefined && Ethers.send("eth_requestAccounts", [])[0]) {
       }
     });
 } else {
-  // ethers not supported on this gateway
   onLoad({
     network: NETWORK_NEAR,
     inputAssetTokenId: "NEAR",
@@ -526,14 +517,6 @@ if (ethers !== undefined && Ethers.send("eth_requestAccounts", [])[0]) {
   });
 }
 
-//
-//
-//
-// DEX DATA ABOVE
-//
-
-// LOAD STYLE
-
 const css = fetch(
   "https://gist.githubusercontent.com/zavodil/5786d09502b0fbd042a920d804259130/raw/8dfc1154f6a9ebc5274463f60521385cc3728a19/swap.css"
 ).body;
@@ -550,8 +533,6 @@ if (!state.theme) {
 
 const Theme = state.theme;
 
-// USER FUNCTIONS
-
 const currentAccountId =
   getEVMAccountId() !== "" ? getEVMAccountId() : context.accountId;
 
@@ -566,8 +547,6 @@ const rearrangeAssets = () => {
     approvalNeeded: undefined,
   });
 };
-
-// REUSABLE UI ELEMEETS
 
 const assetContainer = (
   isInputAsset,
