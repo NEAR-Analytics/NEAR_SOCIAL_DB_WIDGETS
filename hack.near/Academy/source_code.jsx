@@ -213,27 +213,33 @@ return (
             />
           </InputContainer>
         )}
-        {isValidEmail(state.email) && (
-          <CheckWrapper>
-            <CheckButton
-              onClick={() => {
-                State.update({ agreeIsChecked: !state.agreeIsChecked });
-              }}
-              className="btn"
-            >
-              <div className="d-flex flex-row align-items-center gap-3">
-                <i
-                  className={`bi bi-${
-                    state.agreeIsChecked ? "check-square" : "square"
-                  }`}
-                  style={{ fontSize: "1.5rem" }}
-                />
-                <span style={{ textAlign: "left" }}>
-                  I would like to receive more info about participating.
-                </span>
-              </div>
-            </CheckButton>
-          </CheckWrapper>
+        {!state.hasRegistered && (
+          <div>
+            {!agreeIsChecked ? (
+              <CheckWrapper>
+                <CheckButton
+                  onClick={() => {
+                    State.update({ agreeIsChecked: !state.agreeIsChecked });
+                  }}
+                  className="btn"
+                >
+                  <div className="d-flex flex-row align-items-center gap-3">
+                    <i
+                      className={`bi bi-${
+                        state.agreeIsChecked ? "check-square" : "square"
+                      }`}
+                      style={{ fontSize: "1.5rem" }}
+                    />
+                    <span style={{ textAlign: "left" }}>
+                      I would like to receive more info about participating.
+                    </span>
+                  </div>
+                </CheckButton>
+              </CheckWrapper>
+            ) : (
+              ""
+            )}
+          </div>
         )}
         {!state.hasRegistered && (
           <div className="row">
