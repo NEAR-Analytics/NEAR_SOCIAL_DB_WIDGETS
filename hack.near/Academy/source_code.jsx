@@ -3,17 +3,12 @@ const daoId = props.daoId ?? "build.sputnik-dao.near";
 const role = props.role ?? "community";
 
 State.init({
-  agreeIsChecked: false,
-});
-
-State.init({
   email: "",
+  agreeIsChecked: false,
   hasRegistered: false,
 });
 
-const register = State.update({ hasRegistered: true });
-
-const handleSignup = (register) => {
+const handleSignup = () => {
   if (state.email !== "") {
     asyncFetch("https://monkfish-app-ginhc.ondigitalocean.app/graphql", {
       method: "POST",
@@ -28,7 +23,9 @@ const handleSignup = (register) => {
           email: state.email,
         },
       }),
-      register,
+    }).then((resp) => {
+      // Storage.privateSet()
+      State.update({ hasRegistered: true });
     });
   }
 };
@@ -188,16 +185,13 @@ return (
           </span>
           Developers
         </H1>
-
         <Text style={{ maxWidth: "670px" }}>
           Learn to create anything with decentralized applications, and help
           build a more open web that is greater than the sum of its components.
         </Text>
-
         <Text size="23px" weight="600">
           Workshops + Hackathon
         </Text>
-
         <Text
           size="18px"
           weight="600"
@@ -205,7 +199,7 @@ return (
         >
           Summer 2023
         </Text>
-        {!hasRegistered && (
+        {!state.hasRegistered && (
           <InputContainer>
             <Widget
               src={"nearhorizon.near/widget/Inputs.Text"}
@@ -241,7 +235,7 @@ return (
             </CheckButton>
           </CheckWrapper>
         )}
-        {!hasRegistered && (
+        {!state.hasRegistered && (
           <div className="row">
             <button
               className="btn btn-primary"
@@ -252,26 +246,30 @@ return (
             </button>
           </div>
         )}
-        {!accountId ? (
-          <Widget
-            src="near/widget/DIG.Button"
-            props={{
-              href: "https://near.org/signup",
-              label: "Create Account",
-              variant: "primary",
-              size: "large",
-            }}
-          />
-        ) : (
-          <Widget
-            src="near/widget/DIG.Button"
-            props={{
-              href: "/onboarding",
-              label: "Get Started",
-              variant: "primary",
-              size: "large",
-            }}
-          />
+        {state.hasRegistered && (
+          <div>
+            {!accountId ? (
+              <Widget
+                src="near/widget/DIG.Button"
+                props={{
+                  href: "https://near.org/signup",
+                  label: "Create Account",
+                  variant: "outline-secondary",
+                  size: "large",
+                }}
+              />
+            ) : (
+              <Widget
+                src="near/widget/DIG.Button"
+                props={{
+                  href: "/onboarding",
+                  label: "Get Started",
+                  variant: "outline-secondary",
+                  size: "large",
+                }}
+              />
+            )}
+          </div>
         )}
       </Flex>
       <Flex>
