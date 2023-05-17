@@ -1,22 +1,10 @@
-const AvatarCreationWidget = (props) => {
-  const [name, setName] = context.useState("");
+let user_account = context.accountId;
 
-  const createAvatar = () => {
-    return {
-      name: name,
-      location: "entrance",
-      items: [],
-    };
-  };
-
-  return (
-    <div>
-      <input
-        type="text"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-      <button onClick={createAvatar}>Create Avatar</button>
+return (
+  <>
+    <div class="container border border-info p-3 text-center min-vw-100">
+      <h1>Hello</h1>
+      <p> {user_account} </p>
     </div>
-  );
-};
+  </>
+);
