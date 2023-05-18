@@ -9,11 +9,11 @@ const mintSingle = [
 ];
 let accountId = context.accountId;
 const contractAddresses = {
-  137: [polygonContract, "Polygon"],
-  1313161554: [auroraCOntract, "Aurora"],
-  42220: [celoContract, "Celo"],
-  43114: [avaxContract, "Avalanche"],
-  42161: [arbitrumContract, "Arbitrum"],
+  137: [polygonContract, "Polygon", "https://polygonscan.com/tx/"],
+  1313161554: [auroraCOntract, "Aurora", "https://explorer.aurora.dev/tx/"],
+  42220: [celoContract, "Celo", "https://explorer.celo.org/mainnet/tx/"],
+  43114: [avaxContract, "Avalanche", "https://snowtrace.io/tx/"],
+  42161: [arbitrumContract, "Arbitrum", "https://arbiscan.io/tx/"],
   0: [nearContract, "Near"],
 };
 const chains = [
@@ -91,7 +91,9 @@ const handleMint = () => {
   console.log("passed checks");
   let networkId = Ethers.provider()._network.chainId;
 
-  const CA = contractAddresses[state.selectedChain[0] || "137"];
+  const CA = contractAddresses[state.selectedChain][0] || "137";
+
+  console.log("CONTRACT ADD", CA);
 
   const contract = new ethers.Contract(
     CA,
@@ -113,18 +115,24 @@ const handleMint = () => {
   }).then((res) => {
     const cid = res.body.cid;
     const Id = Math.floor(Math.random() * (9999999 - 100000 + 1) + 100000);
-    console.log("in the promise", res, Id);
+    console.log("in the promse", res, Id);
+    const recipient = Ethers.send("eth_requestAccounts", []);
     contract
-      .mint(state.sender, Id, 1, `ipfs://${cid}`, "0x")
+      .mint(recipient[0], Id, 1, `ipfs://${cid}`, "0x")
       .then((transactionHash) => transactionHash.wait())
       .then((ricit) => {
         console.log("receipt::", ricit);
+        State.update({
+          link: `${
+            contractAddresses[state.selectedChain][2] + ricit.transactionHash
+          }`,
+        });
       });
   });
 };
 if (state.sender === undefined) {
   const accounts = Ethers.send("eth_requestAccounts", []);
-  console.log("accounts:", accounts, Ethers.provider(), ethers);
+  console.log("accounts:", accounts, state.sender);
   if (accounts.length) {
     State.update({ sender: accounts[0] });
     Ethers.provider()
@@ -135,6 +143,8 @@ if (state.sender === undefined) {
         });
       });
   }
+
+  console.log("in between", state.sender);
 
   if (accountId) {
     State.update({ sender: accountId });
@@ -169,6 +179,7 @@ const handleChainChange = (event) => {
       selectedChain: event.target.value,
     });
   }
+  console.log("encts here", Ethers.send);
   Ethers.send("wallet_switchEthereumChain", [
     {
       chainId: "0x" + Number(event.target.value).toString(16),
@@ -202,11 +213,19 @@ return (
     <div>Mint NFT on genadrop</div>
     <div>
       Title:
-      <input type="text" onChange={(e) => onChangeTitle(e.target.value)} />
+      <input
+        type="text"
+        value={state.title || ""}
+        onChange={(e) => onChangeTitle(e.target.value)}
+      />
     </div>
     <div>
       Description:
-      <input type="text" onChange={(e) => onChangeDesc(e.target.value)} />
+      <input
+        type="text"
+        value={state.description || ""}
+        onChange={(e) => onChangeDesc(e.target.value)}
+      />
     </div>
     <div className="flex-grow-1">
       <IpfsImageUpload
@@ -241,6 +260,11 @@ return (
               </option>
             ))}
           </select>
+          {state.link && (
+            <a href={`${state.link}`} target="_blank">
+              View Transaction
+            </a>
+          )}
           <button
             type="button"
             className="btn btn-primary mt-3"
