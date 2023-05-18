@@ -95,9 +95,27 @@ return (
         <Button onClick={handleToggleRaw}>
           show {state.raw ? "thing" : "raw"}
         </Button>
+        {/**
         <CommitButton force data={composePost} className="styless">
           post
         </CommitButton>
+         
+        <div className="col-1">
+          {true && (
+            <Widget
+              src="near/widget/Posts.Menu"
+              props={{
+                elements: [
+                  <button className={`btn`} onClick={() => {}}>
+                    <i className="bi bi-pencil me-1" />
+                    <span>Edit</span>
+                  </button>,
+                ],
+              }}
+            />
+          )}
+        </div>
+        */}
       </ButtonRow>
     </Header>
     {state.raw ? (
