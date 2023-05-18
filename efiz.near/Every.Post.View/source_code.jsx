@@ -107,7 +107,7 @@ function renderContent() {
   } else {
     return (
       <Widget
-        src="efiz.near/widget/Thing"
+        src="efiz.near/widget/Every.Thing.View"
         props={{ path: content.path, blockHeight: content.blockHeight }}
       />
     );
@@ -145,21 +145,6 @@ return (
               ),
             }}
           />
-        </div>
-        <div className="col-1">
-          {false && (
-            <Widget
-              src="near/widget/Posts.Menu"
-              props={{
-                elements: [
-                  <button className={`btn`} onClick={() => {}}>
-                    <i className="bi bi-pencil me-1" />
-                    <span>Edit</span>
-                  </button>,
-                ],
-              }}
-            />
-          )}
         </div>
       </div>
     </Header>
