@@ -5,7 +5,6 @@ const subscribe = !!props.subscribe;
 const notifyAccountId = accountId;
 const type = props.type;
 // const postUrl = `https://near.org#/near/widget/PostPage?accountId=${accountId}&blockHeight=${blockHeight}`;
-const renderContent = props.renderContent;
 
 State.init({ hasBeenFlagged: false });
 
@@ -84,6 +83,37 @@ if (state.hasBeenFlagged) {
   );
 }
 
+function renderContent() {
+  if (type === "md") {
+    return (
+      <>
+        {content.text && (
+          <Widget
+            src="near/widget/SocialMarkdown"
+            props={{ text: content.text }}
+          />
+        )}
+
+        {content.image && (
+          <Widget
+            src="mob.near/widget/Image"
+            props={{
+              image: content.image,
+            }}
+          />
+        )}
+      </>
+    );
+  } else {
+    return (
+      <Widget
+        src="efiz.near/widget/Thing"
+        props={{ path: content.path, blockHeight: content.blockHeight }}
+      />
+    );
+  }
+}
+
 return (
   <Post>
     <Header>
@@ -117,7 +147,7 @@ return (
           />
         </div>
         <div className="col-1">
-          {true && (
+          {false && (
             <Widget
               src="near/widget/Posts.Menu"
               props={{
@@ -135,29 +165,7 @@ return (
     </Header>
 
     <Body>
-      <Content>
-        {renderContent ? (
-          <>{renderContent()}</>
-        ) : (
-          <>
-            {content.text && (
-              <Widget
-                src="near/widget/SocialMarkdown"
-                props={{ text: content.text }}
-              />
-            )}
-
-            {content.image && (
-              <Widget
-                src="mob.near/widget/Image"
-                props={{
-                  image: content.image,
-                }}
-              />
-            )}
-          </>
-        )}
-      </Content>
+      <Content>{renderContent()}</Content>
 
       {blockHeight !== "now" && (
         <Actions>
