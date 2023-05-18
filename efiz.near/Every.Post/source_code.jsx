@@ -22,25 +22,18 @@ const Post = styled.div`
 
 const renderItem = (a) => {
   if (typeWhitelist.includes(a.value.type)) {
-    if (a.value.type === "md") {
-      return (
-        <Post className="post" key={JSON.stringify(a)}>
-          <Widget
-            src="near/widget/Posts.Post"
-            props={{ accountId: a.accountId, blockHeight: a.blockHeight }}
-          />
-        </Post>
-      );
-    } else {
-      const value = Social.get(`${a.accountId}/post/main`, "final");
-      value = JSON.parse(value);
-      return (
+    return (
+      <Post>
         <Widget
-          src="efiz.near/widget/Thing"
-          props={{ path: value.path, blockHeight: value.blockHeight }}
+          src="efiz.near/widget/Every.Post.View"
+          props={{
+            accountId: a.accountId,
+            blockHeight: a.blockHeight,
+            type: a.value.type,
+          }}
         />
-      );
-    }
+      </Post>
+    );
   }
 };
 
