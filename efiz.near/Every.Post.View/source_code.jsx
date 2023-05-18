@@ -12,6 +12,7 @@ const content =
   props.content ??
   JSON.parse(Social.get(`${accountId}/post/main`, blockHeight));
 
+return <p>{JSON.stringify(content)}</p>;
 const item = {
   type: "social",
   path: `${accountId}/post/main`,
@@ -83,36 +84,36 @@ if (state.hasBeenFlagged) {
   );
 }
 
-// function renderContent() {
-//   if (type === "md") {
-//     return (
-//       <>
-//         {content.text && (
-//           <Widget
-//             src="near/widget/SocialMarkdown"
-//             props={{ text: content.text }}
-//           />
-//         )}
+function renderContent() {
+  if (type === "md") {
+    return (
+      <>
+        {content.text && (
+          <Widget
+            src="near/widget/SocialMarkdown"
+            props={{ text: content.text }}
+          />
+        )}
 
-//         {content.image && (
-//           <Widget
-//             src="mob.near/widget/Image"
-//             props={{
-//               image: content.image,
-//             }}
-//           />
-//         )}
-//       </>
-//     );
-//   } else {
-//     return (
-//       <Widget
-//         src="efiz.near/widget/Thing"
-//         props={{ path: content.path, blockHeight: content.blockHeight }}
-//       />
-//     );
-//   }
-// }
+        {content.image && (
+          <Widget
+            src="mob.near/widget/Image"
+            props={{
+              image: content.image,
+            }}
+          />
+        )}
+      </>
+    );
+  } else {
+    return (
+      <Widget
+        src="efiz.near/widget/Thing"
+        props={{ path: content.path, blockHeight: content.blockHeight }}
+      />
+    );
+  }
+}
 
 return (
   <Post>
@@ -165,7 +166,7 @@ return (
     </Header>
 
     <Body>
-      <Content>{JSON.stringify(content)}</Content>
+      <Content>{renderContent()}</Content>
 
       {blockHeight !== "now" && (
         <Actions>
