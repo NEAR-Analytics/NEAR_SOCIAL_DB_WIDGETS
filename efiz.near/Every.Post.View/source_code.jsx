@@ -83,36 +83,36 @@ if (state.hasBeenFlagged) {
   );
 }
 
-function renderContent() {
-  if (type === "md") {
-    return (
-      <>
-        {content.text && (
-          <Widget
-            src="near/widget/SocialMarkdown"
-            props={{ text: content.text }}
-          />
-        )}
+// function renderContent() {
+//   if (type === "md") {
+//     return (
+//       <>
+//         {content.text && (
+//           <Widget
+//             src="near/widget/SocialMarkdown"
+//             props={{ text: content.text }}
+//           />
+//         )}
 
-        {content.image && (
-          <Widget
-            src="mob.near/widget/Image"
-            props={{
-              image: content.image,
-            }}
-          />
-        )}
-      </>
-    );
-  } else {
-    return (
-      <Widget
-        src="efiz.near/widget/Thing"
-        props={{ path: content.path, blockHeight: content.blockHeight }}
-      />
-    );
-  }
-}
+//         {content.image && (
+//           <Widget
+//             src="mob.near/widget/Image"
+//             props={{
+//               image: content.image,
+//             }}
+//           />
+//         )}
+//       </>
+//     );
+//   } else {
+//     return (
+//       <Widget
+//         src="efiz.near/widget/Thing"
+//         props={{ path: content.path, blockHeight: content.blockHeight }}
+//       />
+//     );
+//   }
+// }
 
 return (
   <Post>
@@ -147,7 +147,7 @@ return (
           />
         </div>
         <div className="col-1">
-          {false && (
+          {true && (
             <Widget
               src="near/widget/Posts.Menu"
               props={{
@@ -165,7 +165,7 @@ return (
     </Header>
 
     <Body>
-      <Content>{renderContent()}</Content>
+      <Content>{JSON.stringify(content)}</Content>
 
       {blockHeight !== "now" && (
         <Actions>
