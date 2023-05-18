@@ -5,6 +5,7 @@ const subscribe = !!props.subscribe;
 const notifyAccountId = accountId;
 const type = props.type;
 // const postUrl = `https://near.org#/near/widget/PostPage?accountId=${accountId}&blockHeight=${blockHeight}`;
+const renderContent = props.renderContent;
 
 State.init({ hasBeenFlagged: false });
 
@@ -12,7 +13,6 @@ const content =
   props.content ??
   JSON.parse(Social.get(`${accountId}/post/main`, blockHeight));
 
-return <p>{JSON.stringify(content)}</p>;
 const item = {
   type: "social",
   path: `${accountId}/post/main`,
@@ -84,37 +84,6 @@ if (state.hasBeenFlagged) {
   );
 }
 
-function renderContent() {
-  if (type === "md") {
-    return (
-      <>
-        {content.text && (
-          <Widget
-            src="near/widget/SocialMarkdown"
-            props={{ text: content.text }}
-          />
-        )}
-
-        {content.image && (
-          <Widget
-            src="mob.near/widget/Image"
-            props={{
-              image: content.image,
-            }}
-          />
-        )}
-      </>
-    );
-  } else {
-    return (
-      <Widget
-        src="efiz.near/widget/Thing"
-        props={{ path: content.path, blockHeight: content.blockHeight }}
-      />
-    );
-  }
-}
-
 return (
   <Post>
     <Header>
@@ -166,7 +135,29 @@ return (
     </Header>
 
     <Body>
-      <Content>{renderContent()}</Content>
+      <Content>
+        {renderContent ? (
+          <>{renderContent()}</>
+        ) : (
+          <>
+            {content.text && (
+              <Widget
+                src="near/widget/SocialMarkdown"
+                props={{ text: content.text }}
+              />
+            )}
+
+            {content.image && (
+              <Widget
+                src="mob.near/widget/Image"
+                props={{
+                  image: content.image,
+                }}
+              />
+            )}
+          </>
+        )}
+      </Content>
 
       {blockHeight !== "now" && (
         <Actions>
