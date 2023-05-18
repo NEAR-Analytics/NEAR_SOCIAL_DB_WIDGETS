@@ -12,7 +12,7 @@ const data = fetch("https://graph.mintbase.xyz", {
     query MyQuery($accountId: String){
           mb_views_nft_tokens(
                     where: {nft_contract_id: {_eq: "nft.harmonic1.near"}, owner: {_eq: $accountId}}
-                    limit: 10
+                    limit: 50
                     ) {
                     title
                     description
