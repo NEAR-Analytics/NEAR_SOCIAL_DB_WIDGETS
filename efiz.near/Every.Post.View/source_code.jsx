@@ -82,6 +82,37 @@ if (state.hasBeenFlagged) {
   );
 }
 
+function renderContent() {
+  if (a.value.type === "md") {
+    return (
+      <>
+        {content.text && (
+          <Widget
+            src="near/widget/SocialMarkdown"
+            props={{ text: content.text }}
+          />
+        )}
+
+        {content.image && (
+          <Widget
+            src="mob.near/widget/Image"
+            props={{
+              image: content.image,
+            }}
+          />
+        )}
+      </>
+    );
+  } else {
+    return (
+      <Widget
+        src="efiz.near/widget/Thing"
+        props={{ path: content.path, blockHeight: content.blockHeight }}
+      />
+    );
+  }
+}
+
 return (
   <Post>
     <Header>
@@ -133,23 +164,7 @@ return (
     </Header>
 
     <Body>
-      <Content>
-        {content.text && (
-          <Widget
-            src="near/widget/SocialMarkdown"
-            props={{ text: content.text }}
-          />
-        )}
-
-        {content.image && (
-          <Widget
-            src="mob.near/widget/Image"
-            props={{
-              image: content.image,
-            }}
-          />
-        )}
-      </Content>
+      <Content>{renderContent()}</Content>
 
       {blockHeight !== "now" && (
         <Actions>
