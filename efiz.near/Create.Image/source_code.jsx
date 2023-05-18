@@ -1,7 +1,7 @@
 const fileAccept = props.fileAccept || "*";
 const fileIcon = props.fileIcon || "bi-file";
 const buttonText = props.buttonText || "Upload a file";
-const callback = props.callback;
+const createThing = props.createThing;
 
 props.fileType ||
   initState({
@@ -33,7 +33,9 @@ const filesOnChange = (file) => {
           cid,
         },
       });
-      callback(cid);
+      if (createThing) {
+        createThing(cid);
+      }
     });
   } else {
     State.update({
