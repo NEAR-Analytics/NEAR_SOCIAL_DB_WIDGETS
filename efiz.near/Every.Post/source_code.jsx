@@ -38,5 +38,8 @@ const renderItem = (a) => {
 };
 
 return (
-  <Widget src="mob.near/widget/MergedIndexFeed" props={{ index, renderItem }} />
+  <Widget
+    src="efiz.near/widget/MergedIndexFeed"
+    props={{ index, renderItem }}
+  />
 );
