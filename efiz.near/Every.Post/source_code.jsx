@@ -23,7 +23,7 @@ const Post = styled.div`
 const renderItem = (a) => {
   if (typeWhitelist.includes(a.value.type)) {
     return (
-      <Post>
+      <Post className="post" key={JSON.stringify(a)}>
         <Widget
           src="efiz.near/widget/Every.Post.View"
           props={{
@@ -38,8 +38,5 @@ const renderItem = (a) => {
 };
 
 return (
-  <Widget
-    src="efiz.near/widget/MergedIndexFeed"
-    props={{ index, renderItem }}
-  />
+  <Widget src="mob.near/widget/MergedIndexFeed" props={{ index, renderItem }} />
 );
