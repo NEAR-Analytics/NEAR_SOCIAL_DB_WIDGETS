@@ -231,8 +231,15 @@ align-items: center;
 `;
 
 const Main = styled.div`
-position:relative;
-  font-family: "SF Pro Display",sans-serif;
+  display: grid;
+  gap: 3rem;
+  align-content:center;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  justify-content: center;
+  // background: linear-gradient(180deg,#e4f1fb,hsla(0,0%,85.1%,0));
+  margin-top: 20px;
+  width:100%;
+  padding: 1rem;
 `;
 
 const Text = styled.p`
@@ -301,141 +308,145 @@ const TextArea = styled.textarea`
 `;
 
 return (
-  <Main className="container-fluid">
+  <>
     {!accountId && <p>Please sign in with NEAR wallet</p>}
     <Heading className="text-center fs-2 fw-bold">
       Mint NFT on Multiple chains
     </Heading>
-    {!state.image.cid ? (
-      <div className="flex-grow-1">
-        <Heading>
-          Upload an image to create an NFT any of our supported blockchains
-          super fast!
-        </Heading>
-        <ImageUploadCard className="flex-grow-1">
-          <Elipse />
-          <IpfsImageUpload
-            image={state.image}
-            className="btn text-decoration-none link-primary pe-auto"
-          />
-          <div>
-            {
-              //   <Heading
-              //   onDrop={handleDrop}
-              //   onDragOver={(event) => event.preventDefault()}
-              // >
-              //   Drag and Drop your image file here
-              // </Heading>
-            }
-            <Text>
-              We support .jpg, .jpeg, .png, .webp, .gif files and deploy to
-              Celo, Algorand, Near, and Polygon
-            </Text>
-            <Text>Max file size: 20mb</Text>
-          </div>
-        </ImageUploadCard>
-      </div>
-    ) : (
-      <>
-        <Card className="d-flex flex-column align-items-center">
-          <ImageCard>
-            <img
-              src={`https://ipfs.io/ipfs/` + state.image.cid}
-              alt="uploaded image"
-              width="100%"
-              height="100%"
-              className="rounded-3"
-            />
-          </ImageCard>
-          <div>
+    <Main className="container-fluid">
+      {!state.image.cid ? (
+        <div className="flex-grow-1">
+          <Heading>
+            Upload an image to create an NFT any of our supported blockchains
+            super fast!
+          </Heading>
+          <ImageUploadCard className="flex-grow-1">
+            <Elipse />
             <IpfsImageUpload
               image={state.image}
-              className="btn btn-outline-primary border-0 rounded-3"
+              className="btn text-decoration-none link-primary pe-auto"
             />
-          </div>
-        </Card>
-        <Card>
-          <Card>
-            Title:
-            <input
-              type="text"
-              value={state.title || ""}
-              onChange={(e) => onChangeTitle(e.target.value)}
-            />
-          </Card>
-          <Card>
-            Description:
-            <input
-              type="text"
-              value={state.description || ""}
-              onChange={(e) => onChangeDesc(e.target.value)}
-            />
-          </Card>
-        </Card>
-        <Card>
-          {state.sender && Ethers.provider() ? (
-            <div className="form-group">
-              <label htmlFor="chainSelect">Select Chain</label>
-              <select
-                className="form-control"
-                value={state.selectedChain}
-                onChange={handleChainChange}
-              >
-                {chains.map((chain) => (
-                  <option key={chain.id} value={chain.id}>
-                    {chain.name}
-                  </option>
-                ))}
-              </select>
-              {state.link && (
-                <a href={`${state.link}`} target="_blank">
-                  View Transaction
-                </a>
-              )}
-              <button
-                type="button"
-                className="btn btn-primary mt-3"
-                onClick={handleMint}
-              >
-                Mint to {contractAddresses[state.selectedChain][1]}
-              </button>
+            <div>
+              {
+                //   <Heading
+                //   onDrop={handleDrop}
+                //   onDragOver={(event) => event.preventDefault()}
+                // >
+                //   Drag and Drop your image file here
+                // </Heading>
+              }
+              <Text>
+                We support .jpg, .jpeg, .png, .webp, .gif files and deploy to
+                Celo, Algorand, Near, and Polygon
+              </Text>
+              <Text>Max file size: 20mb</Text>
             </div>
-          ) : state.sender ? (
-            <div className="form-group">
-              <label htmlFor="chainSelect">Select Chain</label>
-              <select
-                className="form-control"
-                value={state.selectedChain}
-                onChange={handleChainChange}
-              >
-                {chains.map((chain) => (
-                  <option key={chain.id} value={chain.id}>
-                    {chain.name}
-                  </option>
-                ))}
-              </select>
-              <button
-                type="button"
-                className="btn btn-primary mt-3"
-                onClick={handleMint}
-              >
-                Mint to {contractAddresses[state.selectedChain][1]}
-              </button>
-              <div>
+          </ImageUploadCard>
+        </div>
+      ) : (
+        <>
+          <Card className="d-flex flex-column align-items-center w-100">
+            <div>
+              <IpfsImageUpload
+                image={state.image}
+                className="btn btn-outline-primary border-0 rounded-3"
+              />
+            </div>
+            <ImageCard>
+              <img
+                src={`https://ipfs.io/ipfs/` + state.image.cid}
+                alt="uploaded image"
+                width="100%"
+                height="100%"
+                className="rounded-3"
+              />
+            </ImageCard>
+          </Card>
+          <div>
+            <Card>
+              <Card>
+                Title:
+                <Input
+                  type="text"
+                  value={state.title || ""}
+                  onChange={(e) => onChangeTitle(e.target.value)}
+                />
+              </Card>
+              <Card>
+                Description:
+                <TextArea
+                  type="text"
+                  value={state.description || ""}
+                  onChange={(e) => onChangeDesc(e.target.value)}
+                />
+              </Card>
+            </Card>
+            <Card>
+              {state.sender && Ethers.provider() ? (
+                <div className="form-group">
+                  <label htmlFor="chainSelect">Select Chain</label>
+                  <select
+                    className="form-control"
+                    value={state.selectedChain}
+                    onChange={handleChainChange}
+                  >
+                    {chains.map((chain) => (
+                      <option key={chain.id} value={chain.id}>
+                        {chain.name}
+                      </option>
+                    ))}
+                  </select>
+                  {state.link && (
+                    <a href={`${state.link}`} target="_blank">
+                      View Transaction
+                    </a>
+                  )}
+                  <button
+                    type="button"
+                    className="btn btn-primary mt-3"
+                    onClick={handleMint}
+                  >
+                    Mint to {contractAddresses[state.selectedChain][1]}
+                  </button>
+                </div>
+              ) : state.sender ? (
+                <div className="form-group">
+                  <label htmlFor="chainSelect">Select Chain</label>
+                  <select
+                    className="form-control"
+                    value={state.selectedChain}
+                    onChange={handleChainChange}
+                  >
+                    {chains.map((chain) => (
+                      <option key={chain.id} value={chain.id}>
+                        {chain.name}
+                      </option>
+                    ))}
+                  </select>
+                  <button
+                    type="button"
+                    className="btn btn-primary mt-3"
+                    onClick={handleMint}
+                  >
+                    Mint to {contractAddresses[state.selectedChain][1]}
+                  </button>
+                  <div>
+                    <Web3Connect
+                      className="btn mt-3"
+                      connectLabel="Connect with Ethereum Wallet"
+                    />
+                  </div>
+                </div>
+              ) : (
                 <Web3Connect
                   className="btn mt-3"
-                  connectLabel="Connect with Ethereum Wallet"
+                  connectLabel="Connect with Wallet"
                 />
-              </div>
-            </div>
-          ) : (
-            <Web3Connect
-              className="btn mt-3"
-              connectLabel="Connect with Wallet"
-            />
-          )}
-        </Card>
-      </>
-    )}
-  </Main>
+              )}
+            </Card>
+          </div>
+        </>
+      )}
+    </Main>
+  </>
 );
