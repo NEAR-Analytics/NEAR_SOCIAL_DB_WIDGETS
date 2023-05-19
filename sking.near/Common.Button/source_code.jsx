@@ -47,6 +47,11 @@ const Wrapper = styled[tag]`
     outline: none;
     opacity: 0.9;
   }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
 `;
 
 return (
