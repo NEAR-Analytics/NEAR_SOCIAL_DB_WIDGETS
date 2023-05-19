@@ -126,7 +126,6 @@ const sendProposal = () => {
 const proposalTypes = [
   "Transfer",
   "Vote",
-  "FunctionCall",
   "AddBounty",
   "BountyDone",
   "AddMemberToRole",
