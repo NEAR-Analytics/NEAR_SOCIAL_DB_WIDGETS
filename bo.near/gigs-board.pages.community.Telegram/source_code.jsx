@@ -111,7 +111,7 @@ if (groupInfo === null || !groupInfo.ok) {
 const messageIds = groupInfo.body.messageIds;
 
 const Telegram = (
-  <div>
+  <div class="w-100">
     <iframe
       src={"https://cg-msg-viewer.pages.dev/?group=" + group + '&messageIds=' + messageIds}
       width="100%"
