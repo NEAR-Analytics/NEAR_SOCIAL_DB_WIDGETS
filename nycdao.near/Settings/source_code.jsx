@@ -2,7 +2,7 @@ const daoId = props.daoId;
 
 let string = "sputnik-dao.near";
 
-const source = "mob.near/widget/Welcome";
+const source = "mob.near/widget/Hashtag.Feed";
 
 const tag = Social.get(`${daoId}/settings/dao/main/tag`);
 
@@ -38,7 +38,7 @@ const widget_args = JSON.stringify({
   data: {
     [state.daoId]: {
       widget: {
-        [`${state.prop}.Main`]: {
+        [`${state.hashtag}.Feed`]: {
           "": `const hashtag = props.hashtag ?? "${state.hashtag}"; return (<Widget src="${source}" props={{ hashtag }} />);`,
           metadata: {
             tags: {
