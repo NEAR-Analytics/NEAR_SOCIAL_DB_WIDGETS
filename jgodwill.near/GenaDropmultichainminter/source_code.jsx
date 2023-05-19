@@ -441,7 +441,7 @@ return (
             </Card>
             <button
               type="button"
-              className="btn btn-primary mt-3"
+              className="btn btn-primary d-flex flex-column align-items-center mx-auto"
               onClick={handleMint}
             >
               Mint to {contractAddresses[state.selectedChain][1]}
