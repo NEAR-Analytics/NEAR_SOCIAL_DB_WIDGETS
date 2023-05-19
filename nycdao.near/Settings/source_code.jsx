@@ -71,7 +71,7 @@ const handleProposal = () => {
                   method_name: "set",
                   args: proposal_args,
                   deposit: "50000000000000000000000",
-                  gas: "200000000000000",
+                  gas: "299000000000000",
                 },
               ],
             },
@@ -79,7 +79,7 @@ const handleProposal = () => {
         },
       },
       deposit: "100000000000000000000000",
-      gas: "200000000000000",
+      gas: "299000000000000",
     },
   ]);
 };
@@ -100,7 +100,7 @@ const handleBranch = () => {
                   method_name: "set",
                   args: create_args,
                   deposit: "50000000000000000000000",
-                  gas: "200000000000000",
+                  gas: "299000000000000",
                 },
               ],
             },
@@ -108,7 +108,7 @@ const handleBranch = () => {
         },
       },
       deposit: "100000000000000000000000",
-      gas: "200000000000000",
+      gas: "299000000000000",
     },
   ]);
 };
