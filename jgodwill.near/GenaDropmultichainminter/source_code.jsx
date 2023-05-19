@@ -266,13 +266,15 @@ border-radius: .7em;
 
 const ImageCard = styled.div`
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-  height:fit-content;
-  max-height:500px;
+  height:100%;
+  max-height:100%;
   width: 90%;
   max-width: 500px;
   border-radius: 1rem;
   &>img{
-  object-fit: contain;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
   }
 `;
 
