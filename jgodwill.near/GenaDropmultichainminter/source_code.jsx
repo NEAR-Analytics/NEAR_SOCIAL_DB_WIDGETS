@@ -249,6 +249,14 @@ width: 100px;
 border-radius: 50%;
 `;
 
+const Card = styled.div`
+padding: 1em;
+border: 1px solid #e5e8eb;
+gap: 2em;
+margin: 10px auto;
+border-radius: .7em;
+`;
+
 const ImageCard = styled.div`
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
   height:fit-content;
@@ -258,6 +266,37 @@ const ImageCard = styled.div`
   border-radius: 1rem;
   &>img{
   object-fit: contain;
+  }
+`;
+
+const Input = styled.input`
+  display: block;
+  padding:.5em;
+  width:100%;
+  border: 1px solid #e5e8eb;
+  border-radius: 10px;
+  outline: none;
+  background: #f4f5f6;
+  color: #525c76;
+  :focus{
+    border:1px solid #0d99ff;
+  }
+  ::placeholder {
+    color: palevioletred;
+  }
+`;
+
+const TextArea = styled.textarea`
+  display: block;
+  padding:.5em;
+  width:100%;
+  border: 1px solid #e5e8eb;
+  border-radius: 10px;
+  outline: none;
+  background: #f4f5f6;
+  color: #525c76;
+  :focus{
+    border:1px solid #0d99ff;
   }
 `;
 
@@ -298,35 +337,42 @@ return (
       </div>
     ) : (
       <>
-        <div>
-          Title:
-          <input
-            type="text"
-            value={state.title || ""}
-            onChange={(e) => onChangeTitle(e.target.value)}
-          />
-        </div>
-        <div>
-          Description:
-          <input
-            type="text"
-            value={state.description || ""}
-            onChange={(e) => onChangeDesc(e.target.value)}
-          />
-        </div>
-        <div>
-          {state.image.cid && (
-            <div className="mt-3">
-              <h5>Preview:</h5>
-              <img
-                src={`https://ipfs.io/ipfs/` + state.image.cid}
-                alt="Preview"
-                style={{ maxWidth: "300px" }}
-              />
-            </div>
-          )}
-        </div>
-        <div>
+        <Card className="d-flex flex-column align-items-center">
+          <ImageCard>
+            <img
+              src={`https://ipfs.io/ipfs/` + state.image.cid}
+              alt="uploaded image"
+              width="100%"
+              height="100%"
+              className="rounded-3"
+            />
+          </ImageCard>
+          <div>
+            <IpfsImageUpload
+              image={state.image}
+              className="btn btn-outline-primary border-0 rounded-3"
+            />
+          </div>
+        </Card>
+        <Card>
+          <Card>
+            Title:
+            <input
+              type="text"
+              value={state.title || ""}
+              onChange={(e) => onChangeTitle(e.target.value)}
+            />
+          </Card>
+          <Card>
+            Description:
+            <input
+              type="text"
+              value={state.description || ""}
+              onChange={(e) => onChangeDesc(e.target.value)}
+            />
+          </Card>
+        </Card>
+        <Card>
           {state.sender && Ethers.provider() ? (
             <div className="form-group">
               <label htmlFor="chainSelect">Select Chain</label>
@@ -388,7 +434,7 @@ return (
               connectLabel="Connect with Wallet"
             />
           )}
-        </div>
+        </Card>
       </>
     )}
   </Main>
