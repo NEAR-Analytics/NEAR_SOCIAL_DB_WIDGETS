@@ -114,10 +114,8 @@ const Telegram = (
   <>
     <iframe
       src={"https://cg-msg-viewer.pages.dev/?group=" + group + '&messageIds=' + messageIds}
-      position="absolute"
-      width="100%"
-      height="100%"
       frameborder="0"
+      class="w-100 h-100"
     ></iframe>
   </>
 );
