@@ -2,6 +2,8 @@ const daoId = props.daoId;
 
 let string = "sputnik-dao.near";
 
+const tag = Social.get(`${daoId}/settings/dao/main/tag`);
+
 const source = "mob.near/widget/Hashtag.Feed";
 
 State.init({
@@ -81,7 +83,7 @@ const handleProposal = () => {
   ]);
 };
 
-const handleCreate = () => {
+const handleBranch = () => {
   Near.call([
     {
       contractName: state.daoId,
@@ -108,6 +110,22 @@ const handleCreate = () => {
       gas: "200000000000000",
     },
   ]);
+};
+
+const handleCreate = () => {
+  Social.set({
+    widget: {
+      [`${state.hashtag}.Feed`]: {
+        "": `const hashtag = props.hashtag ?? "${state.hashtag}"; return (<Widget src="${source}" props={{ hashtag }} />);`,
+        metadata: {
+          tags: {
+            community: "",
+            [state.hashtag]: "",
+          },
+        },
+      },
+    },
+  });
 };
 
 const onChangeDao = (daoId) => {
@@ -178,7 +196,7 @@ return (
           <button
             disabled={state.daoId === context.accountId}
             className="btn btn-outline-primary"
-            onClick={handleCreate}
+            onClick={handleBranch}
           >
             Propose to Create New Page
           </button>
@@ -189,8 +207,8 @@ return (
     <h5>Preview</h5>
     <div className="mb-2">
       <Widget
-        src="mob.near/widget/Hashtag.Feed"
-        props={{ hashtag: state.hashtag ?? "bos" }}
+        src="nycdao.near/widget/Community.Feed"
+        props={{ daoId: state.daoId, hashtag: state.hashtag ?? "bos" }}
       />
     </div>
   </>
