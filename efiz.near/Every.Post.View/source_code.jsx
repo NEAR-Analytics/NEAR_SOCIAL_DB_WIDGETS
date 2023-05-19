@@ -4,7 +4,7 @@ const blockHeight =
 const subscribe = !!props.subscribe;
 const notifyAccountId = accountId;
 const type = props.type;
-// const postUrl = `https://near.org#/near/widget/PostPage?accountId=${accountId}&blockHeight=${blockHeight}`;
+const postUrl = `https://near.org#/near/widget/PostPage?accountId=${accountId}&blockHeight=${blockHeight}`;
 
 State.init({ hasBeenFlagged: false });
 
