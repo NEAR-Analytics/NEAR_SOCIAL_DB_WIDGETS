@@ -366,24 +366,6 @@ return (
           </Card>
           <div>
             <Card>
-              <Card>
-                Title:
-                <Input
-                  type="text"
-                  value={state.title || ""}
-                  onChange={(e) => onChangeTitle(e.target.value)}
-                />
-              </Card>
-              <Card>
-                Description:
-                <TextArea
-                  type="text"
-                  value={state.description || ""}
-                  onChange={(e) => onChangeDesc(e.target.value)}
-                />
-              </Card>
-            </Card>
-            <Card>
               {state.sender && Ethers.provider() ? (
                 <div className="form-group">
                   <label htmlFor="chainSelect">Select Chain</label>
@@ -403,13 +385,6 @@ return (
                       View Transaction
                     </a>
                   )}
-                  <button
-                    type="button"
-                    className="btn btn-primary mt-3"
-                    onClick={handleMint}
-                  >
-                    Mint to {contractAddresses[state.selectedChain][1]}
-                  </button>
                 </div>
               ) : state.sender ? (
                 <div className="form-group">
@@ -446,6 +421,31 @@ return (
                 />
               )}
             </Card>
+            <Card>
+              <Card>
+                Title:
+                <Input
+                  type="text"
+                  value={state.title || ""}
+                  onChange={(e) => onChangeTitle(e.target.value)}
+                />
+              </Card>
+              <Card>
+                Description:
+                <TextArea
+                  type="text"
+                  value={state.description || ""}
+                  onChange={(e) => onChangeDesc(e.target.value)}
+                />
+              </Card>
+            </Card>
+            <button
+              type="button"
+              className="btn btn-primary mt-3"
+              onClick={handleMint}
+            >
+              Mint to {contractAddresses[state.selectedChain][1]}
+            </button>
           </div>
         </>
       )}
