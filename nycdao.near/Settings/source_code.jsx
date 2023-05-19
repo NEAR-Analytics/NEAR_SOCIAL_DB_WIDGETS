@@ -43,6 +43,7 @@ const widget_args = JSON.stringify({
           metadata: {
             tags: {
               community: "",
+              [state.hashtag]: "",
             },
           },
         },
