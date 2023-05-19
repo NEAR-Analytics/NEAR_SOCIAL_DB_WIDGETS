@@ -4,8 +4,6 @@ let string = "sputnik-dao.near";
 
 const source = "mob.near/widget/Hashtag.Feed";
 
-const tag = Social.get(`${daoId}/settings/dao/main/tag`);
-
 State.init({
   daoId: daoId ?? "",
   hashtag: hashtag ?? tag,
