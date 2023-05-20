@@ -66,6 +66,17 @@ const handleProposal = () => {
   ]);
 };
 
+const handleGrant = () => {
+  Near.call([
+    {
+      contractName: "social.near",
+      methodName: "grant_write_permission",
+      args: permission_args,
+      deposit: "1",
+    },
+  ]);
+};
+
 const onChangeDao = (daoId) => {
   State.update({
     daoId,
@@ -79,7 +90,7 @@ const onChangeAccount = (accountId) => {
 };
 
 return (
-  <div class="d-flex flex-column gap-2">
+  <div className="d-flex flex-column">
     <div className="d-flex p-1 m-1 flex-row">
       <Widget
         src="mob.near/widget/ProfileImage"
@@ -87,36 +98,50 @@ return (
       />
       <h1 className="px-2">Settings</h1>
     </div>
-    <div className="m-1">
-      <h2 className="mb-2">
-        <b>Organization Account:</b>
-      </h2>
-      {!validDao && (
-        <p>
-          ↳ try something like this ~{" "}
-          <i>
-            example<b>.sputnik-dao.near</b>
-          </i>
-        </p>
-      )}
-      <input
-        placeholder="<example>.sputnik-dao.near"
-        type="text"
-        value={state.daoId}
-        onChange={(e) => onChangeDao(e.target.value)}
-      ></input>
-    </div>
-    <div className="m-1">
-      <h3>Request Permissions:</h3>
-      {validDao && validAccount && (
-        <p>
-          ↳ propose allowing <b>{state.accountId}</b> to edit profile of{" "}
-          <b>{state.daoId}</b>
-        </p>
-      )}
-      <div class="w-100 d-flex gap-3">
+    <div className="p-1 m-1">
+      <div>
+        <h2>
+          <b>Organization Account:</b>
+        </h2>
+        {!validDao && (
+          <p>
+            ↳ try something like this ~{" "}
+            <i>
+              example<b>.sputnik-dao.near</b>
+            </i>
+          </p>
+        )}
         <input
-          disabled={!validDao}
+          placeholder="<example>.sputnik-dao.near"
+          type="text"
+          value={state.daoId}
+          onChange={(e) => onChangeDao(e.target.value)}
+        ></input>
+      </div>
+    </div>
+    <div className="p-1 m-1">
+      <div className="w-100 d-flex gap-2">
+        {validDao ? (
+          <div>
+            <h3>Request Permissions:</h3>
+            <p>
+              ↳ propose allowing <b>{state.accountId}</b> to edit profile of{" "}
+              <b>{state.daoId}</b>
+            </p>
+          </div>
+        ) : (
+          <div>
+            <h3>Grant Permissions:</h3>
+            <p>
+              ↳ give <b>{state.accountId}</b> ability to edit your profile:{" "}
+              <b>{context.accountId}</b>
+            </p>
+          </div>
+        )}
+      </div>
+      <div className="w-100 d-flex gap-2">
+        <input
+          disabled={!validAccount}
           placeholder={context.accountId}
           type="text"
           value={state.accountId}
@@ -130,10 +155,10 @@ return (
           </div>
         ) : (
           <button
-            disabled={daoId !== context.accountId}
-            onClick={handleProposal}
+            disabled={state.daoId !== context.accountId}
+            onClick={handleGrant}
           >
-            Submit
+            Grant
           </button>
         )}
       </div>
