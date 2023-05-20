@@ -33,7 +33,7 @@ const validAccount = checkAccount(state.accountId);
 const permission_args = JSON.stringify({
   data: {
     predecessor_id: state.accountId,
-    keys: [`${daoId}/profile`],
+    keys: [`${daoId}`],
   },
 });
 
