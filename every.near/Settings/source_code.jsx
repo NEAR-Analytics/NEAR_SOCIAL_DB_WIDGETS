@@ -31,10 +31,8 @@ const validDao = checkDao(state.daoId);
 const validAccount = checkAccount(state.accountId);
 
 const permission_args = JSON.stringify({
-  data: {
-    predecessor_id: state.accountId,
-    keys: [`${state.daoId}`],
-  },
+  predecessor_id: state.accountId,
+  keys: [`${state.daoId}`],
 });
 
 const proposal_args = Buffer.from(permission_args, "utf-8").toString("base64");
