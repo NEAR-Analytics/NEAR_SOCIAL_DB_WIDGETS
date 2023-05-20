@@ -4,6 +4,8 @@ const index = props.index;
 const value = props.value;
 const modified = props.modified;
 const handleInputChange = props.handleInputChange;
+const moveInputDown = props.moveInputDown;
+const moveInputUp = props.moveInputUp;
 
 const InputContainer = styled.div`
   display: flex;
