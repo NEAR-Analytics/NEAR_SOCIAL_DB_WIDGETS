@@ -32,7 +32,7 @@ const validAccount = checkAccount(state.accountId);
 
 const permission_args = JSON.stringify({
   predecessor_id: state.accountId,
-  keys: [`${state.daoId}/profile`],
+  keys: [`${state.daoId}`],
 });
 
 const proposal_args = Buffer.from(permission_args, "utf-8").toString("base64");
@@ -53,7 +53,7 @@ const handleProposal = () => {
                   method_name: "grant_write_permission",
                   args: proposal_args,
                   deposit: "1",
-                  gas: "30000000000000",
+                  gas: "300000000000000",
                 },
               ],
             },
