@@ -10,14 +10,20 @@ const onChangeName = (name) => {
   });
 };
 
-const matchingDaos = daos.filter((dao) => dao.indexOf(state.name) !== -1);
+const filteredDaos = daos.filter((dao) => dao.indexOf(state.name) !== -1);
 
-const total_daos = matchingDaos.length;
+const total_daos = daos.length;
+
+const filtered_daos = filteredDaos.length;
 
 return (
   <div className="m-1">
     <h2 className="mb-2">Every DAO</h2>
-    <h5 className="mb-3">{total_daos} Total</h5>
+    {!state.name ? (
+      <h5 className="mb-3">Total: {total_daos}</h5>
+    ) : (
+      <h5 className="mb-3">Shown: {filtered_daos}</h5>
+    )}
     <h4 className="mb-2">Search by Name</h4>
     <input
       placeholder="<example>.sputnik-dao.near"
@@ -26,7 +32,7 @@ return (
       onChange={(e) => onChangeName(e.target.value)}
     ></input>
     <div className="mt-3">
-      {matchingDaos.map((dao, j) => (
+      {filteredDaos.map((dao, j) => (
         <div className="d-flex m-2">
           <a key={j} href={`/#/hack.near/widget/DAO.Profile?daoId=${dao}`}>
             {dao}
