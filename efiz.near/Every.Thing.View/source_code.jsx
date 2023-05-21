@@ -126,9 +126,15 @@ function composePost() {
   };
 }
 
-State.init({ raw: false });
-
 function renderContent() {
+  if (state.showHistory) {
+    return (
+      <Widget
+        src="efiz.near/widget/Every.Thing.History"
+        props={{ path, blockHeight }}
+      />
+    );
+  }
   if (state.showRaw) {
     let thing;
     if (type === "settings") {
@@ -240,7 +246,7 @@ function toggleEdit() {
         className={`btn`}
         onClick={() => State.update({ showEdit: false })}
       >
-        <i className="bi bi-pencil me-1" />
+        <i className="bi bi-arrow-counterclockwise me-1" />
         <span>Cancel Edit</span>
       </button>
     );
@@ -264,7 +270,7 @@ function toggleRaw() {
         className={`btn`}
         onClick={() => State.update({ showRaw: false })}
       >
-        <i className="bi bi-pencil me-1" />
+        <i className="bi bi-arrow-up-left-circle me-1" />
         <span>Show Thing</span>
       </button>
     );
@@ -273,6 +279,29 @@ function toggleRaw() {
       <button className={`btn`} onClick={() => State.update({ showRaw: true })}>
         <i className="bi bi-filetype-raw me-1" />
         <span>Raw</span>
+      </button>
+    );
+  }
+}
+function toggleHistory() {
+  if (state.showHistory) {
+    return (
+      <button
+        className={`btn`}
+        onClick={() => State.update({ showHistory: false })}
+      >
+        <i className="bi bi-clock me-1" />
+        <span>Hide History</span>
+      </button>
+    );
+  } else {
+    return (
+      <button
+        className={`btn`}
+        onClick={() => State.update({ showHistory: true })}
+      >
+        <i className="bi bi-clock-history me-1" />
+        <span>Show History</span>
       </button>
     );
   }
@@ -301,7 +330,7 @@ return (
             src="efiz.near/widget/Common.Dropdown"
             props={{
               renderIcon: renderIcon,
-              elements: [toggleEdit(), toggleRaw()],
+              elements: [toggleEdit(), toggleRaw(), toggleHistory()],
             }}
           />
         )}
