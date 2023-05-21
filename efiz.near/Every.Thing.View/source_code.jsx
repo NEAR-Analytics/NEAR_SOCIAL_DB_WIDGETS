@@ -159,9 +159,11 @@ function renderContent() {
             [parts[1]]: val,
           },
         };
-        Social.set(newData, {
-          force: true,
-        });
+        if (context.account === creatorId) {
+          Social.set(newData, {
+            force: true,
+          });
+        }
       }
       return (
         <Widget
@@ -325,15 +327,13 @@ return (
   <Container>
     <Header>
       <ButtonRow>
-        {creatorId === context.accountId && (
-          <Widget
-            src="efiz.near/widget/Common.Dropdown"
-            props={{
-              renderIcon: renderIcon,
-              elements: [toggleEdit(), toggleRaw(), toggleHistory()],
-            }}
-          />
-        )}
+        <Widget
+          src="efiz.near/widget/Common.Dropdown"
+          props={{
+            renderIcon: renderIcon,
+            elements: [toggleEdit(), toggleRaw(), toggleHistory()],
+          }}
+        />
       </ButtonRow>
     </Header>
     <Content>{renderContent()}</Content>
