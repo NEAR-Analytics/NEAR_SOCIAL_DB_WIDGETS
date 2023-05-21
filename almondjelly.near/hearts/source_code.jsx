@@ -1,3 +1,8 @@
+const contract = "almondjelly.near";
+const greeting = Near.view(contract, "get_greeting", {});
+
+return <div>{greeting} World</div>;
+
 return (
   <svg>
     <g>
