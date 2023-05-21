@@ -61,7 +61,7 @@ const handleProposal = () => {
                   method_name: "grant_write_permission",
                   args: proposal_args,
                   deposit: "1",
-                  gas: "30000000000000",
+                  gas: "300000000000000",
                 },
               ],
             },
