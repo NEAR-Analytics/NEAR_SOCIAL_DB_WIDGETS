@@ -256,7 +256,7 @@ function toggleEdit() {
     return (
       <button
         className={`btn`}
-        onClick={() => State.update({ showEdit: true })}
+        onClick={() => State.update({ showEdit: true, showRaw: true })}
       >
         <i className="bi bi-pencil me-1" />
         <span>Edit</span>
