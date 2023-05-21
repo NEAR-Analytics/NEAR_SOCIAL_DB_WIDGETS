@@ -21,16 +21,28 @@ const parts = path.split("/");
 const ownerId = parts[0];
 
 const Container = styled.div`
+  border: 1px solid #ccc;
+    width: fit-content;
+  height: fit-content;
 `;
 
 const Header = styled.div`
   display: flex;
   align-items: center;
+  justify-content: flex-end;
+  border-bottom: 1px solid #ccc;
+`;
+
+const IconBox = styled.div`
+  font-family: "Times New Roman";
+  font-size: 2em;
+  line-height: 1.25;
+  font-weight: 400;
   cursor: pointer;
 `;
 
 const Content = styled.div`
-  
+  padding: 1px;
 `;
 
 const Button = styled.button`
@@ -41,8 +53,7 @@ const ButtonRow = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: end;
-  width: 100%;
+  justify-content: flex-end;
   gap: 4px;
 `;
 
@@ -64,17 +75,17 @@ const Item = styled.div`
   padding: 0;
   .btn {
     width: 100%;
-    border:0;
+    border: 0;
     text-align: left;
     &:hover,
     &:focus {
-      background-color: #ECEDEE;
+      background-color: #ecedee;
       text-decoration: none;
       outline: none;
     }
 
     i {
-      color: #7E868C;
+      color: #7e868c;
     }
 
     span {
