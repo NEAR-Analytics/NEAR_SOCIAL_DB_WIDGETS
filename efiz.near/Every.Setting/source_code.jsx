@@ -1,6 +1,5 @@
 const accountId = props.accountId || context.accountId;
 const blockHeight = props.blockHeight || "final";
-const thingId = props.thingId || "**";
 
 const settings = Social.get(`${accountId}/settings/**`, blockHeight);
 
