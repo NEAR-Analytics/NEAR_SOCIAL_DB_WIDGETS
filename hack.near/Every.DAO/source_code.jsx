@@ -30,10 +30,7 @@ return (
       {matchingDaos.map((dao, j) => (
         <div className="d-flex m-2">
           <a key={j} href={`/#/hack.near/widget/DAO.Profile?daoId=${dao}`}>
-            <Widget
-              src="mob.near/widget/Profile.InlineBlock"
-              props={{ accountId: dao }}
-            />
+            {dao}
           </a>
         </div>
       ))}
