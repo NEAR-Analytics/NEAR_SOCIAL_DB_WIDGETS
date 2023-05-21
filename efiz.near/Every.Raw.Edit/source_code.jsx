@@ -16,13 +16,7 @@ State.init({ value: JSON.stringify(value, null, 2) });
 
 const handleInputChange = (event) => {
   const inputValue = event.target.value;
-  try {
-    const parsedValue = JSON.parse(inputValue);
-    State.update({ value: inputValue });
-  } catch (error) {
-    // Handle invalid JSON format
-    State.update({ value: inputValue });
-  }
+  State.update({ value: inputValue });
 };
 
 return (
