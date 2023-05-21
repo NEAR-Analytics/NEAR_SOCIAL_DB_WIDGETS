@@ -1,6 +1,10 @@
 const accountId = props.accountId || context.accountId;
 const blockHeight = props.blockHeight || "final";
 
+if (accountId === null) {
+  return <p>Please connect a NEAR account...</p>;
+}
+
 const settings = Social.get(`${accountId}/settings/**`, blockHeight);
 
 if (!settings) {
