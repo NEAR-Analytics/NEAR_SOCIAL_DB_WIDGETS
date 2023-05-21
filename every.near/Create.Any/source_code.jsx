@@ -1,18 +1,18 @@
 const accountId = props.accountId ?? context.accountId;
 
-const defaultSource = props.src ?? "mob.near/widget/Hashtag.Feed";
-
 const src = Social.get(`${accountId}/settings/dev/src`);
 
 if (src === null) {
   return "Loading...";
 }
 
+const defaultSource = props.src ?? "mob.near/widget/Hashtag.Feed";
+
 State.init({
   src: src ?? defaultSource,
   prop: state.prop,
   value: state.value,
-  isWidget: false,
+  isTemplate: false,
 });
 
 const handleSave = () =>
@@ -27,7 +27,7 @@ const handleSave = () =>
 const handleCreate = () =>
   Social.set({
     widget: {
-      [`${state.value}`]: {
+      [`${state.value}.${widgetName}`]: {
         "": `const ${state.prop} = props.${state.prop} ?? "${state.value}"; return (<Widget src="${state.src}" props={{${state.prop}: ${state.prop}}} />);`,
         metadata: {
           tags: {
@@ -54,6 +54,7 @@ const addWidget = ({ widgetPath: src, onHide }) => {
   );
 };
 
+const current_src = state.src;
 const current_prop = state.prop;
 const current_value = state.value;
 
@@ -61,11 +62,18 @@ let string = ".near/widget/";
 
 const checkSource = (src) => {
   if (src.indexOf(string) !== -1) {
-    return State.update({ isWidget: true });
+    return State.update({ isTemplate: true });
   }
 };
 
-const validWidget = checkSource(state.src);
+const validTemplate = checkSource(state.src);
+
+const [ownerId, widget, widgetName] = current_src.split("/");
+
+const metadata = Social.get(
+  `${ownerId}/widget/${widgetName}/metadata/**`,
+  "final"
+);
 
 return (
   <>
@@ -82,7 +90,7 @@ return (
       <h5>
         <b>Template Source</b>
       </h5>
-      {!validWidget ? (
+      {!validTemplate ? (
         <p>
           <i>not a valid component</i>
         </p>
@@ -97,7 +105,7 @@ return (
         placeholder="efiz.near/widget/Community.Posts"
       />
     </div>
-    {validWidget && (
+    {validTemplate && (
       <div className="mt-3">
         <h5>Main Prop 🎭</h5>
         <p>
@@ -111,7 +119,7 @@ return (
         <input type="text" placeholder="hashtag" value={state.prop} />
       </div>
     )}
-    {validWidget && (
+    {validTemplate && (
       <div className="mt-3">
         <h5>Default Value</h5>
         <p>
@@ -124,7 +132,7 @@ return (
     <div className="mt-3">
       <button
         className="btn btn-primary mx-1"
-        disabled={!validWidget}
+        disabled={!validTemplate}
         onClick={handleSave}
       >
         Save Template
