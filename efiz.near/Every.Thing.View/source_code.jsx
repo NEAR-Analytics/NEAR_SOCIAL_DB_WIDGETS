@@ -1,28 +1,40 @@
 const path = props.path;
 const blockHeight = props.blockHeight || "final";
 
-// GET THE THING //
-const thing = JSON.parse(Social.get(path, blockHeight) || "null");
-
-if (thing === null) {
-  console.log(`thing not found at path: ${path}`);
+// Replace all in the VM? Thing keyword?
+let parts = [];
+try {
+  parts = path.split("/");
+} catch (e) {
+  // TODO : Better error handling?
+  console.log(`path not valid.`);
   return <></>;
 }
 
-// GET THE TYPE //
-const type = JSON.parse(Social.get(thing.type, "final") || "null");
+// GET THE TYPE BASED ON THE PATH //
+// TODO: replace with Type.get(path) //
+let type;
+if (parts.length === 1) {
+  type = "account";
+} else if (parts[1] === "thing") {
+  const thing = Social.get(path, blockHeight);
+  thing = JSON.parse(thing || "null");
+  type = thing.type || null;
+} else {
+  type = parts[1];
+}
 
 if (type === null) {
   return <p>type not found: {thing.type}</p>;
 }
 
-// GET THE OWNER //
-const parts = path.split("/");
-const ownerId = parts[0];
+// GET THE CREATOR ID //
+// ROOT ID? //
+const creatorId = parts[0];
 
 const Container = styled.div`
   border: 1px solid #ccc;
-    width: fit-content;
+  width: fit-content;
   height: fit-content;
 `;
 
@@ -100,14 +112,14 @@ function composePost() {
       main: JSON.stringify({
         path,
         blockHeight,
-        type: thing.type,
+        type: type,
       }),
     },
     index: {
       post: JSON.stringify({
         key: "main",
         value: {
-          type: thing.type, // because we want to filter by type
+          type: type, // because we want to filter by type
         },
       }),
     },
@@ -118,32 +130,80 @@ State.init({ raw: false });
 
 function renderContent() {
   if (state.showRaw) {
-    const text = `
-\`\`\`json
-${JSON.stringify(thing, undefined, 2)}
-\`\`\`
-`;
-    return <Markdown text={text} />;
-    // Would be cool to edit raw directly
-  } else {
-    if (state.showEdit) {
-      <>
-        {type?.widgets?.view && (
-          <Widget src={type.widgets.view} props={{ data: thing.data }} />
-        )}
-      </>;
+    let thing;
+    if (type === "settings") {
+      // Need to normalize to accountId/settings/**
+      // Or fix the path that is given to the settings component.
+      // Every thing takes a path and a blockHeight
+      parts.pop();
+      parts.push("**");
+      path = parts.join("/");
+      thing = Social.get(path, blockHeight);
     } else {
-      return (
-        <>
-          {type?.widgets?.view && (
-            <Widget src={type.widgets.view} props={{ data: thing.data }} />
-          )}
-        </>
-      );
+      thing = JSON.parse(Social.get(path, blockHeight));
+    }
+    const text = `\`\`\`json\n${JSON.stringify(thing, undefined, 2)}\n\`\`\``;
+    return (
+      <div style={{ maxWidth: "500px" }}>
+        <Markdown text={text} />
+      </div>
+    );
+  } else {
+    if (type.split("/").length > 1) {
+      const thingType = type;
+      const type = JSON.parse(Social.get(thingType, blockHeight) || "null");
+      if (type === null) {
+        console.log(
+          `edge case: thing ${path} had an invalid type: ${thingType}`
+        );
+      }
+      const widgetSrc = type?.widgets?.view; // Or settings
+      const thing = Social.get(path, blockHeight);
+      thing = JSON.parse(thing || "null"); // I already fetched thing when I got type
+      // what if thing data comes from somewhere else? auditable backend according to type, api keys are stored browser side
+      return <Widget src={widgetSrc} props={{ data: thing.data }} />;
+    } else {
+      switch (type) {
+        case "widget":
+          return <Widget src={path} />;
+        case "account":
+          return <p>account</p>;
+        case "settings":
+          return (
+            <Widget
+              src="efiz.near/widget/Every.Setting"
+              props={{ path, blockHeight }}
+            />
+          );
+        case "type":
+          return <Widget src="efiz.near/widget/Every.Type" />;
+        case "profile":
+          return (
+            <Widget
+              src={"settings/every/profile" || "efiz.near/widget/Every.Profile"}
+            />
+          );
+        case "graph":
+          return <p>graph</p>;
+        case "post":
+          return (
+            <Widget
+              src={"settings/every/post" || "efiz.near/widget/Every.Post"}
+            />
+          );
+        case "thing":
+          console.log(`edge case: ${path} had "thing" type`);
+          return <></>;
+        default:
+          // TODO: this doesn't work in current vm
+          return null;
+      }
     }
   }
 }
 
+// DROPDOWN //
+// where can I put this? I'd like a better editor
 function toggleEdit() {
   if (state.showEdit) {
     return (
@@ -167,7 +227,7 @@ function toggleEdit() {
     );
   }
 }
-
+// These are two very similiar functions
 function toggleRaw() {
   if (state.showRaw) {
     return (
@@ -188,7 +248,7 @@ function toggleRaw() {
     );
   }
 }
-
+// This should be a prop
 const renderIcon = () => {
   return (
     <svg
@@ -207,7 +267,7 @@ return (
   <Container>
     <Header>
       <ButtonRow>
-        {ownerId === context.accountId && (
+        {creatorId === context.accountId && (
           <Widget
             src="efiz.near/widget/Common.Dropdown"
             props={{
