@@ -81,7 +81,10 @@ const handleGrant = () => {
     {
       contractName: "social.near",
       methodName: "grant_write_permission",
-      args: permission_args,
+      args: {
+        predecessor_id: state.accountId,
+        keys: state.daoId,
+      },
       deposit: "1",
     },
   ]);
