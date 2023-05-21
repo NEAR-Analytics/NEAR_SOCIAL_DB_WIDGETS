@@ -14,7 +14,7 @@ const onBtnClick = () => {
   }
 
   Near.call(contract, "set_greeting", {
-    greeting: state.new_greeting,
+    message: state.new_greeting,
   });
 };
 
