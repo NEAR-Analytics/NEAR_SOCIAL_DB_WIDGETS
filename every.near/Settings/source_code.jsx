@@ -59,7 +59,9 @@ const handleProposal = () => {
               actions: [
                 {
                   method_name: "grant_write_permission",
-                  args: proposal_args,
+                  args: {
+                    proposal_args,
+                  },
                   deposit: "1",
                   gas: "30000000000000",
                 },
