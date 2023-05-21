@@ -1,7 +1,7 @@
 const daos = Near.view("sputnik-dao.near", "get_dao_list");
 
 State.init({
-  name: "",
+  name,
 });
 
 const matchingDaos = daos.filter((dao) => dao.indexOf(state.name) !== -1);
@@ -10,7 +10,7 @@ const total_daos = matchingDaos.length;
 
 const onChangeName = (name) => {
   State.update({
-    name: "",
+    name,
   });
 };
 
