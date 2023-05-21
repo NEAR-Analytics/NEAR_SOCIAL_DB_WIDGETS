@@ -4,15 +4,15 @@ State.init({
   name: props.name ?? "",
 });
 
-const matchingDaos = daos.filter((dao) => dao.indexOf(state.name) !== -1);
-
-const total_daos = matchingDaos.length;
-
 const onChangeName = (name) => {
   State.update({
     name,
   });
 };
+
+const matchingDaos = daos.filter((dao) => dao.indexOf(state.name) !== -1);
+
+const total_daos = matchingDaos.length;
 
 return (
   <div className="m-1">
