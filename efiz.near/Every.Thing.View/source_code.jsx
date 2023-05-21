@@ -142,12 +142,35 @@ function renderContent() {
     } else {
       thing = JSON.parse(Social.get(path, blockHeight));
     }
-    const text = `\`\`\`json\n${JSON.stringify(thing, undefined, 2)}\n\`\`\``;
-    return (
-      <div style={{ maxWidth: "500px" }}>
-        <Markdown text={text} />
-      </div>
-    );
+    if (state.showEdit) {
+      console.log(path);
+      function handleSubmit(val) {
+        const parts = path.split("/");
+        parts.shift(); // Remove the first element
+
+        const newData = {
+          [parts[0]]: {
+            [parts[1]]: val,
+          },
+        };
+        Social.set(newData, {
+          force: true,
+        });
+      }
+      return (
+        <Widget
+          src="efiz.near/widget/Every.Raw.Edit"
+          props={{ value: thing, handleSubmit: handleSubmit }}
+        />
+      );
+    } else {
+      return (
+        <Widget
+          src="efiz.near/widget/Every.Raw.View"
+          props={{ value: thing }}
+        />
+      );
+    }
   } else {
     if (type.split("/").length > 1) {
       const thingType = type;
@@ -157,7 +180,13 @@ function renderContent() {
           `edge case: thing ${path} had an invalid type: ${thingType}`
         );
       }
-      const widgetSrc = type?.widgets?.view; // Or settings
+      let widgetSrc;
+      if (state.showEdit) {
+        // Can I merge state with accessor
+        widgetSrc = type?.widgets?.edit;
+      } else {
+        widgetSrc = type?.widgets?.view; // Or settings
+      }
       const thing = Social.get(path, blockHeight);
       thing = JSON.parse(thing || "null"); // I already fetched thing when I got type
       // what if thing data comes from somewhere else? auditable backend according to type, api keys are stored browser side
