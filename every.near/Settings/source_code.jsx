@@ -83,7 +83,7 @@ const handleGrant = () => {
       methodName: "grant_write_permission",
       args: {
         predecessor_id: state.accountId,
-        keys: state.daoId,
+        keys: [state.daoId],
       },
       deposit: "1",
     },
