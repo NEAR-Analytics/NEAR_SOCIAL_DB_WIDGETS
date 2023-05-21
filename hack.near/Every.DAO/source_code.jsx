@@ -1,9 +1,7 @@
 const daos = Near.view("sputnik-dao.near", "get_dao_list");
 
-let name = props.name ?? "";
-
 State.init({
-  name: name,
+  name: props.name ?? "",
 });
 
 const matchingDaos = daos.filter((dao) => dao.indexOf(state.name) !== -1);
