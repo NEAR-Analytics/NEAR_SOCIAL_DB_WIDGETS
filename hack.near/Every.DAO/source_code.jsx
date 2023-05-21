@@ -1,7 +1,9 @@
 const daos = Near.view("sputnik-dao.near", "get_dao_list");
 
+let name = props.name ?? "";
+
 State.init({
-  name,
+  name: name,
 });
 
 const matchingDaos = daos.filter((dao) => dao.indexOf(state.name) !== -1);
@@ -17,8 +19,8 @@ const onChangeName = (name) => {
 return (
   <div className="m-1">
     <h2 className="mb-2">Every DAO</h2>
-    <h4 className="mb-3">{total_daos} Total</h4>
-    <h3 className="mb-2">Search by Name</h3>
+    <h5 className="mb-3">{total_daos} Total</h5>
+    <h4 className="mb-2">Search by Name</h4>
     <input
       placeholder="<example>.sputnik-dao.near"
       type="text"
