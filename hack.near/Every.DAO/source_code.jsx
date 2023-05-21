@@ -10,7 +10,7 @@ const total_daos = matchingDaos.length;
 
 const onChangeName = (name) => {
   State.update({
-    name,
+    name: "",
   });
 };
 
@@ -18,7 +18,6 @@ return (
   <div className="m-1">
     <h2 className="mb-2">Every DAO</h2>
     <h4 className="mb-3">{total_daos} Total</h4>
-
     <h3 className="mb-2">Search by Name</h3>
     <input
       placeholder="<example>.sputnik-dao.near"
