@@ -1,11 +1,1 @@
-const accountId = context.accountId;
-
-const page = accountId
-  ? Social.get(`${accountId}/settings/dev/page`)
-  : undefined;
-
-if (page === null) {
-  return "Loading...";
-}
-
-return <Widget src={page ?? "hack.near/widget/dev.Page"} props={props} />;
+const hashtag = props.hashtag ?? "dev"; return (<Widget src="mob.near/widget/Hashtag.Feed" props={{hashtag: hashtag}} />);
