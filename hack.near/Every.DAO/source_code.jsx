@@ -1,7 +1,3 @@
-const accountId = props.accountId ?? context.accountId;
-
-const total_daos = Near.view("sputnik-dao.near", "get_number_daos");
-
 const daos = Near.view("sputnik-dao.near", "get_dao_list");
 
 State.init({
@@ -16,10 +12,12 @@ const onChangeName = (name) => {
 
 const matchingDaos = daos.filter((dao) => dao.indexOf(state.name) !== -1);
 
+const total_daos = matchingDaos.length;
+
 return (
   <div className="m-1">
     <h2 className="mb-2">Every DAO</h2>
-    <h4 className="mb-3">{total_daos} total</h4>
+    <h4 className="mb-3">{total_daos} Total</h4>
 
     <h3 className="mb-2">Search by Name</h3>
     <input
