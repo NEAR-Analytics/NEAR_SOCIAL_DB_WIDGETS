@@ -24,8 +24,7 @@ if (historyBlocksRequest === null) return "loading...";
 
 const [widgetAccountId, _, widgetName] = props.path.split("/");
 
-let blocksChanges =
-  historyBlocksRequest[widgetAccountId]?.["thing"]?.[widgetName];
+let blocksChanges = historyBlocksRequest[widgetAccountId]?.[_]?.[widgetName];
 
 if (props.count) props.count(blocksChanges.length);
 
