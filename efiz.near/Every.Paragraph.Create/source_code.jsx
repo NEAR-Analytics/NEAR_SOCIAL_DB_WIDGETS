@@ -1,4 +1,4 @@
-const value = props.value;
+const value = props.data;
 const handleSubmit = props.handleSubmit;
 const onChange = props.onChange;
 
