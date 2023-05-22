@@ -46,6 +46,12 @@ const Card = styled.div`
   padding: 20px;
   margin-top: 40px;`
 
+const BalanceContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+`;
+
+
 return (<Card>
     <h2>Balances</h2>
     <BalanceContainer>
