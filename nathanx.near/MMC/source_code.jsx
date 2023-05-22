@@ -1,9 +1,13 @@
 const accountId = context.accountId;
 
+if (!accountId) {
+  return "Please sign in with a NEAR wallet to use this widget to become a true detective unlocking this case!🕵️‍♂️";
+}
+
 return (
   <>
     <div class="container min-vw-80">
-      <h1>{`Hello ${accountId}!👋`}</h1>
+      <h1>{`Hello, ${accountId}!👋`}</h1>
       <strong>
         {" "}
         Welcome to The Murder Mystery Collective Near Social Widget!🕵️‍♂️{" "}
@@ -69,6 +73,13 @@ return (
         If you are a holder of an Undercover Detective or Pup you are entitled
         to ChatGPT4!
       </p>
+      <i>
+        All 550 Undercover Detectives have now Sold Out!{" "}
+        <a href="https://www.tradeport.xyz/near/collection/mmc.nfts.fewandfar.near?tab=marketview">
+          Click here to purchase a Detective via Tradeport 🕵️‍♂️
+        </a>
+      </i>
+      <br></br>
       <a href="https://discord.com/channels/1004449103012442132/1100745572429860946">
         🤖---Ask-AI Discord Channel
       </a>
