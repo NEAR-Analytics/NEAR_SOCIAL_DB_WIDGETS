@@ -3,7 +3,7 @@ const accountId = context.accountId;
 return (
   <>
     <div class="container min-vw-80">
-      <h1>{`Hello, ${accountId}!👋`}</h1>
+      <h1>{`Hello ${accountId}!👋`}</h1>
       <strong>
         {" "}
         Welcome to The Murder Mystery Collective Near Social Widget!🕵️‍♂️{" "}
