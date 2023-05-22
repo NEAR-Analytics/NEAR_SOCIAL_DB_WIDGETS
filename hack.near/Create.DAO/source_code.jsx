@@ -1,5 +1,9 @@
 const daos = Near.view("sputnik-dao.near", "get_dao_list");
 
+if (daos === null) {
+  return "Loading...";
+}
+
 const groups = ["infinity.near", "council.near"];
 
 State.init({
