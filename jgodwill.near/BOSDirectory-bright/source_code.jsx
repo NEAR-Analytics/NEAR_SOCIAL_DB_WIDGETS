@@ -109,7 +109,6 @@ const Card = styled.div`
    border: 1.41429px solid rgba(28,27,28,.1);
   box-shadow: 5.65714px 5.65714px 11.3143px rgba(28,27,28,.04);
    padding: 8px;
-   text-align: center;
   //  color: #fff;
    margin: 0 auto;
    max-width: 400px;
