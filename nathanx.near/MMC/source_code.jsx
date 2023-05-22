@@ -156,7 +156,7 @@ return (
       <br></br>
       <strong>📁 NFT</strong>
       <a href="https://discord.com/channels/1004449103012442132/1088103393714778122">
-        🔗---B💀NEHEDZ Discord Channel
+        🔗---B💀NEHEDZ MMC Discord Channel
       </a>
       <a href="https://twitter.com/bonehedz_05">🔗---B💀NEHEDZ Twitter</a>
       <a href="https://www.tradeport.xyz/near/collection/bnehedz-by-bonehedznear?tab=marketview">
@@ -194,7 +194,7 @@ return (
       <br></br>
       <strong>📁 NFT</strong>
       <a href="https://discord.com/channels/1004449103012442132/1095325310699982868">
-        🔗---Beaning Discord Channel
+        🔗---Beaning MMC Discord Channel
       </a>
       <a href="https://twitter.com/beaningnear">🔗---Beaning Twitter</a>
       <a href="https://www.tradeport.xyz/near/collection/beaning-by-beaningnear?tab=marketview">
@@ -202,29 +202,62 @@ return (
       </a>
       <br></br>
       <hr />
+      <h3>🕹️---Boneyard Gaming</h3>
+      <i>A community of gamers, content creators, supporting indie games.</i>
+      <br></br>
+      <i>
+        Poker night every Friday hosted by Boneyard Gaming. Join the MMC Discord
+        for more information on how to register ♠️
+      </i>
+      <br></br>
+      <img
+        src="https://pbs.twimg.com/profile_images/1610757038807855104/wET4rh3v_400x400.jpg"
+        alt="BONEYARDLOGO"
+        width="150"
+        height="150"
+      ></img>
+      <img
+        src="https://pbs.twimg.com/profile_images/1594478288281382912/amUg4WNx_400x400.jpg"
+        alt="BILLYBONESLOGO"
+        width="150"
+        height="150"
+      ></img>
+      <br></br>
+      <strong>📁 Gaming Community and Events.</strong>
+      <a href="https://discord.com/channels/1004449103012442132/1101574174939545720">
+        🔗---Boneyard Gaming MMC Discord Channel
+      </a>
+      <a href="https://twitter.com/boneyard_gaming">
+        🔗---Boneyard Gaming Twitter
+      </a>
+      <a href="https://twitter.com/billybones1_">🔗---Billybones Twitter</a>
+      <a href="https://discord.gg/3KgsxYjYCn">
+        🔗---Boneyard Gaming Discord Server
+      </a>
+      <hr />
       <h3>💜---Bonerz</h3>
       <i>did ash ever become a pokemon master?👀</i>
       <br></br>
       <img
-        src="https://www.mintbase.xyz/_next/image?url=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Fomni-live.appspot.com%2Fo%2Fstore%252Fbonerz.mintbase1.near%253Aprofile%3Falt%3Dmedia%26token%3D6dc3dbab-5ef3-4ca3-b49a-1c30453f693b&w=3840&q=75"
+        src="https://www.mintbase.xyz/_next/image?url=https%3A%2F%2Fimage-cache-service-z3w7d7dnea-ew.a.run.app%2Fthumbnail%3Furl%3Dhttps%3A%2F%2Farweave.net%2Frz_BQ4GCUNqIYRfZLb1MOQFUHlBw0ov_REzz3zSB3Hg&w=3840&q=70"
         alt="BONERZLOGO"
         width="150"
         height="150"
       ></img>
       <img
-        src="https://arweave.net/97x9LOfhtZyQR5ZMY-pIwe8ynsiBTzTBcUipl8c2haY"
+        src="https://www.mintbase.xyz/_next/image?url=https%3A%2F%2Fimage-cache-service-z3w7d7dnea-ew.a.run.app%2Fthumbnail%3Furl%3Dhttps%3A%2F%2Farweave.net%2F97x9LOfhtZyQR5ZMY-pIwe8ynsiBTzTBcUipl8c2haY&w=3840&q=70"
         alt="BONERZASH"
         width="150"
         height="150"
       ></img>
       <img
-        src="https://arweave.net/FYMF2wEjxqkWPTfenRKMHHZRJf1Paq9AGdVytibSmLI"
+        src="https://www.mintbase.xyz/_next/image?url=https%3A%2F%2Fimage-cache-service-z3w7d7dnea-ew.a.run.app%2Fthumbnail%3Furl%3Dhttps%3A%2F%2Farweave.net%2FFYMF2wEjxqkWPTfenRKMHHZRJf1Paq9AGdVytibSmLI&w=3840&q=70"
         alt="BONERZSKATEBOARDINGNY"
         width="150"
         height="150"
       ></img>
       <img
-        src="https://arweave.net/kD9SUOwsi11rn3PwwhswlqOtk12POpgbKrvkb-SrZdM"
+        src="https://www.mintbase.xyz/_next/image?url=https%3A%2F%2Fimage-cache-service-z3w7d7dnea-ew.a.run.app%2Fthumbnail%3Furl%3Dhttps%3A%2F%2Farweave.net%2FkD9SUOwsi11rn3PwwhswlqOtk12POpgbKrvkb-SrZdM&w=3840&q=70"
         alt="BONERZITALIANSTALION"
         width="150"
         height="150"
@@ -232,7 +265,7 @@ return (
       <br></br>
       <strong>📁 NFT</strong>
       <a href="https://discord.com/channels/1004449103012442132/1108838928653484212">
-        🔗---Bonerz Discord Channel
+        🔗---Bonerz MMC Discord Channel
       </a>
       <a href="https://twitter.com/NearBonerz">🔗---Bonerz Twitter</a>
       <a href="https://www.tradeport.xyz/near/collection/bonerz.mintbase1.near?tab=marketview">
