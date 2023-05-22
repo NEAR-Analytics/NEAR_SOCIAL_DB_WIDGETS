@@ -113,6 +113,19 @@ console.log(messageIds)
 
 const Telegram = (
   <>
+      <iframe
+      src={
+        "https://cg-msg-viewer.pages.dev/?group=" +
+        group +
+        "&messageIds=" +
+        messageIds
+      }
+      frameborder="0"
+      style={{
+        width: "100%",
+        height: "100vh",
+      }}
+    ></iframe>
   {messageIds.map((id => {
   return <iframe
     id={id.toString()}
