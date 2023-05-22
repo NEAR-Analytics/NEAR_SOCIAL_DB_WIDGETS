@@ -1,0 +1,49 @@
+const {widgetProvider} = props;
+const widgetUrl = `https://api.pikespeak.ai/widgets/balances/`;
+
+const daosList = [
+    "ndctrust.sputnik-dao.near",
+    "marketing.sputnik-dao.near",
+    "creativesdao.sputnik-dao.near",
+    "neardevgov.sputnik-dao.near",
+    "gwg.sputnik-dao.near",
+];
+const forgeUrl = (apiUrl, params) =>
+    apiUrl +
+    Object.keys(params).sort().reduce(
+        (paramString, p) => paramString + `${p}=${params[p]}&`,
+        "?"
+    );
+const fetchBalances = (params) => {
+    const balances = fetch(forgeUrl(widgetUrl, params), {
+        mode: "cors",
+        headers: {
+            "x-api-key": publicApiKey,
+        },
+    })
+
+    balances.body && State.update({
+        balances: balances.body,
+    });
+};
+const uh = forgeUrl(widgetUrl, {accounts: daosList});
+console.log(uh);
+fetchBalances({accounts: daosList});
+
+<Card>
+    <h2>Balances</h2>
+    <BalanceContainer>
+        <iframe
+            style={{
+                width: "35%",
+                height: "420px",
+                marginTop: "0px",
+                overflow: "none",
+            }}
+            src={forgeUrl(widgetUrl, params)}
+        ></iframe>
+{/*
+        <div style={{ width: "40%" }}>{GenericTable}</div>
+*/}
+    </BalanceContainer>
+</Card>
