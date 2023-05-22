@@ -230,7 +230,7 @@ return (
       <a href="https://twitter.com/boneyard_gaming">
         🔗---Boneyard Gaming Twitter
       </a>
-      <a href="https://twitter.com/billybones1_">🔗---Billybones Twitter</a>
+      <a href="https://twitter.com/billybones1_">🔗---Billy Bones Twitter</a>
       <a href="https://discord.gg/3KgsxYjYCn">
         🔗---Boneyard Gaming Discord Server
       </a>
