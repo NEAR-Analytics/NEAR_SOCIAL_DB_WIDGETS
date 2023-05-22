@@ -1,6 +1,6 @@
 const addressForArticles = "wikiTest2Article";
 const authorForWidget = "eugenewolf507.near";
-const tag = props.tag;
+const tagSelected = props.tag;
 const accountId = props.accountId ?? context.accountId;
 if (!accountId) {
   return "No account ID";
@@ -43,10 +43,11 @@ const filteredArticles =
     }
   }, []);
 
-const filteredArticlesByUser =
+const filteredArticlesByTag =
   filteredArticles.length &&
   filteredArticles.reduce((acc, article) => {
-    if (article.author === authorId) {
+    if (article.tags && article.tags.includes(tagSelected)) {
+      console.log(article);
       return [...acc, article];
     } else {
       return acc;
@@ -61,7 +62,24 @@ return (
     />
     <div>
       Tag:
-      {tag}
+      {tagSelected}
     </div>
+    <ol>
+      {filteredArticlesByTag &&
+        filteredArticlesByTag.map((article, index) => (
+          <li key={article.articleId}>
+            <a
+              href={`#/${authorForWidget}/widget/WikiOnSocialDB_OneArticle?articleId=${article.articleId}&blockHeight=${article.blockHeight}&lastEditor=${article.lastEditor}
+            `}
+            >
+              {article.articleId}{" "}
+              <small>
+                (last edited:
+                {getDateLastEdit(article.timeLastEdit)})
+              </small>
+            </a>
+          </li>
+        ))}
+    </ol>
   </>
 );
