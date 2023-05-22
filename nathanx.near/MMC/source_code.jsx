@@ -202,7 +202,7 @@ return (
       </a>
       <br></br>
       <hr />
-      <h3>🕹️---Boneyard Gaming</h3>
+      <h3>🎮---Boneyard Gaming</h3>
       <i>A community of gamers, content creators, supporting indie games.</i>
       <br></br>
       <i>
@@ -223,17 +223,41 @@ return (
         height="150"
       ></img>
       <br></br>
-      <strong>📁 Gaming Community and Events.</strong>
+      <strong>📁 Gaming Community and Events</strong>
       <a href="https://discord.com/channels/1004449103012442132/1101574174939545720">
         🔗---Boneyard Gaming MMC Discord Channel
       </a>
       <a href="https://twitter.com/boneyard_gaming">
         🔗---Boneyard Gaming Twitter
       </a>
-      <a href="https://twitter.com/billybones1_">🔗---Billy Bones Twitter</a>
+      <a href="https://twitter.com/billybones1_">🔗---Billybones Twitter</a>
       <a href="https://discord.gg/3KgsxYjYCn">
         🔗---Boneyard Gaming Discord Server
       </a>
+      <hr />
+      <h3>📺---Trevins Corner</h3>
+      <i>Web3 Content Creator</i>
+      <br></br>
+      <img
+        src="https://pbs.twimg.com/profile_images/1655248247445938178/gye4K1lX_400x400.jpg"
+        alt="TREVINLOGO"
+        width="150"
+        height="150"
+      ></img>
+      <img
+        src="https://yt3.googleusercontent.com/NqjZLOXIT0UVPSrJ1PkyQJS-4tMZtfA8CTuKkKFCNWMGbIXgcNOErPCEzYhWItaWqEKYrv1q=s176-c-k-c0x00ffffff-no-rj"
+        alt="BILLYBONESLOGO"
+        width="150"
+        height="150"
+      ></img>
+      <br></br>
+      <strong>📁 Web3 Content Creation</strong>
+      <a href="https://discord.com/channels/1004449103012442132/1101574242316853440">
+        🔗---Trevins Corner MMC Discord Channel
+      </a>
+      <a href="https://twitter.com/trevinvsnft">🔗---TREVINvsNFT Twitter</a>
+      <a href="https://www.youtube.com/c/TrevinRudy">🔗---YouTube Channel</a>
+      <a href="https://t.co/uo9WS9UR3e">🔗---More links here!</a>
       <hr />
       <h3>💜---Bonerz</h3>
       <i>did ash ever become a pokemon master?👀</i>
