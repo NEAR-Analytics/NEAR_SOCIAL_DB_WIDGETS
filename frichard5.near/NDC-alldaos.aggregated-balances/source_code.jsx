@@ -29,8 +29,24 @@ const fetchBalances = (params) => {
 const uh = forgeUrl(widgetUrl, {accounts: daosList});
 console.log(uh);
 fetchBalances({accounts: daosList});
+const GenericTable = (
+    <Widget
+        src={`${widgetProvider}/widget/generic_table`}
+        props={{
+            title: ``,
+            columns,
+            data: state.balance,
+        }}
+    />
+);
 
-<Card>
+const Card = styled.div`
+  box-shadow: 3px 2px 24px rgba(68, 152, 224, 0.3);
+  border-radius: 4px;
+  padding: 20px;
+  margin-top: 40px;`
+
+return (<Card>
     <h2>Balances</h2>
     <BalanceContainer>
         <iframe
@@ -46,4 +62,4 @@ fetchBalances({accounts: daosList});
         <div style={{ width: "40%" }}>{GenericTable}</div>
 */}
     </BalanceContainer>
-</Card>
+</Card>)
