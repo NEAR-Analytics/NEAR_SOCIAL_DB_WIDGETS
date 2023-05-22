@@ -112,15 +112,17 @@ const messageIds = groupInfo.body.messageIds;
 
 const Telegram = (
   <>
+  {messageIds.map((id => {
   <iframe
     iframeResizer={{log: true, heightCalculationMethod: 'lowestElement'}}
     src={
-      "https://cg-msg-viewer.pages.dev/?group=" +
+      "https://cg-msg-viewer.pages.dev/message.html?group=" +
       group +
-      "&messageIds=" +
-      messageIds
+      "&id=" +
+      id
     }  style={{ width: '1px', minWidth: '100%'}}
   />
+  }))}
   </>
 );
 
