@@ -21,7 +21,7 @@ const handleProposal = () => {
           kind: {
             AddMemberToRole: {
               member_id: memberId ?? accountId,
-              role: role ?? "council",
+              role: roleId ?? "council",
             },
           },
         },
