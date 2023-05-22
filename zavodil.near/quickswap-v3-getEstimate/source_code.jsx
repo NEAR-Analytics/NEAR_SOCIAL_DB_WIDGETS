@@ -3,16 +3,21 @@ const { tokenIn, tokenOut, amountIn, tokenOutDecimals, loadRes } = props;
 const middlePool =
   props.middlePool ?? "0x4f9a0e7fd2bf6067db6994cf12e4495df938e6e9";
 
-const swapOptions = [
-  {
-    name: "direct",
-    path: [tokenIn, tokenOut],
-  },
-  {
-    name: "withMiddlePool",
-    path: [tokenIn, middlePool, tokenOut],
-  },
-];
+const useMiddlePool = tokenIn !== middlePool && tokenOut !== middlePool;
+
+const optionDirectSwap = {
+  name: "directSwap",
+  path: [tokenIn, tokenOut],
+};
+
+const optionMiddlePoolSwap = {
+  name: "middlePoolSwap",
+  path: [tokenIn, middlePool, tokenOut],
+};
+
+const swapOptions = useMiddlePool
+  ? [optionDirectSwap, optionMiddlePoolSwap]
+  : [optionDirectSwap];
 
 State.init({ res: { tokenIn, tokenOut } });
 
@@ -76,10 +81,12 @@ const allDataReceived = swapOptions.reduce(
 
 if (state.res !== undefined && allDataReceived) {
   if (props.debug) {
-    loadRes = (res) => {
-      console.log("res", res);
-      return <div>{JSON.stringify(res)}</div>;
-    };
+    console.log("res", state.res);
+    if (typeof loadRes !== "function") {
+      loadRes = (res) => {
+        return <div>{JSON.stringify(res)}</div>;
+      };
+    }
   }
 
   if (typeof loadRes === "function") {
