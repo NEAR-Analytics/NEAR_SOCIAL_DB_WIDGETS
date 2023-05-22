@@ -26,7 +26,7 @@ return (
     {!state.name ? (
       <h5 className="mb-3">Total: {total_daos}</h5>
     ) : (
-      <h5 className="mb-3">Shown: {filtered_daos}</h5>
+      <h5 className="mb-3">Filtered: {filtered_daos}</h5>
     )}
     <h4 className="mb-2">Search by Name</h4>
     <input
