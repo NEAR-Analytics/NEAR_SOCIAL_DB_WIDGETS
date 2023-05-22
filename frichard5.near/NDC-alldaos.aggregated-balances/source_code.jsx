@@ -53,12 +53,12 @@ const fetchBalances = (params) => {
 };
 
 fetchBalances({accounts: daosList});
-
+console.log("azdaz",state);
 const GenericTable = (
     <Widget
         src={`${widgetProvider}/widget/generic_table`}
         props={{
-            title:  state.balances&&`Total: $${state.balances.totalUsd.toLocaleString()}`,
+            title:  state.balances&&`Total: $ ${Number(state.balances.totalUsd).toLocaleString('en-US', {maximumFractionDigits:2})}`,
             columns,
             data:  state.balances&&state.balances.balancesTotal,
         }}
