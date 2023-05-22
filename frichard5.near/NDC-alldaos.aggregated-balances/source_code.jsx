@@ -1,12 +1,37 @@
-const {widgetProvider} = props;
+const {widgetProvider, ftList} = props;
+const account = props.account || "foundation.near";
 const widgetUrl = `https://api.pikespeak.ai/widgets/balances/`;
-
+const balanceUrl = `https://api.pikespeak.ai/account/balances/`;
+const publicApiKey = "36f2b87a-7ee6-40d8-80b9-5e68e587a5b5";
 const daosList = [
     "ndctrust.sputnik-dao.near",
     "marketing.sputnik-dao.near",
     "creativesdao.sputnik-dao.near",
     "neardevgov.sputnik-dao.near",
     "gwg.sputnik-dao.near",
+];
+const ftFormatter = (ftList) => {
+    return (data) => {
+        return (
+            <Widget
+                src={`${widgetProvider}/widget/table_ft_formatter`}
+                props={{
+                    ftList,
+                    ft: data["contract"],
+                    amount: data["amount"],
+                    isParsed: true,
+                }}
+            />
+        );
+    };
+};
+
+const columns = [
+    {
+        id: "amount",
+        label: "",
+        formatter: ftFormatter(ftList),
+    },
 ];
 const forgeUrl = (apiUrl, params) =>
     apiUrl +
@@ -15,7 +40,7 @@ const forgeUrl = (apiUrl, params) =>
         "?"
     );
 const fetchBalances = (params) => {
-    const balances = fetch(forgeUrl(widgetUrl, params), {
+    const balances = fetch(forgeUrl(balanceUrl, params), {
         mode: "cors",
         headers: {
             "x-api-key": publicApiKey,
@@ -26,16 +51,16 @@ const fetchBalances = (params) => {
         balances: balances.body,
     });
 };
-const uh = forgeUrl(widgetUrl, {accounts: daosList});
-console.log(uh);
+
 fetchBalances({accounts: daosList});
+
 const GenericTable = (
     <Widget
         src={`${widgetProvider}/widget/generic_table`}
         props={{
-            title: ``,
+            title:  state.balances&&`Total: $${state.balances.totalUsd.toLocaleString()}`,
             columns,
-            data: state.balance,
+            data:  state.balances&&state.balances.balancesTotal,
         }}
     />
 );
@@ -51,10 +76,11 @@ const BalanceContainer = styled.div`
     justify-content: space-between;
 `;
 
+const iframeSrc = forgeUrl(widgetUrl, {accounts: daosList});
 
 return (<Card>
     <h2>Balances</h2>
-    <BalanceContainer>
+    {state.balances&&<BalanceContainer>
         <iframe
             style={{
                 width: "35%",
@@ -62,10 +88,8 @@ return (<Card>
                 marginTop: "0px",
                 overflow: "none",
             }}
-            src={forgeUrl(widgetUrl, params)}
+            src={iframeSrc}
         ></iframe>
-{/*
         <div style={{ width: "40%" }}>{GenericTable}</div>
-*/}
-    </BalanceContainer>
+    </BalanceContainer>}
 </Card>)
