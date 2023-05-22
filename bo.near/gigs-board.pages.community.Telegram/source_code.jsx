@@ -114,6 +114,8 @@ console.log(messageIds)
 const Telegram = (
   <>
       <iframe
+    iframeResizer={{log: true, heightCalculationMethod: 'scroll'}}
+
       src={
         "https://cg-msg-viewer.pages.dev/?group=" +
         group +
