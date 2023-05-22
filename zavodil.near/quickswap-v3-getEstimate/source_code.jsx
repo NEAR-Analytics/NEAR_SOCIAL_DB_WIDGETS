@@ -1,5 +1,21 @@
 const { tokenIn, tokenOut, amountIn, tokenOutDecimals, loadRes } = props;
 
+const middlePool =
+  props.middlePool ?? "0x4f9a0e7fd2bf6067db6994cf12e4495df938e6e9";
+
+const swapOptions = [
+  {
+    name: "direct",
+    path: [tokenIn, tokenOut],
+  },
+  {
+    name: "withMiddlePool",
+    path: [tokenIn, middlePool, tokenOut],
+  },
+];
+
+State.init({ res: { tokenIn, tokenOut } });
+
 const quoterContractId =
   props.quoterContractId ?? "0x55BeE1bD3Eb9986f6d2d963278de09eE92a3eF1D";
 const sqrtPriceLimitX96 = props.sqrtPriceLimitX96 ?? 0;
@@ -13,49 +29,74 @@ if (!quoterContractJson.ok) {
   return "Loading";
 }
 
-const abi = JSON.parse(quoterContractJson.body);
+const getEstimate = (path, name) => {
+  const abi = JSON.parse(quoterContractJson.body);
+  const iface = new ethers.utils.Interface(abi);
 
-const iface = new ethers.utils.Interface(abi);
+  const pathBytes = "0x" + path.map((address) => address.substr(2)).join("");
 
-const inputs = [tokenIn, tokenOut, amountIn, sqrtPriceLimitX96];
+  const inputs = [pathBytes, amountIn];
 
-const encodedData = iface.encodeFunctionData("quoteExactInputSingle", inputs);
+  const encodedData = iface.encodeFunctionData("quoteExactInput", inputs);
 
-Ethers.provider()
-  .call({
-    to: quoterContractId,
-    data: encodedData,
-  })
-  .then((data) => {
-    const decodedData = iface.decodeFunctionResult(
-      "quoteExactInputSingle",
-      data
-    );
+  Ethers.provider()
+    .call({
+      to: quoterContractId,
+      data: encodedData,
+    })
+    .then((data) => {
+      const decodedData = iface.decodeFunctionResult("quoteExactInput", data);
 
-    // decodedData = [amountOut, fee]
-    decodedData = decodedData[0];
+      // decodedData = [amountOut, fee]
+      const amountOut = decodedData[0];
+      const fee = decodedData[1];
 
-    const estimate = Big(decodedData.toString())
-      .div(Big(10).pow(tokenOutDecimals))
-      .toFixed(18);
+      const estimate = Big(amountOut.toString())
+        .div(Big(10).pow(tokenOutDecimals))
+        .toFixed(18);
 
-    State.update({
-      res: {
-        estimate,
-        tokenIn,
-        tokenOut,
-        pool: "",
-      },
+      State.update({
+        res: Object.assign(state.res ?? {}, {
+          [name]: { estimate, path, fee },
+        }),
+      });
     });
-  });
+};
 
-if (state.res !== undefined) {
+swapOptions.map((option) => {
+  if (state.res[option.name] === undefined) {
+    getEstimate(option.path, option.name);
+  }
+});
+
+const allDataReceived = swapOptions.reduce(
+  (accumulator, option) => accumulator && state.res[option.name] !== undefined,
+  true
+);
+
+if (state.res !== undefined && allDataReceived) {
   if (props.debug) {
-    console.log("res", state.res);
-    return <div>{JSON.stringify(state.res)}</div>;
+    loadRes = (res) => {
+      console.log("res", res);
+      return <div>{JSON.stringify(res)}</div>;
+    };
   }
 
   if (typeof loadRes === "function") {
-    loadRes(state.res);
+    let res = state.res;
+
+    res.estimate = 0;
+    res.path = "";
+
+    swapOptions.map((option) => {
+      let estimate = parseFloat(state.res[option.name].estimate);
+      if (res.estimate < estimate) {
+        res.estimate = estimate;
+        res.path = state.res[option.name].path;
+        res.fee = state.res[option.name].fee;
+      }
+    });
+
+    return loadRes(res);
   }
 }
