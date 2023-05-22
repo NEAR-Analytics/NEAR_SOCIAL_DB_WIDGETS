@@ -1,5 +1,7 @@
 const { tokenIn, tokenOut, amountIn, tokenOutDecimals, loadRes } = props;
 
+State.init({ res: { tokenIn, tokenOut, amountIn } });
+
 const middlePool =
   props.middlePool ?? "0x4f9a0e7fd2bf6067db6994cf12e4495df938e6e9";
 
@@ -19,7 +21,15 @@ const swapOptions = useMiddlePool
   ? [optionDirectSwap, optionMiddlePoolSwap]
   : [optionDirectSwap];
 
-State.init({ res: { tokenIn, tokenOut } });
+if (state.res.amountIn !== amountIn) {
+  const resetObject = { amountIn };
+  swapOptions.map((option) => (resetObject[option.name] = undefined));
+
+  console.log("resetObject", resetObject);
+  State.update({
+    res: Object.assign(state.res ?? {}, resetObject),
+  });
+}
 
 const quoterContractId =
   props.quoterContractId ?? "0x55BeE1bD3Eb9986f6d2d963278de09eE92a3eF1D";
