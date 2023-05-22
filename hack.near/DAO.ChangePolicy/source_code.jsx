@@ -2,6 +2,11 @@ const accountId = props.accountId ?? context.accountId;
 const daoId = props.daoId ?? "meta.sputnik-dao.near";
 
 const policy = Near.view(daoId, "get_policy");
+
+if (policy === null) {
+  return "Loading...";
+}
+
 const deposit = policy.proposal_bond;
 
 const groups = policy.roles
