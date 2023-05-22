@@ -1,9 +1,5 @@
 const accountId = context.accountId;
 
-if (!accountId) {
-  return "Please sign in with a NEAR wallet to use this widget to become a true detective unlocking this case!🕵️‍♂️";
-}
-
 return (
   <>
     <div class="container min-vw-80">
