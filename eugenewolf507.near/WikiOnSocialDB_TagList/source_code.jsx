@@ -1,3 +1,4 @@
+const authorForWidget = "eugenewolf507.near";
 return (
   <>
     {props.tags &&
