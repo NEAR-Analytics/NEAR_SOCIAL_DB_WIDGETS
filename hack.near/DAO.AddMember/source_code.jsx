@@ -1,6 +1,6 @@
 const accountId = context.accountId;
 const memberId = props.memberId;
-const roleId = props.roleId;
+const roleId = props.roleId ?? "council";
 const daoId = props.daoId ?? "multi.sputnik-dao.near";
 
 if (!accountId) {
@@ -35,7 +35,7 @@ const handleProposal = () => {
 return (
   <div>
     <button className="btn btn-outline-success" onClick={handleProposal}>
-      Nominate
+      Add to {roleId}
     </button>
   </div>
 );
