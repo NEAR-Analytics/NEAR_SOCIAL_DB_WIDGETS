@@ -174,7 +174,7 @@ return (
               <img src={item.image} alt="..." />
             </a>
           </ImageCard>
-          <div class="card-body p-2">
+          <div class="card-body p-2 mt-3">
             <CardHeading>{item.name}</CardHeading>
             <Text class="ps-2  pb-3 text-secondary">{item.description}</Text>
           </div>
