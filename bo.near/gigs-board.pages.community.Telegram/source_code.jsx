@@ -116,7 +116,7 @@ const Telegram = (
   <iframe
     iframeResizer={{log: true, heightCalculationMethod: 'lowestElement'}}
     src={
-      "https://cg-msg-viewer.pages.dev/message.html?group=" +
+      "https://cg-msg-viewer.pages.dev/message?group=" +
       group +
       "&id=" +
       id
