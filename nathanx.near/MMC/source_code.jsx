@@ -1,9 +1,5 @@
 const accountId = context.accountId;
 
-if (!accountId) {
-  return "Please sign in with a NEAR wallet to use this widget to become a true detective unlocking this case!🕵️‍♂️";
-}
-
 return (
   <>
     <div class="container min-vw-80">
@@ -70,11 +66,11 @@ return (
       </p>
       <strong>Holder Benefit - ChatGPT4!</strong>
       <p>
-        If you are a holder of an Undercover Detective or Pup you are entitled
-        to ChatGPT4!
+        If you are a holder of a <b>Detective</b> or an <b>Undercover Pup</b>{" "}
+        you are entitled to ChatGPT4!
       </p>
       <i>
-        All 550 Undercover Detectives have now Sold Out!{" "}
+        All 550 Detectives have now Sold Out!{" "}
         <a href="https://www.tradeport.xyz/near/collection/mmc.nfts.fewandfar.near?tab=marketview">
           Click here to purchase a Detective via Tradeport 🕵️‍♂️
         </a>
@@ -96,9 +92,10 @@ return (
         Holder Benefit - Exclusive White Coats and Blue Furs role on Discord!
       </strong>
       <p>
-        If you've got a White Coat Detective or Blue Undercover Pup Verify your
-        NFT in the Discord to get your roles! You will unlock exclusive channels
-        to speak to other members in the Discord server.
+        If you are a holder of a <b>White Coat Detective</b> or{" "}
+        <b>Blue Undercover Pup</b> Verify your NFT in the Discord to get your
+        roles! You will unlock exclusive channels to speak to other members in
+        the Discord server.
       </p>
       <a href="https://discord.com/channels/1004449103012442132/1101693061962137702">
         🥼---The White Coats Discord Channel
