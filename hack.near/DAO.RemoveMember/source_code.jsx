@@ -1,4 +1,5 @@
-const memberId = props.memberId ?? context.accountId;
+const accountId = context.accountId;
+const memberId = props.memberId;
 const roleId = props.roleId;
 const daoId = props.daoId ?? "multi.sputnik-dao.near";
 
