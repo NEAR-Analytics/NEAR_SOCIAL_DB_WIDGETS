@@ -1,6 +1,6 @@
 const accountId = context.accountId;
-const memberId = props.memberId;
-const roleId = props.roleId ?? "council";
+const memberId = props.memberId ?? "hack.near";
+const roleId = props.roleId ?? "community";
 const daoId = props.daoId ?? "multi.sputnik-dao.near";
 
 if (!accountId) {
@@ -9,6 +9,14 @@ if (!accountId) {
 
 const policy = Near.view(daoId, "get_policy");
 const deposit = policy.proposal_bond;
+
+const group = policy.roles
+  .filter((role) => role.name === roleId)
+  .map((role) => role.kind.Group);
+
+State.init({
+  isMember: false,
+});
 
 const handleProposal = () => {
   Near.call([
@@ -32,9 +40,23 @@ const handleProposal = () => {
   ]);
 };
 
+const groupMembers = group.join(", ");
+
+const checkMembership = (groupMembers) => {
+  if (groupMembers.indexOf(memberId) !== -1) {
+    return State.update({ isMember: true });
+  }
+};
+
+const validMember = checkMembership(groupMembers);
+
 return (
   <div>
-    <button className="btn btn-outline-success" onClick={handleProposal}>
+    <button
+      disabled={validMember}
+      className="btn btn-outline-success"
+      onClick={handleProposal}
+    >
       {roleId}
     </button>
   </div>
