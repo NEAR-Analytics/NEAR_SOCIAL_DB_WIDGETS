@@ -35,7 +35,7 @@ const handleProposal = () => {
 return (
   <div>
     <button className="btn btn-outline-success" onClick={handleProposal}>
-      Add to {roleId}
+      {roleId}
     </button>
   </div>
 );
