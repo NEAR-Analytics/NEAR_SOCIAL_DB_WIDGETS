@@ -1,5 +1,5 @@
 const accountId = props.accountId ?? context.accountId;
-const daoId = props.daoId ?? "multi.sputnik-dao.near";
+const daoId = props.daoId ?? "meta.sputnik-dao.near";
 
 const policy = Near.view(daoId, "get_policy");
 const deposit = policy.proposal_bond;
