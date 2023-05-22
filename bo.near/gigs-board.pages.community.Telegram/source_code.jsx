@@ -115,6 +115,7 @@ const Telegram = (
   <>
   {messageIds.map((id => {
   return <iframe
+    id={id.toString()}
     iframeResizer={{log: true, heightCalculationMethod: 'lowestElement'}}
     src={
       "https://cg-msg-viewer.pages.dev/message?group=" +
