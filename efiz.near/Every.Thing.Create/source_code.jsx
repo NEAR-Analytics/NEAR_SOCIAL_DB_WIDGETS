@@ -93,6 +93,9 @@ return (
           <Row>
             <Select value={state.selectedType} onChange={handleTypeChange}>
               <option value="">Select a type</option>
+              <option value="efiz.near/type/paragraph">
+                efiz.near/type/paragraph
+              </option>
               <option value="efiz.near/type/Image">efiz.near/type/Image</option>
               <option value="efiz.near/type/document">
                 efiz.near/type/document
