@@ -133,7 +133,6 @@ function RenderComponent({ component, index }) {
 
 return (
   <div>
-    <h1>document creator</h1>
     <Button onClick={() => handleTypeClick("efiz.near/type/Image")}>
       Add Image
     </Button>
