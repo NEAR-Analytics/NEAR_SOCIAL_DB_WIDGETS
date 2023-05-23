@@ -1,5 +1,4 @@
 const componentsUrl = "#/near/widget/ComponentsPage";
-//bozon.near/widget/WidgetHistory
 
 const Wrapper = styled.div`
   display: flex;
@@ -45,54 +44,18 @@ const TextLink = styled.a`
 
 return (
   <Wrapper>
-    <Header>
-      <H2>Featured Components</H2>
-      <TextLink href={componentsUrl}>View All</TextLink>
-    </Header>
-
     <Items>
       <Item>
         <Widget
-          src="near/widget/ComponentCard"
-          props={{ src: "devgovgigs.near/widget/Ideas" }}
+          src="mob.near/widget/Explorer"
         />
       </Item>
       <Item>
         <Widget
-          src="near/widget/ComponentCard"
-          props={{ src: "let45fc.near/widget/LaserChess3D" }}
+          src="microchipgnu.near/widget/Game.FlappyBOS"
         />
       </Item>
-      <Item>
-        <Widget
-          src="near/widget/ComponentCard"
-          props={{ src: "zavodil.near/widget/social-avatar-editor" }}
-        />
-      </Item>
-      <Item>
-        <Widget
-          src="near/widget/ComponentCard"
-          props={{ src: "frichard2.near/widget/most-active-contracts" }}
-        />
-      </Item>
-      <Item>
-        <Widget
-          src="near/widget/ComponentCard"
-          props={{ src: "mob.near/widget/Explorer" }}
-        />
-      </Item>
-      <Item>
-        <Widget
-          src="near/widget/ComponentCard"
-          props={{ src: "microchipgnu.near/widget/Game.FlappyBOS" }}
-        />
-      </Item>
-      <Item>
-        <Widget
-          src="near/widget/ComponentCard"
-          props={{ src: "mintbase.near/widget/nft-marketplace" }}
-        />
-      </Item>
+      
     </Items>
   </Wrapper>
 );
