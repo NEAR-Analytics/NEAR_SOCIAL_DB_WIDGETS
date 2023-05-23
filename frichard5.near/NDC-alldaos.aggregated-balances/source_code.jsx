@@ -53,7 +53,6 @@ const fetchBalances = (params) => {
 };
 
 fetchBalances({accounts: daosList});
-console.log("azdaz",state);
 const GenericTable = (
     <Widget
         src={`${widgetProvider}/widget/generic_table`}
