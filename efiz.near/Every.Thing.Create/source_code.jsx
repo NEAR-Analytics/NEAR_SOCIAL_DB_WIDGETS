@@ -74,11 +74,13 @@ const handleTypeChange = (e) => {
 
 type = JSON.parse(Social.get(state.selectedType, "final") || null);
 
+if (type === null) {
+  return <></>;
+}
+
 const handleThingData = (value, extra) => {
   State.update({ thing: value, extra });
 };
-
-console.log(props.type);
 
 return (
   <>
