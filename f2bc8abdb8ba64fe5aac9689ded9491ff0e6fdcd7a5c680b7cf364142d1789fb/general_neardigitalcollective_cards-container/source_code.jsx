@@ -13,7 +13,7 @@ return (
   <div className="row card-group py-3">
     {cardsData.map((cardData) => {
       return (
-        <>
+        <div className="col-sm-12 col-lg-6 col-2xl-4 gy-3">
           <Widget
             src={`${widgetOwner}/widget/${headerWidgetName}`}
             props={{ ...cardData }}
@@ -24,14 +24,8 @@ return (
           />
 
           {
-            // Example how should cards container be like
+            // Example how should card container be like
             //
-            //
-            //
-            // <div
-            //   className="col-sm-12 col-lg-6 col-2xl-4 gy-3"
-            //     key={element.articleId}
-            // >
             //   <div className="card h-100">
             //     <div className="card-body">
             //       <div className="row d-flex justify-content-center">
@@ -73,9 +67,8 @@ return (
             //       </div>
             //     </div>
             //   </div>
-            //</div>
           }
-        </>
+        </div>
       );
     })}
   </div>
