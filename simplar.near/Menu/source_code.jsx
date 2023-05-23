@@ -5,9 +5,9 @@ function onSelect(src, prs) { props.onSelect(src, prs) };
 const homePage = props.homePage;
 const topics = props.topics; // ["overview", "updates", "reports"]
 
-// const capitalize = (words) => {
-//   return words.split(" ").map( w => arr[i].charAt(0).toUpperCase() + arr[i].slice(1)).join(" ");
-// }
+const capitalize = (words) => {
+  return words.split(" ").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
+}
 
 return (
   <>
@@ -49,21 +49,11 @@ return (
               topics.map(topic =>
                 <li>
                   <a href="#" class="nav-link link-dark" onClick={() => onSelect("near/widget/NestedDiscussions", { identifier: topic })}>
-                    {topic}
+                    {capitalize(topic)}
                   </a>
                 </li>
               )
             }
-            <li>
-              <a href="#" class="nav-link link-dark">
-                Updates
-              </a>
-            </li>
-            <li>
-              <a href="#" class="nav-link link-dark">
-                Reports
-              </a>
-            </li>
           </ul>
         </li>
       </ul>
