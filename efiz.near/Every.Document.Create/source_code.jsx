@@ -61,8 +61,9 @@ function handleSaveDocument() {
     };
     blocks.push(`${accountId}/thing/${entryId}`);
   });
-
-  onChange(JSON.stringify(blocks));
+  if (onChange) {
+    onChange(blocks);
+  }
 }
 
 function handleTypeClick(type) {
