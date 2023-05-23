@@ -76,7 +76,7 @@ const BalanceContainer = styled.div`
 `;
 
 const iframeSrc = forgeUrl(widgetUrl, {accounts: daosList});
-
+console.log(iframeSrc);
 return (<Card>
     <h2>Balances</h2>
     {state.balances&&<BalanceContainer>
