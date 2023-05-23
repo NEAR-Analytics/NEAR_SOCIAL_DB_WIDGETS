@@ -1,4 +1,5 @@
 const type = props.type || "";
+const postThing = props.postThing;
 
 State.init({
   selectedType: type,
@@ -7,24 +8,26 @@ State.init({
 const composeData = () => {
   // generate a random id
   const thingId = Math.random();
-  return {
-    data: {
-      thing: {
-        [thingId]: JSON.stringify({
-          data: state.thing,
+  const data = {
+    thing: {
+      ...state.extra,
+      [thingId]: JSON.stringify({
+        data: state.thing,
+        type: state.selectedType,
+      }),
+    },
+    index: {
+      thing: JSON.stringify({
+        key: thingId,
+        value: {
           type: state.selectedType,
-        }),
-      },
-      index: {
-        thing: JSON.stringify({
-          key: thingId,
-          value: {
-            type: state.selectedType,
-          },
-        }),
-      },
+        },
+      }),
     },
   };
+  if (postThing) {
+    data = postThing(data);
+  }
 };
 
 const Container = styled.div`
@@ -61,7 +64,6 @@ const ButtonContainer = styled.div`
 `;
 
 const TextContainer = styled.div`
-
     margin-left: 4px;
 `;
 
@@ -71,8 +73,8 @@ const handleTypeChange = (e) => {
 
 type = JSON.parse(Social.get(state.selectedType, "final") || null);
 
-const handleThingData = (value) => {
-  State.update({ thing: value });
+const handleThingData = (value, extra) => {
+  State.update({ thing: value, extra });
 };
 
 return (
@@ -85,6 +87,9 @@ return (
         <Select value={state.selectedType} onChange={handleTypeChange}>
           <option value="">Select a type</option>
           <option value="efiz.near/type/Image">efiz.near/type/Image</option>
+          <option value="efiz.near/type/document">
+            efiz.near/type/document
+          </option>
         </Select>
       </Row>
       {type?.widgets?.create && (
