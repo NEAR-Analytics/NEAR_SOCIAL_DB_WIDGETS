@@ -113,14 +113,14 @@ function composePost() {
       main: JSON.stringify({
         path,
         blockHeight,
-        type: type,
+        type,
       }),
     },
     index: {
       post: JSON.stringify({
         key: "main",
         value: {
-          type: type, // because we want to filter by type
+          type,
         },
       }),
     },
@@ -172,10 +172,13 @@ function renderContent() {
       );
     } else {
       return (
-        <Widget
-          src="efiz.near/widget/Every.Raw.View"
-          props={{ value: thing }}
-        />
+        <>
+          <p>{path}</p>
+          <Widget
+            src="efiz.near/widget/Every.Raw.View"
+            props={{ value: thing }}
+          />
+        </>
       );
     }
   } else {
@@ -196,7 +199,7 @@ function renderContent() {
       }
       const thing = Social.get(path, blockHeight);
       thing = JSON.parse(thing || "null"); // I already fetched thing when I got type
-      // what if thing data comes from somewhere else? auditable backend according to type, api keys are stored browser side
+      // what if thing data comes from somewhere else? auditable backend according to type, api keys are stored browser side or proxy
       return (
         <Widget src={widgetSrc} props={{ data: thing.data, blockHeight }} />
       );
@@ -216,19 +219,11 @@ function renderContent() {
         case "type":
           return <Widget src="efiz.near/widget/Every.Type" />;
         case "profile":
-          return (
-            <Widget
-              src={"settings/every/profile" || "efiz.near/widget/Every.Profile"}
-            />
-          );
+          return <Widget src={"efiz.near/widget/Every.Profile"} />;
         case "graph":
           return <p>graph</p>;
         case "post":
-          return (
-            <Widget
-              src={"settings/every/post" || "efiz.near/widget/Every.Post"}
-            />
-          );
+          return <Widget src={"efiz.near/widget/Every.Post"} />;
         case "thing":
           console.log(`edge case: ${path} had "thing" type`);
           return <></>;
