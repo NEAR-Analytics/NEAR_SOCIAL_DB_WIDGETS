@@ -35,7 +35,6 @@ const creatorId = parts[0];
 
 const Container = styled.div`
   border: 1px solid #ccc;
-  width: fit-content;
   height: fit-content;
 `;
 
