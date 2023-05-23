@@ -1,5 +1,10 @@
 let index = [];
-const typeWhitelist = ["md", "efiz.near/type/Image", "efiz.near/type/document"];
+const typeWhitelist = [
+  "md",
+  "efiz.near/type/paragraph",
+  "efiz.near/type/Image",
+  "efiz.near/type/document",
+];
 // const hashtagFilter = ["VNArtistsDAO"];
 
 const key = ""; // this could dictate the version... maybe it's the path? efiz.near/thing/1234
