@@ -1,8 +1,7 @@
-const path = props.path;
+const path = props.path || "*/thing/**";
 const blockHeight = props.blockHeight || "final";
 
-// */thing/**
-const value = Social.get("*/thing/**", blockHeight);
+const value = Social.get(path, blockHeight);
 
 function convertToPaths(obj, parentPath) {
   parentPath = parentPath || "";
