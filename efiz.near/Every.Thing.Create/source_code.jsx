@@ -28,6 +28,7 @@ const composeData = () => {
   if (postThing) {
     data = postThing(data);
   }
+  return data;
 };
 
 const Container = styled.div`
