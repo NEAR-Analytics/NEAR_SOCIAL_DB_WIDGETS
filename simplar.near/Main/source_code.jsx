@@ -1,8 +1,8 @@
 if (context.loading) { return }
 
 const widgetList = [
-  "mob.near/widget/Explorer",
-  "microchipgnu.near/widget/Game.FlappyBOS"
+  "somepublicaddress.near/widget/Weather",
+  "mob.near/widget/Explorer"
 ]
 
 const homePage = "near/widget/NearOrg.HomePage"
