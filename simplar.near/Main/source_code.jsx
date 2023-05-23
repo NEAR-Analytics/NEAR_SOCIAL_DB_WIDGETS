@@ -1,3 +1,5 @@
+if (context.loading) { return }
+
 const widgetList = [
   "mob.near/widget/Explorer",
   "microchipgnu.near/widget/Game.FlappyBOS"
@@ -8,9 +10,7 @@ const topics = ["overview", "updates", "reports"]
 
 State.init({ src: homePage, props: {} });
 
-
 function onSelect(src, prs) {
-  console.log("ya", src, prs);
   State.update({ src, props: prs });
 }
 
