@@ -62,7 +62,7 @@ function handleSaveDocument() {
     blocks.push(`${accountId}/thing/${entryId}`);
   });
   if (onChange) {
-    onChange(blocks);
+    onChange(blocks, thing);
   }
 }
 
