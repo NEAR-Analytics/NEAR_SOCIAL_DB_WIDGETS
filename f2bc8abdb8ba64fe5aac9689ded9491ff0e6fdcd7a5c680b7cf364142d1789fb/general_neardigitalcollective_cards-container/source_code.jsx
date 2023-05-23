@@ -8,9 +8,11 @@ const contentWidgetName =
   props.contentWidgetName ?? "minimalistQuestionGeneralInfo";
 
 const cardsData = props.cardsData;
+const sectionTtext = props.sectionTtext ?? "All Schedules";
 
 return (
   <div className="row card-group py-3">
+    {sectionTtext && <h5>{sectionTtext}</h5>}
     {cardsData.map((cardData) => {
       return (
         <div className="col-sm-12 col-lg-6 col-2xl-4 gy-3">
