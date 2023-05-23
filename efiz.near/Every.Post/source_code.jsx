@@ -5,7 +5,8 @@ const typeWhitelist = [
   "efiz.near/type/Image",
   "efiz.near/type/document",
 ];
-const accountFilter = [props.accountFilter] || undefined;
+const accountFilter =
+  (props.accountFilter && [props.accountFilter]) || undefined;
 // const hashtagFilter = ["VNArtistsDAO"];
 
 const key = ""; // this could dictate the version... maybe it's the path? efiz.near/thing/1234
