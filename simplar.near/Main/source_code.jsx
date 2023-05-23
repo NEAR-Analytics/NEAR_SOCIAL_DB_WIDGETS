@@ -7,7 +7,7 @@ return (
       <Widget src="near/widget/NestedDiscussions" props={{identifier: "testo"}} />
     </div>
     <div class="col-3">
-      <Widget src="simplar.near/widget/Menu" />
+      <Widget src="simplar.near/widget/CommunityWidgets" />
     </div>
   </div>
 )
