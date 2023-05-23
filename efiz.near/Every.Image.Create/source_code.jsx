@@ -1,10 +1,10 @@
 const buttonText = props.buttonText || "Upload an image";
-const createThing = props.createThing;
+const onChange = props.onChange;
+const cid = props.cid ?? null;
 
-props.fileType ||
-  initState({
-    file: null,
-  });
+initState({
+  file: { cid },
+});
 
 const ipfsUrl = (cid) => `https://ipfs.near.social/ipfs/${cid}`;
 
@@ -31,8 +31,8 @@ const filesOnChange = (file) => {
           cid,
         },
       });
-      if (createThing) {
-        createThing(cid);
+      if (onChange) {
+        onChange(cid);
       }
     });
   } else {
