@@ -1,14 +1,11 @@
-const action = props.action || "";
 const type = props.type || "";
 
 State.init({
-  selectedAction: action,
   selectedType: type,
 });
 
 const composeData = () => {
   // generate a random id
-  // only really needs to be unique to user
   const thingId = Math.random();
   return {
     data: {
@@ -68,34 +65,13 @@ const TextContainer = styled.div`
     margin-left: 4px;
 `;
 
-const handleActionChange = (e) => {
-  State.update({ selectedAction: e.target.value });
-};
-
-const handleQuantityToggle = () => {
-  State.update({ isMultiple: !state.isMultiple });
-};
-
-// <ButtonContainer>
-//   <SwitchButton
-//     active={state.isMultiple}
-//     onClick={handleQuantityToggle}
-//   >
-//     {state.isMultiple ? "Many" : "One"}
-//   </SwitchButton>
-// </ButtonContainer>
-
 const handleTypeChange = (e) => {
   State.update({ selectedType: e.target.value });
 };
 
 type = JSON.parse(Social.get(state.selectedType, "final") || null);
 
-// then this has the create button
-// and builds the onChange state
-
 const handleThingData = (value) => {
-  console.log(value);
   State.update({ thing: value });
 };
 
@@ -103,25 +79,17 @@ return (
   <>
     <Container>
       <Row>
-        <Select value={state.selectedAction} onChange={handleActionChange}>
-          <option value="">Select an action</option>
-          <option value="view">view</option>
-          <option value="create">create</option>
-          <option value="edit">edit</option>
-        </Select>
-      </Row>
-      <Row>
-        <TextContainer>a thing of type:</TextContainer>
+        <TextContainer>create a thing of type:</TextContainer>
       </Row>
       <Row>
         <Select value={state.selectedType} onChange={handleTypeChange}>
           <option value="">Select a type</option>
-          <option value="efiz.near/type/Image">image</option>
+          <option value="efiz.near/type/Image">efiz.near/type/Image</option>
         </Select>
       </Row>
-      {type?.widgets[state.selectedAction] && (
+      {type?.widgets?.create && (
         <Widget
-          src={type?.widgets[state.selectedAction]}
+          src={type?.widgets?.create}
           props={{ onChange: handleThingData }} // onChange
         />
       )}
