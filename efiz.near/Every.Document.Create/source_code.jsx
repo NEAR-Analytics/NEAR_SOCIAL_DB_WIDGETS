@@ -55,10 +55,10 @@ function handleSaveDocument() {
 
   state.components?.forEach((entry) => {
     const entryId = Math.random();
-    thing[entryId] = {
+    thing[entryId] = JSON.stringify({
       data: entry.value,
       type: entry.type,
-    };
+    });
     blocks.push(`${accountId}/thing/${entryId}`);
   });
   if (onChange) {
