@@ -1,12 +1,9 @@
 const data = props.data;
-console.log(data);
 const blockHeight = props.blockHeight || "final";
-
-const blocks = JSON.parse(data);
 
 return (
   <>
-    {blocks?.map((it) => (
+    {data?.map((it) => (
       <Widget
         src={"efiz.near/widget/Every.Thing.View"}
         props={{ path: it, blockHeight }}
