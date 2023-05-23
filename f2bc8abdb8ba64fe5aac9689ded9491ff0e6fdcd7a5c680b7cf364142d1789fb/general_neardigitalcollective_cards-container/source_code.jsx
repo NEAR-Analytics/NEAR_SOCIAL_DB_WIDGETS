@@ -14,19 +14,20 @@ return (
     {cardsData.map((cardData) => {
       return (
         <div className="col-sm-12 col-lg-6 col-2xl-4 gy-3">
-          <Widget
-            src={`${widgetOwner}/widget/${headerWidgetName}`}
-            props={{ ...cardData }}
-          />
-          <Widget
-            src={`${widgetOwner}/widget/${contentWidgetName}`}
-            props={{ ...cardData }}
-          />
+          <div className="card h-100">
+            <Widget
+              src={`${widgetOwner}/widget/${headerWidgetName}`}
+              props={{ ...cardData }}
+            />
+            <Widget
+              src={`${widgetOwner}/widget/${contentWidgetName}`}
+              props={{ ...cardData }}
+            />
+          </div>
 
           {
             // Example how should card container be like
             //
-            //   <div className="card h-100">
             //     <div className="card-body">
             //       <div className="row d-flex justify-content-center">
             //         <h5 className="card-title text-center pb-2 border-bottom">
@@ -66,7 +67,6 @@ return (
             //         </div>
             //       </div>
             //     </div>
-            //   </div>
           }
         </div>
       );
