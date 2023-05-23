@@ -3,7 +3,7 @@ const blockHeight = props.blockHeight || "final";
 
 const value = Social.get(path, blockHeight);
 
-function convertToPaths(obj, parentPath) {
+function convertToPaths(obj, parentPath, currentDepth, maxDepth, lengthLimit) {
   parentPath = parentPath || "";
   var paths = [];
 
@@ -16,10 +16,18 @@ function convertToPaths(obj, parentPath) {
     }
     path += key;
 
-    paths.push(path);
+    if (currentDepth === maxDepth && path.split("/").length === lengthLimit) {
+      paths.push(path);
+    }
 
-    if (typeof obj[key] === "object") {
-      var nestedPaths = convertToPaths(obj[key], path);
+    if (currentDepth < maxDepth && typeof obj[key] === "object") {
+      var nestedPaths = convertToPaths(
+        obj[key],
+        path,
+        currentDepth + 1,
+        maxDepth,
+        lengthLimit
+      );
       paths = paths.concat(nestedPaths);
     }
   }
@@ -27,11 +35,9 @@ function convertToPaths(obj, parentPath) {
   return paths;
 }
 
-const paths = convertToPaths(value);
+const paths = convertToPaths(value, "", 0, 2, 3);
 
 const renderThing = (key) => {
-  console.log(key);
-
   return (
     <Widget
       src="efiz.near/widget/Every.Thing.View"
