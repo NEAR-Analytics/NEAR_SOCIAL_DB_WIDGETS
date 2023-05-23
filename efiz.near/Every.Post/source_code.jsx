@@ -1,15 +1,30 @@
 let index = [];
-const typeWhitelist = ["md", "efiz.near/type/Image"];
+const typeWhitelist = ["md", "efiz.near/type/Image", "efiz.near/type/document"];
+// const hashtagFilter = ["VNArtistsDAO"];
 
-index = {
-  action: "post",
-  key: "main",
-  options: {
-    limit: 10,
-    order: "desc",
-    accountId: ["efiz.near"],
-  },
-};
+const key = ""; // this could dictate the version... maybe it's the path? efiz.near/thing/1234
+
+if (hashtagFilter.length) {
+  index = hashtagFilter.map((it) => ({
+    action: "hashtag",
+    key: it.toLowerCase(),
+    options: {
+      limit: 10,
+      order: "desc",
+      accountId: undefined,
+    },
+  }));
+} else {
+  index = {
+    action: "post",
+    key: "main",
+    options: {
+      limit: 10,
+      order: "desc",
+      accountId: ["efiz.near"],
+    },
+  };
+}
 
 const Post = styled.div`
   border-bottom: 1px solid #eceef0;
@@ -21,6 +36,10 @@ const Post = styled.div`
 `;
 
 const renderItem = (a) => {
+  let type = a.value.type;
+
+  // return <div>{JSON.stringify(a)}</div>;
+
   if (typeWhitelist.includes(a.value.type)) {
     return (
       <Post className="post" key={JSON.stringify(a)}>
