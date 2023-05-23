@@ -126,7 +126,7 @@ const Card = styled.div`
 `;
 
 const Hero = styled.div`
-  height: 20vh;
+  height: fit-content;
   display: flex;
   align-items:center;
   justify-content: center;
@@ -163,7 +163,7 @@ const ImageCard = styled.div`
 return (
   <div className="row">
     <Hero className="container-fluid">
-      <h1 className="align-text text-center my-4">🔎 BOS Viewer Directory</h1>
+      <Widget src="jgodwill.near/widget/GatewayDirectoryHero" />
     </Hero>
     <Cards>
       {social.data.map((item) => (
