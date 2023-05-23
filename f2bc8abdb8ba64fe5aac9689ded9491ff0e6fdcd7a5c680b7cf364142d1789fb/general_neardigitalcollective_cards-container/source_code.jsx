@@ -2,8 +2,12 @@ const widgetOwner =
   props.widgetOwner ??
   "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
 
-const headerWidgetName = props.headerWidgetName ?? "minimalistQuestionHeader";
+const usersCardsToShow = props.accountId;
+const tabs = props.tabs;
+const prevTab = props.prevTab;
+const handlerStateUpdate = props.handlerStateUpdate;
 
+const headerWidgetName = props.headerWidgetName ?? "minimalistQuestionHeader";
 const contentWidgetName =
   props.contentWidgetName ?? "minimalistQuestionGeneralInfo";
 
