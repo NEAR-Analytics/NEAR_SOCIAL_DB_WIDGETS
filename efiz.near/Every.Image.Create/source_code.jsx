@@ -25,7 +25,6 @@ const filesOnChange = (file) => {
       body,
     }).then((res) => {
       const cid = res.body.cid;
-      console.log("CID", cid);
       State.update({
         file: {
           cid,
