@@ -1,6 +1,6 @@
 const Wrapper = styled.div`
-  --section-gap: 22px;
-  padding-top: 22px;
+  --section-gap: 32px;
+  padding-top: 32px;
 
   @media (max-width: 1160px) {
     .line-rounded-corners {
