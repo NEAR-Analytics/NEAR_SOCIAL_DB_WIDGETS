@@ -27,6 +27,6 @@ return (
       value={state.value}
       placeholder="thing path"
     />
-    <Button onClick={onChange}>submit</Button>
+    <Button onClick={() => onChange(state.value)}>submit</Button>
   </Container>
 );
