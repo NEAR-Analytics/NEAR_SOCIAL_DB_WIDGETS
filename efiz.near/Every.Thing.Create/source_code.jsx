@@ -7,8 +7,9 @@ State.init({
 });
 
 const composeData = () => {
-  // generate id
-  const thingId = "123";
+  // generate a random id
+  // only really needs to be unique to user
+  const thingId = Math.random();
   return {
     data: {
       thing: {
