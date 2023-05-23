@@ -1,4 +1,5 @@
 const data = props.data;
+console.log(data);
 const blockHeight = props.blockHeight || "final";
 
 const blocks = JSON.parse(data);
