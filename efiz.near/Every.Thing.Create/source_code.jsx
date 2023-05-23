@@ -77,21 +77,28 @@ const handleThingData = (value, extra) => {
   State.update({ thing: value, extra });
 };
 
+console.log(props.type);
+
 return (
   <>
     <Container>
-      <Row>
-        <TextContainer>create a thing of type:</TextContainer>
-      </Row>
-      <Row>
-        <Select value={state.selectedType} onChange={handleTypeChange}>
-          <option value="">Select a type</option>
-          <option value="efiz.near/type/Image">efiz.near/type/Image</option>
-          <option value="efiz.near/type/document">
-            efiz.near/type/document
-          </option>
-        </Select>
-      </Row>
+      {props.type === undefined ? (
+        <>
+          <Row>
+            <TextContainer>create a thing of type:</TextContainer>
+          </Row>
+          <Row>
+            <Select value={state.selectedType} onChange={handleTypeChange}>
+              <option value="">Select a type</option>
+              <option value="efiz.near/type/Image">efiz.near/type/Image</option>
+              <option value="efiz.near/type/document">
+                efiz.near/type/document
+              </option>
+            </Select>
+          </Row>
+        </>
+      ) : null}
+
       {type?.widgets?.create && (
         <Widget
           src={type?.widgets?.create}
