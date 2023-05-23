@@ -2,7 +2,7 @@ const path = props.path || "*/thing/**";
 const blockHeight = props.blockHeight || "final";
 
 const value = Social.get(path, blockHeight);
-
+console.log(value);
 function convertToPaths(obj, parentPath, currentDepth, maxDepth, lengthLimit) {
   parentPath = parentPath || "";
   var paths = [];
@@ -34,7 +34,12 @@ function convertToPaths(obj, parentPath, currentDepth, maxDepth, lengthLimit) {
 
   return paths;
 }
-
+const parts = path.split("/");
+if (parts[0] !== "*") {
+  value = {
+    [parts[0]]: { thing: value },
+  };
+}
 const paths = convertToPaths(value, "", 0, 2, 3);
 
 const renderThing = (key) => {
