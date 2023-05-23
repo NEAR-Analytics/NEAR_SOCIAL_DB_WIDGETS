@@ -2,7 +2,7 @@ const path = props.path || "*/thing/**";
 const blockHeight = props.blockHeight || "final";
 
 const value = Social.get(path, blockHeight);
-console.log(value);
+
 function convertToPaths(obj, parentPath, currentDepth, maxDepth, lengthLimit) {
   parentPath = parentPath || "";
   var paths = [];
@@ -50,8 +50,6 @@ const renderThing = (key) => {
     />
   );
 };
-
-// <Widget src="efiz.near/widget/Every.Thing.Create" />
 // TODO: Infinite Scroll
 return (
   <div>
