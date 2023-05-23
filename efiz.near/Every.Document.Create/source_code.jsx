@@ -54,15 +54,21 @@ function handleSaveDocument() {
   const blocks = [];
 
   state.components?.forEach((entry) => {
-    const entryId = Math.random();
-    thing[entryId] = JSON.stringify({
-      data: entry.value,
-      type: entry.type,
-    });
-    blocks.push(`${accountId}/thing/${entryId}`);
+    if (entry.type !== "embed") {
+      const entryId = Math.random();
+      thing[entryId] = JSON.stringify({
+        data: entry.value,
+        type: entry.type,
+      });
+      blocks.push(`${accountId}/thing/${entryId}`);
+    } else {
+      blocks.push(entry.value);
+    }
   });
   if (onChange) {
     onChange(blocks, thing);
+  } else {
+    console.log(blocks);
   }
 }
 
@@ -99,9 +105,13 @@ function handleMoveDownClick(index) {
 function RenderComponent({ component, index }) {
   const isTop = index === 0;
   const isBottom = index === state.components.length - 1;
-
-  const type = JSON.parse(Social.get(component.type, "final") || "null");
-  const widgetSrc = type.widgets?.create;
+  let widgetSrc;
+  if (component.type === "embed") {
+    widgetSrc = "efiz.near/widget/Every.Thing.Embed";
+  } else {
+    const type = JSON.parse(Social.get(component.type, "final") || "null");
+    widgetSrc = type.widgets?.create;
+  }
 
   const handleComponentChange = (value) => {
     const updatedComponents = [...state.components];
@@ -140,6 +150,7 @@ return (
     <Button onClick={() => handleTypeClick("efiz.near/type/paragraph")}>
       Add Paragraph
     </Button>
+    <Button onClick={() => handleTypeClick("embed")}>Embed Thing</Button>
     {state.components.map((component, index) => (
       <RenderComponent key={index} component={component} index={index} />
     ))}
