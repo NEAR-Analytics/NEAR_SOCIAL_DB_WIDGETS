@@ -1,4 +1,6 @@
 const authorForWidget = "eugenewolf507.near";
+const tagItemCss =
+  "me-1 text-primary bg-primary bg-opacity-10 position-relative fw-normal badge border border-primary text-decoration-none";
 return (
   <>
     {props.tags &&
@@ -6,7 +8,7 @@ return (
         <a
           key={tag}
           href={`/#/${authorForWidget}/widget/WikiOnSocialDB_ArticlesByTag?tag=${tag}`}
-          className="me-1 text-primary bg-primary bg-opacity-10 position-relative fw-normal badge border border-primary text-decoration-none"
+          className={tagItemCss}
         >
           #{tag}
         </a>
