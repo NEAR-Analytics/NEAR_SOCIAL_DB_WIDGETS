@@ -25,7 +25,8 @@ if (parts.length === 1) {
 }
 
 if (type === null) {
-  return <p>type not found: {thing.type}</p>;
+  console.log(`type not found: ${type}`);
+  return <></>;
 }
 
 // GET THE CREATOR ID //
@@ -149,17 +150,15 @@ function renderContent() {
       thing = JSON.parse(Social.get(path, blockHeight));
     }
     if (state.showEdit) {
-      console.log(path);
       function handleSubmit(val) {
         const parts = path.split("/");
         parts.shift(); // Remove the first element
-
         const newData = {
           [parts[0]]: {
-            [parts[1]]: val,
+            [parts[1]]: val.replace(/\n/g, ""),
           },
         };
-        if (context.account === creatorId) {
+        if (context.accountId === creatorId) {
           Social.set(newData, {
             force: true,
           });
@@ -198,7 +197,9 @@ function renderContent() {
       const thing = Social.get(path, blockHeight);
       thing = JSON.parse(thing || "null"); // I already fetched thing when I got type
       // what if thing data comes from somewhere else? auditable backend according to type, api keys are stored browser side
-      return <Widget src={widgetSrc} props={{ data: thing.data }} />;
+      return (
+        <Widget src={widgetSrc} props={{ data: thing.data, blockHeight }} />
+      );
     } else {
       switch (type) {
         case "widget":
