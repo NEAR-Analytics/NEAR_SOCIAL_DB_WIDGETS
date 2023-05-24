@@ -245,6 +245,7 @@ const steps = [
   "Launching",
   "Deployed",
 ];
+
 const accountId = context.accountId;
 
 if (!accountId) {
