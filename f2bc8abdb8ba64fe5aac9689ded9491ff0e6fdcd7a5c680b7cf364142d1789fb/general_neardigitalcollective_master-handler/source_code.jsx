@@ -235,7 +235,8 @@ function isOnNavTab() {
 /*-----------------------------------------------End functions-----------------------------------------------*/
 
 /*----------------------------------------------Start render components----------------------------------------------*/
-
+console.log("state.showAbort: ", state.showAbort);
+console.log("state.tab: ", state.tab);
 const renderAbortModal = () => {
   return (
     <Widget
@@ -265,7 +266,7 @@ const renderNavigationButton = (tab, isMobile) => {
         State.update({ hoveringElement: "" });
       }}
       onClick={() => {
-        State.update({ tab: tab.id });
+        State.update({ tab: tab.id, abortThroughPage: tab.id });
       }}
       style={
         state.hoveringElement == tab.text || state.tab == tab.id
@@ -321,7 +322,7 @@ const renderTab = (tab) => {
         }}
         onClick={() => {
           isOnNavTab()
-            ? State.update({ tab: tab.id })
+            ? State.update({ tab: tab.id, abortThroughPage: tab.id })
             : State.update({
                 showAbort: true,
               });
