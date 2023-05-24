@@ -101,7 +101,8 @@ const GradientContainer = styled.div`
   left: calc(16% + 10px);
   width: 85%;
   height: 100%;
-  background: linear-gradient(90deg, rgba(242,155,192,1) 7%, rgba(244,162,170,1) 21%, rgba(255,213,13,1) 100%);
+background:#4498e0;
+
   @media (min-width: 450px) {
     width: 88%;
     left: calc(12% + 10px);
@@ -272,15 +273,17 @@ const colors = {
   pink: "#F29BC0",
 };
 
+const { hasBackground } = props;
+
 return (
   <TableWrapper>
     <OverflowWrapper>
-      <ChartWrapper className="CHARTWRAPPER">
-        {/* <GradientContainer className='GRADIENT'></GradientContainer> */}
+      <ChartWrapper>
+        {hasBackground && <GradientContainer></GradientContainer>}
 
         {Object.entries(testObj).map((item) => (
           <Row>
-            <ItemTitle className="ITEM_TITLE">{item[0]}</ItemTitle>
+            <ItemTitle>{item[0]}</ItemTitle>
             <SingleMeterBarWrapper>
               <SingleMeterBar width={item[1] + 2} color={colors.blue}>
                 {item[1]}%
@@ -289,7 +292,7 @@ return (
           </Row>
         ))}
       </ChartWrapper>
-      <AgendaWrapper className="AGENDA">
+      <AgendaWrapper>
         {steps.map((item, index) => (
           <StepWrapper left={index !== 10 ? index * 10 : 98}>
             <PercentageItem>
