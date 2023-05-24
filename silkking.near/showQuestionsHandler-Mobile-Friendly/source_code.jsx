@@ -2,10 +2,10 @@ State.init({
   showQuestionsByThisUser: false,
   descriptionHeightLimited: true,
   poll: {},
-  polls: [{}],
+  polls: [],
   profile: {},
-  pollsByThisCreator: [{}],
-  answers: [{}],
+  pollsByThisCreator: [],
+  answers: [],
 });
 
 // if (!props.isPreview && !props.blockHeight) {
@@ -22,10 +22,11 @@ let questionBlockHeight = Number(props.blockHeight);
 const polls =
   !props.previewInfo && Social.index("poll_question", "question-v3.1.0");
 if (JSON.stringify(polls) != JSON.stringify(state.polls)) {
-  State.update({ polls: polls });
+  State.update({ polls });
 }
 
 if (!state.polls) {
+  console.log(1);
   return "Loading";
 } else {
   const poll =
