@@ -31,25 +31,14 @@ const communities = {
 
 const Gradient = styled.div`
    {
+    width: 100%;
     margin-top: -25px;
     margin-bottom: 25px;
     height: 250px;
     text-align: center;
-    background: radial-gradient(
-      circle,
-      rgba(29, 55, 57, 1) 30%,
-      rgba(24, 24, 24, 1) 80%
-    );
+    background: #000;
 
     font-family: Arial, sans-serif;
-  }
-
-  .text-primary-gradient {
-    color: #53fdca;
-    -webkit-text-fill-color: transparent;
-    background-image: linear-gradient(#8e76ba, #1ed2f0);
-    -webkit-background-clip: text;
-    background-clip: text;
   }
 
   .subtitle-above {
@@ -60,25 +49,26 @@ const Gradient = styled.div`
 
   .subtitle-below {
     font-size: 16px;
+        font-family: Courier, monospace;
+
   }
 
   .slogan {
     font-weight: 600;
     font-size: 60px;
+        font-family: Courier, monospace;
+
   }
 `;
 
 return (
-  <>
+  <div>
     <Gradient className="d-flex flex-column justify-content-center">
-      <div class="subtitle-above text-white opacity-75 mb-2">
-        A decentralized constellation of
-      </div>
       <h1 class="mb-3 text-white slogan">
         <span class="text-primary-gradient">NEAR </span>Work Groups
       </h1>
       <div class="subtitle-below text-white opacity-75">
-        Share ideas, connect with collaborators, and get more involved!
+        Share ideas, connect with people, and get involved!
       </div>
     </Gradient>
     <div class="h5 pb-3">Featured Communities</div>
@@ -91,5 +81,5 @@ return (
         );
       })}
     </div>
-  </>
+  </div>
 );
