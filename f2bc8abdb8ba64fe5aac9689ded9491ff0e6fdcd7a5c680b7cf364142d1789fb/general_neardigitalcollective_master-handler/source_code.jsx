@@ -125,6 +125,7 @@ const thisWidgetInlineStyles = {
   siteHeader: {
     backgroundColor: colors.color2,
     boxShadow: "rgba(43, 68, 106, 0.04) 0px 4px 28px",
+    paddingBottom: "1.5rem",
   },
   logoTitle: {
     margin: "0px 0.5rem",
@@ -299,12 +300,43 @@ const renderTabContent = (tab) => {
     />
   );
 };
+
+const renderTab = (tab) => {
+  return (
+    <div style={thisWidgetInlineStyles.tabContainer}>
+      <p
+        ariaCurrent="page"
+        onMouseEnter={() => {
+          State.update({ hoveringElement: tab.text });
+        }}
+        onMouseLeave={() => {
+          State.update({ hoveringElement: "" });
+        }}
+        onClick={() => {
+          isOnNavTab()
+            ? State.update({ tab: tab.id })
+            : State.update({
+                showAbort: true,
+              });
+        }}
+        style={thisWidgetInlineStyles.tabText}
+      >
+        {tab.text}
+      </p>
+      {(state.hoveringElement == tab.text || state.tab == tab.id) && (
+        <div style={thisWidgetInlineStyles.decorativeTabUnderline}>
+          {/*Decorative Div, do not delete*/}
+        </div>
+      )}
+    </div>
+  );
+};
 /*-----------------------------------------------End render components-----------------------------------------------*/
 return (
   <div className="pb-5" style={thisWidgetInlineStyles.generalContainer}>
     <div className="d-flex flex-column">
       <div
-        className="d-flex flex-column"
+        className="d-flex w-100 align-content-center"
         style={thisWidgetInlineStyles.siteHeader}
       >
         <div
@@ -327,41 +359,7 @@ return (
                 {Object.keys(tabs).map((tabKey) => {
                   const tab = tabs[tabKey];
                   if (tab.isTab) {
-                    return (
-                      <div style={thisWidgetInlineStyles.tabContainer}>
-                        <p
-                          ariaCurrent="page"
-                          onMouseEnter={() => {
-                            State.update({ hoveringElement: tab.text });
-                          }}
-                          onMouseLeave={() => {
-                            State.update({ hoveringElement: "" });
-                          }}
-                          onClick={() => {
-                            isOnNavTab()
-                              ? State.update({ tab: tab.id })
-                              : State.update({
-                                  showAbort: true,
-                                });
-                          }}
-                          style={thisWidgetInlineStyles.tabText}
-                        >
-                          {tab.text}
-                        </p>
-                        {(state.hoveringElement == tab.text ||
-                          state.tab == tab.id) && (
-                          <div
-                            style={
-                              thisWidgetInlineStyles.decorativeTabUnderline
-                            }
-                          >
-                            {/*Decorative Div, do not delete*/}
-                          </div>
-                        )}
-                      </div>
-                    );
-                  } else {
-                    return <></>;
+                    return renderTab(tab);
                   }
                 })}
               </div>
@@ -370,9 +368,7 @@ return (
             {Object.keys(tabs).map((tabKey) => {
               const tab = tabs[tabKey];
               if (tab.isButtonInNavegation) {
-                renderNavigationButton(false);
-              } else {
-                return <></>;
+                return renderNavigationButton(false);
               }
             })}
           </div>
@@ -386,9 +382,7 @@ return (
         {Object.keys(tabs).map((tabKey) => {
           const tab = tabs[tabKey];
           if (tab.isButtonInNavegation) {
-            renderNavigationButton(true);
-          } else {
-            return <></>;
+            return renderNavigationButton(true);
           }
         })}
       </div>
@@ -401,9 +395,7 @@ return (
           (tab.isTab || tab.isButtonInNavegation || tab.isCardNavigate) &&
           state.tab == tab.id
         ) {
-          renderTabContent(tab);
-        } else {
-          return <></>;
+          return renderTabContent(tab);
         }
       })}
     </div>
