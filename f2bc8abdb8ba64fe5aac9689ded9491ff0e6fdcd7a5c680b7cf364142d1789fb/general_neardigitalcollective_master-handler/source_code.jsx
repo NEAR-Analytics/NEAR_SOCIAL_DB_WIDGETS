@@ -2,6 +2,7 @@
 const dataCallInfo = props.dataCallInfo ?? ["poll_question", "question-v3.1.1"];
 
 const data = Social.index(dataCallInfo[0], dataCallInfo[1]);
+console.log("data: ", data);
 if (!data) {
   return "Loading datas";
 }
@@ -11,36 +12,35 @@ const widgetOwner =
   "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
 
 const tabs = props.tabs ?? {
-  MY_SCHEDULE: {
+  MY_POLL: {
     id: 1,
-    text: "My Schedule",
+    text: "My Polls",
     isTab: true,
     widgetName: "general_neardigitalcollective_cards-container",
-    props: { isOwnAccountId: true, sectionText: "My Schedule", isTab: true },
+    props: { isOwnAccountId: true, isTab: true },
   },
-  ALL_SCHEDULE: {
+  ALL_POLLS: {
     id: 2,
-    text: "All Schedules",
+    text: "All Polls",
     isTab: true,
     widgetName: "general_neardigitalcollective_cards-container",
     props: {
       isOwnAccountId: false,
-      sectionTtext: "All Schedules",
       isTab: true,
     },
   },
-  NEW_SCHEDULE: {
+  NEW_POLL: {
     id: 3,
-    text: finalData ? "Edit Schedule" : "Create Schedule",
+    text: finalData ? "Edit Poll" : "Create Poll",
     isButtonInNavegation: true,
-    widgetName: "Instance_time_edit",
+    widgetName: "newPollQuestionInterface",
     props: { isButtonInNavegation: true },
   },
-  OPEN_SCHEDULE: {
+  OPEN_POLL: {
     id: 4,
     text: "",
     isCardNavigate: true,
-    widgetName: "Instance_time_card",
+    widgetName: "newVotingInterface",
     props: { isCardNavigate: true },
   },
 };
@@ -284,20 +284,23 @@ const renderNavigationButton = (isMobile) => {
 
 const renderTabContent = (tab) => {
   return (
-    <Widget
-      src={`${widgetOwner}/widget/${tab.widgetName}`}
-      props={{
-        ...tab.props,
-        widgetOwner,
-        accountId: state.userScheduleShown,
-        tabs,
-        prevTab,
-        handlerStateUpdate,
-        data,
-        headerWidgetName,
-        contentWidgetName,
-      }}
-    />
+    <>
+      <Widget
+        src={`${widgetOwner}/widget/${tab.widgetName}`}
+        props={{
+          ...tab.props,
+          widgetOwner,
+          tabs,
+          prevTab,
+          handlerStateUpdate,
+          cardsData: data,
+          headerWidgetName,
+          contentWidgetName,
+          sectionTtext: tab.text,
+          widgetOwner,
+        }}
+      />
+    </>
   );
 };
 
