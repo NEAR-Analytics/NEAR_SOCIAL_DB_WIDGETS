@@ -1,4 +1,4 @@
-const accountId = props.accountId ?? "james.near";
+const accountId = props.accountId ?? context.accountId;
 const daoId = props.daoId ?? "build.sputnik-dao.near";
 const contractId = props.contractId ?? "nft.bluntdao.near";
 
@@ -152,30 +152,34 @@ return (
       )}
     </Container>
 
-    <Content>
+    <Container>
       {!isOwner ? (
-        <Widget
-          src="near/widget/DIG.Button"
-          props={{
-            href: "https://shard.dog/go",
-            label: "Get Your NFT",
-            variant: "outline-primary",
-            size: "large",
-          }}
-        />
-      ) : (
-        <ComposeWrapper>
+        <Flex gap="23px" direction="column" alignItems="center">
           <Widget
-            src="efiz.near/widget/Common.Compose"
+            src="near/widget/DIG.Button"
             props={{
-              communityHashtags: hashtags,
-              exclusive: false,
-              allowPublicPosting: true,
+              href: "https://shard.dog/go",
+              label: "Get Your NFT",
+              variant: "outline-primary",
+              size: "large",
             }}
           />
-        </ComposeWrapper>
+        </Flex>
+      ) : (
+        <Content>
+          <ComposeWrapper>
+            <Widget
+              src="efiz.near/widget/Common.Compose"
+              props={{
+                communityHashtags: hashtags,
+                exclusive: false,
+                allowPublicPosting: true,
+              }}
+            />
+          </ComposeWrapper>
+        </Content>
       )}
-    </Content>
+    </Container>
     <Container>
       <Flex gap="23px" direction="column" alignItems="center">
         <Text
