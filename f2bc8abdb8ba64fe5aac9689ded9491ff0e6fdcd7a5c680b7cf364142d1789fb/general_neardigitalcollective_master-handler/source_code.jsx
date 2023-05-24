@@ -2,10 +2,13 @@
 const dataCallInfo = props.dataCallInfo ?? ["poll_question", "question-v3.1.1"];
 
 const data = Social.index(dataCallInfo[0], dataCallInfo[1]);
-console.log("data: ", data);
 if (!data) {
   return "Loading datas";
 }
+
+const abortModalWidgetName =
+  props.abortModalWidgetName ??
+  "general_neardigitalcollective_standard-abort-popup";
 
 const widgetOwner =
   props.widgetOwner ??
@@ -128,6 +131,7 @@ const thisWidgetInlineStyles = {
     paddingBottom: "1.5rem",
   },
   logoTitle: {
+    cursor: "pointer",
     margin: "0px 0.5rem",
     fontWeight: "700",
     fontSize: "1.3rem",
@@ -232,10 +236,10 @@ function isOnNavTab() {
 
 /*----------------------------------------------Start render components----------------------------------------------*/
 
-const renderAbortPollCreationModal = () => {
+const renderAbortModal = () => {
   return (
     <Widget
-      src={`${widgetOwner}/widget/general_neardigitalcollective_standard-abort-popup`}
+      src={`${widgetOwner}/widget/${abortModalWidgetName}`}
       props={{
         showAbort: state.showAbort,
         handlerStateUpdate,
@@ -250,7 +254,7 @@ const renderAbortPollCreationModal = () => {
   );
 };
 
-const renderNavigationButton = (isMobile) => {
+const renderNavigationButton = (tab, isMobile) => {
   return (
     <button
       className={isMobile ? "d-md-none d-block mb-3" : ""}
@@ -346,7 +350,12 @@ return (
           className="d-flex align-items-center"
           onClick={() => State.update({ tab: homePageId })}
         >
-          <i className={bootstrapIcons.logoIcon}></i>
+          <i
+            className={bootstrapIcons.logoIcon}
+            style={{
+              cursor: "pointer",
+            }}
+          ></i>
           {logoIconText && (
             <h3 style={thisWidgetInlineStyles.logoTitle}>{logoIconText}</h3>
           )}
@@ -371,23 +380,25 @@ return (
             {Object.keys(tabs).map((tabKey) => {
               const tab = tabs[tabKey];
               if (tab.isButtonInNavegation) {
-                return renderNavigationButton(false);
+                return renderNavigationButton(tab, false);
               }
             })}
+            <div
+              style={thisWidgetInlineStyles.newShceduleButtonInMobileContainer}
+            >
+              {Object.keys(tabs).map((tabKey) => {
+                const tab = tabs[tabKey];
+                if (tab.isButtonInNavegation) {
+                  return renderNavigationButton(tab, true);
+                }
+              })}
+            </div>
           </div>
         )}
       </div>
 
       <div className="w-100 d-flex flex-row justify-content-between align-items-center">
         {/*Decorative div. Do not delete*/}
-      </div>
-      <div style={thisWidgetInlineStyles.newShceduleButtonInMobileContainer}>
-        {Object.keys(tabs).map((tabKey) => {
-          const tab = tabs[tabKey];
-          if (tab.isButtonInNavegation) {
-            return renderNavigationButton(true);
-          }
-        })}
       </div>
     </div>
 
@@ -402,6 +413,6 @@ return (
         }
       })}
     </div>
-    {state.showAbort && renderAbortPollCreationModal()}
+    {state.showAbort && renderAbortModal()}
   </div>
 );
