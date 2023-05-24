@@ -49,7 +49,7 @@ const ChartWrapper = styled.div`
   &:after {
     content: "";
     position: absolute;
-    width: 85%;
+    width: 86%;
     height: 3px;
     background: rgb(145 135 137);
     left: calc(16% + 10px);
@@ -62,7 +62,7 @@ const ChartWrapper = styled.div`
     left: calc(12% + 10px);
     }
     &:after {
-      width: 89%;
+      width: 90%;
       left: calc(12% + 10px);
     }
   }
@@ -71,7 +71,7 @@ const ChartWrapper = styled.div`
       left: calc(18% + 10px);
     }
     &:after {
-      width: 83%;
+      width: 84%;
       left: calc(18% + 10px);
     }
     
@@ -81,7 +81,7 @@ const ChartWrapper = styled.div`
       left: calc(16% + 10px);
     }
     &:after {
-      width: 85%;
+      width: 86%;
       left: calc(16% + 10px);
     }
   }
@@ -90,7 +90,7 @@ const ChartWrapper = styled.div`
       left: calc(16% + 10px);
     }
     &:after {
-      width: 85%;
+      width: 86%;
       left: calc(16% + 10px);
     }
   }
@@ -101,18 +101,18 @@ const GradientContainer = styled.div`
   left: calc(16% + 10px);
   width: 85%;
   height: 100%;
-background:#4498e0;
+  background:#4498e0;
 
   @media (min-width: 450px) {
-    width: 88%;
+    width: 89%;
     left: calc(12% + 10px);
   }
   @media (min-width: 580px) {
-    width: 84%;
+    width: 85%;
     left: calc(18% + 10px);
   }
   @media (min-width: 1024px) {
-    width: 84%;
+    width: 85%;
     left: calc(16% + 10px);
   }
   @media (min-width: 1140px) {
