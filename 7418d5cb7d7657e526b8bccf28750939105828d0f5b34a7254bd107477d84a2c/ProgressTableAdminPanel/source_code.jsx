@@ -100,7 +100,7 @@ const myState = State.init({
   key: "",
   value: "",
   linkValue: "",
-  allItems: items ? items : {},
+  allItems: Social.get(`${accountId}/testWidget/**`),
   editKey: "",
   editValue: "",
   editLink: "",
@@ -110,12 +110,13 @@ const myState = State.init({
 if (myState.allItems === null) {
   State.update(
     {
-      allItems: items,
+      allItems: Social.get(`${accountId}/testWidget/**`),
     },
     [items]
   );
 }
 
+console.log("myState", myState);
 //Add items to the local state
 function addItem() {
   let currItems = myState.allItems;
