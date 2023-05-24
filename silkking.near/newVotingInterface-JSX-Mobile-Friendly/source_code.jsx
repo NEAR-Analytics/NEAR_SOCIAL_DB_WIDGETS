@@ -23,6 +23,8 @@ const NoFlexInMobile = styled.div`
     }
 `;
 
+const widgetOwner = "silkking.near";
+
 return (
   <div>
     <FlexContainer className="content-align-start justify-content-between">
@@ -149,7 +151,7 @@ return (
           }}
         >
           <Widget
-            src={`${props.widgetOwner}/widget/shareWidget`}
+            src={`${widgetOwner}/widget/shareWidget`}
             props={{ blockHeight: props.questionBlockHeight }}
           />
         </div>
