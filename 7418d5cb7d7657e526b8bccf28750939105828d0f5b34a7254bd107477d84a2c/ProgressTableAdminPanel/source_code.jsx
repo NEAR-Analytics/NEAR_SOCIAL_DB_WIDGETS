@@ -51,8 +51,8 @@ let items = Social.get(`${accountId}/testWidget/**`);
 const myState = State.init({
   key: "",
   value: "",
+  linkValue: "",
   allItems: items,
-  hiddenItems: {},
   editKey: "",
   editValue: "",
   isModalOpen: false,
@@ -72,11 +72,12 @@ function addItem() {
   let currItems = myState.allItems;
   //If key has space
   let key = myState.key.replace(/ /g, "-");
-  currItems[key] = myStatevalue;
+  currItems[key] = { value: myState.value, link: myState.link };
 
   State.update({
     key: "",
     value: "",
+    linkValue: "",
     allItems: currItems,
   });
 }
@@ -170,7 +171,14 @@ return (
       <input
         type="number"
         id="value"
-        value={myStatevalue}
+        value={myState.value}
+        onChange={(e) => State.update({ value: e.target.value })}
+      />
+      <label for="link">Value: </label>
+      <input
+        type="text"
+        id="link"
+        value={myState.value}
         onChange={(e) => State.update({ value: e.target.value })}
       />
       <div>
@@ -181,7 +189,9 @@ return (
         >
           Upload data
         </CommitButton>
-        <button onClick={() => uploadData()}>Upload data</button>
+        {
+          // <button onClick={() => uploadData()}>Upload data</button>
+        }
       </div>
     </FormWrapper>
   </DashboardWrapper>
