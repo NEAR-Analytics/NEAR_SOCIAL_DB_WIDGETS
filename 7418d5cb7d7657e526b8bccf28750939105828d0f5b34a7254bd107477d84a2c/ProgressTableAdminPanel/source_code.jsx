@@ -3,12 +3,19 @@ margin: 50px auto;
 max-width: 90%; 
 
 `;
+
+const ListTitle = styled.h2`
+  margin: 20px 0;
+`;
 const FormWrapper = styled.div`
 display: flex;
 flex-flow: column;
+margin-bottom: 40px;
 `;
 
 const ItemsListWrapper = styled.div`
+display: block;
+  padding-left: 20px;
 
 `;
 const SingleItem = styled.div`
@@ -111,7 +118,10 @@ function openModal(item) {
 //Edit single item in local state
 function changeItemInState() {
   const newItems = { ...myState.allItems };
-  newItems[myState.editKey] = myState.editValue;
+  newItems[myState.editKey] = {
+    value: myState.editValue
+    link: ''
+    };
 
   State.update({
     allItems: newItems,
@@ -133,34 +143,8 @@ return (
       />
       <button onClick={() => changeItemInState()}>Submit</button>
     </EditModal>
-    <h1>Existing Items</h1>
-    <ItemsListWrapper>
-      {myState.allItems &&
-        Object.entries(myState.allItems).map((item, index) => (
-          <SingleItem isActive={item[1].value !== null}>
-            <p>
-              {item[0]} : {item[1].value}
-            </p>
-            {item[1].value !== null && (
-              <RemoveItemBtn onClick={() => removeItemFromState(item[0])}>
-                +
-              </RemoveItemBtn>
-            )}
-
-            <EditSvg
-              onClick={() => openModal(item)}
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-            >
-              <path d="M7.127 22.562l-7.127 1.438 1.438-7.128 5.689 5.69zm1.414-1.414l11.228-11.225-5.69-5.692-11.227 11.227 5.689 5.69zm9.768-21.148l-2.816 2.817 5.691 5.691 2.816-2.819-5.691-5.689z" />
-            </EditSvg>
-          </SingleItem>
-        ))}
-    </ItemsListWrapper>
-
     <FormWrapper>
-      <h1>Add new item: </h1>
+      <ListTitle>Add new item: </ListTitle>
       <label for="key">Key: </label>
       <input
         type="text"
@@ -195,5 +179,31 @@ return (
         }
       </div>
     </FormWrapper>
+
+    <ListTitle>Existing Items</ListTitle>
+    <ItemsListWrapper>
+      {myState.allItems &&
+        Object.entries(myState.allItems).map((item, index) => (
+          <SingleItem isActive={item[1] !== null}>
+            <p>
+              {item[0]} : {item[1].value}
+            </p>
+            {item[1] !== null && (
+              <RemoveItemBtn onClick={() => removeItemFromState(item[0])}>
+                +
+              </RemoveItemBtn>
+            )}
+
+            <EditSvg
+              onClick={() => openModal(item)}
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+            >
+              <path d="M7.127 22.562l-7.127 1.438 1.438-7.128 5.689 5.69zm1.414-1.414l11.228-11.225-5.69-5.692-11.227 11.227 5.689 5.69zm9.768-21.148l-2.816 2.817 5.691 5.691 2.816-2.819-5.691-5.689z" />
+            </EditSvg>
+          </SingleItem>
+        ))}
+    </ItemsListWrapper>
   </DashboardWrapper>
 );
