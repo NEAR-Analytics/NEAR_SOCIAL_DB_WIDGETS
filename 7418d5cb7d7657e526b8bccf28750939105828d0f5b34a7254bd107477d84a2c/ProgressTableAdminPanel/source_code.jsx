@@ -1,7 +1,7 @@
 const DashboardWrapper = styled.div`
-margin: 50px auto;
-max-width: 90%; 
-
+    margin: 50px auto;
+    width: 90%;
+    max-width: 600px; 
 `;
 
 const ListTitle = styled.h2`
