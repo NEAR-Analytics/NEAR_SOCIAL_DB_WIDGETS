@@ -259,17 +259,17 @@ const colors = {
   pink: "#F29BC0",
 };
 
+const { hasBackground } = props;
+
 return (
   <TableWrapper>
     <OverflowWrapper>
-      <ChartWrapper className="CHARTWRAPPER">
-        <GradientContainer className="GRADIENT"></GradientContainer>
+      <ChartWrapper>
+        {hasBackground && <GradientContainer></GradientContainer>}
 
         {Object.entries(chartState.allItems).map((item) => (
           <Row>
-            <ItemTitle className="ITEM_TITLE">
-              {item[0].replace(/-/g, " ")}
-            </ItemTitle>
+            <ItemTitle>{item[0].replace(/-/g, " ")}</ItemTitle>
             <SingleMeterBarWrapper>
               <SingleMeterBar
                 width={parseInt(item[1]) + 2}
@@ -279,7 +279,7 @@ return (
           </Row>
         ))}
       </ChartWrapper>
-      <AgendaWrapper className="AGENDA">
+      <AgendaWrapper>
         {steps.map((item, index) => (
           <StepWrapper left={index !== 10 ? index * 10 : 98}>
             <PercentageItem>
