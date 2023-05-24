@@ -126,7 +126,8 @@ const Row = styled.div`
   margin-bottom: 6px;
 `;
 
-const ItemTitle = styled.div`
+const ItemTitle = styled.a`
+  position: relative; 
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -138,7 +139,8 @@ const ItemTitle = styled.div`
   font-size: 14px;
   margin: 0 20px 0 0; 
   text-align: right;
-  @media (min-width: 450px) {
+  color: #212529;
+    @media (min-width: 450px) {
     max-width: 12%;
   }
   @media (min-width: 450px) {
@@ -258,7 +260,6 @@ const colors = {
 };
 
 const { hasBackground } = props;
-
 return (
   <TableWrapper>
     <OverflowWrapper>
@@ -267,7 +268,9 @@ return (
 
         {Object.entries(chartState.allItems).map((item) => (
           <Row>
-            <ItemTitle>{item[0].replace(/-/g, " ")}</ItemTitle>
+            <ItemTitle href={item[1].link} target="_blank">
+              {item[0].replace(/-/g, " ")}
+            </ItemTitle>
             <SingleMeterBarWrapper>
               <SingleMeterBar
                 width={parseInt(item[1].value) + 2}
