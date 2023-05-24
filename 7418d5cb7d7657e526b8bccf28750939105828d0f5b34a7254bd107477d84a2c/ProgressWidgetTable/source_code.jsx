@@ -222,7 +222,6 @@ const StepItem = styled.p`
   width: 100%;
 `;
 
-const percentage = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
 const steps = [
   "Not Started",
   "Planning",
@@ -245,7 +244,6 @@ if (!accountId) {
 
 let items = Social.get(`${accountId}/testWidget/**`);
 if (items == null || items == undefined) {
-  console.log("Items", items);
   return <h1>No Data</h1>;
 }
 
@@ -272,7 +270,7 @@ return (
             <ItemTitle>{item[0].replace(/-/g, " ")}</ItemTitle>
             <SingleMeterBarWrapper>
               <SingleMeterBar
-                width={parseInt(item[1]) + 2}
+                width={parseInt(item[1].value) + 2}
                 color={colors.blue}
               ></SingleMeterBar>
             </SingleMeterBarWrapper>
