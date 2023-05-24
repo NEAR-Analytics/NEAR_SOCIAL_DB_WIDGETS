@@ -171,7 +171,7 @@ const followingsRows = rec.map(
         <label className="form-check-label" for={`follow-${accountId}`}>
           <div className="flex justify-between">
             <Widget
-              src="roshaan.near/widget/ProfileLine"
+              src="scopalaffairs.near/widget/ProfileLine"
               props={{
                 accountId,
                 showTags: props.showTags,
