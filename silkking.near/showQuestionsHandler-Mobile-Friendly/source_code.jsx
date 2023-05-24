@@ -38,6 +38,7 @@ if (!state.polls) {
   }
 
   if (!state.poll && !isPreview) {
+    console.log(2);
     return "Loading...";
   }
 }
