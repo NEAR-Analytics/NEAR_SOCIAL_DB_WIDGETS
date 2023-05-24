@@ -4,6 +4,7 @@ if (widgetType !== 1 && widgetType !== 2 && widgetType !== 3) {
   return `widgetType prop is mandatory and it should be 1, 2 or 3`;
 }
 
+console.log(widgetType);
 return (
   <div>
     {widgetType === 1 && (
