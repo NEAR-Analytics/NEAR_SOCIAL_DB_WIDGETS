@@ -1,4 +1,4 @@
-const accountId = props.accountId ?? context.accountId;
+const accountId = props.accountId ?? "james.near";
 const daoId = props.daoId ?? "build.sputnik-dao.near";
 const contractId = props.contractId ?? "nft.bluntdao.near";
 
@@ -32,13 +32,13 @@ const H1 = styled.h1`
   font-family: "FK Grotesk", sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 85px;
+  font-size: 93px;
   line-height: 1;
   text-align: center;
   letter-spacing: -0.03em;
   color: #000;
   margin: 0;
-  max-width: 700px;
+  max-width: 500px;
 
   span {
     display: inline-block;
@@ -97,22 +97,16 @@ const Flex = styled.div`
   `}
 `;
 
-const Compose = styled.div`
-  display: flex;
-  gap: ${(p) => p.gap};
-  align-items: ${(p) => p.alignItems};
-  justify-content: ${(p) => p.justifyContent};
-  flex-direction: ${(p) => p.direction ?? "row"};
-  flex-wrap: ${(p) => p.wrap ?? "nowrap"};
-
-  ${(p) =>
-    p.mobileStack &&
-    `
-    @media (max-width: 900px) {
-      flex-direction: column;
-      gap: var(--section-gap);
+const Content = styled.div`
+  @media (max-width: 1200px) {
+    > div:first-child {
+      border-top: none;
     }
-  `}
+  }
+`;
+
+const ComposeWrapper = styled.div`
+  border-top: 1px solid #eceef0;
 `;
 
 const Container = styled.div`
@@ -156,7 +150,9 @@ return (
           }}
         />
       )}
+    </Container>
 
+    <Content>
       {!isOwner ? (
         <Widget
           src="near/widget/DIG.Button"
@@ -168,26 +164,32 @@ return (
           }}
         />
       ) : (
-        <Widget
-          src="efiz.near/widget/Common.Compose"
-          props={{
-            communityHashtags: hashtags,
-            exclusive: false,
-            allowPublicPosting: true,
-          }}
-        />
+        <ComposeWrapper>
+          <Widget
+            src="efiz.near/widget/Common.Compose"
+            props={{
+              communityHashtags: hashtags,
+              exclusive: false,
+              allowPublicPosting: true,
+            }}
+          />
+        </ComposeWrapper>
       )}
-      <Text
-        size="14px"
-        weight="600"
-        style={{ textTransform: "uppercase", letterSpacing: "0.17em" }}
-      >
-        Made Possible by{" "}
-        <a href="https://near.org/blog/what-is-the-near-digital-collective">
-          NDC
-        </a>
-        <Widget src="hack.near/widget/dev.Badge" />
-      </Text>
+    </Content>
+    <Container>
+      <Flex gap="23px" direction="column" alignItems="center">
+        <Text
+          size="14px"
+          weight="600"
+          style={{ textTransform: "uppercase", letterSpacing: "0.17em" }}
+        >
+          Made Possible by{" "}
+          <a href="https://near.org/blog/what-is-the-near-digital-collective">
+            NDC
+          </a>
+          <Widget src="hack.near/widget/dev.Badge" />
+        </Text>
+      </Flex>
     </Container>
   </Wrapper>
 );
