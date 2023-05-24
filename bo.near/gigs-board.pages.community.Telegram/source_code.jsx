@@ -109,7 +109,6 @@ if (groupInfo === null || !groupInfo.ok) {
 }
 
 const messageIds = groupInfo.body.messageIds;
-console.log(messageIds);
 
 const Telegram = (
   <>
