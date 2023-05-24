@@ -52,7 +52,7 @@ const myState = State.init({
   key: "",
   value: "",
   linkValue: "",
-  allItems: items,
+  allItems: items ? items : {},
   editKey: "",
   editValue: "",
   isModalOpen: false,
@@ -67,7 +67,7 @@ if (myState.allItems === null) {
   );
 }
 
-//Add items to the SocialDb
+//Add items to the local state
 function addItem() {
   let currItems = myState.allItems;
   //If key has space
@@ -80,36 +80,38 @@ function addItem() {
     linkValue: "",
     allItems: currItems,
   });
+
+  console.log("after adding", myState);
 }
 
+//Remove item from local state
 function removeItemFromState(key) {
-  // const newObjState = myState.allItems;
-  // newObjState[key] = null;
-
   State.update({
     allItems: { ...myState.allItems, [key]: null },
   });
   console.log("newObjState", myState.allItems);
 }
 
+//Upload data on chain
 function uploadData() {
   Social.set({
     testWidget: myState.allItems,
   });
 }
 
+//Open modal for editing item from local state
 function openModal(item) {
   State.update({
     editKey: item[0],
-    editValue: item[1],
+    editValue: item[1].value,
     isModalOpen: true,
   });
 }
 
+//Edit single item in local state
 function changeItemInState() {
   const newItems = { ...myState.allItems };
   newItems[myState.editKey] = myState.editValue;
-  console.log("newItems", newItems);
 
   State.update({
     allItems: newItems,
@@ -118,7 +120,6 @@ function changeItemInState() {
   });
 }
 
-console.log("TEST");
 return (
   <DashboardWrapper>
     <EditModal isOpen={myState.isModalOpen}>
@@ -136,11 +137,11 @@ return (
     <ItemsListWrapper>
       {myState.allItems &&
         Object.entries(myState.allItems).map((item, index) => (
-          <SingleItem isActive={item[1] !== null}>
+          <SingleItem isActive={item[1].value !== null}>
             <p>
-              {item[0]} : {item[1]}
+              {item[0]} : {item[1].value}
             </p>
-            {item[1] !== null && (
+            {item[1].value !== null && (
               <RemoveItemBtn onClick={() => removeItemFromState(item[0])}>
                 +
               </RemoveItemBtn>
@@ -174,12 +175,12 @@ return (
         value={myState.value}
         onChange={(e) => State.update({ value: e.target.value })}
       />
-      <label for="link">Value: </label>
+      <label for="link">Link: </label>
       <input
         type="text"
         id="link"
-        value={myState.value}
-        onChange={(e) => State.update({ value: e.target.value })}
+        value={myState.linkValue}
+        onChange={(e) => State.update({ linkValue: e.target.value })}
       />
       <div>
         <button onClick={addItem}>Add item</button>
