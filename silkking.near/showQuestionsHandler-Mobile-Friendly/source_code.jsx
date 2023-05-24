@@ -270,7 +270,7 @@ const renderModal = () => {
             }}
           >
             <Widget
-              src={`harrydhillon.near/widget/showQuestionsHandler-Mobile-Friendly`}
+              src={`${widgetOwner}/widget/showQuestionsHandler-Mobile-Friendly`}
               props={{ accountId: state.poll.accountId, onlyUser: true }}
             />
           </div>
