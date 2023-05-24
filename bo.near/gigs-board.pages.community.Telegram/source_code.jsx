@@ -113,7 +113,7 @@ const messageIds = groupInfo.body.messageIds;
 const Telegram = (
   <>
     <iframe
-      iframeResizer={{ log: true, heightCalculationMethod: "scroll" }}
+      iframeResizer={{ log: true, heightCalculationMethod: "bodyOffset" }}
       src={
         "https://cg-msg-viewer.pages.dev/?group=" +
         group +
