@@ -21,6 +21,7 @@ let questionBlockHeight = Number(props.blockHeight);
 
 const polls =
   !props.previewInfo && Social.index("poll_question", "question-v3.1.0");
+console.log(0, polls, state.polls);
 if (JSON.stringify(polls) != JSON.stringify(state.polls)) {
   State.update({ polls });
 }
