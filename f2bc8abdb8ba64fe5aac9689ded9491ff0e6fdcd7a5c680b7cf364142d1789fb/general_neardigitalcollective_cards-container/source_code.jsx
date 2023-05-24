@@ -2,7 +2,7 @@ const widgetOwner =
   props.widgetOwner ??
   "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
 
-const usersCardsToShow = props.accountId;
+const isOwnAccountId = props.isOwnAccountId;
 const tabs = props.tabs;
 const prevTab = props.prevTab;
 const handlerStateUpdate = props.handlerStateUpdate;
@@ -13,6 +13,12 @@ const contentWidgetName =
 
 const cardsData = props.cardsData;
 const sectionTtext = props.sectionTtext ?? "All Schedules";
+
+if (isOwnAccountId) {
+  cardsData = cardsData.filter(
+    (cardData) => cardData.accountId == context.accountId
+  );
+}
 
 return (
   <div className="row card-group py-3">
