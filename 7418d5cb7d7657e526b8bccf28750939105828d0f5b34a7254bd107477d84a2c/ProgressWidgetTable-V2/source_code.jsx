@@ -126,7 +126,7 @@ const Row = styled.div`
   margin-bottom: 6px;
 `;
 
-const ItemTitle = styled.div`
+const ItemTitle = styled.a`
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -231,7 +231,7 @@ const StepItem = styled.p`
   left: -30px;
   width: 100%;
 `;
-const percentage = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+
 const steps = [
   "Not Started",
   "Planning",
@@ -245,22 +245,20 @@ const steps = [
   "Launching",
   "Deployed",
 ];
+const accountId = context.accountId;
 
-const testObj = {
-  "NDC Academy": 20,
-  "EasyPoll v1": 50,
-  "EasyPoll v2": 90,
-  "Kudos V1": 10,
-  "Kudos V2": 40,
-  "Near Docs": 40,
-  Nominate: 40,
-  "NDC Dashboard": 40,
-  "NDC Gateway": 40,
-  "NDC Voting": 100,
-  "NDC Elections": 90,
-  "NDC TrackMyGrants": 30,
-  "Regional Communities": 20,
-};
+if (!accountId) {
+  return <h1>Please sign in with NEAR wallet</h1>;
+}
+
+let items = Social.get(`${accountId}/testWidget/**`);
+if (items == null || items == undefined) {
+  return <h1>No Data</h1>;
+}
+
+const chartState = State.init({
+  allItems: items,
+});
 
 const colors = {
   yellow: "#FFD50D",
@@ -273,23 +271,24 @@ const { hasBackground } = props;
 return (
   <TableWrapper>
     <OverflowWrapper>
-      <ChartWrapper className="CHARTWRAPPER">
-        {hasBackground && (
-          <GradientContainer className="GRADIENT"></GradientContainer>
-        )}
+      <ChartWrapper>
+        {hasBackground && <GradientContainer></GradientContainer>}
 
-        {Object.entries(testObj).map((item) => (
+        {Object.entries(chartState.allItems).map((item) => (
           <Row>
-            <ItemTitle className="ITEM_TITLE">{item[0]}</ItemTitle>
+            <ItemTitle href={item[1].link}>{item[0]}</ItemTitle>
             <SingleMeterBarWrapper>
-              <SingleMeterBar width={item[1] + 2} color={colors.blue}>
-                {item[1]}%
+              <SingleMeterBar
+                width={parseInt(item[1].value) + 2}
+                color={colors.blue}
+              >
+                {item[1].value}%
               </SingleMeterBar>
             </SingleMeterBarWrapper>
           </Row>
         ))}
       </ChartWrapper>
-      <AgendaWrapper className="AGENDA">
+      <AgendaWrapper>
         {steps.map((item, index) => (
           <StepWrapper left={index !== 10 ? index * 10 : 98}>
             <PercentageItem>
