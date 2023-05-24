@@ -90,7 +90,7 @@ return (
   <div
     className="modal"
     id="modal"
-    style={showAbortScheduleCreation && abortPopupStyles.generalContainer}
+    style={showAbort && abortPopupStyles.generalContainer}
     tabindex="-1"
     role="dialog"
     onClick={closeModalClickingOnTransparent()}
