@@ -273,7 +273,6 @@ const chartState = State.init({
   allItems: items ? items : {},
 });
 
-console.log("chartState", chartState);
 const { hasBackground } = props;
 
 return (
