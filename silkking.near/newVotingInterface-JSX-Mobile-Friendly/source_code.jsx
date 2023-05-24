@@ -1,3 +1,4 @@
+console.log(1, props);
 const FlexContainer = styled.div`
     display:flex;
     @media screen and (max-width: 768px)  {
