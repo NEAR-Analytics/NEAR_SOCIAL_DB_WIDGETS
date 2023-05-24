@@ -131,7 +131,7 @@ return (
             style={abortPopupStyles.continueEditingButton}
             onClick={() => handlerStateUpdate({ showAbort: false })}
           >
-            {cancelAbortText}
+            {confirmAbortText}
           </button>
           <button
             type="button"
@@ -146,7 +146,7 @@ return (
               });
             }}
           >
-            {confirmAbortText}
+            {cancelAbortText}
           </button>
         </div>
       </div>
