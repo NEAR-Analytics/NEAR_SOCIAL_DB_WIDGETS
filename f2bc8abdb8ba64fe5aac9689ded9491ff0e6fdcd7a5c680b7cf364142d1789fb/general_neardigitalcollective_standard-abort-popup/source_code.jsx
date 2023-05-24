@@ -139,7 +139,7 @@ return (
             data-dismiss="modal"
             style={abortPopupStyles.discardChangesButton}
             onClick={() => {
-              State.update({
+              handlerStateUpdate({
                 tab: abortThroughPage,
                 hoveringElement: "",
                 showAbort: false,
