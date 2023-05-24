@@ -49,7 +49,7 @@ const tabs = {
   MY_POLLS: { id: 0, text: "My Polls" },
   ALL_EXISTING_POLLS: { id: 1, text: "All existing polls" },
   NEW_POLL: { id: 2, text: "Create a poll" },
-  GET_VERIGIED_AS_A_HUMAN: { id: 3, text: "Get Verified as Human" },
+  GET_VERIFIED_AS_A_HUMAN: { id: 3, text: "Get Verified as Human" },
 };
 
 const CardWrapper = styled.div`
@@ -167,7 +167,7 @@ return (
         style={{ margin: "0 4rem" }}
       >
         <Widget
-          src="harrydhillon.near/widget/Easypoll-header-buttons"
+          src={`${widgetOwner}/widget/Easypoll-header-buttons`}
           props={{
             state: state,
             stateUpdate: (data) => {
@@ -199,7 +199,7 @@ return (
           All existing polls
         </h2>
         <Widget
-          src={`harrydhillon.near/widget/showQuestionsHandler-Mobile-Friendly`}
+          src={`${widgetOwner}/widget/showQuestionsHandler-Mobile-Friendly`}
           props={{ sharedBlockHeight }}
         />
       </div>
@@ -209,7 +209,7 @@ return (
           My Polls
         </h2>
         <Widget
-          src={`harrydhillon.near/widget/showQuestionsHandler-Mobile-Friendly`}
+          src={`${widgetOwner}/widget/showQuestionsHandler-Mobile-Friendly`}
           props={{ sharedBlockHeight, onlyUser: true }}
         />
       </div>
@@ -281,7 +281,7 @@ return (
         </button>
       </div>
     ) : (
-      state.displaying === tabs.GET_VERIGIED_AS_A_HUMAN.id && (
+      state.displaying === tabs.GET_VERIFIED_AS_A_HUMAN.id && (
         <div
           className="px-4"
           style={{
