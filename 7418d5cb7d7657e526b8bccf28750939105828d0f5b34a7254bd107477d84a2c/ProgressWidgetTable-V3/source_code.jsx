@@ -127,7 +127,7 @@ const Row = styled.div`
   margin-bottom: 6px;
 `;
 
-const ItemTitle = styled.div`
+const ItemTitle = styled.a`
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -251,28 +251,29 @@ const steps = [
   "Deployed",
 ];
 
-const testObj = {
-  "NDC Academy": 20,
-  "EasyPoll v1": 50,
-  "EasyPoll v2": 90,
-  "Kudos V1": 10,
-  "Kudos V2": 40,
-  "Near Docs": 40,
-  Nominate: 40,
-  "NDC Dashboard": 40,
-  "NDC Gateway": 40,
-  "NDC Voting": 100,
-  "NDC Elections": 90,
-  "NDC TrackMyGrants": 30,
-  "Regional Communities": 20,
-};
-
 const colors = {
   yellow: "#FFD50D",
   blue: "#4498E0",
   pink: "#F29BC0",
 };
 
+const accountId = context.accountId;
+
+if (!accountId) {
+  return <h1>Please sign in with NEAR wallet</h1>;
+}
+
+let items = Social.get(`${accountId}/testWidget/**`);
+
+if (items === null || items === undefined) {
+  return <h1>No Data</h1>;
+}
+
+const chartState = State.init({
+  allItems: items ? items : {},
+});
+
+console.log("chartState", chartState);
 const { hasBackground } = props;
 
 return (
@@ -281,12 +282,15 @@ return (
       <ChartWrapper>
         {hasBackground && <GradientContainer></GradientContainer>}
 
-        {Object.entries(testObj).map((item) => (
+        {Object.entries(chartState.allItems).map((item) => (
           <Row>
-            <ItemTitle>{item[0]}</ItemTitle>
+            <ItemTitle href={item[1].link}>{item[0]}</ItemTitle>
             <SingleMeterBarWrapper>
-              <SingleMeterBar width={item[1] + 2} color={colors.blue}>
-                {item[1]}%
+              <SingleMeterBar
+                width={parseInt(item[1].value) + 2}
+                color={colors.blue}
+              >
+                {item[1].value}%
               </SingleMeterBar>
             </SingleMeterBarWrapper>
           </Row>
