@@ -26,6 +26,7 @@ if (JSON.stringify(polls) != JSON.stringify(state.polls)) {
   State.update({ polls });
 }
 
+console.log(3, state.polls);
 if (!state.polls) {
   console.log(1);
   return "Loading";
