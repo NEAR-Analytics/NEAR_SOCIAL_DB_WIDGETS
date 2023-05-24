@@ -8,9 +8,9 @@ State.init({
   answers: [{}],
 });
 
-if (!props.isPreview && !props.blockHeight) {
-  return "Prop block height wasn't provided";
-}
+// if (!props.isPreview && !props.blockHeight) {
+//   return "Prop block height wasn't provided";
+// }
 
 const widgetOwner = "silkking.near";
 
