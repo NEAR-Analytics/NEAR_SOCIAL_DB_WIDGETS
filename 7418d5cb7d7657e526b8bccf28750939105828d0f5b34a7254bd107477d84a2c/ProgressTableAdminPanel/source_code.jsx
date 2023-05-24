@@ -94,7 +94,7 @@ if (!accountId) {
   return "Please sign in with NEAR wallet";
 }
 
-let items = Social.get(`${accountId}/testWidget/**`);
+// let items = Social.get(`${accountId}/testWidget/**`);
 
 const myState = State.init({
   key: "",
@@ -116,7 +116,6 @@ if (myState.allItems === null) {
   );
 }
 
-console.log("myState", myState);
 //Add items to the local state
 function addItem() {
   let currItems = myState.allItems;
@@ -137,7 +136,6 @@ function removeItemFromState(key) {
   State.update({
     allItems: { ...myState.allItems, [key]: null },
   });
-  console.log("newObjState", myState.allItems);
 }
 
 //Upload data on chain
