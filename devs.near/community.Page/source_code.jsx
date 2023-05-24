@@ -76,7 +76,7 @@ return (
       {Object.entries(communities).map(([label, community]) => {
         return (
           <div class="col">
-            <Widget src="devgovgigs.near/widget/gigs-board.components.community.FeaturedCommunity" />
+            <Widget src="devs.near/widget/community.Featured" />
           </div>
         );
       })}
