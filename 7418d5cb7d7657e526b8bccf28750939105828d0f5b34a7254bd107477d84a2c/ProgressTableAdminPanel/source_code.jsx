@@ -65,6 +65,7 @@ const myState = State.init({
   isModalOpen: false,
 });
 
+console.log(myState);
 if (myState.allItems === null) {
   State.update(
     {
@@ -87,8 +88,6 @@ function addItem() {
     linkValue: "",
     allItems: currItems,
   });
-
-  console.log("after adding", myState);
 }
 
 //Remove item from local state
@@ -119,9 +118,9 @@ function openModal(item) {
 function changeItemInState() {
   const newItems = { ...myState.allItems };
   newItems[myState.editKey] = {
-    value: myState.editValue
-    link: ''
-    };
+    value: myState.editValue,
+    link: "",
+  };
 
   State.update({
     allItems: newItems,
