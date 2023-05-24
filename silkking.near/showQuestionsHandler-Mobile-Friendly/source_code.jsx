@@ -6,6 +6,14 @@ State.init({
   modalBlockHeight: sharedBlockHeight ?? question.blockHeight,
 });
 
+const getFirstSBTToken = (accountId) => {
+  const view = Near.view("registry.i-am-human.near", "sbt_tokens_by_owner", {
+    account: accountId,
+    issuer: "gooddollar-v1.i-am-human.near",
+  });
+  return view?.[0]?.[1]?.[0];
+};
+
 const widgetOwner = "easypoll.near";
 
 let globalAccountId = props.accountId ?? context.accountId;
@@ -15,7 +23,7 @@ const onlyUsersPolls = props.onlyUser ?? false;
 let polls = Social.index("poll_question", "question-v3.1.0");
 
 if (JSON.stringify(polls) != JSON.stringify(state.polls)) {
-  State.update({ polls: polls });
+  State.update({ polls });
 }
 
 if (!polls) {
@@ -24,13 +32,11 @@ if (!polls) {
 
 if (onlyUsersPolls) {
   polls = state.polls.filter((poll) => {
-    if (poll.accountId == globalAccountId) {
-      return true;
-    } else {
-      return false;
-    }
+    return poll.accountId == globalAccountId;
   });
 }
+
+polls = polls.filter((poll) => getFirstSBTToken(poll.accountId) !== undefined);
 
 polls = polls.sort((q1, q2) => {
   const isQ1Finished = q1.value.endTimestamp < Date.now();
