@@ -70,6 +70,8 @@ const tagsInCommon = (accountId) => {
 };
 
 function getRecommendationsFor(_accountId) {
+  console.log(accounts);
+  console.log(_accountId);
   const recommendations = Object.keys(accounts)
     .filter(
       (accountId) => !myFriends.includes(accountId) && accountId !== userId
