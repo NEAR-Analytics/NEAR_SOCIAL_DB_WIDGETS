@@ -72,7 +72,7 @@ function addItem() {
   let currItems = myState.allItems;
   //If key has space
   let key = myState.key.replace(/ /g, "-");
-  currItems[key] = { value: myState.value, link: myState.link };
+  currItems[key] = { value: myState.value, link: myState.linkValue };
 
   State.update({
     key: "",
