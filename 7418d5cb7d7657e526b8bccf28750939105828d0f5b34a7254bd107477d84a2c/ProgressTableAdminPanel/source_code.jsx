@@ -44,9 +44,50 @@ const EditSvg = styled.svg`
     cursor: pointer;
 `;
 
-const EditModal = styled.div`
-  display: ${({ isOpen }) => (isOpen ? "block" : "none")};
+const EditModalWrapper = styled.div`
+    display: ${({ isOpen }) => (isOpen ? "flex" : "none")};
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 10%;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    z-index: 100;
+
 `;
+const EditModal = styled.div`
+    padding: 20px 60px;
+    background: #fff;
+    max-width: 400px;
+    width: 50%;
+    
+`;
+
+const CloseModal = styled.div`
+    position: absolute;
+    top: 5%;
+    left: 80%;
+    color: red;
+    margin-top: 2px;
+    width: 40px;
+    height: 40px;
+    font-size: 40px;
+    transform: rotate(45deg);
+    cursor: pointer;
+  `;
+
+const ButtonWapper = styled.div`
+    margin-top: 40px;
+    display: flex;
+    justify-content: flex-end;
+    button {
+        margin-left: 20px;
+    }
+`;
+
+//Styles ENDED
+
 const accountId = context.accountId;
 
 if (!accountId) {
@@ -62,10 +103,10 @@ const myState = State.init({
   allItems: items ? items : {},
   editKey: "",
   editValue: "",
+  editLink: "",
   isModalOpen: false,
 });
 
-console.log(myState);
 if (myState.allItems === null) {
   State.update(
     {
@@ -110,6 +151,7 @@ function openModal(item) {
   State.update({
     editKey: item[0],
     editValue: item[1].value,
+    editLink: item[1].link,
     isModalOpen: true,
   });
 }
@@ -126,22 +168,39 @@ function changeItemInState() {
     allItems: newItems,
     editKey: "",
     editValue: "",
+    isModalOpen: false,
   });
 }
 
 return (
   <DashboardWrapper>
-    <EditModal isOpen={myState.isModalOpen}>
-      <p>You are editing {myState.editKey}</p>
-      <label for="new-value">Value: </label>
-      <input
-        type="number"
-        id="new-value"
-        value={myState.editValue}
-        onChange={(e) => State.update({ editValue: e.target.value })}
-      />
-      <button onClick={() => changeItemInState()}>Submit</button>
-    </EditModal>
+    <EditModalWrapper isOpen={myState.isModalOpen}>
+      <CloseModal onClick={() => State.update({ isModalOpen: false })}>
+        +
+      </CloseModal>
+      <EditModal>
+        <p>
+          You are editing <strong>{myState.editKey}</strong>
+        </p>
+        <label for="new-value">Value: </label>
+        <input
+          type="number"
+          id="new-value"
+          value={myState.editValue}
+          onChange={(e) => State.update({ editValue: e.target.value })}
+        />
+        <label for="new-link-value">Value: </label>
+        <input
+          type="text"
+          id="new-link-value"
+          value={myState.editLink}
+          onChange={(e) => State.update({ editLink: e.target.value })}
+        />
+        <ButtonWapper>
+          <button onClick={() => changeItemInState()}>Submit</button>
+        </ButtonWapper>
+      </EditModal>
+    </EditModalWrapper>
     <FormWrapper>
       <ListTitle>Add new item: </ListTitle>
       <label for="key">Key: </label>
@@ -165,7 +224,7 @@ return (
         value={myState.linkValue}
         onChange={(e) => State.update({ linkValue: e.target.value })}
       />
-      <div>
+      <ButtonWapper>
         <button onClick={addItem}>Add item</button>
         <CommitButton
           data={{ testWidget: myState.allItems }}
@@ -176,7 +235,7 @@ return (
         {
           // <button onClick={() => uploadData()}>Upload data</button>
         }
-      </div>
+      </ButtonWapper>
     </FormWrapper>
 
     <ListTitle>Existing Items</ListTitle>
