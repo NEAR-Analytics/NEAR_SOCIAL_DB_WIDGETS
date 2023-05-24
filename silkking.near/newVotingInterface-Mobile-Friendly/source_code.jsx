@@ -301,7 +301,7 @@ function showDescription(description) {
 return (
   <>
     <Widget
-      src="harrydhillon.near/widget/newVotingInterface-JSX-Mobile-Friendly"
+      src={`${widgetOwner}/widget/newVotingInterface-JSX-Mobile-Friendly`}
       props={{
         state,
         stateUpdate: (data) => State.update(data),
