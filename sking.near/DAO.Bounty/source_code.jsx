@@ -232,7 +232,7 @@ function humanReadableTime(timestamp) {
   return result;
 }
 
-const bountyURL = `/sking.near/widget/DAO.Page?daoId=${daoId}&tab=bounty&bountyId=${bounty.id}`;
+const bountyURL = `/#/sking.near/widget/DAO.Page?daoId=${daoId}&tab=bounty&bountyId=${bounty.id}`;
 
 return (
   <Wrapper>
