@@ -67,41 +67,109 @@ const boardConfigByBoardId = ({ boardId }) => ({
       labelTerms: ["S-draft"],
       title: "Draft",
     },
-
-    [uuid()]: {
-      description: "Dolor sit",
-      labelTerms: ["S-review"],
-      title: "Review",
-    },
   },
 
-  dataTypes: { Issue: true, PullRequest: true },
+  dataTypes: {
+    Issue: { enabled: false, locked: true },
+    PullRequest: { enabled: true, locked: true },
+  },
+
   description: "Latest NEAR Enhancement Proposals by status",
   repoURL: "https://github.com/near/NEPs",
   title: "NEAR Protocol NEPs",
 });
 /* END_INCLUDE: "shared/mocks" */
 /* INCLUDE: "shared/lib/form" */
-const formUpdater =
-  ({ path }) =>
-  ({ field, via }) =>
-  (input) =>
-    State.update((lastState) => ({
-      ...lastState,
+/**
+ *! TODO: Extract into separate library module
+ *! once `useForm` is converted into a form factory widget
+ */
+const traversalUpdate = ({
+  input,
+  target: treeOrBranch,
+  path: [currentBranchKey, ...remainingBranch],
+  params,
+  via: nodeUpdate,
+}) => ({
+  ...treeOrBranch,
 
-      [path]: {
-        ...lastState[path],
-        hasChanges: true,
+  [currentBranchKey]:
+    remainingBranch.length > 0
+      ? traversalUpdate({
+          input,
 
-        [field]:
-          typeof via === "function"
-            ? via({
-                input: input?.target?.value ?? input ?? null,
-                lastFieldState: lastState[path][field],
-              })
-            : input?.target?.value ?? input ?? null,
-      },
-    }));
+          target:
+            typeof treeOrBranch[currentBranchKey] === "object"
+              ? treeOrBranch[currentBranchKey]
+              : {
+                  ...((treeOrBranch[currentBranchKey] ?? null) !== null
+                    ? { __archivedLeaf__: treeOrBranch[currentBranchKey] }
+                    : {}),
+                },
+
+          path: remainingBranch,
+          via: nodeUpdate,
+        })
+      : nodeUpdate({
+          input,
+          lastKnownState: treeOrBranch[currentBranchKey],
+          params,
+        }),
+});
+
+const fieldDefaultUpdate = ({
+  input,
+  lastKnownState,
+  params: { arrayDelimiter },
+}) => {
+  switch (typeof input) {
+    case "boolean":
+      return input;
+
+    case "object":
+      return Array.isArray(input) && typeof lastKnownState === "string"
+        ? input.join(arrayDelimiter ?? ",")
+        : input;
+
+    case "string":
+      return Array.isArray(lastKnownState)
+        ? input.split(arrayDelimiter ?? ",").map((string) => string.trim())
+        : input;
+
+    default: {
+      if ((input ?? null) === null) {
+        switch (typeof lastKnownState) {
+          case "boolean":
+            return !lastKnownState;
+
+          default:
+            return lastKnownState;
+        }
+      } else return input;
+    }
+  }
+};
+
+const useForm = ({ stateKey: formStateKey }) => ({
+  formState: state[formStateKey],
+
+  formUpdate:
+    ({ path: fieldPath, via: fieldCustomUpdate, ...params }) =>
+    (fieldInput) =>
+      State.update((lastKnownState) =>
+        traversalUpdate({
+          input: fieldInput?.target?.value ?? fieldInput,
+          target: lastKnownState,
+          path: [formStateKey, ...fieldPath],
+          params,
+
+          via:
+            typeof fieldCustomUpdate === "function"
+              ? fieldCustomUpdate
+              : fieldDefaultUpdate,
+        })
+      ),
+});
 /* END_INCLUDE: "shared/lib/form" */
 /* INCLUDE: "shared/lib/gui" */
 const Card = styled.div`
@@ -132,7 +200,12 @@ const GithubPage = ({ boardId, label }) => {
     boardConfig: {
       id: uuid(),
       columns: {},
-      dataTypes: { Issue: true, PullRequest: false },
+
+      dataTypes: {
+        Issue: { enabled: false, locked: true },
+        PullRequest: { enabled: true, locked: true },
+      },
+
       description: "Latest NEAR Enhancement Proposals by status",
       repoURL: "https://github.com/near/NEPs",
       title: "NEAR Protocol NEPs",
@@ -145,55 +218,26 @@ const GithubPage = ({ boardId, label }) => {
     ),
   });
 
-  console.log(state);
+  const { formState, formUpdate } = useForm({ stateKey: "boardConfig" });
 
-  const boardConfigUpdate = formUpdater({ path: "boardConfig" });
+  console.log(formState);
 
   const onEditorToggle = () =>
-    State.update((lastState) => ({
-      ...lastState,
-      isEditorEnabled: !lastState.isEditorEnabled,
+    State.update((lastKnownState) => ({
+      ...lastKnownState,
+      isEditorEnabled: !lastKnownState.isEditorEnabled,
     }));
 
-  const dataTypeToggle =
-    ({ key }) =>
-    ({ lastFieldState }) => ({
-      ...lastFieldState,
-      [key]: !lastFieldState[key],
-    });
-
-  const columnsCreateNew = ({ lastFieldState }) => {
-    if (Object.keys(lastFieldState).length < 6) {
+  const columnsCreateNew = ({ lastKnownState }) => {
+    if (Object.keys(lastKnownState).length < 6) {
       const id = uuid();
 
       return {
-        ...lastFieldState,
+        ...lastKnownState,
         [id]: { id, description: "", labelTerms: [], title: "New column" },
       };
-    } else {
-      return lastFieldState;
     }
   };
-
-  const columnsUpdate =
-    ({ id, prop, split }) =>
-    ({ input, lastFieldState }) => ({
-      ...lastFieldState,
-
-      [id]: {
-        ...lastFieldState[id],
-
-        [prop]:
-          Array.isArray(lastFieldState[id][prop]) && typeof input === "string"
-            ? input.split(split ?? ",").map((string) => string.trim())
-            : input,
-      },
-    });
-
-  console.log(
-    "Board config columns",
-    JSON.stringify(Object.values(state.boardConfig.columns))
-  );
 
   return widget("components.community.Layout", {
     label,
@@ -231,20 +275,20 @@ const GithubPage = ({ boardId, label }) => {
           >
             <h5 className="h5 d-inline-flex gap-2 m-0">
               <i className="bi bi-kanban-fill" />
-              <span>{state.boardConfig.title} board configuration</span>
+              <span>{formState.title} board configuration</span>
             </h5>
 
             <div className="d-flex gap-3 flex-column flex-lg-row">
               <div className="input-group-text border-0 d-flex flex-column flex-1 flex-shrink-0">
-                <span id={`${state.boardConfig.id}-title`}>Title</span>
+                <span id={`${formState.id}-title`}>Title</span>
 
                 <input
-                  aria-describedby={`${state.boardConfig.id}-title`}
+                  aria-describedby={`${formState.id}-title`}
                   className="form-control"
-                  onChange={boardConfigUpdate({ field: "title" })}
+                  onChange={formUpdate({ path: ["title"] })}
                   placeholder="NEAR Protocol NEPs"
                   type="text"
-                  value={state.boardConfig.title}
+                  value={formState.title}
                 />
               </div>
 
@@ -254,17 +298,17 @@ const GithubPage = ({ boardId, label }) => {
                   "d-flex flex-column justify-content-evenly flex-4 w-100",
                 ].join(" ")}
               >
-                <span id={`${state.boardConfig.id}-repoURL`}>
+                <span id={`${formState.id}-repoURL`}>
                   GitHub repository URL
                 </span>
 
                 <input
-                  aria-describedby={`${state.boardConfig.id}-repoURL`}
+                  aria-describedby={`${formState.id}-repoURL`}
                   className="form-control"
-                  onChange={boardConfigUpdate({ field: "repoURL" })}
+                  onChange={formUpdate({ path: ["repoURL"] })}
                   placeholder="https://github.com/example-org/example-repo"
                   type="text"
-                  value={state.boardConfig.repoURL}
+                  value={formState.repoURL}
                 />
               </div>
             </div>
@@ -273,41 +317,43 @@ const GithubPage = ({ boardId, label }) => {
               <CompactContainer className="d-flex gap-3 flex-column justify-content-start p-3 ps-0">
                 <span
                   className="d-inline-flex gap-2"
-                  id={`${state.boardConfig.id}-dataTypes`}
+                  id={`${formState.id}-dataTypes`}
                 >
                   <i class="bi bi-database-fill" />
                   <span>Tracked data</span>
                 </span>
 
-                {Object.entries(state.boardConfig.dataTypes).map(
-                  ([key, active]) =>
+                {Object.entries(formState.dataTypes).map(
+                  ([typeName, { enabled, locked }]) =>
                     widget(
                       "components.toggle",
                       {
-                        ...{ active, className: "w-100", key, label: key },
+                        active: enabled,
+                        className: "w-100",
+                        disabled: locked,
+                        key: typeName,
+                        label: typeName,
 
-                        onSwitch: boardConfigUpdate({
-                          field: "dataTypes",
-                          via: dataTypeToggle({ key }),
+                        onSwitch: formUpdate({
+                          path: ["dataTypes", typeName, "enabled"],
                         }),
                       },
-                      key
+
+                      typeName
                     )
                 )}
               </CompactContainer>
 
               <div className="input-group-text border-0 d-flex flex-column w-100">
-                <span id={`${state.boardConfig.id}-description`}>
-                  Description
-                </span>
+                <span id={`${formState.id}-description`}>Description</span>
 
                 <textarea
-                  aria-describedby={`${state.boardConfig.id}-description`}
+                  aria-describedby={`${formState.id}-description`}
                   className="form-control h-75"
-                  onChange={boardConfigUpdate({ field: "description" })}
+                  onChange={formUpdate({ path: ["description"] })}
                   placeholder="Latest NEAR Enhancement Proposals by status."
                   type="text"
-                  value={state.boardConfig.description}
+                  value={formState.description}
                 />
               </div>
             </div>
@@ -319,12 +365,8 @@ const GithubPage = ({ boardId, label }) => {
               </span>
             </div>
 
-            <div
-              className={["d-flex flex-column align-items-center gap-3"].join(
-                " "
-              )}
-            >
-              {Object.values(state.boardConfig.columns).map(
+            <div className="d-flex flex-column align-items-center gap-3">
+              {Object.values(formState.columns).map(
                 ({ id, description, labelTerms, title }) => (
                   <div
                     class="d-flex flex-column gap-3 rounded-2 p-3 w-100 bg-secondary bg-opacity-25"
@@ -332,16 +374,15 @@ const GithubPage = ({ boardId, label }) => {
                   >
                     <div className="d-flex flex-column flex-lg-row gap-3 align-items-center w-100">
                       <div className="d-flex flex-column flex-grow-1 flex-md-grow-0 flex-shrink-0">
-                        <span id={`${state.boardConfig.id}-column-${id}-title`}>
+                        <span id={`${formState.id}-column-${id}-title`}>
                           Title
                         </span>
 
                         <input
-                          aria-describedby={`${state.boardConfig.id}-column-${id}-title`}
+                          aria-describedby={`${formState.id}-column-${id}-title`}
                           className="form-control"
-                          onChange={boardConfigUpdate({
-                            field: "columns",
-                            via: columnsUpdate({ id, prop: "title" }),
+                          onChange={formUpdate({
+                            path: ["columns", id, "title"],
                           })}
                           placeholder="👀 Review"
                           type="text"
@@ -350,18 +391,15 @@ const GithubPage = ({ boardId, label }) => {
                       </div>
 
                       <div className="d-flex flex-column flex-grow-1 border-0 bg-transparent w-100">
-                        <span
-                          id={`${state.boardConfig.id}-column-${id}-description`}
-                        >
+                        <span id={`${formState.id}-column-${id}-description`}>
                           Description
                         </span>
 
                         <input
-                          aria-describedby={`${state.boardConfig.id}-column-${id}-description`}
+                          aria-describedby={`${formState.id}-column-${id}-description`}
                           className="form-control"
-                          onChange={boardConfigUpdate({
-                            field: "columns",
-                            via: columnsUpdate({ id, prop: "description" }),
+                          onChange={formUpdate({
+                            path: ["columns", id, "description"],
                           })}
                           placeholder="NEPs that need a review by Subject Matter Experts."
                           type="text"
@@ -376,18 +414,17 @@ const GithubPage = ({ boardId, label }) => {
                     >
                       <span
                         className="text-wrap"
-                        id={`${state.boardConfig.id}-column-${title}-searchTerms`}
+                        id={`${formState.id}-column-${title}-searchTerms`}
                       >
                         Search terms for labels to attach, comma-separated
                       </span>
 
                       <input
-                        aria-describedby={`${state.boardConfig.id}-column-${title}-searchTerms`}
+                        aria-describedby={`${formState.id}-column-${title}-searchTerms`}
                         aria-label="Search terms for included labels"
                         className="form-control"
-                        onChange={boardConfigUpdate({
-                          field: "columns",
-                          via: columnsUpdate({ id, prop: "labelTerms" }),
+                        onChange={formUpdate({
+                          path: ["columns", id, "labelTerms"],
                         })}
                         placeholder="WG-, draft, review, proposal, ..."
                         type="text"
@@ -402,21 +439,18 @@ const GithubPage = ({ boardId, label }) => {
             <div className="d-flex align-items-center justify-content-between">
               <button
                 className="btn btn-secondary d-inline-flex gap-2"
-                disabled={Object.keys(state.boardConfig.columns).length >= 6}
-                onClick={boardConfigUpdate({
-                  field: "columns",
+                disabled={Object.keys(formState.columns).length >= 6}
+                onClick={formUpdate({
+                  path: ["columns"],
                   via: columnsCreateNew,
                 })}
-                style={{
-                  /* boxShadow: "0 -16px 0 0 #6c757d7a",*/ width: "fit-content",
-                }}
               >
                 <i class="bi bi-plus-lg" />
                 <span>New column</span>
               </button>
 
               <button
-                disabled={!state.boardConfig.hasChanges || "DELETE WHEN DONE"}
+                disabled={!formState.hasChanges || "DELETE WHEN DONE"}
                 className={[
                   "btn",
                   (boardId ?? null) === null ? "btn-primary" : "btn-secondary",
@@ -430,7 +464,7 @@ const GithubPage = ({ boardId, label }) => {
 
               {(boardId ?? null) === null ? null : (
                 <button
-                  disabled={!state.boardConfig.hasChanges}
+                  disabled={!formState.hasChanges}
                   className="btn btn-primary d-inline-flex gap-2 align-items-center"
                   style={{ width: "fit-content" }}
                 >
@@ -442,7 +476,7 @@ const GithubPage = ({ boardId, label }) => {
           </div>
         ) : null}
 
-        {!boardId && widget("entity.github-repo.board", state.boardConfig)}
+        {!boardId && widget("entity.github-repo.board", formState)}
 
         {boardId &&
           widget("entity.github-repo.board", {
