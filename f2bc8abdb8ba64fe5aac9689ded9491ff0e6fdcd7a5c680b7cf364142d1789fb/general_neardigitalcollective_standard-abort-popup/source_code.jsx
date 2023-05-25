@@ -1,7 +1,7 @@
 /*----------------------------------------------Start get props----------------------------------------------*/
 const showAbort = props.showAbort ?? false;
 const handlerStateUpdate = props.handlerStateUpdate;
-const abortThroughPage = props.abortThroughPage;
+const abortThroughPage = props.abortThroughPage ?? 1;
 
 const abortInfoText =
   props.abortInfoText ?? "If you leave now, you will lose all your changes";
