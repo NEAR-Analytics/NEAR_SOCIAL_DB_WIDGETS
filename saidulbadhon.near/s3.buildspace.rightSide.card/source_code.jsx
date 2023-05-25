@@ -33,7 +33,7 @@ return (
         width: "calc(100% - 48px)",
         transform: "translateX(-50%)",
         zIndex: 100,
-        bottom: 16,
+        bottom: 24,
         borderRadius: 16,
         display: "flex",
         justifyContent: "center",
@@ -42,7 +42,7 @@ return (
         backdropFilter: "blur(10px)",
         border: `1px rgba(256, 256, 256, .25) solid`,
 
-        padding: "16px 24px",
+        padding: "8px 16px",
       }}
     >
       <p
