@@ -4,17 +4,18 @@ const blockHeight =
 const subscribe = !!props.subscribe;
 const notifyAccountId = accountId;
 const type = props.type;
+const key = props.key || "main";
 const postUrl = `https://near.org#/near/widget/PostPage?accountId=${accountId}&blockHeight=${blockHeight}`;
 
 State.init({ hasBeenFlagged: false });
 
 const content =
   props.content ??
-  JSON.parse(Social.get(`${accountId}/post/main`, blockHeight));
+  JSON.parse(Social.get(`${accountId}/post/${key}`, blockHeight));
 
 const item = {
   type: "social",
-  path: `${accountId}/post/main`,
+  path: `${accountId}/post/${key}`,
   blockHeight,
 };
 
