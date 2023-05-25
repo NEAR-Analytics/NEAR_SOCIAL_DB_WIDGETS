@@ -183,28 +183,13 @@ const images = [
   },
 ];
 
-// // Calculate the total width of the image container
-// const imageContainer = document.getElementById("image-container");
-// const totalWidth = imageContainer.children.length * 100 + "%";
-// imageContainer.style.width = totalWidth;
-
-// // Clone the images and append them to the image container
-// // const images = imageContainer.getElementsByTagName('img');
-// const imageCount = images.length;
-// for (let i = 0; i < imageCount; i++) {
-//   const clone = images[i].cloneNode(true);
-//   imageContainer.appendChild(clone);
-// }
-
-// // Start the animation
-// imageContainer.style.animationDuration = imageCount * 5 + "s"; // Adjust the speed as needed
-
 return (
   <div
     style={{
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
+      backgroundColor: theme.backgroundColor,
     }}
   >
     <div
