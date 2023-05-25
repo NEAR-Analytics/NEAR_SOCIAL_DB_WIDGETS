@@ -56,7 +56,7 @@ return (
     <div>
       <div>
         <h3>MMC Undercover Pups</h3>
-        <h6>Minting 25/05 @ 2PM UTC!</h6>
+        <h6>MINTING NOW!</h6>
         <img
           src="https://byzantion.mypinata.cloud/ipfs/QmdwBQGzcYELCCRw3234Un9C4a5EJHncki6nsPywamwnBQ/101.png?img-width=850&img-height=850&img-fit=cover&img-quality=80&img-onerror=redirect&img-fit=pad&img-format=webp"
           alt="MMCDPUP"
