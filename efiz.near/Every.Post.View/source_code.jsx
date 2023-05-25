@@ -84,7 +84,7 @@ if (state.hasBeenFlagged) {
 }
 
 function renderContent() {
-  if (type === "md") {
+  if (type === "md" || type === "social") {
     return (
       <>
         {content.text && (
