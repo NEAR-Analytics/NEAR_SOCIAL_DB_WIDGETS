@@ -64,7 +64,7 @@ const abortPopupTexts = props.abortPopupTexts ?? {
 const bootstrapIcons = props.bootstrapIcons ?? {
   closeIcon: "bi bi-x-lg",
   logoIcon: "bi bi-calendar-week-fill",
-  newScheduleButtonInnerIcon: "bi bi-plus-lg",
+  addIcon: "bi bi-plus-lg",
 };
 
 const logoIconText = props.logoIconText ?? "WeeklySchedule";
@@ -161,8 +161,8 @@ const thisWidgetInlineStyles = {
   },
   newScheduleButton: standardButtonStyles,
   newScheduleButtonHovering: standardButtonHoveringStyles,
-  newScheduleButtonInnerIcon: { color: colors.color2 },
-  newScheduleButtonInnerIconHovered: { color: "black" },
+  addIcon: { color: colors.color2 },
+  addIconHovered: { color: "black" },
   showUserInfoInHeaderText: { margin: "0px", fontSize: "0.8rem" },
 };
 
@@ -275,11 +275,11 @@ const renderNavigationButton = (tab, isMobile) => {
       }
     >
       <i
-        className={bootstrapIcons.newScheduleButtonInnerIcon}
+        className={bootstrapIcons.addIcon}
         style={
           state.hoveringElement == tab.text || state.tab == tab.id
-            ? thisWidgetInlineStyles.newScheduleButtonInnerIconHovered
-            : thisWidgetInlineStyles.newScheduleButtonInnerIcon
+            ? thisWidgetInlineStyles.addIconIconHovered
+            : thisWidgetInlineStyles.addIcon
         }
       ></i>
       {tab.text}
