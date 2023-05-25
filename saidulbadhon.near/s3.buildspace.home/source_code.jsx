@@ -213,7 +213,6 @@ return (
       <div
         className="scroll-container"
         style={{
-          //   maxHeight: "calc(100vh - 75px)",
           maxHeight: "100vh",
           overflowY: "hidden",
           display: "flex",
@@ -229,7 +228,6 @@ return (
             gap: 16,
             justifyContent: "center",
             height: "100%",
-            // overflowY: "auto",
           }}
         >
           {images?.map((image, index) => (
@@ -250,7 +248,6 @@ return (
             gap: 16,
             justifyContent: "center",
             height: "100%",
-            // overflowY: "auto",
           }}
         >
           {images?.map((image, index) => (
