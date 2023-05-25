@@ -18,10 +18,11 @@ return (
         fontSize: 72,
         lineHeight: 1,
         fontWeight: 900,
-        width: "10ch",
+        width: "11ch",
       }}
     >
-      six weeks to finally work on your ideas. you in?
+      six weeks to finally work on your ideas. <br />
+      you in?
     </h1>
 
     <button
