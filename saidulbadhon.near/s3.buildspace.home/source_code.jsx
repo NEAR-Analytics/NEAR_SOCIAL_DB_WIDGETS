@@ -202,7 +202,7 @@ return (
         maxWidth: 1250,
         display: "grid",
         gridTemplateColumns: "1fr 516px",
-        paddingInline: 20,
+        paddingInline: 40,
       }}
     >
       <Widget
