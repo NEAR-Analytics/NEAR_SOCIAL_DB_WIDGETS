@@ -25,7 +25,6 @@ return (
   <div className="row card-group py-3">
     {sectionTtext && <h5>{sectionTtext}</h5>}
     {cardsData.map((cardData) => {
-      console.log(cardData);
       return (
         <div className="col-sm-12 col-lg-6 col-2xl-4 gy-3">
           <div
