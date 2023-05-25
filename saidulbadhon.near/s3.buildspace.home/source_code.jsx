@@ -218,7 +218,7 @@ return (
           maxHeight: "100vh",
           overflowY: "hidden",
           display: "flex",
-          gap: 16,
+          gap: 24,
         }}
       >
         <div
