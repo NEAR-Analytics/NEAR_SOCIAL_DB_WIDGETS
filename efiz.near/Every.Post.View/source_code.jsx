@@ -106,10 +106,12 @@ function renderContent() {
       </>
     );
   } else {
+    // blockHeight would preserve the original post
+    // so we pass final to get latest edit
     return (
       <Widget
         src="efiz.near/widget/Every.Thing.View"
-        props={{ path, blockHeight }}
+        props={{ path, blockHeight: "final" }}
       />
     );
   }
