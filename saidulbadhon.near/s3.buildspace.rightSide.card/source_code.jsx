@@ -6,9 +6,9 @@ return (
     key={index}
     style={{
       // height: "100%",
-      height: 300,
+      height: 350,
       width: "100%",
-      maxWidth: 200,
+      maxWidth: 250,
       borderRadius: 24,
       backgroundColor: "red",
       overflow: "hidden",
