@@ -201,7 +201,7 @@ return (
         width: "100%",
         maxWidth: 1250,
         display: "grid",
-        gap: 16,
+        gap: 32,
         gridTemplateColumns: "1fr 516px",
         paddingInline: 16,
       }}
