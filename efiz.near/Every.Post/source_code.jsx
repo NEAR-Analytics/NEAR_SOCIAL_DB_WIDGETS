@@ -1,7 +1,5 @@
 let index = [];
 const typeWhitelist = [
-  "md",
-  "social",
   "efiz.near/type/paragraph",
   "efiz.near/type/Image",
   "efiz.near/type/document",
