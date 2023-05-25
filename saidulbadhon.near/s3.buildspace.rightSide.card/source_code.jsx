@@ -30,7 +30,7 @@ return (
         color: "#FFF",
         position: "absolute",
         left: "50%",
-        width: "calc(100% - 32px)",
+        width: "calc(100% - 48px)",
         transform: "translateX(-50%)",
         zIndex: 100,
         bottom: 16,
@@ -42,7 +42,7 @@ return (
         backdropFilter: "blur(10px)",
         border: `1px rgba(256, 256, 256, .25) solid`,
 
-        padding: "8px 16px",
+        padding: "16px 24px",
       }}
     >
       <p
