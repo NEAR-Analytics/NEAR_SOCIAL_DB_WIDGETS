@@ -109,7 +109,7 @@ function renderContent() {
     return (
       <Widget
         src="efiz.near/widget/Every.Thing.View"
-        props={{ path: content.path, blockHeight: content.blockHeight }}
+        props={{ path, blockHeight }}
       />
     );
   }
