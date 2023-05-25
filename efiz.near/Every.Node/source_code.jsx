@@ -28,14 +28,15 @@ const Button = styled.button`
 `;
 
 const ButtonRow = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 4px;
+//   display: flex;
+//   flex-direction: row;
+//   flex-wrap: wrap;
+//   gap: 4px;
 `;
 
 function getType(path) {
   const parts = path.split("/");
+  console.log(parts.length);
   if (parts.length === 1) {
     return "account";
   } else if (parts.length === 2) {
@@ -45,6 +46,7 @@ function getType(path) {
     if (standard === "thing") {
       // We're gonna grab the type from the thing itself
     }
+    console.log(standard);
     return standard;
   }
 }
@@ -160,7 +162,6 @@ return (
                   key,
                   label: key,
                   node: val,
-                  type: getType(),
                   path: `${path}/${key}`,
                   setPath: setPath,
                   history,
