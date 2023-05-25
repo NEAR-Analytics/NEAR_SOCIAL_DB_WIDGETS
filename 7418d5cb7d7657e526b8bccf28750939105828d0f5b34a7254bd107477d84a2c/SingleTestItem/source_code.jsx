@@ -1,15 +1,10 @@
 const accountId = context.accountId;
+const authorForWidget =
+  "7418d5cb7d7657e526b8bccf28750939105828d0f5b34a7254bd107477d84a2c";
 
-function getCurrentURL() {
-  return window.location.href;
-}
-
-const currUrl = getCurrentURL();
-
-console.log("currUrl", currUrl);
-
+console.log(props);
 let item = Social.get(`${accountId}/testPersons/0/**`);
-console.log("ITem", item);
+
 return (
   <div>
     <h4>{item.name}</h4>
