@@ -203,7 +203,7 @@ return (
         maxWidth: 1250,
         display: "grid",
         gap: 32,
-        gridTemplateColumns: "1fr 516px",
+        gridTemplateColumns: "1fr 524px",
         paddingInline: 16,
       }}
     >
@@ -227,7 +227,7 @@ return (
           style={{
             display: "grid",
             gridTemplateColumns: "250px",
-            gap: 16,
+            gap: 24,
             justifyContent: "center",
             height: "100%",
           }}
@@ -247,7 +247,7 @@ return (
           style={{
             display: "grid",
             gridTemplateColumns: "250px",
-            gap: 16,
+            gap: 24,
             justifyContent: "center",
             height: "100%",
           }}
