@@ -10,7 +10,6 @@ return (
       width: "100%",
       maxWidth: 250,
       borderRadius: 24,
-      backgroundColor: "red",
       overflow: "hidden",
 
       position: "relative",
@@ -53,7 +52,7 @@ return (
           fontWeight: 600,
         }}
       >
-        {image.name} {index + 1}
+        {image.name}
       </p>
     </div>
   </div>
