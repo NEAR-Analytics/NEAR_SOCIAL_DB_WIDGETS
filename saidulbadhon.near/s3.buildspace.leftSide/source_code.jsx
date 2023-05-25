@@ -4,6 +4,7 @@ return (
   <div
     style={{
       height: "100%",
+      maxHeight: "100vh",
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
@@ -36,7 +37,7 @@ return (
       Apply Now
     </button>
 
-    <p style={{ color: theme.textColor3, fontWeight: 500 }}>
+    <p style={{ color: theme.textColor3, fontWeight: 400 }}>
       season 3 is now in progress.
     </p>
   </div>
