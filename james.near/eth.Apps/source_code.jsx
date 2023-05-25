@@ -46,7 +46,8 @@ return (
       props={{ tag: "eth", limit: 333 }}
     />
     <h3>#Ethereum</h3>
-    <Widget src="mob.near/widget/WidgetIcons" props={{ tag: "template" }} />
+    <Widget src="mob.near/widget/WidgetIcons" props={{ tag: "ethereum" }} />
     <h3>#ETHDenver2023</h3>
+    <Widget src="mob.near/widget/WidgetIcons" props={{ tag: "ethdenver2023"}}
   </div>
 );
