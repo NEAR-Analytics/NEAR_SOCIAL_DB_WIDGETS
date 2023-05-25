@@ -13,6 +13,7 @@ return (
       overflow: "hidden",
 
       position: "relative",
+      border: `1px rgba(256, 256, 256, .25) solid`,
 
       display: "flex",
     }}
