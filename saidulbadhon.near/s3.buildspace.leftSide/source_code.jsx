@@ -27,11 +27,12 @@ return (
       style={{
         backgroundColor: theme.buttonTextColor,
         color: "#000",
-        fontWeight: 600,
-        padding: "8px 16px",
+        fontSize: 24,
+        fontWeight: 700,
+        padding: "16px 32px",
         border: "none",
 
-        borderRadius: 20,
+        borderRadius: 40,
       }}
     >
       Apply Now
