@@ -6,6 +6,7 @@ const isOwnAccountId = props.isOwnAccountId;
 const tabs = props.tabs;
 const prevTab = props.prevTab;
 const handlerStateUpdate = props.handlerStateUpdate;
+const navegateTo = props.navegateTo;
 
 const headerWidgetName = props.headerWidgetName ?? "minimalistQuestionHeader";
 const contentWidgetName =
@@ -26,7 +27,15 @@ return (
     {cardsData.map((cardData) => {
       return (
         <div className="col-sm-12 col-lg-6 col-2xl-4 gy-3">
-          <div className="card h-100">
+          <div
+            className="card h-100"
+            onClick={
+              navegateTo
+                ? () => handlerStateUpdate({ tab: navegateTo })
+                : () => {}
+            }
+            style={navegateTo ? { cursor: "pointer" } : {}}
+          >
             <Widget
               src={`${widgetOwner}/widget/${headerWidgetName}`}
               props={{ ...cardData }}
