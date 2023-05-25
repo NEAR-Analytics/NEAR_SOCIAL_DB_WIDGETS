@@ -44,6 +44,7 @@ const Post = styled.div`
 
 const renderItem = (a) => {
   let type = a.value.type;
+  // return <p>{JSON.stringify(a)}</p>;
 
   // PATH NORMALIZATION
   const path = a.value.path;
@@ -53,12 +54,14 @@ const renderItem = (a) => {
     domain = a.action;
     path = `${a.accountId}/post/${a.key}`;
   } else {
+    // different domains still save to post... that's probably dumb
     const parts = path.split("/");
-    domain = parts[1];
-    parts[1] = "post";
-    path = parts.join("/");
+    if (parts[1] !== "thing") {
+      domain = parts[1];
+      parts[1] = "post";
+      path = parts.join("/");
+    }
   }
-
   if (typeWhitelist.includes(type) && domainFilter.includes(domain)) {
     return (
       <Post className="post" key={JSON.stringify(a)}>
