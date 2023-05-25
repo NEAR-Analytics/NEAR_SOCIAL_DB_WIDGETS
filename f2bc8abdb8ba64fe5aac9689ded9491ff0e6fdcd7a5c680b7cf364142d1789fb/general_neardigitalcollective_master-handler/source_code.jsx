@@ -266,7 +266,7 @@ const renderNavigationButton = (tab, isMobile) => {
         State.update({ hoveringElement: "" });
       }}
       onClick={() => {
-        State.update({ tab: tab.id, abortThroughPage: tab.id });
+        State.update({ tab: tab.id });
       }}
       style={
         state.hoveringElement == tab.text || state.tab == tab.id
@@ -324,6 +324,7 @@ const renderTab = (tab) => {
           isOnNavTab()
             ? State.update({ tab: tab.id, abortThroughPage: tab.id })
             : State.update({
+                abortThroughPage: tab.id,
                 showAbort: true,
               });
         }}
@@ -340,6 +341,8 @@ const renderTab = (tab) => {
   );
 };
 /*-----------------------------------------------End render components-----------------------------------------------*/
+
+//TODO responsiveness on navbar
 return (
   <div className="pb-5" style={thisWidgetInlineStyles.generalContainer}>
     <div className="d-flex flex-column">
