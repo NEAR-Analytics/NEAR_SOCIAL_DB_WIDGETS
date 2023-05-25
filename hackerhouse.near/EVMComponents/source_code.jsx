@@ -65,7 +65,7 @@ return (
       <Item>
         <Widget
           src="near/widget/ComponentCard"
-          props={{ src: "ejj.near/widget/swap" }}
+          props={{ src: "tribos.near/widget/swap" }}
         />
       </Item>
       <Item>
