@@ -201,7 +201,7 @@ return (
         width: "100%",
         maxWidth: 1250,
         display: "grid",
-        gridTemplateColumns: "1fr 416px",
+        gridTemplateColumns: "1fr 516px",
         paddingInline: 20,
       }}
     >
@@ -225,7 +225,7 @@ return (
           id="image-container"
           style={{
             display: "grid",
-            gridTemplateColumns: "200px",
+            gridTemplateColumns: "250px",
             gap: 16,
             justifyContent: "center",
             height: "100%",
@@ -246,7 +246,7 @@ return (
           id="image-container"
           style={{
             display: "grid",
-            gridTemplateColumns: "200px",
+            gridTemplateColumns: "250px",
             gap: 16,
             justifyContent: "center",
             height: "100%",
