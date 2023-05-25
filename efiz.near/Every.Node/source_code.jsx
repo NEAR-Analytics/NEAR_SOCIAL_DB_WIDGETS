@@ -172,6 +172,5 @@ return (
           : null}
       </ButtonRow>
     </div>
-    <Widget src="efiz.near/widget/Every.Thing.View" props={{ path }} />
   </div>
 );
