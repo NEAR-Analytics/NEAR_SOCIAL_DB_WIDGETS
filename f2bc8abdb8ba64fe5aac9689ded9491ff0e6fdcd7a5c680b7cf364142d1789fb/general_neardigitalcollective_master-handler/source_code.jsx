@@ -20,7 +20,10 @@ const tabs = props.tabs ?? {
     text: "My Polls",
     isTab: true,
     widgetName: "general_neardigitalcollective_cards-container",
-    props: { isOwnAccountId: true, isTab: true },
+    props: {
+      isOwnAccountId: true,
+      navegateTo: 4,
+    },
   },
   ALL_POLLS: {
     id: 2,
@@ -29,7 +32,7 @@ const tabs = props.tabs ?? {
     widgetName: "general_neardigitalcollective_cards-container",
     props: {
       isOwnAccountId: false,
-      isTab: true,
+      navegateTo: 4,
     },
   },
   NEW_POLL: {
@@ -44,7 +47,7 @@ const tabs = props.tabs ?? {
     text: "",
     isCardNavigate: true,
     widgetName: "newVotingInterface",
-    props: { isCardNavigate: true },
+    props: { blockHeight: state.postBlockHeight },
   },
 };
 
@@ -176,6 +179,7 @@ State.init({
   hoveringElement: "",
   showAbort: false,
   abortThroughPage: homePageId,
+  postBlockHeight: undefined,
 });
 
 let sortedData =
