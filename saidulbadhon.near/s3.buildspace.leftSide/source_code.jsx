@@ -18,6 +18,7 @@ return (
         fontSize: 72,
         lineHeight: 1,
         fontWeight: 700,
+        width: "10ch",
       }}
     >
       six weeks to finally work on your ideas. you in?
