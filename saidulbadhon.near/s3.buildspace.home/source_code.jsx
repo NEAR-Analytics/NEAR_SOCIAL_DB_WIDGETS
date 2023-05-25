@@ -190,7 +190,7 @@ return (
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      backgroundColor: theme.backgroundColor,
+      backgroundColor: "#000" || theme.backgroundColor,
     }}
   >
     <div
