@@ -8,8 +8,8 @@ const typeWhitelist = [
 ];
 const accountFilter =
   (props.accountFilter && [props.accountFilter]) || undefined;
-const hashtagFilter = ["dev"];
-const domainFilter = ["apple123456", "elderberry123456"];
+const hashtagFilter = [];
+const domainFilter = ["post"];
 
 if (hashtagFilter.length) {
   index = hashtagFilter.map((it) => ({
