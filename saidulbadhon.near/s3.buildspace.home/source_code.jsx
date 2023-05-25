@@ -201,8 +201,9 @@ return (
         width: "100%",
         maxWidth: 1250,
         display: "grid",
+        gap: 16,
         gridTemplateColumns: "1fr 516px",
-        paddingInline: 40,
+        paddingInline: 16,
       }}
     >
       <Widget
