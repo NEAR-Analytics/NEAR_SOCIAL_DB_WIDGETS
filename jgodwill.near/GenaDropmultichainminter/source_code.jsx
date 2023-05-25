@@ -156,6 +156,8 @@ if (state.sender === undefined) {
 State.init({
   title: "",
   description: "",
+  showAlert: true,
+  toastMessage: "",
 });
 const onChangeTitle = (title) => {
   State.update({
@@ -173,6 +175,10 @@ const handleChainChange = (event) => {
   if (event.target.value == "0") {
     if (!accountId) {
       console.log("not what we thought,:", accountId);
+      State.update({
+        showAlert: true,
+        toastMessage: "Please log in before continuing",
+      });
       return;
     }
     State.update({
@@ -309,9 +315,19 @@ const TextArea = styled.textarea`
   }
 `;
 
+if (state.sender) {
+  console.log("Please login");
+  State.update({
+    showAlert: true,
+    toastMessage: "Please log in before continuing",
+  });
+}
+
 return (
   <>
-    {!accountId && <p>Please sign in with NEAR wallet</p>}
+    {state.showAlert && (
+      <Widget src="jgodwill.near/widget/genadrop-toast" props={state} />
+    )}
     <Heading className="text-center fs-2 fw-bold">
       Mint NFT on Multiple chains
     </Heading>
