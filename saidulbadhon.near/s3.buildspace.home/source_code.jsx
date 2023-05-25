@@ -185,6 +185,7 @@ const images = [
 
 return (
   <div
+    className="s3BuildspaceHome"
     style={{
       display: "flex",
       justifyContent: "center",
