@@ -17,7 +17,7 @@ return (
         color: "#FFF",
         fontSize: 72,
         lineHeight: 1,
-        fontWeight: 700,
+        fontWeight: 900,
         width: "10ch",
       }}
     >
