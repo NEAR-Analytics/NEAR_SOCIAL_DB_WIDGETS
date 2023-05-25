@@ -196,7 +196,8 @@ return (
       style={{
         // height: "calc(100vh - 100px)",
         height: "100%",
-        maxHeight: "calc(100vh - 85px)",
+        // maxHeight: "calc(100vh - 85px)",
+        maxHeight: "100vh",
         width: "100%",
         maxWidth: 1250,
         display: "grid",
@@ -212,7 +213,8 @@ return (
       <div
         className="scroll-container"
         style={{
-          maxHeight: "calc(100vh - 75px)",
+          //   maxHeight: "calc(100vh - 75px)",
+          maxHeight: "100vh",
           overflowY: "hidden",
           display: "flex",
           gap: 16,
