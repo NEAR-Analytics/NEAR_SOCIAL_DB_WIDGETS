@@ -15,9 +15,9 @@ return (
     <h1
       style={{
         color: "#FFF",
-        fontSize: 72,
+        fontSize: 84,
         lineHeight: 1,
-        fontWeight: 900,
+        fontWeight: 800,
         width: "11ch",
       }}
     >
@@ -30,8 +30,8 @@ return (
         backgroundColor: theme.buttonTextColor,
         color: "#000",
         fontSize: 24,
-        fontWeight: 700,
-        padding: "16px 32px",
+        fontWeight: 600,
+        padding: "12px 32px",
         border: "none",
 
         borderRadius: 40,
