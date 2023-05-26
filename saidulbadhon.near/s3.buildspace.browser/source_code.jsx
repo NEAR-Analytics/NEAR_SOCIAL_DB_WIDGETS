@@ -15,7 +15,7 @@ if (!res.body)
 
 const Card = styled.div`
   width: 100%;
-  max-width: 250px;
+//   max-width: 250px;
   border-radius: 16px;
   overflow: hidden;
 
@@ -87,7 +87,9 @@ return (
         >
           🠈
         </button>
-        <h1 style={{ fontWeight: 700 }}>#nw s3 YEARBOOK</h1>
+        <h1 style={{ fontWeight: 700, textAlign: "center" }}>
+          #nw s3 YEARBOOK
+        </h1>
       </div>
 
       <div
