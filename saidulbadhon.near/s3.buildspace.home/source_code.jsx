@@ -55,6 +55,7 @@ return (
             gap: 24,
             justifyContent: "center",
             height: "100%",
+            overflowY: "hidden",
           }}
         >
           {res.body?.map((item, index) => (
