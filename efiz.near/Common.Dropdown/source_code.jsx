@@ -24,7 +24,7 @@ const Item = styled.div`
 `;
 
 return (
-  <div className="dropdown ms-auto">
+  <div className="dropdown ms-auto w-auto">
     <button
       className="btn border-0 p-0"
       type="button"
@@ -34,7 +34,7 @@ return (
       {(renderIcon && renderIcon()) || <i className="bi bi-three-dots" />}
     </button>
     <ul className="dropdown-menu">
-      {props.elements.map((e) => {
+      {props.elements?.map((e) => {
         return (
           <li>
             <Item>{e}</Item>
