@@ -66,6 +66,14 @@ const handleSubmit = () => {
     },
     body: JSON.stringify(body),
   })
+    .then((res) => {
+      State.update({
+        imageUrl: "",
+        name: "",
+        house: "",
+        message: "",
+      });
+    })
     .catch((err) => {
       console.log(err);
     })
