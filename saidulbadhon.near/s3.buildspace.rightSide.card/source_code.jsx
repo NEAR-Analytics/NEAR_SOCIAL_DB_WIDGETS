@@ -1,23 +1,28 @@
 const theme = props.theme;
 const card = props.card;
 
+const Card = styled.div`
+
+  // height: "100%",
+  height: 350px;
+  width: "100%";
+  maxWidth: 250;
+  borderRadius: 24;
+  overflow: "hidden";
+
+  position: "relative";
+  border: 1px rgba(256, 256, 256, .25) solid;
+
+  display: flex;
+
+  &:hover {
+    color: #fff;
+    background: rgb(60 65 68);
+  }
+`;
+
 return (
-  <div
-    key={index}
-    style={{
-      // height: "100%",
-      height: 350,
-      width: "100%",
-      maxWidth: 250,
-      borderRadius: 24,
-      overflow: "hidden",
-
-      position: "relative",
-      border: `1px rgba(256, 256, 256, .25) solid`,
-
-      display: "flex",
-    }}
-  >
+  <Card key={index}>
     <img
       style={{ width: "100%", height: "100%", objectFit: "cover" }}
       src={`https://ipfs.near.social/ipfs/${card.imageUrl}`}
@@ -56,5 +61,5 @@ return (
         {item.message || card.name}
       </p>
     </div>
-  </div>
+  </Card>
 );
