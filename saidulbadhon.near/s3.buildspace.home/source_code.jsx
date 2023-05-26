@@ -2,6 +2,7 @@ const theme = props.theme;
 
 State.init({
   images: [],
+  showBrowser: false,
 });
 const res = fetch("http://localhost:8000/api/v1/buildspace");
 
@@ -10,7 +11,20 @@ if (!res.body?.list1)
     <div style={{ height: "100vh", width: "100%", backgroundColor: "#000" }} />
   );
 
-return (
+return showBrowser ? (
+  <div
+    className="s3BuildspaceHome"
+    style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      backgroundColor: "#000" || theme.backgroundColor,
+    }}
+  >
+    XD
+    <button>SDADS</button>
+  </div>
+) : (
   <div
     className="s3BuildspaceHome"
     style={{
@@ -34,7 +48,14 @@ return (
     >
       <Widget
         src="saidulbadhon.near/widget/s3.buildspace.leftSide"
-        props={{ theme }}
+        props={{
+          theme,
+          handleBrowseButton: () => {
+            State.update({
+              showBrowser: true,
+            });
+          },
+        }}
       />
 
       <div
