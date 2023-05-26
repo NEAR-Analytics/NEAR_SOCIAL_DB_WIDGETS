@@ -20,24 +20,13 @@ const handleBrowseButton = () => {
 };
 
 const CardWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 1fr 524px;
 
   @media screen and (max-width: 800px)  {
-    flex-direction: column;
-
-    .scroll-container {
-      display: none;
-    }
+    grid-template-columns: 1fr;
   }
 `;
-
-// return (
-//   <CardWrapper>
-//     <div style={{ width: "100%", backgroundColor: "red" }}>Line 1</div>
-//     <div style={{ width: "100%", backgroundColor: "green" }}>Line 2</div>
-//   </CardWrapper>
-// );
 
 return state.showBrowser ? (
   <Widget
@@ -57,7 +46,7 @@ return state.showBrowser ? (
       backgroundColor: "#000" || theme.backgroundColor,
     }}
   >
-    <div
+    <CardWrapper
       style={{
         height: "100%",
         maxHeight: "100vh",
@@ -65,7 +54,7 @@ return state.showBrowser ? (
         maxWidth: 1250,
         display: "grid",
         gap: 32,
-        gridTemplateColumns: "1fr 524px",
+        // gridTemplateColumns: "1fr 524px",
         paddingInline: 16,
       }}
     >
@@ -127,6 +116,6 @@ return state.showBrowser ? (
           ))}
         </div>
       </div>
-    </div>
+    </CardWrapper>
   </div>
 );
