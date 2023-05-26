@@ -100,6 +100,7 @@ return (
           alignItems: "flex-start",
           gap: 32,
           position: "absolute",
+          top: 0,
         }}
       >
         <div style={styles.inputContainer}>
