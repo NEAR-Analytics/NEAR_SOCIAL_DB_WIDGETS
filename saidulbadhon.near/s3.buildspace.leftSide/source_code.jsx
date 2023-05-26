@@ -278,10 +278,6 @@ return (
             Browse
           </button>
         </div>
-
-        <p style={{ color: theme.textColor3, fontWeight: 400 }}>
-          season 3 is now in progress.
-        </p>
       </div>
     )}
   </>
