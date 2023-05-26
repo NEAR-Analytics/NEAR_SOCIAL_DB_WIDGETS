@@ -260,16 +260,14 @@ return (
               backgroundColor: "transparent",
               color: theme.buttonTextColor,
               fontSize: 24,
-              fontWeight: 600,
+              fontWeight: 500,
               padding: "12px 32px",
               border: "none",
 
               borderRadius: 40,
             }}
             onClick={() => {
-              State.update({
-                showDialog: true,
-              });
+              props.handleBrowseButton();
             }}
           >
             Browse
