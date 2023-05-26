@@ -14,7 +14,7 @@ const Card = styled.div`
   border: 1px rgba(256, 256, 256, .25) solid;
 
   display: flex;
-  filter: brightness(0.9);
+  filter: brightness(0.8);
 
   transition: all .2s ease-in-out;
 
