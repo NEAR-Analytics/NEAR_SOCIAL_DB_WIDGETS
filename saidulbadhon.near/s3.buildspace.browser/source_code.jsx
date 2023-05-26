@@ -51,7 +51,6 @@ return (
       alignItems: "flex-start",
       backgroundColor: "#000" || theme.backgroundColor,
       color: "#FFF",
-      height: "100% !important",
     }}
   >
     <div
@@ -98,6 +97,7 @@ return (
           display: "grid",
           gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
           gap: 16,
+          height: "100%",
         }}
       >
         {res.body?.map((card, index) => (
