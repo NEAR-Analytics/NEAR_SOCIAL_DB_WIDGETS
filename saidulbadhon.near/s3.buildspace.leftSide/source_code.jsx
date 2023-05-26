@@ -2,8 +2,9 @@ const theme = props.theme;
 
 State.init({
   showDialog: true,
+  imageUrl: "",
   name: "",
-  house: "",
+  house: "spectreseek",
   message: "",
   session: "s3",
   year: "2023",
@@ -49,17 +50,21 @@ const handleSubmit = () => {
   // console.log("SUBMIT");
 
   const body = {
-    name: "",
-    house: "",
-    message: "",
-    session: "s3",
-    year: "2023",
+    imageUrl: state.imageUrl?.cid,
+    name: state.name,
+    house: state.house,
+    message: state.message,
+    session: state.session,
+    year: state.year,
   };
 
-  fetch("http://localhost:8000/api/v1/buildspace", {
+  asyncFetch(`http://localhost:8000/api/v1/buildspace`, {
     method: "POST",
-    headers: { Accept: "application/json" },
-    body: body,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
   })
     .then((res) => {
       console.log(res);
@@ -85,6 +90,28 @@ return (
         }}
       >
         <div style={styles.inputContainer}>
+          <p style={styles.inputLabel}>Image URL:</p>
+
+          <IpfsImageUpload
+            image={state.imageUrl}
+            style={{
+              fontWeight: 500,
+              // border: "1px solid #d0d7de",
+              width: "100%",
+              cursor: "pointer",
+              height: 40,
+              padding: 0,
+              borderRadius: 4,
+              backgroundColor: props.theme.buttonColor,
+              color: props.theme.buttonTextColor,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          />
+        </div>
+
+        <div style={styles.inputContainer}>
           <p style={styles.inputLabel}>Name:</p>
 
           <input
@@ -96,10 +123,11 @@ return (
         </div>
 
         <div style={styles.inputContainer}>
+          <p style={styles.inputLabel}>House:</p>
           <select
             style={styles.input}
-            value={selectedOption}
-            onChange={handleSelectChange}
+            value={state.house}
+            onChange={(event) => State.update({ house: event.target.value })}
           >
             <option value="spectreseek">Spectreseek</option>
             <option value="alterok">Alterok</option>
@@ -109,15 +137,10 @@ return (
         </div>
 
         <div style={styles.inputContainer}>
-          <p style={styles.inputLabel}>House:</p>
-
-          <input style={styles.input} type="select" value={state.name} />
-        </div>
-
-        <div style={styles.inputContainer}>
           <p style={styles.inputLabel}>Message:</p>
           <textarea
             className="form-control"
+            placeholder="Write your message here"
             rows="7"
             style={styles.input}
             type="text"
