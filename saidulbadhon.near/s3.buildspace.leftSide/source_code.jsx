@@ -99,8 +99,7 @@ return (
           justifyContent: "center",
           alignItems: "flex-start",
           gap: 32,
-          position: "absolute",
-          top: 0,
+          position: "relative",
         }}
       >
         <div style={styles.inputContainer}>
