@@ -19,7 +19,7 @@ const invest = () => {
     "set_new_investor",
     {
       quantity: state.blocks,
-      wallet: "vicl9403.testnet",
+      wallet: context.accountId,
     },
     300000000000000,
     amountYoctos.toString()
