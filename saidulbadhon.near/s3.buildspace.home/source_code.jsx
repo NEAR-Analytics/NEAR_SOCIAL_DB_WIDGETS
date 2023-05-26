@@ -46,7 +46,7 @@ return state.showBrowser ? (
     }}
   />
 ) : (
-  <CardWrapper
+  <div
     className="s3BuildspaceHome"
     style={{
       display: "flex",
@@ -126,5 +126,5 @@ return state.showBrowser ? (
         </div>
       </div>
     </div>
-  </CardWrapper>
+  </div>
 );
