@@ -58,14 +58,17 @@ const handleSubmit = () => {
     year: state.year,
   };
 
-  asyncFetch(`http://localhost:8000/api/v1/buildspace`, {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(body),
-  })
+  asyncFetch(
+    `https://t4zr86bzl5.execute-api.us-east-1.amazonaws.com/production/api/v1/buildspace`,
+    {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    }
+  )
     .then((res) => {
       State.update({
         imageUrl: "",
