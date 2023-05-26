@@ -73,7 +73,7 @@ return (
                 </span>
               </td>
               <td>{investment.quantity}</td>
-              {mintedNfts && (
+              {mintedNfts ? (
                 <td>
                   {mintedNfts.filter(
                     (minted) => investment.id.toString() === minted.toString()
@@ -87,6 +87,14 @@ return (
                     </button>
                   )}
                 </td>
+              ) : (
+                <button
+                  type="button"
+                  class="btn btn-primary btn-sm"
+                  onClick={() => getNft(investment)}
+                >
+                  <span class="text-primary hover:text-white">Obtener NFT</span>
+                </button>
               )}
             </tr>
           );
