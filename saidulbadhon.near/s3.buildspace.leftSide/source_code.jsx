@@ -215,14 +215,22 @@ return (
         <h1
           style={{
             color: "#FFF",
+            lineHeight: 0.5,
+            fontWeight: 600,
+          }}
+        >
+          #nw s3
+        </h1>
+        <h1
+          style={{
+            color: "#FFF",
             fontSize: 84,
             lineHeight: 1,
             fontWeight: 800,
             width: "11ch",
           }}
         >
-          six weeks to finally work on your ideas. <br />
-          you in?
+          YEARBOOK
         </h1>
 
         <button
