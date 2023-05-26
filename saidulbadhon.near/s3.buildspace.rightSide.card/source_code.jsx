@@ -20,7 +20,8 @@ return (
   >
     <img
       style={{ width: "100%", height: "100%" }}
-      src={card.imageUrl}
+      // src={card.imageUrl}
+      src={`https://ipfs.near.social/ipfs/${card.imageUrl}`}
       alt={card.name}
     />
 
