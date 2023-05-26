@@ -42,7 +42,6 @@ return (
         className="scroll-container"
         style={{
           maxHeight: "100vh",
-          overflowY: "hidden",
           display: "flex",
           gap: 24,
         }}
@@ -76,6 +75,7 @@ return (
             gap: 24,
             justifyContent: "center",
             height: "100%",
+            overflowY: "hidden",
           }}
         >
           {res.body?.map((item, index) => (
