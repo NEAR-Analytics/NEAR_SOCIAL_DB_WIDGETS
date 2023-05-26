@@ -319,7 +319,7 @@ const renderIcon = () => {
 };
 
 return (
-  <Container>
+  <Container id={path}>
     <Header>
       <ButtonRow>
         <Widget
