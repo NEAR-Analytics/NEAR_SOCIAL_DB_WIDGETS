@@ -6,8 +6,8 @@ const Card = styled.div`
   // height: "100%",
   height: 350px;
   width: 100%;
-  maxWidth: 250px;
-  borderRadius: 24px;
+  max-width: 250px;
+  border-radius: 24px;
   overflow: hidden;
 
   position: relative;
