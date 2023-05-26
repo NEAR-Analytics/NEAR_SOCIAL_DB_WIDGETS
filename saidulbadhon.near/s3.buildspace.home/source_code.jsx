@@ -11,6 +11,12 @@ if (!res.body?.list1)
     <div style={{ height: "100vh", width: "100%", backgroundColor: "#000" }} />
   );
 
+const handleBrowseButton = () => {
+  State.update({
+    showBrowser: true,
+  });
+};
+
 return showBrowser ? (
   <div
     className="s3BuildspaceHome"
@@ -50,11 +56,7 @@ return showBrowser ? (
         src="saidulbadhon.near/widget/s3.buildspace.leftSide"
         props={{
           theme,
-          handleBrowseButton: () => {
-            State.update({
-              showBrowser: true,
-            });
-          },
+          handleBrowseButton,
         }}
       />
 
