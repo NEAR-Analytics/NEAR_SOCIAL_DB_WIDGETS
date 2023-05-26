@@ -15,14 +15,14 @@ return (
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <a class="navbar-brand mt-2 mt-lg-0" href="#">
+          <div class="navbar-brand mt-2 mt-lg-0" href="#">
             <img
               src="https://res.cloudinary.com/dgcxcqu6p/image/upload/v1685034388/milestone_logo_verde_rqzu5a.png"
               height="15"
               alt="MDB Logo"
               loading="lazy"
             />
-          </a>
+          </div>
           <ul class="navbar-nav mt-1 me-auto mb-2 mb-lg-0">
             <li
               class="nav-item"
