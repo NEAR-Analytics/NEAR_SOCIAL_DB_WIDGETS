@@ -16,7 +16,7 @@ if (!res.body)
 const Card = styled.div`
   width: 100%;
   max-width: 250px;
-  border-radius: 24px;
+  border-radius: 16px;
   overflow: hidden;
 
   position: relative;
