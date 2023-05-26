@@ -93,6 +93,7 @@ return (
           height: "100%",
           maxHeight: "100vh",
           maxWidth: 400,
+          width: "100%",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
