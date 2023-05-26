@@ -4,7 +4,7 @@ State.init({
   images: [],
   showBrowser: false,
 });
-const res = fetch("http://localhost:8000/api/v1/buildspace");
+const res = fetch("http://localhost:8000/api/v1/buildspace/showcase");
 
 if (!res.body?.list1)
   return (
