@@ -12,9 +12,10 @@ if (!res.body?.list1)
   );
 
 const handleBrowseButton = () => {
-  State.update({
-    showBrowser: true,
-  });
+  console.log("HIOII");
+  //   State.update({
+  //     showBrowser: true,
+  //   });
 };
 
 return showBrowser ? (
