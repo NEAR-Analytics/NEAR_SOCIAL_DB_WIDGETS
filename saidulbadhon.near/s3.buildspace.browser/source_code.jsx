@@ -70,7 +70,7 @@ return (
         <button
           style={{
             position: "absolute",
-            left: 16,
+            left: 0,
             backgroundColor: "transparent",
             borderColor: "transparent",
           }}
