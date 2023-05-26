@@ -112,9 +112,12 @@ return (
                     textAlign: "center",
                     padding: 0,
                     margin: 0,
-                    fontWeight: 600,
+                    fontWeight: 400,
+
+                    fontSize: "12px",
 
                     backgroundColor: theme.textColor3 + 66,
+                    color: theme.textColor,
                     padding: "4px 12px",
                     borderRadius: 4,
                   }}
@@ -128,7 +131,7 @@ return (
                   textAlign: "center",
                   padding: 0,
                   margin: 0,
-                  fontWeight: 600,
+                  fontWeight: 500,
                   color: theme.textColor2,
                 }}
               >
@@ -141,8 +144,3 @@ return (
     </div>
   </div>
 );
-
-//   <div style={{ backgroundColor: "red", width: "100%" }}>
-//     <button style={{ width: "100%" }}>SDADS</button>
-//     <button style={{ width: "100%" }}>SDADS</button>
-//   </div>
