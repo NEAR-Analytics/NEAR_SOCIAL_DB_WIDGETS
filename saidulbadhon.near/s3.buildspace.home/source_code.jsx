@@ -17,7 +17,7 @@ const handleBrowseButton = () => {
   });
 };
 
-return showBrowser ? (
+return props.showBrowser ? (
   <Widget
     src="saidulbadhon.near/widget/s3.buildspace.browser"
     props={{
