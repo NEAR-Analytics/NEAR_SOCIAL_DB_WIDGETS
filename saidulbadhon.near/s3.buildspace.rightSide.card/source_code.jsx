@@ -1,5 +1,5 @@
 const theme = props.theme;
-const image = props.image;
+const card = props.card;
 
 return (
   <div
@@ -20,8 +20,8 @@ return (
   >
     <img
       style={{ width: "100%", height: "100%" }}
-      src={image.imageUri}
-      alt={image.name}
+      src={card.imageUrl}
+      alt={card.name}
     />
 
     <div
@@ -37,7 +37,7 @@ return (
         borderRadius: 16,
         display: "flex",
         justifyContent: "center",
-        alignItems: "center",
+        aligncards: "center",
 
         backdropFilter: "blur(10px)",
         border: `1px rgba(256, 256, 256, .25) solid`,
@@ -53,7 +53,7 @@ return (
           fontWeight: 600,
         }}
       >
-        {image.name}
+        {item.message || card.name}
       </p>
     </div>
   </div>
