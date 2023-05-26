@@ -44,10 +44,11 @@ const PTag = styled.p`
 return (
   <div
     style={{
+      minHeight: "100vh",
       height: "100%",
       display: "flex",
       justifyContent: "center",
-      alignItems: "center",
+      alignItems: "flex-start",
       backgroundColor: "#000" || theme.backgroundColor,
       color: "#FFF",
       height: "100% !important",
