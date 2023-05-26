@@ -85,6 +85,14 @@ const handleSubmit = () => {
     });
 };
 
+const H1Wrapper = styled.h1`
+  font-size: 84px;
+
+  @media screen and (max-width: 800px)  {
+    font-size: 64px;
+  }
+`;
+
 return (
   <>
     {state.showDialog ? (
@@ -227,17 +235,16 @@ return (
           >
             #nw s3
           </h1>
-          <h1
+          <H1Wrapper
             style={{
               color: "#FFF",
-              fontSize: 84,
               lineHeight: 1,
               fontWeight: 800,
               // width: "11ch",
             }}
           >
             YEARBOOK
-          </h1>
+          </H1Wrapper>
         </div>
 
         <div style={{ display: "flex", gap: 16 }}>
