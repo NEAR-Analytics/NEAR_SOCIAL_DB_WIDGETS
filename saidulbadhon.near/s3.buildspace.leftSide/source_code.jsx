@@ -232,7 +232,7 @@ return (
               fontSize: 84,
               lineHeight: 1,
               fontWeight: 800,
-              width: "11ch",
+              // width: "11ch",
             }}
           >
             YEARBOOK
