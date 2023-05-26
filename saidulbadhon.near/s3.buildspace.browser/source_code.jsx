@@ -92,7 +92,13 @@ return (
         {res.body?.map((card, index) => (
           <Card key={index}>
             <img
-              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              style={{
+                // width: "100%",
+                width: 250,
+                height: "100%",
+                objectFit: "cover",
+                aspectRatio: 1 / 1,
+              }}
               src={`https://ipfs.near.social/ipfs/${card.imageUrl}`}
               alt={card.name}
             />
