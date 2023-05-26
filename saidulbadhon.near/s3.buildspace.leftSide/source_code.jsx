@@ -81,6 +81,7 @@ return (
         style={{
           height: "100%",
           maxHeight: "100vh",
+          maxWidth: 400,
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
