@@ -17,6 +17,26 @@ const handleBrowseButton = () => {
   });
 };
 
+const CardWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+
+  @media screen and (max-width: 800px)  {
+    flex-direction: column;
+
+    .scroll-container {
+      display: none;
+    }
+  }
+`;
+
+// return (
+//   <CardWrapper>
+//     <div style={{ width: "100%", backgroundColor: "red" }}>Line 1</div>
+//     <div style={{ width: "100%", backgroundColor: "green" }}>Line 2</div>
+//   </CardWrapper>
+// );
+
 return state.showBrowser ? (
   <Widget
     src="saidulbadhon.near/widget/s3.buildspace.browser"
@@ -26,7 +46,7 @@ return state.showBrowser ? (
     }}
   />
 ) : (
-  <div
+  <CardWrapper
     className="s3BuildspaceHome"
     style={{
       display: "flex",
@@ -106,5 +126,5 @@ return state.showBrowser ? (
         </div>
       </div>
     </div>
-  </div>
+  </CardWrapper>
 );
