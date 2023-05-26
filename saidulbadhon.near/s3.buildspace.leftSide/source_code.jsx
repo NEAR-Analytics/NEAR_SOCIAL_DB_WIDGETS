@@ -197,6 +197,7 @@ return (
           height: "100%",
           minHeight: "100vh",
           maxHeight: "100vh",
+          top: 0,
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
