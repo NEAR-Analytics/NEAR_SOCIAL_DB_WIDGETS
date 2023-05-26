@@ -2,10 +2,16 @@ const nftContract = props.nftContract;
 const contractName = props.contract;
 
 const mintedNfts = Near.view(nftContract, "get_minted_tokens", "{}");
-const userInvestments = Near.view(contractName, "get_all_investors", "{}");
+let userInvestments = Near.view(contractName, "get_all_investors", "{}");
+
+if (userInvestments?.length > 0) {
+  userInvestments = userInvestments.filter((investment) => {
+    return investment.wallet.toString() === context.accountId.toString();
+  });
+}
 
 const balance = Near.view(contractName, "get_investor_balance", {
-  wallet: "vicl9404.testnet",
+  wallet: context.accountId,
 });
 
 const monthlyRevenue = 0.012;
