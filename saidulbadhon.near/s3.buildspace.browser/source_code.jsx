@@ -14,9 +14,6 @@ if (!res.body)
   );
 
 const Card = styled.div`
-
-  // height: "100%",
-//   height: 350px;
   width: 100%;
   max-width: 250px;
   border-radius: 24px;
@@ -38,7 +35,6 @@ const Card = styled.div`
 
 return (
   <div
-    // className="s3BuildspaceHome"
     style={{
       height: "100%",
       display: "flex",
@@ -65,10 +61,10 @@ return (
       <div
         style={{
           display: "flex",
-          //   flexDirection: "column",
-          justifyContent: "flex-start",
+          justifyContent: "center",
           alignItems: "center",
           position: "relative",
+          width: "100%",
         }}
       >
         <button
