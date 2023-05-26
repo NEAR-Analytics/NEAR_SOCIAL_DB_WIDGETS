@@ -127,7 +127,7 @@ return (
           <p style={styles.inputLabel}>House:</p>
 
           <select
-            style={styles.input}
+            style={{ ...styles.input, backgroundColor: theme.ui }}
             value={state.house}
             onChange={(event) => State.update({ house: event.target.value })}
           >
