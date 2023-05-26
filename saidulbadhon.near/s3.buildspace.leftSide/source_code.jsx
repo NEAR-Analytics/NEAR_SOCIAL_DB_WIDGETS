@@ -45,6 +45,30 @@ const styles = {
   },
 };
 
+const handleSubmit = () => {
+  // console.log("SUBMIT");
+
+  const body = {
+    name: "",
+    house: "",
+    message: "",
+    session: "s3",
+    year: "2023",
+  };
+
+  fetch("http://localhost:8000/api/v1/buildspace", {
+    method: "POST",
+    headers: { Accept: "application/json" },
+    body: body,
+  })
+    .then((res) => {
+      console.log(res);
+      // const cid = res.body.cid;
+      // State.update({ img: { cid } });
+    })
+    .catch((err) => console.log(err));
+};
+
 return (
   <>
     {state.showDialog ? (
@@ -63,7 +87,12 @@ return (
         <div style={styles.inputContainer}>
           <p style={styles.inputLabel}>Name:</p>
 
-          <input style={styles.input} type="text" value={state.name} />
+          <input
+            style={styles.input}
+            type="text"
+            placeholder="Jon Deo"
+            value={state.name}
+          />
         </div>
 
         <div style={styles.inputContainer}>
@@ -97,6 +126,19 @@ return (
             }}
             value={state.message}
           />
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            gap: 20,
+            marginTop: 20,
+            width: "100%",
+          }}
+        >
+          <button style={styles.buttonSuccess} onClick={() => handleSubmit()}>
+            Save
+          </button>
         </div>
       </div>
     ) : (
