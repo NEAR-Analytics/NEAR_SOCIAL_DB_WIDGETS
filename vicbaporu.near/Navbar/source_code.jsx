@@ -15,7 +15,7 @@ return (
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <div class="navbar-brand mt-2 mt-lg-0" href="#">
+          <div class="navbar-brand mt-2 mt-lg-0">
             <img
               src="https://res.cloudinary.com/dgcxcqu6p/image/upload/v1685034388/milestone_logo_verde_rqzu5a.png"
               height="15"
@@ -30,9 +30,7 @@ return (
                 props.onSelectedOption("project");
               }}
             >
-              <a class="nav-link" href="#">
-                Proyecto
-              </a>
+              <a class="nav-link">Proyecto</a>
             </li>
             <li
               class="nav-item"
@@ -40,9 +38,7 @@ return (
                 props.onSelectedOption("buys");
               }}
             >
-              <a class="nav-link" href="#">
-                Mis compras
-              </a>
+              <a class="nav-link">Mis compras</a>
             </li>
             <li
               class="nav-item"
@@ -50,9 +46,7 @@ return (
                 props.onSelectedOption("rewards");
               }}
             >
-              <a class="nav-link" href="#">
-                Mis recompenzas
-              </a>
+              <a class="nav-link">Mis recompenzas</a>
             </li>
             <li
               class="nav-item"
@@ -60,9 +54,7 @@ return (
                 props.onSelectedOption("metapool");
               }}
             >
-              <a class="nav-link" href="#">
-                Meta Pool
-              </a>
+              <a class="nav-link">Meta Pool</a>
             </li>
           </ul>
         </div>
