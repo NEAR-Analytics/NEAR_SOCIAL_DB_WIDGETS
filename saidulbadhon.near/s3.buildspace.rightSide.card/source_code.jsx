@@ -27,7 +27,12 @@ return (
   <Card key={index}>
     <img
       style={{ width: "100%", height: "100%", objectFit: "cover" }}
-      src={`https://ipfs.near.social/ipfs/${card.imageUrl}`}
+      // src={`https://ipfs.near.social/ipfs/${card.imageUrl}`}
+      src={
+        card.imageUrl
+          ? `https://ipfs.near.social/ipfs/${card.imageUrl}`
+          : "https://i.pinimg.com/originals/6b/f6/2c/6bf62c6c123cdcd33d2d693782a46b34.jpg"
+      }
       alt={card.name}
     />
 
