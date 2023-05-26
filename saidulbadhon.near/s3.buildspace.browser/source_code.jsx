@@ -103,6 +103,7 @@ return (
               style={{
                 width: "100%",
                 height: "100%",
+                minHeight: 250,
                 maxHeight: 250,
                 objectFit: "cover",
                 aspectRatio: 1 / 1,
