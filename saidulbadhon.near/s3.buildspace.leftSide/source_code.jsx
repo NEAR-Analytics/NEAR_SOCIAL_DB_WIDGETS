@@ -1,7 +1,7 @@
 const theme = props.theme;
 
 State.init({
-  showDialog: true,
+  showDialog: false,
   imageUrl: "",
   name: "",
   house: "spectreseek",
