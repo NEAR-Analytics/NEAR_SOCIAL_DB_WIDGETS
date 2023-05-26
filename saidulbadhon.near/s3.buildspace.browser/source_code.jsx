@@ -62,7 +62,27 @@ return (
         alignItems: "center",
       }}
     >
-      <h1 style={{ fontWeight: 700 }}>#nw s3 YEARBOOK</h1>
+      <div
+        style={{
+          display: "flex",
+          //   flexDirection: "column",
+          justifyContent: "flex-start",
+          alignItems: "center",
+        }}
+      >
+        <button
+          style={{
+            position: "absolute",
+            left: 16,
+            backgroundColor: "transparent",
+            borderColor: "transparent",
+          }}
+          onClick={() => props.handleBrowseButton()}
+        >
+          🠈
+        </button>
+        <h1 style={{ fontWeight: 700 }}>#nw s3 YEARBOOK</h1>
+      </div>
 
       <div
         style={{
