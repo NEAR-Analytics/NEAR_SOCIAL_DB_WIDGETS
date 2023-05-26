@@ -14,7 +14,7 @@ return (
           <i class="fas fa-bars"></i>
         </button>
 
-        <div class=" navbar-collapse" id="navbarSupportedContent">
+        <div class="" id="navbarSupportedContent">
           <div class="navbar-brand mt-2 mt-lg-0">
             <img
               src="https://res.cloudinary.com/dgcxcqu6p/image/upload/v1685034388/milestone_logo_verde_rqzu5a.png"
