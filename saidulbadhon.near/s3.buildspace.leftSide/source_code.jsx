@@ -211,47 +211,70 @@ return (
             alt="logoo"
           />
         </div>
+        <div>
+          <h1
+            style={{
+              color: "#FFF",
+              lineHeight: 1,
+              fontWeight: 700,
+            }}
+          >
+            #nw s3
+          </h1>
+          <h1
+            style={{
+              color: "#FFF",
+              fontSize: 84,
+              lineHeight: 1,
+              fontWeight: 800,
+              width: "11ch",
+            }}
+          >
+            YEARBOOK
+          </h1>
+        </div>
 
-        <h1
-          style={{
-            color: "#FFF",
-            lineHeight: 0.5,
-            fontWeight: 600,
-          }}
-        >
-          #nw s3
-        </h1>
-        <h1
-          style={{
-            color: "#FFF",
-            fontSize: 84,
-            lineHeight: 1,
-            fontWeight: 800,
-            width: "11ch",
-          }}
-        >
-          YEARBOOK
-        </h1>
+        <div style={{ display: "flex", gap: 16 }}>
+          <button
+            style={{
+              backgroundColor: theme.buttonTextColor,
+              color: "#000",
+              fontSize: 24,
+              fontWeight: 600,
+              padding: "12px 32px",
+              border: "none",
 
-        <button
-          style={{
-            backgroundColor: theme.buttonTextColor,
-            color: "#000",
-            fontSize: 24,
-            fontWeight: 600,
-            padding: "12px 32px",
-            border: "none",
+              borderRadius: 40,
+            }}
+            onClick={() => {
+              State.update({
+                showDialog: true,
+              });
+            }}
+          >
+            Sign Now
+          </button>
 
-            borderRadius: 40,
-          }}
-          onClick={() => {
-            State.update({
-              showDialog: true,
-            });
-          }}
-        >
-          Apply Now
-        </button>
+          <button
+            style={{
+              backgroundColor: "transparent",
+              color: theme.buttonTextColor,
+              fontSize: 24,
+              fontWeight: 600,
+              padding: "12px 32px",
+              border: "none",
+
+              borderRadius: 40,
+            }}
+            onClick={() => {
+              State.update({
+                showDialog: true,
+              });
+            }}
+          >
+            Browse
+          </button>
+        </div>
 
         <p style={{ color: theme.textColor3, fontWeight: 400 }}>
           season 3 is now in progress.
