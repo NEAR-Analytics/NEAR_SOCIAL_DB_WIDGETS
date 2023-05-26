@@ -12,25 +12,18 @@ if (!res.body?.list1)
   );
 
 const handleBrowseButton = () => {
-  console.log("HIOII");
-  //   State.update({
-  //     showBrowser: true,
-  //   });
+  State.update({
+    showBrowser: true,
+  });
 };
 
 return showBrowser ? (
-  <div
-    className="s3BuildspaceHome"
-    style={{
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      backgroundColor: "#000" || theme.backgroundColor,
+  <Widget
+    src="saidulbadhon.near/widget/s3.buildspace.browser"
+    props={{
+      theme,
     }}
-  >
-    XD
-    <button>SDADS</button>
-  </div>
+  />
 ) : (
   <div
     className="s3BuildspaceHome"
