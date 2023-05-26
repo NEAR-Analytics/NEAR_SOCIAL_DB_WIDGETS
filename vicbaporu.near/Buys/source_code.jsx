@@ -73,19 +73,21 @@ return (
                 </span>
               </td>
               <td>{investment.quantity}</td>
-              <td>
-                {mintedNfts.filter(
-                  (minted) => investment.id.toString() === minted.toString()
-                ).length === 0 && (
-                  <button
-                    type="button"
-                    class="btn btn-primary btn-sm btn-rounded"
-                    onClick={() => getNft(investment)}
-                  >
-                    Obtener NFT
-                  </button>
-                )}
-              </td>
+              {mintedNfts && (
+                <td>
+                  {mintedNfts.filter(
+                    (minted) => investment.id.toString() === minted.toString()
+                  ).length === 0 && (
+                    <button
+                      type="button"
+                      class="btn btn-primary btn-sm btn-rounded"
+                      onClick={() => getNft(investment)}
+                    >
+                      Obtener NFT
+                    </button>
+                  )}
+                </td>
+              )}
             </tr>
           );
         })}
