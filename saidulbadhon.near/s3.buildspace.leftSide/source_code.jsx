@@ -99,7 +99,7 @@ return (
       <div
         style={{
           height: "100%",
-          maxHeight: "100vh",
+          maxHeight: "100dvh",
           maxWidth: 400,
           width: "100%",
           display: "flex",
