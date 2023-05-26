@@ -303,6 +303,31 @@ function toggleHistory() {
     );
   }
 }
+
+function nearPad() {
+  if (type === "widget") {
+    return (
+      <a
+        className={`btn`}
+        href={`https://nearpad.dev/editor/${path}`}
+        target="_blank"
+      >
+        <i className=" me-1">
+          <svg
+            focusable="false"
+            aria-hidden="true"
+            viewBox="2 2 18 18"
+            width="16px"
+            height="16px"
+          >
+            <path d="M12.16 3h-.32L9.21 8.25h5.58zm4.3 5.25h5.16l-2.07-4.14C19.21 3.43 18.52 3 17.76 3h-3.93l2.63 5.25zm4.92 1.5h-8.63V20.1zM11.25 20.1V9.75H2.62zM7.54 8.25 10.16 3H6.24c-.76 0-1.45.43-1.79 1.11L2.38 8.25h5.16z"></path>
+          </svg>
+        </i>
+        <span>Open NEARpad</span>
+      </a>
+    );
+  }
+}
 // This should be a prop
 const renderIcon = () => {
   return (
@@ -326,7 +351,7 @@ return (
           src="efiz.near/widget/Common.Dropdown"
           props={{
             renderIcon: renderIcon,
-            elements: [toggleEdit(), toggleRaw(), toggleHistory()],
+            elements: [toggleEdit(), toggleRaw(), toggleHistory(), nearPad()],
           }}
         />
       </ButtonRow>
