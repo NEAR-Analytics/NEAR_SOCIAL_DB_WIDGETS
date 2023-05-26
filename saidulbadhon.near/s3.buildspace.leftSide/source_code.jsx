@@ -40,8 +40,8 @@ const styles = {
     borderRadius: 4,
     cursor: "pointer",
     transition: "all 0.2s ease-in-out",
-    backgroundColor: "#2ea043",
-    border: "1px solid #2ea043",
+    backgroundColor: theme.buttonColor,
+    border: `1px solid ${theme.buttonColor}`,
     color: theme.buttonTextColor,
   },
 };
