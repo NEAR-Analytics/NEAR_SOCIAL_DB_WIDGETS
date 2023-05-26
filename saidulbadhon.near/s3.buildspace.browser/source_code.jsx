@@ -32,6 +32,14 @@ const Card = styled.div`
     filter: brightness(1);
   }
 `;
+const PTag = styled.p`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* number of lines to show */
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+`;
 
 return (
   <div
@@ -154,7 +162,7 @@ return (
                 </p>
               </div>
 
-              <p
+              <PTag
                 style={{
                   textAlign: "center",
                   padding: 0,
@@ -164,7 +172,7 @@ return (
                 }}
               >
                 {card.message}
-              </p>
+              </PTag>
             </div>
           </Card>
         ))}
