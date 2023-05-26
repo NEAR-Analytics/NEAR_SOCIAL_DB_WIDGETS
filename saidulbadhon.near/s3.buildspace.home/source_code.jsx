@@ -9,6 +9,11 @@ const res = fetch("http://localhost:8000/api/v1/buildspace");
 
 // State.update({ images: res.body });
 
+if (!res.body?.list1)
+  return (
+    <div style={{ height: "100vh", width: "100%", backgroundColor: "#000" }} />
+  );
+
 return (
   <div
     className="s3BuildspaceHome"
@@ -56,7 +61,7 @@ return (
             overflowY: "hidden",
           }}
         >
-          {res.body?.list2?.map((item, index) => (
+          {res.body?.list1?.map((item, index) => (
             <Widget
               key={index}
               src="saidulbadhon.near/widget/s3.buildspace.rightSide.card"
