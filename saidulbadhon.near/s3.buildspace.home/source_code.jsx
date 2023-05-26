@@ -13,7 +13,7 @@ if (!res.body?.list1)
 
 const handleBrowseButton = () => {
   State.update({
-    showBrowser: true,
+    showBrowser: !state.showBrowser,
   });
 };
 
@@ -22,6 +22,7 @@ return state.showBrowser ? (
     src="saidulbadhon.near/widget/s3.buildspace.browser"
     props={{
       theme,
+      handleBrowseButton,
     }}
   />
 ) : (
