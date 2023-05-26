@@ -58,11 +58,11 @@ return (
             height: "100%",
           }}
         >
-          {res.body?.map((image, index) => (
+          {res.body?.map((item, index) => (
             <Widget
               key={index}
               src="saidulbadhon.near/widget/s3.buildspace.rightSide.card"
-              props={{ theme, image }}
+              props={{ theme, card: item }}
             />
           ))}
         </div>
@@ -78,11 +78,11 @@ return (
             height: "100%",
           }}
         >
-          {res.body?.map((image, index) => (
+          {res.body?.map((item, index) => (
             <Widget
               key={index}
               src="saidulbadhon.near/widget/s3.buildspace.rightSide.card"
-              props={{ theme, image }}
+              props={{ theme, card: item }}
             />
           ))}
         </div>
