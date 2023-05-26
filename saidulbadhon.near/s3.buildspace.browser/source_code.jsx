@@ -38,8 +38,9 @@ const Card = styled.div`
 
 return (
   <div
-    className="s3BuildspaceHome"
+    // className="s3BuildspaceHome"
     style={{
+      height: "100%",
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
