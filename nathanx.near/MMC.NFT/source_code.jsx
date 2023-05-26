@@ -46,7 +46,7 @@ return (
           width="150"
           height="150"
         ></img>
-        <h3>NFTs Minted: {DETECTIVES}🕵️‍♂️</h3>
+        <h3>NFTs Minted: {DETECTIVES} of 550🕵️‍♂️</h3>
         <a href="https://www.tradeport.xyz/near/collection/mmc.nfts.fewandfar.near?tab=marketview">
           🔗---MMC Detectives on Tradeport
         </a>
@@ -63,7 +63,7 @@ return (
           width="150"
           height="150"
         ></img>
-        <h3>NFTs Minted: {PUPS}🐶</h3>
+        <h3>NFTs Minted: {PUPS} of 2016🐶</h3>
         <a href="https://fewfar.com/launchpad/murder-mystery-collective-undercover-pups-near/">
           🔗---Mint on FewFar!
         </a>
