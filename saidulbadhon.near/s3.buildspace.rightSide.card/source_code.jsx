@@ -5,19 +5,21 @@ const Card = styled.div`
 
   // height: "100%",
   height: 350px;
-  width: "100%";
-  maxWidth: 250;
-  borderRadius: 24;
-  overflow: "hidden";
+  width: 100%;
+  maxWidth: 250px;
+  borderRadius: 24px;
+  overflow: hidden;
 
-  position: "relative";
+  position: relative;
   border: 1px rgba(256, 256, 256, .25) solid;
 
   display: flex;
+  filter: brightness(0.9);
+
+  transition: all .2s ease-in-out;
 
   &:hover {
-    color: #fff;
-    background: rgb(60 65 68);
+    filter: brightness(1);
   }
 `;
 
