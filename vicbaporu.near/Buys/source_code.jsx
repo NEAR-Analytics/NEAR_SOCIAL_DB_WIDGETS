@@ -50,7 +50,7 @@ return (
           <th>Tipo de pago</th>
           <th>Estatus</th>
           <th>Bloques adquiridos</th>
-          <th>Hash</th>
+          <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
