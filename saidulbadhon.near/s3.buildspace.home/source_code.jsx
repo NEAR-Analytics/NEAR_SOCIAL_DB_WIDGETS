@@ -5,10 +5,6 @@ State.init({
 });
 const res = fetch("http://localhost:8000/api/v1/buildspace");
 
-// console.log(res.body);
-
-// State.update({ images: res.body });
-
 return (
   <div
     className="s3BuildspaceHome"
@@ -21,9 +17,7 @@ return (
   >
     <div
       style={{
-        // height: "calc(100vh - 100px)",
         height: "100%",
-        // maxHeight: "calc(100vh - 85px)",
         maxHeight: "100vh",
         width: "100%",
         maxWidth: 1250,
@@ -44,6 +38,7 @@ return (
           maxHeight: "100vh",
           display: "flex",
           gap: 24,
+          overflowY: "hidden",
         }}
       >
         <div
@@ -55,16 +50,16 @@ return (
             gap: 24,
             justifyContent: "center",
             height: "100%",
-            overflowY: "hidden",
           }}
         >
-          {res.body?.map((item, index) => (
-            <Widget
-              key={index}
-              src="saidulbadhon.near/widget/s3.buildspace.rightSide.card"
-              props={{ theme, card: item }}
-            />
-          ))}
+          {res.body &&
+            res.body?.map((item, index) => (
+              <Widget
+                key={index}
+                src="saidulbadhon.near/widget/s3.buildspace.rightSide.card"
+                props={{ theme, card: item }}
+              />
+            ))}
         </div>
 
         <div
@@ -76,16 +71,16 @@ return (
             gap: 24,
             justifyContent: "center",
             height: "100%",
-            overflowY: "hidden",
           }}
         >
-          {res.body?.map((item, index) => (
-            <Widget
-              key={index}
-              src="saidulbadhon.near/widget/s3.buildspace.rightSide.card"
-              props={{ theme, card: item }}
-            />
-          ))}
+          {res.body &&
+            res.body?.map((item, index) => (
+              <Widget
+                key={index}
+                src="saidulbadhon.near/widget/s3.buildspace.rightSide.card"
+                props={{ theme, card: item }}
+              />
+            ))}
         </div>
       </div>
     </div>
