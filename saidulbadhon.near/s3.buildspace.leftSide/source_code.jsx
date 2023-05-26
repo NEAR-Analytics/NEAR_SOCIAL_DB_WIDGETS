@@ -30,18 +30,18 @@ const styles = {
     borderRadius: 4,
     resize: "vertical",
     paddingInline: 8,
-    color: theme.textColor2,
+    color: theme.textColor,
   },
 
   buttonSuccess: {
     fontWeight: 500,
-    // border: "1px solid #d0d7de",
     width: "100%",
     height: 40,
     borderRadius: 4,
     cursor: "pointer",
     transition: "all 0.2s ease-in-out",
     backgroundColor: "#2ea043",
+    border: "1px solid #2ea043",
     color: theme.buttonTextColor,
   },
 };
@@ -66,12 +66,12 @@ const handleSubmit = () => {
     },
     body: JSON.stringify(body),
   })
-    .then((res) => {
-      console.log(res);
-      // const cid = res.body.cid;
-      // State.update({ img: { cid } });
+    .catch((err) => {
+      console.log(err);
     })
-    .catch((err) => console.log(err));
+    .finally(() => {
+      State.update({ showDialog: false });
+    });
 };
 
 return (
@@ -125,6 +125,7 @@ return (
 
         <div style={styles.inputContainer}>
           <p style={styles.inputLabel}>House:</p>
+
           <select
             style={styles.input}
             value={state.house}
@@ -139,6 +140,7 @@ return (
 
         <div style={styles.inputContainer}>
           <p style={styles.inputLabel}>Message:</p>
+
           <textarea
             className="form-control"
             placeholder="Write your message here"
@@ -160,6 +162,22 @@ return (
             width: "100%",
           }}
         >
+          <button
+            style={{
+              ...styles.buttonSuccess,
+              backgroundColor: theme.textColor3 + 33,
+              borderColor: theme.textColor3 + 33,
+              color: theme.textColor,
+            }}
+            onClick={() =>
+              State.update({
+                showDialog: false,
+              })
+            }
+          >
+            Back
+          </button>
+
           <button style={styles.buttonSuccess} onClick={() => handleSubmit()}>
             Save
           </button>
