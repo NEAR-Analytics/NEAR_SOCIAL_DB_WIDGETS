@@ -24,7 +24,7 @@ const Item = styled.div`
 `;
 
 return (
-  <div className="dropdown ms-auto w-auto">
+  <div className="dropdown ms-auto w-auto" style={{ whiteSpace: "nowrap" }}>
     <button
       className="btn border-0 p-0"
       type="button"
