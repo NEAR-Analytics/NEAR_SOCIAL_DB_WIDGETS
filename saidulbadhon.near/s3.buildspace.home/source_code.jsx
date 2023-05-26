@@ -53,7 +53,7 @@ return (
           }}
         >
           {res.body &&
-            res.body?.map((item, index) => (
+            res.body?.list1?.map((item, index) => (
               <Widget
                 key={index}
                 src="saidulbadhon.near/widget/s3.buildspace.rightSide.card"
@@ -74,7 +74,7 @@ return (
           }}
         >
           {res.body &&
-            res.body?.map((item, index) => (
+            res.body?.list2?.map((item, index) => (
               <Widget
                 key={index}
                 src="saidulbadhon.near/widget/s3.buildspace.rightSide.card"
