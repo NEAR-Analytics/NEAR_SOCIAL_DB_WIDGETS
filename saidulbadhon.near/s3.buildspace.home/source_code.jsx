@@ -5,10 +5,6 @@ State.init({
 });
 const res = fetch("http://localhost:8000/api/v1/buildspace");
 
-// console.log(res.body);
-
-// State.update({ images: res.body });
-
 if (!res.body?.list1)
   return (
     <div style={{ height: "100vh", width: "100%", backgroundColor: "#000" }} />
