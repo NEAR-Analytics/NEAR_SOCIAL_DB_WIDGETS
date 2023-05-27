@@ -92,9 +92,21 @@ return (
         >
           🠈
         </button>
-        <h1 style={{ fontWeight: 700, textAlign: "center" }}>
-          #nw s3 YEARBOOK
-        </h1>
+        <div>
+          <h1 style={{ fontWeight: 700, textAlign: "center" }}>
+            #nw s3 YEARBOOK
+          </h1>
+
+          <p
+            style={{
+              fontWeight: 500,
+              color: theme.textColor2,
+              textAlign: "center",
+            }}
+          >
+            {res.body?.length} builders
+          </p>
+        </div>
       </div>
 
       <div
