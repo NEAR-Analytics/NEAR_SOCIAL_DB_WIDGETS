@@ -1,7 +1,7 @@
 const accountWidgetCount = [];
 const data = Social.keys("*/profile", "final");
 if (!data) {
-  return "Loading";
+  return "Loading...";
 }
 let accounts = Object.entries(data);
 const limit = 258;
@@ -26,15 +26,15 @@ console.log(accountWidgetSort);
 
 return (
   <>
-    <h5>KOLs on NEAR Social</h5>
+    <h5>Top Widget Builders</h5>
     {accountWidgetSort.map((rank, index) => {
       let accountId = rank.accountId;
       return (
         <div className="d-flex justify-content-between mb-3">
-          <div className="me-4" style={{ width: "50%" }}>
+          <div className="me-4" style={{ width: "45%" }}>
             <Widget src="mob.near/widget/Profile" props={{ accountId }} />
           </div>
-          <div className="d-flex flex-column" style={{ width: "20%" }}>
+          <div className="d-flex flex-column" style={{ width: "30%" }}>
             <div>
               Rank:
               <span
@@ -59,7 +59,7 @@ return (
               </span>
             </div>
           </div>
-          <div style={{ width: "10%" }}>
+          <div style={{ width: "20%" }}>
             <Widget src="mob.near/widget/FollowButton" props={{ accountId }} />
           </div>
         </div>
