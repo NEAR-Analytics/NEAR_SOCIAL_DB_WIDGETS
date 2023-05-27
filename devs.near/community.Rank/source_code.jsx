@@ -1,4 +1,4 @@
-const accountId = props.accountId ?? "rc-dao.near";
+const accountId = props.accountId ?? "academy.near";
 const accountFollowerCount = [];
 
 let accounts = Social.keys(`${accountId}/graph/follow/*`, "final", {
@@ -35,7 +35,7 @@ console.log(accountFollowerSort);
 
 return (
   <>
-    <h5>Communities</h5>
+    <h3>Communities</h3>
     {accountFollowerSort.map((rank, index) => {
       let accountId = rank.accountId;
       return (
