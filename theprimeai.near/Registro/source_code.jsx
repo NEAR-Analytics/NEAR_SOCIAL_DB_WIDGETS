@@ -78,7 +78,7 @@ return (
                         class="btn btn-primary mt-2 bg-white"
                         onClick={onBtnClick}
                       >
-                        <a href="/theprimeai.near/widget/votacion">Vota</a>
+                        <a href="#/theprimeai.near/widget/votacion">Vota</a>
                       </button>
                     </td>
                   </tr>
