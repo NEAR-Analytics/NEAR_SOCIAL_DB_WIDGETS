@@ -52,16 +52,10 @@ return (
             </tr>
           </thead>
           <tbody>
-            {messages.map((data, key) => {
-              return (
-                <>
-                  <tr>
-                    <td>{data.creator}</td>
-                    <td>{data.topic}</td>
-                  </tr>
-                </>
-              );
-            })}
+            <tr>
+              <td>adrianmartinezt.near </td>
+              <td>¿Es sabroso el CABRITO?</td>
+            </tr>
           </tbody>
         </table>
       </div>
