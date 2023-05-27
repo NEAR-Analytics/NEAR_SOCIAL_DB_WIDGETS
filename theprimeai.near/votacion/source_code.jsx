@@ -29,9 +29,9 @@ const onBtnClick = () => {
 // Define components
 const messageEnviar = (
   <>
-    <div class="border border-black p-3">
+    <div class="">
       <button class="btn btn-primary m-0 p-1" onClick={onBtnClick}>
-        enviar
+        Enviar
       </button>
     </div>
   </>
