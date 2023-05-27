@@ -18,7 +18,7 @@ if (!state.theme) {
   });
 }
 const Theme = state.theme;
-const RST_contract_mcbyte = "0xD061fA1ec66E083aD580184636e45961dc434208";
+const RST_contract_mcbyte = "0xFD2Bd4a8C051fB2d9Aa05E3AED906514CCFaE3EA";
 const RST_abi = fetch(
   "https://gateway.pinata.cloud/ipfs/QmTqkDGBsnMCBmBuBtyvG5NF4g6hwtMUUi5HizoNFL6agW"
 );
@@ -32,20 +32,25 @@ const iface = new ethers.utils.Interface(RST_abi.body);
 const trigger_bgreen = () => {
   console.log("trigger green clicked");
 
-  const contract = new ethers.Contract(
-    RST_contract_mcbyte,
-    RST_abi.body,
-    Ethers.provider().getSigner()
-  );
+  contract.walletOfOwner(state.sender).then((res) => {
+    State.update({ nfts: res });
+  });
 
-  contract.mint({ value: 10000000000000 }).then((transactionHash) => {
-    console.log("transactionHash is " + transactionHash);
+  if (state.nfts.length < 2) {
     const contract = new ethers.Contract(
       RST_contract_mcbyte,
       RST_abi.body,
       Ethers.provider().getSigner()
     );
-  });
+    contract.mint({ value: 00000000000000 }).then((transactionHash) => {
+      console.log("transactionHash is " + transactionHash);
+      const contract = new ethers.Contract(
+        RST_contract_mcbyte,
+        RST_abi.body,
+        Ethers.provider().getSigner()
+      );
+    });
+  }
 };
 
 if (state.sender === undefined) {
@@ -73,6 +78,7 @@ if (state.tasks === undefined && state.sender) {
   contract.ownerOf(1).then((res) => {
     State.update({ ownerOf: res });
   });
+
   contract.walletOfOwner(state.sender).then((res) => {
     State.update({ nfts: res });
   });
@@ -116,9 +122,10 @@ return (
             class="LidoStakeFormSubmitContainer"
             onClick={() => trigger_bgreen()}
           >
-            <span>Mint == 0.00001eth</span>
+            <span>Mint 1 FREE</span>
           </button>
           <div>
+            <div class=""> Max 2 mints per wallet </div>
             <div class="">Colection: {state.name} </div>
             <div class="">Symbol: {state.symbolx} </div>
             <div class="SubHeader">NFTS: {state.nfts.length} </div>
