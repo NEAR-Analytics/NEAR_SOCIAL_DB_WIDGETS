@@ -44,6 +44,15 @@ const notLoggedInWarning = (
 // Render
 return (
   <>
+    <div class="img-fluid  text-center">
+      <div class="col-lg-12">
+        <img
+          class="float-center"
+          src="https://ipfs.near.social/ipfs/bafkreiha52l7x24ynagm37a2kcw62g6h76upfwhred65dvokrjujp6x7ty"
+          width="600"
+        />
+      </div>
+    </div>
     <div class="container border border-info p-3">
       <h3 class="text-center">The PRIME AI</h3>
       <div class="border border-black p-3">
@@ -99,8 +108,8 @@ return (
               <>
                 <tr>
                   <td>{data.topic}</td>
-                  <td>{data.yesVotes}</td>
-                  <td>{data.noVotes}</td>
+                  <td>5</td>
+                  <td>1</td>
                 </tr>
               </>
             );
