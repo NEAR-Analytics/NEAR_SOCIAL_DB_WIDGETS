@@ -4,7 +4,7 @@ if (!data) {
   return "Loading...";
 }
 let accounts = Object.entries(data);
-const limit = 100;
+const limit = 888;
 
 for (let i = 0; i < accounts.length; ++i) {
   let accountId = accounts[i][0];
