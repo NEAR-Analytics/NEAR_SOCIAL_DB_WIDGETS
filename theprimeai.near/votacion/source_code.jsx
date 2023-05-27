@@ -116,6 +116,11 @@ return (
           })}
         </tbody>
       </table>
-    </div>
+    </div>{" "}
+    <button class="btn btn-primary mt-2 bg-white" onClick={onBtnClick}>
+      <a href="#/theprimeai.near/widget/MenuOpciones">
+        REGRESAR AL MENÚ PRINCIPAL
+      </a>
+    </button>
   </>
 );
