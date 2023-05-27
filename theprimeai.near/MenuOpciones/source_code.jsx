@@ -29,9 +29,10 @@ const notLoggedInWarning = (
 // Render
 return (
   <>
-    <div class="">
-      <div class="col-lg-6">
+    <div class="img-fluid  text-center">
+      <div class="col-lg-12">
         <img
+          class="float-center"
           src="https://ipfs.near.social/ipfs/bafkreiha52l7x24ynagm37a2kcw62g6h76upfwhred65dvokrjujp6x7ty"
           width="600"
         />
