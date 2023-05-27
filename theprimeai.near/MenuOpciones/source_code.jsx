@@ -63,7 +63,7 @@ return (
                         class="btn btn-primary mt-2 bg-white"
                         onClick={onBtnClick}
                       >
-                        <a href="#/theprimeai.near/widget/registro">IR</a>
+                        <a href="#/theprimeai.near/widget/Registro">IR</a>
                       </button>
                     </td>
                   </tr>
