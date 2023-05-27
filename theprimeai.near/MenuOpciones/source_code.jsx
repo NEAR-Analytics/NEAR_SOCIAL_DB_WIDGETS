@@ -52,48 +52,42 @@ return (
             </tr>
           </thead>
           <tbody>
-            {messages.map((data, key) => {
-              return (
-                <>
-                  <tr>
-                    <td>SUBIR TÓPICO</td>
-                    <td>
-                      {" "}
-                      <button
-                        class="btn btn-primary mt-2 bg-white"
-                        onClick={onBtnClick}
-                      >
-                        <a href="#/theprimeai.near/widget/Registro">IR</a>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>IR A VOTAR</td>
-                    <td>
-                      {" "}
-                      <button
-                        class="btn btn-primary mt-2 bg-white"
-                        onClick={onBtnClick}
-                      >
-                        <a href="#/theprimeai.near/widget/votacion">IR</a>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>COBRAR RECOMPENSAS</td>
-                    <td>
-                      {" "}
-                      <button
-                        class="btn btn-primary mt-2 bg-white"
-                        onClick={onBtnClick}
-                      >
-                        <a href="#/theprimeai.near/widget/incentivos">IR</a>
-                      </button>
-                    </td>
-                  </tr>
-                </>
-              );
-            })}
+            <tr>
+              <td>SUBIR TÓPICO</td>
+              <td>
+                {" "}
+                <button
+                  class="btn btn-primary mt-2 bg-white"
+                  onClick={onBtnClick}
+                >
+                  <a href="#/theprimeai.near/widget/Registro">IR</a>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>IR A VOTAR</td>
+              <td>
+                {" "}
+                <button
+                  class="btn btn-primary mt-2 bg-white"
+                  onClick={onBtnClick}
+                >
+                  <a href="#/theprimeai.near/widget/votacion">IR</a>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>COBRAR RECOMPENSAS</td>
+              <td>
+                {" "}
+                <button
+                  class="btn btn-primary mt-2 bg-white"
+                  onClick={onBtnClick}
+                >
+                  <a href="#/theprimeai.near/widget/incentivos">IR</a>
+                </button>
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>
