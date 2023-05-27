@@ -39,7 +39,7 @@ return (
       </div>
     </div>
     <div class="container border border-info p-3">
-      <h3 class="text-center">THE PRIME AI</h3>
+      <h3 class="text-center"></h3>
       <h4 class="text-center">SELECCIONA ALGUNA ACCIÓN</h4>
       {context.accountId ? messageForm : notLoggedInWarning}
       <div class="border border-black p-3">
@@ -63,7 +63,7 @@ return (
                         class="btn btn-primary mt-2 bg-white"
                         onClick={onBtnClick}
                       >
-                        <a href="/theprimeai.near/widget/registro">IR</a>
+                        <a href="#/theprimeai.near/widget/registro">IR</a>
                       </button>
                     </td>
                   </tr>
@@ -75,7 +75,7 @@ return (
                         class="btn btn-primary mt-2 bg-white"
                         onClick={onBtnClick}
                       >
-                        <a href="/theprimeai.near/widget/votacion">IR</a>
+                        <a href="#/theprimeai.near/widget/votacion">IR</a>
                       </button>
                     </td>
                   </tr>
@@ -87,7 +87,7 @@ return (
                         class="btn btn-primary mt-2 bg-white"
                         onClick={onBtnClick}
                       >
-                        <a href="/theprimeai.near/widget/incentivo">IR</a>
+                        <a href="#/theprimeai.near/widget/incentivos">IR</a>
                       </button>
                     </td>
                   </tr>
