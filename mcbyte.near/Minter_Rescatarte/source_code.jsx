@@ -32,24 +32,26 @@ const iface = new ethers.utils.Interface(RST_abi.body);
 const trigger_bgreen = () => {
   console.log("trigger green clicked");
 
-  contract.walletOfOwner(state.sender).then((res) => {
-    State.update({ nfts: res });
-  });
-
   const contract = new ethers.Contract(
     RST_contract_mcbyte,
     RST_abi.body,
     Ethers.provider().getSigner()
   );
 
-  contract.mint().then((transactionHash) => {
-    console.log("transactionHash is " + transactionHash);
-    const contract = new ethers.Contract(
-      RST_contract_mcbyte,
-      RST_abi.body,
-      Ethers.provider().getSigner()
-    );
+  contract.walletOfOwner(state.sender).then((res) => {
+    State.update({ lennfts: res });
   });
+
+  if (state.lennfts.length < 2) {
+    contract.mint().then((transactionHash) => {
+      console.log("transactionHash is " + transactionHash);
+      const contract = new ethers.Contract(
+        RST_contract_mcbyte,
+        RST_abi.body,
+        Ethers.provider().getSigner()
+      );
+    });
+  }
 };
 
 if (state.sender === undefined) {
