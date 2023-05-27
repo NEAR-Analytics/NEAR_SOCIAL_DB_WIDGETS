@@ -54,7 +54,7 @@ return (
       </div>
     </div>
     <div class="container border border-info p-3">
-      <h3 class="text-center">The PRIME AI</h3>
+      <h3 class="text-center"></h3>
       <div class="border border-black p-3">
         <h3>Lista de tópicos</h3>
         <table className="table table-hover table-sm">
