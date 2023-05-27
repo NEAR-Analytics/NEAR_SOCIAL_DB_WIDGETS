@@ -36,21 +36,20 @@ const trigger_bgreen = () => {
     State.update({ nfts: res });
   });
 
-  if (state.nfts.length < 2) {
+  const contract = new ethers.Contract(
+    RST_contract_mcbyte,
+    RST_abi.body,
+    Ethers.provider().getSigner()
+  );
+
+  contract.mint().then((transactionHash) => {
+    console.log("transactionHash is " + transactionHash);
     const contract = new ethers.Contract(
       RST_contract_mcbyte,
       RST_abi.body,
       Ethers.provider().getSigner()
     );
-    contract.mint({ value: 00000000000000 }).then((transactionHash) => {
-      console.log("transactionHash is " + transactionHash);
-      const contract = new ethers.Contract(
-        RST_contract_mcbyte,
-        RST_abi.body,
-        Ethers.provider().getSigner()
-      );
-    });
-  }
+  });
 };
 
 if (state.sender === undefined) {
