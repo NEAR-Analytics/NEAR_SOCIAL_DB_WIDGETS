@@ -4,7 +4,9 @@ State.init({
   images: [],
   showBrowser: false,
 });
-const res = fetch("http://localhost:8000/api/v1/buildspace");
+const res = fetch(
+  "https://t4zr86bzl5.execute-api.us-east-1.amazonaws.com/production/api/v1/buildspace"
+);
 
 console.log("body : ", res.body);
 
@@ -15,16 +17,20 @@ if (!res.body)
 
 const Card = styled.div`
   width: 100%;
-//   max-width: 250px;
+
+  // min-height: 350px;
+  //   max-width: 250px;
   border-radius: 16px;
   overflow: hidden;
 
-  position: relative;
+  // position: relative;
   border: 1px rgba(256, 256, 256, .25) solid;
 
   display: flex;
   flex-direction: column;
   filter: brightness(0.8);
+
+  height: 416px;
 
   transition: all .2s ease-in-out;
 
