@@ -18,7 +18,7 @@ const Description = styled.p`
   font-weight: 300;
 `;
 
-const ActionButton = styled.button`
+const FakeButton = styled.a`
   border-radius: 5px;
   text-transform: uppercase;
   padding: 8px 14px;
@@ -30,6 +30,8 @@ const ActionButton = styled.button`
   font-weight: 600;
   :hover {
     opacity: 0.8;
+    text-decoration: none;
+    color: #fff
   }
 `;
 
@@ -47,14 +49,14 @@ const Card = styled.div`
 `;
 
 const Hero = styled.div`
-display: flex;
-flex-direction: column;
-border-radius: 15px;
-text-align: center;
-justify-content: center;
-padding: 15px;
-background-color: #0c0c1f;
-color: #fff;
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  text-align: center;
+  justify-content: center;
+  padding: 15px;
+  background-color: #0c0c1f;
+  color: #fff;
 `;
 
 const CardList = styled.div`
@@ -66,9 +68,9 @@ const CardList = styled.div`
 const WidgetCard = (props) => {
   const { title, coverSrc, description, actionButtons } = props;
 
-  const handleButtonClick = (onClick) => {
-    if (onClick) {
-      onClick();
+  const handleButtonClick = (url) => {
+    if (url) {
+      window.open(url, "_blank");
     }
   };
 
@@ -77,26 +79,22 @@ const WidgetCard = (props) => {
       <Title>{title}</Title>
       <Cover src={coverSrc} alt={title} />
       <Description>{description}</Description>
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "auto auto",
-        }}
-      >
+      <div style={{ display: "grid", gridTemplateColumns: "auto auto" }}>
         {actionButtons.map((button, index) => (
-          <ActionButton
+          <FakeButton
             key={index}
-            onClick={() => handleButtonClick(button.onClick)}
+            onClick={() => handleButtonClick(button.url)}
+            href={button.url}
+            target="_blank"
+            rel="noopener noreferrer"
           >
             {button.label}
-          </ActionButton>
+          </FakeButton>
         ))}
       </div>
     </Card>
   );
 };
-
-// Let's focus on down here.
 
 const WidgetImages = [
   {
@@ -154,8 +152,9 @@ const Wiki = [
 ];
 
 const handlePlayButtonClick = (url) => {
-  // Handle "Play" button click event
-  window.open(url, "_blank");
+  if (url) {
+    window.open(url, "_blank");
+  }
 };
 
 return (
@@ -180,21 +179,11 @@ return (
         </a>
       </h1>
       <p
-        style={{
-          marginBottom: "20px",
-          fontSize: "1.3em",
-          fontWeight: "bold",
-        }}
+        style={{ marginBottom: "20px", fontSize: "1.3em", fontWeight: "bold" }}
       >
         EARN TO PLAY GAMES
       </p>
-      <p
-        style={{
-          marginBottom: "20px",
-          width: "100%",
-          textAlign: "justify",
-        }}
-      >
+      <p style={{ marginBottom: "20px", width: "100%", textAlign: "justify" }}>
         Explore the crypto-based gaming world of Marma J Gaming where you can
         collaborate artistically with friends, gather your pets for a battle,
         outfit your hero to explore dungeons and take part in raids, and gather
@@ -218,18 +207,9 @@ return (
           coverSrc={WidgetImages[index].url}
           description=""
           actionButtons={[
-            {
-              label: "Play",
-              onClick: () => handlePlayButtonClick(widget.url),
-            },
-            {
-              label: "Test",
-              onClick: () => handlePlayButtonClick(Testnet[index].url),
-            },
-            {
-              label: "Wiki",
-              onClick: () => handlePlayButtonClick(Wiki[index].url),
-            },
+            { label: "Play", url: widget.url },
+            { label: "Test", url: Testnet[index].url },
+            { label: "Wiki", url: Wiki[index].url },
           ]}
         />
       ))}
