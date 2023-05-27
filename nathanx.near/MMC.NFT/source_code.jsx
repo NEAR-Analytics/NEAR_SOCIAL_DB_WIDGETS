@@ -64,6 +64,13 @@ return (
           height="150"
         ></img>
         <h3>NFTs Minted: {PUPS} of 2016🐶</h3>
+        <img
+          src="https://media.tenor.com/rAbE1mipx-wAAAAC/movies-jurassic-park.gif"
+          alt="MMCDPUP"
+          width="365"
+          height="180"
+        ></img>
+        <br></br>
         <a href="https://fewfar.com/launchpad/murder-mystery-collective-undercover-pups-near/">
           🔗---Mint on FewFar!
         </a>
