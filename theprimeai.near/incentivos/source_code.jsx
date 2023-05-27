@@ -49,12 +49,22 @@ return (
             <tr>
               <th>Usuario</th>
               <th>Topic</th>
+              <th>Cobrar</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>adrianmartinezt.near </td>
               <td>¿Es sabroso el CABRITO?</td>
+              <td>
+                {" "}
+                <button
+                  class="btn btn-primary mt-2 bg-white"
+                  onClick={onBtnClick}
+                >
+                  <a href="#">Canjear</a>
+                </button>
+              </td>
             </tr>
           </tbody>
         </table>
