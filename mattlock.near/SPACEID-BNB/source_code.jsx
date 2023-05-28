@@ -204,6 +204,17 @@ const register = () => {
     .then((transactionHash) => {
       console.log("transactionHash is ", transactionHash);
       Storage.set(COMMITMENT, null);
+      Storage.set(NAME, null);
+    })
+    .catch((e) => {
+      console.log(e);
+      if (e.code === "ACTION_REJECTED") {
+        Storage.set(COMMITMENT, null);
+        return toast(
+          "You rejected the name registration transaction. Please request again and register if you would like to own the .bnb domain name!"
+        );
+      }
+      throw e;
     });
 };
 
