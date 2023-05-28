@@ -4,9 +4,7 @@ State.init({
   images: [],
   showBrowser: false,
 });
-// const res = fetch(
-//   "https://t4zr86bzl5.execute-api.us-east-1.amazonaws.com/production/api/v1/buildspace/showcase"
-// );
+const res = fetch(`http://localhost:8000/api/v1/buildspace/${props.name}`);
 
 // if (!res.body?.list1)
 //   return (
@@ -17,19 +15,25 @@ State.init({
 //   State.update({
 //     showBrowser: !state.showBrowser,
 //   });
+
+console.log("XD:", res.body);
 // };
 
 const ContainerWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #000000 || ${theme.backgroundColor};
+  background-color: #000;
+  min-height: 100vh;
+  height: 100%;
 `;
 
 const ContentWrapper = styled.div`
   gap: 32px;
-  display: grid;
-  grid-template-columns: 1fr 524px;
+  // display: grid;
+  // grid-template-columns: 1fr 524px;
+  display: flex;
+  flex-direction: column;
 
   height: 100%;
   max-height: 100vh;
@@ -38,7 +42,7 @@ const ContentWrapper = styled.div`
   padding-inline: 16px;
 
   @media screen and (max-width: 800px)  {
-    grid-template-columns: 1fr;
+    // grid-template-columns: 1fr;
   }
 `;
 
