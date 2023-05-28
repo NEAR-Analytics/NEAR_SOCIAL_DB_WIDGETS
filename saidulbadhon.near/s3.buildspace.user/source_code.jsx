@@ -260,7 +260,13 @@ return (
             </PTag>
           </div>
 
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div
+            style={{
+              display: "grid",
+              //  justifyContent: "space-between"
+              gridTemplateColumns: "1fr 1fr",
+            }}
+          >
             <img
               height={50}
               src="https://nearpad-images.s3.amazonaws.com/buildspace/signature2.png"
@@ -272,6 +278,19 @@ return (
               src="https://nearpad-images.s3.amazonaws.com/buildspace/signature1.png"
               alt="signature1"
             />
+            <div>
+              <img
+                height={50}
+                src="https://nearpad-images.s3.amazonaws.com/buildspace/signature4.png"
+                alt="signature2"
+              />
+              <img
+                style={{ marginTop: 50, marginLeft: 25 }}
+                height={75}
+                src="https://nearpad-images.s3.amazonaws.com/buildspace/signature3.png"
+                alt="signature1"
+              />
+            </div>
           </div>
 
           <div style={{ display: "flex", justifyContent: "flex-end", gap: 8 }}>
