@@ -13,6 +13,7 @@ const ContainerWrapper = styled.div`
   justify-content: center;
   align-items: center;
   height: 100%;
+  min-height:100vh;
 
   background-color: ${
     (card.house === "erevald" && "#10fc5522") ||
