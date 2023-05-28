@@ -23,7 +23,7 @@ console.log("XD:", res.body);
 const ContainerWrapper = styled.div`
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   height: 100%;
 `;
 
@@ -85,7 +85,7 @@ return (
           style={{
             display: "flex",
             flexDirection: "column",
-            alignItems: "flex-start",
+            alignItems: "center",
             gap: 8,
           }}
         >
