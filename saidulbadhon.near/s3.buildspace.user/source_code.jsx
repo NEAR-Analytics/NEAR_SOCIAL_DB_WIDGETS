@@ -63,6 +63,8 @@ return (
           width: "100%",
 
           gap: 16,
+          border: "1px rgba(256, 256, 256, .25) solid",
+          borderRadius: 8,
         }}
       >
         <img
