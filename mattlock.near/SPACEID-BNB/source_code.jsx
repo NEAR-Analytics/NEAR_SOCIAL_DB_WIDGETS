@@ -213,45 +213,6 @@ const css = `
   input, button {
     margin-bottom: 16px;
   }
-  .main {
-    margin-top: 32px;
-    width: 100%;
-    text-align: center;
-    position: relative;
-  }
-  .boxes {
-    margin: auto;
-    display: flex;
-    flex-flow: row wrap;
-    max-width: 1000px;
-    > div {
-      border: 1px solid #222;
-      margin: 16px;
-      padding: 8px;
-      text-align: center;
-      width: 256px;
-      > img {
-        width: 256px;
-      }
-      .break {
-        margin: 16px 0 16px 0;
-        height: 1px;
-        background-size: 100%;
-        background-image: url(https://galxe.com/_nuxt/img/bar.57178f2.png);
-      }
-      > button {
-        margin-bottom: 12px;
-      }
-      > h4 {
-        margin: 16px 0 16px 0;
-        font-size: 1.2rem;
-      }
-      > p.not {
-        color: rgb(168, 174, 186);
-      }
-    }
-    
-  }
 `;
 
 if (!css) return "";
