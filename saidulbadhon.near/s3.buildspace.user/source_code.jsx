@@ -100,44 +100,46 @@ return (
               {card.name}
             </h2>
 
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                gap: 4,
-                backgroundColor: theme.textColor3 + 66,
-                padding: "4px 12px",
-                borderRadius: 4,
-              }}
-            >
-              <p
+            <div>
+              <div
                 style={{
-                  textAlign: "center",
-                  padding: 0,
-                  margin: 0,
-                  fontWeight: 400,
+                  display: "flex",
+                  justifyContent: "center",
+                  gap: 4,
+                  backgroundColor: theme.textColor3 + 66,
+                  padding: "4px 12px",
+                  borderRadius: 4,
+                }}
+              >
+                <p
+                  style={{
+                    textAlign: "center",
+                    padding: 0,
+                    margin: 0,
+                    fontWeight: 400,
 
-                  fontSize: "14px",
-                  color: theme.textColor2,
-                }}
-              >
-                House:
-              </p>
-              <p
-                style={{
-                  textAlign: "center",
-                  padding: 0,
-                  margin: 0,
-                  fontWeight: 400,
-                  fontSize: "14px",
-                  color: theme.textColor,
-                }}
-              >
-                #{card.house}
-              </p>
+                    fontSize: "14px",
+                    color: theme.textColor2,
+                  }}
+                >
+                  House:
+                </p>
+                <p
+                  style={{
+                    textAlign: "center",
+                    padding: 0,
+                    margin: 0,
+                    fontWeight: 400,
+                    fontSize: "14px",
+                    color: theme.textColor,
+                  }}
+                >
+                  #{card.house}
+                </p>
+              </div>
             </div>
 
-            <div style={{ display: "flex", gap: 8 }}>
+            <div style={{ display: "flex", gap: 8, justifyContent: "center" }}>
               <PTag
                 style={{
                   textAlign: "center",
