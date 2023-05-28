@@ -58,6 +58,21 @@ const handleSubmit = () => {
     year: state.year,
   };
 
+  if (
+    state.name?.length > 2 ||
+    state.house?.length > 2 ||
+    state.message?.length > 2
+  ) {
+    State.update({
+      showError: true,
+    });
+    return;
+  } else {
+    State.update({
+      showError: false,
+    });
+  }
+
   asyncFetch(
     `https://t4zr86bzl5.execute-api.us-east-1.amazonaws.com/production/api/v1/buildspace`,
     {
@@ -202,6 +217,21 @@ return (
             Save
           </button>
         </div>
+
+        {state.showError && (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              width: "100%",
+            }}
+          >
+            <p style={{ color: "red", fontWeight: 600 }}>
+              Please fill all the fields
+            </p>
+          </div>
+        )}
       </div>
     ) : (
       <div
