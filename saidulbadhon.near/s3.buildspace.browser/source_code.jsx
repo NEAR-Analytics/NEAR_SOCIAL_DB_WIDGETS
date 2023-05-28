@@ -28,10 +28,7 @@ State.init({
   showBrowser: false,
   selectedHouse: "",
 });
-// const res = fetch(
-//   "https://t4zr86bzl5.execute-api.us-east-1.amazonaws.com/production/api/v1/buildspace" +
-//     state.selectedHouse
-// );
+
 const res = fetch(
   `http://localhost:8000/api/v1/buildspace/${state.selectedHouse}`
 );
@@ -104,7 +101,7 @@ return (
           </button>
           <div>
             <h1 style={{ fontWeight: 700, textAlign: "center" }}>
-              #nw s3 YEARBOOK | state: {state.selectedHouse}
+              #nw s3 YEARBOOK
             </h1>
 
             <p
@@ -187,30 +184,6 @@ return (
             height: "100%",
           }}
         >
-          {/*state.selectedHouse.length > 2
-            ? state.users?.length > 2 &&
-              state.users?.map((card, index) => (
-                <Widget
-                  src="saidulbadhon.near/widget/s3.buildspace.browser.card"
-                  props={{
-                    theme,
-                    card,
-                  }}
-                />
-              ))
-            : res.body?.map((card, index) => (
-                <div>
-                  <p>NOT MATCH, {console.log(state)}</p>
-
-                  <Widget
-                    src="saidulbadhon.near/widget/s3.buildspace.browser.card"
-                    props={{
-                      theme,
-                      card,
-                    }}
-                  />
-                </div>
-              ))*/}
           {res.body?.map((card, index) => (
             <a
               href={`/s3/${card.name}`}
