@@ -55,7 +55,7 @@ const UserCardWrapper = styled.div`
 
     @media screen and (max-width: 800px)  {
         display:flex;
-        justify-content: flex-start;
+        justify-content: center;
         align-items: center;
     }
 `;
@@ -78,9 +78,9 @@ return (
               justifyContent: "flex-start",
               alignItems: "center",
               width: "100%",
+              height: "100%",
               maxWidth: "350px",
-              paddingBottom: "8px",
-              gap: "16px",
+              //   gap: "16px",
               border: "1px rgba(256, 256, 256, .25) solid",
               borderRadius: "4px",
             }}
@@ -110,6 +110,16 @@ return (
                 display: "flex",
                 flexDirection: "column",
                 gap: 8,
+                width: "100%",
+                height: "100%",
+                paddingTop: 16,
+                paddingBottom: 8,
+
+                backgroundColor:
+                  (card.house === "erevald" && "#10fc5511") ||
+                  (card.house === "alterok" && "#5499ff11") ||
+                  (card.house === "gaudmire" && "#f5e03a11") ||
+                  (card.house === "spectreseek" && "#eb413b11"),
               }}
             >
               <h2
