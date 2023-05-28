@@ -164,25 +164,33 @@ return (
             height: "100%",
           }}
         >
-          {res.body?.map((card, index) => {
-            return state.selectedHouse === card.house ? (
-              <Widget
-                src="saidulbadhon.near/widget/s3.buildspace.browser.card"
-                props={{
-                  theme,
-                  card,
-                }}
-              />
-            ) : (
-              <Widget
-                src="saidulbadhon.near/widget/s3.buildspace.browser.card"
-                props={{
-                  theme,
-                  card,
-                }}
-              />
-            );
-          })}
+          {state.selectedHouse
+            ? res.body?.map((card, index) => {
+                return (
+                  state.selectedHouse === card.house && (
+                    <Widget
+                      src="saidulbadhon.near/widget/s3.buildspace.browser.card"
+                      props={{
+                        theme,
+                        card,
+                      }}
+                    />
+                  )
+                );
+              })
+            : res.body?.map((card, index) => (
+                <div>
+                  <p>NOT MATCH, {console.log(state)}</p>
+
+                  <Widget
+                    src="saidulbadhon.near/widget/s3.buildspace.browser.card"
+                    props={{
+                      theme,
+                      card,
+                    }}
+                  />
+                </div>
+              ))}
         </div>
       </div>
     </div>
