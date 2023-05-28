@@ -37,7 +37,8 @@ const ContentWrapper = styled.div`
 
 
   @media screen and (max-width: 800px)  {
-  flex-direction: column;
+    flex-direction: column;
+    align-items: center;
   }
 `;
 
