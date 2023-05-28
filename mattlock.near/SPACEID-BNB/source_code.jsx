@@ -237,6 +237,7 @@ const css = `
   }
   .main {
     max-width: 1000px;
+    margin: auto;
   }
 `;
 
@@ -285,34 +286,36 @@ return (
       }}
     />
 
-    <h2>Register a .bnb domain</h2>
+    <main>
+      <h2>Register a .bnb domain</h2>
 
-    <p>Choose a name and request it. This step only costs gas in BNB.</p>
-    <input
-      disabled={!state.address}
-      value={state.name}
-      onChange={(e) => State.update({ name: e.target.value })}
-      placeholder="name"
-    />
-    <button onClick={() => commit()}>Step 1. Request</button>
-    <p>
-      After you request, you will be able to register the name. This step
-      requires approx {priceForName} BNB.
-    </p>
-    <button
-      onClick={() => register()}
-      disabled={!Storage.privateGet(COMMITMENT)}
-    >
-      Step 2. Register
-    </button>
+      <p>Choose a name and request it. This step only costs gas in BNB.</p>
+      <input
+        disabled={!state.address}
+        value={state.name}
+        onChange={(e) => State.update({ name: e.target.value })}
+        placeholder="name"
+      />
+      <button onClick={() => commit()}>Step 1. Request</button>
+      <p>
+        After you request, you will be able to register the name. This step
+        requires approx {priceForName} BNB.
+      </p>
+      <button
+        onClick={() => register()}
+        disabled={!Storage.privateGet(COMMITMENT)}
+      >
+        Step 2. Register
+      </button>
 
-    <h3>Names you own:</h3>
-    {state.names && (
-      <ol>
-        {state.names.map(({ name }) => (
-          <li key={name}>{name}</li>
-        ))}
-      </ol>
-    )}
+      <h3>Names you own:</h3>
+      {state.names && (
+        <ol>
+          {state.names.map(({ name }) => (
+            <li key={name}>{name}</li>
+          ))}
+        </ol>
+      )}
+    </main>
   </Theme>
 );
