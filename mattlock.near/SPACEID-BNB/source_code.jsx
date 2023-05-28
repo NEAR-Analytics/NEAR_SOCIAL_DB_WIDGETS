@@ -25,7 +25,7 @@ const prices = JSON.parse(priceQuery.body);
 const priceForName =
   Math.ceil((10000 * 5) / parseFloat(prices.data.tokenUsdPrice[0].usdPrice)) /
     10000 +
-  0.001;
+  0.0005;
 
 console.log("prices ", prices);
 console.log("priceForName", priceForName);
@@ -284,7 +284,7 @@ return (
 
     <h2>Register a .bnb domain</h2>
 
-    <p>Enter a name and request to register.</p>
+    <p>Choose a name and request it. This step only costs gas in BNB.</p>
     <input
       disabled={!state.address}
       value={state.name}
@@ -292,7 +292,10 @@ return (
       placeholder="name"
     />
     <button onClick={() => commit()}>Step 1. Request</button>
-    <p>After you sign the commitment you can register the name.</p>
+    <p>
+      After you request, you will be able to register the name. This step
+      requires approx {priceForName} BNB.
+    </p>
     <button
       onClick={() => register()}
       disabled={!Storage.privateGet(COMMITMENT)}
