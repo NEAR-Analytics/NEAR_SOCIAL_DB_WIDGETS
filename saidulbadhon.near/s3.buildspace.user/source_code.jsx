@@ -53,8 +53,8 @@ const UserCardWrapper = styled.div`
     border: 1px rgba(256, 256, 256, .25) solid;
     border-radius: 4px;
 
-    @media screen and (max-width: 800px)  {
-max-width: 100%;    }
+//     @media screen and (max-width: 800px)  {
+// max-width: 100%;    }
 `;
 
 const PTag = styled.p`
