@@ -30,7 +30,7 @@ const CardWrapper = styled.div`
 
 return state.showBrowser ? (
   <Widget
-    src="saidulbadhon.near/widget/s3.buildspace.browser"
+    src="saidulbadhon.near/widget/s3.buildspace.home.browser"
     props={{
       theme,
       handleBrowseButton,
@@ -59,7 +59,7 @@ return state.showBrowser ? (
       }}
     >
       <Widget
-        src="saidulbadhon.near/widget/s3.buildspace.leftSide"
+        src="saidulbadhon.near/widget/s3.buildspace.home.leftSide"
         props={{
           theme,
           handleBrowseButton,
