@@ -16,10 +16,18 @@ if (!res.body)
   );
 
 const handleUpdateHouse = (houseName) => {
+  let xUsers = [];
+
+  res.body?.map((i) => {
+    if (i.house === houseName) {
+      xUsers.push(i);
+    }
+  });
+
   State.update({
     selectedHouse: state.selectedHouse === houseName ? "" : houseName,
 
-    users: res.body?.map((i) => i.house === state.selectedHouse),
+    users: xUsers,
   });
 };
 
