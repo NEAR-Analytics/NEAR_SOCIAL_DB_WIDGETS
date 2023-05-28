@@ -286,7 +286,7 @@ return (
       }}
     />
 
-    <main>
+    <div class="main">
       <h2>Register a .bnb domain</h2>
 
       <p>Choose a name and request it. This step only costs gas in BNB.</p>
@@ -316,6 +316,6 @@ return (
           ))}
         </ol>
       )}
-    </main>
+    </div>
   </Theme>
 );
