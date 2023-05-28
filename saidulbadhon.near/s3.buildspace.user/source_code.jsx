@@ -22,6 +22,14 @@ const ContainerWrapper = styled.div`
     (card.house === "gaudmire" && "#f5e03a22") ||
     (card.house === "spectreseek" && "#eb413b22")
   };
+
+  background-image: url("https://nearpad-images.s3.amazonaws.com/buildspace/${
+    card.house
+  }.jpg");
+    background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  backdrop-filter: blur(10px);
 `;
 
 const ContentWrapper = styled.div`
@@ -121,7 +129,7 @@ return (
                 {card.name}
               </h2>
 
-              <div style={{ display: "flex", justifyContent: "center" }}>
+              {/*<div style={{ display: "flex", justifyContent: "center" }}>
                 <div
                   style={{
                     display: "flex",
@@ -158,12 +166,23 @@ return (
                     #{card.house}
                   </p>
                 </div>
-              </div>
+              </div>*/}
 
               <div
                 style={{ display: "flex", gap: 8, justifyContent: "center" }}
               >
                 <PTag
+                  style={{
+                    textAlign: "center",
+                    fontWeight: 500,
+                    color: theme.textColor2,
+                    fontWeight: 400,
+                    fontSize: "14px",
+                  }}
+                >
+                  #{card.house}, {card.session} and {card.year}
+                </PTag>
+                {/*<PTag
                   style={{
                     textAlign: "center",
                     fontWeight: 500,
@@ -191,7 +210,7 @@ return (
                   }}
                 >
                   Year: {card.year}
-                </PTag>
+                </PTag>*/}
               </div>
 
               <PTag
