@@ -39,237 +39,241 @@ const PTag = styled.p`
 `;
 
 return (
-  <div
-    style={{
-      minHeight: "100vh",
-      height: "100%",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "flex-start",
-      backgroundColor: "#000" || theme.backgroundColor,
-      color: "#FFF",
-
-      backgroundColor:
-        (state.selectedHouse === "spectreseek" && "#10fc5522") ||
-        (state.selectedHouse === "alterok" && "#5499ff22") ||
-        (state.selectedHouse === "erevald" && "#f5e03a22") ||
-        (state.selectedHouse === "gaudmire" && "#eb413b22") ||
-        "#000000",
-    }}
-  >
+  <div className="s3BuildspaceHome">
     <div
       style={{
+        minHeight: "100vh",
         height: "100%",
-        width: "100%",
-        maxWidth: 1250,
-        padding: 16,
         display: "flex",
-        gap: 16,
-        flexDirection: "column",
-        justifyContent: "flex-start",
-        alignItems: "center",
+        justifyContent: "center",
+        alignItems: "flex-start",
+        backgroundColor: "#000" || theme.backgroundColor,
+        color: "#FFF",
+
+        backgroundColor:
+          (state.selectedHouse === "spectreseek" && "#f5e03a22") ||
+          (state.selectedHouse === "alterok" && "#5499ff22") ||
+          (state.selectedHouse === "erevald" && "#10fc5522") ||
+          (state.selectedHouse === "gaudmire" && "#eb413b22") ||
+          "#000000",
       }}
     >
       <div
         style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          position: "relative",
+          height: "100%",
           width: "100%",
+          maxWidth: 1250,
+          padding: 16,
+          display: "flex",
+          gap: 16,
+          flexDirection: "column",
+          justifyContent: "flex-start",
+          alignItems: "center",
         }}
       >
-        <button
+        <div
           style={{
-            position: "absolute",
-            left: 0,
-            backgroundColor: "transparent",
-            borderColor: "transparent",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            position: "relative",
+            width: "100%",
           }}
-          onClick={() => props.handleBrowseButton()}
         >
-          🠈
-        </button>
-        <div>
-          <h1 style={{ fontWeight: 700, textAlign: "center" }}>
-            #nw s3 YEARBOOK
-          </h1>
-
-          <p
+          <button
             style={{
-              fontWeight: 500,
-              color: theme.textColor2,
-              textAlign: "center",
+              position: "absolute",
+              left: 0,
+              backgroundColor: "transparent",
+              borderColor: "transparent",
+            }}
+            onClick={() => props.handleBrowseButton()}
+          >
+            🠈
+          </button>
+          <div>
+            <h1 style={{ fontWeight: 700, textAlign: "center" }}>
+              #nw s3 YEARBOOK
+            </h1>
+
+            <p
+              style={{
+                fontWeight: 500,
+                color: theme.textColor2,
+                textAlign: "center",
+              }}
+            >
+              {res.body?.length} builders
+            </p>
+          </div>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            position: "relative",
+            width: "100%",
+            gap: 8,
+          }}
+        >
+          <button
+            style={{
+              backgroundColor: "#eb413b33",
+              color: "#eb413b",
+              border: "none",
+            }}
+            onClick={() => {
+              State.update({
+                selectedHouse:
+                  state.selectedHouse === "erevald" ? "" : "erevald",
+              });
             }}
           >
-            {res.body?.length} builders
-          </p>
-        </div>
-      </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          position: "relative",
-          width: "100%",
-          gap: 8,
-        }}
-      >
-        <button
-          style={{
-            backgroundColor: "#eb413b33",
-            color: "#eb413b",
-            border: "none",
-          }}
-          onClick={() => {
-            State.update({
-              selectedHouse: state.selectedHouse === "erevald" ? "" : "erevald",
-            });
-          }}
-        >
-          Spectreseek
-        </button>
-        <button
-          style={{
-            backgroundColor: "#5499ff33",
-            color: "#5499ff",
-            border: "none",
-          }}
-          onClick={() => {
-            State.update({
-              selectedHouse: state.selectedHouse === "alterok" ? "" : "alterok",
-            });
-          }}
-        >
-          Alterok
-        </button>
-        <button
-          style={{
-            backgroundColor: "#10fc5533",
-            color: "#10fc55",
-            border: "none",
-          }}
-          onClick={() => {
-            State.update({
-              selectedHouse:
-                state.selectedHouse === "gaudmire" ? "" : "gaudmire",
-            });
-          }}
-        >
-          Erevald
-        </button>
-        <button
-          style={{
-            backgroundColor: "#f5e03a33",
-            color: "#f5e03a",
-            border: "none",
-          }}
-          onClick={() => {
-            State.update({
-              selectedHouse:
-                state.selectedHouse === "spectreseek" ? "" : "spectreseek",
-            });
-          }}
-        >
-          Gaudmire
-        </button>
-      </div>
-
-      <div
-        style={{
-          width: "100%",
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
-          gap: 16,
-          height: "100%",
-        }}
-      >
-        {res.body?.map((card, index) => (
-          <a
-            href={`/s3/${card.name}`}
-            style={{ textTransform: "none", textDecoration: "none" }}
+            Spectreseek
+          </button>
+          <button
+            style={{
+              backgroundColor: "#5499ff33",
+              color: "#5499ff",
+              border: "none",
+            }}
+            onClick={() => {
+              State.update({
+                selectedHouse:
+                  state.selectedHouse === "alterok" ? "" : "alterok",
+              });
+            }}
           >
-            <Card key={index}>
-              <img
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  minHeight: 250,
-                  maxHeight: 250,
-                  objectFit: "cover",
-                  aspectRatio: 1 / 1,
-                  backgroundColor: theme.textColor2,
-                }}
-                src={
-                  card.imageUrl
-                    ? `https://ipfs.near.social/ipfs/${card.imageUrl}`
-                    : "https://i.pinimg.com/originals/6b/f6/2c/6bf62c6c123cdcd33d2d693782a46b34.jpg"
-                }
-                alt={card.name}
-              />
+            Alterok
+          </button>
+          <button
+            style={{
+              backgroundColor: "#10fc5533",
+              color: "#10fc55",
+              border: "none",
+            }}
+            onClick={() => {
+              State.update({
+                selectedHouse:
+                  state.selectedHouse === "gaudmire" ? "" : "gaudmire",
+              });
+            }}
+          >
+            Erevald
+          </button>
+          <button
+            style={{
+              backgroundColor: "#f5e03a33",
+              color: "#f5e03a",
+              border: "none",
+            }}
+            onClick={() => {
+              State.update({
+                selectedHouse:
+                  state.selectedHouse === "spectreseek" ? "" : "spectreseek",
+              });
+            }}
+          >
+            Gaudmire
+          </button>
+        </div>
 
-              <div
-                style={{
-                  color: "#FFF",
-
-                  bottom: 24,
-                  borderRadius: 16,
-
-                  display: "flex",
-                  justifyContent: "center",
-                  aligncards: "center",
-                  flexDirection: "column",
-                  gap: 8,
-                  padding: "16px 16px 8px 16px",
-                }}
-              >
-                <h5
+        <div
+          style={{
+            width: "100%",
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
+            gap: 16,
+            height: "100%",
+          }}
+        >
+          {res.body?.map((card, index) => (
+            <a
+              href={`/s3/${card.name}`}
+              style={{ textTransform: "none", textDecoration: "none" }}
+            >
+              <Card key={index}>
+                <img
                   style={{
-                    textAlign: "center",
-                    padding: 0,
-                    margin: 0,
-                    fontWeight: 700,
+                    width: "100%",
+                    height: "100%",
+                    minHeight: 250,
+                    maxHeight: 250,
+                    objectFit: "cover",
+                    aspectRatio: 1 / 1,
+                    backgroundColor: theme.textColor2,
+                  }}
+                  src={
+                    card.imageUrl
+                      ? `https://ipfs.near.social/ipfs/${card.imageUrl}`
+                      : "https://i.pinimg.com/originals/6b/f6/2c/6bf62c6c123cdcd33d2d693782a46b34.jpg"
+                  }
+                  alt={card.name}
+                />
+
+                <div
+                  style={{
+                    color: "#FFF",
+
+                    bottom: 24,
+                    borderRadius: 16,
+
+                    display: "flex",
+                    justifyContent: "center",
+                    aligncards: "center",
+                    flexDirection: "column",
+                    gap: 8,
+                    padding: "16px 16px 8px 16px",
                   }}
                 >
-                  {card.name}
-                </h5>
-
-                <div style={{ display: "flex", justifyContent: "center" }}>
-                  <p
+                  <h5
                     style={{
                       textAlign: "center",
                       padding: 0,
                       margin: 0,
-                      fontWeight: 400,
-
-                      fontSize: "12px",
-
-                      backgroundColor: theme.textColor3 + 66,
-                      color: theme.textColor,
-                      padding: "4px 12px",
-                      borderRadius: 4,
+                      fontWeight: 700,
                     }}
                   >
-                    #{card.house}
-                  </p>
-                </div>
+                    {card.name}
+                  </h5>
 
-                <PTag
-                  style={{
-                    textAlign: "center",
-                    padding: 0,
-                    margin: 0,
-                    fontWeight: 500,
-                    color: theme.textColor2,
-                  }}
-                >
-                  {card.message}
-                </PTag>
-              </div>
-            </Card>
-          </a>
-        ))}
+                  <div style={{ display: "flex", justifyContent: "center" }}>
+                    <p
+                      style={{
+                        textAlign: "center",
+                        padding: 0,
+                        margin: 0,
+                        fontWeight: 400,
+
+                        fontSize: "12px",
+
+                        backgroundColor: theme.textColor3 + 66,
+                        color: theme.textColor,
+                        padding: "4px 12px",
+                        borderRadius: 4,
+                      }}
+                    >
+                      #{card.house}
+                    </p>
+                  </div>
+
+                  <PTag
+                    style={{
+                      textAlign: "center",
+                      padding: 0,
+                      margin: 0,
+                      fontWeight: 500,
+                      color: theme.textColor2,
+                    }}
+                  >
+                    {card.message}
+                  </PTag>
+                </div>
+              </Card>
+            </a>
+          ))}
+        </div>
       </div>
     </div>
   </div>
