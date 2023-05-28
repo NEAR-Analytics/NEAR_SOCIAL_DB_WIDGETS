@@ -29,7 +29,7 @@ const ContainerWrapper = styled.div`
 
 const ContentWrapper = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 
   height: 100%;
   max-height: 100vh;
@@ -40,7 +40,7 @@ const ContentWrapper = styled.div`
   gap: 16px;
 
   @media screen and (max-width: 800px)  {
-    // grid-template-columns: 1fr;
+  flex-direction: column;
   }
 `;
 const PTag = styled.p`
@@ -55,8 +55,10 @@ return (
       <div
         style={{
           display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
+          // flexDirection: "row",
+          flexDirection: "column",
+
+          justifyContent: "center",
           width: "100%",
 
           gap: 16,
