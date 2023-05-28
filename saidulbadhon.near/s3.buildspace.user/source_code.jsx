@@ -39,8 +39,6 @@ const ContentWrapper = styled.div`
   max-width: 1250px;
   padding-inline: 16px;
 
-  background-color: #0f0;
-
   @media screen and (max-width: 800px)  {
     // grid-template-columns: 1fr;
   }
@@ -65,8 +63,6 @@ return (
           width: "100%",
 
           gap: 16,
-
-          backgroundColor: "blue",
         }}
       >
         <img
@@ -76,6 +72,7 @@ return (
             objectFit: "cover",
             aspectRatio: 1 / 1,
             backgroundColor: theme.textColor2,
+            borderRadius: 8,
           }}
           src={
             card.imageUrl
@@ -87,24 +84,34 @@ return (
 
         <div
           style={{
-            backgroundColor: "red",
             display: "flex",
             flexDirection: "column",
             alignItems: "flex-start",
+            gap: 8,
           }}
         >
-          <h5
+          <h2
             style={{
               textAlign: "center",
               padding: 0,
               margin: 0,
               fontWeight: 700,
+              color: theme.textColor,
             }}
           >
             {card.name}
-          </h5>
+          </h2>
 
-          <div style={{ display: "flex", justifyContent: "center" }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              gap: 4,
+              backgroundColor: theme.textColor3 + 66,
+              padding: "4px 12px",
+              borderRadius: 4,
+            }}
+          >
             <p
               style={{
                 textAlign: "center",
@@ -112,12 +119,20 @@ return (
                 margin: 0,
                 fontWeight: 400,
 
-                fontSize: "12px",
-
-                backgroundColor: theme.textColor3 + 66,
+                fontSize: "14px",
+                color: theme.textColor2,
+              }}
+            >
+              House:
+            </p>
+            <p
+              style={{
+                textAlign: "center",
+                padding: 0,
+                margin: 0,
+                fontWeight: 400,
+                fontSize: "14px",
                 color: theme.textColor,
-                padding: "4px 12px",
-                borderRadius: 4,
               }}
             >
               #{card.house}
