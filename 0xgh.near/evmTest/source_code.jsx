@@ -358,49 +358,49 @@ Ethers.provider() &&
 
 return (
   <WrapperStyle>
-    {state.chainId === 11155111 ? (
-      <div className="content">
-        <div className="indicator">
-          <div className="section">
-            {state.address ? (
-              <>
-                <p className="label">Wallet: </p>
-                <p className="value">{state.address}</p>
-              </>
-            ) : (
-              ""
-            )}
-          </div>
-          <div className="section">
-            {state.address ? (
-              <>
-                <p className="label">Balance: </p>
-                <p className="value mung-balance">{state.balance} Mung</p>
-              </>
-            ) : (
-              ""
-            )}
-          </div>
+    <div className="content">
+      <div className="indicator">
+        <div className="section">
+          {state.address ? (
+            <>
+              <p className="label">Wallet: </p>
+              <p className="value">{state.address}</p>
+            </>
+          ) : (
+            ""
+          )}
         </div>
-        <div className="mint">
-          <div className="section">
-            {state.address ? (
-              <>
-                <p className="label">Mint: </p>
-                <input
-                  className="mint-mung-input"
-                  onChange={(e) => {
-                    State.update({ mintMungInput: e.target.value });
-                  }}
-                  value={state.mintMungInput}
-                ></input>
-              </>
-            ) : (
-              ""
-            )}
-          </div>
+        <div className="section">
+          {state.address && state.chainId === 11155111 ? (
+            <>
+              <p className="label">Balance: </p>
+              <p className="value mung-balance">{state.balance} Mung</p>
+            </>
+          ) : (
+            ""
+          )}
         </div>
-        {state.address ? (
+      </div>
+      <div className="mint">
+        <div className="section">
+          {state.address && state.chainId === 11155111 ? (
+            <>
+              <p className="label">Mint: </p>
+              <input
+                className="mint-mung-input"
+                onChange={(e) => {
+                  State.update({ mintMungInput: e.target.value });
+                }}
+                value={state.mintMungInput}
+              ></input>
+            </>
+          ) : (
+            ""
+          )}
+        </div>
+      </div>
+      {state.address ? (
+        state.chainId === 11155111 ? (
           <>
             <button className={`get-mung ${state.mintMungInput || state.loading ? "" : "disabled"} ${state.loading ? "loading" : ""}`} onClick={getMung}>
               {state.loading ? "Loading..." : "Mung 토큰 받기"}
@@ -409,16 +409,16 @@ return (
             <p>0x5A6722e9EE2d298a4E83e420759CaBBbd58aB1d9</p>
           </>
         ) : (
-          <Web3Connect />
-        )}
-      </div>
-    ) : (
-      <div>
-        <div>Network를 Sepolia Testnet으로 바꿔주세요.</div>
-        <a href="https://chainlist.org/chain/11155111" target="_blank">
-          https://chainlist.org/chain/11155111
-        </a>
-      </div>
-    )}
+          <div>
+            <div>Network를 Sepolia Testnet으로 바꿔주세요.</div>
+            <a href="https://chainlist.org/chain/11155111" target="_blank">
+              https://chainlist.org/chain/11155111
+            </a>
+          </div>
+        )
+      ) : (
+        <Web3Connect />
+      )}
+    </div>
   </WrapperStyle>
 );
