@@ -15,21 +15,13 @@ if (!res.body)
 
 const Card = styled.div`
   width: 100%;
-
-  // min-height: 350px;
-  //   max-width: 250px;
   border-radius: 16px;
   overflow: hidden;
-
-  // position: relative;
   border: 1px rgba(256, 256, 256, .25) solid;
-
   display: flex;
   flex-direction: column;
   filter: brightness(0.8);
-
   height: 416px;
-
   transition: all .2s ease-in-out;
 
   &:hover {
@@ -117,7 +109,10 @@ return (
         }}
       >
         {res.body?.map((card, index) => (
-          <a href={`/s3/${card.name}`}>
+          <a
+            href={`/s3/${card.name}`}
+            style={{ textTransform: "none", textDecoration: "none" }}
+          >
             <Card key={index}>
               <img
                 style={{
