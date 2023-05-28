@@ -37,7 +37,7 @@ const ContentWrapper = styled.div`
   width: 100%;
   max-width: 1250px;
   padding: 16px;
-  gap: 16px;
+  // gap: 16px;
   justify-content: center;
 
   @media screen and (max-width: 800px)  {
@@ -77,8 +77,11 @@ return (
               //   gap: "16px",
               border: "1px rgba(256, 256, 256, .25) solid",
               borderRadius: "4px",
-          backdropFilter: "blur(10px)
-    }}
+              borderTopRightRadius: 0,
+              borderBottomRightRadius: 0,
+
+              backdropFilter: "blur(10px)",
+            }}
           >
             <img
               style={{
@@ -89,6 +92,8 @@ return (
                 aspectRatio: 1 / 1,
                 backgroundColor: theme.textColor2,
                 borderRadius: 4,
+                borderTopRightRadius: 0,
+                borderBottomRightRadius: 0,
                 borderBottomLeftRadius: 0,
                 borderBottomRightRadius: 0,
               }}
@@ -232,6 +237,8 @@ return (
             backgroundColor: theme.ui,
             padding: 16,
             borderRadius: 4,
+            borderTopLeftRadius: 0,
+            borderBottomLeftRadius: 0,
             display: "flex",
             flexDirection: "column",
             gap: 16,
