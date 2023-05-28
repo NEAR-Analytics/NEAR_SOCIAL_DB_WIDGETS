@@ -70,12 +70,6 @@ const CardList = styled.div`
 const WidgetCard = (props) => {
   const { title, coverSrc, description, actionButtons } = props;
 
-  const handleButtonClick = (url) => {
-    if (url) {
-      window.open(url, "_blank");
-    }
-  };
-
   return (
     <Card>
       <Title>{title}</Title>
@@ -158,12 +152,6 @@ const Wiki = [
     url: "https://github.com/MarmaJFoundation/chainteamtactics-wiki/wiki",
   },
 ];
-
-const handlePlayButtonClick = (url) => {
-  if (url) {
-    window.open(url, "_blank");
-  }
-};
 
 return (
   <div
