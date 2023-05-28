@@ -57,10 +57,11 @@ const bnb = {
 
 // .bnb registrar methods
 
-const getNamesForOwner = (owner) => {
+const getNamesForOwner = (owner, subscribe) => {
   const res = fetch(
     `https://galxe-proxy.near.workers.dev?url=https://graphigo.prd.space.id/query`,
     {
+      subscribe,
       method: "POST",
       body: JSON.stringify({
         operationName: "domains",
@@ -212,7 +213,7 @@ const register = () => {
         "Please wait 10 seconds for transaction to finalize. Your names list will update automatically after 10s."
       );
       setTimeout(() => {
-        const names = getNamesForOwner(state.address);
+        const names = getNamesForOwner(state.address, true);
         Storage.update({ names });
       }, 10000);
     })
