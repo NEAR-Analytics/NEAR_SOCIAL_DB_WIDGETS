@@ -35,8 +35,11 @@ console.log("priceForName", priceForName);
 const NAME = "__BNB_COMMIT_NAME";
 const SECRET = "__BNB_COMMIT_SECRET";
 const COMMITMENT = "__BNB_COMMITMENT";
-if (!Storage.get(SECRET)) {
-  Storage.set(SECRET, ethers.utils.formatBytes32String(Date.now().toString()));
+if (!Storage.privateGet(SECRET)) {
+  Storage.privateSet(
+    SECRET,
+    ethers.utils.formatBytes32String(Date.now().toString())
+  );
 }
 
 // Abi and .bnb registrar setup
@@ -49,7 +52,7 @@ const bnb = {
   resolver: `0x7A18768EdB2619e73c4d5067B90Fd84a71993C1D`,
   abi: abi.body,
   iface: new ethers.utils.Interface(abi.body),
-  secret: Storage.get(SECRET),
+  secret: Storage.privateGet(SECRET),
 };
 
 // .bnb registrar methods
@@ -133,7 +136,7 @@ const commit = () => {
     toast("Enter a valid name. Greater than 7 characters.");
     return;
   }
-  Storage.set(NAME, name);
+  Storage.privateSet(NAME, name);
 
   const encodedData = bnb.iface.encodeFunctionData("makeCommitment", [
     name,
@@ -168,7 +171,7 @@ const commit = () => {
           toast(
             "Please wait 10 seconds for transaction to finalize. Register button will be enabled after 10 seconds."
           );
-          setTimeout(() => Storage.set(COMMITMENT, commitment), 10000);
+          setTimeout(() => Storage.privateSet(COMMITMENT, commitment), 10000);
         })
         .catch((e) => {
           console.log(e);
@@ -183,8 +186,8 @@ const commit = () => {
 };
 
 const register = () => {
-  const name = Storage.get(NAME);
-  const secret = Storage.get(SECRET);
+  const name = Storage.privateGet(NAME);
+  const secret = Storage.privateGet(SECRET);
 
   if (!name) {
     return;
@@ -203,13 +206,13 @@ const register = () => {
     })
     .then((transactionHash) => {
       console.log("transactionHash is ", transactionHash);
-      Storage.set(COMMITMENT, null);
-      Storage.set(NAME, null);
+      Storage.privateSet(COMMITMENT, null);
+      Storage.privateSet(NAME, null);
     })
     .catch((e) => {
       console.log(e);
       if (e.code === "ACTION_REJECTED") {
-        Storage.set(COMMITMENT, null);
+        Storage.privateSet(COMMITMENT, null);
         return toast(
           "You rejected the name registration transaction. Please request again and register if you would like to own the .bnb domain name!"
         );
@@ -240,7 +243,7 @@ const Theme = state.theme;
 
 const init = () => {
   console.log("init");
-  const name = Storage.get(NAME);
+  const name = Storage.privateGet(NAME);
   let address;
   if (state.address === undefined) {
     const accounts = Ethers.send("eth_requestAccounts", []);
@@ -282,7 +285,10 @@ return (
     />
     <button onClick={() => commit()}>Step 1. Request</button>
     <p>After you sign the commitment you can register the name.</p>
-    <button onClick={() => register()} disabled={!Storage.get(COMMITMENT)}>
+    <button
+      onClick={() => register()}
+      disabled={!Storage.privateGet(COMMITMENT)}
+    >
       Step 2. Register
     </button>
 
