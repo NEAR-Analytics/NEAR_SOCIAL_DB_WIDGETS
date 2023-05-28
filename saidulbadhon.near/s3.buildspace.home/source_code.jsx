@@ -89,7 +89,7 @@ return state.showBrowser ? (
           {res.body?.list1?.map((item, index) => (
             <Widget
               key={index}
-              src="saidulbadhon.near/widget/s3.buildspace.rightSide.card"
+              src="saidulbadhon.near/widget/s3.buildspace.home.rightSide.card"
               props={{ theme, card: item }}
             />
           ))}
@@ -110,7 +110,7 @@ return state.showBrowser ? (
           {res.body?.list2?.map((item, index) => (
             <Widget
               key={index}
-              src="saidulbadhon.near/widget/s3.buildspace.rightSide.card"
+              src="saidulbadhon.near/widget/s3.buildspace.home.rightSide.card"
               props={{ theme, card: item }}
             />
           ))}
