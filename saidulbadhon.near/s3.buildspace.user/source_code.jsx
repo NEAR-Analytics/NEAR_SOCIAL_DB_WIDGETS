@@ -12,7 +12,6 @@ const ContainerWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  // height: 100%;
   min-height:100vh;
 
   background-color: ${
@@ -26,15 +25,11 @@ const ContainerWrapper = styled.div`
 const ContentWrapper = styled.div`
   display: flex;
   flex-direction: row;
-
-  // height: 100%;
-  // max-height: 100vh;
   width: 100%;
   max-width: 1250px;
   padding: 16px;
   gap: 16px;
   justify-content: center;
-
 
   @media screen and (max-width: 800px)  {
     flex-direction: column;
@@ -43,22 +38,11 @@ const ContentWrapper = styled.div`
 `;
 
 const UserCardWrapper = styled.div`
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: flex-start;
-    // align-items: center;
-    // width: 100%;
-    // max-width: 350px;
-    // padding-bottom: 8px;
-    // gap: 16px;
-    // border: 1px rgba(256, 256, 256, .25) solid;
-    // border-radius: 4px;
-
-    @media screen and (max-width: 800px)  {
-        display:flex;
-        justify-content: center;
-        align-items: center;
-    }
+  @media screen and (max-width: 800px)  {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 const PTag = styled.p`
