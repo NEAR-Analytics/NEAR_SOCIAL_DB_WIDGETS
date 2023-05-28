@@ -59,6 +59,7 @@ return (
           flexDirection: "column",
 
           justifyContent: "center",
+          alignItems: "center",
           width: "100%",
 
           gap: 16,
@@ -85,7 +86,7 @@ return (
           style={{
             display: "flex",
             flexDirection: "column",
-            alignItems: "center",
+            // alignItems: "center",
             gap: 8,
           }}
         >
