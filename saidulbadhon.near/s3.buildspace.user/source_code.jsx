@@ -242,6 +242,7 @@ return (
             display: "flex",
             flexDirection: "column",
             gap: 16,
+            position: "relative",
           }}
         >
           <div
@@ -287,31 +288,36 @@ return (
           </div>
 
           <div
-            style={{
-              display: "grid",
-              //  justifyContent: "space-between"
-              gridTemplateColumns: "1fr 1fr",
-            }}
+            style={
+              {
+                // display: "flex",
+                //  justifyContent: "space-between"
+                // gridTemplateColumns: "1fr 1fr",
+              }
+            }
           >
-            <img
-              height={50}
-              src="https://nearpad-images.s3.amazonaws.com/buildspace/signature2.png"
-              alt="signature2"
-            />
-            <img
-              style={{ marginTop: 50 }}
-              height={75}
-              src="https://nearpad-images.s3.amazonaws.com/buildspace/signature1.png"
-              alt="signature1"
-            />
-            <div>
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <img
+                height={50}
+                src="https://nearpad-images.s3.amazonaws.com/buildspace/signature2.png"
+                alt="signature2"
+              />
+              <img
+                // style={{ marginTop: 50 }}
+                height={75}
+                src="https://nearpad-images.s3.amazonaws.com/buildspace/signature1.png"
+                alt="signature1"
+              />
+            </div>
+
+            <div style={{ display: "flex", gap: 50 }}>
               <img
                 height={50}
                 src="https://nearpad-images.s3.amazonaws.com/buildspace/signature4.png"
                 alt="signature2"
               />
               <img
-                style={{ marginTop: 50, marginLeft: 25 }}
+                // style={{ marginTop: 50, marginLeft: 25 }}
                 height={75}
                 src="https://nearpad-images.s3.amazonaws.com/buildspace/signature3.png"
                 alt="signature1"
@@ -319,7 +325,16 @@ return (
             </div>
           </div>
 
-          <div style={{ display: "flex", justifyContent: "flex-end", gap: 8 }}>
+          <div
+            style={{
+              position: "absolute",
+              bottom: 16,
+              right: 16,
+              display: "flex",
+              justifyContent: "flex-end",
+              gap: 8,
+            }}
+          >
             <div
               style={{
                 height: 16,
