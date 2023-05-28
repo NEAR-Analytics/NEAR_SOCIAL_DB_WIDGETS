@@ -64,11 +64,6 @@ return (
           (state.selectedHouse === "erevald" && "#10fc5522") ||
           (state.selectedHouse === "gaudmire" && "#f5e03a22") ||
           "#000000",
-
-        backgroundImage: `url("https://nearpad-images.s3.amazonaws.com/buildspace/${card.house}.jpg")`,
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
       }}
     >
       <div
