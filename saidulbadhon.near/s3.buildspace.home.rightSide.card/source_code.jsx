@@ -24,7 +24,7 @@ const Card = styled.div`
 `;
 
 return (
-  <a href={`/s3/${card.name}`}>
+  <a href={`/s3/users/?name=${card.name}`}>
     <Card key={index}>
       <img
         style={{ width: "100%", height: "100%", objectFit: "cover" }}
