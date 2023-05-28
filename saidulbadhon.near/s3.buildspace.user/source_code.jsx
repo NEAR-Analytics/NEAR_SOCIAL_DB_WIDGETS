@@ -217,7 +217,7 @@ return (
           />
         </div>
 
-        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+        <div style={{ display: "flex", justifyContent: "flex-end", gap: 8 }}>
           <div
             style={{
               height: 16,
