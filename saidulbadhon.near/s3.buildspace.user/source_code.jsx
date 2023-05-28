@@ -24,10 +24,7 @@ const ContainerWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  background-color: #000;
-  min-height: 100vh;
   height: 100%;
-  padding-top: 16px
 `;
 
 const ContentWrapper = styled.div`
@@ -38,7 +35,8 @@ const ContentWrapper = styled.div`
   max-height: 100vh;
   width: 100%;
   max-width: 1250px;
-  padding-inline: 16px;
+  // padding-inline: 16px;
+  padding: 16px;
   gap: 16px;
 
   @media screen and (max-width: 800px)  {
@@ -52,7 +50,7 @@ const PTag = styled.p`
 `;
 
 return (
-  <ContainerWrapper>
+  <ContainerWrapper className="s3BuildspaceHome">
     <ContentWrapper>
       <div
         style={{
