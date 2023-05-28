@@ -53,138 +53,142 @@ const PTag = styled.p`
 return (
   <ContainerWrapper className="s3BuildspaceHome">
     <ContentWrapper>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "flex-start",
-          alignItems: "center",
-
-          width: "100%",
-          maxWidth: 350,
-
-          // width: "100%",
-
-          gap: 16,
-          border: "1px rgba(256, 256, 256, .25) solid",
-          borderRadius: 8,
-        }}
-      >
-        <img
-          style={{
-            width: "100%",
-            maxWidth: 350,
-            objectFit: "cover",
-            aspectRatio: 1 / 1,
-            backgroundColor: theme.textColor2,
-            borderRadius: 8,
-          }}
-          src={
-            card.imageUrl
-              ? `https://ipfs.near.social/ipfs/${card.imageUrl}`
-              : "https://i.pinimg.com/originals/6b/f6/2c/6bf62c6c123cdcd33d2d693782a46b34.jpg"
-          }
-          alt={card.name}
-        />
-
+      <div>
         <div
           style={{
             display: "flex",
             flexDirection: "column",
-            // alignItems: "center",
-            gap: 8,
+            justifyContent: "flex-start",
+            alignItems: "center",
+
+            width: "100%",
+            maxWidth: 350,
+
+            // width: "100%",
+
+            gap: 16,
+            border: "1px rgba(256, 256, 256, .25) solid",
+            borderRadius: 4,
           }}
         >
-          <h2
+          <img
             style={{
-              textAlign: "center",
-              padding: 0,
-              margin: 0,
-              fontWeight: 700,
-              color: theme.textColor,
+              width: "100%",
+              maxWidth: 350,
+              objectFit: "cover",
+              aspectRatio: 1 / 1,
+              backgroundColor: theme.textColor2,
+              borderRadius: 4,
+              borderBottomLeftRadius: 0,
+              borderBottomRightRadius: 0,
             }}
-          >
-            {card.name}
-          </h2>
+            src={
+              card.imageUrl
+                ? `https://ipfs.near.social/ipfs/${card.imageUrl}`
+                : "https://i.pinimg.com/originals/6b/f6/2c/6bf62c6c123cdcd33d2d693782a46b34.jpg"
+            }
+            alt={card.name}
+          />
 
           <div
             style={{
               display: "flex",
-              justifyContent: "center",
-              gap: 4,
-              backgroundColor: theme.textColor3 + 66,
-              padding: "4px 12px",
-              borderRadius: 4,
+              flexDirection: "column",
+              // alignItems: "center",
+              gap: 8,
             }}
           >
-            <p
+            <h2
               style={{
                 textAlign: "center",
                 padding: 0,
                 margin: 0,
-                fontWeight: 400,
-
-                fontSize: "14px",
-                color: theme.textColor2,
-              }}
-            >
-              House:
-            </p>
-            <p
-              style={{
-                textAlign: "center",
-                padding: 0,
-                margin: 0,
-                fontWeight: 400,
-                fontSize: "14px",
+                fontWeight: 700,
                 color: theme.textColor,
               }}
             >
-              #{card.house}
-            </p>
-          </div>
+              {card.name}
+            </h2>
 
-          <div style={{ display: "flex", gap: 8 }}>
-            <PTag
-              style={{
-                textAlign: "center",
-                fontWeight: 500,
-                color: theme.textColor2,
-                fontWeight: 400,
-                fontSize: "14px",
-              }}
-            >
-              Session: {card.session}
-            </PTag>
             <div
               style={{
+                display: "flex",
+                justifyContent: "center",
+                gap: 4,
                 backgroundColor: theme.textColor3 + 66,
-                width: 1,
-                height: 22,
+                padding: "4px 12px",
+                borderRadius: 4,
               }}
-            />
+            >
+              <p
+                style={{
+                  textAlign: "center",
+                  padding: 0,
+                  margin: 0,
+                  fontWeight: 400,
+
+                  fontSize: "14px",
+                  color: theme.textColor2,
+                }}
+              >
+                House:
+              </p>
+              <p
+                style={{
+                  textAlign: "center",
+                  padding: 0,
+                  margin: 0,
+                  fontWeight: 400,
+                  fontSize: "14px",
+                  color: theme.textColor,
+                }}
+              >
+                #{card.house}
+              </p>
+            </div>
+
+            <div style={{ display: "flex", gap: 8 }}>
+              <PTag
+                style={{
+                  textAlign: "center",
+                  fontWeight: 500,
+                  color: theme.textColor2,
+                  fontWeight: 400,
+                  fontSize: "14px",
+                }}
+              >
+                Session: {card.session}
+              </PTag>
+              <div
+                style={{
+                  backgroundColor: theme.textColor3 + 66,
+                  width: 1,
+                  height: 22,
+                }}
+              />
+              <PTag
+                style={{
+                  textAlign: "center",
+                  fontWeight: 500,
+                  color: theme.textColor2,
+                  fontWeight: 400,
+                  fontSize: "14px",
+                }}
+              >
+                Year: {card.year}
+              </PTag>
+            </div>
+
             <PTag
               style={{
                 textAlign: "center",
                 fontWeight: 500,
                 color: theme.textColor2,
-                fontWeight: 400,
-                fontSize: "14px",
               }}
             >
-              Year: {card.year}
+              {card.message}
             </PTag>
           </div>
-
-          <PTag
-            style={{
-              textAlign: "center",
-              fontWeight: 500,
-              color: theme.textColor2,
-            }}
-          >
-            {card.message}
-          </PTag>
         </div>
       </div>
 
