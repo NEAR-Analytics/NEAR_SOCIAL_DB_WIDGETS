@@ -339,7 +339,7 @@ if (Ethers.provider()) {
   getBalance();
 }
 
-state.address &&
+Ethers.provider() &&
   Ethers.provider()
     .waitForTransaction(state.hash)
     .then((res) => {
