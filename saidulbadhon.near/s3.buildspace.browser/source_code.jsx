@@ -8,8 +8,6 @@ const res = fetch(
   "https://t4zr86bzl5.execute-api.us-east-1.amazonaws.com/production/api/v1/buildspace"
 );
 
-console.log("body : ", res.body);
-
 if (!res.body)
   return (
     <div style={{ height: "100vh", width: "100%", backgroundColor: "#000" }} />
