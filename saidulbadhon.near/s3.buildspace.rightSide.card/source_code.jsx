@@ -27,7 +27,6 @@ return (
   <Card key={index}>
     <img
       style={{ width: "100%", height: "100%", objectFit: "cover" }}
-      // src={`https://ipfs.near.social/ipfs/${card.imageUrl}`}
       src={
         card.imageUrl
           ? `https://ipfs.near.social/ipfs/${card.imageUrl}`
@@ -38,7 +37,6 @@ return (
 
     <div
       style={{
-        // backgroundColor: "#FFF",
         color: "#FFF",
         position: "absolute",
         left: "50%",
