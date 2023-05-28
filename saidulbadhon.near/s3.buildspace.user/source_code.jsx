@@ -55,12 +55,14 @@ return (
       <div
         style={{
           display: "flex",
-          // flexDirection: "row",
           flexDirection: "column",
-
           justifyContent: "center",
           alignItems: "center",
+
           width: "100%",
+          maxWidth: 350,
+
+          // width: "100%",
 
           gap: 16,
           border: "1px rgba(256, 256, 256, .25) solid",
@@ -69,8 +71,8 @@ return (
       >
         <img
           style={{
-            width: 350,
-            maxWidth: "100%",
+            width: "100%",
+            maxWidth: 350,
             objectFit: "cover",
             aspectRatio: 1 / 1,
             backgroundColor: theme.textColor2,
