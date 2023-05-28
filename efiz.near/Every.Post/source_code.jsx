@@ -1,13 +1,13 @@
 let index = [];
-const typeWhitelist = [
+const typeWhitelist = JSON.parse(props.typeWhitelist || "null") || [
   "efiz.near/type/paragraph",
   "efiz.near/type/Image",
   "efiz.near/type/document",
 ];
 const accountFilter =
   (props.accountFilter && [props.accountFilter]) || undefined;
-const hashtagFilter = [];
-const domainFilter = ["post"];
+const hashtagFilter = JSON.parse(props.hashtagFilter || "null") || [];
+const domainFilter = JSON.parse(props.domainFilter || "null") || ["post"];
 
 if (hashtagFilter.length) {
   index = hashtagFilter.map((it) => ({
