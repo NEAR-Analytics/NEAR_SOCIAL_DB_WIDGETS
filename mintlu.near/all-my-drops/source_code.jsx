@@ -10,7 +10,7 @@ State.init({
   dropTypes: [],
 });
 
-const keypom_contract = "v2.keypom.testnet";
+const keypom_contract = "v2.keypom.near";
 
 let num_drops = Near.view(keypom_contract, "get_drop_supply_for_owner", {
   account_id: user,
