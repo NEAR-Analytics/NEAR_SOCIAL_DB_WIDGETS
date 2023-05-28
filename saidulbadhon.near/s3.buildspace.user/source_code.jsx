@@ -13,6 +13,13 @@ const ContainerWrapper = styled.div`
   justify-content: center;
   align-items: center;
   height: 100%;
+
+  background-color: ${
+    (card.house === "erevald" && "#10fc5522") ||
+    (card.house === "alterok" && "#5499ff22") ||
+    (card.house === "gaudmire" && "#f5e03a22") ||
+    (card.house === "spectreseek" && "#eb413b22")
+  };
 `;
 
 const ContentWrapper = styled.div`
@@ -246,7 +253,7 @@ return (
               height: 16,
               width: 16,
               borderRadius: 8,
-              backgroundColor: "#6f0208",
+              backgroundColor: "#eb413b",
             }}
           />
           <div
@@ -254,7 +261,7 @@ return (
               height: 16,
               width: 16,
               borderRadius: 8,
-              backgroundColor: "#27304f",
+              backgroundColor: "#5499ff",
             }}
           />
           <div
@@ -262,7 +269,7 @@ return (
               height: 16,
               width: 16,
               borderRadius: 8,
-              backgroundColor: "#8f7020",
+              backgroundColor: "#f5e03a",
             }}
           />
           <div
@@ -270,7 +277,7 @@ return (
               height: 16,
               width: 16,
               borderRadius: 8,
-              backgroundColor: "#31542d",
+              backgroundColor: "#10fc55",
             }}
           />
         </div>
