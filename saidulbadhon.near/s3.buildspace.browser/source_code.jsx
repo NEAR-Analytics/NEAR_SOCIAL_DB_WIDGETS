@@ -3,6 +3,7 @@ const theme = props.theme;
 State.init({
   images: [],
   showBrowser: false,
+  selectedHouse: "",
 });
 const res = fetch(
   "https://t4zr86bzl5.execute-api.us-east-1.amazonaws.com/production/api/v1/buildspace"
@@ -47,6 +48,13 @@ return (
       alignItems: "flex-start",
       backgroundColor: "#000" || theme.backgroundColor,
       color: "#FFF",
+
+      backgroundColor:
+        (state.selectedHouse === "spectreseek" && "#10fc5522") ||
+        (state.selectedHouse === "alterok" && "#5499ff22") ||
+        (state.selectedHouse === "erevald" && "#f5e03a22") ||
+        (state.selectedHouse === "gaudmire" && "#eb413b22") ||
+        "#000000",
     }}
   >
     <div
@@ -97,6 +105,75 @@ return (
             {res.body?.length} builders
           </p>
         </div>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          position: "relative",
+          width: "100%",
+          gap: 8,
+        }}
+      >
+        <button
+          style={{
+            backgroundColor: "#eb413b33",
+            color: "#eb413b",
+            border: "none",
+          }}
+          onClick={() => {
+            State.update({
+              selectedHouse: state.selectedHouse === "erevald" ? "" : "erevald",
+            });
+          }}
+        >
+          Spectreseek
+        </button>
+        <button
+          style={{
+            backgroundColor: "#5499ff33",
+            color: "#5499ff",
+            border: "none",
+          }}
+          onClick={() => {
+            State.update({
+              selectedHouse: state.selectedHouse === "alterok" ? "" : "alterok",
+            });
+          }}
+        >
+          Alterok
+        </button>
+        <button
+          style={{
+            backgroundColor: "#10fc5533",
+            color: "#10fc55",
+            border: "none",
+          }}
+          onClick={() => {
+            State.update({
+              selectedHouse:
+                state.selectedHouse === "gaudmire" ? "" : "gaudmire",
+            });
+          }}
+        >
+          Erevald
+        </button>
+        <button
+          style={{
+            backgroundColor: "#f5e03a33",
+            color: "#f5e03a",
+            border: "none",
+          }}
+          onClick={() => {
+            State.update({
+              selectedHouse:
+                state.selectedHouse === "spectreseek" ? "" : "spectreseek",
+            });
+          }}
+        >
+          Gaudmire
+        </button>
       </div>
 
       <div
