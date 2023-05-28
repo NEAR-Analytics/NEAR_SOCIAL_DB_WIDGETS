@@ -4,6 +4,7 @@ State.init({
   images: [],
   showBrowser: false,
   selectedHouse: "",
+  users: [],
 });
 const res = fetch(
   "https://t4zr86bzl5.execute-api.us-east-1.amazonaws.com/production/api/v1/buildspace"
@@ -13,6 +14,14 @@ if (!res.body)
   return (
     <div style={{ height: "100vh", width: "100%", backgroundColor: "#000" }} />
   );
+
+const handleUpdateHouse = (houseName) => {
+  State.update({
+    selectedHouse: state.selectedHouse === houseName ? "" : houseName,
+
+    users: res.body?.map((i) => i.house === state.selectedHouse),
+  });
+};
 
 return (
   <div className="s3BuildspaceHome">
@@ -69,7 +78,7 @@ return (
           </button>
           <div>
             <h1 style={{ fontWeight: 700, textAlign: "center" }}>
-              #nw s3 YEARBOOK
+              #nw s3 YEARBOOK | state: {state.selectedHouse}
             </h1>
 
             <p
@@ -100,10 +109,7 @@ return (
               border: "none",
             }}
             onClick={() => {
-              State.update({
-                selectedHouse:
-                  state.selectedHouse === "spectreseek" ? "" : "spectreseek",
-              });
+              handleUpdateHouse("spectreseek");
             }}
           >
             Spectreseek
@@ -115,10 +121,7 @@ return (
               border: "none",
             }}
             onClick={() => {
-              State.update({
-                selectedHouse:
-                  state.selectedHouse === "alterok" ? "" : "alterok",
-              });
+              handleUpdateHouse("alterok");
             }}
           >
             Alterok
@@ -130,10 +133,7 @@ return (
               border: "none",
             }}
             onClick={() => {
-              State.update({
-                selectedHouse:
-                  state.selectedHouse === "erevald" ? "" : "erevald",
-              });
+              handleUpdateHouse("erevald");
             }}
           >
             Erevald
@@ -145,10 +145,7 @@ return (
               border: "none",
             }}
             onClick={() => {
-              State.update({
-                selectedHouse:
-                  state.selectedHouse === "gaudmire" ? "" : "gaudmire",
-              });
+              handleUpdateHouse("gaudmire");
             }}
           >
             Gaudmire
@@ -164,20 +161,16 @@ return (
             height: "100%",
           }}
         >
-          {state.selectedHouse
-            ? res.body?.map((card, index) => {
-                return (
-                  state.selectedHouse === card.house && (
-                    <Widget
-                      src="saidulbadhon.near/widget/s3.buildspace.browser.card"
-                      props={{
-                        theme,
-                        card,
-                      }}
-                    />
-                  )
-                );
-              })
+          {state.selectedHouse.length > 2
+            ? state.users?.map((card, index) => (
+                <Widget
+                  src="saidulbadhon.near/widget/s3.buildspace.browser.card"
+                  props={{
+                    theme,
+                    card,
+                  }}
+                />
+              ))
             : res.body?.map((card, index) => (
                 <div>
                   <p>NOT MATCH, {console.log(state)}</p>
