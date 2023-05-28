@@ -136,11 +136,41 @@ return (
             </p>
           </div>
 
+          <div style={{ display: "flex", gap: 8 }}>
+            <PTag
+              style={{
+                textAlign: "center",
+                fontWeight: 500,
+                color: theme.textColor2,
+                fontWeight: 400,
+                fontSize: "14px",
+              }}
+            >
+              Session: {card.session}
+            </PTag>
+            <div
+              style={{
+                backgroundColor: theme.textColor3 + 66,
+                width: 1,
+                height: 22,
+              }}
+            />
+            <PTag
+              style={{
+                textAlign: "center",
+                fontWeight: 500,
+                color: theme.textColor2,
+                fontWeight: 400,
+                fontSize: "14px",
+              }}
+            >
+              Year: {card.year}
+            </PTag>
+          </div>
+
           <PTag
             style={{
               textAlign: "center",
-              padding: 0,
-              margin: 0,
               fontWeight: 500,
               color: theme.textColor2,
             }}
