@@ -235,6 +235,9 @@ const css = `
   input, button {
     margin-bottom: 16px;
   }
+  .main {
+    max-width: 1000px;
+  }
 `;
 
 if (!css) return "";
