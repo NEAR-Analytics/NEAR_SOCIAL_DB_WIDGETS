@@ -29,7 +29,6 @@ const ContainerWrapper = styled.div`
     background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  backdrop-filter: blur(10px);
 `;
 
 const ContentWrapper = styled.div`
@@ -78,7 +77,8 @@ return (
               //   gap: "16px",
               border: "1px rgba(256, 256, 256, .25) solid",
               borderRadius: "4px",
-            }}
+          backdropFilter: "blur(10px)
+    }}
           >
             <img
               style={{
