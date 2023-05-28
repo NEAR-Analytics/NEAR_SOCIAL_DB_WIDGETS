@@ -260,7 +260,7 @@ return (
       }}
     />
 
-    <h3>Register a .bnb domain</h3>
+    <h2>Register a .bnb domain</h2>
 
     <p>Enter a name and request to register.</p>
     <input
