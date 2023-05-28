@@ -23,10 +23,11 @@ console.log("XD:", res.body);
 const ContainerWrapper = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   background-color: #000;
   min-height: 100vh;
   height: 100%;
+  padding-top: 16px
 `;
 
 const ContentWrapper = styled.div`
@@ -38,18 +39,16 @@ const ContentWrapper = styled.div`
   width: 100%;
   max-width: 1250px;
   padding-inline: 16px;
+  gap: 16px;
 
   @media screen and (max-width: 800px)  {
     // grid-template-columns: 1fr;
   }
 `;
 const PTag = styled.p`
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 3; /* number of lines to show */
-  line-clamp: 3;
-  -webkit-box-orient: vertical;
+  color: ${theme.textColor2};
+  padding: 0px;
+  margin: 0px;
 `;
 
 return (
@@ -150,6 +149,109 @@ return (
           >
             {card.message}
           </PTag>
+        </div>
+      </div>
+
+      <div
+        style={{
+          maxWidth: 450,
+          backgroundColor: theme.ui,
+          padding: 16,
+          borderRadius: 4,
+          display: "flex",
+          flexDirection: "column",
+          gap: 16,
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <img
+            width={200}
+            src="https://nearpad-images.s3.amazonaws.com/buildspace.png"
+            alt="logoo"
+          />
+
+          <PTag>May 26, 2023</PTag>
+        </div>
+
+        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+          <PTag>dear {card.name},</PTag>
+
+          <PTag>
+            you've made it to the end of s3. tysm for coming irl to celebrate.
+            you're one of the 450 that made it to the very end. you should be
+            extremely proud of this achievement.
+          </PTag>
+
+          <PTag>
+            working on your own ideas is a difficult road - take a moment to
+            reflect on how far you've come in just six weeks.
+          </PTag>
+
+          <PTag>
+            good luck. we're extremely excited for whatever is next for you.
+            keep building and stfol.
+          </PTag>
+
+          <PTag>
+            love,
+            <br />
+            buildspace team
+          </PTag>
+        </div>
+
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <img
+            height={50}
+            src="https://nearpad-images.s3.amazonaws.com/buildspace/signature2.png"
+            alt="signature2"
+          />
+          <img
+            style={{ marginTop: 50 }}
+            height={75}
+            src="https://nearpad-images.s3.amazonaws.com/buildspace/signature1.png"
+            alt="signature1"
+          />
+        </div>
+
+        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+          <div
+            style={{
+              height: 16,
+              width: 16,
+              borderRadius: 8,
+              backgroundColor: "#6f0208",
+            }}
+          />
+          <div
+            style={{
+              height: 16,
+              width: 16,
+              borderRadius: 8,
+              backgroundColor: "#27304f",
+            }}
+          />
+          <div
+            style={{
+              height: 16,
+              width: 16,
+              borderRadius: 8,
+              backgroundColor: "#8f7020",
+            }}
+          />
+          <div
+            style={{
+              height: 16,
+              width: 16,
+              borderRadius: 8,
+              backgroundColor: "#31542d",
+            }}
+          />
         </div>
       </div>
     </ContentWrapper>
