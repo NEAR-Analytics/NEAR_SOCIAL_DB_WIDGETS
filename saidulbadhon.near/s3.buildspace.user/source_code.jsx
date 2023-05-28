@@ -38,6 +38,7 @@ const ContentWrapper = styled.div`
   // padding-inline: 16px;
   padding: 16px;
   gap: 16px;
+  justify-content: center;
 
   @media screen and (max-width: 800px)  {
   flex-direction: column;
