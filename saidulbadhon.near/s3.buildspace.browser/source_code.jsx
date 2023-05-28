@@ -126,7 +126,7 @@ return (
             onClick={() => {
               State.update({
                 selectedHouse:
-                  state.selectedHouse === "erevald" ? "" : "erevald",
+                  state.selectedHouse === "spectreseek" ? "" : "spectreseek",
               });
             }}
           >
@@ -156,7 +156,7 @@ return (
             onClick={() => {
               State.update({
                 selectedHouse:
-                  state.selectedHouse === "gaudmire" ? "" : "gaudmire",
+                  state.selectedHouse === "erevald" ? "" : "erevald",
               });
             }}
           >
@@ -171,7 +171,7 @@ return (
             onClick={() => {
               State.update({
                 selectedHouse:
-                  state.selectedHouse === "spectreseek" ? "" : "spectreseek",
+                  state.selectedHouse === "gaudmire" ? "" : "gaudmire",
               });
             }}
           >
@@ -188,91 +188,97 @@ return (
             height: "100%",
           }}
         >
-          {res.body?.map((card, index) => (
-            <a
-              href={`/s3/${card.name}`}
-              style={{ textTransform: "none", textDecoration: "none" }}
-            >
-              <Card key={index}>
-                <img
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    minHeight: 250,
-                    maxHeight: 250,
-                    objectFit: "cover",
-                    aspectRatio: 1 / 1,
-                    backgroundColor: theme.textColor2,
-                  }}
-                  src={
-                    card.imageUrl
-                      ? `https://ipfs.near.social/ipfs/${card.imageUrl}`
-                      : "https://i.pinimg.com/originals/6b/f6/2c/6bf62c6c123cdcd33d2d693782a46b34.jpg"
-                  }
-                  alt={card.name}
-                />
-
-                <div
-                  style={{
-                    color: "#FFF",
-
-                    bottom: 24,
-                    borderRadius: 16,
-
-                    display: "flex",
-                    justifyContent: "center",
-                    aligncards: "center",
-                    flexDirection: "column",
-                    gap: 8,
-                    padding: "16px 16px 8px 16px",
-                  }}
+          {res.body?.map((card, index) => {
+            return (
+              state.selectedHouse === card.selectedHouse && (
+                <a
+                  href={`/s3/${card.name}`}
+                  style={{ textTransform: "none", textDecoration: "none" }}
                 >
-                  <h5
-                    style={{
-                      textAlign: "center",
-                      padding: 0,
-                      margin: 0,
-                      fontWeight: 700,
-                    }}
-                  >
-                    {card.name}
-                  </h5>
-
-                  <div style={{ display: "flex", justifyContent: "center" }}>
-                    <p
+                  <Card key={index}>
+                    <img
                       style={{
-                        textAlign: "center",
-                        padding: 0,
-                        margin: 0,
-                        fontWeight: 400,
+                        width: "100%",
+                        height: "100%",
+                        minHeight: 250,
+                        maxHeight: 250,
+                        objectFit: "cover",
+                        aspectRatio: 1 / 1,
+                        backgroundColor: theme.textColor2,
+                      }}
+                      src={
+                        card.imageUrl
+                          ? `https://ipfs.near.social/ipfs/${card.imageUrl}`
+                          : "https://i.pinimg.com/originals/6b/f6/2c/6bf62c6c123cdcd33d2d693782a46b34.jpg"
+                      }
+                      alt={card.name}
+                    />
 
-                        fontSize: "12px",
+                    <div
+                      style={{
+                        color: "#FFF",
 
-                        backgroundColor: theme.textColor3 + 66,
-                        color: theme.textColor,
-                        padding: "4px 12px",
-                        borderRadius: 4,
+                        bottom: 24,
+                        borderRadius: 16,
+
+                        display: "flex",
+                        justifyContent: "center",
+                        aligncards: "center",
+                        flexDirection: "column",
+                        gap: 8,
+                        padding: "16px 16px 8px 16px",
                       }}
                     >
-                      #{card.house}
-                    </p>
-                  </div>
+                      <h5
+                        style={{
+                          textAlign: "center",
+                          padding: 0,
+                          margin: 0,
+                          fontWeight: 700,
+                        }}
+                      >
+                        {card.name}
+                      </h5>
 
-                  <PTag
-                    style={{
-                      textAlign: "center",
-                      padding: 0,
-                      margin: 0,
-                      fontWeight: 500,
-                      color: theme.textColor2,
-                    }}
-                  >
-                    {card.message}
-                  </PTag>
-                </div>
-              </Card>
-            </a>
-          ))}
+                      <div
+                        style={{ display: "flex", justifyContent: "center" }}
+                      >
+                        <p
+                          style={{
+                            textAlign: "center",
+                            padding: 0,
+                            margin: 0,
+                            fontWeight: 400,
+
+                            fontSize: "12px",
+
+                            backgroundColor: theme.textColor3 + 66,
+                            color: theme.textColor,
+                            padding: "4px 12px",
+                            borderRadius: 4,
+                          }}
+                        >
+                          #{card.house}
+                        </p>
+                      </div>
+
+                      <PTag
+                        style={{
+                          textAlign: "center",
+                          padding: 0,
+                          margin: 0,
+                          fontWeight: 500,
+                          color: theme.textColor2,
+                        }}
+                      >
+                        {card.message}
+                      </PTag>
+                    </div>
+                  </Card>
+                </a>
+              )
+            );
+          })}
         </div>
       </div>
     </div>
