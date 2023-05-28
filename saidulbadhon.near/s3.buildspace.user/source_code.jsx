@@ -1,10 +1,12 @@
 const theme = props.theme;
 
+const name = props.name ?? "";
+
 State.init({
   images: [],
   showBrowser: false,
 });
-const res = fetch(`http://localhost:8000/api/v1/buildspace/${props.name}`);
+const res = fetch(`http://localhost:8000/api/v1/buildspace/${name}`);
 
 // if (!res.body?.list1)
 //   return (
@@ -49,7 +51,7 @@ const ContentWrapper = styled.div`
 return (
   <ContainerWrapper>
     <ContentWrapper>
-      <h1>ASDSDAS: {props.name}</h1>
+      <h1>ASDSDAS: {name}</h1>
     </ContentWrapper>
   </ContainerWrapper>
 );
