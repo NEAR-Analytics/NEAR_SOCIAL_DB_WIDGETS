@@ -208,6 +208,13 @@ const register = () => {
       console.log("transactionHash is ", transactionHash);
       Storage.privateSet(COMMITMENT, null);
       Storage.privateSet(NAME, null);
+      toast(
+        "Please wait 10 seconds for transaction to finalize. Your names list will update automatically after 10s."
+      );
+      setTimeout(() => {
+        const names = getNamesForOwner(state.address);
+        Storage.update({ names });
+      }, 10000);
     })
     .catch((e) => {
       console.log(e);
