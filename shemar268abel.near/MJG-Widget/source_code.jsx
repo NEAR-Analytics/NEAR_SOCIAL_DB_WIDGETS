@@ -20,6 +20,7 @@ const Description = styled.p`
 
 const FakeButton = styled.a`
   border-radius: 5px;
+  width: auto;
   text-transform: uppercase;
   padding: 8px 14px;
   background: rgba(155, 155, 155, 0.2);
@@ -31,7 +32,7 @@ const FakeButton = styled.a`
   :hover {
     opacity: 0.8;
     text-decoration: none;
-    color: #fff
+    color: #fff;
   }
 `;
 
@@ -42,7 +43,6 @@ const Card = styled.div`
   align-items: center;
   justify-content: center;
   max-width: 210px;
-  margin: 10px auto;
   padding: 25px 32px;
   display: flex;
   flex-direction: column;
@@ -61,8 +61,10 @@ const Hero = styled.div`
 
 const CardList = styled.div`
   display: grid;
-  grid-template-columns: auto auto auto;
-  gap: 20px;
+  justify-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-rows: repeat(200px, 1fr);
+  gap: 0.5rem;
 `;
 
 const WidgetCard = (props) => {
@@ -79,7 +81,13 @@ const WidgetCard = (props) => {
       <Title>{title}</Title>
       <Cover src={coverSrc} alt={title} />
       <Description>{description}</Description>
-      <div style={{ display: "grid", gridTemplateColumns: "auto auto" }}>
+      <div
+        style={{
+          display: "flex",
+          flexFlow: "row wrap",
+          justifyContent: "space-evenly",
+        }}
+      >
         {actionButtons.map((button, index) => (
           <FakeButton
             key={index}
@@ -161,8 +169,8 @@ return (
   <div
     style={{
       display: "flex",
-      flexFlow: "row wrap",
-      justifyContent: "center",
+      flexFlow: "column",
+      alignItems: "space-evenly",
       backgroundColor: "#0e0e1e",
       padding: "20px",
     }}
