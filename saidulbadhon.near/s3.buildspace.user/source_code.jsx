@@ -75,7 +75,7 @@ return (
               height: "100%",
               maxWidth: "350px",
               //   gap: "16px",
-              border: "1px rgba(256, 256, 256, .25) solid",
+              border: "1px rgba(256, 256, 256, .15) solid",
               borderRadius: "4px",
               borderTopRightRadius: 0,
               borderBottomRightRadius: 0,
@@ -243,6 +243,8 @@ return (
             flexDirection: "column",
             gap: 16,
             position: "relative",
+            border: "1px rgba(256, 256, 256, .15) solid",
+            borderLeft: "none",
           }}
         >
           <div
