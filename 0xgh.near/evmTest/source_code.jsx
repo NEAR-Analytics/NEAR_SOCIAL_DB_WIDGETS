@@ -296,9 +296,10 @@ const WrapperStyle = styled.div`
 
 // const signer = Ethers.provider().getSigner();
 const mungInterface = new ethers.utils.Interface(abi);
+const user = Ethers.send("eth_requestAccounts", [])[0];
 
 const getBalance = () => {
-  const encodedData = mungInterface.encodeFunctionData("balanceOf", [state.address]);
+  const encodedData = mungInterface.encodeFunctionData("balanceOf", [state.address || user]);
 
   Ethers.provider()
     .call({
