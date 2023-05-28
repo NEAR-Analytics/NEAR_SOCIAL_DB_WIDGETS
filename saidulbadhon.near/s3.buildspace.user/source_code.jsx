@@ -1,5 +1,5 @@
 const theme = props.theme;
-const res = fetch(`http://localhost:8000/api/v1/buildspace/${props.name}`);
+const res = fetch(`http://localhost:8000/api/v1/buildspace/name/${props.name}`);
 
 if (!res.body)
   return (
