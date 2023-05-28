@@ -40,6 +40,23 @@ const ContentWrapper = styled.div`
   flex-direction: column;
   }
 `;
+
+const UserCardWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    max-width: 350px;
+    padding-bottom: 8px;
+    gap: 16px;
+    border: 1px rgba(256, 256, 256, .25) solid;
+    border-radius: 4px;
+
+    @media screen and (max-width: 800px)  {
+max-width: 100%;    }
+`;
+
 const PTag = styled.p`
   color: ${theme.textColor2};
   padding: 0px;
@@ -50,20 +67,7 @@ return (
   <div style={{ backgroundColor: "#000" }}>
     <ContainerWrapper>
       <ContentWrapper>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "flex-start",
-            alignItems: "center",
-            width: "100%",
-            maxWidth: 350,
-            paddingBottom: 8,
-            gap: 16,
-            border: "1px rgba(256, 256, 256, .25) solid",
-            borderRadius: 4,
-          }}
-        >
+        <UserCardWrapper>
           <img
             style={{
               width: "100%",
@@ -184,7 +188,7 @@ return (
               {card.message}
             </PTag>
           </div>
-        </div>
+        </UserCardWrapper>
 
         <div
           style={{
