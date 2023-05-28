@@ -213,33 +213,33 @@ const WrapperStyle = styled.div`
     align-items: center;
     flex-direction: column;
   }
-  p{
+  p {
     margin: 0;
   }
-  .indicator{
+  .indicator {
     padding: 0 2rem 0 2rem;
     width: 100%;
   }
-  .mint{
+  .mint {
     padding: 0 2rem 0 2rem;
     margin: 0 0 2rem 0;
     width: 100%;
     display: flex;
     align-items: center;
-    input{
+    input {
       height: 2rem;
       border: none;
       border-bottom: 1px solid #8338ec;
       outline: none;
     }
   }
-  .section{
+  .section {
     display: flex;
     align-items: center;
     width: 100%;
     height: 3rem;
   }
-  .label{
+  .label {
     font-size: 1.2rem;
     font-weight: bold;
     display: flex;
@@ -247,10 +247,10 @@ const WrapperStyle = styled.div`
     padding: 0 1rem 0 0;
     color: #8338ec;
   }
-  .value{
+  .value {
     font-size: 1.2rem;
   }
-  
+
   .get-mung {
     color: #8338ec;
     border: 2px #8338ec solid;
@@ -262,44 +262,43 @@ const WrapperStyle = styled.div`
     height: 2.5rem;
     transition: all 0.3s;
     margin-bottom: 2rem;
-    &:hover{
-        background-color: #8338ec;
-        color: white;
+    &:hover {
+      background-color: #8338ec;
+      color: white;
     }
-    &.disabled{
+    &.disabled {
       border-color: gray !important;
       color: gray;
       cursor: default;
-      &:hover{
+      &:hover {
         background-color: transparent;
         color: gray;
       }
     }
-    &.loading{
-    @keyframes change {
-      0%{
-        color: #8338ec;
+    &.loading {
+      @keyframes change {
+        0% {
+          color: #8338ec;
+        }
+        50% {
+          color: #f72585;
+        }
+        100% {
+          color: #8338ec;
+        }
       }
-      50%{
-        color: #f72585;
-      }
-      100%{
-        color: #8338ec;
-      }
+      animation-duration: 1.5s;
+      animation-name: change;
+      animation-iteration-count: infinite;
     }
-    animation-duration: 1.5s;
-  animation-name: change;
-animation-iteration-count: infinite;
-  }
   }
 `;
 
 // const signer = Ethers.provider().getSigner();
 const mungInterface = new ethers.utils.Interface(abi);
-const user = Ethers.send("eth_requestAccounts", [])[0];
 
 const getBalance = () => {
-  const encodedData = mungInterface.encodeFunctionData("balanceOf", [user]);
+  const encodedData = mungInterface.encodeFunctionData("balanceOf", [state.address]);
 
   Ethers.provider()
     .call({
@@ -307,10 +306,7 @@ const getBalance = () => {
       data: encodedData,
     })
     .then((rawBalance) => {
-      const receiverBalanceHex = mungInterface.decodeFunctionResult(
-        "balanceOf",
-        rawBalance
-      );
+      const receiverBalanceHex = mungInterface.decodeFunctionResult("balanceOf", rawBalance);
       const result = receiverBalanceHex[0].div("1000000000000000000");
       State.update({ balance: result.toString() });
     });
@@ -320,16 +316,10 @@ const getMung = () => {
   if (!state.mintMungInput || state.loading) {
     return;
   }
-  const mungContract = new ethers.Contract(
-    address,
-    abi,
-    Ethers.provider().getSigner()
-  );
-  const amount = ethers.BigNumber.from(state.mintMungInput)
-    .mul("1000000000000000000")
-    .toString();
+  const mungContract = new ethers.Contract(address, abi, Ethers.provider().getSigner());
+  const amount = ethers.BigNumber.from(state.mintMungInput).mul("1000000000000000000").toString();
 
-  mungContract.mint(user, amount).then((transactionHash) => {
+  mungContract.mint(state.address, amount).then((transactionHash) => {
     State.update({
       mintMungInput: "",
       hash: transactionHash.hash,
@@ -400,14 +390,9 @@ return (
           )}
         </div>
       </div>
-      {user ? (
+      {state.address ? (
         <>
-          <button
-            className={`get-mung ${
-              state.mintMungInput || state.loading ? "" : "disabled"
-            } ${state.loading ? "loading" : ""}`}
-            onClick={getMung}
-          >
+          <button className={`get-mung ${state.mintMungInput || state.loading ? "" : "disabled"} ${state.loading ? "loading" : ""}`} onClick={getMung}>
             {state.loading ? "Loading..." : "Mung 토큰 받기"}
           </button>
           <p>Mung Contract</p>
@@ -417,4 +402,5 @@ return (
         <Web3Connect />
       )}
     </div>
-  </WrapperStyle>);
+  </WrapperStyle>
+);
