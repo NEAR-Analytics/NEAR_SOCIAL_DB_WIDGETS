@@ -30,7 +30,7 @@ State.init({
 });
 
 const res = fetch(
-  `http://localhost:8000/api/v1/buildspace/${state.selectedHouse}`
+  `http://localhost:8000/api/v1/buildspace/houses/${state.selectedHouse}`
 );
 
 if (!res.body)
