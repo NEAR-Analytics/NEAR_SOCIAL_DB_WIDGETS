@@ -181,7 +181,7 @@ return (
                   style={{
                     textAlign: "center",
                     fontWeight: 500,
-                    color: theme.textColor2,
+                    color: theme.textColor,
                     fontWeight: 400,
                     fontSize: "14px",
                   }}
@@ -222,8 +222,8 @@ return (
               <PTag
                 style={{
                   textAlign: "center",
-                  fontWeight: 500,
-                  color: theme.textColor2,
+                  fontWeight: 400,
+                  color: theme.textColor,
                 }}
               >
                 {card.message}
