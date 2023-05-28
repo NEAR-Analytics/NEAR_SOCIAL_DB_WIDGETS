@@ -1,7 +1,7 @@
 const theme = props.theme;
 const card = props.card;
 
-const Card = styled.div`
+const Card = styled.a`
 
   // height: "100%",
   height: 350px;
@@ -24,7 +24,7 @@ const Card = styled.div`
 `;
 
 return (
-  <Card key={index}>
+  <Card key={index} href={`/s3/${card.name}`}>
     <img
       style={{ width: "100%", height: "100%", objectFit: "cover" }}
       src={
