@@ -238,6 +238,7 @@ const css = `
   .main {
     max-width: 1000px;
     margin: auto;
+    text-align: left;
   }
 `;
 
