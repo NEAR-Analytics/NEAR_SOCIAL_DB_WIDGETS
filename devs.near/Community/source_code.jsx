@@ -94,13 +94,8 @@ const Flex = styled.div`
 const Content = styled.div`
   @media (max-width: 1200px) {
     > div:first-child {
-      border-top: none;
     }
   }
-`;
-
-const GroupsWrapper = styled.div`
-  border-top: 1px solid #eceef0;
 `;
 
 const Container = styled.div`
@@ -161,9 +156,7 @@ return (
         </Flex>
       ) : (
         <Content>
-          <GroupsWrapper>
-            <Widget src="devs.near/widget/community.Groups" />
-          </GroupsWrapper>
+          <Widget src="devs.near/widget/community.Groups" />
         </Content>
       )}
     </Container>
