@@ -58,8 +58,10 @@ return (
             src="mob.near/widget/Image"
             props={{
               image: metadata.image,
-              className: "w-100 h-100 shadow",
-              style: { objectFit: "cover", borderRadius: "2em" },
+              className: "w-100 h-100",
+              style: {
+                objectFit: "cover",
+              },
               thumbnail: false,
               fallbackUrl:
                 "https://ipfs.near.social/ipfs/bafkreighocpt6opkkikgf6bnpfw3sg2c5bj37smrdbzg7k3duadkvfx6ti",
