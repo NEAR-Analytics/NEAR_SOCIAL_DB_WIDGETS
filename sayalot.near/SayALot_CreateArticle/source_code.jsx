@@ -395,6 +395,7 @@ return (
               },
             }}
           />
+        </div>
         <div class="d-flex flex-column pt-3">
           <label for="textareaArticleBody">
             Input article body (in makrdown format):
