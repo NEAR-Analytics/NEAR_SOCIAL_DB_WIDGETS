@@ -1,11 +1,5 @@
 const accountId = props.accountId ?? context.accountId;
-const daoId = props.daoId ?? "build.sputnik-dao.near";
-const contractId = props.contractId ?? "nft.bluntdao.near";
-
-const hashtags = [
-  { name: "ndc", required: true },
-  { name: "bos", required: true },
-];
+const contractId = props.contractId ?? "ndcconstellationnft.sharddog.near";
 
 const nftData = Near.view(contractId, "nft_supply_for_owner", {
   account_id: accountId,
@@ -97,6 +91,10 @@ const Flex = styled.div`
   `}
 `;
 
+const Banner = styled.div`
+  width: 100%
+`;
+
 const Content = styled.div`
   @media (max-width: 1200px) {
     > div:first-child {
@@ -105,7 +103,7 @@ const Content = styled.div`
   }
 `;
 
-const ComposeWrapper = styled.div`
+const GroupsWrapper = styled.div`
   border-top: 1px solid #eceef0;
 `;
 
@@ -123,27 +121,16 @@ const Container = styled.div`
 
 return (
   <Wrapper>
+    <img
+      src="https://ipfs.near.social/ipfs/bafybeihklk2hvvhse3ootfrljxuxnxqz4jdwlv3t2h22hotevcry2giwme"
+      style={{ width: "100%" }}
+    />
     <Container center>
-      <Flex gap="23px" direction="column" alignItems="center">
-        <H1>
-          <span>
-            NDC{" "}
-            <svg viewBox="0 0 26 24" fill="none" aria-hidden="true">
-              <path
-                d="M24.3767 8.06326L1.51965 0.0649912C1.10402 -0.0830767 0.639031 0.026026 0.327308 0.340346C0.0181841 0.657263 -0.0831256 1.12225 0.0701378 1.53788L8.071 23.2519C8.23726 23.7013 8.66587 24 9.14385 24H9.14644C9.62702 24 10.0556 23.6961 10.2167 23.2441L13.734 13.495L24.3325 10.2349C24.8053 10.0895 25.13 9.65824 25.1378 9.16468C25.1482 8.67112 24.8391 8.22691 24.3715 8.06326H24.3767Z"
-                fill="#3782b5"
-              />
-            </svg>
-          </span>
-          Constellation Summit
-        </H1>
-      </Flex>
-
       {!accountId && (
         <Widget
           src="near/widget/DIG.Button"
           props={{
-            href: "https://shard.dog/go",
+            href: "https://shard.dog/ndcconstellation",
             label: "Create Account",
             variant: "outline-dark",
             size: "large",
@@ -158,7 +145,7 @@ return (
           <Widget
             src="near/widget/DIG.Button"
             props={{
-              href: "https://shard.dog/go",
+              href: "https://shard.dog/ndcconstellation",
               label: "Get Your NFT",
               variant: "outline-primary",
               size: "large",
@@ -167,16 +154,9 @@ return (
         </Flex>
       ) : (
         <Content>
-          <ComposeWrapper>
-            <Widget
-              src="efiz.near/widget/Common.Compose"
-              props={{
-                communityHashtags: hashtags,
-                exclusive: false,
-                allowPublicPosting: true,
-              }}
-            />
-          </ComposeWrapper>
+          <GroupsWrapper>
+            <Widget src="devs.near/widget/community.Groups" />
+          </GroupsWrapper>
         </Content>
       )}
     </Container>
