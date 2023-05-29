@@ -68,6 +68,7 @@ return (
               alt: widgetName,
             }}
           />
+          <i>When you have a lot to say...</i>
         </div>
       </a>
       <button
