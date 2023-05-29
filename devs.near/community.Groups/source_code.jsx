@@ -9,15 +9,15 @@ const ActionButton = styled.a`
   width: auto;
   text-transform: uppercase;
   padding: 8px 14px;
-  background: rgba(155, 155, 155, 0.2);
+  background: #888;
   color: #fff;
   cursor: pointer;
-  border: 1px solid #000;
   outline: 0;
   font-weight: 600;
   :hover {
     opacity: 0.8;
     text-decoration: none;
+    background: #333;
     color: #fff;
   }
 `;
@@ -103,7 +103,7 @@ return (
       display: "flex",
       flexFlow: "column",
       alignItems: "space-evenly",
-      backgroundColor: "#0e0e1e",
+      backgroundColor: "#fff",
       padding: "20px",
     }}
   >
