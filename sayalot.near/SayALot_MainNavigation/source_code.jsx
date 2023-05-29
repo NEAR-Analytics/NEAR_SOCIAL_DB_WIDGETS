@@ -53,10 +53,7 @@ return (
         className="navbar-brand text-decoration-none"
         href={`#/${authorForWidget}/widget/SayALot`}
       >
-        <div
-          className="d-inline-block"
-          style={{ width: "10em", height: "10em" }}
-        >
+        <div className="d-inline-block" style={{ width: "5em", height: "5em" }}>
           <Widget
             src="mob.near/widget/Image"
             props={{
