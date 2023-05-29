@@ -18,7 +18,7 @@ const renderItem = (a) =>
   a.value.type === "md" && (
     <div key={JSON.stringify(a)}>
       <Widget
-        src={`${authorForWidget}/widget/Gigs_Comment`}
+        src={`${authorForWidget}/widget/SayALot_Comment`}
         props={{
           accountId: a.accountId,
           blockHeight: a.blockHeight,
