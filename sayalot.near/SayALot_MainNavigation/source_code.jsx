@@ -9,19 +9,8 @@ const writersWhiteList = props.writersWhiteList ?? [
   "yuensid.near",
   "shubham007.near",
 ];
-const authorForWidget = "neardigitalcollective.near";
-const pills = [
-  // {
-  //   id: "articles",
-  //   title: "Gigs",
-  //   widgetName: "Gigs",
-  // },
-  // {
-  //   id: "authors",
-  //   title: "Authors",
-  //   widgetName: "Gigs_Authors",
-  // },
-];
+const authorForWidget = "sayalot.near";
+const pills = [];
 
 const Button = styled.button`
   margin: 0px 1rem;
@@ -62,7 +51,7 @@ return (
     <div className="container-fluid">
       <a
         className="navbar-brand text-decoration-none"
-        href={`#/${authorForWidget}/widget/Gigs`}
+        href={`#/${authorForWidget}/widget/SayALot`}
       >
         {"<Say A Lot 🗨️>"}
       </a>
@@ -101,7 +90,7 @@ return (
               <div className="d-block d-md-none">
                 <a
                   className="btn btn-outline-dark"
-                  href={`#/${authorForWidget}/widget/Gigs_CreateArticle`}
+                  href={`#/${authorForWidget}/widget/SayALot_CreateArticle`}
                 >
                   + Create Gig
                 </a>
@@ -112,7 +101,7 @@ return (
       {accountId &&
         writersWhiteList.some((whiteAddr) => whiteAddr === accountId) && (
           <Button>
-            <a href={`#/${authorForWidget}/widget/Gigs_CreateArticle`}>
+            <a href={`#/${authorForWidget}/widget/SayALot_CreateArticle`}>
               + Create Gig
             </a>
           </Button>
