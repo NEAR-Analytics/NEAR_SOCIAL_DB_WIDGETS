@@ -59,9 +59,10 @@ const handleSubmit = () => {
   };
 
   if (
-    state.name?.length > 2 ||
-    state.house?.length > 2 ||
-    state.message?.length > 2
+    !state.imageUrl?.cid ||
+    state.name?.length < 2 ||
+    state.house?.length < 2 ||
+    state.message?.length < 2
   ) {
     State.update({
       showError: true,
