@@ -8,10 +8,10 @@ const nftData = Near.view(contractId, "nft_supply_for_owner", {
 const isOwner = nftData > 0;
 
 const Wrapper = styled.div`
-  --section-gap: 23px;
-  padding-top: 23px;
+  --section-gap: 30px;
+  padding-top: 30px;
 
-  @media (max-width: 1160px) {
+  @media (max-width: 1200px) {
     .line-rounded-corners {
       display: none !important;
     }
@@ -158,11 +158,6 @@ return (
         </Flex>
       ) : (
         <Content>
-          <img
-            src="https://ipfs.near.social/ipfs/bafybeihklk2hvvhse3ootfrljxuxnxqz4jdwlv3t2h22hotevcry2giwme"
-            style={{ width: "100%" }}
-          />
-          <br />
           <Widget src="devs.near/widget/community.Groups" />
         </Content>
       )}
