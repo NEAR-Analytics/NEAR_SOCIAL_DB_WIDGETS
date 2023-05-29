@@ -12,7 +12,6 @@ const ActionButton = styled.a`
   background: #888;
   color: #fff;
   cursor: pointer;
-  outline: 0;
   font-weight: 600;
   :hover {
     opacity: 0.8;
