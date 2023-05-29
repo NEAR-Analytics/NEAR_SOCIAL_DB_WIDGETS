@@ -1,6 +1,6 @@
 // MIT License: https://github.com/openwebbuild/bos-emoji-search/blob/main/LICENSE
 
-const accountId = props.accountId || context.accountId;
+const ROW_LIMIT = 10;
 
 // App Config
 function getConfig(network) {
@@ -50,12 +50,12 @@ if (!emojiList) {
 }
 
 State.init({
-  filteredEmoji: filterEmoji("", 20),
+  filteredEmoji: filterEmoji("", ROW_LIMIT),
 });
 
 const handleSearchChange = (event) => {
   State.update({
-    filteredEmoji: filterEmoji(event.target.value, 20),
+    filteredEmoji: filterEmoji(event.target.value, ROW_LIMIT),
   });
 };
 
