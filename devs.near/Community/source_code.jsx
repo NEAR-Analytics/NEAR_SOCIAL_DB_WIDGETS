@@ -128,33 +128,33 @@ return (
             Work Groups
           </H1>
         </Flex>
-
-        {!accountId && (
-          <Widget
-            src="near/widget/DIG.Button"
-            props={{
-              href: "https://shard.dog/ndcconstellation",
-              label: "Create Account",
-              variant: "outline-dark",
-              size: "large",
-            }}
-          />
-        )}
       </Container>
     )}
 
     <Container>
       {!isOwner ? (
         <Flex gap="23px" direction="column" alignItems="center">
-          <Widget
-            src="near/widget/DIG.Button"
-            props={{
-              href: "https://shard.dog/ndcconstellation",
-              label: "Get Your NFT",
-              variant: "outline-primary",
-              size: "large",
-            }}
-          />
+          {!accountId ? (
+            <Widget
+              src="near/widget/DIG.Button"
+              props={{
+                href: "https://shard.dog/ndcconstellation",
+                label: "Create Account",
+                variant: "outline-dark",
+                size: "large",
+              }}
+            />
+          ) : (
+            <Widget
+              src="near/widget/DIG.Button"
+              props={{
+                href: "https://shard.dog/ndcconstellation",
+                label: "Get Your NFT",
+                variant: "outline-primary",
+                size: "large",
+              }}
+            />
+          )}
         </Flex>
       ) : (
         <Content>
