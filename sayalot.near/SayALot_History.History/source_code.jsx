@@ -89,7 +89,7 @@ function blockHeightToWidgetCode(blockHeightObject) {
     <Widget
       style={{ minHeight: "200px" }}
       key={blockHeightObject.blockHeight}
-      src={`${authorForWidget}/widget/WikiOnSocialDB_History.ArticleHistoryCard`}
+      src={`neardigitalcollective.near/widget/WikiOnSocialDB_History.ArticleHistoryCard`}
       props={{
         pathToCurrentArticle: `${blockHeightObject.lastEditor}/${addressForArticles}/main`,
         currentBlockHeight: blockHeightObject.blockHeight,
