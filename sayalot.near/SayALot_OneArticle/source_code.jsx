@@ -80,6 +80,7 @@ const saveArticle = (args) => {
     lastEditor: accountId,
     timeLastEdit: Date.now(),
     version: Number(state.article.version) + 1,
+    tags: state.tags ? state.tags : state.article.tags,
   };
 
   const composeArticleData = () => {
@@ -175,13 +176,50 @@ const Button = styled.button`
   }
 `;
 
+//======= Create initialTagsObject for TagsEditor widget =======
+// const initialTestArray = ["learner", "crypto", "social"];
+const getTagObjectfromArray = (tagArray) => {
+  if (!tagArray) return {};
+  return tagArray.reduce((acc, value) => ({ ...acc, [value]: "" }), {});
+};
+// console.log(getTagObjectfromArray(initialTestArray));
+
+const areTheTextAndTagsTheSame = () => {
+  const isThereNoTextInBody = !state.note;
+  const doesTextUnchanged = article.body === state.note;
+  let doesTagsUnchanged = true;
+  if (state.tags) {
+    if (state.article.tags) {
+      doesTagsUnchanged =
+        state.tags.join().toLowerCase() ===
+        state.article.tags.join().toLowerCase();
+    } else {
+      doesTagsUnchanged = false;
+    }
+  }
+  return isThereNoTextInBody || (doesTextUnchanged && doesTagsUnchanged);
+};
+
+const filterTagsFromNull = (tagsObj) => {
+  const entries = Object.entries(tagsObj);
+
+  const result = entries.reduce((acc, value) => {
+    if (value[1] !== null) {
+      return [...acc, value[0]];
+    } else {
+      return acc;
+    }
+  }, []);
+  return result;
+};
+
 return (
   <div
     className="container-fluid"
     style={{ backgroundColor: "rgb(230, 230, 230)", padding: "0 0 1rem 0" }}
   >
     <Widget
-      src={`${authorForWidget}/widget/Gigs_MainNavigation`}
+      src={`${authorForWidget}/widget/SayALot_MainNavigation`}
       props={{ currentNavPill: "articles" }}
     />
     <div
@@ -313,7 +351,7 @@ return (
                       body: state.note,
                       navigation_id: null,
                     };
-
+                    if (areTheTextAndTagsTheSame()) return;
                     saveArticle(args);
                   }}
                 >
@@ -354,6 +392,21 @@ return (
                 </div>
                 <div className="w-50">
                   <Widget
+                    src="mob.near/widget/TagsEditor"
+                    props={{
+                      initialTagsObject: getTagObjectfromArray(
+                        state.article.tags
+                      ),
+                      placeholder: "Input tags",
+                      setTagsObject: (tags) => {
+                        console.log(filterTagsFromNull(tags));
+                        state.tags = filterTagsFromNull(tags);
+                        // state.tags = tags;
+                        State.update();
+                      },
+                    }}
+                  />
+                  <Widget
                     src="mob.near/widget/SocialMarkdown"
                     props={{ text: state.note }}
                   />
@@ -361,17 +414,15 @@ return (
               </div>
             </>
           )}
-          {!state.editArticle && !state.viewHistory && (
+          {/* MARKDOWN and TAGS list when user doesn't edit article  */}
+          {!state.editArticle && (
             <>
-              {!state.isMain && (
-                <i
-                  className="bi bi-arrow-left"
-                  style={{ cursor: "pointer", fontSize: "1.5rem" }}
-                  onClick={() => {
-                    handleHeaderClick(0, 0);
-                  }}
-                ></i>
-              )}
+              <div className="pt-2">
+                <Widget
+                  src={`${authorForWidget}/widget/WikiOnSocialDB_TagList`}
+                  props={{ tags: state.article.tags }}
+                />
+              </div>
               <Markdown text={state.note || state.article.body} />
             </>
           )}
