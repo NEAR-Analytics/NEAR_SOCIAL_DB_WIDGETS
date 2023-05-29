@@ -158,6 +158,8 @@ return (
         </Flex>
       ) : (
         <Content>
+          <img src="https://ipfs.near.social/ipfs/bafybeihklk2hvvhse3ootfrljxuxnxqz4jdwlv3t2h22hotevcry2giwme" />
+          <br />
           <Widget src="devs.near/widget/community.Groups" />
         </Content>
       )}
