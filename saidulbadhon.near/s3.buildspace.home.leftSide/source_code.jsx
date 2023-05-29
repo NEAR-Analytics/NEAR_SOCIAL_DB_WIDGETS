@@ -271,7 +271,14 @@ return (
           </h1>
           <H1Wrapper>YEARBOOK</H1Wrapper>
 
-          <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+          <div
+            style={{
+              display: "flex",
+              gap: 8,
+              alignItems: "center",
+              justifyContent: "flex-end",
+            }}
+          >
             <p
               style={{
                 color: "#FFF",
