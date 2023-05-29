@@ -322,7 +322,7 @@ return (
         <div className="mb-3" />
         {/* === FOOTER === */}
         <Widget
-          src={`${authorForWidget}/widget/WikiOnSocialDB_OneArticle.Footer`}
+          src={`neardigitalcollective.near/widget/WikiOnSocialDB_OneArticle.Footer`}
           props={{
             author: state.article.author,
             lastEditor: state.article.lastEditor,
@@ -419,7 +419,7 @@ return (
             <>
               <div className="pt-2">
                 <Widget
-                  src={`${authorForWidget}/widget/WikiOnSocialDB_TagList`}
+                  src={`${authorForWidget}/widget/SayALot_TagList`}
                   props={{ tags: state.article.tags }}
                 />
               </div>
