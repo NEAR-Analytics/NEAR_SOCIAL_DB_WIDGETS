@@ -103,6 +103,9 @@ const handleSubmit = () => {
 
 const H1Wrapper = styled.h1`
   font-size: 84px;
+  color: #FFFFFF;
+  line-height: 1;
+  font-weight: 800;
 
   @media screen and (max-width: 800px)  {
     font-size: 64px;
@@ -266,16 +269,35 @@ return (
           >
             #nw s3
           </h1>
-          <H1Wrapper
-            style={{
-              color: "#FFF",
-              lineHeight: 1,
-              fontWeight: 800,
-              // width: "11ch",
-            }}
-          >
-            YEARBOOK
-          </H1Wrapper>
+          <H1Wrapper>YEARBOOK</H1Wrapper>
+
+          <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+            <p
+              style={{
+                color: "#FFF",
+                lineHeight: 1,
+                fontWeight: 500,
+              }}
+            >
+              power by
+            </p>
+            <a href="/">
+              <p
+                style={{
+                  color: "#FFF",
+                  lineHeight: 1,
+                  fontWeight: 600,
+
+                  backgroundColor: theme.buttonTextColor,
+                  color: "#000",
+                  padding: "4px 8px",
+                  borderRadius: 4,
+                }}
+              >
+                nearpad.dev
+              </p>
+            </a>
+          </div>
         </div>
 
         <div style={{ display: "flex", gap: 16 }}>
@@ -316,6 +338,12 @@ return (
           >
             Browse
           </button>
+        </div>
+
+        <div style={{ position: "absolute", bottom: 16, left: 0 }}>
+          <p style={{ color: theme.textColor, fontWeight: 500 }}>
+            Made with ❤️ with nearpad.dev
+          </p>
         </div>
       </div>
     )}
