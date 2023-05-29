@@ -112,8 +112,8 @@ const Container = styled.div`
 
 return (
   <Wrapper>
-    <Container center>
-      {!isOwner && (
+    {!isOwner && (
+      <Container center>
         <Flex gap="23px" direction="column" alignItems="center">
           <H1>
             <span>
@@ -128,20 +128,20 @@ return (
             Work Groups
           </H1>
         </Flex>
-      )}
 
-      {!accountId && (
-        <Widget
-          src="near/widget/DIG.Button"
-          props={{
-            href: "https://shard.dog/ndcconstellation",
-            label: "Create Account",
-            variant: "outline-dark",
-            size: "large",
-          }}
-        />
-      )}
-    </Container>
+        {!accountId && (
+          <Widget
+            src="near/widget/DIG.Button"
+            props={{
+              href: "https://shard.dog/ndcconstellation",
+              label: "Create Account",
+              variant: "outline-dark",
+              size: "large",
+            }}
+          />
+        )}
+      </Container>
+    )}
 
     <Container>
       {!isOwner ? (
