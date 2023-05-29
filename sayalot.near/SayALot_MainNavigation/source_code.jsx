@@ -53,7 +53,18 @@ return (
         className="navbar-brand text-decoration-none"
         href={`#/${authorForWidget}/widget/SayALot`}
       >
-        {"<Say A Lot 🗨️>"}
+        <Widget
+          src="mob.near/widget/Image"
+          props={{
+            image: metadata.image,
+            className: "w-100 h-100 shadow",
+            style: { objectFit: "cover", borderRadius: "2em" },
+            thumbnail: false,
+            fallbackUrl:
+              "https://ipfs.near.social/ipfs/bafkreighocpt6opkkikgf6bnpfw3sg2c5bj37smrdbzg7k3duadkvfx6ti",
+            alt: widgetName,
+          }}
+        />
       </a>
       <button
         className="navbar-toggler"
