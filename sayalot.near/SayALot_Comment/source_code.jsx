@@ -1,4 +1,4 @@
-const addressForArticles = "sayALotgArticle";
+const addressForArticles = "sayALotArticle";
 const addressForComments = "sayalot-comments";
 const authorForWidget = "sayalot.near";
 State.init({ showReply: false });
