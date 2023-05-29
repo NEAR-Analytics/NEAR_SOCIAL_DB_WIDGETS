@@ -8,8 +8,8 @@ const nftData = Near.view(contractId, "nft_supply_for_owner", {
 const isOwner = nftData > 0;
 
 const Wrapper = styled.div`
-  --section-gap: 42px;
-  padding-top: 42px;
+  --section-gap: 23px;
+  padding-top: 23px;
 
   @media (max-width: 1160px) {
     .line-rounded-corners {
