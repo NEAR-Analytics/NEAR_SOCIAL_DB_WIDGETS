@@ -103,6 +103,10 @@ return (
                     <br />
                     Edit versions: {article.version}
                   </div>
+                  <Widget
+                    src={`${authorForWidget}/widget/WikiOnSocialDB_TagList`}
+                    props={{ tags: article.tags }}
+                  />
                 </div>
               </div>
             </a>
