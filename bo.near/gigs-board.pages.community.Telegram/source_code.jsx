@@ -111,7 +111,7 @@ if (groupInfo === null || !groupInfo.ok) {
 const messageIds = groupInfo.body.messageIds;
 
 const Telegram = (
-  <div class="d-flex justify-content-center" style={{ maxWidth: "700px" }}>
+  <div>
     <iframe
       iframeResizer={{ log: true }}
       src={
