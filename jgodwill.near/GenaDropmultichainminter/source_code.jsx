@@ -325,8 +325,8 @@ if (state.sender) {
 
 return (
   <>
-    {state.showAlert && (
-      <Widget src="jgodwill.near/widget/genadrop-toast" props={state} />
+    {!state.showAlert && (
+      <Widget src="jgodwill.near/widget/genalert" props={state} />
     )}
     <Heading className="text-center fs-2 fw-bold">
       Mint NFT on Multiple chains
