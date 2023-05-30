@@ -53,6 +53,13 @@ return (
       <Item>
         <Widget
           src="near/widget/ComponentCard"
+          props={{ src: "zavodil.near/widget/DexData" }}
+        />
+      </Item>
+
+      <Item>
+        <Widget
+          src="near/widget/ComponentCard"
           props={{ src: "zavodil.near/widget/Lido" }}
         />
       </Item>
