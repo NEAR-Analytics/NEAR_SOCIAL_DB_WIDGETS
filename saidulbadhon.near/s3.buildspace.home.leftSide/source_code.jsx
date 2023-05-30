@@ -330,10 +330,18 @@ return (
 
           <button
             style={{
-              backgroundColor: "transparent",
-              color: theme.buttonTextColor,
+              // backgroundColor: "transparent",
+              // color: theme.buttonTextColor,
+              // fontSize: 24,
+              // fontWeight: 500,
+              // padding: "12px 32px",
+              // border: "none",
+
+              // borderRadius: 40,
+              backgroundColor: theme.buttonTextColor,
+              color: "#000",
               fontSize: 24,
-              fontWeight: 500,
+              fontWeight: 600,
               padding: "12px 32px",
               border: "none",
 
