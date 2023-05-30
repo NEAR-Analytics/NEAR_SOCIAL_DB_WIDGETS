@@ -48,7 +48,8 @@ const ContentWrapper = styled.div`
 `;
 
 const UserCardWrapper = styled.div`
-    max-width: 100%;
+  max-width: 350px;
+
   @media screen and (max-width: 800px)  {
     display:flex;
     justify-content: center;
