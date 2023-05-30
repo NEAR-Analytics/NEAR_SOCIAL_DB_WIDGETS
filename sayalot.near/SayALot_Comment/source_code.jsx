@@ -1,47 +1,67 @@
-const addressForComments = "sayalot-comments";
 const addressForArticles = "sayALotArticle";
+const addressForComments = "sayalot-comments";
 const authorForWidget = "sayalot.near";
-const index = {
-  action: addressForComments,
-  key: props.item,
-  options: {
-    limit: props.limit ?? 3,
-    order: "desc",
-    accountId: props.accounts,
-    subscribe: props.subscribe,
-  },
-};
-
+State.init({ showReply: false });
+const accountId = props.accountId;
+const blockHeight =
+  props.blockHeight === "now" ? "now" : parseInt(props.blockHeight);
+const content = props.content ?? c;
+JSON.parse(
+  Social.get(
+    `${accountId}/${addressForArticles}/${addressForComments}`,
+    blockHeight
+  ) ?? "null"
+);
+const parentItem = content.item;
+const highlight = !!props.highlight;
 const raw = !!props.raw;
 
-const renderItem = (a) =>
-  a.value.type === "md" && (
-    <div key={JSON.stringify(a)}>
-      <Widget
-        src={`${authorForWidget}/widget/SayALot_Comment`}
-        props={{
-          accountId: a.accountId,
-          blockHeight: a.blockHeight,
-          highlight:
-            a.accountId === props.highlightComment?.accountId &&
-            a.blockHeight === props.highlightComment?.blockHeight,
-          raw,
-        }}
-      />
-    </div>
-  );
+//TODO - adress should be changed
+const link = `#/mob.near/widget/MainPage.Comment.Page?accountId=${accountId}&blockHeight=${blockHeight}`;
 
 return (
-  <div>
-    <Widget
-      src={`${authorForWidget}/widget/SayALot_ManualIndexFeed`}
-      props={{
-        index,
-        reverse: true,
-        renderItem,
-        nextLimit: 10,
-        loadMoreText: "Show earlier comments...",
-      }}
-    />
-  </div>
+  <>
+    <div>data, {parentItem}</div>
+    <div
+      className={`pt-3 border-top pb-2 ${
+        highlight ? "bg-warning bg-opacity-10" : ""
+      }`}
+    >
+      <Widget
+        src="mob.near/widget/MainPage.Post.Header"
+        props={{ accountId, blockHeight, link, postType: "comment" }}
+      />
+      <div className="mt-2 text-break">
+        <Widget
+          src="mob.near/widget/MainPage.Post.Content"
+          props={{ content, raw }}
+        />
+      </div>
+      {blockHeight !== "now" && (
+        <div className="mt-1 d-flex justify-content-between">
+          {parentItem && (
+            <Widget
+              src="mob.near/widget/CommentButton"
+              props={{
+                onClick: () => State.update({ showReply: !state.showReply }),
+              }}
+            />
+          )}
+        </div>
+      )}
+    </div>
+    {state.showReply && (
+      <div className="mb-2" key="reply">
+        <Widget
+          src={`${authorForWidget}/widget/SayALot_Comment.Compose`}
+          props={{
+            initialText: `${accountId}, `,
+            // notifyAccountId: extractNotifyAccountId(parentItem),
+            item: parentItem,
+            onComment: () => State.update({ showReply: false }),
+          }}
+        />
+      </div>
+    )}
+  </>
 );
