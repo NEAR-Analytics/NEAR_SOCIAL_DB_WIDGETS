@@ -92,102 +92,106 @@ const getNamesForOwner = (owner, subscribe) => {
   return names;
 };
 
-const checkName = (name) => {
-  const queryRes1 = fetch(
-    `https://galxe-proxy.near.workers.dev?url=https://graphigo.prd.space.id/query`,
-    {
-      subscribe: true,
-      method: "POST",
-      body: JSON.stringify({
-        operationName: "domains",
-        variables: {
-          input: {
-            query: name,
-            orderBy: "LIST_PRICE_ASC",
-            buyNow: 1,
-            network: 1,
-            domainStatuses: ["REGISTERED", "UNREGISTERED"],
-            first: 30,
-          },
+const checkName = (name, cb, tried) => {
+  const url = `https://galxe-proxy.near.workers.dev?url=https://graphigo.prd.space.id/query`;
+  const options = {
+    method: "POST",
+    body: JSON.stringify({
+      operationName: "domains",
+      variables: {
+        input: {
+          query: name,
+          orderBy: "LIST_PRICE_ASC",
+          buyNow: 1,
+          network: 1,
+          domainStatuses: ["REGISTERED", "UNREGISTERED"],
+          first: 30,
         },
-        query:
-          "query domains($input: ListDomainsInput!) {\n  domains(input: $input) {\n    exactMatch {\n      name\n      listPrice\n      lastSalePrice\n      tokenId\n      owner\n      network\n      orderSource\n      expirationDate\n      image\n      __typename\n    }\n    list {\n      name\n      listPrice\n      lastSalePrice\n      tokenId\n      owner\n      network\n      orderSource\n      expirationDate\n      image\n      __typename\n    }\n    pageInfo {\n      startCursor\n      endCursor\n      hasNextPage\n      __typename\n    }\n    __typename\n  }\n}",
-      }),
-    }
-  );
+      },
+      query:
+        "query domains($input: ListDomainsInput!) {\n  domains(input: $input) {\n    exactMatch {\n      name\n      listPrice\n      lastSalePrice\n      tokenId\n      owner\n      network\n      orderSource\n      expirationDate\n      image\n      __typename\n    }\n    list {\n      name\n      listPrice\n      lastSalePrice\n      tokenId\n      owner\n      network\n      orderSource\n      expirationDate\n      image\n      __typename\n    }\n    pageInfo {\n      startCursor\n      endCursor\n      hasNextPage\n      __typename\n    }\n    __typename\n  }\n}",
+    }),
+  };
+  const res = fetch(url, options);
+  console.log("checkName raw data", tried, res.body);
 
-  console.log("checkName raw data", queryRes1.body);
+  if (!res && !tried) {
+    return setTimeout(() => checkName(name, cb, true), 1000);
+  }
 
-  const taken =
-    JSON.parse(queryRes1.body).data.domains.exactMatch[0]?.listPrice !== 5;
-  console.log("checkName taken", taken);
-  return taken;
+  const taken = JSON.parse(res.body).data.domains.exactMatch[0].listPrice !== 5;
+
+  cb(taken);
 };
 
-const commit = (checkedOnce = false) => {
+const commit = () => {
   const name = state.name;
 
-  if (checkName(name)) {
-    if (!checkedOnce) {
-      return commit(true);
+  toast(`Checking if ${name} is taken...`);
+  checkName(name, (taken) => {
+    console.log("checkName cb", taken);
+
+    if (taken) {
+      toast(`${name} is taken. Please try another name.`);
+      return State.update({
+        name: "",
+      });
     }
-    toast(`${name} is taken. Please try another name.`);
-    return State.update({
-      name: "",
-    });
-  }
+    toast(`${name} is available. Preparing request transaction...`);
+    setTimeout(() => toast(null), 2000);
 
-  if (!name || name.length < 5) {
-    toast("Enter a valid name. Greater than 7 characters.");
-    return;
-  }
-  Storage.privateSet(NAME, name);
+    if (!name || name.length < 5) {
+      toast("Enter a valid name. Greater than 7 characters.");
+      return;
+    }
+    Storage.privateSet(NAME, name);
 
-  const encodedData = bnb.iface.encodeFunctionData("makeCommitment", [
-    name,
-    state.address,
-    bnb.secret,
-  ]);
+    const encodedData = bnb.iface.encodeFunctionData("makeCommitment", [
+      name,
+      state.address,
+      bnb.secret,
+    ]);
 
-  return Ethers.provider()
-    .call({
-      to: bnb.address,
-      data: encodedData,
-    })
-    .then((commitment) => {
-      if (typeof commitment !== "string") {
-        alert("There was an error committing your name. Please try again!");
-      }
+    return Ethers.provider()
+      .call({
+        to: bnb.address,
+        data: encodedData,
+      })
+      .then((commitment) => {
+        if (typeof commitment !== "string") {
+          alert("There was an error committing your name. Please try again!");
+        }
 
-      console.log("commitment", commitment);
+        console.log("commitment", commitment);
 
-      const bnbContract = new ethers.Contract(
-        bnb.address,
-        bnb.abi,
-        Ethers.provider().getSigner()
-      );
+        const bnbContract = new ethers.Contract(
+          bnb.address,
+          bnb.abi,
+          Ethers.provider().getSigner()
+        );
 
-      bnbContract
-        .bulkCommit([commitment], {
-          gasLimit: 50000,
-        })
-        .then((res) => {
-          console.log("commitment res", res);
-          toast(
-            "Please wait 10 seconds for transaction to finalize. Register button will be enabled after 10 seconds."
-          );
-          setTimeout(() => Storage.privateSet(COMMITMENT, commitment), 10000);
-        })
-        .catch((e) => {
-          console.log(e);
-          if (e.code === "ACTION_REJECTED") {
-            return toast(
-              "You rejected the name request transaction. Please try again!"
+        bnbContract
+          .bulkCommit([commitment], {
+            gasLimit: 50000,
+          })
+          .then((res) => {
+            console.log("commitment res", res);
+            toast(
+              "Please wait 10 seconds for transaction to finalize. Register button will be enabled after 10 seconds."
             );
-          }
-          throw e;
-        });
-    });
+            setTimeout(() => Storage.privateSet(COMMITMENT, commitment), 10000);
+          })
+          .catch((e) => {
+            console.log(e);
+            if (e.code === "ACTION_REJECTED") {
+              return toast(
+                "You rejected the name request transaction. Please try again!"
+              );
+            }
+            throw e;
+          });
+      });
+  });
 };
 
 const register = () => {
