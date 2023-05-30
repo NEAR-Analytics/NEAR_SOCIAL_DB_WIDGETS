@@ -96,6 +96,7 @@ const checkName = (name) => {
   const queryRes1 = fetch(
     `https://galxe-proxy.near.workers.dev?url=https://graphigo.prd.space.id/query`,
     {
+      subscribe: true,
       method: "POST",
       body: JSON.stringify({
         operationName: "domains",
