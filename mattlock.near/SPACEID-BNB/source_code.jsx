@@ -124,11 +124,14 @@ const checkName = (name) => {
   return taken;
 };
 
-const commit = () => {
+const commit = (checkedOnce = false) => {
   const name = state.name;
 
   if (checkName(name)) {
-    toast(`${state.name} is taken. Please try another name.`);
+    if (!checkedOnce) {
+      return commit(true);
+    }
+    toast(`${name} is taken. Please try another name.`);
     return State.update({
       name: "",
     });
