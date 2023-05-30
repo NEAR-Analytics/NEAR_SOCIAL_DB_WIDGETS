@@ -2,8 +2,7 @@
 const indexer_name = props.indexer_name || "feed-indexer";
 
 const GRAPHQL_ENDPOINT =
-  props.GRAPHQL_ENDPOINT ||
-  "https://queryapi-hasura-graphql-24ktefolwq-ew.a.run.app";
+  props.GRAPHQL_ENDPOINT || "queryapi-hasura-graphql-24ktefolwq-ew.a.run.app";
 
 const LIMIT = 20;
 const accountId = props.accountId || context.accountId || "roshaan.near";
