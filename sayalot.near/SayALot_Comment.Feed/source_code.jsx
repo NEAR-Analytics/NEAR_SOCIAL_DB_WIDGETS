@@ -14,22 +14,22 @@ const index = {
 
 const raw = !!props.raw;
 
-const renderItem = (a) => console.log(a);
-a.value.type === "md" && (
-  <div key={JSON.stringify(a)}>
-    <Widget
-      src={`${authorForWidget}/widget/SayALot_Comment`}
-      props={{
-        accountId: a.accountId,
-        blockHeight: a.blockHeight,
-        highlight:
-          a.accountId === props.highlightComment?.accountId &&
-          a.blockHeight === props.highlightComment?.blockHeight,
-        raw,
-      }}
-    />
-  </div>
-);
+const renderItem = (a) =>
+  a.value.type === "md" && (
+    <div key={JSON.stringify(a)}>
+      <Widget
+        src={`${authorForWidget}/widget/SayALot_Comment`}
+        props={{
+          accountId: a.accountId,
+          blockHeight: a.blockHeight,
+          highlight:
+            a.accountId === props.highlightComment?.accountId &&
+            a.blockHeight === props.highlightComment?.blockHeight,
+          raw,
+        }}
+      />
+    </div>
+  );
 
 return (
   <div>
