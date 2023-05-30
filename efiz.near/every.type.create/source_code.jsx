@@ -1,13 +1,7 @@
 const type = props.type || null;
 const blockHeight = props.blockHeight || "final";
 
-const availableTypes = JSON.parse(props.availableTypes) || [
-  "string",
-  "h1",
-  "paragraph",
-  "code",
-  "feed",
-];
+const availableTypes = JSON.parse(props.availableTypes) || ["string", "md"];
 
 if (type) {
   const parts = type.split("/");
@@ -24,7 +18,12 @@ State.init({
   newPropertyRequired: false,
   newWidgetKey: "",
   newWidgetSrc: "",
+  expanded: false,
 });
+
+function handleExpand() {
+  State.update({ expanded: !state.expanded });
+}
 
 const FormContainer = styled.div`
   margin: 20px;
@@ -218,44 +217,53 @@ return (
         Add Property
       </Button>
     </Row>
-    <Text>Widgets:</Text>
-    {Object.entries(state.widgets).map(([key, src]) => (
-      <Row key={key}>
-        <Text>{key}:</Text>
-        <Input type="text" value={src} onChange={() => {}} />
-        <Button onClick={() => handleRemoveWidget(key)}>Remove</Button>
-      </Row>
-    ))}
+    <Button onClick={handleExpand}>{state.expanded ? "-" : "+"}</Button>
+    <br />
+    {state.expanded ? (
+      <>
+        <Text>Widgets:</Text>
+        {Object.entries(state.widgets).map(([key, src]) => (
+          <Row key={key}>
+            <Text>{key}:</Text>
+            <Input type="text" value={src} onChange={() => {}} />
+            <Button onClick={() => handleRemoveWidget(key)}>Remove</Button>
+          </Row>
+        ))}
+        <Row>
+          <Input
+            type="text"
+            placeholder="Widget Key"
+            value={state.newWidgetKey}
+            onChange={handleWidgetKeyChange}
+          />
+          {":"}
+          <Input
+            type="text"
+            placeholder="Widget Src"
+            value={state.newWidgetSrc}
+            onChange={handleWidgetSrcChange}
+          />
+          <Button
+            onClick={handleAddWidget}
+            disabled={
+              state.newWidgetKey.trim() === "" ||
+              state.newWidgetSrc.trim() === ""
+            }
+          >
+            Add Widget
+          </Button>
+        </Row>
+      </>
+    ) : null}
     <Row>
-      <Input
-        type="text"
-        placeholder="Widget Key"
-        value={state.newWidgetKey}
-        onChange={handleWidgetKeyChange}
-      />
-      {":"}
-      <Input
-        type="text"
-        placeholder="Widget Src"
-        value={state.newWidgetSrc}
-        onChange={handleWidgetSrcChange}
-      />
-      <Button
-        onClick={handleAddWidget}
-        disabled={
-          state.newWidgetKey.trim() === "" || state.newWidgetSrc.trim() === ""
-        }
+      <CommitButton
+        force
+        data={composeData()}
+        disabled={state.properties.length === 0}
+        className="styless"
       >
-        Add Widget
-      </Button>
+        create
+      </CommitButton>
     </Row>
-    <CommitButton
-      force
-      data={composeData()}
-      disabled={state.properties.length === 0}
-      className="styless"
-    >
-      create
-    </CommitButton>
   </FormContainer>
 );
