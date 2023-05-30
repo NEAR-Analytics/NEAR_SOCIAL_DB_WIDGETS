@@ -308,7 +308,7 @@ return (
         </div>
 
         <div style={{ display: "flex", gap: 16 }}>
-          <button
+          {/*<button
             style={{
               backgroundColor: theme.buttonTextColor,
               color: "#000",
@@ -326,7 +326,7 @@ return (
             }}
           >
             Sign Now
-          </button>
+          </button>*/}
 
           <button
             style={{
