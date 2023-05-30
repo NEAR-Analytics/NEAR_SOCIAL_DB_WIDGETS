@@ -33,6 +33,7 @@ const renderItem = (a) =>
 
 return (
   <div>
+    {index}
     <Widget
       src={`${authorForWidget}/widget/SayALot_ManualIndexFeed`}
       props={{
