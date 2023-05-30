@@ -142,11 +142,4 @@ if (reverse) {
   items.reverse();
 }
 
-return (
-  <>
-    {items}
-    {reverse && fetchMore}
-    {items.map(cachedRenderItem)}
-    {!reverse && fetchMore}
-  </>
-);
+return <>{initialItems}</>;
