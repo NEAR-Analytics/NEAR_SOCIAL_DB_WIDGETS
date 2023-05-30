@@ -28,6 +28,7 @@ const chains = [
   {
     id: "42220",
     name: "Celo",
+    image: "https://social.near.page/p/jgodwill.near/93071444",
   },
   {
     id: "43114",
@@ -315,7 +316,7 @@ const TextArea = styled.textarea`
   }
 `;
 
-if (state.sender) {
+if (!state.sender) {
   console.log("Please login");
   State.update({
     showAlert: true,
@@ -325,7 +326,7 @@ if (state.sender) {
 
 return (
   <>
-    {!state.showAlert && (
+    {state.showAlert && (
       <Widget src="jgodwill.near/widget/genalert" props={state} />
     )}
     <Heading className="text-center fs-2 fw-bold">
