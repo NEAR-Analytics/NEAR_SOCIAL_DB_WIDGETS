@@ -1,6 +1,14 @@
 const type = props.type || null;
 const blockHeight = props.blockHeight || "final";
 
+const availableTypes = JSON.parse(props.availableTypes) || [
+  "string",
+  "h1",
+  "paragraph",
+  "code",
+  "feed",
+];
+
 if (type) {
   const parts = type.split("/");
   type = JSON.parse(Social.get(type, blockHeight) || null);
@@ -56,7 +64,7 @@ const handleAddProperty = () => {
   State.update({
     properties: [...state.properties, newProperty],
     newPropertyName: "",
-    newPropertyType: "heading-one",
+    newPropertyType: "string",
     newPropertyRequired: false,
   });
 };
@@ -103,11 +111,11 @@ const composeData = () => {
 function TypeSelect({ value, onChange }) {
   return (
     <Select value={value} onChange={onChange}>
-      <option value="string">string</option>
-      <option value="heading-one">h1</option>
-      <option value="paragraph">paragraph</option>
-      <option value="code">code</option>
-      <option value="feed">feed</option>
+      {availableTypes.map((it) => (
+        <option value={it} key={it}>
+          {it}
+        </option>
+      ))}
     </Select>
   );
 }
