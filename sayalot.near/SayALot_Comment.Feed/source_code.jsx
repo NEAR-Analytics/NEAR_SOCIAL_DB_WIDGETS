@@ -35,15 +35,6 @@ return (
   <>
     <div>
       <div>{index}</div>
-      <Widget
-        src={`${authorForWidget}/widget/SayALot_ManualIndexFeed`}
-        props={{
-          index,
-          reverse: true,
-          renderItem,
-          nextLimit: 10,
-          loadMoreText: "Show earlier comments...",
-        }}
       />
     </div>
   </>
