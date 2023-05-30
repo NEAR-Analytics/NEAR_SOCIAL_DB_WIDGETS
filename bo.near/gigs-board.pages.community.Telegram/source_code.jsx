@@ -111,7 +111,7 @@ if (groupInfo === null || !groupInfo.ok) {
 const messageIds = groupInfo.body.messageIds;
 
 const Telegram = (
-  <div class="d-flex justify-content-center">
+  <div class="d-flex justify-content-center" style={{ maxWidth: "700px" }}>
     <iframe
       iframeResizer={{ log: true }}
       src={
@@ -124,7 +124,7 @@ const Telegram = (
         minWidth: "100%",
       }}
     ></iframe>
-  </>
+  </div>
 );
 
 return widget("components.community.Layout", {
