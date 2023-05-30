@@ -1,8 +1,6 @@
 const type = props.type || null;
 const blockHeight = props.blockHeight || "final";
 
-const availableTypes = JSON.parse(props.availableTypes) || ["string", "md"];
-
 if (type) {
   const parts = type.split("/");
   type = JSON.parse(Social.get(type, blockHeight) || null);
@@ -12,18 +10,10 @@ if (type) {
 State.init({
   typeName: type.name || "",
   properties: type.properties || [],
-  widgets: type.widgets || {},
   newPropertyName: "",
   newPropertyType: "string",
   newPropertyRequired: false,
-  newWidgetKey: "",
-  newWidgetSrc: "",
-  expanded: false,
 });
-
-function handleExpand() {
-  State.update({ expanded: !state.expanded });
-}
 
 const FormContainer = styled.div`
   margin: 20px;
@@ -66,7 +56,7 @@ const handleAddProperty = () => {
   State.update({
     properties: [...state.properties, newProperty],
     newPropertyName: "",
-    newPropertyType: "string",
+    newPropertyType: "heading-one",
     newPropertyRequired: false,
   });
 };
@@ -99,41 +89,11 @@ const handleTypeNameChange = (e) => {
   State.update({ typeName: e.target.value.toLowerCase() });
 };
 
-const handleWidgetKeyChange = (e) => {
-  State.update({ newWidgetKey: e.target.value.toLowerCase() });
-};
-
-const handleWidgetSrcChange = (e) => {
-  State.update({ newWidgetSrc: e.target.value });
-};
-
-const handleAddWidget = () => {
-  if (state.newWidgetKey.trim() === "" || state.newWidgetSrc.trim() === "")
-    return;
-
-  const newWidget = {
-    [state.newWidgetKey]: state.newWidgetSrc,
-  };
-
-  State.update({
-    widgets: { ...state.widgets, ...newWidget },
-    newWidgetKey: "",
-    newWidgetSrc: "",
-  });
-};
-
-const handleRemoveWidget = (key) => {
-  const updatedWidgets = { ...state.widgets };
-  delete updatedWidgets[key];
-  State.update({ widgets: updatedWidgets });
-};
-
 const composeData = () => {
   const data = {
     type: {
       [state.typeName]: JSON.stringify({
         properties: state.properties,
-        widgets: state.widgets,
       }),
     },
   };
@@ -143,11 +103,11 @@ const composeData = () => {
 function TypeSelect({ value, onChange }) {
   return (
     <Select value={value} onChange={onChange}>
-      {availableTypes.map((it) => (
-        <option value={it} key={it}>
-          {it}
-        </option>
-      ))}
+      <option value="string">string</option>
+      <option value="heading-one">h1</option>
+      <option value="paragraph">paragraph</option>
+      <option value="code">code</option>
+      <option value="feed">feed</option>
     </Select>
   );
 }
@@ -217,53 +177,13 @@ return (
         Add Property
       </Button>
     </Row>
-    <Button onClick={handleExpand}>{state.expanded ? "-" : "+"}</Button>
-    <br />
-    {state.expanded ? (
-      <>
-        <Text>Widgets:</Text>
-        {Object.entries(state.widgets).map(([key, src]) => (
-          <Row key={key}>
-            <Text>{key}:</Text>
-            <Input type="text" value={src} onChange={() => {}} />
-            <Button onClick={() => handleRemoveWidget(key)}>Remove</Button>
-          </Row>
-        ))}
-        <Row>
-          <Input
-            type="text"
-            placeholder="Widget Key"
-            value={state.newWidgetKey}
-            onChange={handleWidgetKeyChange}
-          />
-          {":"}
-          <Input
-            type="text"
-            placeholder="Widget Src"
-            value={state.newWidgetSrc}
-            onChange={handleWidgetSrcChange}
-          />
-          <Button
-            onClick={handleAddWidget}
-            disabled={
-              state.newWidgetKey.trim() === "" ||
-              state.newWidgetSrc.trim() === ""
-            }
-          >
-            Add Widget
-          </Button>
-        </Row>
-      </>
-    ) : null}
-    <Row>
-      <CommitButton
-        force
-        data={composeData()}
-        disabled={state.properties.length === 0}
-        className="styless"
-      >
-        create
-      </CommitButton>
-    </Row>
+    <CommitButton
+      force
+      data={composeData()}
+      disabled={state.properties.length === 0}
+      className="styless"
+    >
+      create
+    </CommitButton>
   </FormContainer>
 );
