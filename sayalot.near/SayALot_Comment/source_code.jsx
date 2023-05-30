@@ -21,6 +21,7 @@ const link = `#/mob.near/widget/MainPage.Comment.Page?accountId=${accountId}&blo
 
 return (
   <>
+    <div>${content}</div>
     <div
       className={`pt-3 border-top pb-2 ${
         highlight ? "bg-warning bg-opacity-10" : ""
