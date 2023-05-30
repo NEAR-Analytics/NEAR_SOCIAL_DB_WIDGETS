@@ -32,9 +32,16 @@ const renderItem = (a) =>
   );
 
 return (
-  <>
-    <div>
-      <div>{index}</div>
-    </div>
-  </>
+  <div>
+    <Widget
+      src={`${authorForWidget}/widget/SayALot_ManualIndexFeed`}
+      props={{
+        index,
+        reverse: true,
+        renderItem,
+        nextLimit: 10,
+        loadMoreText: "Show earlier comments...",
+      }}
+    />
+  </div>
 );
