@@ -18,9 +18,12 @@ if (type) {
 State.init({
   typeName: type.name || "",
   properties: type.properties || [],
+  widgets: type.widgets || {},
   newPropertyName: "",
   newPropertyType: "string",
   newPropertyRequired: false,
+  newWidgetKey: "",
+  newWidgetSrc: "",
 });
 
 const FormContainer = styled.div`
@@ -97,11 +100,41 @@ const handleTypeNameChange = (e) => {
   State.update({ typeName: e.target.value.toLowerCase() });
 };
 
+const handleWidgetKeyChange = (e) => {
+  State.update({ newWidgetKey: e.target.value.toLowerCase() });
+};
+
+const handleWidgetSrcChange = (e) => {
+  State.update({ newWidgetSrc: e.target.value });
+};
+
+const handleAddWidget = () => {
+  if (state.newWidgetKey.trim() === "" || state.newWidgetSrc.trim() === "")
+    return;
+
+  const newWidget = {
+    [state.newWidgetKey]: state.newWidgetSrc,
+  };
+
+  State.update({
+    widgets: { ...state.widgets, ...newWidget },
+    newWidgetKey: "",
+    newWidgetSrc: "",
+  });
+};
+
+const handleRemoveWidget = (key) => {
+  const updatedWidgets = { ...state.widgets };
+  delete updatedWidgets[key];
+  State.update({ widgets: updatedWidgets });
+};
+
 const composeData = () => {
   const data = {
     type: {
       [state.typeName]: JSON.stringify({
         properties: state.properties,
+        widgets: state.widgets,
       }),
     },
   };
@@ -183,6 +216,37 @@ return (
         disabled={state.newPropertyName.trim() === ""}
       >
         Add Property
+      </Button>
+    </Row>
+    <Text>Widgets:</Text>
+    {Object.entries(state.widgets).map(([key, src]) => (
+      <Row key={key}>
+        <Text>{key}:</Text>
+        <Input type="text" value={src} onChange={() => {}} />
+        <Button onClick={() => handleRemoveWidget(key)}>Remove</Button>
+      </Row>
+    ))}
+    <Row>
+      <Input
+        type="text"
+        placeholder="Widget Key"
+        value={state.newWidgetKey}
+        onChange={handleWidgetKeyChange}
+      />
+      {":"}
+      <Input
+        type="text"
+        placeholder="Widget Src"
+        value={state.newWidgetSrc}
+        onChange={handleWidgetSrcChange}
+      />
+      <Button
+        onClick={handleAddWidget}
+        disabled={
+          state.newWidgetKey.trim() === "" || state.newWidgetSrc.trim() === ""
+        }
+      >
+        Add Widget
       </Button>
     </Row>
     <CommitButton
