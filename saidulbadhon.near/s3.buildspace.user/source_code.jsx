@@ -48,10 +48,12 @@ const ContentWrapper = styled.div`
 `;
 
 const UserCardWrapper = styled.div`
+    max-width: 100%;
   @media screen and (max-width: 800px)  {
     display:flex;
     justify-content: center;
     align-items: center;
+    max-width: 450px;
   }
 `;
 
@@ -74,7 +76,7 @@ return (
               alignItems: "center",
               width: "100%",
               height: "100%",
-              maxWidth: "450px",
+              //   maxWidth: "450px",
               //   gap: "16px",
               border: "1px rgba(256, 256, 256, .15) solid",
               borderRadius: "4px",
@@ -87,7 +89,7 @@ return (
             <img
               style={{
                 width: "100%",
-                maxWidth: 450,
+                // maxWidth: 450,
                 minHeight: 350,
                 objectFit: "cover",
                 aspectRatio: 1 / 1,
