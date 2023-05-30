@@ -144,7 +144,7 @@ if (reverse) {
 
 return (
   <>
-    {JSON.stringify(initialItems)}
+    {JSON.stringify(items)}
     {reverse && fetchMore}
     {items.map(cachedRenderItem)}
     {!reverse && fetchMore}
