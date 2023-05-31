@@ -1,5 +1,5 @@
 const data = props.data;
-const typeWhitelist = JSON.stringify(props.typeWhitelist);
+const typeWhitelist = JSON.stringify(data.typeWhitelist);
 
 return (
   <>
