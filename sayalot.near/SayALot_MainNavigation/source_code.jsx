@@ -112,9 +112,6 @@ return (
                 </a>
               </div>
             )}
-          <li className="nav-item">
-            <span>neardocs v0.02</span>
-          </li>
         </ul>
       </div>
       {accountId &&
@@ -130,6 +127,9 @@ return (
           src="mob.near/widget/Profile.ShortInlineBlock"
           props={{ accountId, tooltip: true }}
         />
+        <div>
+          <i>neardocs v0.02</i>
+        </div>
       </div>
     </div>
   </div>
