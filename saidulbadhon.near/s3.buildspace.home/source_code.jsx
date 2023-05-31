@@ -5,7 +5,7 @@ State.init({
   showBrowser: false,
 });
 const res = fetch(
-  "https://t4zr86bzl5.execute-api.us-east-1.amazonaws.com/production/api/v1/buildspace/showcase"
+  "https://perzvjxfz9.execute-api.us-east-1.amazonaws.com/production/api/v1/buildspace/showcase"
 );
 
 if (!res.body?.list1)
