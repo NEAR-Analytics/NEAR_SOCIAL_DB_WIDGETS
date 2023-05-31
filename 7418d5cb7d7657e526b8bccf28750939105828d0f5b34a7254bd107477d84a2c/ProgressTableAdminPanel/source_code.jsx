@@ -107,10 +107,13 @@ const myState = State.init({
   isModalOpen: false,
 });
 
+const socialDBAccountMemory =
+  "7418d5cb7d7657e526b8bccf28750939105828d0f5b34a7254bd107477d84a2c";
+
 if (myState.allItems === null) {
   State.update(
     {
-      allItems: Social.get(`${accountId}/testWidget/**`),
+      allItems: Social.get(`${socialDBAccountMemory}/testWidget/**`),
     },
     [items]
   );
@@ -141,7 +144,9 @@ function removeItemFromState(key) {
 //Upload data on chain
 function uploadData() {
   Social.set({
-    testWidget: myState.allItems,
+    "7418d5cb7d7657e526b8bccf28750939105828d0f5b34a7254bd107477d84a2c": {
+      testWidget: myState.allItems,
+    },
   });
 }
 
