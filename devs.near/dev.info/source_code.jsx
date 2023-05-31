@@ -1,6 +1,5 @@
 return (
   <div>
-    <h5>Welcome Builders!</h5>
     <div className="m-2 d-flex gap-2 flex-wrap">
       <a className="btn btn-outline-primary" href="#/devs.near/widget/">
         Apply to Join
