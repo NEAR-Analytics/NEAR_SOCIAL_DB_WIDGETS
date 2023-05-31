@@ -56,7 +56,7 @@ return (
     <div>
       <div>
         <h3>MMC Undercover Pups</h3>
-        <h6>MINTING NOW!</h6>
+        <h6>🛑 SOLD OUT 🛑</h6>
         <img
           src="https://byzantion.mypinata.cloud/ipfs/QmdwBQGzcYELCCRw3234Un9C4a5EJHncki6nsPywamwnBQ/101.png?img-width=850&img-height=850&img-fit=cover&img-quality=80&img-onerror=redirect&img-fit=pad&img-format=webp"
           alt="MMCDPUP"
@@ -65,15 +65,11 @@ return (
         ></img>
         <h3>NFTs Minted: {PUPS} of 2016🐶</h3>
         <img
-          src="https://media.tenor.com/rAbE1mipx-wAAAAC/movies-jurassic-park.gif"
+          src="https://media.tenor.com/xgrP1zZZZTYAAAAC/it-is-time-boogie.gif"
           alt="MMCDPUP"
-          width="365"
-          height="180"
+          width="350"
+          height="225"
         ></img>
-        <br></br>
-        <a href="https://fewfar.com/launchpad/murder-mystery-collective-undercover-pups-near/">
-          🔗---Mint on FewFar!
-        </a>
         <br></br>
         <a href="https://www.tradeport.xyz/near/collection/mmc-pups.nfts.fewandfar.near?tab=marketview">
           🔗---MMC Pups on Tradeport
