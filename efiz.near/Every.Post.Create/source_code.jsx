@@ -1,7 +1,8 @@
-const type = props.type || "md";
+const type = props.type;
+const typeWhitelist = props.typeWhitelist;
 const key = props.key || "main";
 
-function postThing(data, notifications, hashtags) {
+function postThing(data) {
   // get the root thing from data
   const thing = data.index.thing;
   // get the thingId
@@ -26,6 +27,6 @@ function postThing(data, notifications, hashtags) {
 return (
   <Widget
     src="efiz.near/widget/Every.Thing.Create"
-    props={{ type: type, postThing: postThing }}
+    props={{ type: type, availableTypes: typeWhitelist, postThing: postThing }}
   />
 );
