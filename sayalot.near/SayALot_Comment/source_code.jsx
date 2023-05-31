@@ -5,13 +5,14 @@ State.init({ showReply: false });
 const accountId = props.accountId;
 const blockHeight =
   props.blockHeight === "now" ? "now" : parseInt(props.blockHeight);
-const content = props.content ?? c;
-JSON.parse(
-  Social.get(
-    `${accountId}/${addressForArticles}/${addressForComments}`,
-    blockHeight
-  ) ?? "null"
-);
+const content =
+  props.content ??
+  JSON.parse(
+    Social.get(
+      `${accountId}/${addressForArticles}/${addressForComments}`,
+      blockHeight
+    ) ?? "null"
+  );
 const parentItem = content.item;
 const highlight = !!props.highlight;
 const raw = !!props.raw;
