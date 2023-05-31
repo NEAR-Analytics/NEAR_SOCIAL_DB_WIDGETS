@@ -37,7 +37,7 @@ function autoCompleteAccountId(id) {
 }
 
 function handleSaveData() {
-  onChange({ text: state.text });
+  onChange(content);
 }
 
 const Wrapper = styled.div`
