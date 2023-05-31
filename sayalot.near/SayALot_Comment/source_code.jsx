@@ -23,6 +23,7 @@ return (
   <>
     <div>
       {content}
+      {"..."}
       {raw}
     </div>
     <div
