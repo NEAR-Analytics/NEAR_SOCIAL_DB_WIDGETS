@@ -1,4 +1,5 @@
-const type = "efiz.near/type/document";
+const type = props.key || "efiz.near/type/document";
+const key = props.key || "main";
 
 function postThing(data) {
   // get the root thing from data
@@ -9,11 +10,11 @@ function postThing(data) {
   const path = `${context.accountId}/thing/${key}`;
   // create a post referencing the thing
   data.post = {
-    main: JSON.stringify({ path, type }),
+    [key]: JSON.stringify({ path, type }),
   };
   // and tell the indexer to index the post
   data.index.post = JSON.stringify({
-    key: "main",
+    key,
     value: {
       path,
       type,
