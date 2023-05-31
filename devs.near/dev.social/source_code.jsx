@@ -2,7 +2,7 @@ const hashtag = props.hashtag ?? "dev";
 
 return (
   <>
-    <Widget src="devs.near/widget/dev.join" />
+    <Widget src="mob.near/widget/ProfileOnboarding" />
     <ul
       className="nav nav-pills nav-fill mb-3 d-lg-none"
       id="pills-tab"
