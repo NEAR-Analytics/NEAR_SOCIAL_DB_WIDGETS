@@ -6,7 +6,7 @@ const availableTypes = JSON.parse(props.availableTypes) || [
   "efiz.near/type/document",
   "efiz.near/type/feed",
   "efiz.near/type/idea",
-  "md",
+  "efiz.near/type/markdown",
 ];
 
 State.init({
