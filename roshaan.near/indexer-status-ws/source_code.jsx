@@ -5,7 +5,7 @@ const GRAPHQL_ENDPOINT =
   props.GRAPHQL_ENDPOINT || "queryapi-hasura-graphql-24ktefolwq-ew.a.run.app";
 
 const LIMIT = 20;
-const accountId = props.accountId || context.accountId || "roshaan.near";
+const accountId = props.accountId || "roshaan.near" || context.accountId;
 const H2 = styled.h2`
   font-size: 19px;
   line-height: 22px;
