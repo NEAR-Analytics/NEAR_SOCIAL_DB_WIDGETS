@@ -15,7 +15,7 @@ const defaultWidgets = [
     requiresLogin: true,
   },
   {
-    src: "devs.near/widget/dev.tools",
+    src: "devs.near/widget/dev.search",
   },
   {
     src: "devs.near/widget/dev.collab",
