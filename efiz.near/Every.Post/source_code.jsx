@@ -8,6 +8,7 @@ const accountFilter =
   (props.accountFilter && [props.accountFilter]) || undefined;
 const hashtagFilter = JSON.parse(props.hashtagFilter || "null") || [];
 const domainFilter = JSON.parse(props.domainFilter || "null") || ["post"];
+const key = JSON.parse(props.key || "null") || "main";
 
 if (hashtagFilter.length) {
   index = hashtagFilter.map((it) => ({
@@ -22,7 +23,7 @@ if (hashtagFilter.length) {
 } else {
   index = domainFilter.map((it) => ({
     action: it,
-    key: "main", // what should this be used for...
+    key, // what should this be used for...
     options: {
       limit: 10,
       order: "desc",
