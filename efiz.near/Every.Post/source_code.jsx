@@ -1,8 +1,10 @@
 let index = [];
 const typeWhitelist = JSON.parse(props.typeWhitelist || "null") || [
-  "efiz.near/type/paragraph",
-  "efiz.near/type/Image",
-  "efiz.near/type/document",
+  "md",
+  "social",
+  // "efiz.near/type/markdown",
+  // "efiz.near/type/Image",
+  // "efiz.near/type/document",
 ];
 const accountFilter =
   (props.accountFilter && [props.accountFilter]) || undefined;
@@ -43,11 +45,11 @@ const Post = styled.div`
 
 const renderItem = (a) => {
   let type = a.value.type;
-  // return <p>{JSON.stringify(a)}</p>;
 
   // PATH NORMALIZATION
   const path = a.value.path;
   const domain = "post";
+
   if (path === undefined) {
     // we need to construct paths from hashtags
     domain = a.action;
@@ -55,12 +57,16 @@ const renderItem = (a) => {
   } else {
     // different domains still save to post... that's probably dumb
     const parts = path.split("/");
+
     if (parts[1] !== "thing") {
       domain = parts[1];
       parts[1] = "post";
       path = parts.join("/");
     }
   }
+
+  //   return <p>{JSON.stringify(a)}</p>;
+
   if (typeWhitelist.includes(type) && domainFilter.includes(domain)) {
     return (
       <Post className="post" key={JSON.stringify(a)}>
