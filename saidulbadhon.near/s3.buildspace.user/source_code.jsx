@@ -1,6 +1,6 @@
 const theme = props.theme;
 const res = fetch(
-  `https://t4zr86bzl5.execute-api.us-east-1.amazonaws.com/production/api/v1/buildspace/name/${props.name}`
+  `https://perzvjxfz9.execute-api.us-east-1.amazonaws.com/production/api/v1/buildspace/name/${props.name}`
 );
 
 if (!res.body)
