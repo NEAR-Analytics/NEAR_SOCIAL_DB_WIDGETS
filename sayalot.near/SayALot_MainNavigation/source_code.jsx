@@ -69,7 +69,6 @@ return (
             }}
           />
           <i>lots to say...</i>
-          <em>neardocs v0.02</em>
         </div>
       </a>
       <button
