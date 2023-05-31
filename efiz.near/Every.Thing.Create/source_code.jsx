@@ -195,7 +195,7 @@ function RenderTypeCreate() {
 return (
   <>
     <Container>
-      {props.type === undefined || availableTypes.length === 1 ? (
+      {props.type === undefined || availableTypes.length > 1 ? (
         <>
           <Row>
             <TextContainer>create a thing of type:</TextContainer>
