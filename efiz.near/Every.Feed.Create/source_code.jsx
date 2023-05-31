@@ -15,17 +15,17 @@ const Container = styled.div`
   align-items: center;
 `;
 
+const options = ["efiz.near/type/Image", "efiz.near/type/markdown"];
+
 return (
   <Container>
-    <Input
-      onChange={(e) => {
-        State.update({ value: e.target.value });
-        if (onChange) {
-          onChange(e.target.value);
-        }
+    <Typeahead
+      options={options}
+      multiple
+      onChange={(value) => {
+        onChange({ typeWhitelist: value });
       }}
-      value={state.value}
-      placeholder="domain"
+      placeholder="available types..."
     />
   </Container>
 );
