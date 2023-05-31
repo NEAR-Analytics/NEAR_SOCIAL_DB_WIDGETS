@@ -41,7 +41,7 @@ return (
       {context.accountId && (
         <a
           key="edit"
-          href={"#/devs.near/widget/dev.main.config"}
+          href={"#/devs.near/widget/dev.side.config"}
           className="edit-link position-absolute top-0 end-0 link-secondary me-2 mt-1"
         >
           <i class="bi bi-pencil-square" /> Customize
