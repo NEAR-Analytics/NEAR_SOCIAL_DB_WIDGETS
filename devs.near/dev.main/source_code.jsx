@@ -52,7 +52,7 @@ return (
           href={"#/create.near/widget/Custom.Page.Editor"}
           className="edit-link position-absolute top-0 end-0 link-secondary me-2 mt-1"
         >
-          <i class="bi bi-pencil-square" /> Edit Main
+          <i class="bi bi-pencil-square" /> Edit Page
         </a>
       )}
     </div>
