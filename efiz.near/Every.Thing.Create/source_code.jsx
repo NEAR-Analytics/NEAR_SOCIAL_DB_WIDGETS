@@ -14,6 +14,36 @@ State.init({
   expanded: false,
 });
 
+function extractMentions(text) {
+  const mentionRegex =
+    /@((?:(?:[a-z\d]+[-_])*[a-z\d]+\.)*(?:[a-z\d]+[-_])*[a-z\d]+)/gi;
+  mentionRegex.lastIndex = 0;
+  const accountIds = new Set();
+  for (const match of text.matchAll(mentionRegex)) {
+    if (
+      !/[\w`]/.test(match.input.charAt(match.index - 1)) &&
+      !/[/\w`]/.test(match.input.charAt(match.index + match[0].length)) &&
+      match[1].length >= 2 &&
+      match[1].length <= 64
+    ) {
+      accountIds.add(match[1].toLowerCase());
+    }
+  }
+  return [...accountIds];
+}
+
+function extractTagNotifications(text, item) {
+  return extractMentions(text || "")
+    .filter((accountId) => accountId !== context.accountId)
+    .map((accountId) => ({
+      key: accountId,
+      value: {
+        type: "mention",
+        item,
+      },
+    }));
+}
+
 const composeData = () => {
   // generate a random id
   const thingId = state.thingId || Math.random();
@@ -34,6 +64,22 @@ const composeData = () => {
       }),
     },
   };
+
+  // TODO: What other types can we extract mentions from?
+  // How can this be better associated with the type?
+  if (state.selectedType === "md") {
+    const notifications = extractTagNotifications(state.thing, {
+      type: "social",
+      path: `${context.accountId}/thing/${thingId}`,
+    });
+
+    if (notifications.length) {
+      data.index.notify = JSON.stringify(
+        notifications.length > 1 ? notifications : notifications[0]
+      );
+    }
+  }
+
   if (postThing) {
     data = postThing(data);
   }
