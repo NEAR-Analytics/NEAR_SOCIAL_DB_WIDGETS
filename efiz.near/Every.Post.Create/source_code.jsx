@@ -1,4 +1,4 @@
-const type = props.key || "efiz.near/type/document";
+const type = props.type || "efiz.near/type/document";
 const key = props.key || "main";
 
 function postThing(data) {
