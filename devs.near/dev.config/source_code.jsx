@@ -1,5 +1,5 @@
 const path =
-  props.path || `${props.accountId || context.accountId}/settings/dev/**`;
+  props.path || `${props.accountId || context.accountId}/settings/**`;
 const blockHeight = props.blockHeight || "final";
 
 if (accountId === null) {
