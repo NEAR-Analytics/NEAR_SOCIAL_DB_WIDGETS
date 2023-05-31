@@ -123,10 +123,6 @@ return (
           </Button>
         )}
       <div className="d-none d-md-block">
-        <Widget
-          src="mob.near/widget/Profile.ShortInlineBlock"
-          props={{ accountId, tooltip: true }}
-        />
         <div>
           <i>neardocs v0.02</i>
         </div>
