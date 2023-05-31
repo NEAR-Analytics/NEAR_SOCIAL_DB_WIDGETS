@@ -4,8 +4,9 @@ if (!context.accountId) {
   return <></>;
 }
 
+const onChange = props.onChange;
+
 State.init({
-  image: {},
   text: "",
   showPreview: false,
 });
@@ -15,7 +16,6 @@ const autocompleteEnabled = true;
 
 const content = {
   type: "md",
-  image: state.image.cid ? { ipfs_cid: state.image.cid } : undefined,
   text: state.text,
 };
 
@@ -49,38 +49,8 @@ function extractTagNotifications(text, item) {
     }));
 }
 
-function composeData() {
-  const data = {
-    post: {
-      main: JSON.stringify(content),
-    },
-    index: {
-      post: JSON.stringify({
-        key: "main",
-        value: {
-          type: "md",
-        },
-      }),
-    },
-  };
-
-  const notifications = extractTagNotifications(state.text, {
-    type: "social",
-    path: `${context.accountId}/post/main`,
-  });
-
-  if (notifications.length) {
-    data.index.notify = JSON.stringify(
-      notifications.length > 1 ? notifications : notifications[0]
-    );
-  }
-
-  return data;
-}
-
 function onCommit() {
   State.update({
-    image: {},
     text: "",
   });
 }
@@ -94,6 +64,21 @@ function autoCompleteAccountId(id) {
   let text = state.text.replace(/[\s]{0,1}@[^\s]*$/, "");
   text = `${text} @${id}`.trim() + " ";
   State.update({ text, showAccountAutocomplete: false });
+}
+
+function handleSaveData() {
+  //   const notifications = extractTagNotifications(state.text, {
+  //     type: "social",
+  //     path: `${context.accountId}/post/main`,
+  //   });
+
+  //   if (notifications.length) {
+  //     data.index.notify = JSON.stringify(
+  //       notifications.length > 1 ? notifications : notifications[0]
+  //     );
+  //   }
+
+  onChange(state.text);
 }
 
 const Wrapper = styled.div`
@@ -258,40 +243,6 @@ const Actions = styled.div`
     }
   }
 
-  .upload-image-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #f1f3f5;
-    color: #11181c;
-    border-radius: 40px;
-    height: 40px;
-    min-width: 40px;
-    font-size: 0;
-    border: none;
-    cursor: pointer;
-    transition: background 200ms, opacity 200ms;
-
-    &::before {
-      font-size: 16px;
-    }
-
-    &:hover,
-    &:focus {
-      background: #d7dbde;
-      outline: none;
-    }
-
-    &:disabled {
-      opacity: 0.5;
-      pointer-events: none;
-    }
-
-    span {
-      margin-left: 12px;
-    }
-  }
-
   .d-inline-block {
     display: flex !important;
     gap: 12px;
@@ -388,13 +339,6 @@ return (
     )}
 
     <Actions>
-      {!state.showPreview && (
-        <IpfsImageUpload
-          image={state.image}
-          className="upload-image-button bi bi-image"
-        />
-      )}
-
       <button
         type="button"
         disabled={!state.text}
@@ -409,15 +353,9 @@ return (
         )}
       </button>
 
-      <CommitButton
-        disabled={!state.text}
-        force
-        data={composeData}
-        onCommit={onCommit}
-        className="commit-post-button"
-      >
-        Post
-      </CommitButton>
+      <button onClick={handleSaveData} className="commit-post-button">
+        Save
+      </button>
     </Actions>
   </Wrapper>
 );
