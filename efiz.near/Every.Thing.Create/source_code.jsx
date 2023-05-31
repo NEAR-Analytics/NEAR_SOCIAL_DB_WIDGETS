@@ -68,7 +68,7 @@ const composeData = () => {
   // TODO: What other types can we extract mentions from?
   // How can this be better associated with the type?
   if (state.selectedType === "md") {
-    const notifications = extractTagNotifications(state.thing, {
+    const notifications = extractTagNotifications(state.thing.text, {
       type: "social",
       path: `${context.accountId}/thing/${thingId}`,
     });
