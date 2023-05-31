@@ -113,7 +113,7 @@ return (
               </div>
             )}
           <li className="nav-item">
-            <span style="font-size:8px;">neardocs v0.02</span>
+            <span>neardocs v0.02</span>
           </li>
         </ul>
       </div>
