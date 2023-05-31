@@ -8,7 +8,7 @@ const accountFilter =
   (props.accountFilter && [props.accountFilter]) || undefined;
 const hashtagFilter = JSON.parse(props.hashtagFilter || "null") || [];
 const domainFilter = JSON.parse(props.domainFilter || "null") || ["post"];
-const key = JSON.parse(props.key || "null") || "main";
+const key = props.key || "main";
 
 if (hashtagFilter.length) {
   index = hashtagFilter.map((it) => ({
