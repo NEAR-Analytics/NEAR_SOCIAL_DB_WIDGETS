@@ -1,4 +1,3 @@
-const type = props.type || "";
 const postThing = props.postThing;
 const availableTypes = JSON.parse(props.availableTypes) || [
   "efiz.near/type/paragraph",
@@ -8,6 +7,10 @@ const availableTypes = JSON.parse(props.availableTypes) || [
   "efiz.near/type/idea",
   "efiz.near/type/markdown",
 ];
+const type = props.type || "";
+if (availableTypes.length === 1) {
+  type = availableTypes[0];
+}
 
 State.init({
   selectedType: type,
@@ -67,7 +70,7 @@ const composeData = () => {
 
   // TODO: What other types can we extract mentions from?
   // How can this be better associated with the type?
-  if (state.selectedType === "md") {
+  if (state.selectedType === "efiz.near/type/markdown") {
     const notifications = extractTagNotifications(state.thing.text, {
       type: "social",
       path: `${context.accountId}/thing/${thingId}`,
@@ -159,13 +162,9 @@ const handleTypeChange = (e) => {
 };
 
 if (state.selectedType !== "") {
-  if (state.selectedType !== "md") {
-    type = JSON.parse(Social.get(state.selectedType, "final") || null);
-    if (type === null) {
-      return <></>;
-    }
-  } else {
-    type = "md";
+  type = JSON.parse(Social.get(state.selectedType, "final") || null);
+  if (type === null) {
+    return <></>;
   }
 }
 
@@ -196,7 +195,7 @@ function RenderTypeCreate() {
 return (
   <>
     <Container>
-      {props.type === undefined ? (
+      {props.type === undefined || availableTypes.length === 1 ? (
         <>
           <Row>
             <TextContainer>create a thing of type:</TextContainer>
