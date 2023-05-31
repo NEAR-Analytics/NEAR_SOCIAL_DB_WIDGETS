@@ -110,7 +110,7 @@ return (
       <CommitButton
         data={{
           settings: {
-            "near.social": { "page.menu": JSON.stringify(state.widgets) },
+            dev: { side: JSON.stringify(state.widgets) },
           },
         }}
       >
