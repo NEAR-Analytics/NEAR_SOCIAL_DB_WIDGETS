@@ -55,6 +55,7 @@ const IconBox = styled.div`
 
 const Content = styled.div`
   padding: 1px;
+  min-height: 10px;
 `;
 
 const Button = styled.button`
@@ -105,26 +106,6 @@ const Item = styled.div`
     }
   }
 `;
-
-function composePost() {
-  return {
-    post: {
-      main: JSON.stringify({
-        path,
-        blockHeight,
-        type,
-      }),
-    },
-    index: {
-      post: JSON.stringify({
-        key: "main",
-        value: {
-          type,
-        },
-      }),
-    },
-  };
-}
 
 function renderContent() {
   if (state.showHistory) {
@@ -202,6 +183,11 @@ function renderContent() {
       return (
         <Widget src={widgetSrc} props={{ data: thing.data, blockHeight }} />
       );
+      // HERE IS THE TYPE RENDER
+      // We have an idea... it should render as the default idea view
+      // But first should check if user has a custom in settings
+      // What if the creator of the idea wants to display it in their own way?
+      // What if we want to force a specific way for it to be displayed?
     } else {
       switch (type) {
         case "widget":
@@ -236,6 +222,8 @@ function renderContent() {
 
 // DROPDOWN //
 // where can I put this? I'd like a better editor
+// this is a separate plugin
+// put in settings acording to the type
 function toggleEdit() {
   if (state.showEdit) {
     return (
@@ -343,6 +331,18 @@ const renderIcon = () => {
   );
 };
 
+function toggleView(path, blockHeight) {}
+
+// We need it to be able to change state.
+// I need a widget referenced in state
+const plugins = [];
+const typeParts = type.split("/");
+if (typeParts.length > 1) {
+  plugins = Social.get(
+    `${context.accountId}/settings/every/${type}/plugins`
+  ) || [toggleEdit(), toggleRaw(), toggleHistory(), nearPad()];
+}
+
 return (
   <Container id={path}>
     <Header>
@@ -351,7 +351,7 @@ return (
           src="efiz.near/widget/Common.Dropdown"
           props={{
             renderIcon: renderIcon,
-            elements: [toggleEdit(), toggleRaw(), toggleHistory(), nearPad()],
+            elements: plugins,
           }}
         />
       </ButtonRow>
@@ -359,3 +359,9 @@ return (
     <Content>{renderContent()}</Content>
   </Container>
 );
+
+// I think that there is a standard install
+// You start with some default settings
+// Type = "every.near/type/plugin"
+// plugins apply to types...
+// pluginType =
