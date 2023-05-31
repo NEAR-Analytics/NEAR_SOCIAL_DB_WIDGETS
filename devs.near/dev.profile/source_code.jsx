@@ -1,4 +1,4 @@
-const accountId = props.accountId ?? context.accountId;
+const accountId = props.accountId ?? context.accountId ?? "devs.near";
 
 const profile = props.profile ?? Social.getr(`${accountId}/profile`);
 
