@@ -1,1 +1,1 @@
-return "Automatic Deploy"
+return Hi
