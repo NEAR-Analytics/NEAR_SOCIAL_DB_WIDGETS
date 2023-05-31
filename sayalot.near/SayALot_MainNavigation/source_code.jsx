@@ -69,6 +69,7 @@ return (
             }}
           />
           <i>lots to say...</i>
+          <em>neardocs v0.02</em>
         </div>
       </a>
       <button
@@ -112,6 +113,9 @@ return (
                 </a>
               </div>
             )}
+          <li className="nav-item">
+            <em>neardocs v0.02</em>
+          </li>
         </ul>
       </div>
       {accountId &&
