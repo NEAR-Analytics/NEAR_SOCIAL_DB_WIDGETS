@@ -1,12 +1,12 @@
-const type = props.type;
 const typeWhitelist = props.typeWhitelist;
 const key = props.key || "main";
 
 function postThing(data) {
   // get the root thing from data
-  const thing = data.index.thing;
+  const thing = JSON.parse(data.index.thing);
   // get the thingId
-  const thingId = JSON.parse(thing).key;
+  const thingId = thing.key;
+  const type = thing.value.type;
   // build the path
   const path = `${context.accountId}/thing/${thingId}`;
   // create a post referencing the thing
