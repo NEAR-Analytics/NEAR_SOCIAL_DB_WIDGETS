@@ -208,7 +208,7 @@ return (
         </h2>
         <Widget
           src={`${widgetOwner}/widget/showQuestionsHandler-Mobile-Friendly`}
-          props={{ sharedBlockHeight, canPost }}
+          props={{ sharedBlockHeight, whitelist }}
         />
       </div>
     ) : state.displaying == tabs.MY_POLLS.id ? (
@@ -218,7 +218,7 @@ return (
         </h2>
         <Widget
           src={`${widgetOwner}/widget/showQuestionsHandler-Mobile-Friendly`}
-          props={{ sharedBlockHeight, onlyUser: true, canPost }}
+          props={{ sharedBlockHeight, onlyUser: true, whitelist }}
         />
       </div>
     ) : state.displaying == tabs.NEW_POLL.id ? (
