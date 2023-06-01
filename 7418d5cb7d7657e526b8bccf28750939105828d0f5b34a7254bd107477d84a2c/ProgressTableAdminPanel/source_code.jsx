@@ -180,18 +180,21 @@ function openModal(item) {
     editLink: item[1].link,
     isModalOpen: true,
   });
-
-  Near.call;
 }
 
 //Edit single item in local state
 function changeItemInState() {
-  const newItems = { ...myState.allItems };
-  newItems[myState.editKey] = {
-    value: myState.editValue,
-    link: "",
-  };
+  // const newItems = { ...myState.allItems };
+  // newItems[myState.editKey] = {
+  //   value: myState.editValue,
+  //   link: "",
+  // };
 
+  Near.call(contr_id, "change_data", {
+    key: myState.editKey,
+    value: parseInt(myState.editValue),
+    link: myState.editLink,
+  });
   State.update({
     allItems: newItems,
     editKey: "",
