@@ -9,21 +9,25 @@ const getFirstSBTToken = () => {
   });
   return view?.[0]?.[1]?.[0];
 };
+
+const whitelist = [
+  "neardigitalcollective.near",
+  "silkking.near",
+]
+
 const hasSBTToken = getFirstSBTToken() !== undefined;
 
-const whitelist = ["neardigitalcollective.near", "silkking.near"];
-
-const isUserAllowed = hasSBTToken || whitelist.includes(context.accountId);
+const canPost = hasSBTToken || whitelist.includes(context.accountId)
 
 State.init({
-  displaying: isUserAllowed ? 0 : 3,
+  displaying: canPost ? 0 : 3,
   hoveringElement: "",
   showAbortPollCreation: false,
   abortThroughAllExistingPolls: false,
   profile: {},
 });
 
-if (state.displaying === 3 && isUserAllowed) {
+if (state.displaying === 3 && canPost) {
   State.update({ displaying: 0 });
 }
 
@@ -177,7 +181,7 @@ return (
             stateUpdate: (data) => {
               State.update(data);
             },
-            fVToken: isUserAllowed,
+            fVToken: hasSBTToken,
             tabs: tabs,
           }}
         />
@@ -191,7 +195,7 @@ return (
             @{makeAccountIdShorter(context.accountId, 12)}
           </p>
           <p style={{ margin: "0", fontWeight: "bold", fontSize: "0.9rem" }}>
-            {isUserAllowed ? "Verified Human" : "Non-Verified Human"}
+            {canPost ? "Verified Human" : "Non-Verified Human"}
           </p>
         </div>
       </div>
@@ -204,7 +208,7 @@ return (
         </h2>
         <Widget
           src={`${widgetOwner}/widget/showQuestionsHandler-Mobile-Friendly`}
-          props={{ sharedBlockHeight, whitelist }}
+          props={{ sharedBlockHeight, canPost }}
         />
       </div>
     ) : state.displaying == tabs.MY_POLLS.id ? (
@@ -214,7 +218,7 @@ return (
         </h2>
         <Widget
           src={`${widgetOwner}/widget/showQuestionsHandler-Mobile-Friendly`}
-          props={{ sharedBlockHeight, onlyUser: true }}
+          props={{ sharedBlockHeight, onlyUser: true, canPost }}
         />
       </div>
     ) : state.displaying == tabs.NEW_POLL.id ? (
