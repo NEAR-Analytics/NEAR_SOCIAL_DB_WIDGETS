@@ -204,7 +204,7 @@ return (
         </h2>
         <Widget
           src={`${widgetOwner}/widget/showQuestionsHandler-Mobile-Friendly`}
-          props={{ sharedBlockHeight }}
+          props={{ sharedBlockHeight, whitelist }}
         />
       </div>
     ) : state.displaying == tabs.MY_POLLS.id ? (
