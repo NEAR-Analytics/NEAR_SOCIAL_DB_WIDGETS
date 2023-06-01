@@ -47,6 +47,7 @@ const EditSvg = styled.svg`
 const EditModalWrapper = styled.div`
     display: ${({ isOpen }) => (isOpen ? "flex" : "none")};
     align-items: flex-start;
+    max-width: 600px;
     justify-content: center;
     padding-top: 10%;
     position: absolute;
