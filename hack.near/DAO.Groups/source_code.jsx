@@ -3,6 +3,10 @@ const daoId = props.daoId ?? "multi.sputnik-dao.near";
 
 const policy = Near.view(daoId, "get_policy");
 
+if (policy === null) {
+  return "";
+}
+
 const groups = policy.roles
   .filter((role) => role.kind.Group)
   .map((role) => ({
