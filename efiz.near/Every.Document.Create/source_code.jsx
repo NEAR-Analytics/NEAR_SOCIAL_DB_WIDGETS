@@ -5,42 +5,6 @@ if (accountId === null) {
   return "please login to a near account";
 }
 
-const FormContainer = styled.div`
-  width: 500px;
-  margin: 0 auto;
-`;
-
-const SectionTitle = styled.h2`
-  font-size: 24px;
-  margin-top: 20px;
-`;
-
-const SectionContainer = styled.div`
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin-bottom: 20px;
-`;
-
-const FormGroup = styled.div`
-  margin-bottom: 10px;
-`;
-
-const Label = styled.label`
-  display: block;
-  margin-bottom: 5px;
-  font-size: 18px;
-`;
-
-const InputContainer = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const Input = styled.input`
-  width: 100%;
-  padding: 8px;
-`;
-
 const Button = styled.button`
   margin-left: 5px;
 `;
@@ -147,8 +111,11 @@ return (
     <Button onClick={() => handleTypeClick("efiz.near/type/Image")}>
       Add Image
     </Button>
-    <Button onClick={() => handleTypeClick("efiz.near/type/paragraph")}>
-      Add Paragraph
+    <Button onClick={() => handleTypeClick("efiz.near/type/markdown")}>
+      Add Markdown
+    </Button>
+    <Button onClick={() => handleTypeClick("efiz.near/type/feed")}>
+      Add Feed
     </Button>
     <Button onClick={() => handleTypeClick("embed")}>Embed Thing</Button>
     {state.components.map((component, index) => (
