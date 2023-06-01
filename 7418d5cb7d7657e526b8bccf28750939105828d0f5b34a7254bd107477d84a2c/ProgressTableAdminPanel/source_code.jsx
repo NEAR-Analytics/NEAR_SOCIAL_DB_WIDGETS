@@ -88,44 +88,61 @@ const ButtonWapper = styled.div`
 
 //Styles ENDED
 
+const contr_id = "widget-progress-table.near";
+function getNear() {
+  return Near.view("widget-progress-table.near", "get_data", `{}`);
+}
+
+console.log("NEAR", getNear());
+
 const accountId = context.accountId;
 
 if (!accountId) {
   return "Please sign in with NEAR wallet";
 }
 
-// let items = Social.get(`${accountId}/testWidget/**`);
-
 const myState = State.init({
   key: "",
   value: "",
   linkValue: "",
-  allItems: Social.get(`${accountId}/testWidget/**`),
+  allItems: getNear(),
   editKey: "",
   editValue: "",
   editLink: "",
   isModalOpen: false,
 });
 
-const socialDBAccountMemory =
-  "7418d5cb7d7657e526b8bccf28750939105828d0f5b34a7254bd107477d84a2c";
-
 if (myState.allItems === null) {
   State.update(
     {
-      allItems: Social.get(`${socialDBAccountMemory}/testWidget/**`),
+      allItems: getNear(),
     },
     [items]
   );
 }
 
 //Add items to the local state
-function addItem() {
-  let currItems = myState.allItems;
-  //If key has space
-  let key = myState.key.replace(/ /g, "-");
-  currItems[key] = { value: myState.value, link: myState.linkValue };
+// function addItem() {
+//   let currItems = myState.allItems;
+//   //If key has space
+//   let key = myState.key.replace(/ /g, "-");
+//   currItems[key] = { value: myState.value, link: myState.linkValue };
 
+//   State.update({
+//     key: "",
+//     value: "",
+//     linkValue: "",
+//     allItems: currItems,
+//   });
+// }
+function addItem() {
+  let key = myState.key.replace(/ /g, "-");
+
+  Near.call(contr_id, "set_data", {
+    key: key,
+    value: parseInt(myState.value),
+    link: myState.linkValue,
+  });
   State.update({
     key: "",
     value: "",
@@ -232,10 +249,14 @@ return (
       />
       <ButtonWapper>
         <button onClick={addItem}>Add item</button>
-        <CommitButton data={{ testWidget: myState.allItems }}>
-          Upload data
-        </CommitButton>
-        // <button onClick={() => uploadData()}>Upload data</button>
+        {
+          //<CommitButton data={{ testWidget: myState.allItems }}>
+          //Upload data
+          //</CommitButton>
+        }
+        {
+          // <button onClick={() => uploadData()}>Upload data</button>
+        }
       </ButtonWapper>
     </FormWrapper>
 
