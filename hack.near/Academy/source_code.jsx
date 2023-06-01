@@ -280,6 +280,26 @@ return (
         )}
       </Flex>
       <Flex>
+        <p>
+          <b>June 21-25:</b> Create your first BOS app!
+        </p>
+        <p>
+          <b>June 26 - July 2:</b> RPCs, APIs, and Indexers
+        </p>
+        <p>
+          <b>July 3-9:</b> Smart Contract Interactions
+        </p>
+        <p>
+          <b>July 10-16:</b> Component Design Patterns
+        </p>
+        <p>
+          <b>July 17-23:</b> NS Bridge and `Everything`
+        </p>
+        <p>
+          <b>July 24-30:</b> Gateways + Virtual Machine
+        </p>
+      </Flex>
+      <Flex>
         <Text
           size="14px"
           weight="600"
@@ -291,7 +311,6 @@ return (
         >
           Made Possible by Collaboration
         </Text>
-
         <Widget src="hack.near/widget/dev.Badge" />
       </Flex>
     </Container>
