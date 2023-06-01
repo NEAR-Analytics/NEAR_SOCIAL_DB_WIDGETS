@@ -6,6 +6,7 @@ State.init({
   email: "",
   agreeIsChecked: false,
   hasRegistered: false,
+  hasApplied: false,
 });
 
 const handleSignup = () => {
@@ -52,7 +53,10 @@ const handleJoin = () => {
       gas: gas,
       deposit: deposit,
     },
-  ]);
+  ]).then((resp) => {
+    // Storage.privateSet()
+    State.update({ hasApplied: true });
+  });
 };
 
 const Wrapper = styled.div`
