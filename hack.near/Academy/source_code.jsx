@@ -266,15 +266,19 @@ return (
                 }}
               />
             ) : (
-              <Widget
-                src="near/widget/DIG.Button"
-                props={{
-                  href: "https://near.org/onboarding",
-                  label: "Get Started",
-                  variant: "outline-secondary",
-                  size: "large",
-                }}
-              />
+              <div>
+                <h5>Get More Involved</h5>
+                <p>
+                  Continue your journey as a BOS builder, so you can level up to
+                  earn badges and opportunities!
+                </p>
+                <button
+                  className="btn btn-outline-success"
+                  onClick={handleJoin}
+                >
+                  Join Build DAO
+                </button>
+              </div>
             )}
           </div>
         )}
