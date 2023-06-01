@@ -268,10 +268,7 @@ return (
             ) : (
               <div>
                 <h5>Get More Involved</h5>
-                <p>
-                  Continue your journey as a BOS builder, so you can level up to
-                  earn badges and opportunities!
-                </p>
+                <p>Earn badges and opportunities!</p>
                 <button
                   className="btn btn-outline-success"
                   onClick={handleJoin}
