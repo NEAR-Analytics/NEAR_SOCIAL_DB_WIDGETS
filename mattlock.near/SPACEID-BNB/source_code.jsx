@@ -280,13 +280,6 @@ const init = () => {
 
 init();
 
-if (!state.address)
-  return (
-    <Theme>
-      <button onClick={init}>Get Started</button>
-    </Theme>
-  );
-
 return (
   <Theme>
     <Widget
@@ -319,7 +312,7 @@ return (
         Step 2. Register
       </button>
 
-      <h3>Names you own:</h3>
+      {state.names && state.names.length > 0 && <h3>Names you own:</h3>}
       {state.names && (
         <ol>
           {state.names.map(({ name }) => (
