@@ -86,7 +86,7 @@ const getNamesForOwner = (owner, subscribe) => {
   );
 
   if (!res.body || res.body.error) return;
-
+  console.log("getNamesForOwner raw res", res.body);
   const names = JSON.parse(res.body).data.domains.list;
   console.log("getNamesForOwner", names);
   return names;
