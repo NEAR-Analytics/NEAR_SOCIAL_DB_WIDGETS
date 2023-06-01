@@ -111,7 +111,6 @@ const renderModal = () => {
             </button>
           </div>
           <div className="modal-body" style={{ backgroundColor: "#FAFAFB" }}>
-            consol
             <Widget
               src={`${widgetOwner}/widget/EasyPoll.Voting`}
               props={{
