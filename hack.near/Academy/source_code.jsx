@@ -300,7 +300,7 @@ return (
           <b>July 24-30:</b> Gateways + Virtual Machine
         </p>
         <p>
-          <b>August 7-21:</b> Hackathon
+          <b>August 7-21:</b> BOS Hackathon
         </p>
       </Flex>
       <br />
