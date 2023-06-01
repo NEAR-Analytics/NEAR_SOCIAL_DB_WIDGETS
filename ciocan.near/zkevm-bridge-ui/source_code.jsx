@@ -7,17 +7,17 @@ const tokens = [
     logoURI: "",
   },
   {
-    address: "0x07865c6E87B9F70255377e024ace6630C1Eaa37F",
-    chainId: 1,
-    symbol: "USDC",
-    decimals: 18,
-    logoURI: "",
-  },
-  {
     address: "0x4701Aa9471d7bfAc765D87dcb1Ea6BB23AD32733",
     chainId: 5,
     symbol: "MATIC",
     decimals: 18,
+    logoURI: "",
+  },
+  {
+    address: "0x07865c6E87B9F70255377e024ace6630C1Eaa37F",
+    chainId: 5,
+    symbol: "USDC",
+    decimals: 6,
     logoURI: "",
   },
   {
@@ -27,6 +27,7 @@ const tokens = [
     decimals: 18,
     logoURI: "",
   },
+  // mainnet assets
   {
     address: "0x0000000000000000000000000000000000000000",
     chainId: 1,
@@ -35,31 +36,10 @@ const tokens = [
     logoURI: "",
   },
   {
-    address: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
-    chainId: 1,
-    symbol: "USDC",
-    decimals: 18,
-    logoURI: "",
-  },
-  {
     address: "0x7D1AfA7B718fb893dB30A3aBc0Cfc608AaCfeBB0",
     chainId: 1,
     symbol: "MATIC",
     decimals: 18,
-    logoURI: "",
-  },
-  {
-    address: "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
-    chainId: 1,
-    symbol: "WBTC",
-    decimals: 8,
-    logoURI: "",
-  },
-  {
-    address: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
-    chainId: 1,
-    symbol: "USDT",
-    decimals: 6,
     logoURI: "",
   },
   {
@@ -76,9 +56,24 @@ const tokens = [
     chainId: 1,
     logoURI: "",
   },
+  {
+    address: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+    chainId: 1,
+    symbol: "USDT",
+    decimals: 6,
+    logoURI: "",
+  },
+  {
+    address: "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
+    chainId: 1,
+    symbol: "WBTC",
+    decimals: 8,
+    logoURI: "",
+  },
 ];
 
 const Layout = styled.div`
+  position: relative;
   width: 314px;
   min-height: 412px;
   background-color: #151718;
@@ -291,16 +286,16 @@ const TokenContainer = styled.div`
 `;
 
 const TokenSelector = styled.button`
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 19px;
-    color: #FFFFFF;
-    background: none;
-    border: none;
-    padding: 0;
-    margin: 0;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  color: #FFFFFF;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
 `;
 
 const Input = styled.input`
@@ -366,6 +361,40 @@ const Alert = styled.div`
   font-size: 12px;
 `;
 
+const Dialog = styled.div`
+  position: absolute;
+  right: 32px;
+  left: 32px;
+  top: 25%;
+  background: #2d2f30;
+  z-index: 10;
+  box-shadow: inset 0px 0px 0px 1px #999;
+  border-radius: 12px;
+  padding: 16px; 8px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+
+    &:hover {
+      color: #ccc;
+    }
+  }
+`;
+
 const sender = Ethers.send("eth_requestAccounts", [])[0];
 if (sender) {
   Ethers.provider()
@@ -383,11 +412,19 @@ const networks = {
 };
 
 State.init({
+  selectedToken: "ETH",
   selectedNetwork: "ethereum",
   isNetworkSelectOpen: false,
+  isTokenDialogOpen: false,
 });
 
-const { isNetworkSelectOpen, selectedNetwork, chainId } = state;
+const {
+  isNetworkSelectOpen,
+  selectedNetwork,
+  chainId,
+  selectedToken,
+  isTokenDialogOpen,
+} = state;
 
 const changeNetwork = (network) => {
   State.update({ isNetworkSelectOpen: false, selectedNetwork: network });
@@ -422,6 +459,15 @@ const getToNetworkLabel = () => {
     default:
       return "unknown";
   }
+};
+
+const updateToken = (token) => {
+  State.update({ selectedToken: token });
+  State.update({ isTokenDialogOpen: false });
+};
+
+const openTokenDialog = () => {
+  State.update({ isTokenDialogOpen: true });
 };
 
 const networkList = isMainnet ? [1, 1101] : [5, 1442];
@@ -462,8 +508,8 @@ return (
         <Icon size="32px" />
         <div class="token-container">
           <h3>SEND -&gt;</h3>
-          <TokenSelector>
-            <span>USDC</span>
+          <TokenSelector onClick={openTokenDialog}>
+            <span>{selectedToken}</span>
             {caretSvg}
           </TokenSelector>
         </div>
@@ -486,7 +532,7 @@ return (
         <div class="token-container">
           <h3>-&gt; RECEIVE</h3>
           <TokenSelector>
-            <span>USDC</span>
+            <span>{selectedToken}</span>
           </TokenSelector>
         </div>
         <div class="input-container">
@@ -511,5 +557,24 @@ return (
       </li>
     </ul>
     <ActionButton>Confirm</ActionButton>
+    {isTokenDialogOpen && (
+      <Dialog>
+        <ul>
+          {tokens
+            .filter((t) => t.chainId === (isMainnet ? 1 : 5))
+            .map((token) => {
+              return (
+                <li
+                  key={token.symbol}
+                  onClick={() => updateToken(token.symbol)}
+                >
+                  <span>{token.symbol}</span>
+                  <span>{"0"}</span>
+                </li>
+              );
+            })}
+        </ul>
+      </Dialog>
+    )}
   </Layout>
 );
