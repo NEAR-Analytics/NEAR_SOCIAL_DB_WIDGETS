@@ -244,7 +244,15 @@ if (!accountId) {
   return <h1>Please sign in with NEAR wallet</h1>;
 }
 
-let items = Social.get(`${accountId}/testWidget/**`);
+// let items = Social.get(`${accountId}/testWidget/**`);
+
+const contr_id = "widget-progress-table.near";
+function getNear() {
+  return Near.view("widget-progress-table.near", "get_data", `{}`);
+}
+
+let items = getNear();
+
 if (items == null || items == undefined) {
   return <h1>No Data</h1>;
 }
