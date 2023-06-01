@@ -1,3 +1,83 @@
+const tokens = [
+  {
+    address: "0x0000000000000000000000000000000000000000",
+    chainId: 5,
+    symbol: "ETH",
+    decimals: 18,
+    logoURI: "",
+  },
+  {
+    address: "0x07865c6E87B9F70255377e024ace6630C1Eaa37F",
+    chainId: 1,
+    symbol: "USDC",
+    decimals: 18,
+    logoURI: "",
+  },
+  {
+    address: "0x4701Aa9471d7bfAc765D87dcb1Ea6BB23AD32733",
+    chainId: 5,
+    symbol: "MATIC",
+    decimals: 18,
+    logoURI: "",
+  },
+  {
+    address: "0xD7E55eB808693D5Ff81a3391c59886C7E0449f35",
+    chainId: 5,
+    symbol: "DAI",
+    decimals: 18,
+    logoURI: "",
+  },
+  {
+    address: "0x0000000000000000000000000000000000000000",
+    chainId: 1,
+    symbol: "ETH",
+    decimals: 18,
+    logoURI: "",
+  },
+  {
+    address: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+    chainId: 1,
+    symbol: "USDC",
+    decimals: 18,
+    logoURI: "",
+  },
+  {
+    address: "0x7D1AfA7B718fb893dB30A3aBc0Cfc608AaCfeBB0",
+    chainId: 1,
+    symbol: "MATIC",
+    decimals: 18,
+    logoURI: "",
+  },
+  {
+    address: "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
+    chainId: 1,
+    symbol: "WBTC",
+    decimals: 8,
+    logoURI: "",
+  },
+  {
+    address: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+    chainId: 1,
+    symbol: "USDT",
+    decimals: 6,
+    logoURI: "",
+  },
+  {
+    address: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+    chainId: 1,
+    symbol: "USDC",
+    decimals: 6,
+    logoURI: "",
+  },
+  {
+    address: "0x6B175474E89094C44Da98b954EedeAC495271d0F",
+    symbol: "DAI",
+    decimals: 18,
+    chainId: 1,
+    logoURI: "",
+  },
+];
+
 const Layout = styled.div`
   width: 314px;
   min-height: 412px;
