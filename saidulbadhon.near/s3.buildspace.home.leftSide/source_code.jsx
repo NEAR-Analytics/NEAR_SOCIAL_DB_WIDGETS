@@ -308,7 +308,7 @@ return (
         </div>
 
         <div style={{ display: "flex", gap: 16 }}>
-          {/*<button
+          <button
             style={{
               backgroundColor: theme.buttonTextColor,
               color: "#000",
@@ -326,26 +326,26 @@ return (
             }}
           >
             Sign Now
-          </button>*/}
+          </button>
 
           <button
             style={{
-              // backgroundColor: "transparent",
-              // color: theme.buttonTextColor,
-              // fontSize: 24,
-              // fontWeight: 500,
-              // padding: "12px 32px",
-              // border: "none",
-
-              // borderRadius: 40,
-              backgroundColor: theme.buttonTextColor,
-              color: "#000",
+              backgroundColor: "transparent",
+              color: theme.buttonTextColor,
               fontSize: 24,
-              fontWeight: 600,
+              fontWeight: 500,
               padding: "12px 32px",
               border: "none",
 
               borderRadius: 40,
+              // backgroundColor: theme.buttonTextColor,
+              // color: "#000",
+              // fontSize: 24,
+              // fontWeight: 600,
+              // padding: "12px 32px",
+              // border: "none",
+
+              // borderRadius: 40,
             }}
             onClick={() => {
               props.handleBrowseButton();
