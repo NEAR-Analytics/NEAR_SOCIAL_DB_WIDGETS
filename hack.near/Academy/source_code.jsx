@@ -280,6 +280,7 @@ return (
         )}
       </Flex>
       <Flex>
+        <h5 className="mt-3">Course Timeline</h5>
         <p>
           <b>June 21-25:</b> Create your first BOS app!
         </p>
