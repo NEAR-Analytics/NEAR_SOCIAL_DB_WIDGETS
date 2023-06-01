@@ -22,7 +22,9 @@ const getFirstSBTToken = (accountId) => {
 };
 
 const shouldDisplayUserQuestions = (accountId) => {
-  return getFirstSBTToken(accountId) || whitelist.includes(accountId);
+  return (
+    getFirstSBTToken(accountId) !== undefined || whitelist.includes(accountId)
+  );
 };
 
 let polls = Social.index("poll_question", "question-v3.1.0");
@@ -35,9 +37,7 @@ if (!polls) {
   return "Loading";
 }
 
-polls = polls.filter(
-  (p) => shouldDisplayUserQuestions(p.accountId) !== undefined
-);
+polls = polls.filter((p) => shouldDisplayUserQuestions(p.accountId));
 
 if (onlyUsersPolls) {
   polls = state.polls.filter((poll) => {
