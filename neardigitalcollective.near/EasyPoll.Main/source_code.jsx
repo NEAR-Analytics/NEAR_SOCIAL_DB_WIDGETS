@@ -1,6 +1,6 @@
 let sharedBlockHeight = props.sharedBlockHeight;
 
-const widgetOwner = "silkking.near";
+const widgetOwner = "neardigitalcollective.near";
 
 const getFirstSBTToken = () => {
   const view = Near.view("registry.i-am-human.near", "sbt_tokens_by_owner", {
@@ -12,7 +12,6 @@ const getFirstSBTToken = () => {
 
 const whitelist = [
   "neardigitalcollective.near",
-  "silkking.near",
 ]
 
 const hasSBTToken = getFirstSBTToken() !== undefined;
