@@ -99,9 +99,10 @@ const ChartWrapper = styled.div`
 const GradientContainer = styled.div`
   position: absolute;
   left: calc(16% + 10px);
-  width: 86%;
+  width: 85%;
   height: 100%;
-  background: linear-gradient(90deg, rgba(242,155,192,1) 7%, rgba(244,162,170,1) 21%, rgba(255,213,13,1) 100%);
+  background:#4498e0;
+
   @media (min-width: 450px) {
     width: 89%;
     left: calc(12% + 10px);
@@ -138,6 +139,8 @@ const ItemTitle = styled.a`
   font-size: 14px;
   margin: 0 20px 0 0; 
   text-align: right;
+  color: #4498E0;
+  font-weight: bold;
   @media (min-width: 450px) {
     max-width: 12%;
   }
@@ -164,16 +167,16 @@ const SingleMeterBar = styled.div`
     position: relative;
     top: 2px;
     height: 20px;
-        display: flex;
+    display: flex;
     align-items: center;
+    font-weight:bold; 
     width: ${({ width }) => `${width}%`};
-    background: ${({ color }) => `${color}`};
+    background: linear-gradient(90deg, rgba(242,155,192,1) 7%, rgba(244,162,170,1) 21%, rgba(255,213,13,1) 100%);
     color: #fff;
     display: flex;
     justify-content: flex-end;
     padding-right: 20px;
     box-sizing: border-box;
-    font-weight:bold; 
     &:after{
       content: '';
       position: absolute;
@@ -182,7 +185,7 @@ const SingleMeterBar = styled.div`
       width: 20px;
       height: 20px;
       border-radius: 50%;
-      background: ${({ color }) => `${color}`};
+      background: rgba(255,213,13,1);
 
       /* border-style: solid;
       border-width: 5px 0 5px 10px;
@@ -196,6 +199,8 @@ const AgendaWrapper = styled.div`
   left: 18%;
   width: 84%;
   height: 100px;
+  color: #4498E0;
+  font-weight: bold;
   @media (min-width: 450px) {
    left: 15.5%;
   }
@@ -246,26 +251,34 @@ const steps = [
   "Deployed",
 ];
 
+const colors = {
+  yellow: "#FFD50D",
+  blue: "#4498E0",
+  pink: "#F29BC0",
+};
+
 const accountId = context.accountId;
 
 if (!accountId) {
   return <h1>Please sign in with NEAR wallet</h1>;
 }
 
-let items = Social.get(`${accountId}/testWidget/**`);
-if (items == null || items == undefined) {
+// let items = Social.get(`${accountId}/testWidget/**`);
+
+const contr_id = "widget-progress-table.near";
+function getNear() {
+  return Near.view("widget-progress-table.near", "get_data", `{}`);
+}
+
+let items = getNear();
+
+if (items === null || items === undefined) {
   return <h1>No Data</h1>;
 }
 
 const chartState = State.init({
-  allItems: items,
+  allItems: items ? items : {},
 });
-
-const colors = {
-  yellow: "#FFD50D",
-  blue: "#4498E0",
-  pink: "#F29BC0",
-};
 
 const { hasBackground } = props;
 
@@ -275,19 +288,21 @@ return (
       <ChartWrapper>
         {hasBackground && <GradientContainer></GradientContainer>}
 
-        {Object.entries(chartState.allItems).map((item) => (
-          <Row>
-            <ItemTitle href={item[1].link}>{item[0]}</ItemTitle>
-            <SingleMeterBarWrapper>
-              <SingleMeterBar
-                width={parseInt(item[1].value) + 2}
-                color={colors.blue}
-              >
-                {item[1].value}%
-              </SingleMeterBar>
-            </SingleMeterBarWrapper>
-          </Row>
-        ))}
+        {Object.entries(chartState.allItems)
+          .sort((a, b) => a[0].localeCompare(b[0]))
+          .map((item) => (
+            <Row>
+              <ItemTitle href={item[1].link}>{item[0]}</ItemTitle>
+              <SingleMeterBarWrapper>
+                <SingleMeterBar
+                  width={parseInt(item[1].value) + 2}
+                  color={colors.blue}
+                >
+                  {item[1].value}%
+                </SingleMeterBar>
+              </SingleMeterBarWrapper>
+            </Row>
+          ))}
       </ChartWrapper>
       <AgendaWrapper>
         {steps.map((item, index) => (
