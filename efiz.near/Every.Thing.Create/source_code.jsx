@@ -6,6 +6,7 @@ const availableTypes = JSON.parse(props.availableTypes) || [
   "efiz.near/type/feed",
   "efiz.near/type/idea",
   "efiz.near/type/markdown",
+  "efiz.near/type/topic",
 ];
 const type = props.type || "";
 if (availableTypes.length === 1) {
@@ -195,7 +196,7 @@ function RenderTypeCreate() {
 return (
   <>
     <Container>
-      {props.type === undefined || availableTypes.length > 1 ? (
+      {props.type === undefined ? (
         <>
           <Row>
             <TextContainer>create a thing of type:</TextContainer>
