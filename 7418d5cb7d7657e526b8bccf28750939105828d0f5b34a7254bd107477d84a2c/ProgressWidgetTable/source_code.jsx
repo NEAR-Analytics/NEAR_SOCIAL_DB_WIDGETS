@@ -274,19 +274,21 @@ return (
       <ChartWrapper>
         {hasBackground && <GradientContainer></GradientContainer>}
 
-        {Object.entries(chartState.allItems).map((item) => (
-          <Row>
-            <ItemTitle href={item[1].link} target="_blank">
-              {item[0].replace(/-/g, " ")}
-            </ItemTitle>
-            <SingleMeterBarWrapper>
-              <SingleMeterBar
-                width={parseInt(item[1].value) + 2}
-                color={colors.blue}
-              ></SingleMeterBar>
-            </SingleMeterBarWrapper>
-          </Row>
-        ))}
+        {Object.entries(chartState.allItems)
+          .sort((a, b) => a[0].localeCompare(b[0]))
+          .map((item) => (
+            <Row>
+              <ItemTitle href={item[1].link} target="_blank">
+                {item[0].replace(/-/g, " ")}
+              </ItemTitle>
+              <SingleMeterBarWrapper>
+                <SingleMeterBar
+                  width={parseInt(item[1].value) + 2}
+                  color={colors.blue}
+                ></SingleMeterBar>
+              </SingleMeterBarWrapper>
+            </Row>
+          ))}
       </ChartWrapper>
       <AgendaWrapper>
         {steps.map((item, index) => (
