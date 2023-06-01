@@ -1,4 +1,5 @@
 let sharedBlockHeight = props.sharedBlockHeight;
+let whitelist = props.whitelist;
 
 State.init({
   polls: {},
@@ -20,6 +21,10 @@ const getFirstSBTToken = (accountId) => {
   return view?.[0]?.[1]?.[0];
 };
 
+const shouldDisplayUserQuestions = (accountId) => {
+  return getFirstSBTToken(accountId) || whitelist.includes(accountId);
+};
+
 let polls = Social.index("poll_question", "question-v3.1.0");
 
 if (JSON.stringify(polls) != JSON.stringify(state.polls)) {
@@ -30,7 +35,9 @@ if (!polls) {
   return "Loading";
 }
 
-polls = polls.filter((p) => getFirstSBTToken(p.accountId) !== undefined);
+polls = polls.filter(
+  (p) => shouldDisplayUserQuestions(p.accountId) !== undefined
+);
 
 if (onlyUsersPolls) {
   polls = state.polls.filter((poll) => {
