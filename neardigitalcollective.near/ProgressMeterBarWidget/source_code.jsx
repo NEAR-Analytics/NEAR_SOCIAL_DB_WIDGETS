@@ -143,7 +143,7 @@ const propsSize = props.size ? props.size : "large";
 
 console.log("propsSize", propsSize);
 const registerUsersNum = Near.view("registry.i-am-human.near", "sbt_supply", {
-  issuer: "gooddollar-v1.i-am-human.near",
+  issuer: "fractal.i-am-human.near",
 });
 
 const totalUsrNum = 1000;
