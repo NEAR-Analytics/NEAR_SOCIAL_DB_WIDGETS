@@ -153,21 +153,23 @@ function addItem() {
 
 //Remove item from local state
 function removeItemFromState(key) {
-  State.update({
-    allItems: { ...myState.allItems, [key]: null },
-  });
+  //   State.update({
+  //     allItems: { ...myState.allItems, [key]: null },
+  //   });
+
+  return Near.call(contr_id, "remove_user_item", { key: key });
 }
 
 //Upload data on chain
-function uploadData() {
-  Social.set({
-    data: {
-      "7418d5cb7d7657e526b8bccf28750939105828d0f5b34a7254bd107477d84a2c": {
-        testWidget: myState.allItems,
-      },
-    },
-  });
-}
+// function uploadData() {
+//   Social.set({
+//     data: {
+//       "7418d5cb7d7657e526b8bccf28750939105828d0f5b34a7254bd107477d84a2c": {
+//         testWidget: myState.allItems,
+//       },
+//     },
+//   });
+// }
 
 //Open modal for editing item from local state
 function openModal(item) {
@@ -177,6 +179,8 @@ function openModal(item) {
     editLink: item[1].link,
     isModalOpen: true,
   });
+
+  Near.call;
 }
 
 //Edit single item in local state
@@ -194,8 +198,6 @@ function changeItemInState() {
     isModalOpen: false,
   });
 }
-
-console.log(Object.entries(myState.allItems));
 
 return (
   <DashboardWrapper>
@@ -251,14 +253,6 @@ return (
       />
       <ButtonWapper>
         <button onClick={addItem}>Add item</button>
-        {
-          //<CommitButton data={{ testWidget: myState.allItems }}>
-          //Upload data
-          //</CommitButton>
-        }
-        {
-          // <button onClick={() => uploadData()}>Upload data</button>
-        }
       </ButtonWapper>
     </FormWrapper>
 
