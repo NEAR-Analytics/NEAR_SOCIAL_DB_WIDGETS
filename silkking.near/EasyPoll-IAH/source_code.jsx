@@ -11,15 +11,19 @@ const getFirstSBTToken = () => {
 };
 const hasSBTToken = getFirstSBTToken() !== undefined;
 
+const whitelist = ["neardigitalcollective.near", "silkking.near"];
+
+const isUserAllowed = hasSBTToken || whitelist.includes(context.accountId);
+
 State.init({
-  displaying: hasSBTToken ? 0 : 3,
+  displaying: isUserAllowed ? 0 : 3,
   hoveringElement: "",
   showAbortPollCreation: false,
   abortThroughAllExistingPolls: false,
   profile: {},
 });
 
-if (state.displaying === 3 && hasSBTToken) {
+if (state.displaying === 3 && isUserAllowed) {
   State.update({ displaying: 0 });
 }
 
@@ -173,7 +177,7 @@ return (
             stateUpdate: (data) => {
               State.update(data);
             },
-            fVToken: hasSBTToken,
+            fVToken: isUserAllowed,
             tabs: tabs,
           }}
         />
@@ -187,7 +191,7 @@ return (
             @{makeAccountIdShorter(context.accountId, 12)}
           </p>
           <p style={{ margin: "0", fontWeight: "bold", fontSize: "0.9rem" }}>
-            {hasSBTToken ? "Verified Human" : "Non-Verified Human"}
+            {isUserAllowed ? "Verified Human" : "Non-Verified Human"}
           </p>
         </div>
       </div>
