@@ -56,7 +56,7 @@ const handleJoin = () => {
 };
 
 const Wrapper = styled.div`
-  --section-gap: 42px;
+  --section-gap: 23px;
   padding-top: 42px;
 
   @media (max-width: 1160px) {
@@ -123,7 +123,7 @@ const Text = styled.p`
 
 const Flex = styled.div`
   display: flex;
-  gap: 12px;
+  gap: 15px;
   align-items: center;
   flex-direction: column;
   flex-wrap: "nowrap";
