@@ -123,7 +123,7 @@ const Text = styled.p`
 
 const Flex = styled.div`
   display: flex;
-  gap: 15px;
+  gap: 12px;
   align-items: center;
   flex-direction: column;
   flex-wrap: "nowrap";
