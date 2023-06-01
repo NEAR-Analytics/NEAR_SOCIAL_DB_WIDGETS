@@ -263,7 +263,14 @@ if (!accountId) {
   return <h1>Please sign in with NEAR wallet</h1>;
 }
 
-let items = Social.get(`${accountId}/testWidget/**`);
+// let items = Social.get(`${accountId}/testWidget/**`);
+
+const contr_id = "widget-progress-table.near";
+function getNear() {
+  return Near.view("widget-progress-table.near", "get_data", `{}`);
+}
+
+let items = getNear();
 
 if (items === null || items === undefined) {
   return <h1>No Data</h1>;
@@ -281,19 +288,21 @@ return (
       <ChartWrapper>
         {hasBackground && <GradientContainer></GradientContainer>}
 
-        {Object.entries(chartState.allItems).map((item) => (
-          <Row>
-            <ItemTitle href={item[1].link}>{item[0]}</ItemTitle>
-            <SingleMeterBarWrapper>
-              <SingleMeterBar
-                width={parseInt(item[1].value) + 2}
-                color={colors.blue}
-              >
-                {item[1].value}%
-              </SingleMeterBar>
-            </SingleMeterBarWrapper>
-          </Row>
-        ))}
+        {Object.entries(chartState.allItems)
+          .sort((a, b) => a[0].localeCompare(b[0]))
+          .map((item) => (
+            <Row>
+              <ItemTitle href={item[1].link}>{item[0]}</ItemTitle>
+              <SingleMeterBarWrapper>
+                <SingleMeterBar
+                  width={parseInt(item[1].value) + 2}
+                  color={colors.blue}
+                >
+                  {item[1].value}%
+                </SingleMeterBar>
+              </SingleMeterBarWrapper>
+            </Row>
+          ))}
       </ChartWrapper>
       <AgendaWrapper>
         {steps.map((item, index) => (
