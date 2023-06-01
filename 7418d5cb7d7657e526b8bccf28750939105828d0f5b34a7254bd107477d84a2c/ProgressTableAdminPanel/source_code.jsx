@@ -232,14 +232,10 @@ return (
       />
       <ButtonWapper>
         <button onClick={addItem}>Add item</button>
-        {
-          // <CommitButton
-          //   data={{ testWidget: myState.allItems }}
-          // >
-          //   Upload data
-          // </CommitButton>
-        }
-        <button onClick={() => uploadData()}>Upload data</button>
+        <CommitButton data={{ testWidget: myState.allItems }}>
+          Upload data
+        </CommitButton>
+        // <button onClick={() => uploadData()}>Upload data</button>
       </ButtonWapper>
     </FormWrapper>
 
