@@ -168,11 +168,12 @@ return (
       </InnerContainer>
     </Container>
     <ButtonRow>
-      {data?.edges?.map((edge) => (
-        <Button onClick={() => State.update({ thingSrc: edge.src })}>
-          {edge.name}
-        </Button>
-      ))}
+      {data &&
+        data.edges?.map((edge) => (
+          <Button onClick={() => State.update({ thingSrc: edge.src })}>
+            {edge.name}
+          </Button>
+        ))}
       {/**
       <Button
         onClick={() =>
