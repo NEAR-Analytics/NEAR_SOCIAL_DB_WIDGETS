@@ -317,31 +317,31 @@ return (
             <b>Course Timeline:</b> Virtual Sessions
           </h5>
           <TimelineItem>
-            <TimelineDate>June 21</TimelineDate>
+            <TimelineDate>June 21:</TimelineDate>
             <TimelineText>Create your first BOS app!</TimelineText>
           </TimelineItem>
           <TimelineItem>
-            <TimelineDate>June 27</TimelineDate>
+            <TimelineDate>June 27:</TimelineDate>
             <TimelineText>RPCs, APIs, and Indexers</TimelineText>
           </TimelineItem>
           <TimelineItem>
-            <TimelineDate>July 5</TimelineDate>
+            <TimelineDate>July 5:</TimelineDate>
             <TimelineText>Smart Contract Interactions</TimelineText>
           </TimelineItem>
           <TimelineItem>
-            <TimelineDate>July 11</TimelineDate>
+            <TimelineDate>July 11:</TimelineDate>
             <TimelineText>Component Design Patterns</TimelineText>
           </TimelineItem>
           <TimelineItem>
-            <TimelineDate>July 17</TimelineDate>
+            <TimelineDate>July 17:</TimelineDate>
             <TimelineText>NS Bridge and 'Everything'</TimelineText>
           </TimelineItem>
           <TimelineItem>
-            <TimelineDate>July 25</TimelineDate>
+            <TimelineDate>July 25:</TimelineDate>
             <TimelineText>Gateways + Virtual Machine</TimelineText>
           </TimelineItem>
           <TimelineItem>
-            <TimelineDate>August 7-21</TimelineDate>
+            <TimelineDate>August 7-21:</TimelineDate>
             <TimelineText>BOS Hackathon</TimelineText>
           </TimelineItem>
         </TimelineContainer>
