@@ -199,6 +199,7 @@ const ContainerNetwork = styled.div`
     font-weight: 600;
     font-size: 8px;
     line-height: 10px;
+    color: #fff;
   }
 `;
 
