@@ -416,6 +416,7 @@ State.init({
   selectedNetwork: "ethereum",
   isNetworkSelectOpen: false,
   isTokenDialogOpen: false,
+  amount: 0,
 });
 
 const {
@@ -424,6 +425,7 @@ const {
   chainId,
   selectedToken,
   isTokenDialogOpen,
+  amount,
 } = state;
 
 const changeNetwork = (network) => {
@@ -462,12 +464,26 @@ const getToNetworkLabel = () => {
 };
 
 const updateToken = (token) => {
-  State.update({ selectedToken: token });
-  State.update({ isTokenDialogOpen: false });
+  State.update({ selectedToken: token, isTokenDialogOpen: false });
 };
 
 const openTokenDialog = () => {
   State.update({ isTokenDialogOpen: true });
+};
+
+const changeAmount = (e) => {
+  State.update({ amount: e.target.value });
+};
+
+const handleConfirm = () => {
+  const { onConfirm } = props;
+  const token = tokens
+    .filter((t) => t.chainId === (isMainnet ? 1 : 5))
+    .find((t) => t.symbol === selectedToken);
+
+  if (onConfirm) {
+    onConfirm({ amount, token });
+  }
 };
 
 const networkList = isMainnet ? [1, 1101] : [5, 1442];
@@ -514,7 +530,7 @@ return (
           </TokenSelector>
         </div>
         <div class="input-container">
-          <Input placeholder="0" type="number" />
+          <Input placeholder="0" type="number" onChange={changeAmount} />
           <span class="usd-value">$0</span>
         </div>
       </TokenContainer>
@@ -536,7 +552,7 @@ return (
           </TokenSelector>
         </div>
         <div class="input-container">
-          <Input placeholder="0" type="number" readOnly value={0} />
+          <Input type="number" readOnly value={amount} />
           <span class="usd-value">$0</span>
         </div>
       </TokenContainer>
@@ -556,7 +572,7 @@ return (
         <span class="value">-</span>
       </li>
     </ul>
-    <ActionButton>Confirm</ActionButton>
+    <ActionButton onClick={handleConfirm}>Confirm</ActionButton>
     {isTokenDialogOpen && (
       <Dialog>
         <ul>
