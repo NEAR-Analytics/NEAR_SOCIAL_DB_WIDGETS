@@ -446,6 +446,10 @@ const updateBalance = (token) => {
     retrun;
   }
 
+  if (state.balances[symbol]) {
+    retrun;
+  }
+
   const tokenContract = new ethers.Contract(
     address,
     erc20Abi,
