@@ -32,7 +32,7 @@ const PopupWrapper = styled.div`
 return (
   <>
     <div className="d-flex justify-content-between flex-wrap mb-3">
-      <h3>Tasks for Builders</h3>
+      <h3>build town</h3>
       <Widget
         src="sking.near/widget/Common.Button"
         props={{
@@ -48,6 +48,8 @@ return (
         }}
       />
     </div>
+
+    <Widget src="devs.near/widget/dev.info" />
 
     <Widget
       src="hack.near/widget/dev.task.claim"
