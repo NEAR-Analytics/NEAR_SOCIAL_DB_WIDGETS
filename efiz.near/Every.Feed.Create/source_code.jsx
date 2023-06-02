@@ -15,7 +15,7 @@ const Container = styled.div`
   align-items: center;
 `;
 
-const options = ["efiz.near/type/Image", "efiz.near/type/markdown"];
+const options = ["md", "social", "every.near/type/image"];
 
 return (
   <Container>
@@ -27,5 +27,6 @@ return (
       }}
       placeholder="available types..."
     />
+    <Input placeholder="key" onChange={() => {}} />
   </Container>
 );
