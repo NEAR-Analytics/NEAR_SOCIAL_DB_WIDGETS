@@ -49,7 +49,7 @@ return (
       />
     </div>
 
-    <Widget src="devs.near/widget/dev.info" />
+    <Widget src="hack.near/widget/dev.info" />
 
     <Widget
       src="hack.near/widget/dev.task.claim"
