@@ -10,13 +10,11 @@ const getFirstSBTToken = () => {
   return view?.[0]?.[1]?.[0];
 };
 
-const whitelist = [
-  "neardigitalcollective.near",
-]
+const whitelist = ["neardigitalcollective.near"];
 
 const hasSBTToken = getFirstSBTToken() !== undefined;
 
-const canPost = hasSBTToken || whitelist.includes(context.accountId)
+const canPost = hasSBTToken || whitelist.includes(context.accountId);
 
 State.init({
   displaying: canPost ? 0 : 3,
@@ -187,12 +185,6 @@ return (
       </CardWrapper>
       <div style={{ width: 200 }} className="p-2">
         <div>
-          <p style={{ margin: "0", fontSize: "0.8rem" }}>
-            {makeAccountIdShorter(state.profile.name, 12)}
-          </p>
-          <p style={{ margin: "0", fontSize: "0.8rem" }}>
-            @{makeAccountIdShorter(context.accountId, 12)}
-          </p>
           <p style={{ margin: "0", fontWeight: "bold", fontSize: "0.9rem" }}>
             {canPost ? "Verified Human" : "Non-Verified Human"}
           </p>
