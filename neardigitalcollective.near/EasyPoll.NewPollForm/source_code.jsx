@@ -18,7 +18,7 @@ State.init({
   hoveringElement: "",
 });
 
-const widgetOwner = "easypoll.near";
+const widgetOwner = "neardigitalcollective.near";
 
 const pollTypes = {
   TEXT: { id: "0", value: "Text" },
