@@ -128,6 +128,12 @@ function Thing() {
 // how can we have this be custom?
 // settings/every/subject
 
+function handleInputChange(e) {
+  State.update({
+    path: e.target.value,
+  });
+}
+
 return (
   <>
     <Container>
@@ -145,18 +151,24 @@ return (
                 <circle cx="12" cy="12" r="8" />
               </svg>
             </IconBox>
-            <SubjectField type="text" placeholder={data.subject} />
-            {/** <ActionButton>
+            <SubjectField
+              type="text"
+              placeholder={data.subject}
+              onChange={(e) => {
+                State.update({ path: e.target.value });
+              }}
+              value={state.path}
+            />
+            <ActionButton>
               <span>&#10140;</span>
             </ActionButton>
-            */}
           </Column>
         </Row>
         <Row>advanced</Row>
       </InnerContainer>
     </Container>
     <ButtonRow>
-      {data.edges.map((edge) => (
+      {data?.edges?.map((edge) => (
         <Button onClick={() => State.update({ thingSrc: edge.src })}>
           {edge.name}
         </Button>
