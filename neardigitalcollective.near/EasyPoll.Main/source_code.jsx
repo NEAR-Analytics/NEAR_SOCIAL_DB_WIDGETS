@@ -5,7 +5,7 @@ const widgetOwner = "neardigitalcollective.near";
 const getFirstSBTToken = () => {
   const view = Near.view("registry.i-am-human.near", "sbt_tokens_by_owner", {
     account: `${context.accountId}`,
-    issuer: "gooddollar-v1.i-am-human.near",
+    issuer: "fractal.i-am-human.near",
   });
   return view?.[0]?.[1]?.[0];
 };
