@@ -162,7 +162,7 @@ return (
     </div>
 
     <div>
-      <h5>Task Description</h5>
+      <h5>Description</h5>
       <Widget
         src="sking.near/widget/Common.Inputs.Markdown"
         props={{
@@ -174,7 +174,9 @@ return (
     </div>
     <div className="d-flex gap-2">
       <div>
-        <h5>Reward Amount (NEAR)</h5>
+        <h5>
+          <b>Reward (NEAR)</b>
+        </h5>
         <input
           type="number"
           onChange={(e) => onChangeAmount(e.target.value)}
