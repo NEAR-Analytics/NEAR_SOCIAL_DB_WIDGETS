@@ -31,8 +31,8 @@ const PopupWrapper = styled.div`
 
 return (
   <>
-    <div className="d-flex justify-content-between flex-wrap mb-3">
-      <h3>build town</h3>
+    <div className="d-flex justify-content-between flex-wrap">
+      <h3 className="m-2">🌐 Build Something</h3>
       <Widget
         src="sking.near/widget/Common.Button"
         props={{
@@ -43,7 +43,7 @@ return (
             </>
           ),
           onClick: () => State.update({ ...state, showCreateProposal: true }),
-          className: "mt-2",
+          className: "mt-3 me-2",
           variant: "success",
         }}
       />
