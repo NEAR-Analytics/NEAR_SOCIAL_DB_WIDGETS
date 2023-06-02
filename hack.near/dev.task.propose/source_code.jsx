@@ -172,7 +172,7 @@ return (
         }}
       />
     </div>
-    <div className="w-100 d-flex gap-2">
+    <div className="d-flex gap-2">
       <div>
         <h5>Reward Amount (NEAR)</h5>
         <input
@@ -189,7 +189,7 @@ return (
           props={{
             children: "Propose Task",
             onClick: handleProposal,
-            className: "mt-2",
+            className: "mt-3",
             variant: "success",
           }}
         />
@@ -199,7 +199,7 @@ return (
             props={{
               children: "Close",
               onClick: onClose,
-              className: "mt-2",
+              className: "mt-3",
             }}
           />
         )}
