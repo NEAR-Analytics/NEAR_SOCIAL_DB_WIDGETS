@@ -230,12 +230,22 @@ function changeItemInState() {
     isModalOpen: false,
   });
 }
+const formatAccountId = (accountId) => {
+  if (!accountId.includes(".")) {
+    return `${accountId.substring(0, 6)}...${accountId.substring(
+      accountId.length - 4,
+      accountId.length
+    )}`;
+  }
+  return accountId;
+};
 
 //Function related to admin logic
 function addAdmin() {
   Near.call(contr_id, "add_whitelisted_account", {
     accountId: myState.userInput,
   });
+  myState.update({});
 }
 function removeAdmin() {
   Near.call(contr_id, "", { accountId: myState.userInput });
@@ -350,7 +360,9 @@ return (
           id="userInput"
         />
         <UserButtonWrapper>
-          <button class="btn btn-success">Add User</button>
+          <button class="btn btn-success" onClick={addAdmin}>
+            Add User
+          </button>
           <button class="btn btn-danger">Remove User</button>
         </UserButtonWrapper>
 
@@ -358,7 +370,7 @@ return (
           <h2> Admins: </h2>
           <ul>
             {Object.keys(myState.admins).map((item) => (
-              <li>{item}</li>
+              <li>{formatAccountId(item)}</li>
             ))}
           </ul>
         </AdminsList>
