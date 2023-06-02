@@ -14,7 +14,7 @@ const tokens = [
     logoURI: "",
   },
   {
-    address: "0x07865c6E87B9F70255377e024ace6630C1Eaa37F",
+    address: "0xd35cceead182dcee0f148ebac9447da2c4d449c4",
     chainId: 5,
     symbol: "USDC",
     decimals: 6,
