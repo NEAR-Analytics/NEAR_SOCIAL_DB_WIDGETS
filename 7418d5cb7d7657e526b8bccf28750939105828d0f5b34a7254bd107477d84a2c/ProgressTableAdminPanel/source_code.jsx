@@ -5,6 +5,9 @@ const DashboardWrapper = styled.div`
 `;
 
 const Header = styled.div`
+a {
+    cursor: pointer;
+}
 
 `;
 const AddItemForm = styled.div`
@@ -150,7 +153,7 @@ const myState = State.init({
   editValue: "",
   editLink: "",
   isModalOpen: false,
-  itemFormActive: false,
+  itemFormActive: true,
   userInput: "",
   admins: getAdmins(),
 });
@@ -266,12 +269,24 @@ if (!chekcIsUserAdmin()) {
 return (
   <DashboardWrapper>
     <Header>
-      <button onClick={() => State.update({ itemFormActive: true })}>
-        Add New Item
-      </button>
-      <button onClick={() => State.update({ itemFormActive: false })}>
-        Add New Admin
-      </button>
+      <ul class="nav">
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            onClick={() => State.update({ itemFormActive: true })}
+          >
+            Add New Item
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            onClick={() => State.update({ itemFormActive: false })}
+          >
+            Add New Admin
+          </a>
+        </li>
+      </ul>
     </Header>
     {state.itemFormActive && (
       <AddItemForm>
