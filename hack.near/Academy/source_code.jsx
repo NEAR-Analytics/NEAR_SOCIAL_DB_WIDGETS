@@ -178,9 +178,8 @@ return (
     <Container>
       <Flex>
         <H1>
-          Blockchain for
           <span>
-            JS{" "}
+            BOS{" "}
             <svg viewBox="0 0 26 24" fill="none" aria-hidden="true">
               <path
                 d="M24.3767 8.06326L1.51965 0.0649912C1.10402 -0.0830767 0.639031 0.026026 0.327308 0.340346C0.0181841 0.657263 -0.0831256 1.12225 0.0701378 1.53788L8.071 23.2519C8.23726 23.7013 8.66587 24 9.14385 24H9.14644C9.62702 24 10.0556 23.6961 10.2167 23.2441L13.734 13.495L24.3325 10.2349C24.8053 10.0895 25.13 9.65824 25.1378 9.16468C25.1482 8.67112 24.8391 8.22691 24.3715 8.06326H24.3767Z"
@@ -188,11 +187,14 @@ return (
               />
             </svg>
           </span>
-          Developers
+          Academy
         </H1>
         <Text style={{ maxWidth: "670px" }}>
-          Learn to create anything with decentralized applications, and help
-          build a more open web that is greater than the sum of its components.
+          Did you know? The
+          <a href="https://nearbuilders.com/bos">blockchain operating system</a>
+          (BOS) makes it fun and easy to learn programming skills! Join
+          collaborative groups, discover projects, and together, we can build
+          anything with open web components.
         </Text>
         <Text size="23px" weight="600">
           Workshops + Hackathon
@@ -285,24 +287,26 @@ return (
         )}
       </Flex>
       <Flex>
-        <h5 className="mt-3">Course Timeline</h5>
+        <h5 className="mt-3">
+          <b>Course Timeline:</b> Virtual Sessions
+        </h5>
         <p>
-          <b>June 21-25:</b> Create your first BOS app!
+          <b>June 21:</b> Create your first BOS app!
         </p>
         <p>
-          <b>June 26 - July 2:</b> RPCs, APIs, and Indexers
+          <b>June 27:</b> RPCs, APIs, and Indexers
         </p>
         <p>
-          <b>July 3-9:</b> Smart Contract Interactions
+          <b>July 5:</b> Smart Contract Interactions
         </p>
         <p>
-          <b>July 10-16:</b> Component Design Patterns
+          <b>July 11:</b> Component Design Patterns
         </p>
         <p>
-          <b>July 17-23:</b> NS Bridge and `Everything`
+          <b>July 17:</b> NS Bridge and `Everything`
         </p>
         <p>
-          <b>July 24-30:</b> Gateways + Virtual Machine
+          <b>July 25:</b> Gateways + Virtual Machine
         </p>
         <p>
           <b>August 7-21:</b> BOS Hackathon
