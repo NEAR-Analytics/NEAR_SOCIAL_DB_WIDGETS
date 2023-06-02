@@ -20,7 +20,7 @@ State.init({
   let questionBlockHeight = Number(props.blockHeight);
   
   const polls =
-    !props.previewInfo && Social.index("poll_question", "question-v3.1.0");
+    !props.previewInfo && Social.index("poll_question", "question-v3.2.0");
   if (JSON.stringify(polls) != JSON.stringify(state.polls)) {
     State.update({ polls: polls });
   }
@@ -51,7 +51,7 @@ State.init({
   //   return "Loading";
   // }
   
-  let pollsByThisCreator = Social.index("poll_question", "question-v3.1.0", {
+  let pollsByThisCreator = Social.index("poll_question", "question-v3.2.0", {
     accountId: state.poll.accountId,
   });
   
@@ -90,7 +90,7 @@ State.init({
   function getValidAnswersQtyFromQuestion(questionBlockHeight) {
     // let poll = polls.find(q => q.blockHeight == questionBlockHeight)
   
-    const answers = Social.index("poll_question", "answer-v3.1.0");
+    const answers = Social.index("poll_question", "answer-v3.2.0");
   
     if (JSON.stringify(answers) != JSON.stringify(state.answers)) {
       State.update({ answers: answers });
