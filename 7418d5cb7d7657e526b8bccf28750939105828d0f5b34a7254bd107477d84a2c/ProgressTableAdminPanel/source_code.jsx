@@ -243,12 +243,21 @@ const formatAccountId = (accountId) => {
 //Function related to admin logic
 function addAdmin() {
   Near.call(contr_id, "add_whitelisted_account", {
+    account: myState.userInput,
+    is_admin: true,
+  });
+  myState.update({
+    userInput: "",
+  });
+}
+
+function removeAdmin() {
+  Near.call(contr_id, "remove_admin", {
     accountId: myState.userInput,
   });
-  myState.update({});
-}
-function removeAdmin() {
-  Near.call(contr_id, "", { accountId: myState.userInput });
+  myState.update({
+    userInput: "",
+  });
 }
 
 if (!chekcIsUserAdmin()) {
@@ -363,7 +372,9 @@ return (
           <button class="btn btn-success" onClick={addAdmin}>
             Add User
           </button>
-          <button class="btn btn-danger">Remove User</button>
+          <button class="btn btn-danger" onClick={removeAdmin}>
+            Remove User
+          </button>
         </UserButtonWrapper>
 
         <AdminsList>
