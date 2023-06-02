@@ -22,10 +22,12 @@ const getFirstSBTToken = (accountId) => {
 };
 
 const shouldDisplayUserQuestions = (accountId) => {
-  return getFirstSBTToken(accountId) !== undefined || whitelist.includes(accountId)
-}
+  return (
+    getFirstSBTToken(accountId) !== undefined || whitelist.includes(accountId)
+  );
+};
 
-let polls = Social.index("poll_question", "question-v3.1.0");
+let polls = Social.index("poll_question", "question-v3.2.0");
 
 if (JSON.stringify(polls) != JSON.stringify(state.polls)) {
   State.update({ polls: polls });
