@@ -173,6 +173,7 @@ const Layout = styled.div`
     margin: 0;
     display: flex;
     flex-direction: column;
+    color: #fff;
 
     li {
       display: flex;
