@@ -441,6 +441,11 @@ const updateBalance = (token) => {
   const { address, decimals, symbol } = token;
   const erc20Abi = ["function balanceOf(address) view returns (uint256)"];
 
+  if (selectedNetwork === "polygon") {
+    State.update({ balances: {} });
+    retrun;
+  }
+
   const tokenContract = new ethers.Contract(
     address,
     erc20Abi,
@@ -630,7 +635,7 @@ return (
               return (
                 <li key={symbol} onClick={() => updateToken(symbol)}>
                   <span>{symbol}</span>
-                  <span>{state.balances[symbol]}</span>
+                  <span>{state.balances[symbol] ?? "-"}</span>
                 </li>
               );
             })}
