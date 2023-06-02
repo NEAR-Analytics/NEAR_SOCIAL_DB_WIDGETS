@@ -168,6 +168,31 @@ const CheckButton = styled.button`
   --bs-btn-hover-color: ${state.agreeIsChecked ? "#26A65A" : "var(--bs-blue)"};
 `;
 
+const TimelineContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+    margin-top: 23px;
+
+`;
+
+const TimelineItem = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+`;
+
+const TimelineDate = styled.span`
+  font-size: 16px;
+  font-weight: bold;
+  margin-right: 10px;
+`;
+
+const TimelineText = styled.p`
+  font-size: 16px;
+  margin: 0;
+`;
+
 const isValidEmail = (value) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(value);
@@ -287,30 +312,39 @@ return (
         )}
       </Flex>
       <Flex>
-        <h5 className="mt-3">
-          <b>Course Timeline:</b> Virtual Sessions
-        </h5>
-        <p>
-          <b>June 21:</b> Create your first BOS app!
-        </p>
-        <p>
-          <b>June 27:</b> RPCs, APIs, and Indexers
-        </p>
-        <p>
-          <b>July 5:</b> Smart Contract Interactions
-        </p>
-        <p>
-          <b>July 11:</b> Component Design Patterns
-        </p>
-        <p>
-          <b>July 17:</b> NS Bridge and `Everything`
-        </p>
-        <p>
-          <b>July 25:</b> Gateways + Virtual Machine
-        </p>
-        <p>
-          <b>August 7-21:</b> BOS Hackathon
-        </p>
+        <TimelineContainer>
+          <h5>
+            <b>Course Timeline:</b> Virtual Sessions
+          </h5>
+          <TimelineItem>
+            <TimelineDate>June 21</TimelineDate>
+            <TimelineText>Create your first BOS app!</TimelineText>
+          </TimelineItem>
+          <TimelineItem>
+            <TimelineDate>June 27</TimelineDate>
+            <TimelineText>RPCs, APIs, and Indexers</TimelineText>
+          </TimelineItem>
+          <TimelineItem>
+            <TimelineDate>July 5</TimelineDate>
+            <TimelineText>Smart Contract Interactions</TimelineText>
+          </TimelineItem>
+          <TimelineItem>
+            <TimelineDate>July 11</TimelineDate>
+            <TimelineText>Component Design Patterns</TimelineText>
+          </TimelineItem>
+          <TimelineItem>
+            <TimelineDate>July 17</TimelineDate>
+            <TimelineText>NS Bridge and 'Everything'</TimelineText>
+          </TimelineItem>
+          <TimelineItem>
+            <TimelineDate>July 25</TimelineDate>
+            <TimelineText>Gateways + Virtual Machine</TimelineText>
+          </TimelineItem>
+          <TimelineItem>
+            <TimelineDate>August 7-21</TimelineDate>
+            <TimelineText>BOS Hackathon</TimelineText>
+          </TimelineItem>
+        </TimelineContainer>
       </Flex>
       <br />
       <Flex>
