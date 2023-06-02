@@ -178,7 +178,7 @@ return (
             stateUpdate: (data) => {
               State.update(data);
             },
-            fVToken: hasSBTToken,
+            fVToken: canPost,
             tabs: tabs,
           }}
         />
