@@ -313,6 +313,9 @@ return (
         Step 2. Register
       </button>
 
+      <br />
+      <br />
+
       {state.names && state.names.length > 0 && <h3>Names you own:</h3>}
       {state.names && (
         <ol>
