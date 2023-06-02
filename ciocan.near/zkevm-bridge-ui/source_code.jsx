@@ -437,7 +437,7 @@ const openNetworkList = () => {
 };
 
 const isMainnet = chainId === 1 || chainId === 1101;
-const inputsCorrectNetwork = Object.keys(networks)
+const isCorrectNetwork = Object.keys(networks)
   .map((n) => Number(n))
   .includes(chainId);
 
@@ -488,12 +488,12 @@ const handleConfirm = () => {
 
 const networkList = isMainnet ? [1, 1101] : [5, 1442];
 
-console.log(state, isMainnet, inputsCorrectNetwork);
+console.log(state, isMainnet, isCorrectNetwork);
 
 return (
   <Layout>
     <div class="container">
-      {!inputsCorrectNetwork && (
+      {!isCorrectNetwork && (
         <Alert>Please switch to Ethereum or Polygon zkEVM</Alert>
       )}
       <ContainerNetwork>
@@ -572,7 +572,9 @@ return (
         <span class="value">-</span>
       </li>
     </ul>
-    <ActionButton onClick={handleConfirm}>Confirm</ActionButton>
+    <ActionButton onClick={handleConfirm} disabled={!isCorrectNetwork}>
+      Confirm
+    </ActionButton>
     {isTokenDialogOpen && (
       <Dialog>
         <ul>
