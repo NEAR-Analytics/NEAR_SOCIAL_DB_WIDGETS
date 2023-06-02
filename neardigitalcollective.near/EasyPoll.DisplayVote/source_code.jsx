@@ -260,7 +260,7 @@ const getPublicationParams = () => {
     index: {
       poll_question: JSON.stringify(
         {
-          key: "answer-v3.1.0",
+          key: "answer-v3.2.0",
           value: {
             answer: state.vote,
             questionBlockHeight: props.poll.blockHeight,
