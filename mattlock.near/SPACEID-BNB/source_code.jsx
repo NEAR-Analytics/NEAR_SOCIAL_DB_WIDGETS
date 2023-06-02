@@ -241,7 +241,7 @@ const register = () => {
 
 const css = `
   input, button {
-
+    margin-top: 16px;
   }
   .main {
     max-width: 1000px;
