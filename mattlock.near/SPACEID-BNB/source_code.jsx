@@ -252,7 +252,7 @@ const css = `
     border-radius: 16px 16px 0 0;
   }
   .logo {
-    margin-bottom: 32px;
+    margin: 32px;
     display: flex;
     justify-content: center;
   }
