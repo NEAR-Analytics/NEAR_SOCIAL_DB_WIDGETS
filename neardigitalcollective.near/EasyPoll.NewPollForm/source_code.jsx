@@ -51,7 +51,7 @@ const getPublicationParams = (isDraft) => {
     index: {
       poll_question: JSON.stringify(
         {
-          key: "question-v3.1.0",
+          key: "question-v3.2.0",
           value: {
             isDraft,
             title: state.pollTitle,
