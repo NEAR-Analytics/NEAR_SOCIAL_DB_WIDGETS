@@ -28,8 +28,6 @@ if (sender) {
     });
 }
 
-console.log("state", state);
-
 const bridgeIface = new ethers.utils.Interface(bridgeAbi);
 
 const handleBridge = (networkId, amount, token) => {
@@ -37,6 +35,8 @@ const handleBridge = (networkId, amount, token) => {
 
   const amountBig = ethers.utils.parseUnits(amount, token.decimals);
   const permitData = "0x";
+
+  console.log(amountBig);
 
   const encodedData = bridgeIface.encodeFunctionData(
     "bridgeAsset(uint32,address,uint256,address,bool,bytes)",
@@ -57,36 +57,12 @@ const handleBridge = (networkId, amount, token) => {
     .catch((e) => {
       console.log("error:", e);
     });
-
-  //   const bridgeContract = new ethers.Contract(
-  //     BRIDGE_CONTRACT_ADDRESS,
-  //     bridgeAbi,
-  //     Ethers.provider().getSigner()
-  //   );
-
-  //   bridgeContract.estimateGas
-  //     .bridgeAsset(5, sender, 0, token, true, permitData)
-  //     .then((tx) => {
-  //       console.log(tx);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-
-  //   bridgeContract
-  //     .bridgeAsset(5, sender, amountBig, token, true, permitData)
-  //     .then((tx) => {
-  //       console.log(tx);
-  //     })
-  //     .catch((err) => {
-  //       console.log("!!!!", err);
-  //     });
 };
 
 const onConfirm = (props) => {
   console.log(props);
   const { amount, token, network } = props;
-  const networkId = network === "ethereum" ? 0 : 1;
+  const networkId = network === "ethereum" ? 1 : 0;
   handleBridge(networkId, amount, token);
 };
 
