@@ -117,6 +117,18 @@ const SubjectField = styled.input`
   }
 `;
 
+const Text = styled.p`
+  line-height: 1.25;
+  font-weight: 400;
+  font-size: 2em;
+`;
+
+const Subtext = styled.p`
+  line-height: 1.25;
+  font-weight: 400;
+  font-size: 1em;
+`;
+
 function Thing() {
   if (state.thingSrc) {
     return (
@@ -171,6 +183,8 @@ return (
         </Row>
       </InnerContainer>
     </Container>
+    <Text>{data.tagline}</Text>
+    <Subtext>{data.disclaimer}</Subtext>
     <ButtonRow>
       {data &&
         data.views?.map((view) => (
