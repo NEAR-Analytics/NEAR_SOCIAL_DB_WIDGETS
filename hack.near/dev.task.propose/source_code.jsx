@@ -1,5 +1,5 @@
 const accountId = props.accountId ?? context.accountId;
-const daoId = props.daoId ?? "multi.sputnik-dao.near";
+const daoId = props.daoId ?? "build.sputnik-dao.near";
 const onClose = props.onClose;
 
 if (!accountId) {
@@ -8,17 +8,16 @@ if (!accountId) {
 
 State.init({
   description: state.description,
-  token: state.token,
   amount: state.amount,
   times: state.times,
   max_deadline: state.max_deadline,
 });
 
 const handleProposal = () => {
-  const bounty = {
+  const task = {
     description: state.description,
-    token: state.token ?? "",
-    amount: state.amount ?? 1000000000000000000000000,
+    token: "",
+    amount: 1000000000000000000000000,
     times: JSON.parse(state.times),
     max_deadline: JSON.stringify(state.max_deadline * 3600000000000),
   };
@@ -30,10 +29,10 @@ const handleProposal = () => {
       methodName: "add_proposal",
       args: {
         proposal: {
-          description: "new bounty proposal",
+          description: "new task proposal",
           kind: {
             AddBounty: {
-              bounty,
+              task,
             },
           },
         },
@@ -132,13 +131,13 @@ const CloseButton = styled.button`
   }
 `;
 
-const defaultBountyDescription =
-  "# [Bounty Title Here]\n\n## Description\n\n[Detailed description of what the bounty entails. What needs to be done, any specific requirements or skills needed, etc.]\n\n## Acceptance Criteria\n\n[What should be delivered upon the completion of the bounty? Be specific and clear about what you expect.]\n\n## Steps to Claim\n\n[Explanation of the procedure to claim the bounty. Step by step guide on what needs to be done to complete the bounty and how to submit the work.]\n\n## Additional Information\n\n[If applicable, include any additional information or resources relevant to the bounty. It could be helpful links, tips, or contacts.]";
+const defaultTaskDescription =
+  "# [Task ID]\n\n## Description\n\n[Detailed description of what the work entails. What needs to be done, any specific requirements or skills needed, etc.]\n\n## Acceptance Criteria\n\n[What should be delivered upon the completion? Be specific and clear about what is expected.]\n\n## Steps to Claim\n\n[Explanation of the procedure to claim the opportunity. Step by step guide on what needs to be done to complete the task and how to submit the work.]\n\n## Additional Information\n\n[If applicable, include any relevant information or important resources. This may include helpful links, tips, or contacts.]";
 
 return (
   <Wrapper>
     <div className="d-flex justify-content-between align-items-center">
-      <h3>Propose New Bounty</h3>
+      <h3>Propose New Task</h3>
       {onClose && (
         <CloseButton onClick={onClose}>
           <i className="bi bi-x"></i>
@@ -147,7 +146,7 @@ return (
     </div>
     <div className="d-flex gap-3 flex-wrap">
       <div>
-        <h5>DAO</h5>
+        <h5>Sponsor</h5>
         <Widget
           src="mob.near/widget/Profile.ShortInlineBlock"
           props={{ accountId: daoId, tooltip: true }}
@@ -163,29 +162,19 @@ return (
     </div>
 
     <div>
-      <h5>Bounty Description</h5>
+      <h5>Task Description</h5>
       <Widget
         src="sking.near/widget/Common.Inputs.Markdown"
         props={{
           onChange: (value) => onChangeDescription(value),
           height: "270px",
-          initialText: defaultBountyDescription,
+          initialText: defaultTaskDescription,
         }}
       />
     </div>
-
-    <div>
-      <h5>Reward Token ID</h5>
-      <input
-        type="text"
-        onChange={(e) => onChangeToken(e.target.value)}
-        placeholder="Leave empty for NEAR"
-      />
-    </div>
-
-    <div className="row gap-4 gap-sm-0">
-      <div className="col-sm">
-        <h5>Amount of Token to be Paid per Bounty Claim</h5>
+    <div className="w-100 d-flex gap-2">
+      <div>
+        <h5>Reward Amount (NEAR)</h5>
         <input
           type="number"
           onChange={(e) => onChangeAmount(e.target.value)}
@@ -193,46 +182,28 @@ return (
           placeholder="0"
         />
       </div>
-      <div className="col-sm">
-        <h5>How many times can a bounty be claimed?</h5>
-        <input
-          type="number"
-          onChange={(e) => onChangeTimes(e.target.value)}
-          min="1"
-          placeholder="0"
-        />
-      </div>
-      <div className="col-sm">
-        <h5>Number of hours (after claim) until the deadline:</h5>
-        <input
-          type="number"
-          onChange={(e) => onChangeDeadline(e.target.value)}
-          min="0"
-          placeholder="0"
-        />
-      </div>
-    </div>
-    {state.error && <div className="text-danger">{state.error}</div>}
-    <div className="ms-auto">
-      <Widget
-        src="sking.near/widget/Common.Button"
-        props={{
-          children: "Propose Bounty",
-          onClick: handleProposal,
-          className: "mt-2",
-          variant: "success",
-        }}
-      />
-      {onClose && (
+      {state.error && <div className="text-danger">{state.error}</div>}
+      <div className="ms-auto">
         <Widget
           src="sking.near/widget/Common.Button"
           props={{
-            children: "Close",
-            onClick: onClose,
+            children: "Propose Task",
+            onClick: handleProposal,
             className: "mt-2",
+            variant: "success",
           }}
         />
-      )}
+        {onClose && (
+          <Widget
+            src="sking.near/widget/Common.Button"
+            props={{
+              children: "Close",
+              onClick: onClose,
+              className: "mt-2",
+            }}
+          />
+        )}
+      </div>
     </div>
   </Wrapper>
 );
