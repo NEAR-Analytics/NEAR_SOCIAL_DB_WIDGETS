@@ -241,7 +241,7 @@ const register = () => {
 
 const css = `
   input, button {
-    margin-bottom: 16px;
+
   }
   .main {
     max-width: 1000px;
@@ -249,6 +249,7 @@ const css = `
     margin-bottom: 16px;
     margin-top: 32px;
     text-align: left;
+    border-radius: 16px 0;
   }
 `;
 
