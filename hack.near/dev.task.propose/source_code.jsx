@@ -13,11 +13,23 @@ State.init({
   max_deadline: state.max_deadline,
 });
 
+const convertAmount = (amount, decimals) => {
+  const [whole, fractional] = amount.toString().split(".");
+  const wholePart = new BN(whole).mul(new BN("10").pow(new BN(decimals)));
+  if (fractional === undefined) {
+    return wholePart.toString();
+  }
+  const fractionalPart = new BN(fractional).mul(
+    new BN("10").pow(new BN(decimals - fractional.length))
+  );
+  return wholePart.add(fractionalPart).toString();
+};
+
 const handleProposal = () => {
   const task = {
     description: state.description,
     token: props.token ?? "",
-    amount: state.amount,
+    amount: convertAmount(state.amount.toString(), 24) ?? 0,
     times: JSON.parse(state.times),
     max_deadline: JSON.stringify(state.max_deadline * 3600000000000),
   };
