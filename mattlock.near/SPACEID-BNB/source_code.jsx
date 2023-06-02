@@ -251,8 +251,8 @@ const css = `
     text-align: left;
     border-radius: 16px 16px 0 0;
   }
-  .center {
-    margin-top: 32px;
+  .logo {
+    margin-bottom: 32px;
     display: flex;
     justify-content: center;
   }
@@ -288,9 +288,6 @@ init();
 
 return (
   <Theme>
-    <div class="center">
-      <img src={`https://space.id/assets/svg/logos/ic-header.svg`} />
-    </div>
     <Widget
       src="mattlock.near/widget/toast"
       props={{
@@ -300,6 +297,10 @@ return (
     />
 
     <div class="main">
+      <div class="logo">
+        <img src={`https://space.id/assets/svg/logos/ic-header.svg`} />
+      </div>
+
       <h2>Register a .bnb domain</h2>
 
       <p>Choose a name and request it. This step only costs gas in BNB.</p>
