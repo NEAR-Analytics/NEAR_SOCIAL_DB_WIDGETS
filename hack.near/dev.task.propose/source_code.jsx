@@ -16,8 +16,8 @@ State.init({
 const handleProposal = () => {
   const task = {
     description: state.description,
-    token: "",
-    amount: 1000000000000000000000000,
+    token: props.token ?? "",
+    amount: state.amount,
     times: JSON.parse(state.times),
     max_deadline: JSON.stringify(state.max_deadline * 3600000000000),
   };
@@ -132,7 +132,7 @@ const CloseButton = styled.button`
 `;
 
 const defaultTaskDescription =
-  "# [Task ID]\n\n## Description\n\n[Detailed description of what the work entails. What needs to be done, any specific requirements or skills needed, etc.]\n\n## Acceptance Criteria\n\n[What should be delivered upon the completion? Be specific and clear about what is expected.]\n\n## Steps to Claim\n\n[Explanation of the procedure to claim the opportunity. Step by step guide on what needs to be done to complete the task and how to submit the work.]\n\n## Additional Information\n\n[If applicable, include any relevant information or important resources. This may include helpful links, tips, or contacts.]";
+  "# Task\n\n## Description\n\nWhat is the main goal? What exactly needs to be done? Any specific requirements or skills needed?\n\n## Acceptance Criteria\n\nWhat should be delivered upon task completion? *Please be specific and clear about expectations.*\n\n## Steps to Claim\n\nWhat is the process of claiming the opportunity. Provide necessary guides about what needs to be done to complete the task.\n\n## Additional Information\n\nIf applicable, include helpful resources.";
 
 return (
   <Wrapper>
@@ -173,7 +173,7 @@ return (
       />
     </div>
     <div className="d-flex gap-2">
-      <div>
+      <div className="col-sm">
         <h5>
           <b>Reward (NEAR)</b>
         </h5>
@@ -184,12 +184,30 @@ return (
           placeholder="0"
         />
       </div>
+      <div className="col-sm">
+        <h5>Claims</h5>
+        <input
+          type="number"
+          onChange={(e) => onChangeTimes(e.target.value)}
+          min="1"
+          placeholder="0"
+        />
+      </div>
+      <div className="col-sm">
+        <h5>Hours</h5>
+        <input
+          type="number"
+          onChange={(e) => onChangeDeadline(e.target.value)}
+          min="0"
+          placeholder="0"
+        />
+      </div>
       {state.error && <div className="text-danger">{state.error}</div>}
       <div className="ms-auto">
         <Widget
           src="sking.near/widget/Common.Button"
           props={{
-            children: "Propose Task",
+            children: "Submit",
             onClick: handleProposal,
             className: "mt-3",
             variant: "success",
