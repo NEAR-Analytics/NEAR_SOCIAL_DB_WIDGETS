@@ -27,6 +27,13 @@ const tokens = [
     decimals: 18,
     logoURI: "",
   },
+  {
+    address: "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984",
+    chainId: 5,
+    symbol: "UNI",
+    decimals: 18,
+    logoURI: "",
+  },
   // mainnet assets
   {
     address: "0x0000000000000000000000000000000000000000",
@@ -396,6 +403,7 @@ const Dialog = styled.div`
 `;
 
 const sender = Ethers.send("eth_requestAccounts", [])[0];
+
 if (sender) {
   Ethers.provider()
     .getNetwork()
@@ -417,6 +425,7 @@ State.init({
   isNetworkSelectOpen: false,
   isTokenDialogOpen: false,
   amount: 0,
+  balances: {},
 });
 
 const {
@@ -428,12 +437,48 @@ const {
   amount,
 } = state;
 
+const updateBalance = (token) => {
+  const { address, decimals, symbol } = token;
+  const erc20Abi = ["function balanceOf(address) view returns (uint256)"];
+
+  const tokenContract = new ethers.Contract(
+    address,
+    erc20Abi,
+    Ethers.provider()
+  );
+
+  if (symbol === "ETH") {
+    Ethers.provider()
+      .getBalance(sender)
+      .then((balanceBig) => {
+        const adjustedBalance = ethers.utils.formatEther(balanceBig);
+        // console.log(symbol, Number(adjustedBalance).toFixed(4));
+        State.update({
+          balances: {
+            ...state.balances,
+            [symbol]: Number(adjustedBalance).toFixed(4),
+          },
+        });
+      });
+  } else {
+    tokenContract.balanceOf(sender).then((balanceBig) => {
+      const adjustedBalance = ethers.utils.formatUnits(balanceBig, decimals);
+      State.update({
+        balances: {
+          ...state.balances,
+          [symbol]: Number(adjustedBalance).toFixed(4),
+        },
+      });
+    });
+  }
+};
+
 const changeNetwork = (network) => {
   State.update({ isNetworkSelectOpen: false, selectedNetwork: network });
 };
 
 const openNetworkList = () => {
-  State.update({ isNetworkSelectOpen: true });
+  State.update({ isNetworkSelectOpen: true, isTokenDialogOpen: false });
 };
 
 const isMainnet = chainId === 1 || chainId === 1101;
@@ -580,13 +625,12 @@ return (
           {tokens
             .filter((t) => t.chainId === (isMainnet ? 1 : 5))
             .map((token) => {
+              const { symbol } = token;
+              updateBalance(token);
               return (
-                <li
-                  key={token.symbol}
-                  onClick={() => updateToken(token.symbol)}
-                >
-                  <span>{token.symbol}</span>
-                  <span>{"0"}</span>
+                <li key={symbol} onClick={() => updateToken(symbol)}>
+                  <span>{symbol}</span>
+                  <span>{state.balances[symbol]}</span>
                 </li>
               );
             })}
