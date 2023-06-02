@@ -439,29 +439,23 @@ const {
 
 const updateBalance = (token) => {
   const { address, decimals, symbol } = token;
-  const erc20Abi = ["function balanceOf(address) view returns (uint256)"];
 
-  if (selectedNetwork === "polygon") {
+  const isChainPolygon = chainId === 1101 || chainId === 1442;
+
+  if (selectedNetwork === "polygon" && !isChainPolygon) {
     State.update({ balances: {} });
-    retrun;
+    return;
   }
 
   if (state.balances[symbol]) {
-    retrun;
+    return;
   }
-
-  const tokenContract = new ethers.Contract(
-    address,
-    erc20Abi,
-    Ethers.provider()
-  );
 
   if (symbol === "ETH") {
     Ethers.provider()
       .getBalance(sender)
       .then((balanceBig) => {
         const adjustedBalance = ethers.utils.formatEther(balanceBig);
-        // console.log(symbol, Number(adjustedBalance).toFixed(4));
         State.update({
           balances: {
             ...state.balances,
@@ -470,6 +464,12 @@ const updateBalance = (token) => {
         });
       });
   } else {
+    const erc20Abi = ["function balanceOf(address) view returns (uint256)"];
+    const tokenContract = new ethers.Contract(
+      address,
+      erc20Abi,
+      Ethers.provider()
+    );
     tokenContract.balanceOf(sender).then((balanceBig) => {
       const adjustedBalance = ethers.utils.formatUnits(balanceBig, decimals);
       State.update({
@@ -481,6 +481,8 @@ const updateBalance = (token) => {
     });
   }
 };
+
+tokens.filter((t) => t.chainId === chainId).map(updateBalance);
 
 const changeNetwork = (network) => {
   State.update({ isNetworkSelectOpen: false, selectedNetwork: network });
@@ -577,7 +579,7 @@ return (
         <Icon size="32px" />
         <div class="token-container">
           <h3>SEND -&gt;</h3>
-          <TokenSelector onClick={openTokenDialog}>
+          <TokenSelector disabled={!isCorrectNetwork} onClick={openTokenDialog}>
             <span>{selectedToken}</span>
             {caretSvg}
           </TokenSelector>
@@ -635,7 +637,7 @@ return (
             .filter((t) => t.chainId === (isMainnet ? 1 : 5))
             .map((token) => {
               const { symbol } = token;
-              updateBalance(token);
+              // updateBalance(token);
               return (
                 <li key={symbol} onClick={() => updateToken(symbol)}>
                   <span>{symbol}</span>
