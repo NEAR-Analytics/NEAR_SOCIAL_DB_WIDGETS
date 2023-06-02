@@ -63,7 +63,6 @@ const IconBox = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: 10px;
-  
 
   svg {
     width: 50px;
@@ -71,7 +70,6 @@ const IconBox = styled.div`
   }
 
   @media (max-width: 767px) {
-    margin-top: 0;
     svg {
       width: 40px;
       height: 40px;
@@ -117,26 +115,11 @@ const SubjectField = styled.input`
   }
 `;
 
-const Text = styled.p`
-  line-height: 1.25;
-  font-weight: 400;
-  font-size: 2em;
-`;
-
-const Subtext = styled.p`
-  line-height: 1.25;
-  font-weight: 400;
-  font-size: 1em;
-`;
-
 function Thing() {
   if (state.thingSrc) {
     return (
       <>
-        <Widget
-          src={"efiz.near/widget/Every.Thing.View"}
-          props={{ path: state.thingSrc }}
-        />
+        <Widget src={state.thingSrc} />
       </>
     );
   }
@@ -144,12 +127,6 @@ function Thing() {
 
 // how can we have this be custom?
 // settings/every/subject
-
-function handleInputChange(e) {
-  State.update({
-    path: e.target.value,
-  });
-}
 
 return (
   <>
@@ -168,37 +145,22 @@ return (
                 <circle cx="12" cy="12" r="8" />
               </svg>
             </IconBox>
-            <SubjectField
-              type="text"
-              placeholder={data.name}
-              onChange={(e) => {
-                State.update({ path: e.target.value });
-              }}
-              value={state.path}
-            />
-            <ActionButton
-              onClick={() => State.update({ thingSrc: state.path })}
-            >
+            <SubjectField type="text" placeholder={data.subject} />
+            {/** <ActionButton>
               <span>&#10140;</span>
             </ActionButton>
+            */}
           </Column>
         </Row>
+        <Row>advanced</Row>
       </InnerContainer>
     </Container>
-    <Text>{data.tagline}</Text>
-    {data.isUnderConstruction === "true" ? (
-      <Widget
-        src="efiz.near/widget/Every.Thing.View"
-        props={{ path: "efiz.near/thing/under.construction" }}
-      />
-    ) : null}
     <ButtonRow>
-      {data &&
-        data.views?.map((view) => (
-          <Button onClick={() => State.update({ thingSrc: view.src })}>
-            {view.name}
-          </Button>
-        ))}
+      {data.edges.map((edge) => (
+        <Button onClick={() => State.update({ thingSrc: edge.src })}>
+          {edge.name}
+        </Button>
+      ))}
       {/**
       <Button
         onClick={() =>
