@@ -26,7 +26,7 @@ const convertAmount = (amount, decimals) => {
 };
 
 const handleProposal = () => {
-  const task = {
+  const bounty = {
     description: state.description,
     token: props.token ?? "",
     amount: convertAmount(state.amount.toString(), 24) ?? 0,
@@ -44,7 +44,7 @@ const handleProposal = () => {
           description: "new task proposal",
           kind: {
             AddBounty: {
-              task,
+              bounty,
             },
           },
         },
