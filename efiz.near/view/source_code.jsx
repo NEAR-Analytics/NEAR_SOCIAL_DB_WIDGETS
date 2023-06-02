@@ -63,6 +63,7 @@ const IconBox = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: 10px;
+  
 
   svg {
     width: 50px;
@@ -70,6 +71,7 @@ const IconBox = styled.div`
   }
 
   @media (max-width: 767px) {
+    margin-top: 0;
     svg {
       width: 40px;
       height: 40px;
@@ -153,7 +155,7 @@ return (
             </IconBox>
             <SubjectField
               type="text"
-              placeholder={data.subject}
+              placeholder={data.name}
               onChange={(e) => {
                 State.update({ path: e.target.value });
               }}
@@ -164,14 +166,13 @@ return (
             </ActionButton>
           </Column>
         </Row>
-        <Row>advanced</Row>
       </InnerContainer>
     </Container>
     <ButtonRow>
       {data &&
-        data.edges?.map((edge) => (
-          <Button onClick={() => State.update({ thingSrc: edge.src })}>
-            {edge.name}
+        data.navigation?.map((nav) => (
+          <Button onClick={() => State.update({ thingSrc: nav.src })}>
+            {nav.name}
           </Button>
         ))}
       {/**
