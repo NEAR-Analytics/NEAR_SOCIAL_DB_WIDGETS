@@ -483,13 +483,11 @@ const handleConfirm = () => {
     .find((t) => t.symbol === selectedToken);
 
   if (onConfirm) {
-    onConfirm({ amount, token });
+    onConfirm({ amount, token, network: selectedNetwork });
   }
 };
 
 const networkList = isMainnet ? [1, 1101] : [5, 1442];
-
-console.log(state, isMainnet, isCorrectNetwork);
 
 return (
   <Layout>
