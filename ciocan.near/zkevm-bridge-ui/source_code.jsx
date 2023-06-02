@@ -1,4 +1,5 @@
 const tokens = [
+  // eth testnet assets
   {
     address: "0x0000000000000000000000000000000000000000",
     chainId: 5,
@@ -34,7 +35,7 @@ const tokens = [
     decimals: 18,
     logoURI: "",
   },
-  // mainnet assets
+  // eth mainnet assets
   {
     address: "0x0000000000000000000000000000000000000000",
     chainId: 1,
@@ -75,6 +76,50 @@ const tokens = [
     chainId: 1,
     symbol: "WBTC",
     decimals: 8,
+    logoURI: "",
+  },
+  // zkevm testnet assets
+  {
+    address: "0x0000000000000000000000000000000000000000",
+    chainId: 1442,
+    symbol: "ETH",
+    decimals: 18,
+    logoURI: "",
+  },
+  {
+    address: "0x8Ba0a934ef4C24e475C78072cCa3Ed306c1aBaDD",
+    chainId: 1442,
+    symbol: "USDC",
+    decimals: 6,
+    logoURI: "",
+  },
+  {
+    address: "0x378588D64A464d61c646e5e86F4DA5277e65802C",
+    chainId: 1442,
+    symbol: "UNI",
+    decimals: 18,
+    logoURI: "",
+  },
+  // zkevm assets
+  {
+    address: "0x0000000000000000000000000000000000000000",
+    chainId: 1101,
+    symbol: "ETH",
+    decimals: 18,
+    logoURI: "",
+  },
+  {
+    address: "0xa2036f0538221a77A3937F1379699f44945018d0",
+    chainId: 1101,
+    symbol: "MATIC",
+    decimals: 18,
+    logoURI: "",
+  },
+  {
+    address: "0xA8CE8aee21bC2A48a5EF670afCc9274C7bbbC035",
+    chainId: 1101,
+    symbol: "USDC",
+    decimals: 18,
     logoURI: "",
   },
 ];
@@ -634,10 +679,9 @@ return (
       <Dialog>
         <ul>
           {tokens
-            .filter((t) => t.chainId === (isMainnet ? 1 : 5))
+            .filter((t) => t.chainId === chainId)
             .map((token) => {
               const { symbol } = token;
-              // updateBalance(token);
               return (
                 <li key={symbol} onClick={() => updateToken(symbol)}>
                   <span>{symbol}</span>
