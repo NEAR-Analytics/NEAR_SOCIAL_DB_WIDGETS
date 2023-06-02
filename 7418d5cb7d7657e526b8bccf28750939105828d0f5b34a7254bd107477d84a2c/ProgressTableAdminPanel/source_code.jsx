@@ -253,7 +253,7 @@ function addAdmin() {
 
 function removeAdmin() {
   Near.call(contr_id, "remove_admin", {
-    accountId: myState.userInput,
+    account_id: myState.userInput,
   });
   myState.update({
     userInput: "",
