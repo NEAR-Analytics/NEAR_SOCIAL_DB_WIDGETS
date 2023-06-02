@@ -184,7 +184,13 @@ return (
       </InnerContainer>
     </Container>
     <Text>{data.tagline}</Text>
-    <Subtext>{data.disclaimer}</Subtext>
+    {data.isUnderConstruction === "true" ? (
+      <Widget
+        src="every.near/widget/every.thing.view"
+        props={{ path: "efiz.near/thing/under.construction" }}
+      />
+    ) : null}
+    <Subtext>Disclaimer: {data.disclaimer}</Subtext>
     <ButtonRow>
       {data &&
         data.views?.map((view) => (
