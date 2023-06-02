@@ -249,7 +249,7 @@ const css = `
     margin-bottom: 16px;
     margin-top: 32px;
     text-align: left;
-    border-radius: 16px 0;
+    border-radius: 16px 16px 0 0;
   }
 `;
 
