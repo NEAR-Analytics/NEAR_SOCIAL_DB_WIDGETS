@@ -41,7 +41,7 @@ function isUpcoming(poll) {
 function getValidAnswersQtyFromQuestion(questionBlockHeight) {
   // let questionParams = polls.find(q => q.blockHeight == questionBlockHeight)
 
-  const answers = Social.index("poll_question", "answer-v3.1.0");
+  const answers = Social.index("poll_question", "answer-v3.2.0");
 
   if (JSON.stringify(answers) != JSON.stringify(state.answers)) {
     State.update({ answers: answers });
