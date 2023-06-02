@@ -251,6 +251,11 @@ const css = `
     text-align: left;
     border-radius: 16px 16px 0 0;
   }
+  .center {
+    margin-top: 32px;
+    display: flex;
+    justify-content: center;
+  }
 `;
 
 if (!css) return "";
@@ -283,6 +288,9 @@ init();
 
 return (
   <Theme>
+    <div class="center">
+      <img src={`https://space.id/assets/svg/logos/ic-header.svg`} />
+    </div>
     <Widget
       src="mattlock.near/widget/toast"
       props={{
