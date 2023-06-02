@@ -264,7 +264,11 @@ function removeAdmin() {
 }
 
 if (!chekcIsUserAdmin()) {
-  return <h1>You dont have permision</h1>;
+  return (
+    <DashboardWrapper>
+      <h1>You dont have permision for this widget</h1>
+    </DashboardWrapper>
+  );
 }
 return (
   <DashboardWrapper>
