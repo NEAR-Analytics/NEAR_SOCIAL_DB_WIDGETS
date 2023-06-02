@@ -485,13 +485,6 @@ const {
 const updateBalance = (token) => {
   const { address, decimals, symbol } = token;
 
-  const isChainPolygon = chainId === 1101 || chainId === 1442;
-
-  if (selectedNetwork === "polygon" && !isChainPolygon) {
-    State.update({ balances: {} });
-    return;
-  }
-
   if (state.balances[symbol]) {
     return;
   }
