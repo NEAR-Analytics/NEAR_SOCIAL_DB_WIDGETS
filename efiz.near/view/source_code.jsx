@@ -121,7 +121,10 @@ function Thing() {
   if (state.thingSrc) {
     return (
       <>
-        <Widget src={state.thingSrc} />
+        <Widget
+          src={"every.near/widget/every.thing.view"}
+          props={{ path: state.thingSrc }}
+        />
       </>
     );
   }
@@ -170,9 +173,9 @@ return (
     </Container>
     <ButtonRow>
       {data &&
-        data.navigation?.map((nav) => (
-          <Button onClick={() => State.update({ thingSrc: nav.src })}>
-            {nav.name}
+        data.views?.map((view) => (
+          <Button onClick={() => State.update({ thingSrc: view.src })}>
+            {view.name}
           </Button>
         ))}
       {/**
