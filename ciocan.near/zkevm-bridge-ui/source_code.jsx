@@ -476,6 +476,7 @@ const changeAmount = (e) => {
 };
 
 const handleConfirm = () => {
+  if (!amount) return;
   const { onConfirm } = props;
   const token = tokens
     .filter((t) => t.chainId === (isMainnet ? 1 : 5))
