@@ -47,6 +47,10 @@ const renderSell = (handleSell) => {
   );
 };
 
+const renderApprove = (handleApprove) => {
+  return <button onClick={handleApprove}>Approve</button>;
+};
+
 const {
   statusText,
   isBuyVisible,
@@ -77,6 +81,7 @@ return (
       />
     </div>
 
+    <div class="col">{isApproveVisible && renderApprove(handleApprove)}</div>
     <div class="col">{isBuyVisible && renderBuy(handleBuy)}</div>
     <div class="col">{isSellVisible && renderSell(handleSell)}</div>
   </Theme>
