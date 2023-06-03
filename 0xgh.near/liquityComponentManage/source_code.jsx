@@ -1670,16 +1670,16 @@ const ManageWrapper = styled.div`
   .confirm {
     border: none;
     border-radius: 1000px;
-    width: 50%;
-    height: 2.3rem;
+    width: 75%;
+    height: 2rem;
     transition: 0.5s all;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     font-weight: 600;
     display: flex;
     align-items: center;
     justify-content: center;
     &.ok {
-      background-color: #755ddf;
+      background-color: #3a0ca3;
       color: white;
     }
     &.not-ok{
@@ -1703,10 +1703,12 @@ const ManageWrapper = styled.div`
     display: flex;
     justify-content: space-between;
     color: #8e9aaf;
-    
+    // color: black;
   }
-
   .after{
+    // transition: 0.5s all;
+    font-weight: 500;
+    margin: 0 0 0 0.5rem;
     &.ok{
       color: green;
     }
@@ -1714,12 +1716,21 @@ const ManageWrapper = styled.div`
       color: red;
     }
   }
+  .current-info{
+    
+  }
   .unit{
     margin-left: 0.5rem;
+    &.ok{
+      color: green;
+    }
+    &.not-ok{
+      color: red;
+    }
   }
   button {
     border: none;
-transition: 0.3s all;
+    transition: 0.3s all;
     &.active {
       background-color: #755ddf;
       color: white;
@@ -1771,6 +1782,14 @@ if (Ethers.provider()) {
   signer.getAddress().then((address) => {
     State.update({ address });
   });
+
+  Ethers.provider()
+    .getNetwork()
+    .then((chainIdData) => {
+      if (chainIdData?.chainId) {
+        State.update({ chainId: chainIdData.chainId });
+      }
+    });
 
   // Price 조회
   const encodedForPrice = priceFeedInterface.encodeFunctionData("getPrice");
@@ -1992,7 +2011,6 @@ const confirmHandler = () => {
 
 return (
   <ManageWrapper>
-    <Web3Connect />
     <div className="option-wrapper">
       <button
         className={`option ${
@@ -2045,24 +2063,23 @@ return (
       <div className="info">
         <div>Your Collateral Ratio</div>
         <div>
-          {!isNaN(
-            (((Number(state.currentColl) / Number(state.currentDebt)) *
-              Number(state.currentPrice) +
-              EPSILON) *
-              100) /
-              100
-          )
-            ? Math.round(
-                ((Number(state.currentColl) / Number(state.currentDebt)) *
-                  Number(state.currentPrice) +
-                  EPSILON) *
-                  100
-              ) / 100
-            : "-"}
-          <span
-            className={`after ${state.updatedICR >= 1.1 ? "ok" : "not-ok"}`}
-          >
-            {state.updatedICR &&
+          <span className="current-info">
+            {!isNaN(
+              (((Number(state.currentColl) / Number(state.currentDebt)) *
+                Number(state.currentPrice) +
+                EPSILON) *
+                100) /
+                100
+            )
+              ? Math.round(
+                  ((Number(state.currentColl) / Number(state.currentDebt)) *
+                    Number(state.currentPrice) +
+                    EPSILON) *
+                    100
+                ) / 100
+              : "-"}
+          </span>
+          {state.updatedICR &&
             Number(state.updatedICR) !==
               Number(
                 Math.round(
@@ -2071,60 +2088,71 @@ return (
                     EPSILON) *
                     100
                 ) / 100
-              )
-              ? state.updatedICR > 0
-                ? `=> ${state.updatedICR}`
-                : ""
-              : ""}
-          </span>
+              ) &&
+            state.updatedICR && (
+              <span
+                className={`after ${state.updatedICR >= 1.1 ? "ok" : "not-ok"}`}
+              >
+                {`=> ${state.updatedICR}`}
+              </span>
+            )}
         </div>
       </div>
       <div className="info">
         <div>Your Collateral</div>
         <div>
-          {state.currentColl}{" "}
-          <span className={`after`}>
-            {state.updatedColl &&
-            Number(state.updatedColl) !== Number(state.currentColl)
-              ? `=> ${state.updatedColl}`
-              : ""}
-          </span>{" "}
-          <span className="unit">ETH</span>
+          <span className="current-info">{state.currentColl}</span>
+          {state.updatedColl &&
+            Number(state.updatedColl) !== Number(state.currentColl) && (
+              <span
+                className={`after ${state.updatedColl > 0 ? "ok" : "not-ok"}`}
+              >
+                {`=> ${state.updatedColl}`}
+              </span>
+            )}
+          <span className={`unit`}>ETH</span>
         </div>
       </div>
       <div className="info">
         <div>Your Debt</div>
         <div>
-          {state.currentDebt}{" "}
-          <span
-            className={`after ${state.updatedDebt >= 2000 ? "ok" : "not-ok"}`}
-          >
-            {state.updatedDebt &&
-            state.updatedDebt.toString() !== state.currentDebt.toString()
-              ? state.updatedDebt > 0
-                ? `=> ${state.updatedDebt}`
-                : `=> 0`
-              : ""}
-          </span>{" "}
-          <span className="unit">LUSD</span>
+          <span className="current-info">{state.currentDebt}</span>
+          {state.updatedDebt &&
+            state.updatedDebt.toString() !== state.currentDebt.toString() &&
+            state.updatedDebt > 0 && (
+              <span
+                className={`after ${
+                  state.updatedDebt >= 2000 ? "ok" : "not-ok"
+                }`}
+              >
+                {`=> ${state.updatedDebt}`}
+              </span>
+            )}
+          <span className={`unit`}>LUSD</span>
         </div>
       </div>
       <div className="info">
         <div>Ethereum Price</div>
         <div>
-          {state.currentPrice}
-          <span className="unit">$</span>
+          <span className="current-info">{state.currentPrice}</span>
+          <span className={`unit`}>$</span>
         </div>
       </div>
     </div>
     <div className="confirm-wrapper" onClick={confirmHandler}>
-      <button className={`confirm ${state.check ? "ok" : "not-ok"}`}>
-        {state.check
-          ? `Confirm ${state.option}`
-          : !state.value
-          ? "Enter input value"
-          : "Check stats"}
-      </button>
+      {state.address ? (
+        <button className={`confirm ${state.check ? "ok" : "not-ok"}`}>
+          {state.chainId !== 11155111
+            ? "Change network to Sepolia"
+            : state.check
+            ? `Confirm ${state.option}`
+            : !state.value
+            ? "Enter input value"
+            : "Check stats"}
+        </button>
+      ) : (
+        <Web3Connect className={`connect-wallet`} />
+      )}
     </div>
   </ManageWrapper>
 );
