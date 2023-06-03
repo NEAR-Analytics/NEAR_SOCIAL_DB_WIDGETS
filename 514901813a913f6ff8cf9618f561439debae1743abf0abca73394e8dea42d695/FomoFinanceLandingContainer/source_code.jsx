@@ -1,23 +1,9 @@
 /**
- * Contain the rendering and styling of the application
- *
- *
- * // statusText
- * // isBuyVisible
- * // isSellVisible
- * // handleBuy
- * // handleSell
- * // handleChangeApiKey
- *
+ * Testable container for the landing page
+
  */
 
 State.update({ ...props });
-/**
- * Compose components and services into a landing page
- *
- * @remarks
- * Could further break down into a container
- */
 
 const css = `
   .col {
@@ -39,20 +25,9 @@ const css = `
   }
 `;
 
-if (!state.theme) {
-  State.update({
-    theme: styled.div`
+const Theme = styled.div`
     ${css}
-`,
-  });
-}
-const Theme = state.theme;
-
-const sender = Ethers.send("eth_requestAccounts", [])[0];
-
-const createHandleConnected = (isConnected) => () => {
-  State.update({ isWalletConnected: isConnected });
-};
+`;
 
 const renderBuy = () => {
   return (
