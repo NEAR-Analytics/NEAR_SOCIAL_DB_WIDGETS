@@ -30,7 +30,7 @@ const renderBuy = (handleBuy) => {
     <Widget
       src="514901813a913f6ff8cf9618f561439debae1743abf0abca73394e8dea42d695/widget/BuyBox"
       props={{
-        onBuyComplete: handleBuy,
+        handleBuy,
       }}
     />
   );
@@ -41,7 +41,7 @@ const renderSell = (handleSell) => {
     <Widget
       src="514901813a913f6ff8cf9618f561439debae1743abf0abca73394e8dea42d695/widget/SellBox"
       props={{
-        onSellComplete: handleSell,
+        handleSell,
       }}
     />
   );
@@ -55,6 +55,8 @@ const {
   handleSell,
   handleChangeApiKey,
   cmcApiKey,
+  isApproveVisible,
+  handleApprove,
 } = props;
 return (
   <Theme>
@@ -63,17 +65,16 @@ return (
 
     <hr />
     {isConnected && <p>Waiting for wallet to connect</p>}
-    <div class="col">
-      <div>
-        <label>API Key</label>
-        <input
-          value={props.cmcApiKey}
-          id="cmcApiKey"
-          placeholder="XXXXX-XXXXX-XXXXX-XXXXX"
-          type="password"
-          onChange={handleChangeApiKey}
-        />
-      </div>
+
+    <div>
+      <label>API Key</label>
+      <input
+        value={props.cmcApiKey}
+        id="cmcApiKey"
+        placeholder="XXXXX-XXXXX-XXXXX-XXXXX"
+        type="password"
+        onChange={handleChangeApiKey}
+      />
     </div>
 
     <div class="col">{isBuyVisible && renderBuy(handleBuy)}</div>
