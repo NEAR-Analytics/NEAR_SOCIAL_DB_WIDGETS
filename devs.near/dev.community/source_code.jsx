@@ -17,8 +17,6 @@ if (accounts === null) {
 accounts = Object.entries(accounts[ownerId].graph.follow || {});
 accounts.sort((a, b) => b[1] - a[1]);
 
-let isBuilder = false; // Move the declaration outside the loop
-
 for (let i = 0; i < accounts.length; ++i) {
   let accountId = accounts[i][0];
   let widgets = Social.get(`${accountId}/widget/*`, "final", {
@@ -33,10 +31,9 @@ for (let i = 0; i < accounts.length; ++i) {
     accountId: accountId,
     count: widgetCount,
   });
-  if (widgetCount > 0) {
-    isBuilder = true; // Update the value if a widget count greater than 0 is found
-  }
 }
+
+let isBuilder = accountWidgetCount.some((account) => account.count > 0);
 
 const accountWidgetSort = [...accountWidgetCount].sort(
   (a, b) => b.count - a.count
