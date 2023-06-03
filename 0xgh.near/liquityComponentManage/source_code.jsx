@@ -1869,7 +1869,7 @@ const checkFunc = () => {
 
 const changeHandler = (e) => {
   const value = e.target.value;
-  State.update({ value: e.target.value });
+  State.update({ value: e.target.value === 0 ? "" : e.target.value });
   // deposit-ETH
   if (state.option === "deposit" && state.token === "ETH") {
     State.update({
