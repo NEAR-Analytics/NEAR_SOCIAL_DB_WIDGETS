@@ -38,7 +38,9 @@ for (let i = 0; i < accounts.length; ++i) {
   }
 }
 
-const accountWidgetSort = accountWidgetCount.sort((a, b) => b.count - a.count);
+const accountWidgetSort = [...accountWidgetCount].sort(
+  (a, b) => b.count - a.count
+);
 const numAccounts = accountWidgetSort.length;
 accountWidgetSort = accountWidgetSort.slice(0, limit);
 console.log(accountWidgetSort);
