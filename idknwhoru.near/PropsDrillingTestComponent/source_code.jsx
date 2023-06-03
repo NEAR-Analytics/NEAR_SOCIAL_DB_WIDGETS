@@ -7,6 +7,7 @@ State.init({
 console.log({ props, state });
 if (parentState) {
   const changeParentState = () => {
+    console.log(parentState.loading);
     parentState.loading = !parentState.loading;
     State.update({
       flag: !state.flag,
