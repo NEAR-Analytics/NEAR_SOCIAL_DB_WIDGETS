@@ -33,7 +33,13 @@ for (let i = 0; i < accounts.length; ++i) {
   });
 }
 
-let isBuilder = accountWidgetCount.some((account) => account.count > 0);
+let isBuilder = false;
+for (let i = 0; i < accountWidgetCount.length; i++) {
+  if (accountWidgetCount[i].count > 0) {
+    isBuilder = true;
+    break;
+  }
+}
 
 const accountWidgetSort = [...accountWidgetCount].sort(
   (a, b) => b.count - a.count
