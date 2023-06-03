@@ -17,16 +17,17 @@ const callPropFunction = (fn) => {
     console.log("Property was string .. Testing???");
     return;
   }
+  fn();
 };
 
 const sender = Ethers.send("eth_requestAccounts", [])[0];
 
 if (sender) {
-  console.log("SETTING CONNECTED");
-  callPropFunction(props.onConnectionChange(true));
+  console.log("SETTING CONNECTED!");
+  callPropFunction(props.onConnected);
   return <></>;
 }
-callPropFunction(props.onConnectionChange(false));
+callPropFunction(props.onDisconnected);
 
 const fontUrl = `https://ipfs.io/ipfs/bafkreicrs3gh7f77yhpw4xiejx35cd56jcczuhvqbwkn77g2ztkrjejopa`;
 const css = {};
