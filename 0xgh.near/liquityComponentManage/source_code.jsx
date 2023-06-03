@@ -1910,8 +1910,8 @@ const changeHandler = (e) => {
                 Number(state.currentDebt)) *
                 Number(state.currentPrice) +
                 EPSILON) *
-                100
-            ) / 100,
+                1000
+            ) / 1000,
     });
   }
   // withdraw-ETH
@@ -1926,8 +1926,8 @@ const changeHandler = (e) => {
                 Number(state.currentDebt)) *
                 Number(state.currentPrice) +
                 EPSILON) *
-                100
-            ) / 100,
+                1000
+            ) / 1000,
     });
   }
   // deposit-LUSD
@@ -1942,12 +1942,21 @@ const changeHandler = (e) => {
                 (Number(state.currentDebt) - Number(value))) *
                 Number(state.currentPrice) +
                 EPSILON) *
-                100
-            ) / 100,
+                1000
+            ) / 1000,
     });
   }
   // withdraw-LUSD
   else if (state.option === "withdraw" && state.token === "LUSD") {
+    console.log(
+      Math.round(
+        ((Number(state.currentColl) /
+          (Number(state.currentDebt) + Number(value))) *
+          Number(state.currentPrice) +
+          EPSILON) *
+          1000
+      ) / 1000
+    );
     State.update({
       updatedDebt: Number(state.currentDebt) + Number(value),
       updatedICR:
@@ -1958,8 +1967,8 @@ const changeHandler = (e) => {
                 (Number(state.currentDebt) + Number(value))) *
                 Number(state.currentPrice) +
                 EPSILON) *
-                100
-            ) / 100,
+                1000
+            ) / 1000,
     });
   }
   checkFunc();
@@ -2034,6 +2043,13 @@ Ethers.provider() &&
       State.update({ loading: false });
     });
 
+const cutDecimal = (data) => {
+  if (isNaN(Number(data))) {
+    return data;
+  }
+  return Math.round((Number(data) + EPSILON) * 1000) / 1000;
+};
+
 return (
   <ManageWrapper>
     <div className="option-wrapper">
@@ -2093,15 +2109,15 @@ return (
               (((Number(state.currentColl) / Number(state.currentDebt)) *
                 Number(state.currentPrice) +
                 EPSILON) *
-                100) /
-                100
+                1000) /
+                1000
             )
               ? Math.round(
                   ((Number(state.currentColl) / Number(state.currentDebt)) *
                     Number(state.currentPrice) +
                     EPSILON) *
-                    100
-                ) / 100
+                    1000
+                ) / 1000
               : "-"}
           </span>
           {state.updatedICR &&
@@ -2111,13 +2127,15 @@ return (
                   ((Number(state.currentColl) / Number(state.currentDebt)) *
                     Number(state.currentPrice) +
                     EPSILON) *
-                    100
-                ) / 100
+                    1000
+                ) / 1000
               ) &&
             state.updatedICR && (
               <span
                 className={`after ${state.updatedICR >= 1.1 ? "ok" : "not-ok"}`}
-              >{`=> ${state.updatedICR}`}</span>
+              >{`=> ${
+                state.updatedICR >= 0 ? cutDecimal(state.updatedICR) : 0
+              }`}</span>
             )}
         </div>
       </div>
@@ -2129,7 +2147,9 @@ return (
             Number(state.updatedColl) !== Number(state.currentColl) && (
               <span
                 className={`after ${state.updatedColl > 0 ? "ok" : "not-ok"}`}
-              >{`=> ${state.updatedColl}`}</span>
+              >{`=> ${
+                state.updatedColl >= 0 ? cutDecimal(state.updatedColl) : 0
+              }`}</span>
             )}
           <span className={`unit`}>ETH</span>
         </div>
@@ -2145,7 +2165,7 @@ return (
                 className={`after ${
                   state.updatedDebt >= 2000 ? "ok" : "not-ok"
                 }`}
-              >{`=> ${state.updatedDebt}`}</span>
+              >{`=> ${cutDecimal(state.updatedDebt)}`}</span>
             )}
           <span className={`unit`}>LUSD</span>
         </div>
