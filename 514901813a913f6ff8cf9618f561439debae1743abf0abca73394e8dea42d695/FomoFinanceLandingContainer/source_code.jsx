@@ -5,7 +5,7 @@
 
 State.update({ ...props });
 
-const css = `
+const Theme = styled.div`
   .col {
     display: flex;
     > div {
@@ -23,10 +23,6 @@ const css = `
   .btn {
       margin-bottom: 16px !important;
   }
-`;
-
-const Theme = styled.div`
-    ${css}
 `;
 
 const renderBuy = () => {
@@ -52,13 +48,14 @@ const renderSell = () => {
 };
 
 const {
-  handleChangeApiKey,
   statusText,
   isBuyVisible,
   isSellVisible,
   handleBuy,
   handleSell,
-} = state;
+  handleChangeApiKey,
+  cmcApiKey,
+} = props;
 return (
   <Theme>
     <h1>Fomo Finance</h1>
@@ -70,7 +67,7 @@ return (
       <div>
         <label>API Key</label>
         <input
-          value={state.cmcApiKey}
+          value={props.cmcApiKey}
           id="cmcApiKey"
           placeholder="XXXXX-XXXXX-XXXXX-XXXXX"
           type="password"
