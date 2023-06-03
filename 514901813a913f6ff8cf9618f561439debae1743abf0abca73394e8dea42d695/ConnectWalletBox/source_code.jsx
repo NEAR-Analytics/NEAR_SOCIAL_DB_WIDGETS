@@ -11,7 +11,7 @@
 
 const sender = Ethers.send("eth_requestAccounts", [])[0];
 if (sender) {
-  console.log(document);
+  console.log("SETTING CONNECTED");
   State.update({
     connectBox: {
       isConnected: true,
