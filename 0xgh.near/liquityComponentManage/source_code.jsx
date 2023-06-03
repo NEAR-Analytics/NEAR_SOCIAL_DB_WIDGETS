@@ -1752,10 +1752,13 @@ const ManageWrapper = styled.div`
   }
 `;
 
-// Trove 없으면 Trove 만들어. 에러메세지
-// ICR이 MCR 이상인지? 이상이 아니라면 에러메세지
-State.init({ option: "withdraw", token: "ETH", address: null, check: false });
-
+State.init({
+  option: "withdraw",
+  token: "ETH",
+  address: null,
+  check: false,
+  value: "",
+});
 const troveManageAddress = "0x0ECDF34731eE8Dd46caa99a1AAE173beD1B32c67";
 const priceFeedAddress = "0x07dD4Ce17De84bA13Fc154A7FdB46fC362a41E2C";
 const borrowerOperationsAddress = "0xD69fC8928D4F3229341cb431263F1EBd87B1ade8";
@@ -1776,12 +1779,7 @@ const troveManageInterface = new ethers.utils.Interface(troveManageABI);
 const priceFeedInterface = new ethers.utils.Interface(priceFeedABI);
 const EPSILON = 2.2e-16;
 
-if (Ethers.provider()) {
-  const signer = Ethers.provider().getSigner();
-  signer.getAddress().then((address) => {
-    State.update({ address });
-  });
-
+const infoHandler = () => {
   Ethers.provider()
     .getNetwork()
     .then((chainIdData) => {
@@ -1803,13 +1801,16 @@ if (Ethers.provider()) {
         raw
       );
       const result = receiverBalanceHex[0].div("1000000000000000000");
-      State.update({ currentPrice: result.toString() });
+      State.update({
+        currentPrice: result.toString(),
+        currentPriceRaw: receiverBalanceHex[0].toString(),
+      });
     });
 
   // ICR 조회
   const encodedForICR = troveManageInterface.encodeFunctionData(
     "getCurrentICR",
-    [state.address, "2000000000000000000000"]
+    [state.address, state.currentPriceRaw || "2000000000000000000000"]
   );
   Ethers.provider()
     .call({
@@ -1865,6 +1866,15 @@ if (Ethers.provider()) {
       const result = receiverBalanceHex[0].div("1000000000000000000");
       State.update({ currentDebt: result.toString() });
     });
+};
+
+if (Ethers.provider()) {
+  const signer = Ethers.provider().getSigner();
+  signer.getAddress().then((address) => {
+    State.update({ address });
+  });
+
+  state.address && infoHandler();
 }
 
 const checkFunc = () => {
@@ -1980,18 +1990,21 @@ const confirmHandler = () => {
     borrowerOperationsContract
       .addColl(state.address, state.address, { value: amount })
       .then((transactionHash) => {
+        State.update({ loading: true, hash: transactionHash.hash });
         console.log(transactionHash.hash);
       });
   } else if (state.option === "withdraw" && state.token === "ETH") {
     borrowerOperationsContract
       .withdrawColl(amount.toString(), state.address, state.address)
       .then((transactionHash) => {
+        State.update({ loading: true, hash: transactionHash.hash });
         console.log(transactionHash.hash);
       });
   } else if (state.option === "deposit" && state.token === "LUSD") {
     borrowerOperationsContract
       .repayLUSD(amount.toString(), state.address, state.address)
       .then((transactionHash) => {
+        State.update({ loading: true, hash: transactionHash.hash });
         console.log(transactionHash.hash);
       });
   } else if (state.option === "withdraw" && state.token === "LUSD") {
@@ -2003,10 +2016,23 @@ const confirmHandler = () => {
         state.address
       )
       .then((transactionHash) => {
+        State.update({ loading: true, hash: transactionHash.hash });
         console.log(transactionHash.hash);
       });
   }
 };
+
+Ethers.provider() &&
+  Ethers.provider()
+    .waitForTransaction(state.hash)
+    .then((res) => {
+      State.update({ loading: false, value: "" });
+      infoHandler();
+    })
+    .catch((err) => {
+      console.log(err);
+      State.update({ loading: false });
+    });
 
 return (
   <ManageWrapper>
