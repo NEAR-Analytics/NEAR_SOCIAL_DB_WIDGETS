@@ -29,10 +29,11 @@ const Theme = state.theme;
 
 const { onBuyComplete } = props;
 const handleBuy = () => {
+  console.log("handleBuy");
+  // Can't define test props as functions..
   if (typeof onBuyComplete === "string") {
     return;
   }
-  console.log("Buy Complete");
   onBuyComplete();
 };
 return (
