@@ -122,11 +122,11 @@ return (
             onMouseLeave={() => {
               props.stateUpdate({ hoveringElement: "" });
             }}
-            onClick={() => {
-              props.stateUpdate({
-                displaying: props.tabs.GET_VERIFIED_AS_A_HUMAN.id,
-              });
-            }}
+            // onClick={() => {
+            //   props.stateUpdate({
+            //     displaying: props.tabs.GET_VERIFIED_AS_A_HUMAN.id,
+            //   });
+            // }}
             style={
               props.state.hoveringElement ==
                 props.tabs.GET_VERIFIED_AS_A_HUMAN.id ||
@@ -163,7 +163,9 @@ return (
                   : { color: "white" }
               }
             ></i>
-            {props.tabs.GET_VERIFIED_AS_A_HUMAN.text}
+              <a target="_blank" href="https://i-am-human.app/">
+                {props.tabs.GET_VERIFIED_AS_A_HUMAN.text}
+              </a>
           </button>
         </div>
       )}
