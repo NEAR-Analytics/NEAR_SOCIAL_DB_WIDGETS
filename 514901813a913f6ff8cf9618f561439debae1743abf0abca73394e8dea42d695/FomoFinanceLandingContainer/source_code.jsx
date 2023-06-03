@@ -28,32 +28,6 @@ const Theme = styled.div`
   }
 `;
 
-const renderBuy = (handleBuy) => {
-  return (
-    <Widget
-      src="514901813a913f6ff8cf9618f561439debae1743abf0abca73394e8dea42d695/widget/BuyBox"
-      props={{
-        handleBuy,
-      }}
-    />
-  );
-};
-
-const renderSell = (handleSell) => {
-  return (
-    <Widget
-      src="514901813a913f6ff8cf9618f561439debae1743abf0abca73394e8dea42d695/widget/SellBox"
-      props={{
-        handleSell,
-      }}
-    />
-  );
-};
-
-const renderApprove = (handleApprove) => {
-  return <button onClick={handleApprove}>Approve</button>;
-};
-
 const {
   statusText,
   isBuyVisible,
