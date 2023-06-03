@@ -37,6 +37,6 @@ const handleBuy = () => {
 };
 return (
   <Theme>
-    <button onClick={props.onBuy}>Buy it</button>
+    <button onClick={handleBuy}>Buy it</button>
   </Theme>
 );
