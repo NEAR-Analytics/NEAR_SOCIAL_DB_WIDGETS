@@ -122,11 +122,11 @@ return (
             onMouseLeave={() => {
               props.stateUpdate({ hoveringElement: "" });
             }}
-            // onClick={() => {
-            //   props.stateUpdate({
-            //     displaying: props.tabs.GET_VERIFIED_AS_A_HUMAN.id,
-            //   });
-            // }}
+            onClick={() => {
+              props.stateUpdate({
+                displaying: props.tabs.GET_VERIFIED_AS_A_HUMAN.id,
+              });
+            }}
             style={
               props.state.hoveringElement ==
                 props.tabs.GET_VERIFIED_AS_A_HUMAN.id ||
@@ -153,27 +153,26 @@ return (
                   }
             }
           >
-            <i
-              className="bi bi-plus-lg"
-              style={
-                props.state.hoveringElement ==
-                  props.tabs.GET_VERIFIED_AS_A_HUMAN.id ||
-                props.state.displaying == props.tabs.GET_VERIFIED_AS_A_HUMAN.id
-                  ? { color: "black" }
-                  : { color: "white" }
-              }
-            ></i>
-              <a 
-                style={{
-                  textDecoration: "inherit",
-                  color: "inherit",
-                  cursor: "auto",
-                }}
-                target="_blank" 
-                href="https://i-am-human.app/"
-              >
-                {props.tabs.GET_VERIFIED_AS_A_HUMAN.text}
-              </a>
+            <a
+              style={{
+                textDecoration: "inherit",
+                color: "inherit"
+              }}
+              target="_blank"
+              href="https://i-am-human.app/"
+            >
+              <i
+                className="bi bi-plus-lg"
+                style={
+                  props.state.hoveringElement ==
+                    props.tabs.GET_VERIFIED_AS_A_HUMAN.id ||
+                  props.state.displaying == props.tabs.GET_VERIFIED_AS_A_HUMAN.id
+                    ? { color: "black" }
+                    : { color: "white" }
+                }
+              ></i>
+              {props.tabs.GET_VERIFIED_AS_A_HUMAN.text}
+            </a>
           </button>
         </div>
       )}
