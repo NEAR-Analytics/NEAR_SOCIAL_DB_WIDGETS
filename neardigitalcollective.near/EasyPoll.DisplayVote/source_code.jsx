@@ -2,7 +2,13 @@ if (!props.isPreview && !props.poll) {
   return "Property poll not set";
 }
 
+if(!props.whitelist) {
+  return "Property whitelist not set";
+}
+
 const isPreview = props.isPreview ?? false;
+const indexVersion = props.indexVersion ?? "3.2.0"
+const whitelist = props.whitelist;
 
 let widgetOwner = "neardigitalcollective.near";
 
@@ -195,7 +201,7 @@ function getOptionRelatedValidAnswers(answers) {
 }
 
 // Getting valid answers
-const answers = Social.index("poll_question", "answer-v3.2.0");
+const answers = Social.index("poll_question", `answer-v${indexVersion}`);
 
 if (JSON.stringify(answers) != JSON.stringify(state.answers)) {
   State.update({ answers: answers });
@@ -204,6 +210,16 @@ if (JSON.stringify(answers) != JSON.stringify(state.answers)) {
 if (!state.answers) {
   return "Loading";
 }
+
+const isUserAllowedToVote = (accountId) => {
+  const view = Near.view("registry.i-am-human.near", "sbt_tokens_by_owner", {
+    account: accountId,
+    issuer: "fractal.i-am-human.near",
+  });
+  const hasSBTToken = view?.[0]?.[1]?.[0];
+  return hasSBTToken || whitelist.includes(accountId);
+}
+
 const answersToThisPoll = state.answers.filter(
   (a) => a.value.questionBlockHeight == props.poll.blockHeight
 );
@@ -211,14 +227,15 @@ function getValidAnswers() {
   let validTimeAnswers = getTimeRelatedValidAnswers(answersToThisPoll);
   let validOptionAndTimeAnswers =
     getOptionRelatedValidAnswers(validTimeAnswers);
-  const validate_addresees = validOptionAndTimeAnswers.filter((item) => {
-    const view = Near.view("registry.i-am-human.near", "sbt_tokens_by_owner", {
-      account: item.accountId,
-      issuer: "fractal.i-am-human.near",
-    });
-    return view?.[0]?.[1]?.[0];
+  const validateAddresses = validOptionAndTimeAnswers.filter((item) => {
+    return isUserAllowedToVote(item.accountId)
+    // const view = Near.view("registry.i-am-human.near", "sbt_tokens_by_owner", {
+    //   account: item.accountId,
+    //   issuer: "fractal.i-am-human.near",
+    // });
+    // return view?.[0]?.[1]?.[0] /*|| whitelist.includes(item.accountId)*/;
   });
-  return validate_addresees;
+  return validateAddresses;
 }
 const validAnswersToThisPoll = getValidAnswers(answersToThisPoll);
 
@@ -260,7 +277,7 @@ const getPublicationParams = () => {
     index: {
       poll_question: JSON.stringify(
         {
-          key: "answer-v3.2.0",
+          key: `answer-v${indexVersion}`,
           value: {
             answer: state.vote,
             questionBlockHeight: props.poll.blockHeight,
@@ -388,6 +405,7 @@ return (
       isVoteValid,
       validAnswersToThisPoll,
       renderAnswers,
+      whitelist,
     }}
   />
 );
