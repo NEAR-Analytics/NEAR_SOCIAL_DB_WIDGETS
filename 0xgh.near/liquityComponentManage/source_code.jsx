@@ -1727,6 +1727,15 @@ const ManageWrapper = styled.div`
       color: red;
     }
   }
+  .connect-wallet {
+    background-color: #3a0ca3;
+    color: white;
+    border-radius: 1000px;
+    &:hover {
+      background-color: #3a0ca3;
+      color: white;
+    }
+  }
   button {
     border: none;
     transition: 0.3s all;
