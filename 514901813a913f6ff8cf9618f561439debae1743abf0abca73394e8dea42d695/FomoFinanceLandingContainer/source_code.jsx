@@ -25,23 +25,23 @@ const Theme = styled.div`
   }
 `;
 
-const renderBuy = () => {
+const renderBuy = (handleBuy) => {
   return (
     <Widget
       src="514901813a913f6ff8cf9618f561439debae1743abf0abca73394e8dea42d695/widget/BuyBox"
       props={{
-        onBuyComplete,
+        onBuyComplete: handleBuy,
       }}
     />
   );
 };
 
-const renderSell = () => {
+const renderSell = (handleSell) => {
   return (
     <Widget
       src="514901813a913f6ff8cf9618f561439debae1743abf0abca73394e8dea42d695/widget/SellBox"
       props={{
-        onSellComplete,
+        onSellComplete: handleSell,
       }}
     />
   );
@@ -76,7 +76,7 @@ return (
       </div>
     </div>
 
-    <div class="col">{isBuyVisible && renderBuy()}</div>
-    <div class="col">{isSellVisible && renderSell()}</div>
+    <div class="col">{isBuyVisible && renderBuy(handleBuy)}</div>
+    <div class="col">{isSellVisible && renderSell(handleSell)}</div>
   </Theme>
 );
