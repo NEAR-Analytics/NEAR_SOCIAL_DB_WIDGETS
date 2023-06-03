@@ -65,6 +65,7 @@ const {
   isApproveVisible,
   handleApprove,
   errorText,
+  isConnected,
 } = props;
 return (
   <Theme>
@@ -90,13 +91,12 @@ return (
       props={{
         isApproveVisible,
         isTitleVisible: false,
-        isBuyVisible: !isHodling,
-        isSellVisible: isHodling,
+        isBuyVisible,
+        isSellVisible,
         isConnected,
         onPressBuy: handleBuy,
         onPressSell: handleSell,
         onPressApprove: handleApprove,
-        isHodling: isSellVisible,
         sender: "TODO",
         balance: "TODO",
       }}
