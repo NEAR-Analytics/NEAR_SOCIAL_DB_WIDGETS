@@ -17,7 +17,7 @@ if (accounts === null) {
 accounts = Object.entries(accounts[ownerId].graph.follow || {});
 accounts.sort((a, b) => b[1] - a[1]);
 
-let isBuilder = false;
+let isBuilder = false; // Move the declaration outside the loop
 
 for (let i = 0; i < accounts.length; ++i) {
   let accountId = accounts[i][0];
@@ -34,7 +34,7 @@ for (let i = 0; i < accounts.length; ++i) {
     count: widgetCount,
   });
   if (widgetCount > 0) {
-    isBuilder = true;
+    isBuilder = true; // Update the value if a widget count greater than 0 is found
   }
 }
 
