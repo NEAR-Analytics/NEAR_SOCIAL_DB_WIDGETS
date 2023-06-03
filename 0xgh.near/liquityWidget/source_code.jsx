@@ -1069,7 +1069,7 @@ const troveManageABI = [
 ];
 
 const WidgetWrapper = styled.div`
-  margin-top: 0.5rem;
+  margin: 0.5rem 0 0.5rem 0;
   width: 400px;
   height: 460px;
   // border: #755ddf 1px solid;
