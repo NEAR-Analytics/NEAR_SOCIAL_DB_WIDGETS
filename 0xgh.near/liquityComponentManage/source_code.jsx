@@ -1632,7 +1632,7 @@ const borrowerOperationsABI = [
 ];
 
 const ManageWrapper = styled.div`
-  width : 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1662,7 +1662,7 @@ const ManageWrapper = styled.div`
   }
   .error-message {
   }
-  .confirm-wrapper{
+  .confirm-wrapper {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -1682,49 +1682,48 @@ const ManageWrapper = styled.div`
       background-color: #3a0ca3;
       color: white;
     }
-    &.not-ok{
+    &.not-ok {
       background-color: #8e9aaf;
       color: white;
     }
   }
   .info-wrapper {
-    margin: 2rem 0 2rem 0 ;
+    margin: 2rem 0 2rem 0;
     width: 100%;
-    div{
+    div {
       height: 1.75rem;
       display: flex;
       align-items: center;
     }
-    span{
+    span {
     }
   }
-  .info{
+  .info {
     width: 100%;
     display: flex;
     justify-content: space-between;
     color: #8e9aaf;
     // color: black;
   }
-  .after{
+  .after {
     // transition: 0.5s all;
     font-weight: 500;
     margin: 0 0 0 0.5rem;
-    &.ok{
+    &.ok {
       color: green;
     }
-    &.not-ok{
+    &.not-ok {
       color: red;
     }
   }
-  .current-info{
-    
+  .current-info {
   }
-  .unit{
+  .unit {
     margin-left: 0.5rem;
-    &.ok{
+    &.ok {
       color: green;
     }
-    &.not-ok{
+    &.not-ok {
       color: red;
     }
   }
@@ -1732,7 +1731,7 @@ const ManageWrapper = styled.div`
     border: none;
     transition: 0.3s all;
     &.active {
-      background-color: #755ddf;
+      background-color: black;
       color: white;
     }
     &.disabled {
@@ -2092,9 +2091,7 @@ return (
             state.updatedICR && (
               <span
                 className={`after ${state.updatedICR >= 1.1 ? "ok" : "not-ok"}`}
-              >
-                {`=> ${state.updatedICR}`}
-              </span>
+              >{`=> ${state.updatedICR}`}</span>
             )}
         </div>
       </div>
@@ -2106,9 +2103,7 @@ return (
             Number(state.updatedColl) !== Number(state.currentColl) && (
               <span
                 className={`after ${state.updatedColl > 0 ? "ok" : "not-ok"}`}
-              >
-                {`=> ${state.updatedColl}`}
-              </span>
+              >{`=> ${state.updatedColl}`}</span>
             )}
           <span className={`unit`}>ETH</span>
         </div>
@@ -2124,9 +2119,7 @@ return (
                 className={`after ${
                   state.updatedDebt >= 2000 ? "ok" : "not-ok"
                 }`}
-              >
-                {`=> ${state.updatedDebt}`}
-              </span>
+              >{`=> ${state.updatedDebt}`}</span>
             )}
           <span className={`unit`}>LUSD</span>
         </div>
