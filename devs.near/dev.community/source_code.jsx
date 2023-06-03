@@ -3,50 +3,18 @@ const accountId = props.accountId ?? context.accountId;
 const daoId = props.daoId ?? "build.sputnik-dao.near";
 const role = props.role ?? "community";
 
-const accountWidgetCount = [];
-
-let accounts = Social.keys(`${ownerId}/graph/follow/*`, "final", {
+let isBuilder = false;
+let widgets = Social.get(`${accountId}/widget/*`, "final", {
   return_type: "BlockHeight",
   values_only: true,
 });
-
-if (accounts === null) {
-  return "Loading...";
+let widgetCount = 0;
+if (widgets) {
+  widgetCount = Object.keys(widgets).length;
 }
-
-accounts = Object.entries(accounts[ownerId].graph.follow || {});
-accounts.sort((a, b) => b[1] - a[1]);
-
-for (let i = 0; i < accounts.length; ++i) {
-  let accountId = accounts[i][0];
-  let widgets = Social.get(`${accountId}/widget/*`, "final", {
-    return_type: "BlockHeight",
-    values_only: true,
-  });
-  let widgetCount = 0;
-  if (widgets) {
-    widgetCount = Object.keys(widgets).length;
-  }
-  accountWidgetCount.push({
-    accountId: accountId,
-    count: widgetCount,
-  });
+if (widgetCount > 0) {
+  isBuilder = true;
 }
-
-let isBuilder = false;
-for (let i = 0; i < accountWidgetCount.length; i++) {
-  if (accountWidgetCount[i].count > 0) {
-    isBuilder = true;
-    break;
-  }
-}
-
-const accountWidgetSort = [...accountWidgetCount].sort(
-  (a, b) => b.count - a.count
-);
-const numAccounts = accountWidgetSort.length;
-accountWidgetSort = accountWidgetSort.slice(0, limit);
-console.log(accountWidgetSort);
 
 const handleJoin = () => {
   const gas = 200000000000000;
