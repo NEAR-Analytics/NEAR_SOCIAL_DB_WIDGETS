@@ -12,13 +12,14 @@
  */
 
 const {
-  isHolding,
+  isTitleVisible,
+  isBuyVisible,
+  isSellVisible,
   isConnected,
   isApproveVisible,
   onPressBuy,
   onPressSell,
   onPressApprove,
-  isHodling,
   sender,
   balance,
 } = props;
@@ -50,9 +51,12 @@ const Theme = state.theme;
 return (
   <Theme>
     <div class="LidoContainer">
-      <div class="Header">Trade Shitcoins</div>
-      <div class="SubHeader">Stake ETH and receive nothing useful.</div>
-
+      {isTitleVisible && (
+        <>
+          <div class="Header">Trade Shitcoins</div>
+          <div class="SubHeader">Stake ETH and receive nothing useful.</div>
+        </>
+      )}
       <div class="LidoForm">
         {sender && (
           <>
@@ -97,7 +101,7 @@ return (
         </div>
       </div>
       <div class="LidoStakeForm">
-        {isConnected && !isHodling && (
+        {isBuyVisible && (
           <div class="LidoStakeFormInputContainer">
             <span class="LidoStakeFormInputContainerSpan1">
               <svg
@@ -153,12 +157,21 @@ return (
           </button>
         )}
 
-        {!isHodling && (
+        {isBuyVisible && (
           <button
             class="LidoStakeFormSubmitContainer"
             onClick={() => submitEthers(state.strEther, state.sender)}
           >
-            <span>Buy Shitcoin</span>
+            <span>Buy</span>
+          </button>
+        )}
+
+        {isSellVisible && (
+          <button
+            class="LidoStakeFormSubmitContainer"
+            onClick={() => submitEthers(state.strEther, state.sender)}
+          >
+            <span>Dump</span>
           </button>
         )}
 
