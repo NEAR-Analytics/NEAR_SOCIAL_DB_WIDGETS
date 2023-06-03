@@ -176,7 +176,9 @@ return (
               }}
               value={state.path}
             />
-            <ActionButton>
+            <ActionButton
+              onClick={() => State.update({ thingSrc: state.path })}
+            >
               <span>&#10140;</span>
             </ActionButton>
           </Column>
