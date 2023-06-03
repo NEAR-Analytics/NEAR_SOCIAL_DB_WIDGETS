@@ -6,6 +6,9 @@
 State.update({ ...props });
 
 const Theme = styled.div`
+.error-text {
+  color: red
+}
   .col {
     display: flex;
     > div {
@@ -61,11 +64,13 @@ const {
   cmcApiKey,
   isApproveVisible,
   handleApprove,
+  errorText,
 } = props;
 return (
   <Theme>
     <h1>Fomo Finance</h1>
     <h5>{statusText}</h5>
+    <h5 class="error-text">{errorText && `Ah, Shit! ${errorText}`}</h5>
 
     <hr />
     {isConnected && <p>Waiting for wallet to connect</p>}
