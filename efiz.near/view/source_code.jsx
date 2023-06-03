@@ -134,7 +134,7 @@ function Thing() {
     return (
       <>
         <Widget
-          src={"every.near/widget/every.thing.view"}
+          src={"efiz.near/widget/Every.Thing.View"}
           props={{ path: state.thingSrc }}
         />
       </>
@@ -186,11 +186,10 @@ return (
     <Text>{data.tagline}</Text>
     {data.isUnderConstruction === "true" ? (
       <Widget
-        src="every.near/widget/every.thing.view"
+        src="efiz.near/widget/Every.Thing.View"
         props={{ path: "efiz.near/thing/under.construction" }}
       />
     ) : null}
-    <Subtext>Disclaimer: {data.disclaimer}</Subtext>
     <ButtonRow>
       {data &&
         data.views?.map((view) => (
