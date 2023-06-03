@@ -3,12 +3,6 @@ const accountId = props.accountId ?? context.accountId;
 const daoId = props.daoId ?? "build.sputnik-dao.near";
 const role = props.role ?? "community";
 
-State.init({
-  agreeIsChecked: false,
-  hasRegistered: false,
-  hasApplied: false,
-});
-
 const accountWidgetCount = [];
 
 let accounts = Social.keys(`${ownerId}/graph/follow/*`, "final", {
@@ -70,10 +64,7 @@ const handleJoin = () => {
       gas: gas,
       deposit: deposit,
     },
-  ]).then((resp) => {
-    // Storage.privateSet()
-    State.update({ hasApplied: true });
-  });
+  ]);
 };
 
 const Wrapper = styled.div`
