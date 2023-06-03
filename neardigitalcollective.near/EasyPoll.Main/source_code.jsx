@@ -10,21 +10,30 @@ const getFirstSBTToken = () => {
   return view?.[0]?.[1]?.[0];
 };
 
-const whitelist = ["neardigitalcollective.near"];
+const whitelist = [
+  "neardigitalcollective.near",
+  "blaze.near",
+  "jlw.near",
+  "joep.near",
+  "sarahkornfeld.near",
+  "yuensid.near"
+];
+
+const indexVersion = "3.2.0"
 
 const hasSBTToken = getFirstSBTToken() !== undefined;
 
-const canPost = hasSBTToken || whitelist.includes(context.accountId);
+const canOperate = hasSBTToken || whitelist.includes(context.accountId);
 
 State.init({
-  displaying: canPost ? 0 : 3,
+  displaying: canOperate ? 0 : 3,
   hoveringElement: "",
   showAbortPollCreation: false,
   abortThroughAllExistingPolls: false,
   profile: {},
 });
 
-if (state.displaying === 3 && canPost) {
+if (state.displaying === 3 && canOperate) {
   State.update({ displaying: 0 });
 }
 
@@ -178,7 +187,7 @@ return (
             stateUpdate: (data) => {
               State.update(data);
             },
-            fVToken: canPost,
+            fVToken: canOperate,
             tabs: tabs,
           }}
         />
@@ -186,7 +195,7 @@ return (
       <div style={{ width: 200 }} className="p-2">
         <div>
           <p style={{ margin: "0", fontWeight: "bold", fontSize: "0.9rem" }}>
-            {canPost ? "Verified Human" : "Non-Verified Human"}
+            {canOperate ? "Verified Human" : "Non-Verified Human"}
           </p>
         </div>
       </div>
@@ -199,7 +208,7 @@ return (
         </h2>
         <Widget
           src={`${widgetOwner}/widget/EasyPoll.Questions`}
-          props={{ sharedBlockHeight, whitelist }}
+          props={{ sharedBlockHeight, whitelist, indexVersion, canOperate }}
         />
       </div>
     ) : state.displaying == tabs.MY_POLLS.id ? (
@@ -209,7 +218,7 @@ return (
         </h2>
         <Widget
           src={`${widgetOwner}/widget/EasyPoll.Questions`}
-          props={{ sharedBlockHeight, onlyUser: true, whitelist }}
+          props={{ sharedBlockHeight, onlyUser: true, whitelist, indexVersion, canOperate }}
         />
       </div>
     ) : state.displaying == tabs.NEW_POLL.id ? (
@@ -243,7 +252,7 @@ return (
             Create a poll
           </h2>
         </div>
-        <Widget src={`${widgetOwner}/widget/EasyPoll.NewPollForm`} />
+        <Widget src={`${widgetOwner}/widget/EasyPoll.NewPollForm`} props={{indexVersion}}/>
         <button
           onMouseEnter={() => {
             State.update({ hoveringElement: "cancelNewPoll" });
