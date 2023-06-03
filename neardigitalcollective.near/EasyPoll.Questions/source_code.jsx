@@ -1,5 +1,6 @@
 let sharedBlockHeight = props.sharedBlockHeight;
 let whitelist = props.whitelist;
+const indexVersion = props.indexVersion ?? "3.2.0"
 
 State.init({
   polls: {},
@@ -8,6 +9,7 @@ State.init({
 });
 
 const widgetOwner = "neardigitalcollective.near";
+const canOperate = props.canOperate;
 
 let globalAccountId = props.accountId ?? context.accountId;
 
@@ -27,7 +29,7 @@ const shouldDisplayUserQuestions = (accountId) => {
   );
 };
 
-let polls = Social.index("poll_question", "question-v3.2.0");
+let polls = Social.index("poll_question", `question-v${indexVersion}`);
 
 if (JSON.stringify(polls) != JSON.stringify(state.polls)) {
   State.update({ polls: polls });
@@ -118,6 +120,9 @@ const renderModal = () => {
               props={{
                 blockHeight: state.modalBlockHeight,
                 shouldDisplayViewAll: false,
+                indexVersion,
+                canOperate,
+                whitelist,
               }}
             />
           </div>
@@ -173,7 +178,7 @@ const renderPolls = (onlyUsersPolls) => {
           />
           <Widget
             src={`${widgetOwner}/widget/EasyPoll.MinimalistQuestionInfo`}
-            props={{ ...poll }}
+            props={{ ...poll, indexVersion }}
           />
         </div>
       );
@@ -198,7 +203,7 @@ const renderPolls = (onlyUsersPolls) => {
               />
               <Widget
                 src={`${widgetOwner}/widget/EasyPoll.QuestionsByCreator`}
-                props={{ accountId }}
+                props={{ accountId, indexVersion, canOperate, whitelist }}
               />
             </div>
           );
