@@ -27,13 +27,7 @@ if (!state.theme) {
 }
 const Theme = state.theme;
 
-const { onSellComplete } = props;
-const handleSell = () => {
-  if (typeof onSellComplete === "string") {
-    return;
-  }
-  onSellComplete();
-};
+const { handleSell } = props;
 return (
   <Theme>
     <button onClick={handleSell}>Sell it</button>
