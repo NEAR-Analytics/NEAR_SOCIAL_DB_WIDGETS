@@ -11,16 +11,23 @@ State.init({
   if (!props.isPreview && !props.blockHeight) {
     return "Prop block height wasn't provided";
   }
+
+  if(!props.canOperate) {
+    return "You are not allowed to vote"
+  }
   
   const widgetOwner = "neardigitalcollective.near";
+  const indexVersion = props.indexVersion ?? "3.2.0";
+  const canOperate = props.canOperate;
+  const whitelist = props.whitelist;
   
   let isPreview = props.isPreview ?? false;
   let shouldDisplayViewAll = props.shouldDisplayViewAll;
   
   let questionBlockHeight = Number(props.blockHeight);
-  
+
   const polls =
-    !props.previewInfo && Social.index("poll_question", "question-v3.2.0");
+    !props.previewInfo && Social.index("poll_question", `question-v${indexVersion}`);
   if (JSON.stringify(polls) != JSON.stringify(state.polls)) {
     State.update({ polls: polls });
   }
@@ -37,9 +44,10 @@ State.init({
     }
   
     if (!state.poll && !isPreview) {
-      return "Loading...";
+      return "Loading... ";
     }
   }
+  
   
   let profile = Social.getr(`${state.poll.accountId}/profile`);
   
@@ -51,7 +59,7 @@ State.init({
   //   return "Loading";
   // }
   
-  let pollsByThisCreator = Social.index("poll_question", "question-v3.2.0", {
+  let pollsByThisCreator = Social.index("poll_question", `question-v${indexVersion}`, {
     accountId: state.poll.accountId,
   });
   
@@ -90,7 +98,7 @@ State.init({
   function getValidAnswersQtyFromQuestion(questionBlockHeight) {
     // let poll = polls.find(q => q.blockHeight == questionBlockHeight)
   
-    const answers = Social.index("poll_question", "answer-v3.2.0");
+    const answers = Social.index("poll_question", `answer-v${indexVersion}`);
   
     if (JSON.stringify(answers) != JSON.stringify(state.answers)) {
       State.update({ answers: answers });
@@ -271,7 +279,7 @@ State.init({
             >
               <Widget
                 src={`${widgetOwner}/widget/EasyPoll.Questions`}
-                props={{ accountId: state.poll.accountId, onlyUser: true }}
+                props={{ accountId: state.poll.accountId, onlyUser: true, indexVersion, canOperate }}
               />
             </div>
             <div className="modal-footer">
@@ -297,7 +305,7 @@ State.init({
       return description;
     }
   }
-  
+
   return (
     <>
       <Widget
@@ -317,6 +325,8 @@ State.init({
           renderQuestionsByThisCreator,
           isPreview,
           renderModal,
+          indexVersion,
+          whitelist,
         }}
       />
     </>
