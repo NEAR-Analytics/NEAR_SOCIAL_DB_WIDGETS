@@ -19,6 +19,7 @@ State.init({
 });
 
 const widgetOwner = "neardigitalcollective.near";
+const indexVersion = props.indexVersion ?? "3.2.0";
 
 const pollTypes = {
   TEXT: { id: "0", value: "Text" },
@@ -51,7 +52,7 @@ const getPublicationParams = (isDraft) => {
     index: {
       poll_question: JSON.stringify(
         {
-          key: "question-v3.2.0",
+          key: `question-v${indexVersion}`,
           value: {
             isDraft,
             title: state.pollTitle,
@@ -228,37 +229,8 @@ const renderModal = (whatModal) => {
               margin: "0 auto",
             }}
           >
-            {whatModal == "preview" ? (
-              <Widget
-                src={`${widgetOwner}/widget/EasyPoll.Voting`}
-                props={{
-                  isPreview: true,
-                  previewInfo: {
-                    accountId: context.accountId,
-                    blockHeight: undefined,
-                    value: {
-                      tgLink: state.pollDiscussionLink,
-                      isDraft,
-                      title: state.pollTitle,
-                      description: state.pollDescription,
-                      startTimestamp: getTimestamp(state.pollStartDate),
-                      endTimestamp: getTimestamp(state.pollEndDate),
-                      questions: state.questions,
-                      questionTypes: state.pollTypes,
-                      choicesOptions: state.choices.forEach((questionChoices) =>
-                        questionChoices.filter((c) => c != "")
-                      ),
-                      timestamp: Date.now(),
-                    },
-                  },
-                }}
-              />
-            ) : (
-              whatModal == "sendFeedback" && (
-                <p styles={{ textAling: "center" }}>
-                  Poll created succesfully!
-                </p>
-              )
+            {whatModal == "sendFeedback" && (
+              <p styles={{ textAling: "center" }}>Poll created succesfully!</p>
             )}
           </div>
           <div className="modal-footer">
