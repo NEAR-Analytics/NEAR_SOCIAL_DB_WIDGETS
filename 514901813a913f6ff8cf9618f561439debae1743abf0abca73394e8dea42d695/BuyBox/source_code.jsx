@@ -27,15 +27,7 @@ if (!state.theme) {
 }
 const Theme = state.theme;
 
-const { onBuyComplete } = props;
-const handleBuy = () => {
-  console.log("handleBuy");
-  // Can't define test props as functions..
-  if (typeof onBuyComplete === "string") {
-    return;
-  }
-  onBuyComplete();
-};
+const { handleBuy } = props;
 return (
   <Theme>
     <button onClick={handleBuy}>Buy it</button>
