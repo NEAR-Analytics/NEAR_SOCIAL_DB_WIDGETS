@@ -24,6 +24,8 @@ const NoFlexInMobile = styled.div`
 `;
 
 const widgetOwner = "neardigitalcollective.near";
+const indexVersion = props.indexVersion ?? "3.2.0";
+const whitelist = props.whitelist;
 
 return (
   <div>
@@ -313,6 +315,8 @@ return (
             props={{
               poll: props.state.poll,
               isPreview: props.isPreview,
+              indexVersion,
+              whitelist
             }}
           />
         }
