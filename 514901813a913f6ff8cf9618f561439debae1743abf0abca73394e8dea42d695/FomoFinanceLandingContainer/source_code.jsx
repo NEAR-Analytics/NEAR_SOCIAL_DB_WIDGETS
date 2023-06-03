@@ -85,9 +85,22 @@ return (
         onChange={handleChangeApiKey}
       />
     </div>
-
-    <div class="col">{isApproveVisible && renderApprove(handleApprove)}</div>
-    <div class="col">{isBuyVisible && renderBuy(handleBuy)}</div>
-    <div class="col">{isSellVisible && renderSell(handleSell)}</div>
+    <Widget
+      src="514901813a913f6ff8cf9618f561439debae1743abf0abca73394e8dea42d695/widget/SwapBox"
+      props={{
+        isApproveVisible: false,
+        isTitleVisible: false,
+        isBuyVisible: !isHodling,
+        isSellVisible: isHodling,
+        isConnected: true,
+        isApproveVisible,
+        onPressBuy: handleBuy,
+        onPressSell: handleSell,
+        onPressApprove: handleApprove,
+        isHodling: isSellVisible,
+        sender: "something",
+        balance: "222",
+      }}
+    />
   </Theme>
 );
