@@ -163,7 +163,15 @@ return (
                   : { color: "white" }
               }
             ></i>
-              <a target="_blank" href="https://i-am-human.app/">
+              <a 
+                style={{
+                  textDecoration: "inherit",
+                  color: "inherit",
+                  cursor: "auto",
+                }}
+                target="_blank" 
+                href="https://i-am-human.app/"
+              >
                 {props.tabs.GET_VERIFIED_AS_A_HUMAN.text}
               </a>
           </button>
