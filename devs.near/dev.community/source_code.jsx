@@ -198,17 +198,29 @@ return (
           >
             Begin a New Adventure
           </Text>
-          <br />
           <div>
-            <Widget
-              src="near/widget/DIG.Button"
-              props={{
-                href: "https://wallet.near.org/linkdrop/v2.keypom.near/2BNMVyPgjXgHtn9xiQkcRLzZYmsh5JyGoeaRV9Tb5rmsbqNrAsuwGPziL6ztsfjxLVzQRwGERA3JGSQ28VEA8NtL",
-                label: "Get Started",
-                variant: "outline-secondary",
-                size: "large",
-              }}
-            />
+            <div className="m-2">
+              <Widget
+                src="near/widget/DIG.Button"
+                props={{
+                  href: "https://nearbuilders.com",
+                  label: "Explore Groups",
+                  variant: "outline-success",
+                  size: "large",
+                }}
+              />
+            </div>
+            <div>
+              <Widget
+                src="near/widget/DIG.Button"
+                props={{
+                  href: "#/hack.near/widget/Academy",
+                  label: "Get Started",
+                  variant: "outline-secondary",
+                  size: "large",
+                }}
+              />
+            </div>
           </div>
         </Flex>
       )}
