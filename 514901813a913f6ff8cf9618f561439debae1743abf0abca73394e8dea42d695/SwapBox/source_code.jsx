@@ -149,28 +149,19 @@ return (
           />
         )}
         {isApproveVisible && (
-          <button
-            class="LidoStakeFormSubmitContainer"
-            onClick={() => submitEthers(state.strEther, state.sender)}
-          >
+          <button class="LidoStakeFormSubmitContainer" onClick={onPressApprove}>
             <span>Approve Shitcoin</span>
           </button>
         )}
 
         {isBuyVisible && (
-          <button
-            class="LidoStakeFormSubmitContainer"
-            onClick={() => submitEthers(state.strEther, state.sender)}
-          >
+          <button class="LidoStakeFormSubmitContainer" onClick={onPressBuy}>
             <span>Buy</span>
           </button>
         )}
 
         {isSellVisible && (
-          <button
-            class="LidoStakeFormSubmitContainer"
-            onClick={() => submitEthers(state.strEther, state.sender)}
-          >
+          <button class="LidoStakeFormSubmitContainer" onClick={onPressSell}>
             <span>Dump</span>
           </button>
         )}
