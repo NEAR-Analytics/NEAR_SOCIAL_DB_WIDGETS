@@ -38,61 +38,67 @@ const cardData = props.cardData ?? {
   },
 };
 
-const formatCard = props.formatCard ?? [
-  {
-    row1: {
-      type: "markdown",
-      content: "data",
-    },
-    row2: {
-      type: "text",
-      content: "data2",
-    },
-    row3: {
-      type: "flex",
-      flexClassName: "justify-content-between",
-      content: [
-        {
-          type: "flex",
-          flexClassName: "flex-column justify-content-start align-items-start",
-          content: [
-            { type: "text", value: "Created by" },
-            { type: "key", value: "accountId" },
-          ],
-        },
-        {
-          type: "flex",
-          flexClassName: "flex-column justify-content-start align-items-start",
-          content: [
-            { type: "text", value: "Started" },
-            { type: "timeStampKey", value: "startTimestamp" },
-          ],
-        },
-        {
-          type: "flex",
-          flexClassName: "flex-column justify-content-start align-items-start",
-          content: [
-            { type: "text", value: "Ended" },
-            { type: "timeStampKey", value: "endTimestamp" },
-          ],
-        },
-      ],
-    },
+const formatCard = props.formatCard ?? {
+  row1: {
+    rowType: "markdown",
+    contentData: "data",
   },
-];
-
+  row2: {
+    rowType: "text",
+    contentData: "data2",
+  },
+  row3: {
+    rowType: "flex",
+    flexClassName: "justify-content-between",
+    contentData: [
+      {
+        type: "flex",
+        flexClassName: "flex-column justify-content-start align-items-start",
+        content: [
+          { type: "text", value: "Created by" },
+          { type: "key", value: "accountId" },
+        ],
+      },
+      {
+        type: "flex",
+        flexClassName: "flex-column justify-content-start align-items-start",
+        content: [
+          { type: "text", value: "Started" },
+          { type: "timeStampKey", value: "startTimestamp" },
+        ],
+      },
+      {
+        type: "flex",
+        flexClassName: "flex-column justify-content-start align-items-start",
+        content: [
+          { type: "text", value: "Ended" },
+          { type: "timeStampKey", value: "endTimestamp" },
+        ],
+      },
+    ],
+  },
+};
 return (
   <div>
     {Object.keys(formatCard).map((rowKey) => {
       let rowData = formatCard[rowKey];
-      if (rowData.type == "markdown") {
-        return <Markdown text={rowData.content} />;
-      } else if (rowData.type == "text") {
-        return <p>{rowData.content}</p>;
-      } else if (rowData.type == "flex") {
+      if (rowData.rowType == "markdown") {
+        return <Markdown text={rowData.contentData} />;
+      } else if (rowData.rowType == "text") {
+        return <p>{rowData.contentData}</p>;
+      } else if (rowData.rowType == "timeStampKey") {
+        return (
+          <p>
+            {new Date(cardData.value[secondItem.value]).toLocaleDateString(
+              [],
+              dateFormatOptions
+            )}
+          </p>
+        );
+      } else if (rowData.rowType == "flex") {
         return (
           <div className={rowData.flexClassName}>
-            {rowData.content.map((item) => {
+            {rowData.contentData.map((item) => {
               if (item.type == "markdown") {
                 return <Markdown text={item.content} />;
               } else if (item.type == "text") {
@@ -100,11 +106,22 @@ return (
               } else if (item.type == "flex") {
                 return (
                   <div className={item.flexClassName}>
-                    {rowData.item.map((secondItem) => {
+                    {item.content.map((secondItem) => {
                       if (secondItem.type == "markdown") {
                         return <Markdown text={secondItem.content} />;
                       } else if (secondItem.type == "text") {
                         return <p>{secondItem.content}</p>;
+                      } else if (secondItem.type == "timeStampKey") {
+                        console.log("cardData: ", cardData);
+                        console.log("item: ", item);
+                        console.log("secondItem: ", secondItem);
+                        return (
+                          <p>
+                            {new Date(
+                              cardData.value[secondItem.value]
+                            ).toLocaleDateString([], dateFormatOptions)}
+                          </p>
+                        );
                       } else {
                         return (
                           <p className="text-danger">Error passing data</p>
@@ -119,7 +136,15 @@ return (
             })}
           </div>
         );
-      } else if (rowData.type == "timeStampKey") {
+      } else if (rowData.rowType == "timeStampKey") {
+        return (
+          <p>
+            {new Date(cardData[rowData.value]).toLocaleDateString(
+              [],
+              dateFormatOptions
+            )}
+          </p>
+        );
       } else {
         return <p className="text-danger">Error passing data</p>;
       }
