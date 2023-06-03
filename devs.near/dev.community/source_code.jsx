@@ -10,7 +10,6 @@ State.init({
 });
 
 const accountWidgetCount = [];
-let isBuilder = false;
 
 let accounts = Social.keys(`${ownerId}/graph/follow/*`, "final", {
   return_type: "BlockHeight",
@@ -23,6 +22,8 @@ if (accounts === null) {
 
 accounts = Object.entries(accounts[ownerId].graph.follow || {});
 accounts.sort((a, b) => b[1] - a[1]);
+
+let isBuilder = false;
 
 for (let i = 0; i < accounts.length; ++i) {
   let accountId = accounts[i][0];
