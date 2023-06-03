@@ -5,10 +5,14 @@ State.init({
   answers: {},
 });
 
+const indexVersion = props.indexVersion ?? "3.2.0"
+
 let widgetOwner = "neardigitalcollective.near";
+const canOperate = props.canOperate;
+const whitelist = props.whitelist;
 
 let isShort = props.isShort;
-let polls = Social.index("poll_question", "question-v3.2.0", {
+let polls = Social.index("poll_question", `question-v${indexVersion}`, {
   accountId: props.accountId,
 });
 
@@ -41,7 +45,7 @@ function isUpcoming(poll) {
 function getValidAnswersQtyFromQuestion(questionBlockHeight) {
   // let questionParams = polls.find(q => q.blockHeight == questionBlockHeight)
 
-  const answers = Social.index("poll_question", "answer-v3.2.0");
+  const answers = Social.index("poll_question", `answer-v${indexVersion}`);
 
   if (JSON.stringify(answers) != JSON.stringify(state.answers)) {
     State.update({ answers: answers });
@@ -127,6 +131,9 @@ const renderModal = () => {
               props={{
                 blockHeight: state.modalBlockHeight,
                 shouldDisplayViewAll: true,
+                indexVersion,
+                canOperate,
+                whitelist
               }}
             />
           </div>
