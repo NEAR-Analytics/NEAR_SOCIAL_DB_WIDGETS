@@ -88,18 +88,17 @@ return (
     <Widget
       src="514901813a913f6ff8cf9618f561439debae1743abf0abca73394e8dea42d695/widget/SwapBox"
       props={{
-        isApproveVisible: false,
+        isApproveVisible,
         isTitleVisible: false,
         isBuyVisible: !isHodling,
         isSellVisible: isHodling,
         isConnected,
-        isApproveVisible,
         onPressBuy: handleBuy,
         onPressSell: handleSell,
         onPressApprove: handleApprove,
         isHodling: isSellVisible,
-        sender: "something",
-        balance: "222",
+        sender: "TODO",
+        balance: "TODO",
       }}
     />
   </Theme>
