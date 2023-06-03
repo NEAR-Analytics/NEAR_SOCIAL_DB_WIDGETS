@@ -5,22 +5,28 @@
  * Can inherit a theme but will otherwise default
  *
  * props: {
- *  onConnected: () => undefined;
+ *  onConnectionChange: (isConnected) => undefined;
  * }
  */
 
+/**
+ * Helper function so I can test the component
+ */
+const callPropFunction = (fn) => {
+  if (typeof fn === "string") {
+    console.log("Property was string .. Testing???");
+    return;
+  }
+};
+
 const sender = Ethers.send("eth_requestAccounts", [])[0];
+
 if (sender) {
   console.log("SETTING CONNECTED");
-  props.onConnected();
-  State.update({
-    connectBox: {
-      isConnected: true,
-    },
-  });
-  // new Function(props.onConnected); // :)
-  return;
+  callPropFunction(props.onConnectionChange(true));
+  return <></>;
 }
+callPropFunction(props.onConnectionChange(false));
 
 const fontUrl = `https://ipfs.io/ipfs/bafkreicrs3gh7f77yhpw4xiejx35cd56jcczuhvqbwkn77g2ztkrjejopa`;
 const css = {};
