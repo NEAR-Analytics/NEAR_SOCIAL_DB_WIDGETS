@@ -46,6 +46,9 @@ if (!state.theme) {
 }
 const Theme = state.theme;
 
+const handlePressBuy = () => {
+  onPressBuy(state.ethToSpend);
+};
 // OUTPUT UI
 
 return (
@@ -135,8 +138,8 @@ return (
               <input
                 type={"number"}
                 class="LidoStakeFormInputContainerSpan2Input"
-                value={state.strEther}
-                onChange={(e) => State.update({ strEther: e.target.value })}
+                value={state.ethToSpend}
+                onChange={(e) => State.update({ ethToSpend: e.target.value })}
                 placeholder="Amount"
               />
             </span>
@@ -155,7 +158,7 @@ return (
         )}
 
         {isBuyVisible && (
-          <button class="LidoStakeFormSubmitContainer" onClick={onPressBuy}>
+          <button class="LidoStakeFormSubmitContainer" onClick={handlePressBuy}>
             <span>Buy</span>
           </button>
         )}
@@ -170,7 +173,9 @@ return (
           {state.sender && (
             <div class="LidoFooterRaw">
               <div class="LidoFooterRawLeft">You will receive</div>
-              <div class="LidoFooterRawRight">${state.strEther ?? 0} stETH</div>
+              <div class="LidoFooterRawRight">
+                ${state.ethToSpend ?? 0} stETH
+              </div>
             </div>
           )}
           <div class="LidoFooterRaw">
