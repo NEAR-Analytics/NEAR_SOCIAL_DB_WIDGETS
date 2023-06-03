@@ -220,7 +220,6 @@ Ethers.provider() &&
       complete();
     })
     .catch((err) => {
-      console.log(err);
       State.update({ loading: false });
     });
 
