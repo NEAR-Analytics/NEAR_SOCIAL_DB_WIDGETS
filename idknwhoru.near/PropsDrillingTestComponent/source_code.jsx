@@ -3,9 +3,7 @@ const { parentState } = props;
 console.log({ props });
 if (parentState) {
   const changeParentState = () => {
-    parentState.update({
-      isOpen: true,
-    });
+    parentState.loading = !parentState.loading;
   };
   return <button onClick={(_) => changeParentState()}></button>;
 }
