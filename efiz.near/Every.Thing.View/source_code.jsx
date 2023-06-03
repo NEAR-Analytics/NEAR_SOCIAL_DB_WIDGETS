@@ -337,7 +337,7 @@ function toggleView(path, blockHeight) {}
 // I need a widget referenced in state
 const plugins = [];
 const typeParts = type.split("/");
-if (typeParts.length > 1) {
+if (typeParts.length > 1 || type === "widget") {
   plugins = Social.get(
     `${context.accountId}/settings/every/${type}/plugins`
   ) || [toggleEdit(), toggleRaw(), toggleHistory(), nearPad()];
