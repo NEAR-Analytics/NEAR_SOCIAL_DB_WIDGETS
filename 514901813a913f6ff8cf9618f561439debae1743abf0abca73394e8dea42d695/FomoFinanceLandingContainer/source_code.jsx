@@ -92,7 +92,7 @@ return (
         isTitleVisible: false,
         isBuyVisible: !isHodling,
         isSellVisible: isHodling,
-        isConnected: true,
+        isConnected,
         isApproveVisible,
         onPressBuy: handleBuy,
         onPressSell: handleSell,
