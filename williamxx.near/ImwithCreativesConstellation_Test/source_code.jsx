@@ -37,9 +37,9 @@ if (JSON.stringify(data) !== JSON.stringify(state.data || {})) {
 
 return (
   <div>
-    <h1>👋 Creatives Constellation Fingerpirnt Tree</h1>
+    <h1>👋 Creatives Constellation Fingerprint Tree</h1>
     <h3>
-      Press your finger in the Creatives Constellation Fingerprint tree!!!
+      Press your finger in the Creatives Constellation Fingerprint Tree!!!
     </h3>
     <CommitButton
       data={{ post: { iwcc: "I'm with Creatives Constellation!" } }}
