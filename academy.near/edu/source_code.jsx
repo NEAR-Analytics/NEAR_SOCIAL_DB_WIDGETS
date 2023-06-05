@@ -52,7 +52,7 @@ return (
       <div class="col-12">
         <div class="pb-3 border-bottom">
           <Widget
-            src="academy.near/widget/edu.post"
+            src="academy.near/widget/edu.posts"
             props={{ disabled: !context.accountId, onClick: toggleQuestion }}
           />
         </div>
