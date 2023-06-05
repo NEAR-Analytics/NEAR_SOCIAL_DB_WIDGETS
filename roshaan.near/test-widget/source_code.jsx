@@ -1,1 +1,1 @@
-return "new widget";
+return "new widget 2";
