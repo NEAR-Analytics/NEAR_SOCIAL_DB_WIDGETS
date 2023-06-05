@@ -19,7 +19,7 @@ const MainHeading = styled.h1`
   white-space: nowrap;
 `;
 const SubHeading = styled.h3`
-font-size: 2.3vw;
+font-size: 2.6vw;
 font-weight: 500;
 text-align: center;
 color: #2d3748;
