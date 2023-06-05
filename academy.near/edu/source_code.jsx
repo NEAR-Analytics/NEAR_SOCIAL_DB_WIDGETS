@@ -52,7 +52,7 @@ return (
       <div class="col-12">
         <div class="pb-3 border-bottom">
           <Widget
-            src="dev-support.near/widget/DevSupport.Discussion.Title"
+            src="academy.near/widget/edu.post"
             props={{ disabled: !context.accountId, onClick: toggleQuestion }}
           />
         </div>
@@ -60,7 +60,7 @@ return (
         {state.askQuestion && (
           <div class="mt-4 p-2">
             <Widget
-              src="dev-support.near/widget/DevSupport.Question.Edit"
+              src="academy.near/widget/edu.question"
               props={{ onCommit: () => State.update({ askQuestion: false }) }}
             />
           </div>
@@ -68,7 +68,7 @@ return (
 
         <div class="mt-5">
           <Widget
-            src="dev-support.near/widget/DevSupport.Feed"
+            src="academy.near/widget/edu.feed"
             props={{ admins, adminContract: adminContract }}
           />
         </div>
