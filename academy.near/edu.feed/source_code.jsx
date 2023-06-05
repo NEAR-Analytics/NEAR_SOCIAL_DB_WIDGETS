@@ -3,7 +3,7 @@ const daoId = props.daoId;
 
 const index = {
   action: "question",
-  key: "main",
+  key: "edu",
   options: {
     limit: 10,
     order: "desc",
@@ -27,7 +27,7 @@ const renderItem = (a) => {
   return (
     <div key={JSON.stringify(a)} className="my-4">
       <Widget
-        src="academy.near/widget/edu.question.preview"
+        src="academy.near/widget/dev.question.preview"
         props={{
           accountId: a.accountId,
           blockHeight: a.blockHeight,
