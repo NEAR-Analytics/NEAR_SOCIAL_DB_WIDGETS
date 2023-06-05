@@ -6,25 +6,16 @@ initState({
 
 // Predefined Labels
 const predefinedLabels = [
-  "Aurora",
-  "Account",
-  "CLI",
-  "Cross-Contract Call",
-  "Discovery",
-  "Indexer",
-  "Javascript API",
-  "Javascript SDK",
-  "Keys",
-  "Frontend",
-  "Fungible Token (FT)",
-  "Gas",
-  "Non Fungible Token (NFT)",
-  "Protocol",
-  "RPC",
-  "Rust",
-  "Smart Contract",
-  "Storage",
-  "Wallet",
+  "Gateway",
+  "Component",
+  "VM",
+  "State",
+  "JavaScript",
+  "Contract",
+  "API",
+  "Profile",
+  "Data",
+  "",
 ];
 
 const labelOptions = predefinedLabels.map((s) => {
@@ -78,7 +69,7 @@ return (
       <InputWrapper>
         <input
           type="text"
-          placeholder={"A title for your question"}
+          placeholder={"How should we refer to your question?"}
           value={state.title}
           onChange={(event) => State.update({ title: event.target.value })}
         />
@@ -92,7 +83,7 @@ return (
           labelKey="label"
           onChange={setLabels}
           options={labelOptions}
-          placeholder="Frontend, NFT, Rust ..."
+          placeholder="Gateway, Component, VM, ..."
           selected={state.labels}
           positionFixed={true}
           allowNew={false}
@@ -104,7 +95,7 @@ return (
       <Widget
         src="dima_sheleg.near/widget/DevSupport.Compose"
         props={{
-          placeholder: "Describe your question so the community can help you",
+          placeholder: "Ask your question here, so we can help you!",
           initialText: props.initialText,
           onChange: ({ content }) => State.update({ content: content }),
           composeButton: (onCompose) => (
