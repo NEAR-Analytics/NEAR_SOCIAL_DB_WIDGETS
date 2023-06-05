@@ -15,6 +15,9 @@ const predefinedLabels = [
   "API",
   "Profile",
   "Data",
+  "Homework",
+  "General",
+  "Timeline",
   "",
 ];
 
