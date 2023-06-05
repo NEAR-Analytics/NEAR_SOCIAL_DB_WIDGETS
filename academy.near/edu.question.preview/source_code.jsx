@@ -12,7 +12,7 @@ if (is_hidden) {
 }
 
 const question = JSON.parse(
-  Social.get(`${accountId}/question/main`, blockHeight) ?? "null"
+  Social.get(`${accountId}/question/edu`, blockHeight) ?? "null"
 );
 
 const testQuestion = JSON.parse(
