@@ -16,6 +16,30 @@ if (widgetCount > 0) {
   isBuilder = true;
 }
 
+const policy = Near.view(daoId, "get_policy");
+
+if (policy === null) {
+  return "";
+}
+
+const groups = policy.roles
+  .filter((role) => role.name === "council")
+  .map((role) => {
+    const group = role.kind.Group;
+
+    return group;
+  });
+
+const check = groups.map((group) => {
+  return !group
+    ? false
+    : group.filter((address) => address === accountId).length > 0;
+})?.[0];
+
+State.init({
+  isMember,
+});
+
 const handleJoin = () => {
   const gas = 200000000000000;
   const deposit = 100000000000000000000000;
@@ -176,17 +200,25 @@ return (
                 }}
               />
             </div>
-            <div className="m-2">
-              <Widget
-                src="near/widget/DIG.Button"
-                props={{
-                  href: "https://wallet.near.org/linkdrop/v2.keypom.near/2BNMVyPgjXgHtn9xiQkcRLzZYmsh5JyGoeaRV9Tb5rmsbqNrAsuwGPziL6ztsfjxLVzQRwGERA3JGSQ28VEA8NtL",
-                  label: "Get Started",
-                  variant: "outline-secondary",
-                  size: "large",
-                }}
-              />
-            </div>
+            {check ? (
+              <div className="m-2">
+                <Widget
+                  src="near/widget/DIG.Button"
+                  props={{
+                    href: "https://wallet.near.org/linkdrop/v2.keypom.near/2BNMVyPgjXgHtn9xiQkcRLzZYmsh5JyGoeaRV9Tb5rmsbqNrAsuwGPziL6ztsfjxLVzQRwGERA3JGSQ28VEA8NtL",
+                    label: "Get Started",
+                    variant: "outline-secondary",
+                    size: "large",
+                  }}
+                />
+              </div>
+            ) : (
+              <div>
+                <button className="btn btn-success" onClick={handleJoin}>
+                  Join DAO
+                </button>
+              </div>
+            )}
           </div>
         </div>
       ) : (
@@ -210,17 +242,25 @@ return (
                 }}
               />
             </div>
-            <div>
-              <Widget
-                src="near/widget/DIG.Button"
-                props={{
-                  href: "#/hack.near/widget/Academy",
-                  label: "Get Started",
-                  variant: "outline-secondary",
-                  size: "large",
-                }}
-              />
-            </div>
+            {check ? (
+              <div>
+                <Widget
+                  src="near/widget/DIG.Button"
+                  props={{
+                    href: "#/hack.near/widget/Academy",
+                    label: "Get Started",
+                    variant: "outline-secondary",
+                    size: "large",
+                  }}
+                />
+              </div>
+            ) : (
+              <div>
+                <button className="btn btn-success" onClick={handleJoin}>
+                  Join DAO
+                </button>
+              </div>
+            )}
           </div>
         </Flex>
       )}
