@@ -12,14 +12,11 @@ const Hero = styled.div`
 `;
 const MainHeading = styled.h1`
   font-weight: 700;
-  font-size: 8.1875rem;
+  font-size: 6vw;
   line-height: 1em;
   text-align: center;
   color: #2d3748;
   white-space: nowrap;
-   @media (max-width: 992px) {
-    font-size: 5vw;
-  }
 `;
 const SubHeading = styled.h3`
 font-size: 2.5rem;
