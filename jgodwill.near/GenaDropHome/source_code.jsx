@@ -87,24 +87,6 @@ const OrgsSection = styled.div`
   &>.right{
     flex: 60% 1;
     max-width: 36em;
-
-    &>.orgs-heading{
-    font-size: 3rem;
-    font-weight: 600;
-    margin-bottom: 1em;
-      @media screen and (max-width: 1200px){
-        font-size: 2.5rem;
-      }
-      @media screen and (max-width: 900px){
-        font-size: 2rem;
-      }
-      @media screen and (max-width: 540px){
-        font-size: 1.5rem;
-      }
-    }
-    & .org-accent{
-      color: #0d99ff;
-    }
     &>.orgs-desc{
     margin-bottom: 2em;
     font-size: 1.5rem;
@@ -191,6 +173,31 @@ const OrgsSection = styled.div`
   }
 `;
 
+const H1 = styled.h1`
+  font-size: 3rem;
+  font-weight: 600;
+  margin-bottom: 1em;
+    @media screen and (max-width: 1200px){
+      font-size: 2.5rem;
+    }
+    @media screen and (max-width: 900px){
+      font-size: 2rem;
+    }
+    @media screen and (max-width: 540px){
+      font-size: 1.5rem;
+    }
+`;
+
+const Accent = styled.span`
+color: #0d99ff;
+`;
+
+const Text = styled.p`
+
+`;
+
+const FeatureContainer = styled.div``;
+
 return (
   <div>
     <Hero>
@@ -215,10 +222,10 @@ return (
     </Hero>
     <OrgsSection>
       <div className="right">
-        <div className="orgs-heading">
+        <H1>
           <span>Backed by</span>
-          <span className="org-accent">Web3's Best Orgs</span>
-        </div>
+          <Accent>Web3's Best Orgs</Accent>
+        </H1>
         <div className="orgs-desc">
           From the leading blockchains, creative groups, and DAOs, GenaDrop is
           supported by the industry’s best. Want to learn more about GenaDrop?
@@ -305,5 +312,10 @@ return (
         </a>
       </div>
     </OrgsSection>
+    <FeatureContainer>
+      <H1 className="text-center">
+        The All in One <Accent>No Code Solution</Accent> for your NFT Needs
+      </H1>
+    </FeatureContainer>
   </div>
 );
