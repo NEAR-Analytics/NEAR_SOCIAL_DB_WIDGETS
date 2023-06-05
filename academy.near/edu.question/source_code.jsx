@@ -106,7 +106,7 @@ return (
               onCommit={props.onCommit}
               data={{
                 question: {
-                  main: JSON.stringify({
+                  edu: JSON.stringify({
                     title: state.title,
                     labels: state.labelStrings,
                     content: state.content,
