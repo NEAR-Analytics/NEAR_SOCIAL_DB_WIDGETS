@@ -3,7 +3,7 @@ const daoId = props.daoId;
 
 const index = {
   action: "question",
-  key: "edu",
+  key: "academy",
   options: {
     limit: 10,
     order: "desc",
