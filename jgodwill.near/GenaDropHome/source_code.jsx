@@ -12,7 +12,7 @@ const Hero = styled.div`
 `;
 const MainHeading = styled.h1`
   font-weight: 700;
-  font-size: 12vw;
+  font-size: 11vw;
   line-height: 1em;
   text-align: center;
   color: #2d3748;
