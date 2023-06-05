@@ -23,7 +23,7 @@ if (policy === null) {
 }
 
 const groups = policy.roles
-  .filter((role) => role.name === "council")
+  .filter((role) => role.name === "community")
   .map((role) => {
     const group = role.kind.Group;
 
