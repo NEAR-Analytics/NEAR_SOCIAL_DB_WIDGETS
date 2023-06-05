@@ -25,8 +25,8 @@ const Button = styled.a`
 return (
   <div class="row">
     <div class="col-lg-8 col-sm-12">
-      <H1>Discussions</H1>
-      <H6>Get help with your projects, join our community!</H6>
+      <H1>Questions</H1>
+      <H6>Learn with a community of builders!</H6>
     </div>
     <div class="col-lg-4 col-sm-12">
       <Button
