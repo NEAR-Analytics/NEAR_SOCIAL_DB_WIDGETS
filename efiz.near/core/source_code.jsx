@@ -2,6 +2,7 @@ const path = props.path;
 
 State.init({
   path,
+  thingSrc: path,
 });
 
 const Row = styled.div`
