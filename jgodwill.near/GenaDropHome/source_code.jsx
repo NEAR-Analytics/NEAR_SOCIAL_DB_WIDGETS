@@ -225,7 +225,13 @@ return (
         </div>
         <a className="orgs-link" href="#">
           <div>Read Docs</div>
-          <img className="arrow" alt="arrow" src="#" />
+          <img
+            className="arrow"
+            alt="arrow"
+            src="https://docs.genadrop.io/"
+            target="_blank"
+            rel="noreferrer"
+          />
         </a>
       </div>
       <div className="left">
