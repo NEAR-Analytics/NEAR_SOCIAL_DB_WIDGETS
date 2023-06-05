@@ -123,7 +123,7 @@ return (
                 },
                 index: {
                   question: JSON.stringify({
-                    key: "main",
+                    key: "edu",
                     value: { type: "md" },
                   }),
                 },
