@@ -171,13 +171,12 @@ return (
             </svg>
           </span>
         </H1>
-        <Text style={{ maxWidth: "670px" }}>
-          Did you know? The
-          <a href="https://nearbuilders.com/bos">blockchain operating system</a>
-          (BOS) makes it fun and easy to create anything! Join groups, discover
-          projects, and collaborate out loud. Everyone is building a more open
-          web that is greater than the sum of its components.
-        </Text>
+        <div className="mt-3">
+          <Text style={{ maxWidth: "670px" }}>
+            Building a better future with fellow citizens of NYC and our global
+            communities.
+          </Text>
+        </div>
       </Flex>
       {isBuilder ? (
         <div>
