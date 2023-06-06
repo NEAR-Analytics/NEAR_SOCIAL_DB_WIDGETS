@@ -33,6 +33,7 @@ const Tabs = styled.div`
   margin-bottom: 72px;
   overflow: auto;
   scroll-behavior: smooth;
+  justify-content: center;
 
   @media (max-width: 1200px) {
     background: #f8f9fa;
