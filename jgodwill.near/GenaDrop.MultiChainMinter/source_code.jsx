@@ -559,7 +559,7 @@ return (
                   labelKey="search"
                   minLength={1}
                   options={allWidgets}
-                  onChange={(value) => props.onChangeRecipient(value)}
+                  onChange={(value) => onChangeRecipient(value)}
                   placeholder={
                     state.selectedChain == "0" ? accountId : state.sender
                   }
