@@ -417,7 +417,7 @@ return (
       Mint NFT on Multiple chains
     </Heading>
     <Main className="container-fluid">
-      {!state.image.cid ? (
+      {state.image.cid ? (
         <div className="flex-grow-1">
           <Heading>
             Upload an image to create an NFT any of our supported blockchains
@@ -504,13 +504,6 @@ return (
                       </ChainIcon>
                     ))}
                   </SelectTag>
-                  <button
-                    type="button"
-                    className="btn btn-primary mt-3"
-                    onClick={handleMint}
-                  >
-                    Mint to {contractAddresses[state.selectedChain][1]}
-                  </button>
                   <div>
                     <Web3Connect
                       className="btn mt-3"
