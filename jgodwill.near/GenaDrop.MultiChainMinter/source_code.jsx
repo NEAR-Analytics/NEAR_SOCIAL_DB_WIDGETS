@@ -417,7 +417,7 @@ return (
       Mint NFT on Multiple chains
     </Heading>
     <Main className="container-fluid">
-      {state.image.cid ? (
+      {!state.image.cid ? (
         <div className="flex-grow-1">
           <Heading>
             Upload an image to create an NFT any of our supported blockchains
@@ -430,14 +430,6 @@ return (
               className="btn text-decoration-none link-primary pe-auto"
             />
             <div>
-              {
-                //   <Heading
-                //   onDrop={handleDrop}
-                //   onDragOver={(event) => event.preventDefault()}
-                // >
-                //   Drag and Drop your image file here
-                // </Heading>
-              }
               <Text>
                 We support .jpg, .jpeg, .png, .webp, .gif files and deploy to
                 Celo, Algorand, Near, and Polygon
