@@ -15,7 +15,7 @@ if (slices === null) {
 
 State.init({
   labels: defaultSlices.labels ?? state.labels,
-  description: defaultSlices.labels ?? state.description,
+  description: defaultSlices.description ?? state.description,
   values,
 });
 
