@@ -102,10 +102,10 @@ return (
       </TabsButton>
 
       <TabsButton
-        onClick={() => handleTabClick("groups")}
-        selected={state.selectedTab === "groups"}
+        onClick={() => handleTabClick("members")}
+        selected={state.selectedTab === "members"}
       >
-        Groups
+        Members
       </TabsButton>
 
       <TabsButton
@@ -126,7 +126,7 @@ return (
       <Widget src={feed ?? "academy.near/widget/edu"} props={{ daoId }} />
     )}
 
-    {state.selectedTab === "groups" && (
+    {state.selectedTab === "members" && (
       <Widget src="hack.near/widget/DAO.Groups" props={{ daoId }} />
     )}
 
