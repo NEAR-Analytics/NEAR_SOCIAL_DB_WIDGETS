@@ -130,7 +130,7 @@ return (
     )}
 
     {state.selectedTab === "tasks" && (
-      <Widget src="devs.near/widget/dev.tasks" props={{ daoId }} />
+      <Widget src="hack.near/widget/dev.tasks" props={{ daoId }} />
     )}
   </Wrapper>
 );
