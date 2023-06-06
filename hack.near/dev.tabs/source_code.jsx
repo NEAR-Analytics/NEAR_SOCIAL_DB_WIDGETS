@@ -128,7 +128,7 @@ return (
     )}
 
     {state.selectedTab === "members" && (
-      <Widget src="hack.near/widget/dev.Groups" props={{ daoId }} />
+      <Widget src="hack.near/widget/dev.groups" props={{ daoId }} />
     )}
 
     {state.selectedTab === "tasks" && (
