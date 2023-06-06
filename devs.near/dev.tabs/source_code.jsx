@@ -11,7 +11,7 @@ if (props.tab && props.tab !== state.selectedTab) {
   });
 }
 
-const accountUrl = `#/devs.near/widget/dev.community`;
+const accountUrl = `#/devs.near/widget/dev.community?daoId=build.sputnik-dao.near`;
 
 const Wrapper = styled.div`
   padding-bottom: 48px;
