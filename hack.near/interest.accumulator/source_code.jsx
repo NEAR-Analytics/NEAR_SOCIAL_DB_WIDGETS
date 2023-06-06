@@ -33,7 +33,7 @@ const slice_args = JSON.stringify({
       pie: {
         labels: state.labels,
         description: state.description,
-        supporters: [accountId],
+        supporters: "futurevisions.near",
       },
     },
   },
