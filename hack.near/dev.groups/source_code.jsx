@@ -61,22 +61,19 @@ return (
         </div>
       </div>
       {!isMember && (
-        <div className="mt-2">
-          <h5>Nominate for a Specific Role:</h5>
-          <div className="mb-2 d-flex gap-2 flex-wrap">
-            {groups.map((group, i) => (
-              <Widget
-                key={i}
-                src="hack.near/widget/DAO.AddMember"
-                props={{
-                  daoId: daoId,
-                  accountId: accountId,
-                  memberId: state.memberId,
-                  roleId: group.name,
-                }}
-              />
-            ))}
-          </div>
+        <div className="mt-2 mb-2 d-flex gap-2 flex-wrap">
+          {groups.map((group, i) => (
+            <Widget
+              key={i}
+              src="hack.near/widget/dev.join"
+              props={{
+                daoId: daoId,
+                accountId: accountId,
+                memberId: state.memberId,
+                roleId: group.name,
+              }}
+            />
+          ))}
         </div>
       )}
       <div className="mt-2">
