@@ -30,7 +30,7 @@ return (
           image: {
             ipfs_cid: "QmYcKcQCU3etVQnkCrvn5jcHD2EVcG9WAmwgf445uXuBzL",
           },
-          alt: "Banyan Collective",
+          alt: "Banyan",
         }}
       />
     </a>
