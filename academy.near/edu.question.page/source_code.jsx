@@ -102,7 +102,7 @@ return (
     </H4>
 
     <Widget
-      src="dev-support.near/widget/DevSupport.Question.PreviewDetailed"
+      src="academy.near/widget/edu.question.details"
       props={{
         accountId,
         blockHeight,
