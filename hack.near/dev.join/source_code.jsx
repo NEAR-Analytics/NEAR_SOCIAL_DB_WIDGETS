@@ -49,7 +49,7 @@ const validAccount = memberId.indexOf(".near") !== -1;
 return (
   <div>
     <button
-      disabled={!validMember}
+      disabled={validMember ?? !validAccount}
       className="btn btn-outline-success"
       onClick={handleProposal}
     >
