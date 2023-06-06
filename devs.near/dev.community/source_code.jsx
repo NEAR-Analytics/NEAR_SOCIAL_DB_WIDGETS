@@ -262,9 +262,8 @@ return (
       )}
       <br />
     </Container>
-    <hr />
 
-    <Widget src="devs.near/widget/dev.Rank" />
+    <Widget src="devs.near/widget/dev.tabs" />
     <hr />
     <br />
     <Flex>
