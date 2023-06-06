@@ -14,7 +14,7 @@ const adminContract = props.adminContract;
 const admins = Near.view(adminContract, "get_admins", {});
 
 const question = JSON.parse(
-  Social.get(`${accountId}/question/edu`, blockHeight) ?? "null"
+  Social.get(`${accountId}/question/academy`, blockHeight) ?? "null"
 );
 
 const questionUrl = `academy.near/widget/edu.question.page?accountId=${accountId}&blockHeight=${blockHeight}`;
