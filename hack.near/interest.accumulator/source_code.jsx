@@ -1,25 +1,52 @@
 const accountId = props.accountId ?? context.accountId;
 const daoId = props.daoId ?? "meta.sputnik-dao.near";
 
-let slices = Social.getr(`${daoId}/accumulator`);
+let defaultSlices = Social.get(`${daoId}/pie`);
+
+if (defaultSlices === null) {
+  return "";
+}
+
+let slices = Social.get(`${accountId}/pie`);
 
 if (slices === null) {
   return "";
 }
 
 State.init({
-  label: "placeholder",
-  value: 100,
+  labels: defaultSlices.labels ?? state.labels,
+  description: defaultSlices.labels ?? state.description,
+  values,
 });
 
 const policy = Near.view(daoId, "get_policy");
+
+if (policy === null) {
+  return "";
+}
 
 const deposit = policy.proposal_bond;
 
 const slice_args = JSON.stringify({
   data: {
-    [state.daoId]: {
-      accumulator: state.slice,
+    [daoId]: {
+      pie: {
+        labels: state.labels,
+        description: state.description,
+        supporters: [accountId],
+      },
+    },
+  },
+});
+
+const mySlice = JSON.stringify({
+  data: {
+    [accountId]: {
+      pie: {
+        labels: state.labels,
+        description: state.description,
+        supporters: [accountId],
+      },
     },
   },
 });
@@ -93,20 +120,19 @@ let Style = styled.div`
 
     `;
 
-const onChangeLabel = (label) => {
+const onChangeLabel = (newLabel) => {
   State.update({
-    label,
+    newLabel,
   });
 };
 
-const onChangeValue = (value) => {
+const onChangeDescription = (description) => {
   State.update({
-    value,
+    description,
   });
 };
 
-const values = [50, 50];
-const labels = ["yea", "no"];
+const values = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 
 return (
   <div>
@@ -114,13 +140,17 @@ return (
     <h5>Label: What?</h5>
     <input type="text" onChange={(e) => onChangeLabel(e.target.value)}></input>
     <br />
-    <h5>Value: How much?</h5>
-    <input type="text" onChange={(e) => onChangeValue(e.target.value)}></input>
-    <p>{state.slice}</p>
+    <h5>Description</h5>
+    <input
+      type="text"
+      onChange={(e) => onChangeDescription(e.target.value)}
+    ></input>
+    <br />
     <div className="mb-2">
       <button className="btn btn-outline-success m-1" onClick={handleProposal}>
         Propose Changes
       </button>
+      <CommitButton data={{ pie: mySlice }}>Save Changes</CommitButton>
     </div>
     <Widget src="y3k.near/widget/pieChartSVG" props={{ labels, values }} />
   </div>
