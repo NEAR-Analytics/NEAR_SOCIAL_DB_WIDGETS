@@ -122,7 +122,7 @@ return (
       </>
     )}
 
-    {state.selectedTab === "discussion" && (
+    {state.selectedTab === "questions" && (
       <Widget src={feed ?? "academy.near/widget/edu"} props={{ daoId }} />
     )}
 
