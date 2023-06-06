@@ -132,10 +132,10 @@ return (
         <H2>Join the Discussion</H2>
         <div class="px-2">
           <Widget
-            src="dev-support.near/widget/DevSupport.Answer.Edit"
+            src="academy.near/widget/edu.answer.edit"
             props={{
               notifyAccountId: accountId,
-              previewWidget: "dev-support.near/widget/DevSupport.Question.Page",
+              previewWidget: "academy.near/widget/edu.question.page",
               item,
               onComment: () => State.update({ showReply: false }),
             }}
@@ -148,7 +148,7 @@ return (
     <div class="row">
       <div class="col-12">
         <Widget
-          src="dev-support.near/widget/DevSupport.Answer.Feed"
+          src="academy.near/widget/edu.answer.feed"
           props={{ item, admins, adminContract }}
         />
       </div>
