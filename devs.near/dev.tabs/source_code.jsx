@@ -11,7 +11,7 @@ if (props.tab && props.tab !== state.selectedTab) {
   });
 }
 
-const accountUrl = `#/devs.near/widget/dev.community`;
+const accountUrl = `devs.near/widget/dev.community`;
 
 const Wrapper = styled.div`
   padding-bottom: 48px;
@@ -77,39 +77,45 @@ const TabsButton = styled.a`
   }
 `;
 
+const handleTabClick = (tab) => {
+  State.update({
+    selectedTab: tab,
+  });
+};
+
 return (
   <Wrapper>
     <Tabs>
       <TabsButton
-        href={`${accountUrl}?tab=leaderboard`}
+        onClick={() => handleTabClick("leaderboard")}
         selected={state.selectedTab === "leaderboard"}
       >
         Leaderboard
       </TabsButton>
 
       <TabsButton
-        href={`${accountUrl}?tab=questions`}
+        onClick={() => handleTabClick("questions")}
         selected={state.selectedTab === "questions"}
       >
         Questions
       </TabsButton>
 
       <TabsButton
-        href={`${accountUrl}?tab=groups`}
+        onClick={() => handleTabClick("groups")}
         selected={state.selectedTab === "groups"}
       >
         Groups
       </TabsButton>
 
       <TabsButton
-        href={`${accountUrl}?tab=projects`}
+        onClick={() => handleTabClick("projects")}
         selected={state.selectedTab === "projects"}
       >
         Projects
       </TabsButton>
 
       <TabsButton
-        href={`${accountUrl}?tab=rewards`}
+        onClick={() => handleTabClick("rewards")}
         selected={state.selectedTab === "rewards"}
       >
         Rewards
