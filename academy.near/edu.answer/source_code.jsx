@@ -144,11 +144,11 @@ return (
       {state.showReply && (
         <div className="mb-2">
           <Widget
-            src="dev-support.near/widget/DevSupport.Answer.Edit"
+            src="edu.near/widget/edu.answer.edit"
             props={{
               notifyAccountId: accountId,
               item,
-              previewWidget: "dev-support.near/widget/DevSupport.Answer",
+              previewWidget: "edu.near/widget/edu.answer",
               onComment: () => State.update({ showReply: false }),
             }}
           />
@@ -157,7 +157,7 @@ return (
 
       <Comments>
         <Widget
-          src="dev-support.near/widget/DevSupport.Answer.Feed"
+          src="edu.near/widget/edu.answer.feed"
           props={{ item, admins, adminContract, nested: true }}
         />
       </Comments>
