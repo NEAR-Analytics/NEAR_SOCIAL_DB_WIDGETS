@@ -28,7 +28,7 @@ return (
         props={{
           className: "image",
           image: {
-            ipfs_cid: "Qmb1dfewMhs9VyBbwvQJFnn2BxQbRWnfHS7Cugqc96TTcD",
+            ipfs_cid: "QmYcKcQCU3etVQnkCrvn5jcHD2EVcG9WAmwgf445uXuBzL",
           },
           alt: "Banyan Collective",
         }}
