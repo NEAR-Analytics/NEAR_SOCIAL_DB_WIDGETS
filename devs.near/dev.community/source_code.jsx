@@ -267,7 +267,7 @@ return (
       <br />
     </Container>
 
-    <Widget src="devs.near/widget/dev.tabs" />
+    <Widget src="devs.near/widget/dev.tabs" props={{ tab }} />
     <hr />
     <br />
     <Flex>
