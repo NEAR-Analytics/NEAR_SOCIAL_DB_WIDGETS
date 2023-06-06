@@ -95,7 +95,7 @@ const ShareButton = styled.button`
 return (
   <div className="pt-2 pb-5">
     <H4>
-      <a href="javascript:history.back()">
+      <a href="#/academy.near/widget/edu">
         <i class="bi bi-arrow-left me-2" />
         Go back
       </a>
