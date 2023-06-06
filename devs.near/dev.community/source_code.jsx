@@ -103,7 +103,7 @@ const Text = styled.p`
   line-height: ${(p) => p.lineHeight ?? "1.5"};
   font-weight: ${(p) => p.weight ?? "400"};
   color: ${(p) => p.color ?? "#000"};
-  margin: 0;
+  margin-botton: 8px;
 `;
 
 const Flex = styled.div`
@@ -117,6 +117,20 @@ const Flex = styled.div`
     flex-direction: column;
     gap: var(--section-gap);
     }
+`;
+
+const FlexContainer = styled.div`
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  @media (max-width: 998px) {
+    flex-direction: column;
+    gap: var(--section-gap);
+  }
 `;
 
 const Container = styled.div`
@@ -164,8 +178,8 @@ return (
           >
             Your Adventure Has Begun
           </Text>
-          <div>
-            <div className="m-2">
+          <FlexContainer>
+            <div className="m-1">
               <Widget
                 src="near/widget/DIG.Button"
                 props={{
@@ -176,18 +190,29 @@ return (
                 }}
               />
             </div>
-            <div className="m-2">
+            <div className="m-1">
               <Widget
                 src="near/widget/DIG.Button"
                 props={{
-                  href: "https://wallet.near.org/linkdrop/v2.keypom.near/2BNMVyPgjXgHtn9xiQkcRLzZYmsh5JyGoeaRV9Tb5rmsbqNrAsuwGPziL6ztsfjxLVzQRwGERA3JGSQ28VEA8NtL",
-                  label: "Get Started",
+                  href: "#/every.near/widget/browser?path=every.near/thing/test",
+                  label: "Start Projects",
                   variant: "outline-secondary",
                   size: "large",
                 }}
               />
             </div>
-          </div>
+            <div className="m-1">
+              <Widget
+                src="near/widget/DIG.Button"
+                props={{
+                  href: "https://wallet.near.org/linkdrop/v2.keypom.near/2BNMVyPgjXgHtn9xiQkcRLzZYmsh5JyGoeaRV9Tb5rmsbqNrAsuwGPziL6ztsfjxLVzQRwGERA3JGSQ28VEA8NtL",
+                  label: "Join Community",
+                  variant: "outline-secondary",
+                  size: "large",
+                }}
+              />
+            </div>
+          </FlexContainer>
         </div>
       ) : (
         <Flex>
@@ -198,8 +223,8 @@ return (
           >
             Begin a New Adventure
           </Text>
-          <div>
-            <div className="m-2">
+          <FlexContainer>
+            <div className="m-1">
               <Widget
                 src="near/widget/DIG.Button"
                 props={{
@@ -210,18 +235,29 @@ return (
                 }}
               />
             </div>
-            <div>
+            <div className="m-1">
               <Widget
                 src="near/widget/DIG.Button"
                 props={{
-                  href: "#/hack.near/widget/Academy",
-                  label: "Get Started",
+                  href: "#/every.near/widget/browser?path=every.near/thing/test",
+                  label: "Start Projects",
                   variant: "outline-secondary",
                   size: "large",
                 }}
               />
             </div>
-          </div>
+            <div className="m-1">
+              <Widget
+                src="near/widget/DIG.Button"
+                props={{
+                  href: "#/hack.near/widget/Academy",
+                  label: "Learn Together",
+                  variant: "outline-secondary",
+                  size: "large",
+                }}
+              />
+            </div>
+          </FlexContainer>
         </Flex>
       )}
       <br />
