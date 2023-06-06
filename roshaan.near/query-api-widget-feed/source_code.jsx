@@ -244,7 +244,13 @@ if (state.ws_widgetActivity === undefined) {
 //     <Text>Receipt ID: {activity.receipt_id}</Text>
 return (
   <div>
-    <Title>Widget Activity Feed</Title>
+    <Title>
+      Widget Activity Feed{" "}
+      <TextLink href="https://near.org/dataplatform.near/widget/QueryApi.App">
+        {" "}
+        Powered By QueryAPI{" "}
+      </TextLink>
+    </Title>
     <RowContainer>
       {state.widgetActivities.map((activity, i) => (
         <Card>
