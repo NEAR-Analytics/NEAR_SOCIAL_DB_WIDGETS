@@ -1,1 +1,7 @@
-return <div>Hello World</div>;
+const FooterWrapper = styled.div``;
+
+return (
+  <div>
+    <FooterWrapper>This is the footer for this site</FooterWrapper>
+  </div>
+);
