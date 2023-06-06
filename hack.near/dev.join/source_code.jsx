@@ -48,14 +48,12 @@ const validAccount = memberId.indexOf(".near") !== -1;
 
 return (
   <div>
-    {validMember && (
-      <button
-        disabled={validAccount}
-        className="btn btn-outline-success"
-        onClick={handleProposal}
-      >
-        {roleId}
-      </button>
-    )}
+    <button
+      disabled={!validMember}
+      className="btn btn-outline-success"
+      onClick={handleProposal}
+    >
+      {roleId}
+    </button>
   </div>
 );
