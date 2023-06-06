@@ -81,35 +81,35 @@ return (
   <Wrapper>
     <Tabs>
       <TabsButton
-        href={`${accountUrl}&tab=leaderboard`}
+        href={`${accountUrl}?tab=leaderboard`}
         selected={state.selectedTab === "leaderboard"}
       >
         Leaderboard
       </TabsButton>
 
       <TabsButton
-        href={`${accountUrl}&tab=questions`}
+        href={`${accountUrl}?tab=questions`}
         selected={state.selectedTab === "questions"}
       >
         Questions
       </TabsButton>
 
       <TabsButton
-        href={`${accountUrl}&tab=groups`}
+        href={`${accountUrl}?tab=groups`}
         selected={state.selectedTab === "groups"}
       >
         Groups
       </TabsButton>
 
       <TabsButton
-        href={`${accountUrl}&tab=projects`}
+        href={`${accountUrl}?tab=projects`}
         selected={state.selectedTab === "projects"}
       >
         Projects
       </TabsButton>
 
       <TabsButton
-        href={`${accountUrl}&tab=rewards`}
+        href={`${accountUrl}?tab=rewards`}
         selected={state.selectedTab === "rewards"}
       >
         Rewards
