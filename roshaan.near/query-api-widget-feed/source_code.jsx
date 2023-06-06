@@ -117,7 +117,7 @@ const Text = styled.p`
   font-size: 14px;
   line-height: 20px;
   font-weight: 400;
-  color: ${(p) => (p.bold ? "#11181C !important" : "#687076 !important")};
+  color: ${(p) => (p.bold ? "black !important" : "#687076 !important")};
   white-space: nowrap;
 `;
 
@@ -248,17 +248,26 @@ return (
     <RowContainer>
       {state.widgetActivities.map((activity, i) => (
         <Card>
+          <div>
+            <Widget
+              src="mob.near/widget/TimeAgo"
+              props={{ blockHeight: activity.block_height }}
+            />{" "}
+            ago
+          </div>
           <CardBody>
             <div key={i}>
               <Text bold>Widget Name: {activity.widget_name}</Text>
               <Text bold>Account ID: {activity.account_id}</Text>
-              <Widget
-                src="mob.near/widget/TimeAgo"
-                props={{ blockHeight: activity.block_height }}
-              />
-              ago
             </div>
           </CardBody>
+          <CardFooter>
+            <TextLink
+              href={`/#/near/widget/ComponentDetailsPage?src=${activity.account_id}/widget/${activity.widget_name}`}
+            >
+              View
+            </TextLink>
+          </CardFooter>
         </Card>
       ))}
     </RowContainer>
