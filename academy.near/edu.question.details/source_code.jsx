@@ -56,7 +56,6 @@ const NftImageWrapper = styled.div`
     overflow: "scroll",
 `;
 
-
 const ShareButton = styled.button`
   display: inline-flex;
   align-items: center;
@@ -126,40 +125,6 @@ return (
           </NftImageWrapper>
         )}
       </PostContentWrapper>
-      <Widget
-        src="dev-support.near/widget/DevSupport.Question.Button.Upvote"
-        props={{ accountId, blockHeight }}
-      />
-        <Widget
-          src="dmitriy_sheleg.near/widget/AccountProfileCard"
-          props={{ accountId }}
-        />
-        <H6 className="pt-5 pb-3">share</H6>
-
-        <OverlayTrigger
-          placement="top"
-          overlay={<Tooltip>Copy URL to clipboard</Tooltip>}
-        >
-          <ShareButton
-            className="share-url"
-            type="button"
-            onMouseLeave={() => {
-              State.update({ copiedShareUrl: false });
-            }}
-            onClick={() => {
-              clipboard.writeText(shareUrl).then(() => {
-                State.update({ copiedShareUrl: true });
-              });
-            }}
-          >
-            {state.copiedShareUrl ? (
-              <i className="bi-16 bi bi-check"></i>
-            ) : (
-              <i className="bi-16 bi-link-45deg"></i>
-            )}
-          </ShareButton>
-        </OverlayTrigger>
-
     </div>
     <hr />
     {context.accountId && (
@@ -170,8 +135,7 @@ return (
             src="dev-support.near/widget/DevSupport.Answer.Edit"
             props={{
               notifyAccountId: accountId,
-              previewWidget:
-                "dev-support.near/widget/DevSupport.Question.Page",
+              previewWidget: "dev-support.near/widget/DevSupport.Question.Page",
               item,
               onComment: () => State.update({ showReply: false }),
             }}
