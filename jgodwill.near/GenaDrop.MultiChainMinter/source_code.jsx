@@ -487,7 +487,7 @@ return (
                     </a>
                   )}
                 </div>
-              ) : state.sender ? (
+              ) : accountId ? (
                 <div>
                   <label htmlFor="chainSelect">Select Chain</label>
                   <SelectTag
@@ -563,14 +563,6 @@ return (
                   placeholder={
                     state.selectedChain == "0" ? accountId : state.sender
                   }
-                  // renderMenuItemChildren={(option: accountId) => (
-                  //   <div className="mb-2">
-                  //     <Widget
-                  //       src="mob.near/widget/Profile"
-                  //       props={{ accountId }}
-                  //     />
-                  //   </div>
-                  // )}
                 />
               </Card>
             </Card>
