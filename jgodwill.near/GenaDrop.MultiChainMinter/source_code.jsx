@@ -553,9 +553,11 @@ return (
                 </div>
               </>
             ) : (
-              <SelectGroup className="form-group">
-                <label htmlFor="chainSelect">Select Chain</label>
-                {/*<select
+              <Card>
+                {state.sender && Ethers.provider() ? (
+                  <div className="form-group">
+                    <label htmlFor="chainSelect">Select Chain</label>
+                    {/*<select
                     className="form-select"
                     value={state.selectedChain}
                     onChange={handleChainChange}
@@ -566,56 +568,143 @@ return (
                       </ChainIcon>
                     ))}
                   </select>*/}
-                <SelectReplicaContainer onClick={handleOutsideClick}>
-                  <div
-                    className={`select-replica__select ${
-                      state.selectIsOpen ? "open" : ""
-                    }`}
-                    onClick={handleSelectClick}
-                  >
-                    <div className="select-replica__selected">
-                      {chains.filter(
-                        (chain) => chain.id === state.selectedChain.toString()
-                      ) ? (
-                        <img
-                          src={chains
-                            .filter(
-                              (chain) =>
-                                chain.id === state.selectedChain.toString()
-                            )
-                            .map((c) => c.url)}
-                          alt={chains
-                            .filter(
-                              (chain) =>
-                                chain.id === state.selectedChain.toString()
-                            )
-                            .map((c) => c.name)}
-                        />
-                      ) : (
-                        "Select an option"
-                      )}
-                      <span>🔻</span>
-                    </div>
-                    <div
-                      className={`select-replica__options ${
-                        state.selectIsOpen ? "open" : ""
-                      }`}
-                    >
-                      {chains.map((chain) => (
-                        <div
-                          key={chain.id}
-                          className={`select-replica__option ${
-                            selectedOption === chain.name ? "selected" : ""
-                          }`}
-                          onClick={() => handleChainChange(chain.id)}
-                        >
-                          <img src={chain.url} alt={chain.name} />
+                    <SelectReplicaContainer onClick={handleOutsideClick}>
+                      <div
+                        className={`select-replica__select ${
+                          state.selectIsOpen ? "open" : ""
+                        }`}
+                        onClick={handleSelectClick}
+                      >
+                        <div className="select-replica__selected">
+                          {chains.filter(
+                            (chain) =>
+                              chain.id === state.selectedChain.toString()
+                          ) ? (
+                            <img
+                              src={chains
+                                .filter(
+                                  (chain) =>
+                                    chain.id === state.selectedChain.toString()
+                                )
+                                .map((c) => c.url)}
+                              alt={chains
+                                .filter(
+                                  (chain) =>
+                                    chain.id === state.selectedChain.toString()
+                                )
+                                .map((c) => c.name)}
+                            />
+                          ) : (
+                            "Select an option"
+                          )}
+                          <span>🔻</span>
                         </div>
-                      ))}
+                        <div
+                          className={`select-replica__options ${
+                            state.selectIsOpen ? "open" : ""
+                          }`}
+                        >
+                          {chains.map((chain) => (
+                            <div
+                              key={chain.id}
+                              className={`select-replica__option ${
+                                selectedOption === chain.name ? "selected" : ""
+                              }`}
+                              onClick={() => handleChainChange(chain.id)}
+                            >
+                              <img src={chain.url} alt={chain.name} />
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </SelectReplicaContainer>
+                    {state.link && (
+                      <a href={`${state.link}`} target="_blank">
+                        View Transaction
+                      </a>
+                    )}
+                  </div>
+                ) : accountId ? (
+                  <div>
+                    <label htmlFor="chainSelect">Select Chain</label>
+                    {/*<SelectTag
+                    className="form-select"
+                    value={state.selectedChain}
+                    onChange={handleChainChange}
+                  >
+                    <option disabled selected>
+                      Select a Chain
+                    </option>
+                    {chains.map((chain) => (
+                      <ChainIcon key={chain.id} value={chain.id}>
+                        <span>{chain.name}</span>
+                      </ChainIcon>
+                    ))}
+                  </SelectTag>*/}
+                    <SelectReplicaContainer onClick={handleOutsideClick}>
+                      <div
+                        className={`select-replica__select ${
+                          state.selectIsOpen ? "open" : ""
+                        }`}
+                        onClick={handleSelectClick}
+                      >
+                        <div className="select-replica__selected">
+                          {chains.filter(
+                            (chain) =>
+                              chain.id === state.selectedChain.toString()
+                          ) ? (
+                            <img
+                              src={chains
+                                .filter(
+                                  (chain) =>
+                                    chain.id === state.selectedChain.toString()
+                                )
+                                .map((c) => c.url)}
+                              alt={chains
+                                .filter(
+                                  (chain) =>
+                                    chain.id === state.selectedChain.toString()
+                                )
+                                .map((c) => c.name)}
+                            />
+                          ) : (
+                            "Select an option"
+                          )}
+                          <span>🔻</span>
+                        </div>
+                        <div
+                          className={`select-replica__options ${
+                            state.selectIsOpen ? "open" : ""
+                          }`}
+                        >
+                          {chains.map((chain) => (
+                            <div
+                              key={chain.id}
+                              className={`select-replica__option ${
+                                selectedOption === chain.name ? "selected" : ""
+                              }`}
+                              onClick={() => handleChainChange(chain.id)}
+                            >
+                              <img src={chain.url} alt={chain.name} />
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </SelectReplicaContainer>
+                    <div>
+                      <Web3Connect
+                        className="btn mt-3"
+                        connectLabel="Connect with Ethereum Wallet"
+                      />
                     </div>
                   </div>
-                </SelectReplicaContainer>
-              </SelectGroup>
+                ) : (
+                  <Web3Connect
+                    className="btn mt-3"
+                    connectLabel="Connect with Wallet"
+                  />
+                )}
+              </Card>
             )}
           </ImageUploadCard>
         </div>
