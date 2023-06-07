@@ -493,6 +493,13 @@ const SelectReplicaContainer = styled.div`
   }
 `;
 
+const SelectGroup = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  gap: 1rem;
+`;
+
 if (!(state.sender || accountId)) {
   console.log("Please login here now");
   State.update({
@@ -545,7 +552,7 @@ return (
                 </div>
               </>
             ) : (
-              <div className="form-group">
+              <SelectGroup className="form-group">
                 <label htmlFor="chainSelect">Select Chain</label>
                 {/*<select
                     className="form-select"
@@ -607,7 +614,7 @@ return (
                     </div>
                   </div>
                 </SelectReplicaContainer>
-              </div>
+              </SelectGroup>
             )}
           </ImageUploadCard>
         </div>
