@@ -508,7 +508,7 @@ if (!(state.sender || accountId)) {
 }
 // state.sender &&
 //   Ethers.provider() &&
-console.log("currently on " + state.selectedChain);
+console.log("currently on " + JSON.stringify(state.selectedChain));
 
 return (
   <>
