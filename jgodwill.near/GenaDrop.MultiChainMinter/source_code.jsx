@@ -498,6 +498,7 @@ const SelectGroup = styled.div`
   flex-flow: column nowrap;
   justify-content: center;
   gap: 1rem;
+  margin: 2rem auto;
 `;
 
 if (!(state.sender || accountId)) {
