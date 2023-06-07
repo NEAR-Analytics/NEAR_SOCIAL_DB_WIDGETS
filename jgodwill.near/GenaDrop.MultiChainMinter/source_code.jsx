@@ -589,13 +589,15 @@ return (
                           <img
                             src={chains
                               .filter(
-                                (chain) => chain.id === state.selectedChain
+                                (chain) =>
+                                  state.selectedChain.toString() == chain.id
                               )
                               .map((c) => c.url)}
                             alt={
                               chains
                                 .filter(
-                                  (chain) => chain.id === state.selectedChain
+                                  (chain) =>
+                                    chain.id === state.selectedChain.toString()
                                 )
                                 .map((c) => c.name) || "No value?"
                             }
@@ -659,12 +661,14 @@ return (
                           <img
                             src={chains
                               .filter(
-                                (chain) => chain.id === state.selectedChain
+                                (chain) =>
+                                  chain.id === state.selectedChain.toString()
                               )
                               .map((c) => c.url)}
                             alt={chains
                               .filter(
-                                (chain) => chain.id === state.selectedChain
+                                (chain) =>
+                                  chain.id === state.selectedChain.toString()
                               )
                               .map((c) => c.name)}
                           />
