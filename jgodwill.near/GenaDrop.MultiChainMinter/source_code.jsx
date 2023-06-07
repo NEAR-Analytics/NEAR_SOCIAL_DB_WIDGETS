@@ -505,9 +505,11 @@ console.log(
   "Here 🤔 " +
     state.selectedChain +
     " " +
-    chains.filter((chain) => {
-      return state.selectedChain.toString() == chain.id;
-    })
+    chains
+      .filter((chain) => {
+        return state.selectedChain.toString() == chain.id;
+      })
+      .map((c) => c.url)
 );
 
 return (
