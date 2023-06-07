@@ -503,6 +503,8 @@ if (!(state.sender || accountId)) {
 
 console.log(
   "Here 🤔 " +
+    state.selectedChain +
+    " " +
     chains.filter((chain) => chain.id === state.selectedChain).map((c) => c.url)
 );
 
