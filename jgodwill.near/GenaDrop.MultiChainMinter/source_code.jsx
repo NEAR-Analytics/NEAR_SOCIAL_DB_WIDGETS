@@ -506,7 +506,7 @@ if (!(state.sender || accountId)) {
   });
 }
 
-console.log(state.selectedChain.id);
+console.log("currently on " + state.selectedChain.id);
 
 return (
   <>
