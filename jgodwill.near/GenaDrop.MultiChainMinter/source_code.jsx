@@ -506,6 +506,8 @@ if (!(state.sender || accountId)) {
   });
 }
 
+console.log(state.selectedChain.id);
+
 return (
   <>
     {state.showAlert && (
