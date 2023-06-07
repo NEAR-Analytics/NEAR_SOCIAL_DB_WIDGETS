@@ -78,7 +78,7 @@ const handleMint = () => {
       });
     }, 3000);
   } else {
-    if (state.selectedChain.id == "0") {
+    if (state.selectedChain == "0") {
       const gas = 200000000000000;
       const deposit = 10000000000000000000000;
       const metadata = {
@@ -121,7 +121,7 @@ const handleMint = () => {
     console.log("passed checks");
     let networkId = Ethers.provider()._network.chainId;
 
-    const CA = contractAddresses[state.selectedChain.id][0] || "137";
+    const CA = contractAddresses[state.selectedChain][0] || "137";
 
     console.log("CONTRACT ADD", CA);
 
@@ -154,8 +154,7 @@ const handleMint = () => {
           console.log("receipt::", ricit);
           State.update({
             link: `${
-              contractAddresses[state.selectedChain.id][2] +
-              ricit.transactionHash
+              contractAddresses[state.selectedChain][2] + ricit.transactionHash
             }`,
           });
         });
@@ -170,28 +169,16 @@ if (state.sender === undefined) {
     Ethers.provider()
       .getNetwork()
       .then((data) => {
-        const newChain = chains.filter((chain) => {
-          return chain.id === data.chainId;
-        });
         State.update({
-          selectedChain: {
-            id: data.chainId,
-            name: newChain.name,
-            uri: newChain.url,
-          },
+          selectedChain: data.chainId,
         });
       });
-    conssole.log("data here: " + data);
   }
 
   console.log("in between", state.sender);
 
   State.update({
-    selectedChain: {
-      id: "0",
-      name: "near",
-      uri: "https://ipfs.near.social/ipfs/bafkreigv55ubnx3tfhbf56toihekuxvgzfqn5c3ndbfjcg3e4uvaeuy5cm",
-    },
+    selectedChain: "0",
   });
 }
 State.init({
@@ -246,7 +233,7 @@ for (let i = 0; i < accounts.length; ++i) {
 }
 
 const onChangeRecipient = (recipient) => {
-  state.selectedChain.id === "0"
+  state.selectedChain === "0"
     ? State.update({
         recipient: recipient[0],
       })
@@ -255,14 +242,14 @@ const onChangeRecipient = (recipient) => {
       });
 };
 
-const handleChainChange = (chain) => {
+const handleChainChange = (event) => {
   console.log(
     "get what we doing:",
-    chain.id || "no value from event?",
-    chain.id == "0",
+    event.target.value || "no value from event?",
+    event.target.value == "0",
     !accountId
   );
-  if (chain.id == "0") {
+  if (event.target.value == "0") {
     if (!accountId) {
       console.log("not what we thought,:", accountId);
       State.update({
@@ -272,24 +259,24 @@ const handleChainChange = (chain) => {
       return;
     }
     State.update({
-      selectedChain: { id: chain.id, name: chain.name, uri: chain.url },
+      selectedChain: event.target.value,
     });
   }
   console.log("encts here", Ethers.send);
   Ethers.send("wallet_switchEthereumChain", [
     {
-      chainId: "0x" + Number(chain.id).toString(16),
+      chainId: "0x" + Number(event.target.value).toString(16),
     },
   ]).then((data) => console.log("done!!!", data));
   console.log("what happens after");
   State.update({
-    selectedChain: { id: chain.id, name: chain.name, uri: chain.url },
+    selectedChain: event.target.value,
   });
-  console.log("afters", state.selectedChain.id);
+  console.log("afters", state.selectedChain);
 };
 
 const onChangeDesc = (description) => {
-  console.log("Log ciritcal critics:", state.selectedChain.id, state.title);
+  console.log("Log ciritcal critics:", state.selectedChain, state.title);
   State.update({
     description,
   });
@@ -513,9 +500,6 @@ if (!(state.sender || accountId)) {
     toastMessage: "Please Sign in or connect a wallet",
   });
 }
-state.sender &&
-  Ethers.provider() &&
-  console.log("currently on " + JSON.stringify(state.selectedChain));
 
 return (
   <>
@@ -526,7 +510,7 @@ return (
       Mint NFT on Multiple chains
     </Heading>
     <Main className="container-fluid">
-      {!state.image.cid ? (
+      {state.image.cid ? (
         <div className="flex-grow-1">
           <Heading>
             Upload an image to create an NFT any of our supported blockchains
@@ -571,7 +555,7 @@ return (
               {state.sender && Ethers.provider() ? (
                 <div className="form-group">
                   <label htmlFor="chainSelect">Select Chain</label>
-                  {/*<select
+                  <select
                     className="form-select"
                     value={state.selectedChain}
                     onChange={handleChainChange}
@@ -581,46 +565,7 @@ return (
                         {chain.name}
                       </ChainIcon>
                     ))}
-                  </select>*/}
-                  <SelectReplicaContainer onBlur={handleOutsideClick}>
-                    <div
-                      className={`select-replica__select ${
-                        state.selectIsOpen ? "open" : ""
-                      }`}
-                      onClick={handleSelectClick}
-                    >
-                      <div className="select-replica__selected">
-                        {state.selectedChain.id ? (
-                          <img
-                            src={state.selectedChain.uri}
-                            alt={state.selectedChain.name}
-                          />
-                        ) : (
-                          "Select an option"
-                        )}
-                        <span>🔻</span>
-                      </div>
-                      <div
-                        className={`select-replica__options ${
-                          state.selectIsOpen ? "open" : ""
-                        }`}
-                      >
-                        {chains.map((chain) => (
-                          <div
-                            key={chain.id}
-                            className={`select-replica__option ${
-                              state.selectedChain.name === chain.name
-                                ? "selected"
-                                : ""
-                            }`}
-                            onClick={() => handleChainChange(chain)}
-                          >
-                            <img src={chain.url} alt={chain.name} />
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </SelectReplicaContainer>
+                  </select>
                   {state.link && (
                     <a href={`${state.link}`} target="_blank">
                       View Transaction
@@ -644,7 +589,7 @@ return (
                       </ChainIcon>
                     ))}
                   </SelectTag>*/}
-                  <SelectReplicaContainer onBlur={handleOutsideClick}>
+                  <SelectReplicaContainer onClick={handleOutsideClick}>
                     <div
                       className={`select-replica__select ${
                         state.selectIsOpen ? "open" : ""
@@ -652,10 +597,18 @@ return (
                       onClick={handleSelectClick}
                     >
                       <div className="select-replica__selected">
-                        {state.selectedChain.id ? (
+                        {state.selectedChain ? (
                           <img
-                            src={state.selectedChain.uri}
-                            alt={state.selectedChain.name}
+                            src={chains
+                              .filter(
+                                (chain) => chain.id === state.selectedChain
+                              )
+                              .map((c) => c.url)}
+                            alt={chains
+                              .filter(
+                                (chain) => chain.id === state.selectedChain
+                              )
+                              .map((c) => c.name)}
                           />
                         ) : (
                           "Select an option"
@@ -671,11 +624,9 @@ return (
                           <div
                             key={chain.id}
                             className={`select-replica__option ${
-                              state.selectedChain.name === chain.name
-                                ? "selected"
-                                : ""
+                              selectedOption === chain.name ? "selected" : ""
                             }`}
-                            onClick={() => handleChainChange(chain)}
+                            onClick={() => handleChainChange(chain.id)}
                           >
                             <img src={chain.url} alt={chain.name} />
                           </div>
@@ -716,11 +667,11 @@ return (
               </Card>
               <Card>
                 Mint To:
-                {state.selectedChain.id !== "0" ? (
+                {state.selectedChain !== "0" ? (
                   <Input
                     type="text"
                     placeholder={
-                      state.selectedChain.id == "0" ? accountId : state.sender
+                      state.selectedChain == "0" ? accountId : state.sender
                     }
                     value={state.recipient}
                     onChange={(e) => onChangeRecipient(e.target.value)}
@@ -735,7 +686,7 @@ return (
                     options={allWidgets}
                     onChange={(value) => onChangeRecipient(value)}
                     placeholder={
-                      state.selectedChain.id == "0" ? accountId : state.sender
+                      state.selectedChain == "0" ? accountId : state.sender
                     }
                   />
                 )}
