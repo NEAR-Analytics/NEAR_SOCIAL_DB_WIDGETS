@@ -505,7 +505,7 @@ console.log(
   "Here 🤔 " +
     state.selectedChain +
     " " +
-    chains.filter((chain) => chain.id === state.selectedChain).map((c) => c.url)
+    chains.filter((chain) => chain.id === state.selectedChain)
 );
 
 return (
