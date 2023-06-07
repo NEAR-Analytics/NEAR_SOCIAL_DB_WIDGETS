@@ -37,14 +37,8 @@ const H6 = styled.h6`
   font-weight: 600;
 `;
 
-const Img = styled.img`
-  border-radius: 50%;
-  border: 1px solid black;
-  background-size: cover;
-  background-repeat: no-repeat;
+const ImgContainer = styled.div`
   margin-right: 20px;
-  width: 40px;
-  height: 40px;
 `;
 
 const WarningCircle = styled.div`
@@ -72,7 +66,23 @@ const GroupItem = ({ item }) => (
   <ItemContainer className="d-flex p-3 px-4 bg-light align-items-center rounded mb-3">
     <div className="position-relative">
       {!item.submitted && <WarningCircle />}
-      <Img src={item.src} />
+      <ImgContainer>
+        <Widget
+          src="mob.near/widget/Image"
+          props={{
+            image: { url: item.src },
+            alt: item.title,
+            style: {
+              height: "40px",
+              objectFit: "cover",
+              maxHeight: "40px",
+              borderRadius: "50%",
+            },
+            fallbackUrl:
+              "https://ipfs.near.social/ipfs/bafkreibmiy4ozblcgv3fm3gc6q62s55em33vconbavfd2ekkuliznaq3zm",
+          }}
+        />
+      </ImgContainer>
     </div>
     <div>
       <h6>{item.title}</h6>
@@ -85,7 +95,9 @@ const GroupItem = ({ item }) => (
 
 const ProfileItem = () => (
   <ItemContainer className="d-flex p-3 px-4 bg-light align-items-center rounded mb-3">
-    <Img src={profileImg} />
+    <ImgContainer>
+      <Widget src="mob.near/widget/ProfileImage" />
+    </ImgContainer>
     <div>
       <h6>My Profile</h6>
     </div>
