@@ -555,7 +555,7 @@ return (
             ) : (
               <Card>
                 {state.sender && Ethers.provider() ? (
-                  <div className="form-group">
+                  <SelectGroup className="form-group">
                     <label htmlFor="chainSelect">Select Chain</label>
                     {/*<select
                     className="form-select"
@@ -623,9 +623,9 @@ return (
                         View Transaction
                       </a>
                     )}
-                  </div>
+                  </SelectGroup>
                 ) : accountId ? (
-                  <div>
+                  <SelectGroup>
                     <label htmlFor="chainSelect">Select Chain</label>
                     {/*<SelectTag
                     className="form-select"
@@ -697,7 +697,7 @@ return (
                         connectLabel="Connect with Ethereum Wallet"
                       />
                     </div>
-                  </div>
+                  </SelectGroup>
                 ) : (
                   <Web3Connect
                     className="btn mt-3"
@@ -730,7 +730,7 @@ return (
           <div>
             <Card>
               {state.sender && Ethers.provider() ? (
-                <div className="form-group">
+                <SelectGroup className="form-group">
                   <label htmlFor="chainSelect">Select Chain</label>
                   {/*<select
                     className="form-select"
@@ -797,9 +797,9 @@ return (
                       View Transaction
                     </a>
                   )}
-                </div>
+                </SelectGroup>
               ) : accountId ? (
-                <div>
+                <SelectGroup>
                   <label htmlFor="chainSelect">Select Chain</label>
                   {/*<SelectTag
                     className="form-select"
@@ -870,7 +870,7 @@ return (
                       connectLabel="Connect with Ethereum Wallet"
                     />
                   </div>
-                </div>
+                </SelectGroup>
               ) : (
                 <Web3Connect
                   className="btn mt-3"
