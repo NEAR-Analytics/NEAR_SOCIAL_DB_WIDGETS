@@ -505,7 +505,7 @@ console.log(
   "Here 🤔 " +
     state.selectedChain +
     " " +
-    chains.filter((chain) => chain.id === state.selectedChain)
+    JSON.stringify(chains.filter((chain) => state.selectedChain == chain.id))
 );
 
 return (
