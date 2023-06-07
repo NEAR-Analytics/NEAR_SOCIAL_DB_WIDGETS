@@ -506,9 +506,9 @@ if (!(state.sender || accountId)) {
     toastMessage: "Please Sign in or connect a wallet",
   });
 }
-state.sender &&
-  Ethers.provider() &&
-  console.log("currently on " + state.selectedChain.name);
+// state.sender &&
+//   Ethers.provider() &&
+console.log("currently on " + state.selectedChain.name);
 
 return (
   <>
