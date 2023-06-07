@@ -204,7 +204,7 @@ return (
                 <Widget
                   src="near/widget/DIG.Button"
                   props={{
-                    href: "https://wallet.near.org/linkdrop/v2.keypom.near/2BNMVyPgjXgHtn9xiQkcRLzZYmsh5JyGoeaRV9Tb5rmsbqNrAsuwGPziL6ztsfjxLVzQRwGERA3JGSQ28VEA8NtL",
+                    href: "https://wallet.near.org/linkdrop/v2.keypom.near/4japszHTmC37t94Ep47d16DfPWx3A83BMExt26iH4YgnjDtHJGwpXokeZQoxuogKCvagzAF4DN2wW8ePZvwKKCyj",
                     label: "Get Started",
                     variant: "outline-secondary",
                     size: "large",
