@@ -356,12 +356,26 @@ const selectCustom = () => {
     custom: !state.custom,
   });
 }; // need better helper function for checking whether valid NEAR address
+
+const Heading = styled.h1`
+  margin: 3px auto 3px auto;
+  font-size: 1em;
+  color:#0f1d40;
+  line-height:2.1rem;
+  width:60%;
+  text-align: center;
+  font-family: "SF Pro Display",sans-serif;
+`;
+
 return (
   <div>
     {state.showAlert && (
       <Widget src="jgodwill.near/widget/genalert" props={state} />
     )}
-    <h1 className="text-center"> 🛍️ List NFT to Multiple Marketplaces </h1>
+    <Heading className="text-center fs-2 fw-bold">
+      {" "}
+      🛍️ List NFT to Multiple Marketplaces{" "}
+    </Heading>
     <div>
       <div
         className="p-2 rounded mt-3"
