@@ -501,6 +501,11 @@ if (!(state.sender || accountId)) {
   });
 }
 
+console.log(
+  "Here 🤔 " +
+    chains.filter((chain) => chain.id === state.selectedChain).map((c) => c.url)
+);
+
 return (
   <>
     {state.showAlert && (
@@ -581,11 +586,13 @@ return (
                                 (chain) => chain.id === state.selectedChain
                               )
                               .map((c) => c.url)}
-                            alt={chains
-                              .filter(
-                                (chain) => chain.id === state.selectedChain
-                              )
-                              .map((c) => c.name)}
+                            alt={
+                              chains
+                                .filter(
+                                  (chain) => chain.id === state.selectedChain
+                                )
+                                .map((c) => c.name) || "No value?"
+                            }
                           />
                         ) : (
                           "Select an option"
