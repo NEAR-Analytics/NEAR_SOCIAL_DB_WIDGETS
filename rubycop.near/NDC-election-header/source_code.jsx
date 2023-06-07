@@ -1,3 +1,8 @@
+// props
+// {
+//   "date": "June 20, 2023 1:00:00"
+// }
+
 const countDownDate = new Date(props.date).getTime();
 
 State.init({
