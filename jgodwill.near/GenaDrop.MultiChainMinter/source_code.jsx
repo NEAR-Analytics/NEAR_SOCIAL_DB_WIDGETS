@@ -211,9 +211,13 @@ for (let i = 0; i < accounts.length; ++i) {
 }
 
 const onChangeRecipient = (recipient) => {
-  State.update({
-    recipient: recipient[0],
-  });
+  state.selectedChain === "0"
+    ? State.update({
+        recipient: recipient[0],
+      })
+    : State.update({
+        recipient,
+      });
 };
 
 const handleChainChange = (event) => {
@@ -529,26 +533,29 @@ return (
               </Card>
               <Card>
                 Mint To:
-                {/*<Input
-                  type="text"
-                  placeholder={
-                    state.selectedChain == "0" ? accountId : state.sender
-                  }
-                  value={state.recipient}
-                  onChange={(e) => onChangeRecipient(e.target.value)}
-                />*/}
-                <Typeahead
-                  id="async-example"
-                  className="type-ahead"
-                  isLoading={isLoading}
-                  labelKey="search"
-                  minLength={1}
-                  options={allWidgets}
-                  onChange={(value) => onChangeRecipient(value)}
-                  placeholder={
-                    state.selectedChain == "0" ? accountId : state.sender
-                  }
-                />
+                {state.selectedChain !== "0" ? (
+                  <Input
+                    type="text"
+                    placeholder={
+                      state.selectedChain == "0" ? accountId : state.sender
+                    }
+                    value={state.recipient}
+                    onChange={(e) => onChangeRecipient(e.target.value)}
+                  />
+                ) : (
+                  <Typeahead
+                    id="async-example"
+                    className="type-ahead"
+                    isLoading={isLoading}
+                    labelKey="search"
+                    minLength={1}
+                    options={allWidgets}
+                    onChange={(value) => onChangeRecipient(value)}
+                    placeholder={
+                      state.selectedChain == "0" ? accountId : state.sender
+                    }
+                  />
+                )}
               </Card>
             </Card>
             <button
