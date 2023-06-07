@@ -171,7 +171,7 @@ if (state.sender === undefined) {
       .getNetwork()
       .then((data) => {
         State.update({
-          selectedChain: { id: data.chainId },
+          selectedChain: { id: data },
         });
       });
     conssole.log("data here: " + data);
