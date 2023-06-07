@@ -520,6 +520,7 @@ return (
     <Heading className="text-center fs-2 fw-bold">
       Mint NFT on Multiple chains
     </Heading>
+
     <Main className="container-fluid">
       {!state.image.cid ? (
         <div className="flex-grow-1">
@@ -529,17 +530,85 @@ return (
           </Heading>
           <ImageUploadCard className="flex-grow-1">
             <Elipse />
-            <IpfsImageUpload
-              image={state.image}
-              className="btn text-decoration-none link-primary pe-auto"
-            />
-            <div>
-              <Text>
-                We support .jpg, .jpeg, .png, .webp, .gif files and deploy to
-                Celo, Algorand, Near, and Polygon
-              </Text>
-              <Text>Max file size: 20mb</Text>
-            </div>
+            {accountId || Ethers.provider() ? (
+              <>
+                <IpfsImageUpload
+                  image={state.image}
+                  className="btn text-decoration-none link-primary pe-auto"
+                />
+                <div>
+                  <Text>
+                    We support .jpg, .jpeg, .png, .webp, .gif files and deploy
+                    to Celo, Algorand, Near, and Polygon
+                  </Text>
+                  <Text>Max file size: 20mb</Text>
+                </div>
+              </>
+            ) : (
+              <div className="form-group">
+                <label htmlFor="chainSelect">Select Chain</label>
+                {/*<select
+                    className="form-select"
+                    value={state.selectedChain}
+                    onChange={handleChainChange}
+                  >
+                    {chains.map((chain) => (
+                      <ChainIcon key={chain.id} value={chain.id}>
+                        {chain.name}
+                      </ChainIcon>
+                    ))}
+                  </select>*/}
+                <SelectReplicaContainer onClick={handleOutsideClick}>
+                  <div
+                    className={`select-replica__select ${
+                      state.selectIsOpen ? "open" : ""
+                    }`}
+                    onClick={handleSelectClick}
+                  >
+                    <div className="select-replica__selected">
+                      {chains.filter(
+                        (chain) => chain.id === state.selectedChain.toString()
+                      ) ? (
+                        <img
+                          src={chains
+                            .filter(
+                              (chain) =>
+                                chain.id === state.selectedChain.toString()
+                            )
+                            .map((c) => c.url)}
+                          alt={chains
+                            .filter(
+                              (chain) =>
+                                chain.id === state.selectedChain.toString()
+                            )
+                            .map((c) => c.name)}
+                        />
+                      ) : (
+                        "Select an option"
+                      )}
+                      <span>🔻</span>
+                    </div>
+                    <div
+                      className={`select-replica__options ${
+                        state.selectIsOpen ? "open" : ""
+                      }`}
+                    >
+                      {chains.map((chain) => (
+                        <div
+                          key={chain.id}
+                          className={`select-replica__option ${
+                            selectedOption === chain.name ? "selected" : ""
+                          }`}
+                          onClick={() => handleChainChange(chain.id)}
+                        >
+                          <img src={chain.url} alt={chain.name} />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </SelectReplicaContainer>
+              </div>
+            )}
           </ImageUploadCard>
         </div>
       ) : (
@@ -585,22 +654,22 @@ return (
                       onClick={handleSelectClick}
                     >
                       <div className="select-replica__selected">
-                        {state.selectedChain ? (
+                        {chains.filter(
+                          (chain) => chain.id === state.selectedChain.toString()
+                        ) ? (
                           <img
                             src={chains
                               .filter(
                                 (chain) =>
-                                  state.selectedChain.toString() == chain.id
+                                  chain.id === state.selectedChain.toString()
                               )
                               .map((c) => c.url)}
-                            alt={
-                              chains
-                                .filter(
-                                  (chain) =>
-                                    chain.id === state.selectedChain.toString()
-                                )
-                                .map((c) => c.name) || "No value?"
-                            }
+                            alt={chains
+                              .filter(
+                                (chain) =>
+                                  chain.id === state.selectedChain.toString()
+                              )
+                              .map((c) => c.name)}
                           />
                         ) : (
                           "Select an option"
@@ -657,7 +726,9 @@ return (
                       onClick={handleSelectClick}
                     >
                       <div className="select-replica__selected">
-                        {state.selectedChain ? (
+                        {chains.filter(
+                          (chain) => chain.id === state.selectedChain.toString()
+                        ) ? (
                           <img
                             src={chains
                               .filter(
