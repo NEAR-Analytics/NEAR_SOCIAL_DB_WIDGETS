@@ -170,16 +170,15 @@ if (state.sender === undefined) {
     Ethers.provider()
       .getNetwork()
       .then((data) => {
-        chains.map((chain) => {
-          if (data.chainId === chain.id) {
-            State.update({
-              selectedChain: {
-                id: data.chainId,
-                name: chain.name,
-                uri: chain.url,
-              },
-            });
-          }
+        const newChain = chains.filter((chain) => {
+          return chain.id == data.chainId;
+        });
+        State.update({
+          selectedChain: {
+            id: data.chainId,
+            name: newChain.name,
+            uri: newChain.url,
+          },
         });
       });
     conssole.log("data here: " + data);
