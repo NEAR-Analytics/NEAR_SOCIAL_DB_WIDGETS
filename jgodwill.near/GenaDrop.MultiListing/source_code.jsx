@@ -372,7 +372,7 @@ return (
     {state.showAlert && (
       <Widget src="jgodwill.near/widget/genalert" props={state} />
     )}
-    <Heading className="text-center fs-2 fw-bold">
+    <Heading className="text-center fs-2 fw-bold my-4">
       {" "}
       🛍️ List NFT to Multiple Marketplaces{" "}
     </Heading>
