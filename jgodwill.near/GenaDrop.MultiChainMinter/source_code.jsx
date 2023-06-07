@@ -171,7 +171,7 @@ if (state.sender === undefined) {
       .getNetwork()
       .then((data) => {
         const newChain = chains.filter((chain) => {
-          return chain.id == data.chainId;
+          return chain.id === data.chainId;
         });
         State.update({
           selectedChain: {
@@ -513,9 +513,9 @@ if (!(state.sender || accountId)) {
     toastMessage: "Please Sign in or connect a wallet",
   });
 }
-// state.sender &&
-//   Ethers.provider() &&
-console.log("currently on " + JSON.stringify(state.selectedChain));
+state.sender &&
+  Ethers.provider() &&
+  console.log("currently on " + JSON.stringify(state.selectedChain));
 
 return (
   <>
