@@ -61,6 +61,11 @@ const WarningCircle = styled.div`
 
 const ItemContainer = styled.div`
   border: 1px solid #e3e3e3;
+
+  &:hover {
+    border: 1px solid gray;
+    cursor: pointer;
+  }
 `;
 
 const GroupItem = ({ item }) => (
@@ -78,16 +83,20 @@ const GroupItem = ({ item }) => (
   </ItemContainer>
 );
 
+const ProfileItem = () => (
+  <ItemContainer className="d-flex p-3 px-4 bg-light align-items-center rounded mb-3">
+    <Img src={profileImg} />
+    <div>
+      <h6>My Profile</h6>
+    </div>
+  </ItemContainer>
+);
+
 return (
   <div>
     {props.groups.map((item) => (
       <GroupItem item={item} />
     ))}
-    <ItemContainer className="d-flex p-3 px-4 bg-light align-items-center rounded mb-3">
-      <Img src={profileImg} />
-      <div>
-        <h6>My Profile</h6>
-      </div>
-    </ItemContainer>
+    <ProfileItem />
   </div>
 );
