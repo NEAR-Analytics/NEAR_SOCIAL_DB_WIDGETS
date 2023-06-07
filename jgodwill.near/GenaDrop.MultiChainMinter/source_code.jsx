@@ -242,14 +242,14 @@ const onChangeRecipient = (recipient) => {
       });
 };
 
-const handleChainChange = (event) => {
+const handleChainChange = (chain_id) => {
   console.log(
     "get what we doing:",
-    event.target.value || "no value from event?",
-    event.target.value == "0",
+    chain_id || "no value from event?",
+    chain_id == "0",
     !accountId
   );
-  if (event.target.value == "0") {
+  if (chain_id == "0") {
     if (!accountId) {
       console.log("not what we thought,:", accountId);
       State.update({
@@ -259,18 +259,18 @@ const handleChainChange = (event) => {
       return;
     }
     State.update({
-      selectedChain: event.target.value,
+      selectedChain: chain_id,
     });
   }
   console.log("encts here", Ethers.send);
   Ethers.send("wallet_switchEthereumChain", [
     {
-      chainId: "0x" + Number(event.target.value).toString(16),
+      chainId: "0x" + Number(chain_id).toString(16),
     },
   ]).then((data) => console.log("done!!!", data));
   console.log("what happens after");
   State.update({
-    selectedChain: event.target.value,
+    selectedChain: chain_id,
   });
   console.log("afters", state.selectedChain);
 };
