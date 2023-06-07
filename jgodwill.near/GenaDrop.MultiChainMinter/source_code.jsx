@@ -174,6 +174,7 @@ if (state.sender === undefined) {
           selectedChain: { id: data.chainId },
         });
       });
+    conssole.log("data here: " + data);
   }
 
   console.log("in between", state.sender);
@@ -505,8 +506,9 @@ if (!(state.sender || accountId)) {
     toastMessage: "Please Sign in or connect a wallet",
   });
 }
-
-console.log("currently on " + state.selectedChain.id);
+state.sender &&
+  Ethers.provider() &&
+  console.log("currently on " + state.selectedChain.name);
 
 return (
   <>
