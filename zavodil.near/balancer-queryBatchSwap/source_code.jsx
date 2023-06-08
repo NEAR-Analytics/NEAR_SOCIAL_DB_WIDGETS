@@ -4,7 +4,6 @@ const {
   tokenOut,
   outputAsset,
   amountIn,
-  tokenOutDecimals,
   sender,
   loadRes,
 } = props;
@@ -68,26 +67,25 @@ const funds = [sender, false, sender, false];
 const swap_steps = [
   {
     poolId: finalPool[1],
-    assetIn: inputAsset.metadata.symbol,
-    assetOut: outputAsset.metadata.symbol,
+    assetIn: tokenIn,
+    assetOut: tokenOut,
     amount: amountIn,
   },
 ];
 
 const token_data = {};
-token_data[inputAsset.metadata.symbol] = {
+token_data[tokenIn] = {
   symbol: inputAsset.metadata.symbol,
   decimals: inputAsset.metadata.decimals,
   limit: "0",
 };
-token_data[outputAsset.metadata.symbol] = {
+token_data[tokenOut] = {
   symbol: outputAsset.metadata.symbol,
   decimals: outputAsset.metadata.decimals,
   limit: "0",
 };
 
 var token_addresses = Object.keys(token_data);
-token_addresses.sort();
 const token_indices = {};
 for (var i = 0; i < token_addresses.length; i++) {
   token_indices[token_addresses[i]] = i;
@@ -123,12 +121,19 @@ Ethers.provider()
   .then((data) => {
     const decodedData = iface.decodeFunctionResult("queryBatchSwap", data);
 
-    const estimate = Big(decodedData[0][1].toString())
+    const estimate1 = Big(decodedData[0][1].toString())
       .div(Big(10).pow(outputAsset.metadata.decimals))
       .toFixed(18);
 
-    if (typeof estimate == "string" && estimate[0] == "-") {
-      estimate = estimate.substring(1);
+    const estimate0 = Big(decodedData[0][0].toString())
+      .div(Big(10).pow(outputAsset.metadata.decimals))
+      .toFixed(18);
+
+    let estimate = 0;
+    if (typeof estimate0 == "string" && estimate0[0] == "-") {
+      estimate = estimate0.substring(1);
+    } else if (typeof estimate1 == "string" && estimate1[0] == "-") {
+      estimate = estimate1.substring(1);
     }
 
     State.update({
@@ -144,7 +149,7 @@ Ethers.provider()
 if (state.res !== undefined) {
   if (props.debug) {
     console.log("res", state.res);
-    return <div>{JSON.stringify(state.res)}</div>;
+    return <pre>{JSON.stringify(state.res)}</pre>;
   }
 
   if (typeof loadRes === "function") {
