@@ -380,23 +380,7 @@ return (
       </h1>
       <div class="subtitle-below text-white opacity-75"></div>
     </Gradient>
-    <div class="h5 pb-3">Featured Communities</div>
-    <div class="row">
-      {Object.entries(communities).map(([label, community]) => {
-        return (
-          <div class="col">
-            {widget(
-              "components.community.FeaturedCommunity",
-              {
-                label,
-                ...community,
-              },
-              label
-            )}
-          </div>
-        );
-      })}
-    </div>
+
     <div class="h5 pb-3 pt-5">Activity</div>
   </>
 );
