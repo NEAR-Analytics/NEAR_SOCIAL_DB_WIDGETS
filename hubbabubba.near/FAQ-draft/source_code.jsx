@@ -57,8 +57,8 @@ return (
     <br />
 
     <p>
-      1. Create a <a href="https://wallet.near.org/">NEAR account</a> if you
-      don't have one
+      <strong>1.</strong> Create a{" "}
+      <a href="https://wallet.near.org/">NEAR account</a> if you don't have one
       <br />
       <br />
       <img
@@ -69,7 +69,7 @@ return (
     <br />
     <br />
     <p>
-      2. If you are a founder of a project,{" "}
+      <strong>2.</strong> If you are a founder of a project,{" "}
       <a href="https://near.org/nearhorizon.near/widget/Index?tab=createproject">
         create a project{" "}
       </a>
@@ -84,7 +84,7 @@ return (
     <br />
     <br />
     <p>
-      3.
+      <strong>3.</strong>
       <a href="https://near.org/nearhorizon.near/widget/Index">
         {" "}
         Explore and discover
@@ -101,7 +101,7 @@ return (
     <br />
     <br />
     <p>
-      4.
+      <strong>4.</strong>
       <a href="https://www.youtube.com/watch?v=EN7TIUr_fkg">
         Video explainer
         <br />
@@ -115,7 +115,7 @@ return (
     <br />
     <br />
     <p>
-      5.{" "}
+      <strong>5.</strong>{" "}
       <a href="https://near.org/nearhorizon.near/widget/Index?tab=help">
         Additional help
         <br />
