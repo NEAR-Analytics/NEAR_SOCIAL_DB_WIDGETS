@@ -187,28 +187,6 @@ return (
               <Widget
                 src="near/widget/DIG.Button"
                 props={{
-                  href: "https://nearbuilders.com",
-                  label: "Explore Groups",
-                  variant: "outline-success",
-                  size: "large",
-                }}
-              />
-            </div>
-            <div className="m-1">
-              <Widget
-                src="near/widget/DIG.Button"
-                props={{
-                  href: "#/every.near/widget/browser?path=every.near/thing/test",
-                  label: "Start Projects",
-                  variant: "outline-secondary",
-                  size: "large",
-                }}
-              />
-            </div>
-            <div className="m-1">
-              <Widget
-                src="near/widget/DIG.Button"
-                props={{
                   href: "https://wallet.near.org/linkdrop/v2.keypom.near/2BNMVyPgjXgHtn9xiQkcRLzZYmsh5JyGoeaRV9Tb5rmsbqNrAsuwGPziL6ztsfjxLVzQRwGERA3JGSQ28VEA8NtL",
                   label: "Join Community",
                   variant: "outline-secondary",
@@ -228,28 +206,6 @@ return (
             Begin a New Adventure
           </Text>
           <FlexContainer>
-            <div className="m-1">
-              <Widget
-                src="near/widget/DIG.Button"
-                props={{
-                  href: "https://nearbuilders.com",
-                  label: "Explore Groups",
-                  variant: "outline-success",
-                  size: "large",
-                }}
-              />
-            </div>
-            <div className="m-1">
-              <Widget
-                src="near/widget/DIG.Button"
-                props={{
-                  href: "#/every.near/widget/browser?path=every.near/thing/test",
-                  label: "Start Projects",
-                  variant: "outline-secondary",
-                  size: "large",
-                }}
-              />
-            </div>
             <div className="m-1">
               <Widget
                 src="near/widget/DIG.Button"
