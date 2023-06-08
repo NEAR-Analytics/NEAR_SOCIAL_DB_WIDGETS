@@ -72,9 +72,11 @@ const assets = [tokenIn, tokenOut];
 
 const funds = [sender, false, sender, false];
 
+console.log("finalPool", finalPool);
+
 const swap_steps = [
   {
-    poolId: finalPool[1],
+    poolId: finalPool[0],
     assetIn: tokenIn,
     assetOut: tokenOut,
     amount: amountIn,
@@ -114,6 +116,7 @@ for (const step of swap_steps) {
 const swap_kind = 0;
 
 const iface = new ethers.utils.Interface(abi);
+
 const encodedData = iface.encodeFunctionData("queryBatchSwap", [
   swap_kind,
   swap_steps_struct,
