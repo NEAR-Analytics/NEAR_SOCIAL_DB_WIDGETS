@@ -238,7 +238,7 @@ return (
       <strong>I don’t know how to claim a project</strong>
     </h4>
     <p>
-      Claim a project can be done in two simple steps:
+      Claiming a project can be done in two simple steps:
       <br />
       <br />
       <strong>1.</strong> On the project's profile page, click "Claim Project"
