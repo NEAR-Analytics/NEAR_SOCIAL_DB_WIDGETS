@@ -341,3 +341,196 @@ const isFundraisingDiv = (
     </div>
   </>
 );
+
+const fundraisingDiv = (
+  <div class="d-flex flex-column mb-2">
+    <div className="col-lg-6  mb-2">
+      Currency
+      <select
+        onChange={(event) => State.update({ token: event.target.value })}
+        class="form-select"
+        aria-label="Default select example"
+      >
+        <option selected value="NEAR">
+          NEAR
+        </option>
+        <option value="USDC">USDC</option>
+        <option value="USD">USD</option>
+      </select>
+    </div>
+    <div className="col-lg-6 mb-2">
+      Requested amount <span class="text-muted fw-normal">(Numbers Only)</span>
+      <input
+        type="number"
+        value={parseInt(state.amount) > 0 ? state.amount : ""}
+        min={0}
+        onChange={(event) =>
+          State.update({
+            amount: Number(
+              event.target.value.toString().replace(/e/g, "")
+            ).toString(),
+          })
+        }
+      />
+    </div>
+    <div className="col-lg-6 mb-2">
+      <p class="mb-1">
+        Requested sponsor <span class="text-muted fw-normal">(Optional)</span>
+      </p>
+      <p style={{ fontSize: "13px" }} class="m-0 text-muted fw-light">
+        If you are requesting funding from a specific sponsor, please enter
+        their username.
+      </p>
+      <div class="input-group flex-nowrap">
+        <span class="input-group-text" id="addon-wrapping">
+          @
+        </span>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter username"
+          value={state.supervisor}
+          onChange={(event) => State.update({ supervisor: event.target.value })}
+        />
+      </div>
+    </div>
+  </div>
+);
+
+function generateDescription(text, amount, token, supervisor) {
+  const funding = `###### Requested amount: ${amount} ${token}\n###### Requested sponsor: @${supervisor}\n`;
+  if (amount > 0 && token && supervisor) return funding + text;
+  return text;
+}
+
+return (
+  <div class="bg-light d-flex flex-column flex-grow-1">
+    {widget("components.layout.Banner")}
+    <div class="mx-5 mb-5">
+      <div aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a
+              style={{
+                color: "#3252A6",
+              }}
+              className="fw-bold"
+              href={href("Feed")}
+            >
+              DevHub
+            </a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">
+            Create new
+          </li>
+        </ol>
+      </div>
+      <h4>Create a new post</h4>
+      <p>{state.seekingFunding}</p>
+      <div class="card border-light">
+        <div class="card-body">
+          <p class="card-title fw-bold fs-6">What do you want to create?</p>
+          <div class="d-flex flex-row gap-2">
+            <button
+              onClick={onIdeaClick}
+              type="button"
+              class={`btn btn-outline-secondary`}
+              style={
+                state.postType === "Idea"
+                  ? {
+                      backgroundColor: "#0C7283",
+                      color: "#f3f3f3",
+                    }
+                  : {}
+              }
+            >
+              <i class="bi bi-lightbulb"></i>
+              Idea
+            </button>
+            <button
+              onClick={onSolutionClick}
+              type="button"
+              class={`btn btn-outline-secondary`}
+              style={
+                state.postType !== "Idea"
+                  ? {
+                      backgroundColor: "#0C7283",
+                      color: "#f3f3f3",
+                    }
+                  : {}
+              }
+            >
+              <i class="bi bi-rocket"></i>
+              Solution
+            </button>
+          </div>
+          <p class="text-muted w-75 my-1">
+            {state.postType === "Idea"
+              ? "Get feedback from the community about a problem, opportunity, or need."
+              : "Provide a specific proposal or implementation to an idea, optionally requesting funding. If your solution relates to an existing idea, please reply to the original post with a solution."}
+          </p>
+          {state.warning && (
+            <div
+              class="alert alert-warning alert-dismissible fade show"
+              role="alert"
+            >
+              {state.warning}
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+                aria-label="Close"
+                onClick={() => State.update({ warning: "" })}
+              ></button>
+            </div>
+          )}
+          <div className="row">
+            {nameDiv}
+            {descriptionDiv}
+            {labelEditor}
+            {state.postType === "Solution" && isFundraisingDiv}
+            {state.seekingFunding && fundraisingDiv}
+          </div>
+          <button
+            style={{
+              width: "7rem",
+              backgroundColor: "#0C7283",
+              color: "#f3f3f3",
+            }}
+            className="btn btn-light mb-2 p-3"
+            onClick={onSubmit}
+          >
+            Submit
+          </button>
+        </div>
+        <div class="bg-light d-flex flex-row p-1 border-bottom"></div>
+        <div class="card-body">
+          <p class="text-muted m-0">Preview</p>
+          <div>
+            {widget("components.posts.Post", {
+              isPreview: true,
+              id: 0, // irrelevant
+              post: {
+                author_id: state.author_id,
+                likes: [],
+                snapshot: {
+                  editor_id: state.editor_id,
+                  labels: state.labelStrings,
+                  post_type: state.postType,
+                  name: state.name,
+                  description: generateDescription(
+                    state.description,
+                    state.amount,
+                    state.token,
+                    state.supervisor
+                  ),
+                  github_link: state.githubLink,
+                },
+              },
+            })}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+);
