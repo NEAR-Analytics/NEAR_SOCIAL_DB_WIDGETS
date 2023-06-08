@@ -1,4 +1,6 @@
-const renderComponent = (msg) => <h2>{msg}</h2>;
+const renderComponent = (msg) => (
+  <Widget src="andyh.near/widget/RenderCallbackWidget" props={{ msg }} />
+);
 
 return (
   <div>
