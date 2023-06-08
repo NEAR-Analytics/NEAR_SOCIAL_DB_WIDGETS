@@ -601,3 +601,72 @@ if (!state.interval) {
     interval: true,
   });
 }
+
+const computeResults = (term) => {
+  const start = new Date().getTime();
+  const processedPostsCached = useCache(
+    () =>
+      buildPostsIndex().then((processedPosts) => {
+        // Run query first time posts retrieved
+        const query = term;
+        const processedQuery = spellcheckQueryProcessing(
+          query,
+          processedPosts.index
+        );
+        const searchResult = search(processedQuery, processedPosts.index);
+        console.log(processedQuery);
+        console.log(searchResult);
+        State.update({
+          searchResult,
+          shownSearchResults: searchResult.slice(0, amountOfResultsToShowFirst),
+          processedQuery,
+          loading: false,
+        });
+        return processedPosts;
+      }),
+    "processedPostsCached"
+  );
+  if (processedPostsCached) {
+    // Run query every other time after data retrieved and cached
+    const query = term;
+    const processedQuery = spellcheckQueryProcessing(
+      query,
+      processedPostsCached.index
+    );
+    const searchResult = search(processedQuery, processedPostsCached.index);
+    console.log(processedQuery);
+    console.log(searchResult);
+    State.update({
+      searchResult,
+      shownSearchResults: searchResult.slice(0, 10),
+      processedQuery,
+      loading: false,
+    });
+  }
+  const end = new Date().getTime();
+  console.log("search time: ", end - start);
+};
+
+const updateInput = (term) => {
+  Storage.privateSet("term", term);
+  State.update({
+    term,
+    loading: true,
+  });
+};
+
+const getSearchResultsKeywordsFor = (postId) => {
+  const index = getProcessedPostsCached().index;
+  return state.processedQuery.filter((queryWord) => {
+    return index[queryWord].includes(postId);
+  });
+};
+
+const showMoreSearchResults = () => {
+  const shownSearchResults = state.shownSearchResults || [];
+  const newShownSearchResults = state.searchResult.slice(
+    0,
+    shownSearchResults.length + amountOfResultsToShowFirst
+  );
+  State.update({ shownSearchResults: newShownSearchResults });
+};
