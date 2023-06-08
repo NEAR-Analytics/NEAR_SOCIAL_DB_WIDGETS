@@ -417,7 +417,7 @@ return (
               className="fw-bold"
               href={href("Feed")}
             >
-              DevHub
+              Town Hall
             </a>
           </li>
           <li class="breadcrumb-item active" aria-current="page">
