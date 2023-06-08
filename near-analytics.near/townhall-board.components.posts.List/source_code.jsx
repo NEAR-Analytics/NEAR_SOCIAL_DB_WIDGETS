@@ -80,6 +80,74 @@ function defaultRenderItem(postId, additionalProps) {
   );
 }
 
+const renderItem = props.renderItem ?? defaultRenderItem;
+
+const cachedRenderItem = (item, i) => {
+  if (props.searchResult && props.searchResult.keywords[item]) {
+    return renderItem(item, {
+      searchKeywords: props.searchResult.keywords[item],
+    });
+  }
+
+  const key = JSON.stringify(item);
+
+  if (!(key in state.cachedItems)) {
+    state.cachedItems[key] = renderItem(item);
+    State.update();
+  }
+  return state.cachedItems[key];
+};
+
+const initialRenderLimit = props.initialRenderLimit ?? 3;
+const addDisplayCount = props.nextLimit ?? initialRenderLimit;
+
+function getPostsByLabel() {
+  let postIds = Near.view(nearNFDevsContractAccountId, "get_posts_by_label", {
+    label: props.label,
+  });
+  if (postIds) {
+    postIds.reverse();
+  }
+  return postIds;
+}
+
+function getPostsByAuthor() {
+  let postIds = Near.view(nearNFDevsContractAccountId, "get_posts_by_author", {
+    author: props.author,
+  });
+  if (postIds) {
+    postIds.reverse();
+  }
+  return postIds;
+}
+
+function intersectPostsWithLabel(postIds) {
+  if (props.label) {
+    let postIdLabels = getPostsByLabel();
+    if (postIdLabels === null) {
+      // wait until postIdLabels are loaded
+      return null;
+    }
+    postIdLabels = new Set(postIdLabels);
+    return postIds.filter((id) => postIdLabels.has(id));
+  }
+  return postIds;
+}
+
+function intersectPostsWithAuthor(postIds) {
+  if (props.author) {
+    let postIdsByAuthor = getPostsByAuthor();
+    if (postIdsByAuthor == null) {
+      // wait until postIdsByAuthor are loaded
+      return null;
+    } else {
+      postIdsByAuthor = new Set(postIdsByAuthor);
+      return postIds.filter((id) => postIdsByAuthor.has(id));
+    }
+  }
+  return postIds;
+}
+
 ///////////
 return (
   <>
