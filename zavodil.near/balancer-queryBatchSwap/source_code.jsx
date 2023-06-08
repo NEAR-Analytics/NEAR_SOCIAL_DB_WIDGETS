@@ -47,6 +47,10 @@ const pools = [
     [WETH, USDC, DAI, WBTC, WMATIC],
     "0x945f337307ea76fdaa2590d083423850f64e247f000100000000000000000b98",
   ],
+  [
+    [USDT, WMATIC],
+    "0xab7b5e989641afc86daf1bc2cd0ab21285c23f36000100000000000000000a80",
+  ],
 ];
 
 const finalPool = pools
