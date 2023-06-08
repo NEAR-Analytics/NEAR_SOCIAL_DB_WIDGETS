@@ -432,3 +432,181 @@ const EditorWidget = (postType) => {
     </div>
   );
 };
+
+const editorsFooter = props.isPreview ? null : (
+  <div class="row" id={`accordion${postId}`} key="editors-footer">
+    {CreatorWidget("Comment")}
+    {EditorWidget("Comment")}
+    {CreatorWidget("Idea")}
+    {EditorWidget("Idea")}
+    {CreatorWidget("Submission")}
+    {EditorWidget("Submission")}
+    {CreatorWidget("Attestation")}
+    {EditorWidget("Attestation")}
+    {CreatorWidget("Sponsorship")}
+    {EditorWidget("Sponsorship")}
+    {CreatorWidget("Github")}
+    {EditorWidget("Github")}
+  </div>
+);
+
+const renamedPostType =
+  snapshot.post_type == "Submission" ? "Solution" : snapshot.post_type;
+
+const postLabels = post.snapshot.labels ? (
+  <div class="card-title" key="post-labels">
+    {post.snapshot.labels.map((label) => {
+      return (
+        <a href={href("Feed", { label }, label)}>
+          <span class="badge text-bg-primary me-1">{label}</span>
+        </a>
+      );
+    })}
+  </div>
+) : (
+  <div key="post-labels"></div>
+);
+
+const postTitle =
+  snapshot.post_type == "Comment" ? (
+    <div key="post-title"></div>
+  ) : (
+    <h5 class="card-title" key="post-title">
+      <div className="row justify-content-between">
+        <div class="col-9">
+          <i class={`bi ${emptyIcons[snapshot.post_type]}`}> </i>
+          {renamedPostType}: {snapshot.name}
+        </div>
+      </div>
+    </h5>
+  );
+
+const postExtra =
+  snapshot.post_type == "Sponsorship" ? (
+    <div key="post-extra">
+      <h6 class="card-subtitle mb-2 text-muted">
+        Maximum amount: {snapshot.amount} {snapshot.sponsorship_token}
+      </h6>
+      <h6 class="card-subtitle mb-2 text-muted">
+        Supervisor:{" "}
+        <Widget
+          src={`neardevgov.near/widget/ProfileLine`}
+          props={{ accountId: snapshot.supervisor }}
+        />
+      </h6>
+    </div>
+  ) : (
+    <div></div>
+  );
+
+const postsList =
+  props.isPreview || childPostIds.length == 0 ? (
+    <div key="posts-list"></div>
+  ) : (
+    <div class="row" key="posts-list">
+      <div
+        class={`collapse ${defaultExpanded ? "show" : ""}`}
+        id={`collapseChildPosts${postId}`}
+      >
+        {childPostIds.map((childId) =>
+          widget(
+            "components.posts.Post",
+            { id: childId, isUnderPost: true },
+            `subpost${childId}of${postId}`
+          )
+        )}
+      </div>
+    </div>
+  );
+
+const limitedMarkdown = styled.div`
+  max-height: 20em;
+`;
+
+const clampMarkdown = styled.div`
+  .clamp {
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 1),
+      rgba(0, 0, 0, 0)
+    );
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+  }
+`;
+
+// Determine if located in the post page.
+const isInList = props.isInList;
+const contentArray = snapshot.description.split("\n");
+const needClamp = isInList && contentArray.length > 5;
+
+initState({
+  clamp: needClamp,
+});
+
+const clampedContent = needClamp
+  ? contentArray.slice(0, 5).join("\n")
+  : snapshot.description;
+
+const onMention = (accountId) => (
+  <span key={accountId} className="d-inline-flex" style={{ fontWeight: 500 }}>
+    <Widget
+      src="neardevgov.near/widget/ProfileLine"
+      props={{
+        accountId: accountId.toLowerCase(),
+        hideAccountId: true,
+        tooltip: true,
+      }}
+    />
+  </span>
+);
+
+// Should make sure the posts under the currently top viewed post are limited in size.
+const descriptionArea = isUnderPost ? (
+  <limitedMarkdown className="overflow-auto" key="description-area">
+    <Markdown
+      class="card-text"
+      text={snapshot.description}
+      onMention={onMention}
+    />
+  </limitedMarkdown>
+) : (
+  <clampMarkdown>
+    <div class={state.clamp ? "clamp" : ""}>
+      <Markdown
+        class="card-text"
+        text={state.clamp ? clampedContent : snapshot.description}
+        onMention={onMention}
+        key="description-area"
+      ></Markdown>
+    </div>
+    {state.clamp ? (
+      <div class="d-flex justify-content-center">
+        <a
+          class="btn btn-link text-secondary"
+          onClick={() => State.update({ clamp: false })}
+        >
+          Read More
+        </a>
+      </div>
+    ) : (
+      <></>
+    )}
+  </clampMarkdown>
+);
+
+return (
+  <Card className={`card my-2 ${borders[snapshot.post_type]}`}>
+    {linkToParent}
+    {header}
+    <div className="card-body">
+      {searchKeywords}
+      {postLabels}
+      {postTitle}
+      {postExtra}
+      {descriptionArea}
+      {buttonsFooter}
+      {editorsFooter}
+      {postsList}
+    </div>
+  </Card>
+);
