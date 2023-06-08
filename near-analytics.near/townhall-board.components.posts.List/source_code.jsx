@@ -148,6 +148,98 @@ function intersectPostsWithAuthor(postIds) {
   return postIds;
 }
 
+const ONE_DAY = 60 * 60 * 24 * 1000;
+const ONE_WEEK = 60 * 60 * 24 * 1000 * 7;
+const ONE_MONTH = 60 * 60 * 24 * 1000 * 30;
+
+function getHotnessScore(post) {
+  //post.id - shows the age of the post, should grow exponentially, since newer posts are more important
+  //post.likes.length - linear value
+  const age = Math.pow(post.id, 5);
+  const comments = post.comments;
+  const commentAge = comments.reduce((sum, age) => sum + Math.pow(age, 5), 0);
+  const totalAge = age + commentAge;
+  //use log functions to make likes score and exponentially big age score close to each other
+  return Math.log10(post.likes.length) + Math.log(Math.log10(totalAge));
+}
+
+const getPeriodText = (period) => {
+  let text = "Last 24 hours";
+  if (period === "week") {
+    text = "Last week";
+  }
+  if (period === "month") {
+    text = "Last month";
+  }
+  return text;
+};
+
+const findHottestsPosts = (postIds, period) => {
+  let allPosts;
+  if (!state.allPosts) {
+    allPosts = Near.view("near-analytics.near", "get_posts");
+    if (!allPosts) {
+      return [];
+    }
+    State.update({ allPosts });
+  } else {
+    allPosts = state.allPosts;
+  }
+  let postIdsSet = new Set(postIds);
+  let posts = allPosts.filter((post) => postIdsSet.has(post.id));
+
+  let periodTime = ONE_DAY;
+  if (period === "week") {
+    periodTime = ONE_WEEK;
+  }
+  if (period === "month") {
+    periodTime = ONE_MONTH;
+  }
+  const periodLimitedPosts = posts.filter((post) => {
+    const timestamp = post.snapshot.timestamp / 1000000;
+    return Date.now() - timestamp < periodTime;
+  });
+  const modifiedPosts = periodLimitedPosts.map((post) => {
+    const comments =
+      Near.view("near-analytics.near", "get_children_ids", {
+        post_id: post.id,
+      }) || [];
+    post = { ...post, comments };
+    return {
+      ...post,
+      postScore: getHotnessScore(post),
+    };
+  });
+  modifiedPosts.sort((a, b) => b.postScore - a.postScore);
+  return modifiedPosts.map((post) => post.id);
+};
+
+let postIds;
+if (props.searchResult) {
+  postIds = props.searchResult.postIds;
+  postIds = intersectPostsWithLabel(postIds);
+  postIds = intersectPostsWithAuthor(postIds);
+} else if (props.label) {
+  postIds = getPostsByLabel();
+  postIds = intersectPostsWithAuthor(postIds);
+} else if (props.author) {
+  postIds = getPostsByAuthor();
+} else if (props.recency == "all") {
+  postIds = Near.view(nearNFDevsContractAccountId, "get_all_post_ids");
+  if (postIds) {
+    postIds.reverse();
+  }
+} else {
+  postIds = Near.view(nearNFDevsContractAccountId, "get_children_ids");
+  if (postIds) {
+    postIds.reverse();
+  }
+}
+
+if (props.recency == "hot") {
+  postIds = findHottestsPosts(postIds, state.period);
+}
+
 ///////////
 return (
   <>
