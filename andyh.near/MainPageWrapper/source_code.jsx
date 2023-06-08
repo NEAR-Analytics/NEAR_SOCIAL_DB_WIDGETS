@@ -1,1 +1,1 @@
-return <Widget id="andyh.near/widget/MainPage.Compose" />;
+return <Widget src="andyh.near/widget/MainPage.Compose" />;
