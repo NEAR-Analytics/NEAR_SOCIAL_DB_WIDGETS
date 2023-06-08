@@ -240,6 +240,64 @@ if (props.recency == "hot") {
   postIds = findHottestsPosts(postIds, state.period);
 }
 
+const loader = (
+  <div className="loader" key={"loader"}>
+    <span
+      className="spinner-grow spinner-grow-sm me-1"
+      role="status"
+      aria-hidden="true"
+    />
+    Loading ...
+  </div>
+);
+
+if (postIds === null) {
+  return loader;
+}
+const initialItems = postIds;
+//const initialItems = postIds.map(postId => ({ id: postId, ...Near.view(nearNFDevsContractAccountId, "get_post", { post_id: postId }) }));
+
+// const computeFetchFrom = (items, limit) => {
+//   if (!items || items.length < limit) {
+//     return false;
+//   }
+//   const blockHeight = items[items.length - 1].blockHeight;
+//   return index.options.order === "desc" ? blockHeight - 1 : blockHeight + 1;
+// };
+
+// const mergeItems = (newItems) => {
+//   const items = [
+//     ...new Set([...newItems, ...state.items].map((i) => JSON.stringify(i))),
+//   ].map((i) => JSON.parse(i));
+//   items.sort((a, b) => a.blockHeight - b.blockHeight);
+//   if (index.options.order === "desc") {
+//     items.reverse();
+//   }
+//   return items;
+// };
+
+const jInitialItems = JSON.stringify(initialItems);
+if (state.jInitialItems !== jInitialItems) {
+  // const jIndex = JSON.stringify(index);
+  // if (jIndex !== state.jIndex) {
+  State.update({
+    jIndex,
+    jInitialItems,
+    items: initialItems,
+    fetchFrom: false,
+    //nextFetchFrom: computeFetchFrom(initialItems, index.options.limit),
+    nextFetchFrom: false,
+    displayCount: initialRenderLimit,
+    cachedItems: {},
+  });
+  // } else {
+  //   State.update({
+  //     jInitialItems,
+  //     items: mergeItems(initialItems),
+  //   });
+  // }
+}
+
 ///////////
 return (
   <>
