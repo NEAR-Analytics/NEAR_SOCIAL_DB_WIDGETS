@@ -150,8 +150,51 @@ const mockTeamMembers = [
 ];
 /* END_INCLUDE: "mockcommunity.jsx" */
 
-// Define your Sidebar component
-function Sidebar({ community }) {
+const CardContainer = styled.div`
+  border: 1px solid #ccc;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+`;
+
+const CardTitle = styled.h3`
+  margin-bottom: 8px;
+`;
+
+const CardContent = styled.p`
+  margin-bottom: 8px;
+`;
+
+const Card = ({ title, content }) => (
+  <CardContainer>
+    <CardTitle>{title}</CardTitle>
+    <CardContent>{content}</CardContent>
+  </CardContainer>
+);
+
+const TeamMember = ({ member }) => (
+  <div className="d-flex align-items-center mb-3 justify-content-between">
+    <div className="d-flex align-items-center">
+      <img
+        src={member.avatar}
+        alt={member.id}
+        style={{ width: "50px", height: "50px", borderRadius: "50%" }}
+        className="mr-3"
+      />
+      <strong>{member.id}</strong>
+    </div>
+    <span>{member.role}</span>
+  </div>
+);
+
+function Sidebar({
+  community,
+  mockTeamMembers,
+  Widget,
+  Markdown,
+  SocialMediaIcons,
+}) {
   const onMention = (accountId) => (
     <span key={accountId} className="d-inline-flex" style={{ fontWeight: 500 }}>
       <Widget
@@ -165,41 +208,16 @@ function Sidebar({ community }) {
     </span>
   );
 
-  const CommunitySummary = (
+  const CommunitySummary = () => (
     <div>
-      {/* Use short description from communities data */}
       <Markdown text={community.desc} onMention={onMention} />
       {SocialMediaIcons}
       <div className="d-flex justify-content-between align-items-center"></div>
     </div>
   );
 
-  /* Card components */
-  const CardContainer = styled.div`
-    border: 1px solid #ccc;
-    padding: 16px;
-    border-radius: 8px;
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
-  `;
-
-  const CardTitle = styled.h3`
-    margin-bottom: 8px;
-  `;
-
-  const CardContent = styled.p`
-    margin-bottom: 8px;
-  `;
-
-  const Card = ({ title, content }) => (
-    <CardContainer>
-      <CardTitle>{title}</CardTitle>
-      <CardContent>{content}</CardContent>
-    </CardContainer>
-  );
-
-  const CommunityOverview = (
-    <Card content={CommunitySummary} title={community.title} />
+  const CommunityOverview = () => (
+    <Card content={<CommunitySummary />} title={community.title} />
   );
 
   // Define a role ranking map
@@ -215,45 +233,28 @@ function Sidebar({ community }) {
     return roleRanking[a.role] - roleRanking[b.role];
   };
 
-  const sortedTeamMembers = mockTeamMembers.sort(sortMembersByRole);
+  const sortedTeamMembers = [...mockTeamMembers].sort(sortMembersByRole);
 
-  const TeamMember = ({ member }) => (
-    <div className="d-flex align-items-center mb-3 justify-content-between">
-      <div className="d-flex align-items-center">
-        <img
-          src={member.avatar}
-          alt={member.id}
-          style={{ width: "50px", height: "50px", borderRadius: "50%" }}
-          className="mr-3"
-        />
-        <strong>{member.id}</strong>
-      </div>
-      <span>{member.role}</span>
-    </div>
-  );
+  const TeamMembersList = () =>
+    sortedTeamMembers.map((member) => (
+      <TeamMember key={member.id} member={member} />
+    ));
 
-  // Team Members List
-  const TeamMembersList = sortedTeamMembers.map((member) => (
-    <TeamMember key={member.id} member={member} />
-  ));
-
-  // More Info Button
-  const MoreInfoButton = (
+  const MoreInfoButton = () => (
     <div className="row justify-content-center">
-      <button type="button" class="btn btn-link">
+      <button type="button" className="btn btn-link">
         More Info
       </button>
     </div>
   );
 
-  // Team Card
-  const TeamsCard = (
+  const TeamsCard = () => (
     <Card
       title={"Team Members"}
       content={
         <div>
-          {TeamMembersList}
-          {MoreInfoButton}
+          <TeamMembersList />
+          <MoreInfoButton />
         </div>
       }
     />
@@ -261,9 +262,11 @@ function Sidebar({ community }) {
 
   return (
     <div>
-      {CommunityOverview}
-      <br></br>
-      {TeamsCard}
+      <div className="col-xs-12 col-md-4">
+        <CommunityOverview />
+        <br />
+        <TeamsCard />
+      </div>
     </div>
   );
 }
