@@ -187,3 +187,71 @@ const synonyms = {
   paid: "pai",
   src: "sourc",
 };
+
+const applySynonym = (word) => {
+  if (synonyms.hasOwnProperty(word.toLowerCase())) {
+    return synonyms[word];
+  }
+  return word;
+};
+//////////////////////////////////////////////////////////////////////
+///STEMMING///////////////////////////////////////////////////////////
+const step2list = {
+  ational: "ate",
+  tional: "tion",
+  enci: "ence",
+  anci: "ance",
+  izer: "ize",
+  bli: "ble",
+  alli: "al",
+  entli: "ent",
+  eli: "e",
+  ousli: "ous",
+  ization: "ize",
+  ation: "ate",
+  ator: "ate",
+  alism: "al",
+  iveness: "ive",
+  fulness: "ful",
+  ousness: "ous",
+  aliti: "al",
+  iviti: "ive",
+  biliti: "ble",
+  logi: "log",
+};
+
+/** @type {Record<string, string>} */
+const step3list = {
+  icate: "ic",
+  ative: "",
+  alize: "al",
+  iciti: "ic",
+  ical: "ic",
+  ful: "",
+  ness: "",
+};
+
+const gt0 = /^([^aeiou][^aeiouy]*)?([aeiouy][aeiou]*)([^aeiou][^aeiouy]*)/;
+const eq1 =
+  /^([^aeiou][^aeiouy]*)?([aeiouy][aeiou]*)([^aeiou][^aeiouy]*)([aeiouy][aeiou]*)?$/;
+const gt1 =
+  /^([^aeiou][^aeiouy]*)?(([aeiouy][aeiou]*)([^aeiou][^aeiouy]*)){2,}/;
+const vowelInStem = /^([^aeiou][^aeiouy]*)?[aeiouy]/;
+const consonantLike = /^([^aeiou][^aeiouy]*)[aeiouy][^aeiouwxy]$/;
+
+// Exception expressions.
+const sfxLl = /ll$/;
+const sfxE = /^(.+?)e$/;
+const sfxY = /^(.+?)y$/;
+const sfxIon = /^(.+?(s|t))(ion)$/;
+const sfxEdOrIng = /^(.+?)(ed|ing)$/;
+const sfxAtOrBlOrIz = /(at|bl|iz)$/;
+const sfxEED = /^(.+?)eed$/;
+const sfxS = /^.+?[^s]s$/;
+const sfxSsesOrIes = /^.+?(ss|i)es$/;
+const sfxMultiConsonantLike = /([^aeiouylsz])\1$/;
+const step2 =
+  /^(.+?)(ational|tional|enci|anci|izer|bli|alli|entli|eli|ousli|ization|ation|ator|alism|iveness|fulness|ousness|aliti|iviti|biliti|logi)$/;
+const step3 = /^(.+?)(icate|ative|alize|iciti|ical|ful|ness)$/;
+const step4 =
+  /^(.+?)(al|ance|ence|er|ic|able|ible|ant|ement|ment|ent|ou|ism|ate|iti|ous|ive|ize)$/;
