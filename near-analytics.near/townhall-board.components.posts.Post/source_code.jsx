@@ -242,3 +242,193 @@ const borders = {
   Sponsorship: "border-secondary",
   Github: "border-secondary",
 };
+
+const containsLike = props.isPreview
+  ? false
+  : post.likes.find((l) => l.author_id == context.accountId);
+const likeBtnClass = containsLike ? fillIcons.Like : emptyIcons.Like;
+// This must be outside onLike, because Near.view returns null at first, and when the view call finished, it returns true/false.
+// If checking this inside onLike, it will give `null` and we cannot tell the result is true or false.
+let grantNotify = Near.view("social.near", "is_write_permission_granted", {
+  predecessor_id: nearNFDevsContractAccountId,
+  key: context.accountId + "/index/notify",
+});
+if (grantNotify === null) {
+  return;
+}
+const onLike = () => {
+  if (!context.accountId) {
+    return;
+  }
+  let likeTxn = [
+    {
+      contractName: nearNFDevsContractAccountId,
+      methodName: "add_like",
+      args: {
+        post_id: postId,
+      },
+      deposit: Big(10).pow(21).mul(2),
+      gas: Big(10).pow(12).mul(100),
+    },
+  ];
+
+  if (grantNotify === false) {
+    likeTxn.unshift({
+      contractName: "social.near",
+      methodName: "grant_write_permission",
+      args: {
+        predecessor_id: nearNFDevsContractAccountId,
+        keys: [context.accountId + "/index/notify"],
+      },
+      deposit: Big(10).pow(23),
+      gas: Big(10).pow(12).mul(30),
+    });
+  }
+  Near.call(likeTxn);
+};
+
+const btnCreatorWidget = (postType, icon, name, desc) => {
+  return (
+    <li class="py-1">
+      <a
+        class="dropdown-item text-decoration-none d-flex align-items-center lh-sm"
+        style={{ color: "rgb(55,109,137)" }}
+        data-bs-toggle="collapse"
+        href={`#collapse${postType}Creator${postId}`}
+        role="button"
+        aria-expanded="false"
+        aria-controls={`collapse${postType}Creator${postId}`}
+      >
+        <i class={`bi ${icon}`} style={{ fontSize: "1.5rem" }}>
+          {" "}
+        </i>
+        <div class="ps-2 text-wrap" style={{ width: "18rem" }}>
+          <div>{name}</div>
+          <small class="fw-light text-secondary">{desc}</small>
+        </div>
+      </a>
+    </li>
+  );
+};
+
+const buttonsFooter = props.isPreview ? null : (
+  <div class="row" key="buttons-footer">
+    <div class="col-8">
+      <div class="btn-group" role="group" aria-label="Basic outlined example">
+        <button
+          type="button"
+          class="btn btn-outline-primary"
+          style={{ border: "0px" }}
+          onClick={onLike}
+        >
+          <i class={`bi ${likeBtnClass}`}> </i>
+          {post.likes.length == 0
+            ? "Like"
+            : widget("components.layout.LikeButton.Faces", {
+                likesByUsers: Object.fromEntries(
+                  post.likes.map(({ author_id }) => [author_id, ""])
+                ),
+              })}
+        </button>
+        <div class="btn-group" role="group">
+          <button
+            type="button"
+            class="btn btn-outline-primary"
+            style={{ border: "0px" }}
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <i class={`bi ${emptyIcons.Reply}`}> </i> Reply
+          </button>
+          <ul class="dropdown-menu">
+            {btnCreatorWidget(
+              "Idea",
+              emptyIcons.Idea,
+              "Idea",
+              "Get feedback from the community about a problem, opportunity, or need."
+            )}
+            {btnCreatorWidget(
+              "Submission",
+              emptyIcons.Submission,
+              "Solution",
+              "Provide a specific proposal or implementation to an idea, optionally requesting funding."
+            )}
+            {btnCreatorWidget(
+              "Attestation",
+              emptyIcons.Attestation,
+              "Attestation",
+              "Formally review or validate a solution as a recognized expert."
+            )}
+            {btnCreatorWidget(
+              "Sponsorship",
+              emptyIcons.Sponsorship,
+              "Sponsorship",
+              "Offer to fund projects, events, or proposals that match your needs."
+            )}
+            <li>
+              <hr class="dropdown-divider" />
+            </li>
+            {btnCreatorWidget(
+              "Comment",
+              emptyIcons.Comment,
+              "Comment",
+              "Ask a question, provide information, or share a resource that is relevant to the thread."
+            )}
+          </ul>
+        </div>
+        <button
+          type="button"
+          class="btn btn-outline-primary"
+          style={{ border: "0px" }}
+          data-bs-toggle="collapse"
+          href={`#collapseChildPosts${postId}`}
+          aria-expanded={defaultExpanded}
+          aria-controls={`collapseChildPosts${postId}`}
+        >
+          <i class="bi bi-arrows-expand"> </i>{" "}
+          {`Expand Replies (${childPostIds.length})`}
+        </button>
+      </div>
+    </div>
+  </div>
+);
+
+const CreatorWidget = (postType) => {
+  return (
+    <div
+      class="collapse"
+      id={`collapse${postType}Creator${postId}`}
+      data-bs-parent={`#accordion${postId}`}
+    >
+      {widget("components.posts.PostEditor", {
+        postType,
+        parentId: postId,
+        mode: "Create",
+      })}
+    </div>
+  );
+};
+
+const EditorWidget = (postType) => {
+  return (
+    <div
+      class="collapse"
+      id={`collapse${postType}Editor${postId}`}
+      data-bs-parent={`#accordion${postId}`}
+    >
+      {widget("components.posts.PostEditor", {
+        postType,
+        postId,
+        mode: "Edit",
+        author_id: post.author_id,
+        labels: post.snapshot.labels,
+        name: post.snapshot.name,
+        description: post.snapshot.description,
+        amount: post.snapshot.amount,
+        token: post.snapshot.sponsorship_token,
+        supervisor: post.snapshot.supervisor,
+        githubLink: post.snapshot.github_link,
+      })}
+    </div>
+  );
+};
