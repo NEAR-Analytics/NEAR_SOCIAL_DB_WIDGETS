@@ -362,3 +362,93 @@ function stemmer(value) {
 
   return result;
 }
+
+//////////////////////////////////////////////////////////////////////
+///SPELLCHECK/////////////////////////////////////////////////////////
+function levenshteinDistance(s, t, threshold) {
+  const BIG_NUMBER = 10000;
+  if (s == null || t == null) {
+    return BIG_NUMBER;
+  }
+  if (threshold < 0) {
+    return BIG_NUMBER;
+  }
+  let n = s.length;
+  let m = t.length;
+  if (Math.abs(n - m) >= threshold) {
+    return BIG_NUMBER;
+  }
+
+  // if one string is empty, the edit distance is necessarily the length of the other
+  if (n == 0) {
+    return m <= threshold ? m : BIG_NUMBER;
+  } else if (m == 0) {
+    return n <= threshold ? n : BIG_NUMBER;
+  }
+
+  if (n > m) {
+    // swap the two strings to consume less memory
+    let temp = s;
+    s = t;
+    t = temp;
+    let tempSize = n;
+    n = m;
+    m = tempSize;
+  }
+
+  let p = Array.from({ length: n + 1 }, () => 0); // 'previous' cost array, horizontally
+  let d = Array.from({ length: n + 1 }, () => 0); // cost array, horizontally
+  let _d; // placeholder to assist in swapping p and d
+
+  // fill in starting table values
+  const boundary = Math.min(n, threshold) + 1;
+  for (let i = 0; i < boundary; i++) {
+    p[i] = i;
+  }
+  // these fills ensure that the value above the rightmost entry of our
+  // stripe will be ignored in following loop iterations
+  for (let i = boundary; i < p.length; i++) {
+    p[i] = BIG_NUMBER;
+  }
+  for (let i = 0; i < d.length; i++) {
+    d[i] = BIG_NUMBER;
+  }
+
+  // iterates through t
+  for (let j = 1; j <= m; j++) {
+    const t_j = t.charAt(j - 1); // jth character of t
+    d[0] = j;
+
+    // compute stripe indices, constrain to array size
+    const min = Math.max(1, j - threshold);
+    const max = j > BIG_NUMBER - threshold ? n : Math.min(n, j + threshold);
+
+    // the stripe may lead off of the table if s and t are of different sizes
+    if (min > max) {
+      return BIG_NUMBER;
+    }
+
+    // ignore entry left of leftmost
+    if (min > 1) {
+      d[min - 1] = BIG_NUMBER;
+    }
+
+    // iterates through [min, max] in s
+    for (let i = min; i <= max; i++) {
+      if (s.charAt(i - 1) == t_j) {
+        // diagonally left and up
+        d[i] = p[i - 1];
+      } else {
+        // 1 + minimum of cell to the left, to the top, diagonally left and up
+        d[i] = 1 + Math.min(Math.min(d[i - 1], p[i]), p[i - 1]);
+      }
+    }
+
+    // copy current distance counts to 'previous row' distance counts
+    _d = p;
+    p = d;
+    d = _d;
+  }
+  // we don't need to check for threshold here because we did it inside the loop
+  return p[n] <= threshold ? p[n] : BIG_NUMBER;
+}
