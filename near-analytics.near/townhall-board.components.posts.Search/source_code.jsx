@@ -485,3 +485,73 @@ const spellcheckQueryProcessing = (query, dictionary) => {
   }
   return words.filter((word) => !!word);
 };
+
+//////////////////////////////////////////////////////////////////////
+///INDEXER&SEARCH/////////////////////////////////////////////////////
+const fillDictionaryWith = (dict, text, id) => {
+  let word = "";
+  for (let i = 0; i < text.length; i++) {
+    const char = text.charAt(i);
+    const nextChar = text.charAt(i + 1);
+    if (/\w/.test(char) || (char === "." && /\w/.test(nextChar))) {
+      word += char.toLowerCase();
+    } else if (word.length > 0) {
+      const processedWord = applySynonym(stemmer(word));
+      if (processedWord.length > 1 && !isStopWord(processedWord)) {
+        const oldValue = dict[processedWord] || [];
+        dict[processedWord] = [...oldValue, id];
+      }
+      word = "";
+    }
+  }
+  const processedWord = applySynonym(stemmer(word));
+  if (processedWord.length > 1 && !isStopWord(processedWord)) {
+    const oldValue = dict[stemmer(processedWord)] || [];
+    dict[stemmer(processedWord)] = [...oldValue, id];
+  }
+  return dict;
+};
+
+const buildIndex = (posts) => {
+  let index = {};
+
+  posts.forEach((post) => {
+    const title = post.snapshot.name;
+    const labels = post.snapshot.labels.join(" ");
+    const text = post.snapshot.description;
+    const postType = post.snapshot.post_type;
+    const authorId = post.author_id;
+    const postText = `${authorId} ${postType} ${title} ${labels} ${text}`;
+    index = fillDictionaryWith(index, postText, post.id);
+  });
+  return index;
+};
+
+const stemAndFilterQuery = (query) => {
+  return Object.keys(fillDictionaryWith({}, query));
+};
+
+const sortSearchResult = (searchResult) => {
+  // create a map to count the frequency of each element
+  const freq = new Map();
+  for (const num of searchResult) {
+    freq.set(num, (freq.get(num) || 0) + 1);
+  }
+
+  // define a custom comparison function to sort the array
+  function compare(a, b) {
+    // compare the frequency of the two elements
+    const freqDiff = freq.get(b) - freq.get(a);
+    if (freqDiff !== 0) {
+      return freqDiff; // if they have different frequency, sort by frequency
+    } else {
+      return 0; // if they have the same frequency, leave as it is. Will be sorted by search term, by date
+    }
+  }
+
+  // sort the array using the custom comparison function
+  searchResult.sort(compare);
+  return searchResult.filter(
+    (elem, index) => searchResult.indexOf(elem) === index
+  );
+};
