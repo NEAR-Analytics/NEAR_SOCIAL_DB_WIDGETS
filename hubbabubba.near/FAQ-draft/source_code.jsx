@@ -95,7 +95,7 @@ return (
       <img
         src="https://s3.us-east-2.amazonaws.com/nearhorizon.assets/nh_app_landing.png"
         alt="horizon app landing page"
-        width="70%"
+        width="50%"
       />
     </p>
     <br />
@@ -123,7 +123,7 @@ return (
         <img
           src="https://s3.us-east-2.amazonaws.com/nearhorizon.assets/nh_app_help-pg.png"
           alt="horizon help page"
-          width="70%"
+          width="50%"
         />
       </a>
     </p>
@@ -178,7 +178,7 @@ return (
     <img
       src="https://s3.us-east-2.amazonaws.com/nearhorizon.assets/nh_project_search.jpg"
       alt="Project search"
-      width="70%"
+      width="50%"
     />
     <br />
     <br />
@@ -198,7 +198,7 @@ return (
     <img
       src="https://s3.us-east-2.amazonaws.com/nearhorizon.assets/nh_stats.jpg"
       alt="atlas stats"
-      width="70%"
+      width="50%"
     />
     <br />
     <br />
@@ -213,7 +213,7 @@ return (
     <br />
     <img
       src="https://s3.us-east-2.amazonaws.com/nearhorizon.assets/error-msg_project-create.png"
-      width="70%"
+      width="50%"
       alt="alt_text"
       title="image_tooltip"
     />
@@ -245,7 +245,7 @@ return (
       <br />
       <img
         src="https://s3.us-east-2.amazonaws.com/nearhorizon.assets/nh_claim_project_cta.png"
-        width="70%"
+        width="50%"
       />
       <br />
       <br />
@@ -253,7 +253,7 @@ return (
       team will review your request and add you as the admin to the project.
       <img
         src="https://s3.us-east-2.amazonaws.com/nearhorizon.assets/nh_app_claim_project_form.png"
-        width="70%"
+        width="50%"
       />
       <br />
     </p>
