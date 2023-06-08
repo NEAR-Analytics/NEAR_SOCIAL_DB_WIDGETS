@@ -2,8 +2,6 @@ const apiUrl = " https://api.indexer.xyz/graphql";
 const apiKey = "Krqwh4b.bae381951d6050d351945c0c750f1510";
 const apiUser = "Banyan";
 
-State.init({ allSui: [] });
-
 const headers = {
   "x-api-key": apiKey,
   "x-api-user": apiUser,
@@ -105,25 +103,51 @@ const query = {
   },
 };
 
-fetch(apiUrl, {
-  method: "POST",
-  headers,
-  body: JSON.stringify(query),
-})
-  .then((response) => response.json())
-  .then((data) => {
-    // Process the API response data
-    // console.log(data.data.sui)
-
-    const nfts = data.data.sui.nfts;
-    console.log(nfts);
-    // State.update({allSui: })
+function fetchData() {
+  let nfts;
+  fetch(apiUrl, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(query),
   })
-  .catch((error) => {
-    // Handle any errors
-    console.error(error);
-  });
+    .then((response) => response.json())
+    .then((data) => {
+      // Process the API response data
+      // console.log(data.data.sui)
+      nfts = data.data.sui.nfts;
+      console.log(nfts);
+    })
+    .catch((error) => {
+      // Handle any errors
+      console.error(error);
+    });
+}
 
-//cannot return since there is an error
-//you can check console log for some api data
-// return <div>hello</div>;
+function suiFrensExplore() {
+  return (
+    <div className="container-fluid">
+      <div className="w-100">
+        <div>
+          Find, Buy and Sell SuiFrens NFTs on <br />
+          SUI
+        </div>
+        <div>
+          <input type="search" placeholder="Search NFTs" />
+          <button type="submit">search</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function main() {
+  // Call the fetchData function
+  let nfts = fetchData();
+  // Do something with the nfts data
+  for (let nft of nfts) {
+    console.log(nft.name);
+  }
+
+  // Return the suiFrensExplore function
+  return suiFrensExplore();
+}
