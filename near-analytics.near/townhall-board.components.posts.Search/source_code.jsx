@@ -452,3 +452,36 @@ function levenshteinDistance(s, t, threshold) {
   // we don't need to check for threshold here because we did it inside the loop
   return p[n] <= threshold ? p[n] : BIG_NUMBER;
 }
+
+const spellcheckQueryProcessing = (query, dictionary) => {
+  // Split text document into words
+  const words = stemAndFilterQuery(query);
+  const dictionaryArray = Object.keys(dictionary);
+  // Iterate over each word in the text
+  for (let i = 0; i < words.length; i++) {
+    let word = words[i].toLowerCase().replace(/[^a-z0-9]/g, "");
+
+    // If the word is not in the dictionary, find the closest match
+    if (!dictionary.hasOwnProperty(word)) {
+      let closestMatch = undefined;
+      let closestDistance = word.length;
+      let allowedDistance = Math.min(word.length - 1, 3);
+      // Iterate over each word in the dictionary
+      if (word.length > 1) {
+        for (let j = 0; j < dictionaryArray.length; j++) {
+          let dictWord = dictionaryArray[j];
+          let distance = levenshteinDistance(word, dictWord, allowedDistance);
+
+          // If the distance is less than the closest distance, update the closest match
+          if (distance <= allowedDistance && distance < closestDistance) {
+            closestMatch = dictWord;
+            closestDistance = distance;
+          }
+        }
+      }
+      // Replace the misspelled word with the closest match
+      words[i] = closestMatch;
+    }
+  }
+  return words.filter((word) => !!word);
+};
