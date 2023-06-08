@@ -298,6 +298,60 @@ if (state.jInitialItems !== jInitialItems) {
   // }
 }
 
+if (state.fetchFrom) {
+  console.log("TODO: fetchFrom");
+  // const limit = addDisplayCount;
+  // const newItems = Social.index(
+  //   index.action,
+  //   index.key,
+  //   Object.assign({}, index.options, {
+  //     from: state.fetchFrom,
+  //     subscribe: undefined,
+  //     limit,
+  //   })
+  // );
+  // if (newItems !== null) {
+  //   State.update({
+  //     items: mergeItems(newItems),
+  //     fetchFrom: false,
+  //     nextFetchFrom: computeFetchFrom(newItems, limit),
+  //   });
+  // }
+}
+
+const makeMoreItems = () => {
+  State.update({
+    displayCount: state.displayCount + addDisplayCount,
+  });
+  if (
+    state.items.length - state.displayCount < addDisplayCount * 2 &&
+    !state.fetchFrom &&
+    state.nextFetchFrom &&
+    state.nextFetchFrom !== state.fetchFrom
+  ) {
+    State.update({
+      fetchFrom: state.nextFetchFrom,
+    });
+  }
+};
+
+const fetchMore =
+  props.manual &&
+  (state.fetchFrom && state.items.length < state.displayCount
+    ? loader
+    : state.displayCount < state.items.length && (
+        <div key={"loader more"}>
+          <a href="javascript:void" onClick={(e) => makeMoreItems()}>
+            {props.loadMoreText ?? "Load more..."}
+          </a>
+        </div>
+      ));
+
+const items = state.items ? state.items.slice(0, state.displayCount) : [];
+
+console.log(items);
+const renderedItems = items.map(cachedRenderItem);
+
 ///////////
 return (
   <>
