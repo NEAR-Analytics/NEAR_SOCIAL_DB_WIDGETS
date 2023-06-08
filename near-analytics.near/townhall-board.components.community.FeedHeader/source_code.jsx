@@ -374,15 +374,11 @@ const Gradient = styled.div`
 return (
   <>
     <Gradient className="d-flex flex-column justify-content-center">
-      <div class="subtitle-above text-white opacity-75 mb-2">
-        A decentralized community of
-      </div>
+      <div class="subtitle-above text-white opacity-75 mb-2"></div>
       <h1 class="mb-3 text-white slogan">
-        <span class="text-primary-gradient">NEAR </span>Developers
+        <span class="text-primary-gradient">NEAR </span>TownHall
       </h1>
-      <div class="subtitle-below text-white opacity-75">
-        Share your ideas, match solutions, and access support and funding.
-      </div>
+      <div class="subtitle-below text-white opacity-75"></div>
     </Gradient>
     <div class="h5 pb-3">Featured Communities</div>
     <div class="row">
