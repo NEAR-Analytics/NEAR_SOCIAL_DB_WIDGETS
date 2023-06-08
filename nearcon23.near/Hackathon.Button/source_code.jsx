@@ -1,4 +1,4 @@
-const ownerId = "nearcon23.near23.near23.near";
+const ownerId = "nearcon23.near";
 
 const Link = styled.a`
   display: flex;
