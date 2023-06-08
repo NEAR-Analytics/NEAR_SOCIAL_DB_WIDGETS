@@ -352,6 +352,63 @@ const items = state.items ? state.items.slice(0, state.displayCount) : [];
 console.log(items);
 const renderedItems = items.map(cachedRenderItem);
 
+const Head =
+  props.recency == "hot" ? (
+    <div class="row">
+      <div class="fs-5 col-6 align-self-center">
+        <i class="bi-fire"></i>
+        <span>Hottest Posts</span>
+      </div>
+      <div class="col-6 dropdown d-flex justify-content-end">
+        <a
+          class="btn btn-secondary dropdown-toggle"
+          href="#"
+          role="button"
+          id="dropdownMenuLink"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          {getPeriodText(state.period)}
+        </a>
+
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <li>
+            <button
+              class="dropdown-item"
+              onClick={() => {
+                State.update({ period: "day" });
+              }}
+            >
+              {getPeriodText("day")}
+            </button>
+          </li>
+          <li>
+            <button
+              class="dropdown-item"
+              onClick={() => {
+                State.update({ period: "week" });
+              }}
+            >
+              {getPeriodText("week")}
+            </button>
+          </li>
+          <li>
+            <button
+              class="dropdown-item"
+              onClick={() => {
+                State.update({ period: "month" });
+              }}
+            >
+              {getPeriodText("month")}
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  ) : (
+    <></>
+  );
+
 ///////////
 return (
   <>
