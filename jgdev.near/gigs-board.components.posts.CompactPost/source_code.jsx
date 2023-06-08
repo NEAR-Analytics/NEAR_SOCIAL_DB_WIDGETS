@@ -67,12 +67,12 @@ const shareButton = (
 
 const header = (
   <div className="card-header">
-    <small class="text">
+    <small class="text-muted">
       <div class="row justify-content-between">
         <div class="col-4">
           <a
             href={`#/neardevgov.near/widget/ProfilePage?accountId=${post.author_id}`}
-            className="link-light text-truncate"
+            className="link-dark text-truncate"
           >
             <Widget
               src="mob.near/widget/ProfileImage"
@@ -83,7 +83,7 @@ const header = (
                 style: { height: "1.5em", width: "1.5em", minWidth: "1.5em" },
               }}
             />
-            <span className="text">@{post.author_id}</span>
+            <span className="text-muted">@{post.author_id}</span>
           </a>
         </div>
         <div class="col-5">
