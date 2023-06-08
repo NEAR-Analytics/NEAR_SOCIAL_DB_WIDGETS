@@ -251,6 +251,7 @@ return (
       <br />
       <strong>2.</strong> Complete and submit the form that appears. The Horizon
       team will review your request and add you as the admin to the project.
+      <br />
       <img
         src="https://s3.us-east-2.amazonaws.com/nearhorizon.assets/nh_app_claim_project_form.png"
         width="50%"
