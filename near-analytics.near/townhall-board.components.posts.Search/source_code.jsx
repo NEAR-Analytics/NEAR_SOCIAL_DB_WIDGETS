@@ -555,3 +555,49 @@ const sortSearchResult = (searchResult) => {
     (elem, index) => searchResult.indexOf(elem) === index
   );
 };
+
+const search = (processedQueryArray, index) => {
+  return sortSearchResult(
+    processedQueryArray.flatMap((queryWord) => {
+      const termSearchRes = index[queryWord].reverse();
+      const termSortedSearchRes = sortSearchResult(termSearchRes);
+      return termSortedSearchRes;
+    })
+  );
+};
+
+//////////////////////////////////////////////////////////////////////
+///UI&UX//////////////////////////////////////////////////////////////
+//Run search and spelling computation every time the search bar modified
+//but no more frequent than 1 time per 1.5 seconds
+const amountOfResultsToShowFirst = 5;
+
+const buildPostsIndex = () => {
+  return Near.asyncView("near-analytics.near", "get_posts").then((posts) => {
+    const index = buildIndex(posts);
+    const data = posts.reduce((acc, post) => {
+      acc[post.id] = post;
+      return acc;
+    }, {});
+    return { index, data };
+  });
+};
+
+const getProcessedPostsCached = () => {
+  return useCache(() => buildPostsIndex(), "processedPostsCached");
+};
+
+if (!state.interval) {
+  let termStorage = "";
+  Storage.privateSet("term", "");
+  setInterval(() => {
+    const currentInput = Storage.privateGet("term");
+    if (currentInput !== termStorage) {
+      termStorage = currentInput;
+      computeResults(termStorage);
+    }
+  }, 1500);
+  State.update({
+    interval: true,
+  });
+}
