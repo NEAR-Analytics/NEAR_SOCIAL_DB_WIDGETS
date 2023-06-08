@@ -1,1 +1,1 @@
-return <div>I am a widget</div>;
+return <div>{props.msg}t</div>;
