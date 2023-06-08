@@ -733,18 +733,8 @@ return (
           </li>
         </ul>
       </div>
-      <div class="dropdown">
-        {widget("components.layout.SearchByAuthor", {
-          authorQuery: props.authorQuery,
-          onSearchAuthor: props.onSearchAuthor,
-        })}
-      </div>
-      <div>
-        {widget("components.layout.SearchByLabel", {
-          labelQuery: props.labelQuery,
-          onSearchLabel: props.onSearchLabel,
-        })}
-      </div>
+      <div class="dropdown"></div>
+      <div></div>
       <div className="d-flex flex-row-reverse flex-grow-1">
         {props.children}
       </div>
