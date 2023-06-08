@@ -42,16 +42,6 @@ const handleJoin = () => {
 const Wrapper = styled.div`
   --section-gap: 23px;
   padding-top: 42px;
-
-  @media (max-width: 1155px) {
-    .line-rounded-corners {
-      display: none !important;
-    }
-  }
-
-  @media (max-width: 998px) {
-    padding-top: 0;
-  }
 `;
 
 const H1 = styled.h1`
@@ -134,7 +124,6 @@ const FlexContainer = styled.div`
 
 const Container = styled.div`
   display: flex;
-  max-width: 1080px;
   margin: 0 auto;
   gap: var(--section-gap);
   flex-direction: column;
