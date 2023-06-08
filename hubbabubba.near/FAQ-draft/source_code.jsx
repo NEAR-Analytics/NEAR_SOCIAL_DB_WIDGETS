@@ -243,14 +243,17 @@ return (
       <br />
       <strong>1.</strong> On the project's profile page, click "Claim Project"
       <br />
+      <br />
       <img
         src="https://s3.us-east-2.amazonaws.com/nearhorizon.assets/nh_claim_project_cta.png"
         width="50%"
       />
       <br />
       <br />
+      <br />
       <strong>2.</strong> Complete and submit the form that appears. The Horizon
       team will review your request and add you as the admin to the project.
+      <br />
       <br />
       <img
         src="https://s3.us-east-2.amazonaws.com/nearhorizon.assets/nh_app_claim_project_form.png"
