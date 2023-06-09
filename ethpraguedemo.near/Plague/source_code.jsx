@@ -5,7 +5,7 @@ if (context.loading) {
 // By default the form to ask a question is hidden
 initState({ askQuestion: false });
 const toggleQuestion = () => {
-  State.update({ askQuestion: !state.askQuestion });
+  window.location.href = "https://example.com/ABC"; // Replace 'https://example.com/ABC' with your desired URL
 };
 
 const adminContract = "admin.dev-support.near";
