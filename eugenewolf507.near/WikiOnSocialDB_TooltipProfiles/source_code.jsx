@@ -1,4 +1,5 @@
 const accounts = props.accounts || [];
+const emoji = props.emoji || "";
 
 return (
   <>
@@ -25,6 +26,9 @@ return (
           </Tooltip>
         }
       >
+        <button type="button" class="btn btn-light">
+          {accounts.length} {emoji}
+        </button>
         <span>{accounts.length}</span>
       </OverlayTrigger>
     )}
