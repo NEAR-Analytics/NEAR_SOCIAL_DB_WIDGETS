@@ -1,76 +1,114 @@
 /* INCLUDE "common.jsx" */
+const nearDevGovGigsContractAccountId =
+  props.nearDevGovGigsContractAccountId ||
+  (context.widgetSrc ?? "devgovgigs.near").split("/", 1)[0];
+const nearDevGovGigsWidgetsAccountId =
+  props.nearDevGovGigsWidgetsAccountId ||
+  (context.widgetSrc ?? "jgdev.near").split("/", 1)[0];
+
+function widget(widgetName, widgetProps, key) {
+  widgetProps = {
+    ...widgetProps,
+    nearDevGovGigsContractAccountId: props.nearDevGovGigsContractAccountId,
+    nearDevGovGigsWidgetsAccountId: props.nearDevGovGigsWidgetsAccountId,
+    referral: props.referral,
+  };
+  return (
+    <Widget
+      src={`${nearDevGovGigsWidgetsAccountId}/widget/gigs-board.${widgetName}`}
+      props={widgetProps}
+      key={key}
+    />
+  );
+}
+
+function href(widgetName, linkProps) {
+  linkProps = { ...linkProps };
+  if (props.nearDevGovGigsContractAccountId) {
+    linkProps.nearDevGovGigsContractAccountId =
+      props.nearDevGovGigsContractAccountId;
+  }
+  if (props.nearDevGovGigsWidgetsAccountId) {
+    linkProps.nearDevGovGigsWidgetsAccountId =
+      props.nearDevGovGigsWidgetsAccountId;
+  }
+  if (props.referral) {
+    linkProps.referral = props.referral;
+  }
+  const linkPropsQuery = Object.entries(linkProps)
+    .map(([key, value]) => `${key}=${value}`)
+    .join("&");
+  return `/#/${nearDevGovGigsWidgetsAccountId}/widget/gigs-board.pages.${widgetName}${
+    linkPropsQuery ? "?" : ""
+  }${linkPropsQuery}`;
+}
 /* END_INCLUDE: "common.jsx" */
 /* INCLUDE "communities.jsx" */
 /* END_INCLUDE: "communities.jsx" */
-
 State.init({ showModal: false });
 
-const handleOpenModal = () => {
-  State.update({ showModal: true });
-};
-
-const handleCloseModal = () => {
-  State.update({ showModal: false });
+const handleToggleModal = () => {
+  State.update({ showModal: !state.showModal });
 };
 
 return (
   <>
+    <div
+      style={{
+        display: state.showModal ? "block" : "none",
+        position: "relative",
+        top: "calc(50% - 250px)",
+        left: "calc(50% - 250px)",
+        backgroundColor: "transparent",
+        padding: "20px",
+        zIndex: "1000",
+        maxHeight: "calc(100vh - 40px)",
+        overflow: "auto",
+        width: "700px",
+      }}
+    >
+      <Widget
+        src={`${nearDevGovGigsWidgetsAccountId}/widget/gigs-board.components.layout.Controls`}
+        props={{
+          metadata: metadata,
+          accountId: accountId,
+          widgetName: widgetName,
+        }}
+      />
+    </div>
+
     <button
-      style={{ backgroundColor: "#008080", color: "white", float: "right" }}
+      style={{
+        fontSize: "1.11em",
+        backgroundColor: "#008080",
+        color: "white",
+        borderRadius: "15px",
+        float: "right",
+        padding: "10px",
+        height: "55px",
+        width: "90px",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        marginRight: "10px",
+      }}
       class="btn"
-      onClick={handleOpenModal}
+      onClick={handleToggleModal}
     >
       <span
         style={{
           backgroundColor: "white",
           color: "#008080",
           borderRadius: "50%",
-          padding: "0 5px",
+          padding: "5px",
+          display: "block",
+          marginRight: "5px",
+          lineHeight: "1",
         }}
       >
         +
       </span>
-      {"Post"}
+      {state.showModal ? " Close" : "  Post"}
     </button>
-
-    {state.showModal && (
-      <div
-        style={{
-          position: "fixed",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          backgroundColor: "white",
-          padding: "20px",
-          zIndex: "1000",
-        }}
-      >
-        <button onClick={handleCloseModal}>X</button>
-        {/* Add the Controls component here */}
-        <Widget
-          src={`${user}/widget/Controls`}
-          props={{
-            metadata: metadata,
-            accountId: accountId,
-            widgetName: widgetName,
-          }}
-        />
-      </div>
-    )}
-
-    {state.showModal && (
-      <div
-        style={{
-          position: "fixed",
-          top: "0",
-          bottom: "0",
-          left: "0",
-          right: "0",
-          backgroundColor: "rgba(0,0,0,0.3)",
-          zIndex: "900",
-        }}
-        onClick={handleCloseModal}
-      />
-    )}
   </>
 );
