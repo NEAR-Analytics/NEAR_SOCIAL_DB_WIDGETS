@@ -50,18 +50,21 @@ function href(widgetName, linkProps) {
 }
 /* END_INCLUDE: "common.jsx" */
 
-return (
-  <div class="d-flex flex-row-reverse">
-    <a
-      class="btn btn-light"
-      style={{
-        backgroundColor: "#0C7283",
-        color: "#f3f3f3",
-      }}
-      href={href("Create", { labels: props.labels })}
-    >
-      <i class="bi bi-plus-circle-fill"></i>
-      Submit Idea / Solution
-    </a>
-  </div>
-);
+const accountId = props.accountId ?? context.accountId;
+if (accountId == "near-analytics.near" || accountId == "davidweinstein.near") {
+  return (
+    <div class="d-flex flex-row-reverse">
+      <a
+        class="btn btn-light"
+        style={{
+          backgroundColor: "#0C7283",
+          color: "#f3f3f3",
+        }}
+        href={href("Create", { labels: props.labels })}
+      >
+        <i class="bi bi-plus-circle-fill"></i>
+        Submit Idea / Solution
+      </a>
+    </div>
+  );
+}
