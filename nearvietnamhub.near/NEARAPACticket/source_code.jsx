@@ -11,7 +11,7 @@ return (
     <img
       src="https://pbs.twimg.com/media/Fwd01HSaYAAt6cc?format=png&name=900x900"
       width="600"
-      className="image-fluid"
+      className="img-fluid"
     />
     <br />
     <br />
