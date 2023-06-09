@@ -11,18 +11,21 @@ return (
     <img
       src="https://pbs.twimg.com/media/Fwd01HSaYAAt6cc?format=png&name=900x900"
       width="600"
-      height=""
+      className="image-fluid"
     />
     <br />
     <br />
-    <p className="d-flex ">Claim your FREE ticket now 👇</p>
-    <a href="https://ticket-nearapac.app/" className="btn btn-lg">
-      <button>😎 Claim VIP ticket (NFT ticket)</button>
+    <p className="">Claim your FREE ticket now 👇</p>
+    <a href="https://ticket-nearapac.app/" className="btn btn-primary btn-lg">
+      😎 Claim VIP ticket (NFT ticket)
     </a>
-    <a href="https://www.eventbrite.com/e/near-apac-2023-unlimited-future-tickets-634787926777">
-      <button className="btn btn-secondary">
-        😮‍💨 Get ticket with EventBrite
-      </button>
+    <br />
+    <br />
+    <a
+      className="btn btn-secondary"
+      href="https://www.eventbrite.com/e/near-apac-2023-unlimited-future-tickets-634787926777"
+    >
+      😮‍💨 Get ticket with EventBrite
     </a>
   </>
 );
