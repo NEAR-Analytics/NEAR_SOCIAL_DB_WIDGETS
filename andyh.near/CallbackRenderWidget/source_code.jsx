@@ -1,1 +1,1 @@
-return <div>{props.msg}t</div>;
+return <div>{props.msg}</div>;
