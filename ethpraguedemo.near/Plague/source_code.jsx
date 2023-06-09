@@ -19,7 +19,7 @@ const SidebarWrapper = styled.div`
 `;
 
 return (
-  <div class="container-fluid py-3 mb-5">
+  <div class="container-fluid py-6 mb-5">
     <div class="row">
       {/**
     <SidebarWrapper className="col-2 pe-5">
@@ -39,7 +39,7 @@ return (
         </div>
 
         {state.askQuestion && (
-          <div class="mt-4 p-2">
+          <div class="mt-4 p-8">
             <Widget
               src="dev-support.near/widget/DevSupport.Question.Edit"
               props={{ onCommit: () => State.update({ askQuestion: false }) }}
