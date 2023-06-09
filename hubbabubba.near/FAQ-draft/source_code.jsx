@@ -146,21 +146,7 @@ return (
       Email NEAR Foundation Team:
       <a href="mailto:hello@near.foundation">hello@near.foundation</a>
     </p>
-    <br />
-    <h4>
-      <strong>How can I get Marketing support?</strong>
-    </h4>
-    <br />
 
-    <p>
-      There are a variety of ways to receive marketing support including
-      connecting to one of the Horizon service providers specializing in
-      marketing help. There are also resources available in the{" "}
-      <a href="https://near.org/nearhorizon.near/widget/Index?tab=learn">
-        Learning section
-      </a>{" "}
-      of Horizon to help you with amplification.
-    </p>
     <br />
     <br />
 
