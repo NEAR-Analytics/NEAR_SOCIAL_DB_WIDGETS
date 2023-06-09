@@ -58,7 +58,7 @@ const H1 = styled.h1`
   font-family: "FK Grotesk", sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 90px;
+  font-size: 70px;
   line-height: 1;
   text-align: center;
   letter-spacing: -0.03em;
@@ -162,7 +162,7 @@ return (
         </H1>
         <div className="mt-3">
           <Text style={{ maxWidth: "670px" }}>
-            The Creatives DAO is an overarching body for all creative
+            The Creatives Constellation is an overarching body for all creative
             contributors in the NEAR ecosystem and beyond! With support via
             decentralized autonomous organizations, all creators have the
             freedom to express themselves and create impactful projects that
@@ -182,8 +182,8 @@ return (
           <Widget
             src="near/widget/DIG.Button"
             props={{
-              href: "https://nearbuilders.com",
-              label: "Builder Groups",
+              href: "https://t.me/CreativeGuilds",
+              label: "Creatives Group",
               variant: "outline-success",
               size: "large",
             }}
@@ -194,7 +194,7 @@ return (
             src="near/widget/DIG.Button"
             props={{
               href: "#/every.near/widget/browser?path=every.near/thing/test",
-              label: "Create Projects",
+              label: "FAQ",
               variant: "outline-secondary",
               size: "large",
             }}
