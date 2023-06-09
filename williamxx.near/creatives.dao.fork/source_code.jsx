@@ -148,7 +148,7 @@ return (
   <Wrapper>
     <Container>
       <Flex>
-        <H1>
+        <H2>
           Creatives Constellation Create on the
           <span>
             BOS{" "}
@@ -159,7 +159,7 @@ return (
               />
             </svg>
           </span>
-        </H1>
+        </H2>
         <div className="mt-3">
           <Text style={{ maxWidth: "670px" }}>
             The Creatives DAO is an overarching body for all creative
