@@ -1,5 +1,5 @@
 const renderComponent = (msg) => (
-  <Widget src="andyh.near/widget/RenderCallbackWidget" props={{ msg }} />
+  <Widget src="andyh.near/widget/CallbacRenderkWidget" props={{ msg }} />
   //   <h2>{msg}</h2>
 );
 
