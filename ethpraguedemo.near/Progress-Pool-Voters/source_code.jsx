@@ -365,7 +365,7 @@ return (
   <Theme>
     <div class="LidoContainer">
       <div class="Header">Voters</div>
-      <div class="SubHeader">Claim $PRAGUE and vote on growing projects.</div>
+      <div class="SubHeader">Claim $PRAGUE and vote for proposals</div>
 
       <div class="LidoForm">
         {state.sender && (
