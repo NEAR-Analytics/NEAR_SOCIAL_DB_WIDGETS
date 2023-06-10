@@ -31,7 +31,6 @@ return (
       onClick={likeClick}
       style={{ marginRight: "8px" }}
     >
-      <i class="bi bi-caret-up-fill" />
       {upvotes}
     </Button>
   </div>
