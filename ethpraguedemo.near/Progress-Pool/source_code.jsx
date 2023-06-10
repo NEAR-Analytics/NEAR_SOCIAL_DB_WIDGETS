@@ -177,16 +177,13 @@ const getSender = () => {
 return (
   <Theme>
     <div style={{ marginBottom: "20px" }}>
-      <button onClick={() => setCurrentView("A")}>Widget A</button>
-      <button onClick={() => setCurrentView("B")}>Widget B</button>
-      <button onClick={() => setCurrentView("C")}>Widget C</button>
+      <button onClick={() => setCurrentView("A")}>For Voters</button>
+      <button onClick={() => setCurrentView("B")}>For Grantees</button>
+      <button onClick={() => setCurrentView("C")}>Proposals</button>
     </div>
 
     {currentView === "A" && (
-      <Widget
-        src="ethpraguedemo.near/widget/Progress-Pool-Proposals"
-        props={{}}
-      />
+      <Widget src="ethpraguedemo.near/widget/Progress-Pool-Voters" props={{}} />
     )}
 
     {currentView === "B" && (
@@ -199,34 +196,10 @@ return (
 
     {currentView === "C" && (
       // Replace "WidgetC" with the appropriate widget/component for view C
-      <WidgetC />
+      <Widget
+        src="ethpraguedemo.near/widget/Progress-Pool-Proposals"
+        props={{}}
+      />
     )}
-
-    <div style={{ display: "flex", marginBottom: "50px", marginTop: "20px" }}>
-      <div
-        style={
-          {
-            /* Add any additional styling for the first LidoContainer */
-          }
-        }
-      >
-        <Widget
-          src="ethpraguedemo.near/widget/Progress-Pool-Voters"
-          props={{}}
-        />
-      </div>
-
-      <div
-        style={{
-          marginLeft:
-            "10px" /* Add any additional styling for the second LidoContainer */,
-        }}
-      >
-        <Widget
-          src="ethpraguedemo.near/widget/Progress-Pool-Grantees"
-          props={{}}
-        />
-      </div>
-    </div>
   </Theme>
 );
