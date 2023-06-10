@@ -1,6 +1,6 @@
 return (
   <>
-    <h3>Register NEAR APAC ticket!</h3>
+    <h2>🎟️ Claim a NEAR APAC ticket!</h2>
     #NEAR APAC - BRINGING UNLIMITED FUTURE ONTO THE BLOCKCHAIN Get ready for
     Near APAC - the largest event of the NEAR Protocol Ecosystem in the Asia
     Pacific region! Happening in #Vietnam 🇻🇳 from September 8-12, 2023.{" "}
