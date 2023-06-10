@@ -44,9 +44,9 @@ return (
       </div>
     </div>
     <h2 className="mb-3">
-      <b>Explore Community</b>
+      <b>Explore</b>
     </h2>
-    <h3 className="m-1">Join Groups</h3>
+    <h3 className="m-1">Groups</h3>
 
     <div className="m-3 d-flex gap-2 flex-wrap">
       {groups.map((group, i) => (
@@ -62,7 +62,7 @@ return (
         />
       ))}
     </div>
-    <h3 className="m-1">Connect with Builders</h3>
+    <h3 className="m-1">Builders</h3>
     <div className="mt-3">
       <Widget
         src="mob.near/widget/FollowTabs"
