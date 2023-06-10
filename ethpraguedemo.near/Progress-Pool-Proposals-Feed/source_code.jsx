@@ -174,6 +174,11 @@ if (state.proposalNumber !== undefined && state.proposalNumber > 0) {
       proposalAbi,
       Ethers.provider().getSigner()
     );
+
+    proposals.castedVotes().then((numVotes) => {
+      State.update({ totalVotes: numVotes.toNumber() });
+    });
+
     for (let num = 0; num < state.proposalNumber; num++) {
       proposals.proposals(num).then((result) => {
         console.log("result: ", result);
@@ -221,7 +226,11 @@ const ComponentToForceRender = ({ updateFlag }) => {
         <>
           <Widget
             src="ethpraguedemo.near/widget/Progress-Pool-Question-Preview"
-            props={{ result: item.result, index: item.num }}
+            props={{
+              result: item.result,
+              index: item.num,
+              totalVotes: state.totalVotes,
+            }}
           />
         </>
       ))}
