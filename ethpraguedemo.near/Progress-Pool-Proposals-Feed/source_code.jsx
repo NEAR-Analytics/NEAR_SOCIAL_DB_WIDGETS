@@ -211,6 +211,7 @@ if (state.sender !== undefined) {
 }
 
 const ComponentToForceRender = ({ updateFlag }) => {
+  console.log(state);
   console.log("Updating state ", state.pulled_proposals);
   if (!state.pulled_proposals) return null;
   return (
@@ -318,4 +319,3 @@ return (
     <ComponentToForceRender updateFlag={state.proposalChecked} />
   </div>
 );
-console.log("after return");
