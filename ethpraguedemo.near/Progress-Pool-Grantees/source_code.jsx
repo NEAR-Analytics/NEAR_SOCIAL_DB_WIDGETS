@@ -296,8 +296,11 @@ return (
     </Content>
 
     <div class="LidoContainer">
-      <div class="Header">Grantees</div>
-      <div class="SubHeader">Submit a proposal and get funding.</div>
+      <div class="Header">Submit a Proposal</div>
+      <div class="SubHeader">
+        Builders who keep developing their hackathon project are eligible for
+        funding
+      </div>
 
       <div class="LidoStakeForm" style={{ marginTop: "10px" }}>
         <div class="LidoStakeFormInputContainer">
