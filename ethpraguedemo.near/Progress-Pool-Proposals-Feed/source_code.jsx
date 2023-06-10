@@ -12,6 +12,7 @@ if (
     });
 }
 
+let updateFlag = false;
 const toggleUpdateFlag = () => {
   updateFlag = !updateFlag;
 };
