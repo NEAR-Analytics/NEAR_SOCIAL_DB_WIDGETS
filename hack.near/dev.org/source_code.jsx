@@ -8,7 +8,7 @@ return (
     <ul className="nav nav-pills nav-fill mb-4" role="tablist">
       <li className="nav-item" role="presentation">
         <a
-          href={`#/hack.near/widget/every.one?accountId=devs.near&tab=members`}
+          href={`#/hack.near/widget/every.one?accountId=${accountId}&tab=members`}
           className={`btn nav-link ${tab === "members" ? "active" : ""}`}
           role="tab"
         >
@@ -17,7 +17,7 @@ return (
       </li>
       <li className="nav-item" role="presentation">
         <a
-          href={`#/hack.near/widget/every.one?accountId=devs.near&tab=following`}
+          href={`#/hack.near/widget/every.one?accountId=${accountId}&tab=following`}
           className={`btn nav-link ${tab === "following" ? "active" : ""}`}
           role="tab"
         >
