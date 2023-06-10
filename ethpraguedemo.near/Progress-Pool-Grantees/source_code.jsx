@@ -299,7 +299,7 @@ return (
       <div class="Header">Grantees</div>
       <div class="SubHeader">Submit a proposal and get funding.</div>
 
-      <div class="LidoStakeForm">
+      <div class="LidoStakeForm" style={{ marginTop: "10px" }}>
         <div class="LidoStakeFormInputContainer">
           <span class="LidoStakeFormInputContainerSpan1"></span>
           <span class="LidoStakeFormInputContainerSpan2">
