@@ -26,7 +26,7 @@ return (
   <div className="d-inline-flex align-items-center">
     <Button onClick={dislikeClick} style={{ marginLeft: "2px" }}>
       <i class="bi bi-caret-down-fill" />
-      {upvotes}
+      {downvotes}
     </Button>
   </div>
 );
