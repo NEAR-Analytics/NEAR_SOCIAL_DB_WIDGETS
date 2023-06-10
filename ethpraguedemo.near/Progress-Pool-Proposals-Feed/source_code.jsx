@@ -222,7 +222,7 @@ const pullProposals = () => {
 
   proposals.proposalsCount().then((_number) => {
     if (_number > 0) {
-      State.update({ proposalNumber: _number });
+      State.update({ proposalNumber: _number.toNumber() });
     }
   });
 };
