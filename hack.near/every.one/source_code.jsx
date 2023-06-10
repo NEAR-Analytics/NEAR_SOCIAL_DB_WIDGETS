@@ -43,10 +43,7 @@ return (
         </div>
       </div>
       <div className="m-2">
-        <Widget
-          src="hack.near/widget/dev.info"
-          props={{ accountId, daoId, role: "community" }}
-        />
+        <Widget src="devs.near/widget/dev.info" props={{ accountId }} />
       </div>
     </div>
     <h2 className="mb-3">
