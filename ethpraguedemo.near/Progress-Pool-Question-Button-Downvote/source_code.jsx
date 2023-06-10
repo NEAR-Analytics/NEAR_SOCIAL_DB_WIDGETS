@@ -96,6 +96,7 @@ return (
       ) : (
         <i class="bi bi-caret-down-fill" />
       )}
+      {upvotes}
     </Button>
   </div>
 );
