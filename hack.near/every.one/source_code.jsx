@@ -22,8 +22,6 @@ const groups = policy.roles
 const membership = groups[1].members;
 const totalMembership = membership.length;
 
-console.log(policy);
-
 return (
   <div className="py-1 px-1">
     <div className="d-flex justify-content-between mb-3">
@@ -37,7 +35,7 @@ return (
           />
         </div>
         <div className="m-2">
-          <h5 className="mt-2">{totalMembership} Members</h5>
+          <h5 className="mt-3">{totalMembership} Members</h5>
           <Widget
             src="mob.near/widget/FollowStats"
             props={{ accountId: daoId }}
