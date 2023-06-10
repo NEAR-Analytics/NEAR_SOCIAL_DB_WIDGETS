@@ -177,29 +177,29 @@ const getSender = () => {
 return (
   <Theme>
     <div style={{ marginBottom: "20px" }}>
-      <button onClick={() => setCurrentView("A")}>For Voters</button>
-      <button onClick={() => setCurrentView("B")}>For Grantees</button>
-      <button onClick={() => setCurrentView("C")}>Proposals</button>
+      <button
+        onClick={() =>
+          setCurrentUrl("ethpraguedemo.near/widget/Progress-Pool-Voters")
+        }
+      >
+        For Voters
+      </button>
+      <button
+        onClick={() =>
+          setCurrentUrl("ethpraguedemo.near/widget/Progress-Pool-Grantees")
+        }
+      >
+        For Grantees
+      </button>
+      <button
+        onClick={() =>
+          setCurrentUrl("ethpraguedemo.near/widget/Progress-Pool-Proposals")
+        }
+      >
+        Proposals
+      </button>
     </div>
 
-    {currentView === "A" && (
-      <Widget src="ethpraguedemo.near/widget/Progress-Pool-Voters" props={{}} />
-    )}
-
-    {currentView === "B" && (
-      // Replace "WidgetB" with the appropriate widget/component for view B
-      <Widget
-        src="ethpraguedemo.near/widget/Progress-Pool-Grantees"
-        props={{}}
-      />
-    )}
-
-    {currentView === "C" && (
-      // Replace "WidgetC" with the appropriate widget/component for view C
-      <Widget
-        src="ethpraguedemo.near/widget/Progress-Pool-Proposals"
-        props={{}}
-      />
-    )}
+    <Widget src={currentUrl} props={{}} />
   </Theme>
 );
