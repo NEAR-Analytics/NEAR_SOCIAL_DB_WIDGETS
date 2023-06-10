@@ -219,7 +219,6 @@ const ComponentToForceRender = ({ updateFlag }) => {
     <div>
       {state.pulled_proposals.map((item) => (
         <>
-          <pre>{JSON.stringify(item)}</pre>
           <Widget
             src="ethpraguedemo.near/widget/Progress-Pool-Question-Preview"
             props={{ result: item.result, index: item.num }}
@@ -309,7 +308,6 @@ const Item = styled.div`
   }
 `;
 
-console.log("before return");
 return (
   <div>
     <Web3Connect
