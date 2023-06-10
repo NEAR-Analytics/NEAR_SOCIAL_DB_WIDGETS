@@ -175,33 +175,34 @@ if (state.proposalNumber !== undefined && state.proposalNumber > 0) {
     Ethers.provider().getSigner()
   );
 
-  const fetchProposals = () => {
-    const promises = [];
-    for (let num = 0; num < state.proposalNumber; num++) {
-      promises.push(proposals.proposals(num));
-    }
+  let num = 0;
 
-    Promise.all(promises)
-      .then((results) => {
-        for (let num = 0; num < results.length; num++) {
-          new_pulled_proposals.push({ num, result: results[num] });
-          console.log("result: ", results[num]);
+  const fetchProposal = () => {
+    proposals
+      .proposals(num)
+      .then((result) => {
+        new_pulled_proposals.push({ num, result });
+        console.log("result: ", result);
+
+        num++;
+        if (num < state.proposalNumber) {
+          fetchProposal();
+        } else {
+          State.update({
+            pulled_proposals: [
+              ...state.pulled_proposals,
+              ...new_pulled_proposals,
+            ],
+          });
+          toggleUpdateFlag();
         }
-
-        State.update({
-          pulled_proposals: [
-            ...state.pulled_proposals,
-            ...new_pulled_proposals,
-          ],
-        });
-        toggleUpdateFlag();
       })
       .catch((error) => {
         console.error(error);
       });
   };
 
-  fetchProposals();
+  fetchProposal();
 }
 
 // HELPER FUNCTIONS
