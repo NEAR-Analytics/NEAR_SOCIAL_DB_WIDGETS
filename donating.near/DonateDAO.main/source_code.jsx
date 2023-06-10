@@ -271,31 +271,36 @@ return (
       <div className="border border-secondary border-bottom-0 border-light" />
 
       <div className="border border-secondary border-bottom-0 border-light" />
-      <div className="p-4 d-grid gap-3">
-        <button
-          className="action btn btn-primary"
-          onClick={handleAction}
-          disabled={isLoading}
-        >
-          {isLoading ? "Loading..." : actionTitle}
-        </button>
-        {log && (
-          <div className="alert alert-success" role="alert">
-            <div className="text-truncate" style={{ maxWidth: 300 }}>
-              {log}
+      {!!state.sender ? (
+        <div className="p-4 d-grid gap-3">
+          <button
+            className="action btn btn-primary"
+            onClick={handleAction}
+            disabled={isLoading}
+          >
+            {isLoading ? "Loading..." : actionTitle}
+          </button>
+          {log && (
+            <div className="alert alert-success" role="alert">
+              <div className="text-truncate" style={{ maxWidth: 300 }}>
+                {log}
+              </div>
+              <a href={explorerLink} className="alert-link" target="_blank">
+                Etherscan
+              </a>
             </div>
-            <a href={explorerLink} className="alert-link" target="_blank">
-              Etherscan
-            </a>
-          </div>
-        )}
-      </div>
+          )}
+        </div>
+      ) : (
+        <Web3Connect
+          className="action btn btn-primary"
+          connectLabel="Connect To ZkSync "
+        />
+      )}
     </Container>
     <div>
       <h1>Debug</h1>
       <p>Input USDC Amount: {state.amount}</p>
-      <p>Input reciever</p>
-      <Web3Connect className="Connect" connectLabel="Connect to ZK Sync" />
     </div>
     <Widget src="donating.near/widget/DonateDAO.dropdown" />
   </Theme>
