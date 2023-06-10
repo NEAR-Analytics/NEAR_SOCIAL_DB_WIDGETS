@@ -305,7 +305,8 @@ const ImageUploadCard = styled.div`
 display:flex;
 flex-flow: column nowrap;
 align-items: center;
-  width:80%;
+  width:100%;
+  max-width: 36em;
   border: 2px dashed #0d99ff;
   border-radius: 1rem;
   box-shadow: 4px 4px 20px 6px rgba(0,0,0,.2);
@@ -933,6 +934,7 @@ return (
         </>
       )}
     </Main>
+    <Widget src="jgodwill.near/widget/GenaDrop.Footer" />
     <h4 className="text-center mt-5">
       💧
       <a href="https://genadrop.io" target="_blank" rel="noopener noreferrer">
