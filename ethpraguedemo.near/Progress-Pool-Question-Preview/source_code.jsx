@@ -1,7 +1,8 @@
 const result = props.result;
 const index = props.index;
 const totalVotes = props.totalVotes;
-console.log(totalVotes);
+const downvotes = totalVotes - result[2].toNumber();
+console.log(totalVotes, downvotes);
 
 const H2 = styled.h2`
   font-size: 20px;
@@ -92,7 +93,7 @@ return (
       <Widget
         src="ethpraguedemo.near/widget/Progress-Pool-Question-Button-Downvote"
         style="margin-left: 2px;"
-        props={{ downvotes: totalVotes }}
+        props={{ downvotes: downvotes }}
       />
     </div>
     <div class="col-10">
