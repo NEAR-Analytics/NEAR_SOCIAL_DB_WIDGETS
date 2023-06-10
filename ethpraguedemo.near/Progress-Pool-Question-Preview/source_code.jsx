@@ -119,7 +119,7 @@ return (
       <Widget
         src="ethpraguedemo.near/widget/Progress-Pool-Question-Button-Downvote"
         props={{ accountId, blockHeight }}
-        class="ml-2"
+        style="margin-left: 2px;"
       />
     </div>
     <div class="col-10">
