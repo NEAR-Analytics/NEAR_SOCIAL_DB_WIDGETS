@@ -11,7 +11,7 @@ if (state.chainId !== undefined && state.chainId !== 280) {
 } // not sure if this is working
 // https://era.zksync.io/docs/dev/building-on-zksync/useful-address.html
 State.init({
-  reciever: "",
+  reciever: "0xDoodoo",
 }); // write now state reciever is in clipboard
 // need to have the search result updated and selected in state
 // Charity helper functions
@@ -26,28 +26,19 @@ if (!charityList) {
   return "⧗ Loading Charities...";
 }
 
-const { action, amount, selectedAsset } = state;
+const { action, amount, USDCbalance } = state;
 const { assets } = deposit;
+// need to get USDC balance form on CHain
 
 const actionTitle = isDeposit ? "Donate" : "Withdraw";
-
-if (assets && !selectedAsset) {
-  initState({
-    selectedAsset: assets.find((a) => a.selected) || assets?.[0],
-  });
-}
-
-const selectedAssetWithdraw = selectedAsset
-  ? withdraw?.assets?.find((a) => a.id === selectedAsset.id)
-  : undefined;
 
 const donate = () => {
   // add payment to charity logic here
 };
 
 const handleMax = () => {
-  State.update({ amount: selectedAsset.balance });
-};
+  State.update({ amount: USDCbalance.balance });
+}; // how to get max of selectedasset
 
 const handleAmountChange = (e) => {
   State.update({ amount: e.target.value });
@@ -56,9 +47,11 @@ const handleRecieverChange = (e) => {
   State.update({ reciever: e.target.value });
 };
 
-const handleAssetChange = (e) => {
-  State.update({ selectedAsset: assets?.find((a) => a.id === e.target.value) });
-};
+const handleCharityChange = (e) => {
+  State.update({
+    reciever: charityList?.find((a) => a.address === e.target.value),
+  });
+}; // need to change this around
 
 const Container = styled.div`
     max-width: 90%;
@@ -123,11 +116,7 @@ const Container = styled.div`
         color: black;
         border: 1px solid black;
       }
-      button {
-        height: 38px;
-        background: #f5f6fd;
-        color: black;
-      }
+
     }
 
     .assets {
@@ -144,33 +133,6 @@ const erc20Abi = fetch(
 );
 const usdcZKtestnet = "0x3355df6D4c9C3035724Fd0e3914dE96A5a83aaf4";
 const paymasterZKtestnet = "";
-const css = `
-  .flex {
-    display: flex;
-    color: white;
-    > div {
-        margin: 32px 0;
-      margin-right: 32px;
-      width: 50%;
-    }
-    > div:last-of-type {
-      margin-right: 0;
-    }
-  }
-  .btn {
-      margin-bottom: 16px !important;
-  }
-  .h1 {
-    font-family: 'Lato', sans-serif;
-    src: url('https://fonts.googleapis.com/css2?family=Lato&display=swap') format('css2');
-    font-weight: 300;
-    font-style: normal;
-  }
-  .Connect {
-    background-color: purple;
-    color: white;
-  }
-`;
 
 if (!state.theme) {
   State.update({
@@ -197,15 +159,15 @@ return (
   <Theme>
     <Container>
       <div className="d-flex gap-4 align-items-center mb-3 justify-content-center">
-        <h1 className="title">{title || "🙏 DonateDAO"}</h1>
+        <h1 className="title">🙏 DonateDAO</h1>
       </div>
       <div className="border border-secondary border-bottom-0 border-light" />
       <div className="p-2">
         <div className="d-flex justify-content-between">
           <span>
             {" "}
-            {selectedAsset} USDC Balance:
-            {selectedAsset.balance}
+            USDC Balance:
+            {USDCbalance}
           </span>
         </div>
         <div className="balance input-group">
@@ -225,11 +187,10 @@ return (
         </div>
         <label>Charity Address</label>
         <div className="charities">
-          <span>{deposit.network.name}</span>
           <select
             className="form-select"
             aria-label="select asset"
-            onChange={handleAssetChange}
+            onChange={handleCharityChange}
           >
             {charityList &&
               charityList.map((charity) => (
