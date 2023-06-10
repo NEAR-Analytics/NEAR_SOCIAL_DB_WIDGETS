@@ -222,7 +222,8 @@ const ComponentToForceRender = ({ updateFlag }) => {
           <pre>{JSON.stringify(item)}</pre>
           <Widget
             src="ethpraguedemo.near/widget/Progress-Pool-Question-Preview"
-            props={{ result: !item.result, index: item.num }}
+            result={item.result}
+            index={item.num}
           />
         </>
       ))}
