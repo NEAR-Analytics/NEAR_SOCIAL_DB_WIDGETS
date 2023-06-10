@@ -99,19 +99,6 @@ const Item = styled.div`
     }
   }
 `;
-const Button = styled.a`
-  display: block;
-  color: #ffffff;
-  background-color: #30A46C;
-  font-size: 14px;
-  font-weight: 600;
-  padding: 8px 24px;
-  border: none;
-  border-radius: 50px;
-  float: inline-end;
-
-  :hover{ color: #ffffff; cursor: pointer; }
-`;
 
 return (
   <div class="row">
@@ -181,16 +168,6 @@ return (
           />
         </div>
       </div>
-    </div>
-
-    <div class="col-lg-4 col-sm-12">
-      <Button
-        class="btn btn-primary"
-        disabled={props.disabled}
-        onClick={props.onClick}
-      >
-        Ask a Question
-      </Button>
     </div>
   </div>
 );
