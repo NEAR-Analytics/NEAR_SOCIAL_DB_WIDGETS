@@ -1,4 +1,4 @@
-const { symbol, title } = props;
+const { title, address, description } = props;
 
 const Row = styled.div`
   border-bottom: 1px solid #ccc;
@@ -36,16 +36,15 @@ const Row = styled.div`
   }
 `;
 
-const codePointHex = symbol.codePointAt(0).toString(16);
-const src = `//cdn.jsdelivr.net/emojione/assets/png/${codePointHex}.png`;
-
 const onClick = () => {
-  clipboard.writeText(symbol); // instead of symbol have addresses passed in from registry
+  clipboard.writeText(title); // instead of symbol have addresses passed in from registry
 };
 
 return (
   <Row onClick={onClick}>
-    <span className="title">❤️ {title}</span>
+    <span className="title">{title}</span>
+    <span className="address">❤️ {address}</span>
     <span className="info">Click to select Charity</span>
+    <p>{description}</p>
   </Row>
 );
