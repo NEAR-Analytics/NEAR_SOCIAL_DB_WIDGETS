@@ -329,58 +329,6 @@ return (
           Proposals
         </TabsButton>
       </Tabs>
-
-      {state.selectedTab === "overview" && (
-        <>
-          {profile.description && (
-            <>
-              <Title as="h2" size="19px" margin>
-                About
-              </Title>
-
-              <Bio>
-                <Widget
-                  src="near/widget/SocialMarkdown"
-                  props={{ text: profile.description }}
-                />
-              </Bio>
-            </>
-          )}
-
-          <Widget
-            src="near/widget/Posts.Feed"
-            props={{ accounts: [accountId] }}
-          />
-        </>
-      )}
-
-      {state.selectedTab === "nfts" && (
-        <Widget src="near/widget/NFTCollection" props={{ accountId }} />
-      )}
-
-      {state.selectedTab === "apps" && (
-        <Widget src="near/widget/ComponentCollection" props={{ accountId }} />
-      )}
-
-      {state.selectedTab === "followers" && (
-        <Widget src="near/widget/FollowersList" props={{ accountId }} />
-      )}
-
-      {state.selectedTab === "following" && (
-        <Widget src="near/widget/FollowingList" props={{ accountId }} />
-      )}
-
-      {state.selectedTab === "explorer" && (
-        <Widget
-          src="ethpraguedemo.near/widget/Progress-Pool-Voters"
-          props={{
-            accountId,
-            network: context.networkId,
-            language: "en",
-            baseUrl: props.baseUrl,
-          }}
-        />
-      )}
     </Content>
 
     <div style={{ display: "flex", marginBottom: "50px", marginTop: "20px" }}>
