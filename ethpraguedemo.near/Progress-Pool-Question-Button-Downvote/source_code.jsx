@@ -85,9 +85,8 @@ return (
     <Button
       disabled={state.loading || dataLoading || !context.accountId}
       onClick={likeClick}
-      style={{ display: "flex", alignItems: "center", marginLeft: "4px" }}
+      style={{ marginLeft: "4px" }}
     >
-      >
       {state.loading || dataLoading ? (
         <span
           class="spinner-grow spinner-grow-sm p-2"
@@ -95,7 +94,7 @@ return (
           aria-hidden="true"
         />
       ) : (
-        <i class="bi bi-caret-down-fill" style={{ verticalAlign: "middle" }} />
+        <i class="bi bi-caret-down-fill" />
       )}
     </Button>
   </div>
