@@ -14,6 +14,7 @@ if (
 
 let updateFlag = false;
 const toggleUpdateFlag = () => {
+  console.log("rerender should happen ".state.pulled_proposals);
   updateFlag = !updateFlag;
 };
 
@@ -307,5 +308,20 @@ return (
       connectLabel="Connect with Web3"
     />
     <ComponentToForceRender updateFlag={updateFlag} />
+    <Widget
+      src="ethpraguedemo.near/widget/Progress-Pool-Question-Preview"
+      props={{
+        result: [
+          "https://github.com/lennardevertz/ethPrague2023",
+          "0x4a3755eB99ae8b22AaFB8f16F0C51CF68Eb60b85",
+          {
+            type: "BigNumber",
+            hex: "0x00",
+          },
+          false,
+        ],
+        index: 0,
+      }}
+    />
   </div>
 );
