@@ -123,6 +123,48 @@ return (
                 <i class="bi bi-arrow-right" />
               </H2>
             </div>
+            <div class="col-auto">
+              <div class="dropdown ms-auto">
+                <button
+                  class="btn border-0 p-0"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <i class="bi bi-three-dots" />
+                </button>
+                <ul class="dropdown-menu">
+                  <li>
+                    <Item>
+                      <Widget
+                        src="dima_sheleg.near/widget/DevSupport.Question.Button.Flag"
+                        props={{
+                          accountId,
+                          blockHeight,
+                          className: "btn report-btn",
+                        }}
+                      />
+                    </Item>
+                  </li>
+                  <li>
+                    <Item>
+                      {/* Delete widget */}
+                      <Widget
+                        src="dima_sheleg.near/widget/DevSupport.Question.Button.Delete"
+                        props={{
+                          accountId,
+                          blockHeight,
+                          admins,
+                          adminContract,
+                          className: "hide-btn",
+                          text: "Hide",
+                        }}
+                      />
+                    </Item>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
           <div class="row">
             <H6>
