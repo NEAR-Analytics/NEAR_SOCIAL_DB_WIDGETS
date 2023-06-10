@@ -26,9 +26,16 @@ if (!charityList) {
   return "⧗ Loading Charities...";
 }
 
+const PAYMASTER_ADDRESS = "0xaB23B553781757a8ebdFb11A9231825ff4EE4118";
+const TOKEN_ADDRESS = "0x5DBAFaccAADa3E16213de291fA5e39c1996093D5"; // on zk sync testnet
 const { action, amount, USDCbalance } = state;
 const { assets } = deposit;
 // need to get USDC balance form on CHain
+
+const getUSDCBalance = () => {
+  // add to query USDC balance on chain for ZK Testnet account, this is how we will set max
+  State.update({ USDCbalance: USDCbalance }); // not all the way correct
+};
 
 const actionTitle = isDeposit ? "Donate" : "Withdraw";
 
@@ -37,7 +44,7 @@ const donate = () => {
 };
 
 const handleMax = () => {
-  State.update({ amount: USDCbalance.balance });
+  State.update({ amount: USDCbalance });
 }; // how to get max of selectedasset
 
 const handleAmountChange = (e) => {
@@ -47,11 +54,27 @@ const handleRecieverChange = (e) => {
   State.update({ reciever: e.target.value });
 };
 
+// const handleCharityChange = (e) => {
+//   State.update({
+//     reciever: charityList?.find((a) => a.address === e.target.value),
+//   });
+// }; // need to change this around
+
+// Assuming you have a state variable called `state` which contains the `receiver` property
+
 const handleCharityChange = (e) => {
-  State.update({
-    reciever: charityList?.find((a) => a.address === e.target.value),
-  });
-}; // need to change this around
+  // Find the charity object with the selected title
+  const selectedCharity = charityList.find(
+    (charity) => charity.title === e.target.value
+  );
+
+  if (selectedCharity) {
+    // Update the `receiver` state to the associated address
+    State.update({
+      reciever: selectedCharity.address,
+    });
+  }
+};
 
 const Container = styled.div`
     max-width: 90%;
@@ -190,7 +213,7 @@ return (
           <select
             className="form-select"
             aria-label="select asset"
-            onChange={handleCharityChange}
+            onChange={handleCharityChange(e)}
           >
             {charityList &&
               charityList.map((charity) => (
@@ -256,6 +279,5 @@ return (
       <p>Input USDC Amount: {state.amount}</p>
       <p>Input Reciever Address: {state.reciever}</p>
     </div>
-    <Widget src="donating.near/widget/DonateDAO.dropdown" />
   </Theme>
 );
