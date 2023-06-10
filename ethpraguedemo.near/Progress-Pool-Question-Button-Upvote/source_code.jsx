@@ -81,7 +81,7 @@ const Button = styled.button`
 `;
 
 return (
-  <div className="d-inline-flex align-items-center">
+  <div className="d-inline-flex">
     <Button
       disabled={state.loading || dataLoading || !context.accountId}
       onClick={likeClick}
