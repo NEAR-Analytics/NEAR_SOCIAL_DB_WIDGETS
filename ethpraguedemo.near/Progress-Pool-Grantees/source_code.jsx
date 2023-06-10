@@ -276,14 +276,14 @@ return (
           href={`https://near.org/embed/ethpraguedemo.near/widget/Progress-Pool`}
           selected={state.selectedTab === "overview"}
         >
-          For Voters
+          Claim Votes
         </TabsButton>
 
         <TabsButton
           href={`https://near.org/embed/ethpraguedemo.near/widget/Progress-Pool-Grantees`}
           selected={state.selectedTab === "apps"}
         >
-          For Grantees
+          Submit a Proposal
         </TabsButton>
 
         <TabsButton
