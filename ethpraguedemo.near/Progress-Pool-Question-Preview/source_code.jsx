@@ -116,6 +116,10 @@ return (
         src="dev-support.near/widget/DevSupport.Question.Button.Upvote"
         props={{ accountId, blockHeight }}
       />
+      <Widget
+        src="dev-support.near/widget/DevSupport.Question.Button.Upvote"
+        props={{ accountId, blockHeight }}
+      />
     </div>
     <div class="col-10">
       <div class="row">
