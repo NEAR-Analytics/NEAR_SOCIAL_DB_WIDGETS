@@ -364,7 +364,7 @@ const getSender = () => {
 return (
   <Theme>
     <div class="LidoContainer">
-      <div class="Header">Claim Voting Tokens</div>
+      <div class="Header">Claim Votes</div>
       <div class="SubHeader">
         Participation in hackathons gives you power to approve/reject proposals
       </div>
