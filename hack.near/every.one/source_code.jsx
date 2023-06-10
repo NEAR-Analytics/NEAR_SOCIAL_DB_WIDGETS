@@ -4,6 +4,8 @@ if (!accountId) {
   return "Please connect your NEAR account :)";
 }
 
+const tab = props.tab === "following" ? props.tab : "members";
+
 const daoId = props.daoId ?? "build.sputnik-dao.near";
 
 const policy = Near.view(daoId, "get_policy");
@@ -64,7 +66,10 @@ return (
     </div>
     <h3 className="m-1">Builders</h3>
     <div className="mt-3">
-      <Widget src="hack.near/widget/dev.org" props={{ daoId }} />
+      <Widget
+        src="hack.near/widget/dev.org"
+        props={{ accountId, tab: props.tab }}
+      />
     </div>
   </div>
 );
