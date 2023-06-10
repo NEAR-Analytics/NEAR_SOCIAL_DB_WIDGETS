@@ -85,8 +85,9 @@ return (
     <Button
       disabled={state.loading || dataLoading || !context.accountId}
       onClick={likeClick}
-      style={{ marginLeft: "4px" }}
+      style={{ display: "flex", alignItems: "center", marginLeft: "4px" }}
     >
+      >
       {state.loading || dataLoading ? (
         <span
           class="spinner-grow spinner-grow-sm p-2"
