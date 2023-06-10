@@ -403,57 +403,6 @@ return (
         ></div>
       </div>
       <div class="LidoStakeForm">
-        <div class="LidoStakeFormInputContainer">
-          <span class="LidoStakeFormInputContainerSpan1">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                opacity="0.6"
-                d="M11.999 3.75v6.098l5.248 2.303-5.248-8.401z"
-              ></path>
-              <path d="M11.999 3.75L6.75 12.151l5.249-2.303V3.75z"></path>
-              <path
-                opacity="0.6"
-                d="M11.999 16.103v4.143l5.251-7.135L12 16.103z"
-              ></path>
-              <path d="M11.999 20.246v-4.144L6.75 13.111l5.249 7.135z"></path>
-              <path
-                opacity="0.2"
-                d="M11.999 15.144l5.248-2.993-5.248-2.301v5.294z"
-              ></path>
-              <path
-                opacity="0.6"
-                d="M6.75 12.151l5.249 2.993V9.85l-5.249 2.3z"
-              ></path>
-            </svg>
-          </span>
-          <span class="LidoStakeFormInputContainerSpan2">
-            <input
-              disabled={!state.sender}
-              class="LidoStakeFormInputContainerSpan2Input"
-              value={state.strEther}
-              onChange={(e) => State.update({ strEther: e.target.value })}
-              placeholder="Amount"
-            />
-          </span>
-          <span
-            class="LidoStakeFormInputContainerSpan3"
-            onClick={() => {
-              State.update({
-                strEther: (state.balance > 0.05
-                  ? parseFloat(state.balance) - 0.05
-                  : 0
-                ).toFixed(2),
-              });
-            }}
-          >
-            <button
-              class="LidoStakeFormInputContainerSpan3Content"
-              disabled={!state.sender}
-            >
-              <span class="LidoStakeFormInputContainerSpan3Max">MAX</span>
-            </button>
-          </span>
-        </div>
         {!!state.sender ? (
           state.hasMinted ? (
             <button
@@ -476,29 +425,6 @@ return (
             connectLabel="Connect with Web3"
           />
         )}
-
-        <div class="LidoFooterContainer">
-          {state.sender && (
-            <div class="LidoFooterRaw">
-              <div class="LidoFooterRawLeft">You will receive</div>
-              <div class="LidoFooterRawRight">${state.strEther ?? 0} stETH</div>
-            </div>
-          )}
-          <div class="LidoFooterRaw">
-            <div class="LidoFooterRawLeft">Exchange rate</div>
-            <div class="LidoFooterRawRight">1 ETH = 1 stETH</div>
-          </div>
-          {false && (
-            <div class="LidoFooterRaw">
-              <div class="LidoFooterRawLeft">Transaction cost</div>
-              <div class="LidoFooterRawRight">{state.txCost}</div>
-            </div>
-          )}
-          <div class="LidoFooterRaw">
-            <div class="LidoFooterRawLeft">Reward fee</div>
-            <div class="LidoFooterRawRight">10%</div>
-          </div>
-        </div>
       </div>
     </div>
   </Theme>
