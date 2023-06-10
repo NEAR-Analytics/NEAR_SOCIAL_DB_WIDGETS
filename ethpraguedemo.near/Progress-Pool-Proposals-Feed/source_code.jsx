@@ -174,38 +174,16 @@ if (state.proposalNumber !== undefined && state.proposalNumber > 0) {
     proposalAbi,
     Ethers.provider().getSigner()
   );
-
-  let num = 0;
-
-  const fetchProposal = () => {
-    proposals
-      .proposals(num)
-      .then((result) => {
-        new_pulled_proposals.push({ num, result });
-        console.log("result: ", result);
-
-        num++;
-        console.log("num now ", num);
-        console.log("propNumber now ", state.proposalNumber);
-        console.log(num < state.proposalNumber);
-        if (num < state.proposalNumber) {
-          fetchProposal();
-        } else {
-          State.update({
-            pulled_proposals: [
-              ...state.pulled_proposals,
-              ...new_pulled_proposals,
-            ],
-          });
-          toggleUpdateFlag();
-        }
-      })
-      .catch((error) => {
-        console.error(error);
+  for (let num = 0; num < state.proposalNumber; num++) {
+    proposals.proposals(num).then((result) => {
+      new_pulled_proposals.push({ num, result });
+      console.log("result: ", result);
+      State.update({
+        pulled_proposals: [...state.pulled_proposals, ...new_pulled_proposals],
       });
-  };
-
-  fetchProposal();
+      toggleUpdateFlag();
+    });
+  }
 }
 
 // HELPER FUNCTIONS
@@ -223,7 +201,7 @@ const pullProposals = () => {
 
   proposals.proposalsCount().then((_number) => {
     if (_number > 0) {
-      State.update({ proposalNumber: _number.toNumber() });
+      State.update({ proposalNumber: _number });
     }
   });
 };
