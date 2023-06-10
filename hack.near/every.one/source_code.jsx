@@ -16,13 +16,11 @@ const groups = policy.roles
   .filter((role) => role.kind.Group)
   .map((role) => ({
     name: role.name,
-    members: role.members,
+    members: role.kind.Group,
   }));
 
-const totalMembership = groups.reduce(
-  (total, group) => total + group.members.length,
-  0
-);
+const membership = groups[1].members;
+const totalMembership = membership.length;
 
 return (
   <div className="py-1 px-1">
