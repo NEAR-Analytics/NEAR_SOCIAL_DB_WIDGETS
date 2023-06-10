@@ -1,4 +1,4 @@
-const accountId = props.accountId ?? context.accountId;
+const accountId = props.accountId ?? "devs.near";
 const daoId = props.daoId ?? "build.sputnik-dao.near";
 
 const tab = props.tab === "following" ? props.tab : "members";
