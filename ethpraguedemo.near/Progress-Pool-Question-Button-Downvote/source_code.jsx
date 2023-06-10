@@ -94,7 +94,7 @@ return (
           aria-hidden="true"
         />
       ) : (
-        <i class="bi bi-caret-down-fill" />
+        <i class="bi bi-caret-down-fill" style={{ verticalAlign: "middle" }} />
       )}
     </Button>
   </div>
