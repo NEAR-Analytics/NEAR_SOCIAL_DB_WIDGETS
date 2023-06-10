@@ -174,45 +174,64 @@ const getSender = () => {
         state.sender.substring(state.sender.length - 4, state.sender.length);
 };
 
-// Define the three widgets
-const Widget1 = () => (
-  <Widget src="ethpraguedemo.near/widget/Progress-Pool-Voters" props={{}} />
-);
-const Widget2 = () => (
-  <Widget src="ethpraguedemo.near/widget/Widget2" props={{}} />
-);
-const Widget3 = () => (
-  <Widget src="ethpraguedemo.near/widget/Widget3" props={{}} />
-);
+return (
+  <Theme>
+    <div style={{ marginBottom: "20px" }}>
+      <button onClick={() => setCurrentView("A")}>Widget A</button>
+      <button onClick={() => setCurrentView("B")}>Widget B</button>
+      <button onClick={() => setCurrentView("C")}>Widget C</button>
+    </div>
 
-const NavigationBar = () => {
-  // State to keep track of the currently selected widget
-  const [selectedWidget, setSelectedWidget] = useState(Widget1);
+    {currentView === "A" && (
+      <Widget
+        src="ethpraguedemo.near/widget/Progress-Pool-Proposals"
+        props={{}}
+      />
+    )}
 
-  // Function to handle widget selection
-  const selectWidget = (WidgetComponent) => {
-    setSelectedWidget(WidgetComponent);
-  };
+    {currentView === "B" && (
+      // Replace "WidgetB" with the appropriate widget/component for view B
+      <Widget
+        src="ethpraguedemo.near/widget/Progress-Pool-Grantees"
+        props={{}}
+      />
+    )}
 
-  return (
-    <div>
-      <nav>
-        <ul>
-          <li>
-            <button onClick={() => selectWidget(Widget1)}>Widget 1</button>
-          </li>
-          <li>
-            <button onClick={() => selectWidget(Widget2)}>Widget 2</button>
-          </li>
-          <li>
-            <button onClick={() => selectWidget(Widget3)}>Widget 3</button>
-          </li>
-        </ul>
-      </nav>
-      <div>
-        {/* Render the selected widget */}
-        {selectedWidget && <SelectedWidget />}
+    {currentView === "C" && (
+      // Replace "WidgetC" with the appropriate widget/component for view C
+      <WidgetC />
+    )}
+
+    <div style={{ display: "flex", marginBottom: "50px", marginTop: "20px" }}>
+      <div
+        style={
+          {
+            /* Add any additional styling for the first LidoContainer */
+          }
+        }
+      >
+        <Widget
+          src="ethpraguedemo.near/widget/Progress-Pool-Voters"
+          props={{}}
+        />
+      </div>
+
+      <div
+        style={{
+          marginLeft:
+            "10px" /* Add any additional styling for the second LidoContainer */,
+        }}
+      >
+        <Widget
+          src="ethpraguedemo.near/widget/Progress-Pool-Grantees"
+          props={{}}
+        />
       </div>
     </div>
-  );
-};
+
+    <Widget
+      src="ethpraguedemo.near/widget/Progress-Pool-Proposals"
+      props={{}}
+    />
+  </Theme>
+);
