@@ -14,8 +14,8 @@ if (
 
 let updateFlag = false;
 const toggleUpdateFlag = () => {
-  console.log("rerender should happen ", state.pulled_proposals);
   updateFlag = !updateFlag;
+  console.log("rerender should happen ", state.pulled_proposals);
 };
 
 State.update({ pulled_proposals: [] });
