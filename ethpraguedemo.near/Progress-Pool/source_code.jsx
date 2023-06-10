@@ -174,39 +174,45 @@ const getSender = () => {
         state.sender.substring(state.sender.length - 4, state.sender.length);
 };
 
-return (
-  <Theme>
-    <div style={{ marginBottom: "20px" }}>
-      <button
-        onClick={() =>
-          window.open(
-            "ethpraguedemo.near/widget/Progress-Pool-Voters",
-            "_blank"
-          )
-        }
-      >
-        For Voters
-      </button>
-      <button
-        onClick={() =>
-          window.open(
-            "ethpraguedemo.near/widget/Progress-Pool-Grantees",
-            "_blank"
-          )
-        }
-      >
-        For Grantees
-      </button>
-      <button
-        onClick={() =>
-          window.open(
-            "ethpraguedemo.near/widget/Progress-Pool-Proposals",
-            "_blank"
-          )
-        }
-      >
-        Proposals
-      </button>
-    </div>
-  </Theme>
+// Define the three widgets
+const Widget1 = () => (
+  <Widget src="ethpraguedemo.near/widget/Progress-Pool-Voters" props={{}} />
 );
+const Widget2 = () => (
+  <Widget src="ethpraguedemo.near/widget/Widget2" props={{}} />
+);
+const Widget3 = () => (
+  <Widget src="ethpraguedemo.near/widget/Widget3" props={{}} />
+);
+
+const NavigationBar = () => {
+  // State to keep track of the currently selected widget
+  const [selectedWidget, setSelectedWidget] = useState(Widget1);
+
+  // Function to handle widget selection
+  const selectWidget = (WidgetComponent) => {
+    setSelectedWidget(WidgetComponent);
+  };
+
+  return (
+    <div>
+      <nav>
+        <ul>
+          <li>
+            <button onClick={() => selectWidget(Widget1)}>Widget 1</button>
+          </li>
+          <li>
+            <button onClick={() => selectWidget(Widget2)}>Widget 2</button>
+          </li>
+          <li>
+            <button onClick={() => selectWidget(Widget3)}>Widget 3</button>
+          </li>
+        </ul>
+      </nav>
+      <div>
+        {/* Render the selected widget */}
+        {selectedWidget && <SelectedWidget />}
+      </div>
+    </div>
+  );
+};
