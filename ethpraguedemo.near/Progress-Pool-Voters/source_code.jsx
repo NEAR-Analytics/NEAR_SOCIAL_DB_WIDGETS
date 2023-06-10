@@ -413,7 +413,7 @@ return (
               class="LidoStakeFormSubmitContainer"
               onClick={() => getVote(state.sender)}
             >
-              <span>Mint Vote</span>
+              <span>Claim</span>
             </button>
           )
         ) : (
