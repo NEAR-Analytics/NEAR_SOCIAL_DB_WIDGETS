@@ -33,7 +33,7 @@ return (
       <div class="col-12">
         <div class="pb-3 border-bottom">
           <Widget
-            src="dev-support.near/widget/DevSupport.Discussion.Title"
+            src="ethpraguedemo.near/widget/Progress-Pool-Proposals-Discussion-Title"
             props={{ disabled: !context.accountId, onClick: toggleQuestion }}
           />
         </div>
@@ -41,7 +41,7 @@ return (
         {state.askQuestion && (
           <div class="mt-4 p-8">
             <Widget
-              src="dev-support.near/widget/DevSupport.Question.Edit"
+              src="ethpraguedemo.near/widget/Progress-Pool-Proposals-Question-Edit"
               props={{ onCommit: () => State.update({ askQuestion: false }) }}
             />
           </div>
@@ -49,7 +49,7 @@ return (
 
         <div class="mt-5">
           <Widget
-            src="dev-support.near/widget/DevSupport.Feed"
+            src="ethpraguedemo.near/widget/Progress-Pool-Proposals-Feed"
             props={{ admins, adminContract: adminContract }}
           />
         </div>
