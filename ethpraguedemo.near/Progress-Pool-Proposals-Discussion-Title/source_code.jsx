@@ -28,14 +28,5 @@ return (
       <H1>Proposals</H1>
       <H6>Support projects that keep growing!</H6>
     </div>
-    <div class="col-lg-4 col-sm-12">
-      <Button
-        class="btn btn-primary"
-        disabled={props.disabled}
-        onClick={props.onClick}
-      >
-        Vote
-      </Button>
-    </div>
   </div>
 );
