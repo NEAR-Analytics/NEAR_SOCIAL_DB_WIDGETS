@@ -64,10 +64,7 @@ return (
     </div>
     <h3 className="m-1">Builders</h3>
     <div className="mt-3">
-      <Widget
-        src="mob.near/widget/FollowTabs"
-        props={{ accountId, tab: "following" }}
-      />
+      <Widget src="hack.near/widget/dev.org" props={{ accountId }} />
     </div>
   </div>
 );
