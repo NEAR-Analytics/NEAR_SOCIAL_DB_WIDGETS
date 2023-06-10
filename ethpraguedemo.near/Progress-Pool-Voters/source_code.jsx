@@ -393,14 +393,8 @@ return (
                 </div>
               </div>
             </div>
-            <div class="LidoSplitter" />
           </>
         )}
-        <div
-          class={
-            state.sender ? "LidoFormBottomContainer" : "LidoFormTopContainer"
-          }
-        ></div>
       </div>
       <div class="LidoStakeForm">
         {!!state.sender ? (
