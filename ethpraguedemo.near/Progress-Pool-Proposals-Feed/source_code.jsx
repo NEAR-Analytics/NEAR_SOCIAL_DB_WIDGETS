@@ -39,4 +39,9 @@ const renderItem = (a) => {
   );
 };
 
-return <Widget src="mob.near/widget/IndexFeed" props={{ index, renderItem }} />;
+return (
+  <Widget
+    src="ethpraguedemo.near/widget/Progress-Pool-Proposals-Feed-Index"
+    props={{ index, renderItem }}
+  />
+);
