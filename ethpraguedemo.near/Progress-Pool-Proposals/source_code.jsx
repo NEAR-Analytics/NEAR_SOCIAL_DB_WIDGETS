@@ -152,9 +152,9 @@ return (
       </div>
     </div>
 
-    <div class="col-lg-4 col-sm-4">
+    <div class="col-lg-4 col-sm-12">
       <Button
-        class="btn btn-primary"
+        class="btn btn-primary btn-sm"
         disabled={props.disabled}
         onClick={props.onClick}
       >
