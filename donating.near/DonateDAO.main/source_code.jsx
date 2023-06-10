@@ -139,38 +139,9 @@ const sender = Ethers.send("eth_requestAccounts", [])[0];
 const erc20Abi = fetch(
   "https://gist.githubusercontent.com/veox/8800debbf56e24718f9f483e1e40c35c/raw/f853187315486225002ba56e5283c1dba0556e6f/erc20.abi.json"
 );
-
-if (sender) {
-  Ethers.provider()
-    .getNetwork()
-    .then(({ chainId }) => {
-      State.update({ chainId: chainId === 5 ? "testnet" : "mainnet" });
-    });
-}
-const contracts = {
-  mainnet: {
-    paymaster: {
-      L1ERC20BridgeProxy: "0x57891966931Eb4Bb6FB81430E6cE0A03AAbDe063", // change this
-    },
-    weth: {
-      withdraw: "0x5AEa5775959fBC2557Cc8789bC1bf90A239D9a91", // l2 token
-    },
-    usdc: {
-      withdraw: "0x3355df6D4c9C3035724Fd0e3914dE96A5a83aaf4", // l2 token
-    },
-  },
-  testnet: {
-    paymster: {
-      L2ERC20Bridge: "0x00ff932A6d70E2B8f1Eb4919e1e09C1923E7e57b",
-    },
-    weth: {
-      withdraw: undefined, // not found yet
-    },
-    usdc: {
-      withdraw: undefined, // not found yet
-    },
-  },
-};
+// there was a state update here
+const usdcZKtestnet = "0x3355df6D4c9C3035724Fd0e3914dE96A5a83aaf4";
+const paymasterZKtestnet = "";
 const css = `
   .flex {
     display: flex;
@@ -233,50 +204,52 @@ return (
       </div>
       <div className="border border-secondary border-bottom-0 border-light" />
       <div className="p-2">
-        <div className="column">
-          <div className="assets">
-            <span>{deposit.network.name}</span>
-            <select
-              className="form-select"
-              aria-label="select asset"
-              onChange={handleAssetChange}
-            >
-              {assets &&
-                assets.map((asset) => (
-                  <option value={asset.id} selected={asset.selected}>
-                    {asset.name}
-                  </option>
-                ))}
-            </select>
-          </div>
-          <div className="d-flex justify-content-between">
-            <span>Balance: {selectedAsset.balance}</span>
-          </div>
-          <div className="balance input-group">
-            <input
-              style={{ maxWidth: "120px" }}
-              type="number"
-              min="0"
-              step="0.1"
-              defaultValue={props.amount}
-              value={amount}
-              placeholder="0.00"
-              onChange={handleAmountChange}
-            />
-            <button className="btn btn-light btn-sm max" onClick={handleMax}>
-              max
-            </button>
-          </div>
-          <div className="balance input-group">
-            <input
-              style={{ maxWidth: "100%" }}
-              type="string"
-              defaultValue={props.amount}
-              value={reciever}
-              placeholder={state.reciever}
-              onChange={handleRecieverChange}
-            />
-          </div>
+        <div className="assets">
+          <span>{deposit.network.name}</span>
+          <select
+            className="form-select"
+            aria-label="select asset"
+            onChange={handleAssetChange}
+          >
+            {assets &&
+              assets.map((asset) => (
+                <option value={asset.id} selected={asset.selected}>
+                  {asset.name}
+                </option>
+              ))}
+          </select>
+        </div>
+        <div className="d-flex justify-content-between">
+          <span>
+            {" "}
+            {selectedAsset} Balance: {selectedAsset.balance}
+          </span>
+        </div>
+        <div className="balance input-group">
+          <input
+            style={{ maxWidth: "120px" }}
+            type="number"
+            min="0"
+            step="0.1"
+            defaultValue={props.amount}
+            value={amount}
+            placeholder="0.00"
+            onChange={handleAmountChange}
+          />
+          <button className="btn btn-light btn-sm max" onClick={handleMax}>
+            max
+          </button>
+        </div>
+        <label>Charity Address</label>
+        <div className="balance input-group">
+          <input
+            style={{ maxWidth: "100%" }}
+            type="string"
+            defaultValue={props.amount}
+            value={reciever}
+            placeholder={state.reciever}
+            onChange={handleRecieverChange}
+          />
         </div>
       </div>
       <div className="border border-secondary border-bottom-0 border-light" />
