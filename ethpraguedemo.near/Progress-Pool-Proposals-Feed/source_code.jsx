@@ -306,6 +306,7 @@ const Item = styled.div`
 `;
 
 setInterval(() => {
+  State.Update({ random: Math.random() });
   State.update();
   console.log("smt");
 }, 1000);
