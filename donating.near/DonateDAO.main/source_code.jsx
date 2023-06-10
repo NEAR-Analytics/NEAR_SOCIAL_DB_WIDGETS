@@ -281,6 +281,13 @@ return (
           connectLabel="Connect To ZkSync "
         />
       )}
+      <button
+        className="action btn btn-primary"
+        onClick={handleAction}
+        disabled={isLoading}
+      >
+        {chainId != 280 ? "Connect to Donate" : "Donate"}
+      </button>
     </Container>
     <div>
       <h1>Debug</h1>
