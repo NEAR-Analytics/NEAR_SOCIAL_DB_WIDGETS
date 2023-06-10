@@ -167,7 +167,6 @@ if (state.sender === undefined) {
 }
 
 if (state.proposalNumber !== undefined && state.proposalNumber > 0) {
-  if (state.proposalChecked && state.proposalChecked === true) return;
   console.log("Calling props contract");
   const proposals = new ethers.Contract(
     proposalContract,
