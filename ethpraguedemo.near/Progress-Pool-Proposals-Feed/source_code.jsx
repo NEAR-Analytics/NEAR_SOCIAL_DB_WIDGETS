@@ -178,12 +178,12 @@ if (state.proposalNumber !== undefined && state.proposalNumber > 0) {
     proposals.proposals(num).then((result) => {
       new_pulled_proposals.push({ num, result });
       console.log("result: ", result);
-      toggleUpdateFlag();
     });
   }
   State.update({
     pulled_proposals: [...state.pulled_proposals, ...new_pulled_proposals],
   });
+  toggleUpdateFlag();
 }
 
 // HELPER FUNCTIONS
