@@ -92,7 +92,7 @@ return (
       <Widget
         src="ethpraguedemo.near/widget/Progress-Pool-Question-Button-Downvote"
         style="margin-left: 2px;"
-        props={{ downvotes: totalVotes.toNumber() - result[2].toNumber() }}
+        props={{ downvotes: totalVotes }}
       />
     </div>
     <div class="col-10">
