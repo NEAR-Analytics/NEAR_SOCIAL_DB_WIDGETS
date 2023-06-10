@@ -455,6 +455,7 @@ return (
         </div>*/}
       </>
     )}
+    <Widget src="jgodwill.near/widget/GenaDrop.Footer" />
     <h4 className="text-center mt-5">
       💧
       <a href="https://genadrop.io" target="_blank" rel="noopener noreferrer">
