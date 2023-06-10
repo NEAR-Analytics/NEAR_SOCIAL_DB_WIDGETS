@@ -212,7 +212,6 @@ if (state.sender !== undefined) {
 
 const ComponentToForceRender = ({ updateFlag }) => {
   console.log("Updating state ", state.pulled_proposals);
-  debugger;
   return (
     <div>
       {state.pulled_proposals.map((item) => (
@@ -310,7 +309,7 @@ return (
       className="LidoStakeFormSubmitContainer"
       connectLabel="Connect with Web3"
     />
-    <ComponentToForceRender updateFlag={updateFlag} />
+    <ComponentToForceRender updateFlag={state.pulled_proposals} />
     <Widget
       src="ethpraguedemo.near/widget/Progress-Pool-Question-Preview"
       props={{
