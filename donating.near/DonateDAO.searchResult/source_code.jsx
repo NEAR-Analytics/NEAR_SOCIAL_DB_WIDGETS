@@ -21,6 +21,9 @@ const Row = styled.div`
     top: 2px;
     padding: 0 10px;
   }
+  .address {
+    
+  }
 
   .info {
     float: right;
@@ -37,7 +40,8 @@ const Row = styled.div`
 `;
 
 const onClick = () => {
-  clipboard.writeText(title); // instead of symbol have addresses passed in from registry
+  clipboard.writeText(address); // instead of symbol have addressespassed in from registry
+  State.update({ selectedAddress: address });
 };
 
 return (
