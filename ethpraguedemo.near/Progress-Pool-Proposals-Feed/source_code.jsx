@@ -185,6 +185,7 @@ if (state.proposalNumber !== undefined && state.proposalNumber > 0) {
         console.log("result: ", result);
 
         num++;
+        console.log("num now ", num);
         if (num < state.proposalNumber) {
           fetchProposal();
         } else {
