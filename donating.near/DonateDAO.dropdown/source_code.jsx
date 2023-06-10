@@ -59,8 +59,6 @@ const handleSearchChange = (event) => {
 
 return (
   <div>
-    <Header>🔎 Non-Profit Search</Header>
-    <p>Selected Charity Address: {state.selectedAddress}</p>
     <Widget
       src={`donating.near/widget/DonateDAO.searchInput`}
       props={{ textChange: handleSearchChange }}
