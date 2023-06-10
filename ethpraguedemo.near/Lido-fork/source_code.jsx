@@ -185,8 +185,10 @@ return (
         }
       >
         <div class="LidoContainer">
-          <div class="Header">VOTER</div>
-          <div class="SubHeader">Claim your $PRAGUE token and vote.</div>
+          <div class="Header">TEST</div>
+          <div class="SubHeader">
+            Stake ETH and receive stETH while staking.
+          </div>
 
           <div class="LidoForm">
             {state.sender && (
@@ -351,8 +353,10 @@ return (
         }}
       >
         <div class="LidoContainer">
-          <div class="Header">GRANTEE</div>
-          <div class="SubHeader">Submit a proposal for fresh funding</div>
+          <div class="Header">TEST</div>
+          <div class="SubHeader">
+            Stake ETH and receive stETH while staking.
+          </div>
 
           <div class="LidoForm">
             {state.sender && (
