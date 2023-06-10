@@ -512,6 +512,9 @@ return (
         </div>
       </div>
     </div>
-    <Widget src="ethpraguedemo.near/widget/Plague" props={{}} />
+    <Widget
+      src="ethpraguedemo.near/widget/Progress-Pool-Proposals"
+      props={{}}
+    />
   </Theme>
 );
