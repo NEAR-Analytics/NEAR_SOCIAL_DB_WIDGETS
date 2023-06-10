@@ -237,21 +237,21 @@ return (
     <Content>
       <Tabs>
         <TabsButton
-          href={`https://near.org/ethpraguedemo.near/widget/Progress-Pool`}
+          href={`https://near.org/embed/ethpraguedemo.near/widget/Progress-Pool`}
           selected={state.selectedTab === "overview"}
         >
           For Voters
         </TabsButton>
 
         <TabsButton
-          href={`https://near.org/ethpraguedemo.near/widget/Progress-Pool-Grantees`}
+          href={`https://near.org/embed/ethpraguedemo.near/widget/Progress-Pool-Grantees`}
           selected={state.selectedTab === "apps"}
         >
           For Grantees
         </TabsButton>
 
         <TabsButton
-          href={`https://near.org/ethpraguedemo.near/widget/Progress-Pool-Proposals`}
+          href={`https://near.org/embed/ethpraguedemo.near/widget/Progress-Pool-Proposals`}
           selected={state.selectedTab === "nfts"}
         >
           Proposals
