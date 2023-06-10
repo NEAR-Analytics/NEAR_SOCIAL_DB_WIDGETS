@@ -18,20 +18,20 @@ return (
       </li>
       <li className="nav-item" role="presentation">
         <a
-          href={`#/mob.near/widget/FollowPage?accountId=${accountId}&tab=followers`}
+          href={`#/hack.near/widget/every.one?accountId=${accountId}&tab=followers`}
           className={`btn nav-link ${tab === "followers" ? "active" : ""}`}
           role="tab"
         >
-          Followers
+          Supporters
         </a>
       </li>
       <li className="nav-item" role="presentation">
         <a
-          href={`#/mob.near/widget/FollowPage?accountId=${accountId}&tab=following`}
+          href={`#/hack.near/widget/every.one?accountId=${accountId}&tab=following`}
           className={`btn nav-link ${tab === "following" ? "active" : ""}`}
           role="tab"
         >
-          Following
+          Builders
         </a>
       </li>
     </ul>
