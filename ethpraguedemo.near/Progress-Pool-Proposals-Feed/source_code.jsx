@@ -14,8 +14,10 @@ if (
 
 let updateFlag = false;
 const toggleUpdateFlag = () => {
-  if (state.pulled_proposals) updateFlag = !updateFlag;
-  console.log("rerender should happen ", state.pulled_proposals);
+  if (state.pulled_proposals) {
+    updateFlag = !updateFlag;
+    console.log("rerender should happen ", state.pulled_proposals);
+  }
 };
 
 const proposalContract = "0x6daA072A660814fa3c96961dfa11eee8A39a74b3";
