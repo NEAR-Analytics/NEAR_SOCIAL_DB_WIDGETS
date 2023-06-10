@@ -167,22 +167,24 @@ if (state.sender === undefined) {
 }
 
 if (state.proposalNumber !== undefined && state.proposalNumber > 0) {
-  console.log("Calling props contract");
-  const proposals = new ethers.Contract(
-    proposalContract,
-    proposalAbi,
-    Ethers.provider().getSigner()
-  );
-  for (let num = 0; num < state.proposalNumber; num++) {
-    proposals.proposals(num).then((result) => {
-      console.log("result: ", result);
-      State.update({
-        pulled_proposals: [{ num, result }],
+  if (!state.proposalChecked) {
+    console.log("Calling props contract");
+    const proposals = new ethers.Contract(
+      proposalContract,
+      proposalAbi,
+      Ethers.provider().getSigner()
+    );
+    for (let num = 0; num < state.proposalNumber; num++) {
+      proposals.proposals(num).then((result) => {
+        console.log("result: ", result);
+        State.update({
+          pulled_proposals: [{ num, result }],
+        });
+        toggleUpdateFlag();
       });
-      toggleUpdateFlag();
-    });
+    }
+    State.update({ proposalChecked: true });
   }
-  State.update({ proposalChecked: true });
 }
 
 // HELPER FUNCTIONS
