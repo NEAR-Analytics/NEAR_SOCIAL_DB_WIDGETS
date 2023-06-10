@@ -44,7 +44,7 @@ return (
       </div>
       <div className="m-2">
         <Widget
-          src="devs.near/widget/dev.info"
+          src="hack.near/widget/dev.info"
           props={{ accountId, daoId, role: "community" }}
         />
       </div>
@@ -52,7 +52,7 @@ return (
     <h2 className="mb-3">
       <b>Explore Community</b>
     </h2>
-    <h3 className="m-1">Join Builder Groups</h3>
+    <h3 className="m-1">Join Groups</h3>
 
     <div className="m-3 d-flex gap-2 flex-wrap">
       {groups.map((group, i) => (
