@@ -187,7 +187,6 @@ return (
     )}
 
     {currentView === "B" && (
-      // Replace "WidgetB" with the appropriate widget/component for view B
       <Widget
         src="ethpraguedemo.near/widget/Progress-Pool-Grantees"
         props={{}}
@@ -195,7 +194,6 @@ return (
     )}
 
     {currentView === "C" && (
-      // Replace "WidgetC" with the appropriate widget/component for view C
       <Widget
         src="ethpraguedemo.near/widget/Progress-Pool-Proposals"
         props={{}}
