@@ -105,14 +105,6 @@ return (
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col">
-          <Widget
-            src="dev-support.near/widget/DevSupport.Question.Button.Answers"
-            props={{ accountId, blockHeight, adminContract }}
-          />
-        </div>
-      </div>
     </div>
   </div>
 );
