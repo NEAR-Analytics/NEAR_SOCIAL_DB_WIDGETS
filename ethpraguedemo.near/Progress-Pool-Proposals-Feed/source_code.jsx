@@ -211,6 +211,22 @@ if (state.sender !== undefined) {
   pullProposals();
 }
 
+const ComponentToForceRender = ({ updateFlag }) => {
+  console.log(state);
+  console.log("Updating state ", state.pulled_proposals);
+  if (!state.pulled_proposals) return null;
+  return (
+    <div>
+      {state.pulled_proposals.map((item) => (
+        <Widget
+          src="ethpraguedemo.near/widget/Progress-Pool-Question-Preview"
+          props={{ result: !item.result, index: item.num }}
+        />
+      ))}
+    </div>
+  );
+};
+
 const H2 = styled.h2`
   font-size: 20px;
   font-weight: 600;
@@ -293,6 +309,11 @@ const Item = styled.div`
 console.log("before return");
 return (
   <div>
+    <Web3Connect
+      className="LidoStakeFormSubmitContainer"
+      connectLabel="Connect with Web3"
+    />
+    <ComponentToForceRender updateFlag={state.proposalChecked} />
     <span>Number is {state.random}</span>
   </div>
 );
