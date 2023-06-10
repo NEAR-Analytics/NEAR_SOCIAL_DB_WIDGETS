@@ -166,9 +166,6 @@ return (
               </div>
             </div>
           </div>
-          <div class="row">
-            <H6></H6>
-          </div>
         </div>
       </div>
       <div class="row">
