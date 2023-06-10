@@ -1,6 +1,7 @@
 const result = props.result;
 const index = props.index;
 const totalVotes = props.totalVotes;
+console.log(totalVotes);
 
 const H2 = styled.h2`
   font-size: 20px;
