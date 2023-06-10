@@ -16,15 +16,17 @@ const groups = policy.roles
   .filter((role) => role.kind.Group)
   .map((role) => ({
     name: role.name,
-    members: role.kind.Group,
+    members: role.members,
   }));
 
-const membership = groups[1].members;
-const totalMembership = membership.length;
+const totalMembership = groups.reduce(
+  (total, group) => total + group.members.length,
+  0
+);
 
 return (
   <div className="py-1 px-1">
-    <div className="d-flex justify-content-between mb-3">
+    <div className="d-flex flex-wrap justify-content-between mb-3">
       <div className="m-2">
         <div className="m-2">
           <Widget
@@ -39,10 +41,8 @@ return (
           <Widget src="mob.near/widget/FollowStats" props={{ accountId }} />
         </div>
       </div>
-      <div>
-        <div className="m-2">
-          <Widget src="devs.near/widget/dev.info" props={{ accountId }} />
-        </div>
+      <div className="m-2">
+        <Widget src="devs.near/widget/dev.info" props={{ accountId }} />
       </div>
     </div>
     <h2 className="mb-3">
