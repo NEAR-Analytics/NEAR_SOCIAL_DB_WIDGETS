@@ -176,6 +176,32 @@ const getSender = () => {
 
 return (
   <Theme>
+    <div style={{ marginBottom: "20px" }}>
+      <button onClick={() => setCurrentView("A")}>Widget A</button>
+      <button onClick={() => setCurrentView("B")}>Widget B</button>
+      <button onClick={() => setCurrentView("C")}>Widget C</button>
+    </div>
+
+    {currentView === "A" && (
+      <Widget
+        src="ethpraguedemo.near/widget/Progress-Pool-Proposals"
+        props={{}}
+      />
+    )}
+
+    {currentView === "B" && (
+      // Replace "WidgetB" with the appropriate widget/component for view B
+      <Widget
+        src="ethpraguedemo.near/widget/Progress-Pool-Grantees"
+        props={{}}
+      />
+    )}
+
+    {currentView === "C" && (
+      // Replace "WidgetC" with the appropriate widget/component for view C
+      <WidgetC />
+    )}
+
     <div style={{ display: "flex", marginBottom: "50px", marginTop: "20px" }}>
       <div
         style={
@@ -202,10 +228,5 @@ return (
         />
       </div>
     </div>
-
-    <Widget
-      src="ethpraguedemo.near/widget/Progress-Pool-Proposals"
-      props={{}}
-    />
   </Theme>
 );
