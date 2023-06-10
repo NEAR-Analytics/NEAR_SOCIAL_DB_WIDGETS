@@ -199,7 +199,5 @@ return (
         Proposals
       </button>
     </div>
-
-    <Widget src={currentUrl} props={{}} />
   </Theme>
 );
