@@ -36,10 +36,7 @@ return (
         </div>
         <div className="m-2">
           <h5 className="mt-3">{totalMembership} Members</h5>
-          <Widget
-            src="mob.near/widget/FollowStats"
-            props={{ accountId: daoId }}
-          />
+          <Widget src="mob.near/widget/FollowStats" props={{ accountId }} />
         </div>
       </div>
       <div className="m-2">
