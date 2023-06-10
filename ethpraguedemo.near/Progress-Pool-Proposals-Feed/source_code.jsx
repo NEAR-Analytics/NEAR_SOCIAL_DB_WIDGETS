@@ -168,7 +168,6 @@ if (state.sender === undefined) {
 
 if (state.proposalNumber !== undefined && state.proposalNumber > 0) {
   console.log("Calling props contract");
-  const new_pulled_proposals = [];
   const proposals = new ethers.Contract(
     proposalContract,
     proposalAbi,
@@ -176,10 +175,9 @@ if (state.proposalNumber !== undefined && state.proposalNumber > 0) {
   );
   for (let num = 0; num < state.proposalNumber; num++) {
     proposals.proposals(num).then((result) => {
-      new_pulled_proposals.push({ num, result });
       console.log("result: ", result);
       State.update({
-        pulled_proposals: [...state.pulled_proposals, ...new_pulled_proposals],
+        pulled_proposals: [...state.pulled_proposals, { num, result }],
       });
       toggleUpdateFlag();
     });
