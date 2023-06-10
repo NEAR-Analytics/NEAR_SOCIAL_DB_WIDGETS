@@ -167,21 +167,7 @@ return (
             </div>
           </div>
           <div class="row">
-            <H6>
-              <div class="d-flex">
-                <Trancate>{accountId}</Trancate>
-                &nbsp;in&nbsp;
-                <TopicName>
-                  <Widget
-                    src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Question.LabelsDisplay"
-                    props={{ labels: question.labels }}
-                  />
-                </TopicName>
-                &nbsp;&#8226;&nbsp;
-                <Widget src="mob.near/widget/TimeAgo" props={{ blockHeight }} />
-                &nbsp;ago
-              </div>
-            </H6>
+            <H6></H6>
           </div>
         </div>
       </div>
