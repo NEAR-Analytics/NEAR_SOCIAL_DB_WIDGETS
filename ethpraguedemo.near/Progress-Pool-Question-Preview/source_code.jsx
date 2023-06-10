@@ -183,10 +183,7 @@ return (
       </div>
     </div>
 
-    
-  </div>
-
-<div class="col-lg-4 col-sm-12">
+    <div class="col-lg-4 col-sm-12">
       <Button
         class="btn btn-primary"
         disabled={props.disabled}
@@ -195,5 +192,5 @@ return (
         Ask a Question
       </Button>
     </div>
-
+  </div>
 );
