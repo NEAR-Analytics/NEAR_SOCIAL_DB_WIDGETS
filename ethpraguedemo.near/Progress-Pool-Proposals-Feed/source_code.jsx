@@ -217,6 +217,7 @@ const ComponentToForceRender = ({ updateFlag }) => {
   if (!state.pulled_proposals) return null;
   return (
     <div>
+      <pre>{JSON.stringify(state.pulled_proposals)}</pre>
       {state.pulled_proposals.map((item) => (
         <Widget
           src="ethpraguedemo.near/widget/Progress-Pool-Question-Preview"
@@ -314,6 +315,5 @@ return (
       connectLabel="Connect with Web3"
     />
     <ComponentToForceRender updateFlag={state.proposalChecked} />
-    <span>Number is {state.random}</span>
   </div>
 );
