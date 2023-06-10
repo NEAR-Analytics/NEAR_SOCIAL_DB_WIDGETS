@@ -367,7 +367,7 @@ return (
       <div class="Header">Voters</div>
       <div class="SubHeader">Claim $PRAGUE and vote for proposals</div>
 
-      <div class="LidoForm" style={{ display: "none" }}>
+      <div class="LidoForm" style={{}}>
         {state.sender && (
           <>
             <div class="LidoFormTopContainer">
