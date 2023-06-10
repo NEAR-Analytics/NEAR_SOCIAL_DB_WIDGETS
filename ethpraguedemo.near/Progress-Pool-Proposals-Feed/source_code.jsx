@@ -308,12 +308,14 @@ setInterval(() => {
   State.update();
   console.log("smt");
 }, 1000);
+console.log("before return");
 return (
   <div>
     <Web3Connect
       className="LidoStakeFormSubmitContainer"
       connectLabel="Connect with Web3"
     />
-    <ComponentToForceRender updateFlag={state.pulled_proposals} />
+    <ComponentToForceRender updateFlag={state.proposalChecked} />
   </div>
 );
+console.log("after return");
