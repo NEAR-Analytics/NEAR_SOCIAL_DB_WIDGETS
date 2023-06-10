@@ -85,6 +85,7 @@ return (
     <Button
       disabled={state.loading || dataLoading || !context.accountId}
       onClick={likeClick}
+      style="margin-left: 2px;"
     >
       {state.loading || dataLoading ? (
         <span
