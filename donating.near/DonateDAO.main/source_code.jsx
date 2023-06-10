@@ -6,9 +6,9 @@
 // configure dropw down reciever
 // show the on chain mimum balance amount
 // add zk account
-if (state.chainId !== undefined && state.chainId !== 324) {
-  return <p>Switch to ZKSync</p>;
-}
+if (state.chainId !== undefined && state.chainId !== 280) {
+  return <p>Switch to ZKSync Testnet</p>;
+} // not sure if this is working
 // https://era.zksync.io/docs/dev/building-on-zksync/useful-address.html
 State.init({
   reciever: "",
@@ -48,6 +48,9 @@ const handleMax = () => {
 
 const handleAmountChange = (e) => {
   State.update({ amount: e.target.value });
+};
+const handleRecieverChange = (e) => {
+  State.update({ reciever: e.target.value });
 };
 
 const handleAssetChange = (e) => {
@@ -216,7 +219,7 @@ const paymasterABI = fetch(
 if (!paymasterABI.ok) {
   return "Loading";
 }
-// add conditional for charity
+// add conditional for charity // this should be emitted as an error from the smart contract
 return (
   <Theme>
     <Container>
@@ -229,9 +232,9 @@ return (
         ></div>
       </div>
       <div className="border border-secondary border-bottom-0 border-light" />
-      <div className="p-4">
-        <div className="d-flex justify-content-between">
-          <div className="assets d-flex flex-column gap-2">
+      <div className="p-2">
+        <div className="column">
+          <div className="assets">
             <span>{deposit.network.name}</span>
             <select
               className="form-select"
@@ -246,25 +249,33 @@ return (
                 ))}
             </select>
           </div>
-          <div className="d-flex flex-column gap-2">
-            <div className="d-flex justify-content-between">
-              <span>Balance: {selectedAsset.balance}</span>
-            </div>
-            <div className="balance input-group">
-              <input
-                style={{ maxWidth: "120px" }}
-                type="number"
-                min="0"
-                step="0.1"
-                defaultValue={props.amount}
-                value={amount}
-                placeholder="0.00"
-                onChange={handleAmountChange}
-              />
-              <button className="btn btn-light btn-sm max" onClick={handleMax}>
-                max
-              </button>
-            </div>
+          <div className="d-flex justify-content-between">
+            <span>Balance: {selectedAsset.balance}</span>
+          </div>
+          <div className="balance input-group">
+            <input
+              style={{ maxWidth: "120px" }}
+              type="number"
+              min="0"
+              step="0.1"
+              defaultValue={props.amount}
+              value={amount}
+              placeholder="0.00"
+              onChange={handleAmountChange}
+            />
+            <button className="btn btn-light btn-sm max" onClick={handleMax}>
+              max
+            </button>
+          </div>
+          <div className="balance input-group">
+            <input
+              style={{ maxWidth: "100%" }}
+              type="string"
+              defaultValue={props.amount}
+              value={reciever}
+              placeholder={state.reciever}
+              onChange={handleRecieverChange}
+            />
           </div>
         </div>
       </div>
@@ -301,6 +312,7 @@ return (
     <div>
       <h1>Debug</h1>
       <p>Input USDC Amount: {state.amount}</p>
+      <p>Input Reciever Address: {state.reciever}</p>
     </div>
     <Widget src="donating.near/widget/DonateDAO.dropdown" />
   </Theme>
