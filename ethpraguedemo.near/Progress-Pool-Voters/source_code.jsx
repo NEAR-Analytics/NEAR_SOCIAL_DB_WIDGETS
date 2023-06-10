@@ -419,7 +419,7 @@ return (
         ) : (
           <Web3Connect
             className="LidoStakeFormSubmitContainer"
-            connectLabel="Connect with Web3"
+            connectLabel="Connect"
           />
         )}
       </div>
