@@ -396,7 +396,7 @@ return (
           </>
         )}
       </div>
-      <div class="LidoStakeForm" style={{ marginTop: "10px" }}>
+      <div class="LidoStakeForm" style={{ marginTop: "-2px" }}>
         {!!state.sender ? (
           state.hasMinted ? (
             <button
