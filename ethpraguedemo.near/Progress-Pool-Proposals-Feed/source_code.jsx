@@ -173,7 +173,7 @@ if (state.proposalNumber !== undefined && state.proposalNumber > 0) {
     proposalAbi,
     Ethers.provider().getSigner()
   );
-  for (let num = 0; num < state.proposalNumber.toNumber(); num++) {
+  for (let num = 0; num < state.proposalNumber; num++) {
     proposals.proposals(num).then((result) => {
       console.log("result: ", result);
       State.update({
@@ -199,7 +199,7 @@ const pullProposals = () => {
 
   proposals.proposalsCount().then((_number) => {
     if (_number > 0) {
-      State.update({ proposalNumber: _number });
+      State.update({ proposalNumber: _number.toNumber() });
     }
   });
 };
