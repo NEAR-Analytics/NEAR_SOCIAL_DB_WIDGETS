@@ -309,45 +309,24 @@ return (
     <Content>
       <Tabs>
         <TabsButton
-          href={`${accountUrl}&tab=overview`}
+          href={`https://near.org/ethpraguedemo.near/widget/Progress-Pool-Voters`}
           selected={state.selectedTab === "overview"}
         >
-          Overview
+          For Voters
         </TabsButton>
 
         <TabsButton
-          href={`${accountUrl}&tab=apps`}
+          href={`https://near.org/ethpraguedemo.near/widget/Progress-Pool-Grantees`}
           selected={state.selectedTab === "apps"}
         >
-          Components
+          For Grantees
         </TabsButton>
 
         <TabsButton
-          href={`${accountUrl}&tab=nfts`}
+          href={`https://near.org/ethpraguedemo.near/widget/Progress-Pool-Proposals`}
           selected={state.selectedTab === "nfts"}
         >
-          NFTs
-        </TabsButton>
-
-        <TabsButton
-          href={`${accountUrl}&tab=following`}
-          selected={state.selectedTab === "following"}
-        >
-          Following
-        </TabsButton>
-
-        <TabsButton
-          href={`${accountUrl}&tab=followers`}
-          selected={state.selectedTab === "followers"}
-        >
-          Followers
-        </TabsButton>
-
-        <TabsButton
-          href={`${accountUrl}&tab=explorer`}
-          selected={state.selectedTab === "explorer"}
-        >
-          Explorer
+          Proposals
         </TabsButton>
       </Tabs>
 
