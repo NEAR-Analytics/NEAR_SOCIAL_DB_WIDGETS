@@ -125,14 +125,6 @@ return (
             </div>
             <div class="col-auto">
               <div class="dropdown ms-auto">
-                <button
-                  class="btn border-0 p-0"
-                  type="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  <i class="bi bi-three-dots" />
-                </button>
                 <ul class="dropdown-menu">
                   <li>
                     <Item>
