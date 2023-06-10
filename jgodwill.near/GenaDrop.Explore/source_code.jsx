@@ -261,7 +261,7 @@ const PriceArea = styled.div`
 `;
 
 return (
-  <div className="container-fluid">
+  <>
     <Hero className="w-100">
       <PageTitle>
         Find, Buy and Sell NEAR NFTs on <br />
@@ -488,5 +488,5 @@ return (
         props={{ authors: [ownerId], dep: true }}
       />
     </h4>
-  </div>
+  </>
 );
