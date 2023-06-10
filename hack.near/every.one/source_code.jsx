@@ -32,22 +32,22 @@ return (
           <Widget
             src="devs.near/widget/dev.profile"
             props={{
-              accountId: "build.sputnik-dao.near",
+              accountId: daoId,
             }}
           />
         </div>
         <div className="m-2">
+          <h5 className="mt-2">{totalMembership} Members</h5>
           <Widget
             src="mob.near/widget/FollowStats"
-            props={{ accountId: "build.sputnik-dao.near" }}
+            props={{ accountId: daoId }}
           />
-          <p className="mt-2">{totalMembership} Build DAO Members</p>
         </div>
       </div>
       <div className="m-2">
         <Widget
           src="devs.near/widget/dev.info"
-          props={{ daoId: "build.sputnik-dao.near", role: "community" }}
+          props={{ accountId, daoId, role: "community" }}
         />
       </div>
     </div>
