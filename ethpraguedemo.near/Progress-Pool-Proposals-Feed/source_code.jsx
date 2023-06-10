@@ -174,16 +174,20 @@ if (state.proposalNumber !== undefined && state.proposalNumber > 0) {
     proposalAbi,
     Ethers.provider().getSigner()
   );
-  for (let num = 0; num < state.proposalNumber; num++) {
+
+  const promises = Array.from({ length: state.proposalNumber }, (_, num) =>
     proposals.proposals(num).then((result) => {
       new_pulled_proposals.push({ num, result });
       console.log("result: ", result);
+    })
+  );
+
+  Promise.all(promises).then(() => {
+    State.update({
+      pulled_proposals: [...state.pulled_proposals, ...new_pulled_proposals],
     });
-  }
-  State.update({
-    pulled_proposals: [...state.pulled_proposals, ...new_pulled_proposals],
+    toggleUpdateFlag();
   });
-  toggleUpdateFlag();
 }
 
 // HELPER FUNCTIONS
