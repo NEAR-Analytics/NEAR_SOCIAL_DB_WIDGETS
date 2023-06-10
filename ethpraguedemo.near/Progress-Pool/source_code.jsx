@@ -179,21 +179,30 @@ return (
     <div style={{ marginBottom: "20px" }}>
       <button
         onClick={() =>
-          setCurrentUrl("ethpraguedemo.near/widget/Progress-Pool-Voters")
+          window.open(
+            "ethpraguedemo.near/widget/Progress-Pool-Voters",
+            "_blank"
+          )
         }
       >
         For Voters
       </button>
       <button
         onClick={() =>
-          setCurrentUrl("ethpraguedemo.near/widget/Progress-Pool-Grantees")
+          window.open(
+            "ethpraguedemo.near/widget/Progress-Pool-Grantees",
+            "_blank"
+          )
         }
       >
         For Grantees
       </button>
       <button
         onClick={() =>
-          setCurrentUrl("ethpraguedemo.near/widget/Progress-Pool-Proposals")
+          window.open(
+            "ethpraguedemo.near/widget/Progress-Pool-Proposals",
+            "_blank"
+          )
         }
       >
         Proposals
