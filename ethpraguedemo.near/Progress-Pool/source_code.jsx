@@ -237,7 +237,7 @@ return (
     <Content>
       <Tabs>
         <TabsButton
-          href={`https://near.org/ethpraguedemo.near/widget/Progress-Pool-Voters`}
+          href={`https://near.org/ethpraguedemo.near/widget/Progress-Pool`}
           selected={state.selectedTab === "overview"}
         >
           For Voters
@@ -259,36 +259,6 @@ return (
       </Tabs>
     </Content>
 
-    <div style={{ display: "flex", marginBottom: "50px", marginTop: "20px" }}>
-      <div
-        style={
-          {
-            /* Add any additional styling for the first LidoContainer */
-          }
-        }
-      >
-        <Widget
-          src="ethpraguedemo.near/widget/Progress-Pool-Voters"
-          props={{}}
-        />
-      </div>
-
-      <div
-        style={{
-          marginLeft:
-            "10px" /* Add any additional styling for the second LidoContainer */,
-        }}
-      >
-        <Widget
-          src="ethpraguedemo.near/widget/Progress-Pool-Grantees"
-          props={{}}
-        />
-      </div>
-    </div>
-
-    <Widget
-      src="ethpraguedemo.near/widget/Progress-Pool-Proposals"
-      props={{}}
-    />
+    <Widget src="ethpraguedemo.near/widget/Progress-Pool-Voters" props={{}} />
   </Theme>
 );
