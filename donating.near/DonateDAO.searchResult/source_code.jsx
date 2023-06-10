@@ -22,7 +22,7 @@ const Row = styled.div`
     padding: 0 10px;
   }
   .address {
-    
+
   }
 
   .info {
@@ -46,8 +46,8 @@ const onClick = () => {
 
 return (
   <Row onClick={onClick}>
-    <span className="title">{title}</span>
-    <span className="address">❤️ {address}</span>
+    <span className="title">{title}</span> |
+    <span className="address">{address}</span>
     <span className="info">Click to select Charity</span>
     <p>{description}</p>
   </Row>
