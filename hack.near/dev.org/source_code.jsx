@@ -26,15 +26,20 @@ return (
       </li>
     </ul>
     <div className="tab-content">
-      <div className="tab-pane fade in show active" role="tabpanel">
+      <div
+        className={`tab-pane fade ${tab === "members" ? "show active" : ""}`}
+        role="tabpanel"
+      >
         <Widget
-          src={
-            tab === "members"
-              ? "hack.near/widget/DAO.Members"
-              : "mob.near/widget/FollowingList"
-          }
+          src="hack.near/widget/DAO.Members"
           props={{ accountId, daoId }}
         />
+      </div>
+      <div
+        className={`tab-pane fade ${tab === "following" ? "show active" : ""}`}
+        role="tabpanel"
+      >
+        <Widget src="mob.near/widget/FollowingList" props={{ accountId }} />
       </div>
     </div>
   </div>
