@@ -6,7 +6,9 @@
 // configure dropw down reciever
 // show the on chain mimum balance amount
 // add zk account
-
+if (state.chainId !== undefined && state.chainId !== 324) {
+  return <p>Switch to ZKSync</p>;
+}
 // https://era.zksync.io/docs/dev/building-on-zksync/useful-address.html
 State.init({
   reciever: "",
@@ -18,7 +20,7 @@ const { action, amount, selectedAsset } = state;
 const { assets } = deposit;
 
 const isDeposit = !action || action === "deposit";
-const actionTitle = isDeposit ? "Deposit" : "Withdraw";
+const actionTitle = isDeposit ? "Donate" : "Withdraw";
 
 if (assets && !selectedAsset) {
   initState({
