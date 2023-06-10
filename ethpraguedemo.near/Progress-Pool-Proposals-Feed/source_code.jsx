@@ -14,6 +14,10 @@ if (
     });
 }
 
+const toggleUpdateFlag = () => {
+  updateFlag = !updateFlag;
+};
+
 State.update({ pulled_proposals: [] });
 
 const proposalContract = "0x6daA072A660814fa3c96961dfa11eee8A39a74b3";
@@ -178,6 +182,7 @@ if (state.proposalNumber !== undefined && state.proposalNumber > 0) {
   State.update({
     pulled_proposals: [...state.pulled_proposals, ...new_pulled_proposals],
   });
+  toggleUpdateFlag();
 }
 
 // HELPER FUNCTIONS
@@ -203,6 +208,19 @@ const pullProposals = () => {
 if (state.sender !== undefined) {
   pullProposals();
 }
+
+const ComponentToForceRender = ({ updateFlag }) => {
+  return (
+    <div>
+      {state.pulled_proposals.map((item) => (
+        <Widget
+          src="ethpraguedemo.near/widget/Progress-Pool-Question-Preview"
+          props={{ result: !item.result, index: item.num }}
+        />
+      ))}
+    </div>
+  );
+};
 
 const H2 = styled.h2`
   font-size: 20px;
@@ -289,11 +307,6 @@ return (
       className="LidoStakeFormSubmitContainer"
       connectLabel="Connect with Web3"
     />
-    {state.pulled_proposals.map((item) => (
-      <Widget
-        src="ethpraguedemo.near/widget/Progress-Pool-Question-Preview"
-        props={{ result: !item.result, index: item.num }}
-      />
-    ))}
+    <ComponentToForceRender updateFlag={updateFlag} />
   </div>
 );
