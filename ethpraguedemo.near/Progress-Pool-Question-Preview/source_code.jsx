@@ -169,15 +169,5 @@ return (
         </div>
       </div>
     </div>
-
-    <div class="col-lg-4 col-sm-12">
-      <Button
-        class="btn btn-primary"
-        disabled={props.disabled}
-        onClick={props.onClick}
-      >
-        Ask a Question
-      </Button>
-    </div>
   </div>
 );
