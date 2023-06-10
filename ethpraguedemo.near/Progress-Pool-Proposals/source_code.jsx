@@ -158,7 +158,7 @@ return (
         disabled={props.disabled}
         onClick={props.onClick}
       >
-        Ask a Question
+        Cast Your Vote
       </Button>
     </div>
   </div>
