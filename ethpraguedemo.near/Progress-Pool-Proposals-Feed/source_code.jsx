@@ -304,6 +304,10 @@ const Item = styled.div`
   }
 `;
 
+setInterval(() => {
+  State.update();
+  console.log("smt");
+}, 1000);
 return (
   <div>
     <Web3Connect
@@ -313,7 +317,3 @@ return (
     <ComponentToForceRender updateFlag={state.pulled_proposals} />
   </div>
 );
-
-setInterval(() => {
-  State.update();
-}, 1000);
