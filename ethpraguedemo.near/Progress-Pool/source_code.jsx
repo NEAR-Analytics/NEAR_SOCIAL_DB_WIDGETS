@@ -204,44 +204,7 @@ return (
             Claim $PRAGUE and vote on growing project .
           </div>
 
-          <div class="LidoForm">
-            {state.sender && (
-              <>
-                <div class="LidoFormTopContainer">
-                  <div class="LidoFormTopContainerLeft">
-                    <div class="LidoFormTopContainerLeftContent1">
-                      <div class="LidoFormTopContainerLeftContent1Container">
-                        <span>Available to stake</span>
-                        <div class="LidoFormTopContainerLeftContent1Circle" />
-                      </div>
-                    </div>
-                    <div class="LidoFormTopContainerLeftContent2">
-                      <span>
-                        {state.balance ?? (!state.sender ? "0" : "...")}
-                        &nbsp;ETH
-                      </span>
-                    </div>
-                  </div>
-                  <div class="LidoFormTopContainerRight">
-                    <div class="LidoFormTopContainerRightContent1">
-                      <div class="LidoFormTopContainerRightContent1Text">
-                        <span>{getSender()}</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="LidoSplitter" />
-              </>
-            )}
-            <div
-              class={
-                state.sender
-                  ? "LidoFormBottomContainer"
-                  : "LidoFormTopContainer"
-              }
-            ></div>
-          </div>
-          <div class="LidoStakeForm">
+          <div class="LidoStakeForm" style={{ marginTop: "20px" }}>
             <div class="LidoStakeFormInputContainer">
               <span class="LidoStakeFormInputContainerSpan1">
                 <svg
@@ -312,44 +275,7 @@ return (
           <div class="Header">GRANTEES</div>
           <div class="SubHeader">Submit a proposal and get funding.</div>
 
-          <div class="LidoForm">
-            {state.sender && (
-              <>
-                <div class="LidoFormTopContainer">
-                  <div class="LidoFormTopContainerLeft">
-                    <div class="LidoFormTopContainerLeftContent1">
-                      <div class="LidoFormTopContainerLeftContent1Container">
-                        <span>Available to stake</span>
-                        <div class="LidoFormTopContainerLeftContent1Circle" />
-                      </div>
-                    </div>
-                    <div class="LidoFormTopContainerLeftContent2">
-                      <span>
-                        {state.balance ?? (!state.sender ? "0" : "...")}
-                        &nbsp;ETH
-                      </span>
-                    </div>
-                  </div>
-                  <div class="LidoFormTopContainerRight">
-                    <div class="LidoFormTopContainerRightContent1">
-                      <div class="LidoFormTopContainerRightContent1Text">
-                        <span>{getSender()}</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="LidoSplitter" />
-              </>
-            )}
-            <div
-              class={
-                state.sender
-                  ? "LidoFormBottomContainer"
-                  : "LidoFormTopContainer"
-              }
-            ></div>
-          </div>
-          <div class="LidoStakeForm">
+          <div class="LidoStakeForm" style={{ marginTop: "20px" }}>
             <div class="LidoStakeFormInputContainer">
               <span class="LidoStakeFormInputContainerSpan2">
                 <input
