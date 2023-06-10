@@ -6,41 +6,32 @@
 // configure dropw down reciever
 // show the on chain mimum balance amount
 // add zk account
+// get your address
+if (
+  state.chainId === undefined &&
+  ethers !== undefined &&
+  Ethers.send("eth_requestAccounts", [])[0]
+) {
+  Ethers.provider()
+    .getNetwork()
+    .then((chainIdData) => {
+      if (chainIdData?.chainId) {
+        State.update({ chainId: chainIdData.chainId });
+      }
+    });
+}
 if (state.chainId !== undefined && state.chainId !== 280) {
-  return <p>Switch to ZKSync Testnet</p>;
+  return (
+    <div>
+      <p>Please switch to ZK Testnet</p>
+      <a href={`https://portal.zksync.io/`}>Guide</a>
+    </div>
+  );
 } // not sure if this is working
 // https://era.zksync.io/docs/dev/building-on-zksync/useful-address.html
 State.init({
   reciever: "",
 }); // write now state reciever is in clipboard
-
-const { deposit, withdraw, onAction, title, isLoading, log, explorerLink } =
-  props;
-const { action, amount, selectedAsset } = state;
-const { assets } = deposit;
-
-const isDeposit = !action || action === "deposit";
-const actionTitle = isDeposit ? "Donate" : "Withdraw";
-
-if (assets && !selectedAsset) {
-  initState({
-    selectedAsset: assets.find((a) => a.selected) || assets?.[0],
-  });
-}
-
-const selectedAssetWithdraw = selectedAsset
-  ? withdraw?.assets?.find((a) => a.id === selectedAsset.id)
-  : undefined;
-
-const handleAction = () => {
-  if (onAction)
-    onAction({
-      networkId: deposit.network.id,
-      amount,
-      assetId: selectedAsset.id,
-      action: isDeposit ? "deposit" : "withdraw",
-    });
-};
 
 const handleMax = () => {
   State.update({ amount: selectedAsset.balance });
@@ -58,7 +49,7 @@ const handleAssetChange = (e) => {
 };
 
 const Container = styled.div`
-    max-width: 400px;
+    max-width: 90%;
     width: 100%;
     margin: 0 auto;
     display: flex;
@@ -140,7 +131,7 @@ const erc20Abi = fetch(
   "https://gist.githubusercontent.com/veox/8800debbf56e24718f9f483e1e40c35c/raw/f853187315486225002ba56e5283c1dba0556e6f/erc20.abi.json"
 );
 // there was a state update here
-const usdcZKtestnet = "0x3355df6D4c9C3035724Fd0e3914dE96A5a83aaf4";
+const usdcZKtestnet = "0x3355df6D4c9C3035724Fd0e3914dE96A5a83aaf4"; // this maybe mainnet
 const paymasterZKtestnet = "";
 const css = `
   .flex {
@@ -195,34 +186,14 @@ return (
   <Theme>
     <Container>
       <div className="d-flex gap-4 align-items-center mb-3 justify-content-center">
-        <h1 className="title">{title || "🙏 DonateDAO"}</h1>
-        <div
-          className="actionTabs btn-group"
-          role="group"
-          aria-label="Deposit"
-        ></div>
+        <h1 className="title">🙏 DonateDAO</h1>
       </div>
       <div className="border border-secondary border-bottom-0 border-light" />
       <div className="p-2">
-        <div className="assets">
-          <span>{deposit.network.name}</span>
-          <select
-            className="form-select"
-            aria-label="select asset"
-            onChange={handleAssetChange}
-          >
-            {assets &&
-              assets.map((asset) => (
-                <option value={asset.id} selected={asset.selected}>
-                  {asset.name}
-                </option>
-              ))}
-          </select>
-        </div>
         <div className="d-flex justify-content-between">
           <span>
             {" "}
-            {selectedAsset} Balance: {selectedAsset.balance}
+            {selectedAsset} USDC Balance: {selectedAsset.balance}
           </span>
         </div>
         <div className="balance input-group">
@@ -259,7 +230,7 @@ return (
         <div className="p-4 d-grid gap-3">
           <button
             className="action btn btn-primary"
-            onClick={handleAction}
+            onClick={donate}
             disabled={isLoading}
           >
             {isLoading ? "Loading..." : actionTitle}
@@ -277,12 +248,12 @@ return (
         </div>
       ) : (
         <Web3Connect
-          className="action btn btn-primary"
+          className="action btn btn-primary p-2"
           connectLabel="Connect To ZkSync "
         />
       )}
       <button
-        className="action btn btn-primary"
+        className="action btn btn-primary p-2"
         onClick={handleAction}
         disabled={isLoading}
       >
