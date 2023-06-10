@@ -290,11 +290,6 @@ const Item = styled.div`
   }
 `;
 
-setInterval(() => {
-  State.update({ random: Math.random() });
-  State.update();
-  console.log("smt");
-}, 1000);
 console.log("before return");
 return (
   <div>
