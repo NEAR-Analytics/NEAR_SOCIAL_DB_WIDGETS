@@ -5,7 +5,7 @@ if (context.loading) {
 // By default the form to ask a question is hidden
 initState({ askQuestion: false });
 const toggleQuestion = () => {
-  window.location.href = "https://example.com/ABC"; // Replace 'https://example.com/ABC' with your desired URL
+  State.update({ askQuestion: !state.askQuestion });
 };
 
 const adminContract = "admin.dev-support.near";
@@ -24,7 +24,7 @@ return (
       {/**
     <SidebarWrapper className="col-2 pe-5">
         <Widget
-          src="dima_sheleg.near/widget/DevSupport.Main.Sidebar"
+          src="ethpraguedemo.near/widget/Progress-Pool-Proposals-Sidebar"
           props={{ categories: sortByCategories, topics: filterByTopic }}
         />
       </SidebarWrapper>
