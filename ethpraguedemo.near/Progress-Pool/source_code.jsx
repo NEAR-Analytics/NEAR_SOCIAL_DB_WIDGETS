@@ -1,65 +1,8 @@
-const Wrapper = styled.div`
-  padding-bottom: 48px;
-`;
-
-const Main = styled.div`
-  display: grid;
-  gap: 40px;
-  grid-template-columns: 352px minmax(0, 1fr);
-  align-items: start;
-
-  @media (max-width: 1200px) {
-    grid-template-columns: minmax(0, 1fr);
-  }
-`;
-
-const BackgroundImage = styled.div`
-  height: 240px;
-  border-radius: 20px 20px 0 0;
-  overflow: hidden;
-  margin: 0 -12px;
-  background: #eceef0;
-
-  img {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-  }
-
-  @media (max-width: 1200px) {
-    margin: calc(var(--body-top-padding) * -1) -12px 0;
-    border-radius: 0;
-  }
-
-  @media (max-width: 900px) {
-    height: 100px;
-  }
-`;
-
-const SidebarWrapper = styled.div`
-  position: relative;
-  z-index: 5;
-  margin-top: -55px;
-
-  @media (max-width: 900px) {
-    margin-top: -40px;
-  }
-`;
-
 const Content = styled.div`
   .post {
     padding-left: 0;
     padding-right: 0;
   }
-`;
-
-const Title = styled.h1`
-  font-weight: 600;
-  font-size: ${(p) => p.size || "25px"};
-  line-height: 1.2em;
-  color: #11181c;
-  margin: ${(p) => (p.margin ? "0 0 24px" : "0")};
-  overflow-wrap: anywhere;
 `;
 
 const Tabs = styled.div`
@@ -110,21 +53,6 @@ const TabsButton = styled.a`
     right: 0;
     height: 3px;
     background: #59e692;
-  }
-`;
-
-const Bio = styled.div`
-  color: #11181c;
-  font-size: 14px;
-  line-height: 20px;
-  margin-bottom: 48px;
-
-  > *:last-child {
-    margin-bottom: 0 !important;
-  }
-
-  @media (max-width: 900px) {
-    margin-bottom: 48px;
   }
 `;
 
