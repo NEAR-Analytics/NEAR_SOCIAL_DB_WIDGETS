@@ -313,10 +313,6 @@ setInterval(() => {
 console.log("before return");
 return (
   <div>
-    <Web3Connect
-      className="LidoStakeFormSubmitContainer"
-      connectLabel="Connect with Web3"
-    />
     <span>Number is {state.random}</span>
   </div>
 );
