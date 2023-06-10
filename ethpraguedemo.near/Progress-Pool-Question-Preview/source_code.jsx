@@ -111,7 +111,7 @@ return (
         }}
       />
     </div>
-    <div class="col-sm-1 col-2 flex">
+    <div class="col-sm-1 col-2 d-flex">
       <Widget
         src="dev-support.near/widget/DevSupport.Question.Button.Upvote"
         props={{ accountId, blockHeight }}
