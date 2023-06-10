@@ -57,6 +57,7 @@ background: #0082e0;
 
 & .footer_socialIcons{
   align-items: center;
+  width: 100%;
 }
 
 & .footer_socialIcons .footer_icon{
