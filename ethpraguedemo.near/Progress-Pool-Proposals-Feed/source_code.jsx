@@ -1,5 +1,3 @@
-import React, { useState, useEffect } from "react";
-
 if (
   state.chainId === undefined &&
   ethers !== undefined &&
