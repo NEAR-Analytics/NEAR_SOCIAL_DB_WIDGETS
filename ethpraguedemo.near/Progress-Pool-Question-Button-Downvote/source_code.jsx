@@ -75,8 +75,8 @@ const Button = styled.button`
   transition: all .15s ease;
 
   &:hover {
-    color: #30A46C;
-    border-color: #30A46C;
+    color: #ff0000;
+    border-color: #ff0000;
   }
 `;
 
