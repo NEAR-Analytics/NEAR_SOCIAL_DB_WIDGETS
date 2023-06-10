@@ -39,8 +39,10 @@ return (
           <Widget src="mob.near/widget/FollowStats" props={{ accountId }} />
         </div>
       </div>
-      <div className="m-2">
-        <Widget src="devs.near/widget/dev.info" props={{ accountId }} />
+      <div>
+        <div className="m-2">
+          <Widget src="devs.near/widget/dev.info" props={{ accountId }} />
+        </div>
       </div>
     </div>
     <h2 className="mb-3">
