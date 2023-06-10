@@ -93,7 +93,7 @@ return (
           aria-hidden="true"
         />
       ) : (
-        <i class="bi bi-caret-up-fill" />
+        <i class="bi bi-caret-down-fill" />
       )}
       {upvotes}
     </Button>
