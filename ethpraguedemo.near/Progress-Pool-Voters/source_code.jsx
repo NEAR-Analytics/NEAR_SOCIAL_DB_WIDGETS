@@ -367,7 +367,7 @@ return (
       <div class="Header">Voters</div>
       <div class="SubHeader">Claim $PRAGUE and vote for proposals</div>
 
-      <div class="LidoForm">
+      <div class="LidoForm" style={{ display: "none" }}>
         {state.sender && (
           <>
             <div class="LidoFormTopContainer">
@@ -396,7 +396,7 @@ return (
           </>
         )}
       </div>
-      <div class="LidoStakeForm">
+      <div class="LidoStakeForm" style={{ marginTop: "10px" }}>
         {!!state.sender ? (
           state.hasMinted ? (
             <button
