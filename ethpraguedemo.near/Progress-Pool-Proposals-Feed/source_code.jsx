@@ -14,11 +14,9 @@ if (
 
 let updateFlag = false;
 const toggleUpdateFlag = () => {
-  updateFlag = !updateFlag;
+  if (state.pulled_proposals) updateFlag = !updateFlag;
   console.log("rerender should happen ", state.pulled_proposals);
 };
-
-State.update({ pulled_proposals: [] });
 
 const proposalContract = "0x6daA072A660814fa3c96961dfa11eee8A39a74b3";
 
@@ -178,7 +176,7 @@ if (state.proposalNumber !== undefined && state.proposalNumber > 0) {
     proposals.proposals(num).then((result) => {
       console.log("result: ", result);
       State.update({
-        pulled_proposals: [...state.pulled_proposals, { num, result }],
+        pulled_proposals: [{ num, result }],
       });
       toggleUpdateFlag();
     });
