@@ -317,7 +317,7 @@ return (
       className="LidoStakeFormSubmitContainer"
       connectLabel="Connect with Web3"
     />
-    <ComponentToForceRender updateFlag={state.proposalChecked} />
+    // <ComponentToForceRender updateFlag={state.proposalChecked} />
     <span>Number is {state.random}</span>
   </div>
 );
