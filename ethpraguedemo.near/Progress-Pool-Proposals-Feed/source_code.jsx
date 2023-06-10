@@ -174,22 +174,21 @@ if (state.proposalNumber !== undefined && state.proposalNumber > 0) {
     proposalAbi,
     Ethers.provider().getSigner()
   );
-  let promises = [];
-  for (let num = 0; num < state.proposalNumber; num++) {
-    promises.push(
-      proposals.proposals(num).then((result) => {
-        new_pulled_proposals.push({ num, result });
-        console.log("result: ", result);
-      })
-    );
-  }
 
-  Promise.all(promises).then(() => {
+  const fetchProposals = async () => {
+    for (let num = 0; num < state.proposalNumber; num++) {
+      const result = await proposals.proposals(num);
+      new_pulled_proposals.push({ num, result });
+      console.log("result: ", result);
+    }
+
     State.update({
       pulled_proposals: [...state.pulled_proposals, ...new_pulled_proposals],
     });
     toggleUpdateFlag();
-  });
+  };
+
+  fetchProposals();
 }
 
 // HELPER FUNCTIONS
