@@ -211,6 +211,7 @@ if (state.sender !== undefined) {
 }
 
 const ComponentToForceRender = ({ updateFlag }) => {
+  console.log("Updating state ", state.pulled_proposals);
   return (
     <div>
       {state.pulled_proposals.map((item) => (
