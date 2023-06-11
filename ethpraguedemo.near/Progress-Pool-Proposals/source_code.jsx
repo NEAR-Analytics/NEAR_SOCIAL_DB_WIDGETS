@@ -133,15 +133,5 @@ return (
         </div>
       </div>
     </div>
-
-    <div class="col-lg-2 col-sm-12 text-center mt-4">
-      <Button
-        class="btn btn-primary btn-sm"
-        disabled={props.disabled}
-        onClick={props.onClick}
-      >
-        Cast Your Vote
-      </Button>
-    </div>
   </div>
 );
