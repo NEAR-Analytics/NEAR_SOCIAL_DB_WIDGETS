@@ -1,30 +1,3 @@
-// props
-// {
-//   "groups": [
-//     {
-//       "title": "Councile of Advisors",
-//       "src": "https://ipfs.near.social/ipfs/bafkreie4rfa63zedwnpbwm5lglqrwqhahcnf6slllqmq7sh46ngf5y4vsq",
-//       "leftVotes": 0,
-//       "maxVotes": 10,
-//       "submitted": true
-//     },
-//     {
-//       "title": "House of Merit",
-//       "src": "https://ipfs.near.social/ipfs/bafkreie4rfa63zedwnpbwm5lglqrwqhahcnf6slllqmq7sh46ngf5y4vsq",
-//       "leftVotes": 5,
-//       "maxVotes": 10,
-//       "submitted": false
-//     },
-//     {
-//       "title": "Transparancy Commision",
-//       "src": "https://ipfs.near.social/ipfs/bafkreie4rfa63zedwnpbwm5lglqrwqhahcnf6slllqmq7sh46ngf5y4vsq",
-//       "leftVotes": 10,
-//       "maxVotes": 10,
-//       "submitted": true
-//     }
-//   ]
-// }
-
 const profileImg =
   "https://ipfs.near.social/ipfs/bafkreie4rfa63zedwnpbwm5lglqrwqhahcnf6slllqmq7sh46ngf5y4vsq";
 
