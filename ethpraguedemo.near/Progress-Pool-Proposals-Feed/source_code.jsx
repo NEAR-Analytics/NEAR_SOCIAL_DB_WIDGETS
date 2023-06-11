@@ -344,6 +344,7 @@ const Button = styled.a`
 
 return (
   <div>
+    <ComponentToForceRender updateFlag={state.proposalChecked} />
     <div class="d-flex">
       <Web3Connect
         className="LidoStakeFormSubmitContainer"
@@ -359,6 +360,5 @@ return (
         </Button>
       </div>
     </div>
-    <ComponentToForceRender updateFlag={state.proposalChecked} />
   </div>
 );
