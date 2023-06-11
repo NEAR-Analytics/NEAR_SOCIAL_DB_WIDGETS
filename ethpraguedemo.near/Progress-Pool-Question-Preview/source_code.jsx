@@ -4,6 +4,9 @@ const totalVotes = props.totalVotes;
 const downvotes = totalVotes - result[2].toNumber();
 console.log(totalVotes, downvotes);
 
+let state = props.state;
+console.log("Printing state: ", state);
+
 const H2 = styled.h2`
   font-size: 20px;
   font-weight: 600;
@@ -101,7 +104,7 @@ return (
         <div class="col">
           <div class="row">
             <div class="col">
-              <H2 class="ml-6">
+              <H2>
                 <a href={result[0]}>{result[0]}</a>
                 <i class="bi bi-arrow-right" />
               </H2>
