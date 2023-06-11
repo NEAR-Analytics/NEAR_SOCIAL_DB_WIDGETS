@@ -236,6 +236,7 @@ const ComponentToForceRender = ({ updateFlag }) => {
               result: item.result,
               index: item.num,
               totalVotes: state.totalVotes,
+              state: state,
             }}
           />
         </>
