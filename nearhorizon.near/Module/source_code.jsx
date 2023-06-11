@@ -1,4 +1,4 @@
-function S() {
+function S(props) {
   return <div>hello</div>;
 }
 
