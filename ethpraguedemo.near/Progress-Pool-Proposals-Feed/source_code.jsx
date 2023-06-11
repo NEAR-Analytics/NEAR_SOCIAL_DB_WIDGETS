@@ -311,7 +311,8 @@ const vote = () => {
 
   proposals.castVote([
     [0, 1],
-    [1, 1],
+    [1, 0],
+    [2, 1],
   ]);
 };
 
