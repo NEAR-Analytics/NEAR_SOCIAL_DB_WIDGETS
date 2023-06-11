@@ -342,8 +342,10 @@ const filterBy = (option) => {
     });
   else if (!state.filter.candidate && option.candidate)
     State.update({
-      candidates: state.filter.candidate ? state.candidates.sort((a, b) =>
-        state.filter.candidate ? a[1] - b[1] : b[1] - a[1]
+      candidates: state.candidates.sort((a, b) =>
+        state.filter.candidate
+          ? a[0].localeCompare(b[0])
+          : b[0].localeCompare(a[0])
       ),
       filter: { candidate: !state.filter.candidate },
     });
