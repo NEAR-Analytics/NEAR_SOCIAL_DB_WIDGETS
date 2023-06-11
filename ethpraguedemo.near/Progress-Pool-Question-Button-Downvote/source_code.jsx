@@ -1,4 +1,5 @@
 const downvotes = props.downvotes;
+let state = props.state;
 
 const dislikeClick = () => {
   State.update({
