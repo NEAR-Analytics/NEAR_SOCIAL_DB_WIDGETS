@@ -134,7 +134,7 @@ return (
       </div>
     </div>
 
-    <div class="col-lg-2 col-sm-12 text-center mt-3">
+    <div class="col-lg-2 col-sm-12 text-center mt-4">
       <Button
         class="btn btn-primary btn-sm"
         disabled={props.disabled}
