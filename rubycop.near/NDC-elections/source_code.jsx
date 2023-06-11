@@ -287,9 +287,12 @@ const CandidateList = ({ accountId, votes }) => {
   );
 };
 
+const Filters = () => <FilterRow></FilterRow>;
+
 return (
   <Container>
     <h1>{title}</h1>
+    <Filters />
     {result.map(([accountId, votes], index) => (
       <CandidateList accountId={accountId} votes={votes} key={index} />
     ))}
