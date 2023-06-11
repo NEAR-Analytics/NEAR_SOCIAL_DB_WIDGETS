@@ -101,7 +101,7 @@ return (
       <div class="row">
         <div class="col">
           <div class="row">
-            <div class="col" style={{ marginLeft: "25px" }}>
+            <div class="col" style={{ marginLeft: "25px", marginTop: "25px" }}>
               <H2 class="ml-6">
                 <a href={result[0]}>{result[0]}</a>
                 <i class="bi bi-arrow-right" />
