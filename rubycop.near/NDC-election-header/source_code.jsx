@@ -3,7 +3,7 @@
 //   "date": "June 20, 2023 1:00:00"
 // }
 
-const countDownDate = props.date.getTime();
+const countDownDate = new Date(props.date).getTime();
 
 State.init({
   hours: "-",
