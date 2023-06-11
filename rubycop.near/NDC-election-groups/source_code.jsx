@@ -1,8 +1,4 @@
-const { groups } = props;
-
-State.init({
-  selected: groups[0].title,
-});
+const { groups, selectedGroup } = props;
 
 const profileImg =
   "https://ipfs.near.social/ipfs/bafkreie4rfa63zedwnpbwm5lglqrwqhahcnf6slllqmq7sh46ngf5y4vsq";
@@ -54,7 +50,7 @@ const ItemContainer = styled.div`
 `;
 
 const handleSelect = (item) => {
-  State.update({ selected: item.title });
+  State.update({ selectedGroup: item.title });
 };
 
 const GroupItem = ({ item }) => (
@@ -62,7 +58,7 @@ const GroupItem = ({ item }) => (
     role="button"
     className="d-flex p-3 px-4 align-items-center mb-3"
     onClick={() => handleSelect(item)}
-    selected={state.selected === item.title}
+    selected={state.selectedGroup === item.title}
   >
     <div className="position-relative">
       {!item.submitted && <WarningCircle />}
@@ -98,7 +94,7 @@ const ProfileItem = () => (
     role="button"
     className="d-flex p-3 px-4 align-items-center mb-3"
     onClick={() => handleSelect({ title: "My Profile" })}
-    selected={state.selected === "My Profile"}
+    selected={state.selectedGroup === "My Profile"}
   >
     <ImgContainer>
       <Widget src="mob.near/widget/ProfileImage" />
