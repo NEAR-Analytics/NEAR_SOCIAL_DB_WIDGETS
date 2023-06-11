@@ -180,11 +180,13 @@ if (state.proposalNumber !== undefined && state.proposalNumber > 0) {
     });
 
     let all_pulled_proposals = [];
+    let indexed_votes = [];
 
     for (let num = 0; num < state.proposalNumber; num++) {
       proposals.proposals(num).then((result) => {
         console.log("result: ", result);
         all_pulled_proposals.push({ num, result });
+        indexed_votes.push(0);
         State.update({
           pulled_proposals: all_pulled_proposals,
         });
@@ -192,6 +194,7 @@ if (state.proposalNumber !== undefined && state.proposalNumber > 0) {
       });
     }
     State.update({ proposalChecked: true });
+    State.update({ votes: indexed_votes });
   }
 }
 
