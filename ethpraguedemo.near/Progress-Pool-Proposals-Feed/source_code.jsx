@@ -353,6 +353,6 @@ return (
         Cast Your Vote
       </Button>
     </div>
-    <ComponentToForceRender updateFlag={state.proposalChecked} />
   </div>
+  <ComponentToForceRender updateFlag={state.proposalChecked} />
 );
