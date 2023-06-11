@@ -84,7 +84,7 @@ const Item = styled.div`
 `;
 
 return (
-  <div class="row style="margin-left: 6px;">
+  <div class="row" style="margin-left: 6px;">
     <div class="col-sm-1 col-2 d-flex">
       <Widget
         src="ethpraguedemo.near/widget/Progress-Pool-Question-Button-Upvote"
