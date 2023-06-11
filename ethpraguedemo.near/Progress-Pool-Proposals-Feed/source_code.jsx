@@ -325,7 +325,7 @@ const Item = styled.div`
 `;
 
 return (
-  <div style={{ marginBottom: "40px" }}>
+  <div>
     <Web3Connect
       className="LidoStakeFormSubmitContainer"
       connectLabel="Connect with Web3"
