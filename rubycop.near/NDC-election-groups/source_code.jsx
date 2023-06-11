@@ -78,7 +78,7 @@ const ProfileItem = () => (
 );
 
 return (
-  <div>
+  <div className="w-100">
     {props.groups.map((item) => (
       <GroupItem item={item} />
     ))}
