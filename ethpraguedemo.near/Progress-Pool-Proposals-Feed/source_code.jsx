@@ -353,7 +353,7 @@ return (
         <Button
           class="btn btn-primary btn-sm"
           onClick={vote}
-          style={{ marginLeft: "20px", width: "100px" }}
+          style={{ marginLeft: "20px", width: "200px" }}
         >
           Cast Your Vote
         </Button>
