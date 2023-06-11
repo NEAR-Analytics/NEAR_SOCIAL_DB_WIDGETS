@@ -45,7 +45,8 @@ function href(widgetName, linkProps) {
 /* END_INCLUDE: "common.jsx" */
 /* INCLUDE "communities.jsx" */
 /* END_INCLUDE: "communities.jsx" */
-State.init({ showModal: false });
+
+State.init({ showModal: false, modalContent: "" });
 
 const handleToggleModal = () => {
   State.update({ showModal: !state.showModal });
@@ -53,47 +54,45 @@ const handleToggleModal = () => {
 
 return (
   <>
-    <div
-      style={{
-        display: state.showModal ? "block" : "none",
-        position: "relative",
-        top: "calc(50% - 250px)",
-        left: "calc(50% - 250px)",
-        backgroundColor: "transparent",
-        padding: "20px",
-        zIndex: "1000",
-        maxHeight: "calc(100vh - 40px)",
-        overflow: "auto",
-        width: "700px",
-      }}
-    >
-      <Widget
-        src={`${nearDevGovGigsWidgetsAccountId}/widget/gigs-board.components.layout.Controls`}
-        props={{
-          metadata: metadata,
-          accountId: accountId,
-          widgetName: widgetName,
+    {state.showModal && ( // This conditionally renders the div containing the Widget
+      <div
+        style={{
+          position: "fixed",
+          backgroundColor: "transparent",
+          padding: "5px",
+          zIndex: "1000",
+          maxHeight: "calc(100vh - 40px)",
+          overflow: "auto",
+          width: "700px",
         }}
-      />
-    </div>
-
+      >
+        <Widget
+          src={`${nearDevGovGigsWidgetsAccountId}/widget/gigs-board.components.layout.Controls`}
+          props={{
+            metadata: metadata,
+            accountId: accountId,
+            widgetName: widgetName,
+          }}
+        />
+      </div>
+    )}
     <button
       style={{
-        fontSize: "1.11em",
+        fontSize: "1em",
         backgroundColor: "#008080",
         color: "white",
-        borderRadius: "15px",
+        borderRadius: "4px",
         float: "right",
         padding: "10px",
-        height: "55px",
-        width: "90px",
+        height: "45px",
+        width: "95px",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
         marginRight: "10px",
       }}
       class="btn"
-      onClick={handleToggleModal}
+      onClick={handleToggleModal} // Button click toggles the modal visibility
     >
       <span
         style={{
@@ -101,14 +100,23 @@ return (
           color: "#008080",
           borderRadius: "50%",
           padding: "5px",
-          display: "block",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
           marginRight: "5px",
-          lineHeight: "1",
+          height: "15px",
+          width: "15px",
         }}
       >
-        +
+        <span style={{ lineHeight: "0", marginTop: "3px" }}>
+          {state.showModal ? "-" : "+"}
+        </span>
       </span>
-      {state.showModal ? " Close" : "  Post"}
+      <span
+        style={{ alignSelf: "center", marginTop: "4px", marginLeft: "5px" }}
+      >
+        {state.showModal ? " Close" : " Post"}
+      </span>
     </button>
   </>
 );
