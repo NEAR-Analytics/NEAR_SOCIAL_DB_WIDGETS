@@ -229,7 +229,7 @@ const ComponentToForceRender = ({ updateFlag }) => {
   return (
     <div>
       {state.pulled_proposals.map((item) => (
-        <div style={{ marginTop: '10px' }}>
+        <div style={{ marginTop: "10px" }}>
           <Widget
             src="ethpraguedemo.near/widget/Progress-Pool-Question-Preview"
             props={{
@@ -238,8 +238,8 @@ const ComponentToForceRender = ({ updateFlag }) => {
               totalVotes: state.totalVotes,
               state: state,
             }}
-          </div>
-        </>
+          />
+        </div>
       ))}
     </div>
   );
