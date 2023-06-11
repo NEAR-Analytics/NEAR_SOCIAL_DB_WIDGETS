@@ -218,6 +218,10 @@ const pullProposals = () => {
   });
 };
 
+const vote = () => {
+  console.log("Voting");
+};
+
 if (state.sender !== undefined) {
   pullProposals();
 }
@@ -330,6 +334,11 @@ return (
       className="LidoStakeFormSubmitContainer"
       connectLabel="Connect with Web3"
     />
+    <div class="col-lg-2 col-sm-12 text-center">
+      <Button class="btn btn-primary btn-sm" onClick={vote}>
+        Cast Your Vote
+      </Button>
+    </div>
     <ComponentToForceRender updateFlag={state.proposalChecked} />
   </div>
 );
