@@ -1,7 +1,7 @@
 const upvotes = props.upvotes;
 let upvoted = false;
 let downvoted = false;
-console.log(state);
+console.log("Printing state: ", state);
 
 const likeClick = () => {
   console.log("upvoted");
