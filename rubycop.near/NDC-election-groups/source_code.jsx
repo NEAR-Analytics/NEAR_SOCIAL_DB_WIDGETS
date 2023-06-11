@@ -1,5 +1,5 @@
-const { groups, selectedGroup } = props;
-console.log(selectedGroup);
+const { groups, selectedGroup, handleSelect } = props;
+
 const profileImg =
   "https://ipfs.near.social/ipfs/bafkreie4rfa63zedwnpbwm5lglqrwqhahcnf6slllqmq7sh46ngf5y4vsq";
 
@@ -48,10 +48,6 @@ const ItemContainer = styled.div`
     box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.05);
   }
 `;
-
-const handleSelect = (item) => {
-  State.update({ selectedGroup: item.title });
-};
 
 const GroupItem = ({ item }) => (
   <ItemContainer
