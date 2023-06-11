@@ -84,7 +84,7 @@ const Item = styled.div`
 `;
 
 return (
-  <div style="margin-left: 8px;">
+  <div class="ml-8">
     <div class="row">
       <div class="col-sm-1 col-2 d-flex">
         <Widget
