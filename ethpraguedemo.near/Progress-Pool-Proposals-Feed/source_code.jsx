@@ -303,19 +303,17 @@ const pullProposals = () => {
 };
 
 const vote = () => {
-  const vote = () => {
-    const proposals = new ethers.Contract(
-      proposalContract,
-      proposalAbi,
-      Ethers.provider().getSigner()
-    );
+  const proposals = new ethers.Contract(
+    proposalContract,
+    proposalAbi,
+    Ethers.provider().getSigner()
+  );
 
-    proposals.castVote([
-      [0, 1],
-      [1, 1],
-      [2, 0],
-    ]);
-  };
+  proposals.castVote([
+    [0, 1],
+    [1, 1],
+    [2, 0],
+  ]);
 };
 
 if (state.sender !== undefined) {
