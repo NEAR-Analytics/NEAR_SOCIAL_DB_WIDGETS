@@ -229,7 +229,7 @@ const ComponentToForceRender = ({ updateFlag }) => {
   return (
     <div>
       {state.pulled_proposals.map((item) => (
-        <div style={{ marginTop: "10px" }}>
+        <div style={{ marginTop: "20px" }}>
           <Widget
             src="ethpraguedemo.near/widget/Progress-Pool-Question-Preview"
             props={{
@@ -325,7 +325,7 @@ const Item = styled.div`
 `;
 
 return (
-  <div>
+  <div style={{ marginBottom: "40px" }}>
     <Web3Connect
       className="LidoStakeFormSubmitContainer"
       connectLabel="Connect with Web3"
