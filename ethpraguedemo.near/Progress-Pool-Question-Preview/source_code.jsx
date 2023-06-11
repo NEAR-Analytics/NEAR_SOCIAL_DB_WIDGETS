@@ -96,7 +96,7 @@ return (
         props={{ downvotes: downvotes }}
       />
     </div>
-    <div class="col-10" style="margin-left: 6px;">
+    <div class="col-10">
       <div class="row">
         <div class="col">
           <div class="row">
