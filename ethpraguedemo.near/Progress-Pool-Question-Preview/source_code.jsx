@@ -1,6 +1,7 @@
 const result = props.result;
 const index = props.index;
 const totalVotes = props.totalVotes;
+let state = props.state;
 const downvotes = totalVotes - result[2].toNumber();
 console.log(totalVotes, downvotes);
 
@@ -88,12 +89,12 @@ return (
     <div class="col-sm-1 col-2 d-flex">
       <Widget
         src="ethpraguedemo.near/widget/Progress-Pool-Question-Button-Upvote"
-        props={{ upvotes: result[2].toNumber() }}
+        props={{ upvotes: result[2].toNumber(), state: state }}
       />
       <Widget
         src="ethpraguedemo.near/widget/Progress-Pool-Question-Button-Downvote"
         style="margin-left: 2px;"
-        props={{ downvotes: downvotes }}
+        props={{ downvotes: downvotes, state: state }}
       />
     </div>
     <div class="col-10">
@@ -101,7 +102,7 @@ return (
         <div class="col">
           <div class="row">
             <div class="col">
-              <H2 class="ml-6">
+              <H2>
                 <a href={result[0]}>{result[0]}</a>
                 <i class="bi bi-arrow-right" />
               </H2>
