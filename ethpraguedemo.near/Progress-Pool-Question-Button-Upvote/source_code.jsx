@@ -4,13 +4,6 @@ let state = props.state;
 const likeClick = () => {
   console.log("upvoted");
   upvotes += 1;
-  if (state.votes[index]) return;
-  else {
-    let votes = state.votes;
-    votes[index] = 1;
-    State.update({ votes: votes });
-    upvotes += 1;
-  }
 };
 
 const Button = styled.button`
