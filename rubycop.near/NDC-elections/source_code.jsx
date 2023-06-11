@@ -144,16 +144,20 @@ const handleSelectCandidate = (accountId) => {
 
   State.update({
     selectedCandidates: selectedItems,
-    availableVotes,
+    availableVotes: availableVotes,
   });
 };
 
-const handleBookmarkCandidate = (accountId) => {
+const selectedBookmarks = (accountId) => {
   let selectedItems = state.bookmarked.includes(accountId)
     ? state.bookmarked.filter((el) => el !== accountId)
     : [...state.bookmarked, accountId];
 
-  selectedItems = [...new Set(selectedItems)];
+  return [...new Set(selectedItems)];
+};
+
+const handleBookmarkCandidate = (accountId) => {
+  let selectedItems = selectedBookmarks(accountId);
 
   if (selectedItems.length === 0) State.update({ selectedCandidates: result });
   State.update({ bookmarked: selectedItems });
@@ -214,14 +218,27 @@ const CandidateList = ({ accountId, votes }) => {
       >
         <div className="d-flex">
           <W50>
-            <i
-              id="bookmark"
-              className={`bi ${
-                state.bookmarked.includes(accountId)
-                  ? "bi-bookmark-fill"
-                  : "bi-bookmark"
-              }`}
-            />
+            <CommitButton
+              className="border-0 bg-transparent"
+              data={{
+                index: {
+                  [ndcOrganization]: JSON.stringify({
+                    key: typ,
+                    value: selectedBookmarks(accountId),
+                  }),
+                },
+              }}
+            >
+              <i
+                id="bookmark"
+                onClick={() => handleBookmarkCandidate(accountId)}
+                className={`bi ${
+                  state.bookmarked.includes(accountId)
+                    ? "bi-bookmark-fill"
+                    : "bi-bookmark"
+                }`}
+              />
+            </CommitButton>
           </W50>
           <Widget
             src="mob.near/widget/ProfileImage"
