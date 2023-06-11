@@ -1,5 +1,6 @@
 const { groups, selectedGroup } = props;
 
+console.log(selectedGroup);
 const profileImg =
   "https://ipfs.near.social/ipfs/bafkreie4rfa63zedwnpbwm5lglqrwqhahcnf6slllqmq7sh46ngf5y4vsq";
 
