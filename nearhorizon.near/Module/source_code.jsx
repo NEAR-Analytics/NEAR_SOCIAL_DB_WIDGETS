@@ -1,1 +1,5 @@
-return { text: "Hello World" };
+function S() {
+  return <div>hello</div>;
+}
+
+return { text: "Hello World", S };
