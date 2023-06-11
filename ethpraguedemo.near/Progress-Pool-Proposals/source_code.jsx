@@ -128,7 +128,7 @@ return (
           />
         </div>
 
-        <div class="mt-5">
+        <div class="">
           <Widget src="ethpraguedemo.near/widget/Progress-Pool-Proposals-Feed" />
         </div>
       </div>
