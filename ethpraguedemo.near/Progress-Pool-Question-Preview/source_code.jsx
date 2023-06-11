@@ -29,10 +29,6 @@ const H2 = styled.h2`
   }
 `;
 
-.abc {
-    margin-left: 10px;
-  }
-
 const H6 = styled.h6`
   font-size: 14px;
   font-weight: 500;
