@@ -52,8 +52,6 @@ const FooterText = styled.p`
 
 State.init({
   currentAccountId: '',
-  //   userComponentToRender: null,
-  isAdmin: false,
 })
 
 const getEVMAccountId = () => {
@@ -64,7 +62,7 @@ const getEVMAccountId = () => {
 }
 
 const fetchCred = (application) => {
-  return asyncFetch('https://4783-62-168-58-186.eu.ngrok.io/api/issue', {
+  return asyncFetch('http://46.101.224.69:3001/api/issue', {
     body: JSON.stringify({
       did: application.address,
       name: application.fullName,
@@ -76,10 +74,9 @@ const fetchCred = (application) => {
     mode: 'no-cors',
   })
 }
-let userComponentToRender = null
+
 // Update on Action from AdminPage
 const updatePendingApplications = (action, application) => {
-  application = { ...application, address: state.currentAccountId }
   const pendingApplications = Storage.privateGet('pendingApplications')
   const updatedApplications = pendingApplications.filter(
     (item) => item.address !== application.address,
@@ -89,85 +86,71 @@ const updatePendingApplications = (action, application) => {
     const updatedAccepted = Storage.privateGet('acceptedApplications') || []
     updatedAccepted.push(application)
     Storage.privateSet('acceptedApplications', updatedAccepted)
-    fetchCred(application)
-      .then((res) => {
-        console.log('Resulting Credential: ', res)
-        Storage.privateSet(application.address, res)
-      })
-      .catch((err) => {
-        console.error('An error occurred while creating credential: ', err)
-      })
+    fetchCred(application).then((res) => {
+      console.log('Resulting Credential: ', res)
+      Storage.privateSet(application.address, res)
+    })
   } else if (action === 'reject') {
     const updatedRejected = Storage.privateGet('rejectedApplications') || []
     updatedRejected.push(application)
     Storage.privateSet('rejectedApplications', updatedRejected)
     Storage.privateSet(application.address, 'rejected')
   }
+  console.log('updatedApplications: ', updatedApplications)
 }
 
 // Add a new pending application
 const addPendingApplication = (application) => {
   console.log('inside pending add')
   const pendingApplications = Storage.privateGet('pendingApplications') || []
-  pendingApplications.push({ ...application, address: state.currentAccountId })
+  pendingApplications.push(application)
   Storage.privateSet('pendingApplications', pendingApplications)
-  Storage.privateSet(state.currentAccountId, 'pending')
-  userComponentToRender: <Widget
-    src="sipars.near/widget/AfterSubmission"
-    props={{ status: 'pending' }}
-  />
+  Storage.privateSet(application.address, 'pending')
 }
 
 console.log('pending storage: ', Storage.privateGet('pendingApplications'))
 console.log('accepted storage: ', Storage.privateGet('acceptedApplications'))
 console.log('rejected storage: ', Storage.privateGet('rejectedApplications'))
 
+let userComponentToRender = null
+
 if (state.currentAccountId.length === 0)
   state.currentAccountId = getEVMAccountId()
-//   State.update({ currentAccountId: getEVMAccountId() });
 
-if (state.currentAccountId !== '') {
-  // Storage.privateSet('pendingApplications', undefined)
-  // Storage.privateSet('acceptedApplications', undefined)
-  // Storage.privateSet('rejectedApplications', undefined)
-  // Storage.privateSet('0x890bb55136b71898357716b2eb13c6ecfeda04e5', undefined)
-  // Storage.privateSet('0xaA8cAf7E17086678876740b6c8087eb632a7578D', undefined)
-  const addr = state.currentAccountId
-  State.update({
-    isAdmin: '0x890bb55136B71898357716b2Eb13c6eCFeda04E5' !== addr,
-  })
+if (state.currentAccountId.length > 0) {
+  // Storage.privateSet("pendingApplications", undefined);
+  // Storage.privateSet("acceptedApplications", undefined);
+  // Storage.privateSet("rejectedApplications", undefined);
+  // Storage.privateSet("0x890bb55136b71898357716b2eb13c6ecfeda04e5", undefined);
+  // Storage.privateSet("0xaA8cAf7E17086678876740b6c8087eb632a7578D", undefined);
+  console.log('sss: ', state.currentAccountId, isAdmin)
   const status = Storage.privateGet(state.currentAccountId)
-  console.log('statusL ', status)
   if (typeof status === 'undefined') {
     userComponentToRender = (
       <Widget
-        src="sipars.near/widget/InputForm"
-        props={{ addPendingApplication }}
+        src="sipars.testnet/widget/InputForm"
+        props={{ state, addPendingApplication }}
       />
     )
   } else if (status === 'rejected' || status === 'pending') {
     userComponentToRender = (
-      <Widget src="sipars.near/widget/AfterSubmission" props={{ status }} />
+      <Widget src="sipars.testnet/widget/AfterSubmission" props={{ status }} />
     )
   } else {
     const cred = Storage.privateGet(state.currentAccountId)
     userComponentToRender = (
-      <Widget
-        src="sipars.near/widget/Certification"
-        props={{ cred: cred.body.cred }}
-      />
+      <Widget src="sipars.testnet/widget/Certification" props={{ cred }} />
     )
   }
 }
-
-console.log('currentAccountId: ', state.currentAccountId, state.isAdmin)
+const isAdmin = true
+console.log('currentAccountId: ', state.currentAccountId, isAdmin)
 return (
   <>
-    {console.log(state)}
-    {state.currentAccountId !== '' ? (
-      state.isAdmin ? (
+    {state.currentAccountId.length > 0 ? (
+      isAdmin ? (
         <Widget
-          src="sipars.near/widget/PendingApplicationsTable"
+          src="sipars.testnet/widget/PendingApplicationsTable"
           props={{
             pendingApplications:
               Storage.privateGet('pendingApplications') || [],
@@ -180,7 +163,10 @@ return (
     ) : (
       <LoginContainer>
         <Heading>Welcome to the Login Page</Heading>
-        <SubHeading>Please login with your fancy wallet</SubHeading>
+        <SubHeading>
+          Start here with creation of an immutable and verifiable certificate
+        </SubHeading>
+        <Heading3>Please login with your fancy wallet</Heading3>
         <ButtonContainer>
           <Web3Connect
             className="swap-button-enabled swap-button-text p-2"
