@@ -106,6 +106,10 @@ const VotersContainer = styled.div`
 
 const Bookmark = styled.div`
   width: 100px;
+
+  #bookmark.bi-bookmark-fill {
+    color: ${(props) => (props.selected ? "#fff" : "#4F46E5")};
+  }
 `;
 
 const AccountLink = styled.div`
@@ -230,6 +234,36 @@ const handleVote = () => {
   ]);
 };
 
+const filterBy = (option) => {
+  if (!state.filter.bookmark && option.bookmark)
+    State.update({
+      candidates: state.candidates.filter(([accountId, _votes], _index) =>
+        state.bookmarked.includes(accountId)
+      ),
+      filter: { bookmark: true },
+    });
+  else if (option.candidate)
+    State.update({
+      candidates: state.candidates.sort((a, b) =>
+        state.filter.candidate ? a[1] - b[1] : b[1] - a[1]
+      ),
+      filter: { candidate: !state.filter.candidate },
+    });
+  else if (option.votes) {
+    console.log(state.filter.votes);
+    State.update({
+      candidates: state.candidates.sort((a, b) =>
+        state.filter.votes ? a[1] - b[1] : b[1] - a[1]
+      ),
+      filter: { votes: !state.filter.votes },
+    });
+  } else
+    State.update({
+      candidates: result,
+      filter: { bookmark: false },
+    });
+};
+
 const VotersList = ({ voters }) => (
   <VotersContainer>
     {voters.map((voter) => (
@@ -275,7 +309,7 @@ const CandidateList = ({ accountId, votes }) => {
         selected={state.selected === accountId}
       >
         <div className="d-flex">
-          <Bookmark>
+          <Bookmark selected={state.selected === accountId}>
             <i
               id="bookmark"
               onClick={() => handleBookmarkCandidate(accountId)}
@@ -316,7 +350,7 @@ const CandidateList = ({ accountId, votes }) => {
             <input
               id="input"
               onClick={() => handleSelectCandidate(accountId)}
-              class="form-check-input"
+              className="form-check-input"
               type="checkbox"
               checked={state.selectedCandidates.includes(accountId)}
             />
@@ -330,36 +364,6 @@ const CandidateList = ({ accountId, votes }) => {
       )}
     </div>
   );
-};
-
-const filterBy = (option) => {
-  if (!state.filter.bookmark && option.bookmark)
-    State.update({
-      candidates: state.candidates.filter(([accountId, _votes], _index) =>
-        state.bookmarked.includes(accountId)
-      ),
-      filter: { bookmark: true },
-    });
-  else if (option.candidate)
-    State.update({
-      candidates: state.candidates.sort((a, b) =>
-        state.filter.candidate ? a[1] - b[1] : b[1] - a[1]
-      ),
-      filter: { candidate: !state.filter.candidate },
-    });
-  else if (option.votes) {
-    console.log(state.filter.votes);
-    State.update({
-      candidates: state.candidates.sort((a, b) =>
-        state.filter.votes ? a[1] - b[1] : b[1] - a[1]
-      ),
-      filter: { votes: !state.filter.votes },
-    });
-  } else
-    State.update({
-      candidates: result,
-      filter: { bookmark: false },
-    });
 };
 
 const Filters = () => {
