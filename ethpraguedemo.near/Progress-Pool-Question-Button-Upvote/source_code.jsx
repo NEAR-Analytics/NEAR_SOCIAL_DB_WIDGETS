@@ -3,7 +3,7 @@ let state = props.state;
 
 const likeClick = () => {
   console.log("upvoted");
-  upvotes += 1;
+  upvotes = 1;
 };
 
 const Button = styled.button`
