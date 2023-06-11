@@ -92,8 +92,25 @@ const VotersContainer = styled.div`
   padding: 5px 0;
 `;
 
-const W50 = styled.div`
+const Bookmark = styled.div`
+  width: 100px;
+`;
+
+const AccountLink = styled.div`
+  width: 200px;
+`;
+
+const Votes = styled.div`
+  width: 100px;
+  text-align:center;
+`;
+
+const ActionSelect = styled.div`
   width: 50px;
+`;
+
+const FilterRow = styled.div`
+  padding: 25px;
 `;
 
 const PrimaryButton = styled.button`
@@ -196,7 +213,7 @@ const VotersList = ({ voters }) => (
     {voters.map((voter) => (
       <VoterItem className="d-flex align-items-center justify-content-between">
         <div className="d-flex">
-          <W50 />
+          <Bookmark />
           <Widget
             src="mob.near/widget/ProfileImage"
             props={{
@@ -211,7 +228,10 @@ const VotersList = ({ voters }) => (
           />
         </div>
         <div className="d-flex align-items-center">
-          <Link src={voter.txn_url} title={voter.txn_url} />
+          <Link
+            src={`https://explorer.mainnet.near.org/transactions/${voter.txn_url}`}
+            title={voter.txn_url}
+          />
         </div>
       </VoterItem>
     ))}
@@ -233,7 +253,7 @@ const CandidateList = ({ accountId, votes }) => {
         selected={state.selected === accountId}
       >
         <div className="d-flex">
-          <W50>
+          <Bookmark>
             <i
               id="bookmark"
               onClick={() => handleBookmarkCandidate(accountId)}
@@ -243,19 +263,21 @@ const CandidateList = ({ accountId, votes }) => {
                   : "bi-bookmark"
               }`}
             />
-          </W50>
-          <Widget
-            src="mob.near/widget/ProfileImage"
-            props={{
-              accountId,
-              imageClassName: "rounded-circle w-100 h-100",
-              style: { width: "24px", height: "24px", marginRight: 4 },
-            }}
-          />
-          <Link
-            src={`https://wallet.near.org/profile/${accountId}`}
-            title={accountId}
-          />
+          </Bookmark>
+          <AccountLink className="d-flex">
+            <Widget
+              src="mob.near/widget/ProfileImage"
+              props={{
+                accountId,
+                imageClassName: "rounded-circle w-100 h-100",
+                style: { width: "24px", height: "24px", marginRight: 4 },
+              }}
+            />
+            <Link
+              src={`https://wallet.near.org/profile/${accountId}`}
+              title={accountId}
+            />
+          </AccountLink>
         </div>
         <div className="d-flex">
           <NominationLink
@@ -267,16 +289,17 @@ const CandidateList = ({ accountId, votes }) => {
               <i class="bi bi-arrow-up-right" />
             </span>
           </NominationLink>
+          <Votes>{votes}</Votes>
+          <ActionSelect>
+            <input
+              id="input"
+              onClick={() => handleSelectCandidate(accountId)}
+              class="form-check-input"
+              type="checkbox"
+              checked={state.selectedCandidates.includes(accountId)}
+            />
+          </ActionSelect>
         </div>
-        <div>{votes}</div>
-
-        <input
-          id="input"
-          onClick={() => handleSelectCandidate(accountId)}
-          class="form-check-input"
-          type="checkbox"
-          checked={state.selectedCandidates.includes(accountId)}
-        />
       </CandidateItem>
       {state.selected === accountId && (
         <VotersList
@@ -287,7 +310,24 @@ const CandidateList = ({ accountId, votes }) => {
   );
 };
 
-const Filters = () => <FilterRow></FilterRow>;
+const Filters = () => (
+  <FilterRow className="d-flex align-items-center justify-content-between">
+    <div className="d-flex">
+      <Bookmark>
+        <small className="text-secondary">Bookmark</small>
+      </Bookmark>
+      <AccountLink>
+        <small className="text-secondary">Candidate</small>
+      </AccountLink>
+    </div>
+    <div className="d-flex">
+      <Votes>
+        <small className="text-secondary">Votes</small>
+      </Votes>
+      <ActionSelect />
+    </div>
+  </FilterRow>
+);
 
 return (
   <Container>
