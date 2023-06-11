@@ -343,9 +343,9 @@ const Button = styled.a`
 `;
 
 return (
-  <div style={{ marginTop: "30px" }}>
+  <div>
     <ComponentToForceRender updateFlag={state.proposalChecked} />
-    <div class="d-flex">
+    <div class="d-flex" style={{ marginTop: "30px" }}>
       <Web3Connect
         className="LidoStakeFormSubmitContainer"
         connectLabel="Connect"
