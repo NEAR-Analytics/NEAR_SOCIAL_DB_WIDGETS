@@ -31,7 +31,7 @@ const Button = styled.button`
 
 return (
   <div className="d-inline-flex align-items-center">
-    <Button onClick={dislikeClick} style={{ marginLeft: "2px" }}>
+    <Button onClick={dislikeClick} style={{ marginLeft: "2px", zIndex: 9999 }}>
       <i class="bi bi-caret-down-fill" />
       {downvotes}
     </Button>
