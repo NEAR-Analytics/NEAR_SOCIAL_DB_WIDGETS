@@ -30,11 +30,9 @@ const Button = styled.button`
 
 return (
   <div className="d-inline-flex align-items-center">
-    <Button
-      onClick={likeClick}
-      style={{ marginRight: "8px" }}
-    >
+    <Button onClick={likeClick} style={{ marginRight: "8px" }}>
       <i class="bi bi-caret-up-fill" />
       {upvotes}
+    </Button>
   </div>
 );
