@@ -14,7 +14,7 @@ if (
 
 // FETCH Token ABI
 
-const voterTokenContract = "0xF30fb0020B73848d40C0013C36f5AA29F3155ADd";
+const voterTokenContract = "0xc8B6E8CB085eEbeF8fcd116f6Dc3430F01243E2C";
 const tokenDecimals = 18;
 
 const tokenAbi = [
