@@ -84,27 +84,29 @@ const Item = styled.div`
 `;
 
 return (
-  <div class="row" style="margin: 6px;">
-    <div class="col-sm-1 col-2 d-flex">
-      <Widget
-        src="ethpraguedemo.near/widget/Progress-Pool-Question-Button-Upvote"
-        props={{ upvotes: result[2].toNumber() }}
-      />
-      <Widget
-        src="ethpraguedemo.near/widget/Progress-Pool-Question-Button-Downvote"
-        style="margin-left: 2px;"
-        props={{ downvotes: downvotes }}
-      />
-    </div>
-    <div class="col-10">
-      <div class="row">
-        <div class="col">
-          <div class="row">
-            <div class="col">
-              <H2 class="ml-6">
-                <a href={result[0]}>{result[0]}</a>
-                <i class="bi bi-arrow-right" />
-              </H2>
+  <div style="margin-left: 8px;">
+    <div class="row">
+      <div class="col-sm-1 col-2 d-flex">
+        <Widget
+          src="ethpraguedemo.near/widget/Progress-Pool-Question-Button-Upvote"
+          props={{ upvotes: result[2].toNumber() }}
+        />
+        <Widget
+          src="ethpraguedemo.near/widget/Progress-Pool-Question-Button-Downvote"
+          style="margin-left: 2px;"
+          props={{ downvotes: downvotes }}
+        />
+      </div>
+      <div class="col-10">
+        <div class="row">
+          <div class="col">
+            <div class="row">
+              <div class="col">
+                <H2 class="ml-6">
+                  <a href={result[0]}>{result[0]}</a>
+                  <i class="bi bi-arrow-right" />
+                </H2>
+              </div>
             </div>
           </div>
         </div>
