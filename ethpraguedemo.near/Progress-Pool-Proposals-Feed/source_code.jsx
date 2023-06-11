@@ -347,7 +347,7 @@ return (
     <div class="d-flex">
       <Web3Connect
         className="LidoStakeFormSubmitContainer"
-        connectLabel="Connect to web3"
+        connectLabel="Connect"
       />
       <div class="col-lg-2 col-sm-12 text-center">
         <Button
