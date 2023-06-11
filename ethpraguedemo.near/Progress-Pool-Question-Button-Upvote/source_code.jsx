@@ -3,6 +3,7 @@ let state = props.state;
 
 const likeClick = () => {
   console.log("upvoted");
+  upvotes += 1;
   if (state.votes[index]) return;
   else {
     let votes = state.votes;
