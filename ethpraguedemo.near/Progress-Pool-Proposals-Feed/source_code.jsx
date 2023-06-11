@@ -348,7 +348,7 @@ return (
       <Web3Connect
         className="LidoStakeFormSubmitContainer"
         connectLabel="Connect"
-        style={{ marginRight: "12px" }}
+        style={{ marginRight: "20px" }}
       />
       <div class="col-lg-2 col-sm-12 text-center">
         <Button class="btn btn-primary btn-sm" onClick={vote}>
