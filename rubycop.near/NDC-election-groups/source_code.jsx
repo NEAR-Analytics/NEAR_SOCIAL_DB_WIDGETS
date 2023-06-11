@@ -1,3 +1,9 @@
+const { groups } = props;
+
+State.init({
+  selected: groups[0].title,
+});
+
 const profileImg =
   "https://ipfs.near.social/ipfs/bafkreie4rfa63zedwnpbwm5lglqrwqhahcnf6slllqmq7sh46ngf5y4vsq";
 
@@ -27,16 +33,37 @@ const WarningCircle = styled.div`
 `;
 
 const ItemContainer = styled.div`
-  border: 1px solid #e3e3e3;
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  border: 1px solid;
+  background: ${(props) =>
+    props.selected
+      ? "linear-gradient(90deg, #9333EA 0%, #4F46E5 100%)"
+      : "#FFFFFF"};
+  border-color: ${(props) => (props.selected ? "#4F46E5" : "#ffffff")};
+  color: ${(props) => (props.selected ? "white" : "inherit")};
 
   &:hover {
-    border: 1px solid gray;
-    cursor: pointer;
+    border: 1px solid #4F46E5;
+    background: ${(props) =>
+      props.selected
+        ? "linear-gradient(90deg, #9333EA 0%, #4F46E5 100%)"
+        : "linear-gradient(90deg, rgba(147, 51, 234, 0.08) 0%, rgba(79, 70, 229, 0.08) 100%)"};
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.05);
   }
 `;
 
+const handleSelect = (item) => {
+  State.update({ selected: item.title });
+};
+
 const GroupItem = ({ item }) => (
-  <ItemContainer className="d-flex p-3 px-4 bg-light align-items-center rounded mb-3">
+  <ItemContainer
+    role="button"
+    className="d-flex p-3 px-4 align-items-center mb-3"
+    onClick={() => handleSelect(item)}
+    selected={state.selected === item.title}
+  >
     <div className="position-relative">
       {!item.submitted && <WarningCircle />}
       <ImgContainer>
@@ -67,7 +94,12 @@ const GroupItem = ({ item }) => (
 );
 
 const ProfileItem = () => (
-  <ItemContainer className="d-flex p-3 px-4 bg-light align-items-center rounded mb-3">
+  <ItemContainer
+    role="button"
+    className="d-flex p-3 px-4 align-items-center mb-3"
+    onClick={() => handleSelect({ title: "My Profile" })}
+    selected={state.selected === "My Profile"}
+  >
     <ImgContainer>
       <Widget src="mob.near/widget/ProfileImage" />
     </ImgContainer>
@@ -79,7 +111,7 @@ const ProfileItem = () => (
 
 return (
   <div>
-    {props.groups.map((item) => (
+    {groups.map((item) => (
       <GroupItem item={item} />
     ))}
     <ProfileItem />
