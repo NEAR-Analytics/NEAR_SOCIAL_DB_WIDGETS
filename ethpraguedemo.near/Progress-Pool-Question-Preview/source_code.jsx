@@ -85,7 +85,7 @@ const Item = styled.div`
 
 return (
   <div class="row">
-    <div class="col-sm-1 col-2 d-flex">
+    <div class="col-sm-1 col-2 d-flex ml-8">
       <Widget
         src="ethpraguedemo.near/widget/Progress-Pool-Question-Button-Upvote"
         props={{ upvotes: result[2].toNumber() }}
