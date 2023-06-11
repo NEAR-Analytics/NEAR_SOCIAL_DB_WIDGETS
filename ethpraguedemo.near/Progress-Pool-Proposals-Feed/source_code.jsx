@@ -20,7 +20,7 @@ const toggleUpdateFlag = () => {
   }
 };
 
-const proposalContract = "0x6daA072A660814fa3c96961dfa11eee8A39a74b3";
+const proposalContract = "0x0C78c1c4D8bD0C79c2E22fB981fDc913922d66A3";
 
 const proposalAbi = [
   {
