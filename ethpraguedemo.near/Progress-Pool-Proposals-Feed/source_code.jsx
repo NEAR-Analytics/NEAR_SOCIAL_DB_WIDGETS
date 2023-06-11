@@ -343,16 +343,18 @@ const Button = styled.a`
 `;
 
 return (
-  <div class="d-flex">
-    <Web3Connect
-      className="LidoStakeFormSubmitContainer"
-      connectLabel="Connect"
-    />
-    <div class="col-lg-2 col-sm-12 text-center">
-      <Button class="btn btn-primary btn-sm" onClick={vote}>
-        Cast Your Vote
-      </Button>
+  <div>
+    <div class="d-flex">
+      <Web3Connect
+        className="LidoStakeFormSubmitContainer"
+        connectLabel="Connect"
+      />
+      <div class="col-lg-2 col-sm-12 text-center">
+        <Button class="btn btn-primary btn-sm" onClick={vote}>
+          Cast Your Vote
+        </Button>
+      </div>
     </div>
+    <ComponentToForceRender updateFlag={state.proposalChecked} />
   </div>
-  <ComponentToForceRender updateFlag={state.proposalChecked} />
 );
