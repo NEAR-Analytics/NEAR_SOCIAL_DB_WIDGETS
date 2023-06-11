@@ -159,6 +159,10 @@ const proposalAbi = [
   },
 ];
 
+State.update({
+  pulled_proposals: [],
+});
+
 if (state.sender === undefined) {
   const accounts = Ethers.send("eth_requestAccounts", []);
   if (accounts.length) {
@@ -183,7 +187,7 @@ if (state.proposalNumber !== undefined && state.proposalNumber > 0) {
       proposals.proposals(num).then((result) => {
         console.log("result: ", result);
         State.update({
-          pulled_proposals: [{ num, result }],
+          pulled_proposals: [...state.pulled_proposals, { num, result }],
         });
         toggleUpdateFlag();
       });
