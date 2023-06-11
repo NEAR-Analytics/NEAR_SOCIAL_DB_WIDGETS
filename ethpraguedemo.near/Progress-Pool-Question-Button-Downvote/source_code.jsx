@@ -1,11 +1,15 @@
 const downvotes = props.downvotes;
-const upvotes = props.upvotes;
 let state = props.state;
 
 const dislikeClick = () => {
-  State.update({
-    upvote: false,
-  });
+  if (state.votes[index]) {
+    let votes = state.votes;
+    votes[index] = 0;
+    State.update({ votes: votes });
+    downvotes += 1;
+  } else {
+    return;
+  }
 };
 
 const Button = styled.button`
