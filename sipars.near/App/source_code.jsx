@@ -7,8 +7,16 @@ const SubHeading = styled.h2`
   color: #e3e6ec;
   margin-top: 20px;
   text-align: center;
+  font-size: 20px;
+`
+
+const Heading3 = styled.h3`
+  color: #e3e6ec;
+  margin-top: 100px;
+  text-align: center;
   font-size: 18px;
 `
+
 const LoginContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -19,7 +27,7 @@ const LoginContainer = styled.div`
 `
 
 const ButtonContainer = styled.div`
-  margin-top: 120px;
+  margin-top: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -128,18 +136,18 @@ if (state.currentAccountId.length > 0) {
   if (typeof status === 'undefined') {
     userComponentToRender = (
       <Widget
-        src="sipars.testnet/widget/InputForm"
+        src="sipars.near/widget/InputForm"
         props={{ state, addPendingApplication }}
       />
     )
   } else if (status === 'rejected' || status === 'pending') {
     userComponentToRender = (
-      <Widget src="sipars.testnet/widget/AfterSubmission" props={{ status }} />
+      <Widget src="sipars.near/widget/AfterSubmission" props={{ status }} />
     )
   } else {
     const cred = Storage.privateGet(state.currentAccountId)
     userComponentToRender = (
-      <Widget src="sipars.testnet/widget/Certification" props={{ cred }} />
+      <Widget src="sipars.near/widget/Certification" props={{ cred }} />
     )
   }
 }
@@ -150,7 +158,7 @@ return (
     {state.currentAccountId.length > 0 ? (
       isAdmin ? (
         <Widget
-          src="sipars.testnet/widget/PendingApplicationsTable"
+          src="sipars.near/widget/PendingApplicationsTable"
           props={{
             pendingApplications:
               Storage.privateGet('pendingApplications') || [],
