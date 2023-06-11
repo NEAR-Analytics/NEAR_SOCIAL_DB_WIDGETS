@@ -159,8 +159,24 @@ const selectedBookmarks = (accountId) => {
 const handleBookmarkCandidate = (accountId) => {
   let selectedItems = selectedBookmarks(accountId);
 
-  if (selectedItems.length === 0) State.update({ selectedCandidates: result });
-  State.update({ bookmarked: selectedItems });
+  Social.set(
+    {
+      index: {
+        [ndcOrganization]: JSON.stringify({
+          key: typ,
+          value: selectedBookmarks(accountId),
+        }),
+      },
+    },
+    {
+      force: true,
+      onCommit: () => {
+        if (selectedItems.length === 0)
+          State.update({ selectedCandidates: result });
+        State.update({ bookmarked: selectedItems });
+      },
+    }
+  );
 };
 
 const handleVote = () => {
@@ -218,27 +234,15 @@ const CandidateList = ({ accountId, votes }) => {
       >
         <div className="d-flex">
           <W50>
-            <CommitButton
-              className="border-0 bg-transparent"
-              data={{
-                index: {
-                  [ndcOrganization]: JSON.stringify({
-                    key: typ,
-                    value: selectedBookmarks(accountId),
-                  }),
-                },
-              }}
-            >
-              <i
-                id="bookmark"
-                onClick={() => handleBookmarkCandidate(accountId)}
-                className={`bi ${
-                  state.bookmarked.includes(accountId)
-                    ? "bi-bookmark-fill"
-                    : "bi-bookmark"
-                }`}
-              />
-            </CommitButton>
+            <i
+              id="bookmark"
+              onClick={() => handleBookmarkCandidate(accountId)}
+              className={`bi ${
+                state.bookmarked.includes(accountId)
+                  ? "bi-bookmark-fill"
+                  : "bi-bookmark"
+              }`}
+            />
           </W50>
           <Widget
             src="mob.near/widget/ProfileImage"
