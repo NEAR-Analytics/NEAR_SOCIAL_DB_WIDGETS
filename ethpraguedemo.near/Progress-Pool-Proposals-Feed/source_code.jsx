@@ -343,7 +343,7 @@ const Button = styled.a`
 `;
 
 return (
-  <div style="display: flex;">
+  <div>
     <Web3Connect
       className="LidoStakeFormSubmitContainer"
       connectLabel="Connect"
