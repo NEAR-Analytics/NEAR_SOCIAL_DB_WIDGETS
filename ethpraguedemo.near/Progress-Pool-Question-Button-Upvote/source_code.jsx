@@ -1,5 +1,4 @@
 const upvotes = props.upvotes;
-let upvoted = false;
 let state = props.state;
 
 const likeClick = () => {
