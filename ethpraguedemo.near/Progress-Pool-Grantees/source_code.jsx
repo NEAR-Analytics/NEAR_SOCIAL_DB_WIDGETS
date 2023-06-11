@@ -79,7 +79,7 @@ if (state.sender === undefined) {
   }
 }
 
-const proposalContract = "0x789f6A5d52fa44e187542a8364337D6d0FBF1B18";
+const proposalContract = "0x0C78c1c4D8bD0C79c2E22fB981fDc913922d66A3";
 
 const proposalAbi = [
   {
