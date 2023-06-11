@@ -84,14 +84,15 @@ const proposalContract = "0x789f6A5d52fa44e187542a8364337D6d0FBF1B18";
 const proposalAbi = [
   {
     inputs: [
-      { internalType: "uint256", name: "_hackathonEndTime", type: "uint256" },
-      { internalType: "address", name: "_votingTokenAddress", type: "address" },
+      {
+        internalType: "address",
+        name: "_votingTokenAddress",
+        type: "address",
+      },
     ],
     stateMutability: "nonpayable",
     type: "constructor",
   },
-  { inputs: [], name: "not_in_proposalPeriod", type: "error" },
-  { inputs: [], name: "not_in_votingPeriod", type: "error" },
   {
     anonymous: false,
     inputs: [
@@ -126,7 +127,12 @@ const proposalAbi = [
         name: "proposalOwner",
         type: "address",
       },
-      { indexed: false, internalType: "uint8", name: "accept", type: "uint8" },
+      {
+        indexed: false,
+        internalType: "uint8",
+        name: "accept",
+        type: "uint8",
+      },
     ],
     name: "VoteCasted",
     type: "event",
@@ -134,21 +140,39 @@ const proposalAbi = [
   {
     inputs: [],
     name: "SUBMISSION_PERIOD",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
     stateMutability: "view",
     type: "function",
   },
   {
     inputs: [],
     name: "TRANSITION_PERIOD",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
     stateMutability: "view",
     type: "function",
   },
   {
     inputs: [],
     name: "VOTING_PERIOD",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
     stateMutability: "view",
     type: "function",
   },
@@ -156,10 +180,18 @@ const proposalAbi = [
     inputs: [
       {
         components: [
-          { internalType: "uint256", name: "proposalIndex", type: "uint256" },
-          { internalType: "uint8", name: "decision", type: "uint8" },
+          {
+            internalType: "uint256",
+            name: "proposalIndex",
+            type: "uint256",
+          },
+          {
+            internalType: "uint8",
+            name: "decision",
+            type: "uint8",
+          },
         ],
-        internalType: "structProposalVoting.Vote[]",
+        internalType: "struct ProposalVoting.Vote[]",
         name: "_votes",
         type: "tuple[]",
       },
@@ -172,25 +204,59 @@ const proposalAbi = [
   {
     inputs: [],
     name: "castedVotes",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
     stateMutability: "view",
     type: "function",
   },
   {
     inputs: [],
     name: "hackathonEndTime",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
     stateMutability: "view",
     type: "function",
   },
   {
-    inputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
     name: "proposals",
     outputs: [
-      { internalType: "string", name: "description", type: "string" },
-      { internalType: "address", name: "proposalOwner", type: "address" },
-      { internalType: "uint256", name: "votes", type: "uint256" },
-      { internalType: "bool", name: "accepted", type: "bool" },
+      {
+        internalType: "string",
+        name: "description",
+        type: "string",
+      },
+      {
+        internalType: "address",
+        name: "proposalOwner",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "votes",
+        type: "uint256",
+      },
+      {
+        internalType: "bool",
+        name: "accepted",
+        type: "bool",
+      },
     ],
     stateMutability: "view",
     type: "function",
@@ -198,12 +264,24 @@ const proposalAbi = [
   {
     inputs: [],
     name: "proposalsCount",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
     stateMutability: "view",
     type: "function",
   },
   {
-    inputs: [{ internalType: "string", name: "_description", type: "string" }],
+    inputs: [
+      {
+        internalType: "string",
+        name: "_description",
+        type: "string",
+      },
+    ],
     name: "submitProposal",
     outputs: [],
     stateMutability: "nonpayable",
@@ -212,7 +290,13 @@ const proposalAbi = [
   {
     inputs: [],
     name: "votingToken",
-    outputs: [{ internalType: "contractIERC20", name: "", type: "address" }],
+    outputs: [
+      {
+        internalType: "contract IERC20",
+        name: "",
+        type: "address",
+      },
+    ],
     stateMutability: "view",
     type: "function",
   },
