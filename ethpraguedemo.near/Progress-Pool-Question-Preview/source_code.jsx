@@ -100,7 +100,7 @@ return (
       <div class="row">
         <div class="col">
           <div class="row">
-            <div class="col">
+            <div class="col ml-8">
               <H2 class="ml-6">
                 <a href={result[0]}>{result[0]}</a>
                 <i class="bi bi-arrow-right" />
