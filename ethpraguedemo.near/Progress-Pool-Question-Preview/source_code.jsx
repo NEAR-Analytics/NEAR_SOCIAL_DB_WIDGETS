@@ -96,12 +96,12 @@ return (
         props={{ downvotes: downvotes }}
       />
     </div>
-    <div class="col-10 ml-8">
+    <div class="col-10">
       <div class="row">
         <div class="col">
           <div class="row">
             <div class="col">
-              <H2>
+              <H2 class="ml-6">
                 <a href={result[0]}>{result[0]}</a>
                 <i class="bi bi-arrow-right" />
               </H2>
