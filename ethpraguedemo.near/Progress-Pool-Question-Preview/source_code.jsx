@@ -28,6 +28,11 @@ const H2 = styled.h2`
     }
   }
 `;
+
+.abc {
+    margin-left: 10px;
+  }
+
 const H6 = styled.h6`
   font-size: 14px;
   font-weight: 500;
@@ -100,7 +105,7 @@ return (
       <div class="row">
         <div class="col">
           <div class="row">
-            <div class="col ml-8">
+            <div class="col abc">
               <H2 class="ml-6">
                 <a href={result[0]}>{result[0]}</a>
                 <i class="bi bi-arrow-right" />
