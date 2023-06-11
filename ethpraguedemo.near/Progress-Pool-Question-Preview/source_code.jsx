@@ -96,7 +96,7 @@ return (
         props={{ downvotes: downvotes }}
       />
     </div>
-    <div class="col-10 ml-3">
+    <div class="col-10 ml-8">
       <div class="row">
         <div class="col">
           <div class="row">
