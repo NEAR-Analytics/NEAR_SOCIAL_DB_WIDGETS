@@ -1,10 +1,14 @@
-const downvotes = props.downvotes;
+const upvotes = props.upvotes;
+let upvoted = false;
 let state = props.state;
 
-const dislikeClick = () => {
-  State.update({
-    upvote: false,
-  });
+const likeClick = () => {
+  console.log("upvoted");
+  if (upvoted) return;
+  if (downvoted) {
+    upvotes += 1;
+    downvotes -= 1;
+  }
 };
 
 const Button = styled.button`
@@ -19,16 +23,18 @@ const Button = styled.button`
   transition: all .15s ease;
 
   &:hover {
-    color: #ff0000;
-    border-color: #ff0000;
+    color: #30A46C;
+    border-color: #30A46C;
   }
 `;
 
 return (
   <div className="d-inline-flex align-items-center">
-    <Button onClick={dislikeClick} style={{ marginLeft: "2px" }}>
-      <i class="bi bi-caret-down-fill" />
-      {downvotes}
-    </Button>
+    <Button
+      onClick={likeClick}
+      style={{ marginRight: "8px" }}
+    >
+      <i class="bi bi-caret-up-fill" />
+      {upvotes}
   </div>
 );
