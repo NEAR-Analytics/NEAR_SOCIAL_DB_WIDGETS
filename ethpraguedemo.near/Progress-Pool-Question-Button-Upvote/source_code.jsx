@@ -1,7 +1,15 @@
 const upvotes = props.upvotes;
+let upvoted = false;
+let downvoted = false;
+console.log(state);
 
 const likeClick = () => {
   console.log("upvoted");
+  if (upvoted) return;
+  if (downvoted) {
+    upvotes += 1;
+    downvotes -= 1;
+  }
   State.update({
     upvote: true,
   });
