@@ -340,12 +340,10 @@ const filterBy = (option) => {
       ),
       filter: { bookmark: true },
     });
-  else if (!state.filter.candidate && option.candidate)
+  else if (option.candidate)
     State.update({
       candidates: state.candidates.sort((a, b) =>
-        state.filter.candidate
-          ? a[0].localeCompare(b[0])
-          : b[0].localeCompare(a[0])
+        state.filter.candidate ? a[1] - b[1] : b[1] - a[1]
       ),
       filter: { candidate: !state.filter.candidate },
     });
@@ -382,7 +380,11 @@ const Filters = () => {
           onClick={() => filterBy({ candidate: true })}
         >
           <small>Candidate</small>
-          <i className="bi bi-arrow-down" />
+          <i
+            className={`bi ${
+              state.filter.candidate ? "bi-arrow-down" : "bi-arrow-up"
+            }`}
+          />
         </AccountLink>
       </div>
       <div className="d-flex">
@@ -392,7 +394,11 @@ const Filters = () => {
           onClick={() => filterBy({ votes: true })}
         >
           <small>Votes</small>
-          <i className="bi bi-arrow-down" />
+          <i
+            className={`bi ${
+              state.filter.votes ? "bi-arrow-down" : "bi-arrow-up"
+            }`}
+          />
         </Votes>
         <ActionSelect />
       </div>
