@@ -1,6 +1,5 @@
 const { groups, selectedGroup } = props;
 
-console.log(selectedGroup);
 const profileImg =
   "https://ipfs.near.social/ipfs/bafkreie4rfa63zedwnpbwm5lglqrwqhahcnf6slllqmq7sh46ngf5y4vsq";
 
@@ -59,7 +58,7 @@ const GroupItem = ({ item }) => (
     role="button"
     className="d-flex p-3 px-4 align-items-center mb-3"
     onClick={() => handleSelect(item)}
-    selected={state.selectedGroup === item.title}
+    selected={selectedGroup === item.title}
   >
     <div className="position-relative">
       {!item.submitted && <WarningCircle />}
@@ -95,7 +94,7 @@ const ProfileItem = () => (
     role="button"
     className="d-flex p-3 px-4 align-items-center mb-3"
     onClick={() => handleSelect({ title: "My Profile" })}
-    selected={state.selectedGroup === "My Profile"}
+    selected={selectedGroup === "My Profile"}
   >
     <ImgContainer>
       <Widget src="mob.near/widget/ProfileImage" />
