@@ -343,7 +343,7 @@ const Button = styled.a`
 `;
 
 return (
-  <div>
+  <div style={{ marginTop: "30px" }}>
     <ComponentToForceRender updateFlag={state.proposalChecked} />
     <div class="d-flex">
       <Web3Connect
