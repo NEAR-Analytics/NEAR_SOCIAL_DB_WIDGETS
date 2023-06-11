@@ -83,10 +83,6 @@ const Item = styled.div`
   }
 `;
 
-.result-link {
-  margin-left: 20px; /* Adjust the value as needed */
-}
-
 return (
   <div class="row">
     <div class="col-sm-1 col-2 d-flex">
@@ -106,7 +102,7 @@ return (
           <div class="row">
             <div class="col">
               <H2 class="ml-6">
-                <a class="result-link" href={result[0]}>{result[0]}</a>
+                <a href={result[0]}>{result[0]}</a>
                 <i class="bi bi-arrow-right" />
               </H2>
             </div>
