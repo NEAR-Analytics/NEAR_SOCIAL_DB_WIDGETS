@@ -1,3 +1,6 @@
+const Button = styled.button`
+`;
+
 function Content() {
   switch (state.show) {
     case "THING":
@@ -10,8 +13,8 @@ function Content() {
 
 return (
   <>
-    <button onClick={() => State.update({ show: "THING" })}>thing</button>
-    <button onClick={() => State.update({ show: "TYPE" })}>type</button>
+    <Button onClick={() => State.update({ show: "THING" })}>thing</Button>
+    <Button onClick={() => State.update({ show: "TYPE" })}>type</Button>
     <Content />
   </>
 );
