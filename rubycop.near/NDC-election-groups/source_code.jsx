@@ -54,7 +54,7 @@ const GroupItem = ({ item }) => (
     role="button"
     className="d-flex p-3 px-4 align-items-center mb-3"
     onClick={() => handleSelect(item)}
-    selected={selectedGroup === item.title}
+    selected={selectedGroup === item.id}
   >
     <div className="position-relative">
       {!item.submitted && <WarningCircle />}
@@ -89,8 +89,8 @@ const ProfileItem = () => (
   <ItemContainer
     role="button"
     className="d-flex p-3 px-4 align-items-center mb-3"
-    onClick={() => handleSelect({ title: "My Profile" })}
-    selected={selectedGroup === "My Profile"}
+    onClick={() => handleSelect({ id: -1 })}
+    selected={selectedGroup === -1}
   >
     <ImgContainer>
       <Widget src="mob.near/widget/ProfileImage" />
