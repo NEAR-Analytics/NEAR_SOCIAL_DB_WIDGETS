@@ -121,6 +121,10 @@ const AccountLink = styled.div`
 const Votes = styled.div`
   width: 100px;
   margin-left: 50px;
+
+  .bi-hand-thumbs-up-fill {
+    color: ${(props) => (props.selected ? "#fff" : "#4F46E5")};
+  }
 `;
 
 const ActionSelect = styled.div`
@@ -236,6 +240,11 @@ const handleVote = () => {
   ]);
 };
 
+const alreadyVoted = (accountId) =>
+  voters.some(
+    (v) => v.accountId === currentUser && v.candidateId === accountId
+  );
+
 const filterBy = (option) => {
   if (option.bookmark)
     if (!state.filter.bookmark)
@@ -268,9 +277,7 @@ const filterBy = (option) => {
     if (!state.filter.my_votes)
       State.update({
         candidates: state.candidates.filter(([accountId, _votes], _index) =>
-          voters.some(
-            (v) => v.accountId === currentUser && v.candidateId === accountId
-          )
+          alreadyVoted(accountId)
         ),
         filter: { my_votes: true },
       });
@@ -368,7 +375,15 @@ const CandidateList = ({ accountId, votes }) => {
             </span>
           </NominationLink>
           <Votes>{votes}</Votes>
-          <Votes>{myVotes}</Votes>
+          <Votes>
+            <i
+              className={`bi ${
+                alreadyVoted(accountId)
+                  ? "bi-hand-thumbs-up-fill"
+                  : "bi-hand-thumbs-down"
+              }`}
+            />
+          </Votes>
           <ActionSelect>
             <input
               id="input"
@@ -436,11 +451,7 @@ const Filters = () => {
           onClick={() => filterBy({ my_votes: true })}
         >
           <small>My votes</small>
-          <i
-            className={`bi ${
-              state.filter.votes ? "bi-arrow-down" : "bi-arrow-up"
-            }`}
-          />
+          <i className="bi bi-funnel" />
         </Votes>
         <ActionSelect />
       </div>
