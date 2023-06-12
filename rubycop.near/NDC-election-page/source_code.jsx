@@ -91,6 +91,28 @@ const props = {
   ],
 };
 
+// TODO: Should be grabbed from indexer
+const humanVoted = 800;
+const totalHumal = 1000;
+const myVotes = [
+  { candidateId: "zomland.near", time: 1686820065441, typ: "House Of Merit" },
+  {
+    candidateId: "rubycop.near",
+    time: 1686820065441,
+    typ: "Councile Of Advisors",
+  },
+  {
+    candidateId: "blabla.near",
+    time: 1686820065441,
+    typ: "Transparancy Commision",
+  },
+  {
+    candidateId: "zomland.near",
+    time: 1686820065441,
+    typ: "Transparancy Commision",
+  },
+];
+
 const { widgetProvider, groups } = props;
 
 State.init({
@@ -117,6 +139,7 @@ const Center = styled.div`
 
 const Right = styled.div`
   padding: 20px;
+  margin-bottom: 20px;
   background: #F8F8F9;
   border-radius: 8px;
 `;
@@ -168,9 +191,32 @@ return (
           </>
         ))}
       </Center>
-      <Right className="col">
-        <H5>General</H5>
-      </Right>
+
+      <div className="col">
+        <Right className="col">
+          <H5>General</H5>
+          <div className="d-flex justify-content-center">
+            <Widget
+              src={`${widgetProvider}/widget/NDC-voting-stats`}
+              props={{
+                voted: humanVoted,
+                total: totalHumal,
+              }}
+            />
+          </div>
+        </Right>
+        <Right className="col">
+          <H5>My voting activity</H5>
+          <div className="d-flex justify-content-center">
+            <Widget
+              src={`${widgetProvider}/widget/NDC-voting-activity`}
+              props={{
+                votes: myVotes,
+              }}
+            />
+          </div>
+        </Right>
+      </div>
     </Container>
   </div>
 );
