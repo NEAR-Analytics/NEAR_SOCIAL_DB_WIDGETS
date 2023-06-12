@@ -52,6 +52,15 @@ const StyledLink = styled.a`
   overflow: hidden;
   text-overflow: ellipsis;
 `;
+
+const TxnLink = styled.a`
+  color: inherit;
+  width: 330px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
 const NominationLink = styled.a`
   font-size: 12px;
   line-height: 24px;
@@ -112,10 +121,6 @@ const Bookmark = styled.div`
   #bookmark.bi-bookmark-fill {
     color: ${(props) => (props.selected ? "#fff" : "#4F46E5")};
   }
-`;
-
-const AccountLink = styled.div`
-  width: 200px;
 `;
 
 const Votes = styled.div`
@@ -317,10 +322,15 @@ const VotersList = ({ voters }) => (
           />
         </div>
         <div className="d-flex align-items-center">
-          <Link
+          <TxnLink
+            role="button"
             src={`https://explorer.mainnet.near.org/transactions/${voter.txn_url}`}
-            title={voter.txn_url}
-          />
+          >
+            {voter.txn_url}
+          </TxnLink>
+          <span>
+            <i class="bi bi-arrow-up-right" />
+          </span>
         </div>
       </VoterItem>
     ))}
@@ -353,7 +363,7 @@ const CandidateList = ({ accountId, votes }) => {
               }`}
             />
           </Bookmark>
-          <AccountLink className="d-flex">
+          <div className="d-flex">
             <Widget
               src="mob.near/widget/ProfileImage"
               props={{
@@ -366,7 +376,7 @@ const CandidateList = ({ accountId, votes }) => {
               src={`https://wallet.near.org/profile/${accountId}`}
               title={accountId}
             />
-          </AccountLink>
+          </div>
         </div>
         <div className="d-flex">
           <NominationLink
@@ -375,11 +385,11 @@ const CandidateList = ({ accountId, votes }) => {
           >
             Nomination
             <span className="ml-2 text-secondary">
-              <i class="bi bi-arrow-up-right" />
+              <i className="bi bi-arrow-up-right" />
             </span>
           </NominationLink>
           <Votes>{votes}</Votes>
-          <Votes>
+          <Votes selected={state.selected === accountId}>
             <i
               className={`bi ${
                 alreadyVoted(accountId)
@@ -420,7 +430,7 @@ const Filters = () => {
           <small>Bookmark</small>
           <i className="bi bi-funnel" />
         </Bookmark>
-        <AccountLink
+        <div
           role="button"
           className="text-secondary"
           onClick={() => filterBy({ candidate: true })}
@@ -431,7 +441,7 @@ const Filters = () => {
               state.filter.candidate ? "bi-arrow-down" : "bi-arrow-up"
             }`}
           />
-        </AccountLink>
+        </div>
       </div>
       <div className="d-flex">
         <Nomination className="text-secondary">
