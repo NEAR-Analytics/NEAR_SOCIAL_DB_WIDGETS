@@ -72,8 +72,8 @@ const Link = styled.a`
 return (
   <Wrapper className={props.className}>
     <Link href={props.href} target="_blank">
-      {props.buttonText || "Vote"}
       <i class={`bi ${props.icon || "bi-envelope-paper"}`} />
+      {props.buttonText || "Vote"}
     </Link>
   </Wrapper>
 );
