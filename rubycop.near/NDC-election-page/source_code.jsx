@@ -168,7 +168,7 @@ return (
           </>
         ))}
       </Center>
-      <Right className="col">
+      <Right className="col-2">
         <H5>General</H5>
       </Right>
     </Container>
