@@ -19,6 +19,7 @@ const _bookmarked = Social.index(ndcOrganization, typ);
 const currentUser = context.accountId;
 
 State.init({
+  loading: false,
   availableVotes: votes.available,
   selected: null,
   bookmarked: _bookmarked ? _bookmarked[_bookmarked.length - 1].value : [],
@@ -192,6 +193,14 @@ const Link = ({ title, src }) => (
   </>
 );
 
+const Loader = () => (
+  <span
+    className="spinner-grow spinner-grow-sm me-1"
+    role="status"
+    aria-hidden="true"
+  />
+);
+
 const handleSelectCandidate = (accountId) => {
   const selectedItems = state.selectedCandidates.includes(accountId)
     ? state.selectedCandidates.filter((el) => el !== accountId)
@@ -216,6 +225,7 @@ const selectedBookmarks = (accountId) => {
 
 const handleBookmarkCandidate = (accountId) => {
   let selectedItems = selectedBookmarks(accountId);
+  State.update({ loading: true });
 
   Social.set(
     {
@@ -231,8 +241,9 @@ const handleBookmarkCandidate = (accountId) => {
       onCommit: () => {
         if (selectedItems.length === 0)
           State.update({ selectedCandidates: result });
-        State.update({ bookmarked: selectedItems });
+        State.update({ bookmarked: selectedItems, loading: false });
       },
+      onCancel: () => State.update({ loading: false }),
     }
   );
 };
@@ -353,15 +364,19 @@ const CandidateList = ({ accountId, votes }) => {
       >
         <div className="d-flex">
           <Bookmark selected={state.selected === accountId}>
-            <i
-              id="bookmark"
-              onClick={() => handleBookmarkCandidate(accountId)}
-              className={`bi ${
-                state.bookmarked.includes(accountId)
-                  ? "bi-bookmark-fill"
-                  : "bi-bookmark"
-              }`}
-            />
+            {state.loading ? (
+              <Loader />
+            ) : (
+              <i
+                id="bookmark"
+                onClick={() => handleBookmarkCandidate(accountId)}
+                className={`bi ${
+                  state.bookmarked.includes(accountId)
+                    ? "bi-bookmark-fill"
+                    : "bi-bookmark"
+                }`}
+              />
+            )}
           </Bookmark>
           <div className="d-flex">
             <Widget
