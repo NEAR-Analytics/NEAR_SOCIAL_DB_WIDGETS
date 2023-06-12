@@ -119,8 +119,8 @@ const AccountLink = styled.div`
 `;
 
 const Votes = styled.div`
-  width: 100px;
-  margin-left: 50px;
+  width: 90px;
+  margin-left: 20px;
 
   .bi-hand-thumbs-up-fill {
     color: ${(props) => (props.selected ? "#fff" : "#4F46E5")};
@@ -128,7 +128,11 @@ const Votes = styled.div`
 `;
 
 const ActionSelect = styled.div`
-  width: 50px;
+  width: 20px;
+`;
+
+const Nomination = styled.div`
+  width: 102px;
 `;
 
 const FilterRow = styled.div`
@@ -430,9 +434,9 @@ const Filters = () => {
         </AccountLink>
       </div>
       <div className="d-flex">
-        <Votes className="text-secondary">
+        <Nomination className="text-secondary">
           <small>Platform</small>
-        </Votes>
+        </Nomination>
         <Votes
           role="button"
           className="text-secondary"
