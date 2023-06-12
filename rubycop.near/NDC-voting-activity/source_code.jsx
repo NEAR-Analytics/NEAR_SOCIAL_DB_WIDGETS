@@ -6,6 +6,9 @@ const VoteRow = styled.div`
     font-weight: 400;
     font-size: 12px;
   }
+  .row {
+    width: min-content;
+  }
 `;
 
 const StyledLink = styled.a`
