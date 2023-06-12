@@ -1,7 +1,5 @@
 const { end } = props;
 
-const countDownDate = new Date(end).getTime();
-
 State.init({
   days: "-",
   hours: "-",
@@ -12,21 +10,25 @@ State.init({
 const formatTime = (time) => (time < 10 ? `0${time}` : time);
 
 const timer = setInterval(() => {
-  const diff = new Date(end).getTime() - new Date().getTime();
+  const diff = new Date(parseInt(end)).getTime() - new Date().getTime();
 
-  const seconds = Math.floor((diff / 1000) % 60);
-  const minutes = Math.floor((diff / 1000 / 60) % 60);
-  const hours = Math.floor(diff / (1000 * 60 * 60));
   const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-  State.update({ days, hours, minutes, seconds });
+  State.update({
+    days: days,
+    hours: hours,
+    minutes: minutes,
+    seconds: seconds,
+  });
 
   clearInterval(timer);
 }, 1000);
 
 const Logo = styled.img`
-    width: 70px;
-    margin-right: 20px;
+    width: 130px;
 `;
 
 const H1 = styled.h1`
@@ -61,7 +63,7 @@ const Timer = styled.div`
 `;
 
 return (
-  <div className="p-4 bg-black text-white d-flex justify-content-between align-items-center">
+  <div className="px-3 py-2 bg-black text-white d-flex justify-content-between align-items-center">
     <div className="d-flex align-items-center">
       <Logo src="https://ipfs.near.social/ipfs/bafkreie4rfa63zedwnpbwm5lglqrwqhahcnf6slllqmq7sh46ngf5y4vsq" />
       <H1>NDC Elections</H1>
