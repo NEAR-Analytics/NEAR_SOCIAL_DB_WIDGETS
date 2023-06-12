@@ -1,6 +1,11 @@
-const minimumConnections = props.minimumConnections ?? 29;
+const minimumConnections = props.minimumConnections ?? 25;
 
 const accountId = props.accountId ?? context.accountId;
+
+if (!accountId) {
+  return "";
+}
+
 const daoId = props.daoId ?? "build.sputnik-dao.near";
 
 const policy = Near.view(daoId, "get_policy");
@@ -52,35 +57,10 @@ const filteredAccounts = rankedAccounts.filter(
 );
 
 const Wrapper = styled.div`
-  .join-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 8px 16px;
-    height: 32px;
-    border-radius: 100px;
-    font-weight: 600;
-    font-size: 12px;
-    line-height: 15px;
-    text-align: center;
-    cursor: pointer;
-    background: #FBFCFD;
-    border: 1px solid #D7DBDF;
-    color: ${props.primary ? "#006ADC" : "#11181C"} !important;
-    white-space: nowrap;
-
-    &:hover,
-    &:focus {
-      background: #ECEDEE;
-      text-decoration: none;
-      outline: none;
-    }
-
-    i {
-      display: inline-block;
-      transform: rotate(90deg);
-      color: #7E868C;
+  /* Add styles for responsiveness */
+  @media (max-width: 576px) {
+    .content {
+      flex-direction: column;
     }
   }
 `;
