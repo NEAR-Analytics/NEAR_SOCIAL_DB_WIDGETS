@@ -208,13 +208,13 @@ return (
       <HeaderButtonsContainer>
         <a
           style={{ textDecoration: "none" }}
-          href="https://bos.genadrop.io/#/jgodwill.near/widget/genadropMinter"
+          href="https://bos.genadrop.io/#/jgodwill.near/widget/GenaDrop.Minter"
         >
           <PrimaryButton>Create</PrimaryButton>
         </a>
         <a
           style={{ textDecoration: "none" }}
-          href="https://bos.genadrop.io/#/jgodwill.near/widget/genadropExplore"
+          href="https://bos.genadrop.io/#/jgodwill.near/widget/GenaDrop.Explore"
         >
           <SecondaryButton>Explore</SecondaryButton>
         </a>
