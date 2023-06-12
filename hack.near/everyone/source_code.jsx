@@ -33,6 +33,10 @@ const allAccounts = Social.keys(`*/graph/follow/*`, "final", {
   values_only: true,
 });
 
+if (allAccounts === null) {
+  return "";
+}
+
 const mutualFollowersCount = {};
 
 for (const account of Object.keys(allAccounts)) {
