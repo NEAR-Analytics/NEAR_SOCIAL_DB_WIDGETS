@@ -1,19 +1,17 @@
 const { myVotes } = props;
 
 const VoteRow = styled.div`
-  padding: 10px;
+  padding: 10px 0;
   small {
     font-weight: 400;
     font-size: 12px;
-  }
-  .info {
-    padding-left: 10px;
   }
 `;
 
 const StyledLink = styled.a`
   color: inherit;
-  width: 100px;
+  width: 100px !important;
+  font-size: 14px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -21,7 +19,7 @@ const StyledLink = styled.a`
 
 const Badge = styled.div`
   color: #fff;
-  font-size: 12px;
+  font-size: 10px;
   padding: 4px 8px;
   background: linear-gradient(90deg, #9333EA 0%, #4F46E5 100%);
   border-radius: 100px;
@@ -44,10 +42,10 @@ return (
             props={{
               accountId: vote.candidateId,
               imageClassName: "rounded-circle w-100 h-100",
-              style: { width: "32px", height: "32px", marginRight: 4 },
+              style: { width: "32px", height: "32px", marginRight: 8 },
             }}
           />
-          <div className="row info">
+          <div className="row">
             <StyledLink
               href={`https://wallet.near.org/profile/${vote.candidateId}`}
             >
