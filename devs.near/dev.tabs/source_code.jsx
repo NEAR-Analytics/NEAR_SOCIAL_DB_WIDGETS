@@ -119,7 +119,7 @@ return (
 
     {state.selectedTab === "leaderboard" && (
       <>
-        <Widget src="devs.near/widget/dev.Rank" />
+        <Widget src="devs.near/widget/dev.rank" />
       </>
     )}
 
