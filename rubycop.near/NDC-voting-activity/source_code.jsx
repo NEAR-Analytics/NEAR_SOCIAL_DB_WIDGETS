@@ -26,6 +26,12 @@ const Badge = styled.div`
   padding: 4px 8px;
   background: linear-gradient(90deg, #9333EA 0%, #4F46E5 100%);
   border-radius: 100px;
+  width: 120px !important;
+  text-align:  center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-left: 10px;
 `;
 
 const List = styled.div`
