@@ -1,3 +1,4 @@
+// TODO: Should be grabbed from contract side
 const props = {
   widgetProvider: "rubycop.near",
   contractName: "elections-v2.gwg.testnet",
@@ -12,8 +13,6 @@ const props = {
       id: 2,
       typ: "CouncileOfAdvisors",
       ref_link: "example.com",
-      start: 1685820065441,
-      end: 1686820065441,
       quorum: 100,
       voters_num: 150,
       seats: 10,
@@ -128,11 +127,17 @@ const H5 = styled.h5`
 
 return (
   <div>
-    <Widget
-      key={i}
-      src={`${widgetProvider}/widget/NDC-election-header`}
-      props={props}
-    />
+    {props.groups.map((group) => (
+      <>
+        {group.id === state.selectedGroup && (
+          <Widget
+            key={i}
+            src={`${widgetProvider}/widget/NDC-election-header`}
+            props={group}
+          />
+        )}
+      </>
+    ))}
     <Container className="d-flex flex-wrap gx-5">
       <Left>
         <H5>To Vote</H5>
