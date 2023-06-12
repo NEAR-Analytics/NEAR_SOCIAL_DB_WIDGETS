@@ -8,6 +8,9 @@ function Content() {
 
     case "TYPE":
       return <Widget src="efiz.near/widget/every.type.create" props={{}} />;
+
+    case "POST":
+      return <Widget src="every.near/widget/every.post.create" props={{}} />;
   }
 }
 
@@ -15,6 +18,7 @@ return (
   <>
     <Button onClick={() => State.update({ show: "THING" })}>thing</Button>
     <Button onClick={() => State.update({ show: "TYPE" })}>type</Button>
+    <Button onClick={() => State.update({ show: "POST" })}>post</Button>
     <Content />
   </>
 );
