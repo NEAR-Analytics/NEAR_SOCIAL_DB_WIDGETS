@@ -211,7 +211,7 @@ return (
             <Widget
               src={`${widgetProvider}/widget/NDC-voting-activity`}
               props={{
-                votes: myVotes,
+                myVotes: myVotes,
               }}
             />
           </div>
