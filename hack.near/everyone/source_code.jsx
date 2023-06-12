@@ -61,7 +61,7 @@ const filteredAccounts = rankedAccounts.filter(
 );
 
 const Wrapper = styled.div`
-  /* Add styles for responsiveness */
+  max-width: 100%;
   @media (max-width: 576px) {
     .content {
       flex-direction: column;
