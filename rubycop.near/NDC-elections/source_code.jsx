@@ -225,7 +225,7 @@ const selectedBookmarks = (accountId) => {
 
 const handleBookmarkCandidate = (accountId) => {
   let selectedItems = selectedBookmarks(accountId);
-  State.update({ loading: true });
+  State.update({ loading: accountId });
 
   Social.set(
     {
@@ -364,7 +364,7 @@ const CandidateList = ({ accountId, votes }) => {
       >
         <div className="d-flex">
           <Bookmark selected={state.selected === accountId}>
-            {state.loading ? (
+            {state.loading === accountId ? (
               <Loader />
             ) : (
               <i
