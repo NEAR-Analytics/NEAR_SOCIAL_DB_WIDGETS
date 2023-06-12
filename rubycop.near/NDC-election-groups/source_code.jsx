@@ -21,7 +21,8 @@ const WarningCircle = styled.div`
   right: 15px;
   top: -3px;
   border-radius: 50%;
-  border: 3px solid rgba(var(--bs-light-rgb), var(--bs-bg-opacity));
+  border: 3px solid;
+  border-color: ${(props) => (props.selected ? "#9333EA" : "#FFFFFF")};
   background: red;
   z-index: 100;
   width: 17px;
@@ -57,7 +58,9 @@ const GroupItem = ({ item }) => (
     selected={selectedGroup === item.id}
   >
     <div className="position-relative">
-      {!item.submitted && <WarningCircle />}
+      {!item.submitted && (
+        <WarningCircle selected={selectedGroup === item.id} />
+      )}
       <ImgContainer>
         <Widget
           src="mob.near/widget/Image"
@@ -85,27 +88,10 @@ const GroupItem = ({ item }) => (
   </ItemContainer>
 );
 
-const ProfileItem = () => (
-  <ItemContainer
-    role="button"
-    className="d-flex p-3 px-4 align-items-center mb-3"
-    onClick={() => handleSelect({ id: -1 })}
-    selected={selectedGroup === -1}
-  >
-    <ImgContainer>
-      <Widget src="mob.near/widget/ProfileImage" />
-    </ImgContainer>
-    <div>
-      <h6>My Profile</h6>
-    </div>
-  </ItemContainer>
-);
-
 return (
   <div>
     {groups.map((item) => (
       <GroupItem item={item} />
     ))}
-    <ProfileItem />
   </div>
 );
