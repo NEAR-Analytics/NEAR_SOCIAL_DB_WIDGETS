@@ -16,6 +16,7 @@ const {
 } = props;
 
 const _bookmarked = Social.index(ndcOrganization, typ);
+const currentUser = context.accountId;
 
 State.init({
   availableVotes: votes.available,
@@ -27,6 +28,7 @@ State.init({
     bookmark: false,
     candidate: false,
     votes: false,
+    my_votes: false,
   },
 });
 
@@ -90,7 +92,7 @@ const CandidateItem = styled.div`
 `;
 
 const VoterItem = styled.div`
-font-size: 14px;
+  font-size: 14px;
   padding: 0 20px;
   height: 48px;
   border-bottom: 1px solid #D0D6D9;
@@ -118,7 +120,7 @@ const AccountLink = styled.div`
 
 const Votes = styled.div`
   width: 100px;
-  text-align:center;
+  margin-left: 50px;
 `;
 
 const ActionSelect = styled.div`
@@ -235,13 +237,19 @@ const handleVote = () => {
 };
 
 const filterBy = (option) => {
-  if (!state.filter.bookmark && option.bookmark)
-    State.update({
-      candidates: state.candidates.filter(([accountId, _votes], _index) =>
-        state.bookmarked.includes(accountId)
-      ),
-      filter: { bookmark: true },
-    });
+  if (option.bookmark)
+    if (!state.filter.bookmark)
+      State.update({
+        candidates: state.candidates.filter(([accountId, _votes], _index) =>
+          state.bookmarked.includes(accountId)
+        ),
+        filter: { bookmark: true },
+      });
+    else
+      State.update({
+        candidates: result,
+        filter: { bookmark: false },
+      });
   else if (option.candidate)
     State.update({
       candidates: state.candidates.sort((a, b) =>
@@ -249,18 +257,32 @@ const filterBy = (option) => {
       ),
       filter: { candidate: !state.filter.candidate },
     });
-  else if (option.votes) {
-    console.log(state.filter.votes);
+  else if (option.votes)
     State.update({
       candidates: state.candidates.sort((a, b) =>
         state.filter.votes ? a[1] - b[1] : b[1] - a[1]
       ),
       filter: { votes: !state.filter.votes },
     });
-  } else
+  else if (option.my_votes)
+    if (!state.filter.my_votes)
+      State.update({
+        candidates: state.candidates.filter(([accountId, _votes], _index) =>
+          voters.some(
+            (v) => v.accountId === currentUser && v.candidateId === accountId
+          )
+        ),
+        filter: { my_votes: true },
+      });
+    else
+      State.update({
+        candidates: result,
+        filter: { my_votes: false },
+      });
+  else
     State.update({
       candidates: result,
-      filter: { bookmark: false },
+      filter: { bookmark: false, my_votes: false },
     });
 };
 
@@ -346,6 +368,7 @@ const CandidateList = ({ accountId, votes }) => {
             </span>
           </NominationLink>
           <Votes>{votes}</Votes>
+          <Votes>{myVotes}</Votes>
           <ActionSelect>
             <input
               id="input"
@@ -392,12 +415,27 @@ const Filters = () => {
         </AccountLink>
       </div>
       <div className="d-flex">
+        <Votes className="text-secondary">
+          <small>Platform</small>
+        </Votes>
         <Votes
           role="button"
           className="text-secondary"
           onClick={() => filterBy({ votes: true })}
         >
-          <small>Votes</small>
+          <small>Total votes</small>
+          <i
+            className={`bi ${
+              state.filter.votes ? "bi-arrow-down" : "bi-arrow-up"
+            }`}
+          />
+        </Votes>
+        <Votes
+          role="button"
+          className="text-secondary"
+          onClick={() => filterBy({ my_votes: true })}
+        >
+          <small>My votes</small>
           <i
             className={`bi ${
               state.filter.votes ? "bi-arrow-down" : "bi-arrow-up"
