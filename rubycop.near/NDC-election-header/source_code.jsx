@@ -101,10 +101,10 @@ const TitleContainer = () => (
 );
 
 const TimerContent = () => {
-  const TimeSlot = ({ time }) => (
+  const TimeSlot = ({ time, title }) => (
     <div>
       <div className="time">{formatTime(time)}</div>
-      <small>days</small>
+      <small>{title}</small>
     </div>
   );
 
@@ -114,10 +114,10 @@ const TimerContent = () => {
         Time remaining in <br /> current election
       </H6>
       <Timer className="d-flex">
-        <TimeSlot time={state.days} />
-        <TimeSlot time={state.hours} />
-        <TimeSlot time={state.minutes} />
-        <TimeSlot time={state.seconds} />
+        <TimeSlot title="days" time={state.days} />
+        <TimeSlot title="hours" time={state.hours} />
+        <TimeSlot title="minutes" time={state.minutes} />
+        <TimeSlot title="seconds" time={state.seconds} />
       </Timer>
     </>
   );
