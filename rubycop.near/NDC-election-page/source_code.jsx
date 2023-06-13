@@ -161,8 +161,8 @@ return (
         )}
       </>
     ))}
-    <Container className="d-flex flex-wrap gx-5">
-      <Left className="col">
+    <Container className="d-flex row">
+      <Left className="col-lg">
         <H5>To Vote</H5>
         <Widget
           key={i}
@@ -174,7 +174,7 @@ return (
           }}
         />
       </Left>
-      <Center className="col-6">
+      <Center className="col-lg-6">
         {props.groups.map((group) => (
           <>
             {group.id === state.selectedGroup && (
@@ -192,7 +192,7 @@ return (
         ))}
       </Center>
 
-      <div className="col">
+      <div className="col-lg">
         <Right className="col">
           <H5>General</H5>
           <div className="d-flex justify-content-center">
