@@ -1,7 +1,7 @@
 const Container = styled.div`
   background-color: #000;
   color: #fff;
-  padding: 20px;
+  padding: 40px;
 `;
 
 const Title = styled.h1`
