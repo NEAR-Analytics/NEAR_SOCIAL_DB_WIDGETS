@@ -5,7 +5,7 @@ const props = {
   ndcOrganization: "test",
   groups: [
     {
-      title: "Councile of Advisors",
+      title: "Council of Advisors",
       src: "https://ipfs.near.social/ipfs/bafkreie4rfa63zedwnpbwm5lglqrwqhahcnf6slllqmq7sh46ngf5y4vsq",
       leftVotes: 0,
       maxVotes: 10,
@@ -68,7 +68,7 @@ const props = {
       },
     },
     {
-      title: "Transparancy Commision",
+      title: "Transparency Commission",
       src: "https://ipfs.near.social/ipfs/bafkreie4rfa63zedwnpbwm5lglqrwqhahcnf6slllqmq7sh46ngf5y4vsq",
       leftVotes: 10,
       maxVotes: 10,
