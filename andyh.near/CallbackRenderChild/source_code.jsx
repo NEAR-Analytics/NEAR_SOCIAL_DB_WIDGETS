@@ -1,8 +1,9 @@
 console.log("[NSCOMP:CallbackRenderChild]");
+const component = await props.renderComponent("i am the child");
 return (
   <div>
     something really cool is loading:
-    {await props.renderComponent("i am the child")}
+    {component}
   </div>
 );
 // return <div>i am the child</div>;
