@@ -165,6 +165,17 @@ if (!state.theme) {
 
   .LidoForm {
     background: #3c3c3b; 
+    }
+
+  .inputsClass {
+    border-right: 1px solid rgba(0, 10, 61, 0.12);
+    text-align: center;
+    text-align-last: center;
+     }
+
+      .inputsCenter {
+    text-align: center;
+    text-align-last: center;
      }
 `,
   });
@@ -255,7 +266,7 @@ return (
       </div>
       <div class="LidoStakeForm">
         <div class="LidoStakeFormInputContainer">
-          <span class="LidoStakeFormInputContainerSpan2">
+          <span class="LidoStakeFormInputContainerSpan2 inputsClass">
             <input
               class="LidoStakeFormInputContainerSpan2Input"
               value={state.strEther}
@@ -263,7 +274,7 @@ return (
               placeholder="Email"
             />
           </span>
-          <span class="LidoStakeFormInputContainerSpan2">
+          <span class="LidoStakeFormInputContainerSpan2 inputsClass">
             <input
               class="LidoStakeFormInputContainerSpan2Input"
               value={state.strNombre}
@@ -271,7 +282,7 @@ return (
               placeholder="Nombre"
             />
           </span>
-          <span class="LidoStakeFormInputContainerSpan2">
+          <span class="LidoStakeFormInputContainerSpan2 inputsCenter">
             <input
               class="LidoStakeFormInputContainerSpan2Input"
               type="date"
@@ -282,26 +293,31 @@ return (
           </span>
         </div>
 
-        <div class="LidoStakeForm">
+        <div
+          class="LidoStakeForm"
+          style={{
+            padding: "32px 0px 0px 0px",
+          }}
+        >
           <div class="LidoStakeFormInputContainer">
-            <span class="LidoStakeFormInputContainerSpan2">
+            <span class="LidoStakeFormInputContainerSpan2 inputsClass">
               <input
                 class="LidoStakeFormInputContainerSpan2Input"
                 value={state.strNombreCurso}
                 onChange={(e) =>
                   State.update({ strNombreCurso: e.target.value })
                 }
-                placeholder="Nombre de Curso"
+                placeholder="Nombre de curso"
               />
             </span>
-            <span class="LidoStakeFormInputContainerSpan2">
+            <span class="LidoStakeFormInputContainerSpan2 inputsCenter">
               <input
                 class="LidoStakeFormInputContainerSpan2Input"
                 value={state.strNombreAlumno}
                 onChange={(e) =>
                   State.update({ strNombreAlumno: e.target.value })
                 }
-                placeholder="Nombre de Alumno"
+                placeholder="Nombre de alumno"
               />
             </span>
           </div>
