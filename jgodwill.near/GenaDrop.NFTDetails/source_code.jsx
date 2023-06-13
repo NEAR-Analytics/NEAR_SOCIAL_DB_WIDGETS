@@ -17,6 +17,20 @@ const Main = styled.div`
       }
   }
 `;
+
+const tokenId = props.tokenId ?? context.tokenId;
+const collectionId = props.collectionId ?? context.collectionId;
+
+if (!(tokenId && collectionId)) {
+  return "No token ID";
+}
+
+// const token = props.profile ?? Social.getr(`${tokenId}`);
+
+if (profile === null) {
+  return "Loading";
+}
+
 return (
   <Main>
     Hello World
