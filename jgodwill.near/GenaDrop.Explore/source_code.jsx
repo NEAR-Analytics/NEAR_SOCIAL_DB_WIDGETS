@@ -169,6 +169,23 @@ const NFTCard = styled.div`
    &:hover &>div>img{
      transform:scale(1.05);
    }
+   button{
+   padding: .75em 2em;
+   border-radius: .7em;
+   color: var(--main-color);
+   border: 1px solid transparent;
+   transition: all .3s;
+   cursor: pointer;
+    color: #fff;
+    background: #0d99ff;
+    &:hover{
+        color: #0d99ff;
+        background:#fff;
+    }
+  @media screen and (max-width: 540px){ 
+    padding: .5em 2em;    
+    }
+    }
   `;
 
 const NFTCardText = styled.div`
@@ -350,25 +367,36 @@ return (
                     Collection: {nft.collection.slug}
                   </p>*/}
                   <hr />
-                  <div className="px-2">
-                    <div style={{ color: "#a4a9b6", fontSize: "1.1rem" }}>
-                      Price
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      marginBottom: "5px",
+                    }}
+                    className="px-2"
+                  >
+                    <div className="px-2">
+                      <div style={{ color: "#a4a9b6", fontSize: "1.1rem" }}>
+                        Price
+                      </div>
+                      {nft.nft_state_lists && nft.nft_state_lists[0] && (
+                        <PriceArea>
+                          <h6>
+                            {`${(
+                              nft.nft_state_lists[0].list_price /
+                              1000000000000000000000000
+                            ).toFixed(2)}N`}
+                          </h6>
+                          <span>{` ($${(
+                            (nft.nft_state_lists[0].list_price /
+                              1000000000000000000000000) *
+                            1.56
+                          ).toFixed(2)})`}</span>
+                        </PriceArea>
+                      )}
                     </div>
-                    {nft.nft_state_lists && nft.nft_state_lists[0] && (
-                      <PriceArea>
-                        <h6>
-                          {`${(
-                            nft.nft_state_lists[0].list_price /
-                            1000000000000000000000000
-                          ).toFixed(2)}N`}
-                        </h6>
-                        <span>{` ($${(
-                          (nft.nft_state_lists[0].list_price /
-                            1000000000000000000000000) *
-                          1.56
-                        ).toFixed(2)})`}</span>
-                      </PriceArea>
-                    )}
+                    <button>Buy Now </button>
                   </div>
                 </NFTCardText>
               </NFTCard>
@@ -446,25 +474,36 @@ return (
                     Collection: {nft.collection.slug}
                   </p>*/}
                   <hr />
-                  <div className="px-2">
-                    <div style={{ color: "#a4a9b6", fontSize: "1.1rem" }}>
-                      Price
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      marginBottom: "5px",
+                    }}
+                    className="px-2"
+                  >
+                    <div className="px-2">
+                      <div style={{ color: "#a4a9b6", fontSize: "1.1rem" }}>
+                        Price
+                      </div>
+                      {nft.nft_state_lists && nft.nft_state_lists[0] && (
+                        <PriceArea>
+                          <h6>
+                            {`${(
+                              nft.nft_state_lists[0].list_price /
+                              1000000000000000000000000
+                            ).toFixed(2)}N`}
+                          </h6>
+                          <span>{` ($${(
+                            (nft.nft_state_lists[0].list_price /
+                              1000000000000000000000000) *
+                            1.56
+                          ).toFixed(2)})`}</span>
+                        </PriceArea>
+                      )}
                     </div>
-                    {nft.nft_state_lists && nft.nft_state_lists[0] && (
-                      <PriceArea>
-                        <h6>
-                          {`${(
-                            nft.nft_state_lists[0].list_price /
-                            1000000000000000000000000
-                          ).toFixed(2)}N`}
-                        </h6>
-                        <span>{` ($${(
-                          (nft.nft_state_lists[0].list_price /
-                            1000000000000000000000000) *
-                          1.56
-                        ).toFixed(2)})`}</span>
-                      </PriceArea>
-                    )}
+                    <button>Buy Now </button>
                   </div>
                 </NFTCardText>
               </NFTCard>
@@ -478,15 +517,5 @@ return (
       <div>No NFTs available.</div>
     )}
     <Widget src="jgodwill.near/widget/GenaDrop.Footer" />
-    <h4 className="text-center mt-5">
-      💧
-      <a href="https://genadrop.io" target="_blank" rel="noopener noreferrer">
-        GenaDrop
-      </a>
-      <Widget
-        src="miraclx.near/widget/Attribution"
-        props={{ authors: [ownerId], dep: true }}
-      />
-    </h4>
   </>
 );
