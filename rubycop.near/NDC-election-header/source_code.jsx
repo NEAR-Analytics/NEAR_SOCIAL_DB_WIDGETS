@@ -100,31 +100,28 @@ const TitleContainer = () => (
   </>
 );
 
-const TimerContent = () => (
-  <>
-    <H6>
-      Time remaining in <br /> current election
-    </H6>
-    <Timer className="d-flex">
-      <div>
-        <div className="time">{formatTime(state.days)}</div>
-        <small>days</small>
-      </div>
-      <div>
-        <div className="time">{formatTime(state.hours)}</div>
-        <small>hours</small>
-      </div>
-      <div>
-        <div className="time">{formatTime(state.minutes)}</div>
-        <small>minutes</small>
-      </div>
-      <div>
-        <div className="time">{formatTime(state.seconds)}</div>
-        <small>seconds</small>
-      </div>
-    </Timer>
-  </>
-);
+const TimerContent = () => {
+  const TimeSlot = ({ time }) => (
+    <div>
+      <div className="time">{formatTime(time)}</div>
+      <small>days</small>
+    </div>
+  );
+
+  return (
+    <>
+      <H6>
+        Time remaining in <br /> current election
+      </H6>
+      <Timer className="d-flex">
+        <TimeSlot time={state.days} />
+        <TimeSlot time={state.hours} />
+        <TimeSlot time={state.minutes} />
+        <TimeSlot time={state.seconds} />
+      </Timer>
+    </>
+  );
+};
 
 return (
   <>
