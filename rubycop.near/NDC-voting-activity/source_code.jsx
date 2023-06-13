@@ -37,6 +37,7 @@ const Badge = styled.div`
 const List = styled.div`
   overflow-y: scroll;
   height: 300px;
+  width: 100%;
 `;
 
 const getHumanTime = (time) => new Date(time).toLocaleTimeString();
