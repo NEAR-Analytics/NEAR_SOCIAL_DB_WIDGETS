@@ -1,5 +1,8 @@
 const renderComponent = (msg) => (
-  <Widget src="andyh.near/widget/CallbackRenderWidget" props={{ msg }} />
+  <Widget
+    src="andyh.near/widget/CallbackRenderWidget"
+    props={{ msg, __nsConfig: true }}
+  />
   // <h2>{msg}</h2>
 );
 
