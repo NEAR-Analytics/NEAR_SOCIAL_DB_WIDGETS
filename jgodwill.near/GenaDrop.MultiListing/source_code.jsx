@@ -424,35 +424,6 @@ return (
             onChangeReceiver,
           }}
         />
-        {/*<br></br>
-        <h1 className="text-center">OR</h1>
-        <h2 className="text-center">Transfer</h2>
-        <div className=" mb-2">
-          Receiver Address
-          <input
-            type="text"
-            placeholder={state.receiverId}
-            onChange={(e) => onChangeReceiver(e.target.value)}
-          />
-        </div>
-        <div className="row">
-          {state.ownsNFT && state.validReceiver && (
-            <button className="btn btn-primary mt-3" onClick={transfer}>
-              Transfer
-            </button>
-          )}
-          <div className="col-lg-6"></div>
-          {state.ownsNFT && !state.validReceiver && (
-            <button className="btn btn-warning mt-3">
-              Can't Transfer (Invalid Receiver)
-            </button>
-          )}
-          {!state.ownsNFT && state.validReceiver && (
-            <button className="btn btn-danger mt-3">
-              Can't Transfer (Don't Own)
-            </button>
-          )}
-        </div>*/}
       </>
     )}
     <Widget src="jgodwill.near/widget/GenaDrop.Footer" />
