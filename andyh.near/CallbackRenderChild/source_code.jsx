@@ -4,7 +4,7 @@ console.log({ component });
 return (
   <div>
     something really cool is loading:
-    {component}
+    {Object.keys(component | {}).join("xx")}
   </div>
 );
 // return <div>i am the child</div>;
