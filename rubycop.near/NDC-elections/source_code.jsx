@@ -130,6 +130,13 @@ const Votes = styled.div`
   text-align: center;
 `;
 
+const Action = styled.div`
+  width: 90px;
+  min-width: 20px;
+  margin-left: 20px;
+  text-align: center;
+`;
+
 const Nomination = styled.div`
   width: 102px;
 `;
@@ -388,13 +395,13 @@ const CandidateList = ({ accountId, votes }) => {
         </div>
         <div className="d-flex">
           <NominationLink
+            className="d-flex"
             href={ref_link}
             selected={state.selected === accountId}
           >
-            Nomination
-            <span className="ml-2 text-secondary">
-              <i className="bi bi-arrow-up-right" />
-            </span>
+            <span className="d-none d-md-block">Nomination</span>
+
+            <i className="bi bi-arrow-up-right" />
           </NominationLink>
           <Votes>{votes}</Votes>
           <Votes>
@@ -447,7 +454,7 @@ const Filters = () => {
         </div>
       </div>
       <div className="d-flex">
-        <Nomination className="text-secondary">
+        <Nomination className="text-secondary text-end text-md-start">
           <small>Platform</small>
         </Nomination>
         <Votes
@@ -462,14 +469,14 @@ const Filters = () => {
             }`}
           />
         </Votes>
-        <Votes
+        <Action
           role="button"
           className="text-secondary"
           onClick={() => filterBy({ my_votes: true })}
         >
           <small>My votes</small>
           <i className="bi bi-funnel" />
-        </Votes>
+        </Action>
       </div>
     </FilterRow>
   );
