@@ -140,6 +140,8 @@ background: #0082e0;
 }
 `;
 
+const date = new Date();
+
 return (
   <div>
     <FooterWrapper>
@@ -257,7 +259,7 @@ return (
             <div>
               <div>This Project is in Public Beta</div>
               <div className="footer_termsAndPolicy">
-                2022 Genadrop |
+                {date.getFullYear()} Genadrop |
                 <a
                   href="https://docs.google.com/document/d/16tRGt3sCIauMNDCwq5A99zYUxwU8S5bpGhI0eaJzwAw/edit?usp=sharing"
                   target="_blank"
@@ -358,7 +360,7 @@ return (
               </div>
             </div>
             <a
-              className="footer_build__3KiP8"
+              className="footer_build"
               href="https://www.minorityprogrammers.com/"
               target="_blank"
               rel="noopener noreferrer"
