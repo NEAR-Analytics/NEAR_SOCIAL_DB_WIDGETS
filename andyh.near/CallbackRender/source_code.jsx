@@ -1,5 +1,5 @@
-const renderComponent = (msg) => {
-  console.log({ agrs: { ...arguments } });
+const renderComponent = (msg, ext) => {
+  console.log({ ext, agrs: { ...arguments } });
   return (
     <Widget
       src="andyh.near/widget/CallbackRenderWidget"
