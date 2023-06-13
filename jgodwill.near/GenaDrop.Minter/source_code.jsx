@@ -243,95 +243,89 @@ const TextArea = styled.textarea`
 `;
 
 return (
-  <Main className="container-fluid">
-    <Heading className="text-center fs-2 fw-bold">
-      Mint NFT on <br />
-      💧Genadrop
-    </Heading>
-    {state.image.cid ? (
-      <div>
-        <Card className="d-flex flex-column align-items-center">
-          <ImageCard>
-            <img
-              src={`https://ipfs.io/ipfs/` + state.image.cid}
-              alt="uploaded image"
-              width="100%"
-              height="100%"
-              className="rounded-3"
-            />
-          </ImageCard>
-          <div>
+  <>
+    <Main className="container-fluid">
+      <Heading className="text-center fs-2 fw-bold">
+        Mint NFT on <br />
+        💧Genadrop
+      </Heading>
+      {state.image.cid ? (
+        <div>
+          <Card className="d-flex flex-column align-items-center">
+            <ImageCard>
+              <img
+                src={`https://ipfs.io/ipfs/` + state.image.cid}
+                alt="uploaded image"
+                width="100%"
+                height="100%"
+                className="rounded-3"
+              />
+            </ImageCard>
+            <div>
+              <IpfsImageUpload
+                image={state.image}
+                className="btn btn-outline-primary border-0 rounded-3"
+              />
+            </div>
+          </Card>
+          <Card>
+            <h5>Asset Detials</h5>
+            <Card>
+              Title:
+              <Input
+                type="text"
+                onChange={(e) => onChangeTitle(e.target.value)}
+              />
+            </Card>
+            <Card>
+              Description:
+              <TextArea
+                type="text"
+                onChange={(e) => onChangeDesc(e.target.value)}
+              />
+            </Card>
+          </Card>
+          <div className="d-flex justify-content-center mb-2">
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={handleMint}
+            >
+              Mint
+            </button>
+          </div>
+        </div>
+      ) : (
+        <div>
+          <Heading>Upload an image to create an NFT on NEAR</Heading>
+          <ImageUploadCard className="flex-grow-1">
+            <Elipse />
             <IpfsImageUpload
               image={state.image}
-              className="btn btn-outline-primary border-0 rounded-3"
+              className="btn text-decoration-none link-primary pe-auto"
             />
-          </div>
-        </Card>
-        <Card>
-          <h5>Asset Detials</h5>
-          <Card>
-            Title:
-            <Input
-              type="text"
-              onChange={(e) => onChangeTitle(e.target.value)}
-            />
-          </Card>
-          <Card>
-            Description:
-            <TextArea
-              type="text"
-              onChange={(e) => onChangeDesc(e.target.value)}
-            />
-          </Card>
-        </Card>
-        <div className="d-flex justify-content-center mb-2">
-          <button
-            type="button"
-            className="btn btn-primary"
-            onClick={handleMint}
-          >
-            Mint
-          </button>
+            <div>
+              {
+                //   <Heading
+                //   onDrop={handleDrop}
+                //   onDragOver={(event) => event.preventDefault()}
+                // >
+                //   Drag and Drop your image file here
+                // </Heading>
+              }
+              <Text>
+                We support .jpg, .jpeg, .png, .webp, .gif files and deploy to
+                Near
+              </Text>
+              <Text>Max file size: 20mb</Text>
+            </div>
+          </ImageUploadCard>
         </div>
-      </div>
-    ) : (
-      <div>
-        <Heading>Upload an image to create an NFT on NEAR</Heading>
-        <ImageUploadCard className="flex-grow-1">
-          <Elipse />
-          <IpfsImageUpload
-            image={state.image}
-            className="btn text-decoration-none link-primary pe-auto"
-          />
-          <div>
-            {
-              //   <Heading
-              //   onDrop={handleDrop}
-              //   onDragOver={(event) => event.preventDefault()}
-              // >
-              //   Drag and Drop your image file here
-              // </Heading>
-            }
-            <Text>
-              We support .jpg, .jpeg, .png, .webp, .gif files and deploy to Near
-            </Text>
-            <Text>Max file size: 20mb</Text>
-          </div>
-        </ImageUploadCard>
-      </div>
-    )}
-    {state.showAlert && (
-      <Widget src="jgodwill.near/widget/genalert" props={state} />
-    )}
-    <h4 className="text-center mt-5">
-      💧
-      <a href="https://genadrop.io" target="_blank" rel="noopener noreferrer">
-        GenaDrop
-      </a>
-      <Widget
-        src="miraclx.near/widget/Attribution"
-        props={{ authors: [ownerId], dep: true }}
-      />
-    </h4>
-  </Main>
+      )}
+      {state.showAlert && (
+        <Widget src="jgodwill.near/widget/genalert" props={state} />
+      )}
+    </Main>
+    <Widget src="jgodwill.near/widget/GenaDrop.Footer" />
+  </>
 );
