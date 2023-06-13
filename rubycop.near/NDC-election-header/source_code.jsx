@@ -62,34 +62,87 @@ const Timer = styled.div`
   }
 `;
 
+const TimerContainer = styled.div`
+  .time {
+    font-size: 48px;
+    font-weight: 800;
+    color: #FFD50D;
+    width: 100px;
+    line-height: 1;
+  }
+  small {
+    margin-bottom: 0;
+    align-items: center;
+  }
+`;
+
+const SmallTimerContainer = styled.div`
+  background: #FFD50D;
+
+  .time {
+    font-size: 36px;
+    font-weight: 700;
+    color: #000;
+    width: 70px;
+    line-height: 1;
+  }
+  small {
+    margin-bottom: 0;
+    align-items: center;
+    color: grey;
+  }
+`;
+
+const TitleContainer = () => (
+  <>
+    <Logo src="https://ipfs.near.social/ipfs/bafkreie4rfa63zedwnpbwm5lglqrwqhahcnf6slllqmq7sh46ngf5y4vsq" />
+    <H1>NDC Elections</H1>
+  </>
+);
+
+const TimerContent = () => (
+  <>
+    <H6>
+      Time remaining in <br /> current election
+    </H6>
+    <Timer className="d-flex">
+      <div>
+        <div className="time">{formatTime(state.days)}</div>
+        <small>days</small>
+      </div>
+      <div>
+        <div className="time">{formatTime(state.hours)}</div>
+        <small>hours</small>
+      </div>
+      <div>
+        <div className="time">{formatTime(state.minutes)}</div>
+        <small>minutes</small>
+      </div>
+      <div>
+        <div className="time">{formatTime(state.seconds)}</div>
+        <small>seconds</small>
+      </div>
+    </Timer>
+  </>
+);
+
 return (
-  <div className="px-3 py-2 bg-black text-white d-flex justify-content-between align-items-center">
-    <div className="d-flex align-items-center">
-      <Logo src="https://ipfs.near.social/ipfs/bafkreie4rfa63zedwnpbwm5lglqrwqhahcnf6slllqmq7sh46ngf5y4vsq" />
-      <H1>NDC Elections</H1>
+  <>
+    <div className="px-3 py-2 bg-black text-white d-none d-lg-flex rounded justify-content-between align-items-center">
+      <div className="d-flex align-items-center">
+        <TitleContainer />
+      </div>
+      <TimerContainer className="d-flex align-items-center">
+        <TimerContent />
+      </TimerContainer>
     </div>
-    <div className="d-flex align-items-center">
-      <H6>
-        Time remaining in <br /> current election
-      </H6>
-      <Timer className="d-flex">
-        <div>
-          <div className="time">{formatTime(state.days)}</div>
-          <small>days</small>
-        </div>
-        <div>
-          <div className="time">{formatTime(state.hours)}</div>
-          <small>hours</small>
-        </div>
-        <div>
-          <div className="time">{formatTime(state.minutes)}</div>
-          <small>minutes</small>
-        </div>
-        <div>
-          <div className="time">{formatTime(state.seconds)}</div>
-          <small>seconds</small>
-        </div>
-      </Timer>
+    <div className="d-md-flex row d-lg-none d-xl-none rounded bg-black">
+      <div className="d-flex align-items-center justify-content-center rounded-top bg-black text-white">
+        <TitleContainer />
+      </div>
+      <SmallTimerContainer className="d-flex p-3 align-items-center rounded-bottom justify-content-between">
+        <TimerContent />
+      </SmallTimerContainer>
     </div>
-  </div>
+  </>
 );
