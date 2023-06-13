@@ -127,14 +127,7 @@ const Bookmark = styled.div`
 const Votes = styled.div`
   width: 90px;
   margin-left: 20px;
-
-  .bi-hand-thumbs-up-fill {
-    color: ${(props) => (props.selected ? "#fff" : "#4F46E5")};
-  }
-`;
-
-const ActionSelect = styled.div`
-  width: 20px;
+  text-align: center;
 `;
 
 const Nomination = styled.div`
@@ -404,24 +397,19 @@ const CandidateList = ({ accountId, votes }) => {
             </span>
           </NominationLink>
           <Votes>{votes}</Votes>
-          <Votes selected={state.selected === accountId}>
-            <i
-              className={`bi ${
-                alreadyVoted(accountId)
-                  ? "bi-hand-thumbs-up-fill"
-                  : "bi-hand-thumbs-down"
-              }`}
-            />
-          </Votes>
-          <ActionSelect>
+          <Votes>
             <input
               id="input"
+              disabled={alreadyVoted(accountId)}
               onClick={() => handleSelectCandidate(accountId)}
               className="form-check-input"
               type="checkbox"
-              checked={state.selectedCandidates.includes(accountId)}
+              checked={
+                state.selectedCandidates.includes(accountId) ||
+                alreadyVoted(accountId)
+              }
             />
-          </ActionSelect>
+          </Votes>
         </div>
       </CandidateItem>
       {state.selected === accountId && (
@@ -482,7 +470,6 @@ const Filters = () => {
           <small>My votes</small>
           <i className="bi bi-funnel" />
         </Votes>
-        <ActionSelect />
       </div>
     </FilterRow>
   );
