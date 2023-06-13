@@ -935,15 +935,5 @@ return (
       )}
     </Main>
     <Widget src="jgodwill.near/widget/GenaDrop.Footer" />
-    <h4 className="text-center mt-5">
-      💧
-      <a href="https://genadrop.io" target="_blank" rel="noopener noreferrer">
-        GenaDrop
-      </a>
-      <Widget
-        src="miraclx.near/widget/Attribution"
-        props={{ authors: [ownerId], dep: true }}
-      />
-    </h4>
   </>
 );
