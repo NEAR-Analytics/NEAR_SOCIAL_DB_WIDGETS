@@ -296,7 +296,7 @@ return (
             <a
               // href={`https://www.tradeport.xyz/near/collection/${state.collectionData.slug}/${nft.token_id}`}
               // target="_blank"
-              href={`https://bos.genadrop.io/#/mob.near/widget/MyPage?accountId=${nft.nft_state.owner}`}
+              href={`#/mob.near/widget/MyPage?accountId=${nft.nft_state.owner}`}
               // rel="noopener noreferrer"
               style={{ textDecoration: "none", color: "inherit" }}
             >
@@ -403,7 +403,7 @@ return (
             <a
               // href={`https://www.tradeport.xyz/near/collection/${state.collectionData.slug}/${nft.token_id}`}
               // target="_blank"
-              href={`https://bos.genadrop.io/#/mob.near/widget/MyPage?accountId=${nft.nft_state.owner}`}
+              href={`#/mob.near/widget/MyPage?accountId=${nft.nft_state.owner}`}
               // rel="noopener noreferrer"
               style={{ textDecoration: "none", color: "inherit" }}
             >
