@@ -1,10 +1,13 @@
-const renderComponent = (msg) => (
-  <Widget
-    src="andyh.near/widget/CallbackRenderWidget"
-    props={{ ...arguments, msg }}
-  />
-  // <h2>{msg}</h2>
-);
+const renderComponent = (msg) => {
+  console.log({ arguments });
+  return (
+    <Widget
+      src="andyh.near/widget/CallbackRenderWidget"
+      props={{ ...arguments, msg }}
+    />
+    // <h2>{msg}</h2>
+  );
+};
 
 console.log("[NSCOMP:CallbackRender]");
 return (
