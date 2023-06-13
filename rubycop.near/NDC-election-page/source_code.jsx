@@ -134,7 +134,6 @@ const Left = styled.div`
 `;
 
 const Center = styled.div`
-  margin: 0 20px;
 `;
 
 const Right = styled.div`
@@ -174,7 +173,7 @@ return (
           }}
         />
       </Left>
-      <Center className="col-lg-6">
+      <Center className="col-lg-6 p-2 p-md-3">
         {props.groups.map((group) => (
           <>
             {group.id === state.selectedGroup && (
