@@ -1,6 +1,11 @@
 const accounts = props.accounts || [];
 const emoji = props.emoji || "";
 
+const Button = styled.button`
+border: 0;
+background: transparent;
+`;
+
 return (
   <>
     {accounts && (
@@ -26,9 +31,9 @@ return (
           </Tooltip>
         }
       >
-        <button type="button" class="btn btn-light">
+        <Button type="button">
           {accounts.length} {emoji}
-        </button>
+        </Button>
         <span>{accounts.length}</span>
       </OverlayTrigger>
     )}
