@@ -9,7 +9,7 @@ const renderComponent = (msg) => (
 console.log("[NSCOMP:CallbackRender]");
 return (
   <div>
-    // {renderComponent("i am da parent")}
+    {/*renderComponent("i am da parent")*/}
     <h2>ima da parent</h2>
     <Widget
       src="andyh.near/widget/CallbackRenderChild"
