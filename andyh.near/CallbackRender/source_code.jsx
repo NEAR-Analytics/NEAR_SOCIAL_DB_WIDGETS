@@ -1,11 +1,11 @@
 const renderComponent = (msg, ext) => {
   console.log({ ext, agrs: [...arguments] });
   return (
-    <Widget
-      src="andyh.near/widget/CallbackRenderWidget"
-      props={{ ...arguments, msg }}
-    />
-    // <h2>{msg}</h2>
+    // <Widget
+    //   src="andyh.near/widget/CallbackRenderWidget"
+    //   props={{ ...arguments, msg }}
+    // />
+    <h2>{msg}</h2>
   );
 };
 
