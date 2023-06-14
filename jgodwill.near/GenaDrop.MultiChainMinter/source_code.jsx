@@ -1,19 +1,45 @@
 const auroraCOntract = "0xe53bC42B6b25a1d548B73636777a0599Fd27fE5c";
+const auroraSoulCOntract = "0xe1D36964Eb49E38BB3f7410401BC95F0E9f1F6D3";
 const polygonContract = "0x436AEceaEeC57b38a17Ebe71154832fB0fAFF878";
+const polygonSoulContract = "0xd91cC6DE129D13F4384FB0bC07a1a99D4F858e72";
 const celoContract = "0xC291846A587cf00a7CC4AF0bc4EEdbC9c3340C36";
+const celoSoulContract = "0xd91cC6DE129D13F4384FB0bC07a1a99D4F858e72";
 const avaxContract = "0x43dBdfcAADD0Ea7aD037e8d35FDD7c353B5B435b";
+const avaxSoulContract = "0xd91cC6DE129D13F4384FB0bC07a1a99D4F858e72";
 const arbitrumContract = "0x959a2945185Ec975561Ac0d0b23F03Ed1b267925";
+const arbitrumSoulContract = "0x959a2945185Ec975561Ac0d0b23F03Ed1b267925";
 const nearContract = "nft.genadrop.near";
 const ownerId = "minorityprogrammers.near"; // attribution
 const mintSingle = [
   "function mint(address to, uint256 id, uint256 amount, string memory uri, bytes memory data) public {}",
+  "function safeMint(address to, string memory uri) public {}",
 ];
 let accountId = context.accountId;
 const contractAddresses = {
-  137: [polygonContract, "Polygon", "https://polygonscan.com/tx/"],
-  1313161554: [auroraCOntract, "Aurora", "https://explorer.aurora.dev/tx/"],
-  42220: [celoContract, "Celo", "https://explorer.celo.org/mainnet/tx/"],
-  43114: [avaxContract, "Avalanche", "https://snowtrace.io/tx/"],
+  137: [
+    polygonContract,
+    "Polygon",
+    "https://polygonscan.com/tx/",
+    polygonSoulContract,
+  ],
+  1313161554: [
+    auroraCOntract,
+    "Aurora",
+    "https://explorer.aurora.dev/tx/",
+    auroraSoulCOntract,
+  ],
+  42220: [
+    celoContract,
+    "Celo",
+    "https://explorer.celo.org/mainnet/tx/",
+    celoSoulContract,
+  ],
+  43114: [
+    avaxContract,
+    "Avalanche",
+    "https://snowtrace.io/tx/",
+    avaxSoulContract,
+  ],
   42161: [arbitrumContract, "Arbitrum", "https://arbiscan.io/tx/"],
   0: [nearContract, "Near"],
 };
@@ -121,7 +147,9 @@ const handleMint = () => {
     console.log("passed checks");
     let networkId = Ethers.provider()._network.chainId;
 
-    const CA = contractAddresses[state.selectedChain][0] || "137";
+    const CA = state.isSoulBound
+      ? contractAddresses[state.selectedChain][3]
+      : contractAddresses[state.selectedChain][0];
 
     console.log("CONTRACT ADD", CA);
 
@@ -147,17 +175,31 @@ const handleMint = () => {
       const Id = Math.floor(Math.random() * (9999999 - 100000 + 1) + 100000);
       console.log("in the promse", res, Id);
       const recipient = Ethers.send("eth_requestAccounts", []);
-      contract
-        .mint(state.recipient || recipient[0], Id, 1, `ipfs://${cid}`, "0x")
-        .then((transactionHash) => transactionHash.wait())
-        .then((ricit) => {
-          console.log("receipt::", ricit);
-          State.update({
-            link: `${
-              contractAddresses[state.selectedChain][2] + ricit.transactionHash
-            }`,
-          });
-        });
+      state.isSoulBound
+        ? contract
+            .safeMint(state.recipient || recipient[0], `ipfs://${cid}`)
+            .then((transactionHash) => transactionHash.wait())
+            .then((ricit) => {
+              console.log("receipt::", ricit);
+              State.update({
+                link: `${
+                  contractAddresses[state.selectedChain][2] +
+                  ricit.transactionHash
+                }`,
+              });
+            })
+        : contract
+            .mint(state.recipient || recipient[0], Id, 1, `ipfs://${cid}`, "0x")
+            .then((transactionHash) => transactionHash.wait())
+            .then((ricit) => {
+              console.log("receipt::", ricit);
+              State.update({
+                link: `${
+                  contractAddresses[state.selectedChain][2] +
+                  ricit.transactionHash
+                }`,
+              });
+            });
     });
   }
 };
@@ -185,6 +227,7 @@ State.init({
   title: "",
   description: "",
   recipient: "",
+  isSoulBound: false,
   showAlert: false,
   toastMessage: "",
   selectIsOpen: false,
@@ -281,6 +324,12 @@ const onChangeDesc = (description) => {
     description,
   });
 };
+
+const handleToggle = () => {
+  State.update({
+    isSoulBound: !state.isSoulBound,
+  });
+};
 // if (state.sender === undefined) {
 //   console.log("of course it's undefined", ethers);
 //   const accounts = Ethers.send("eth_requestAccounts", []);
@@ -305,8 +354,7 @@ const ImageUploadCard = styled.div`
 display:flex;
 flex-flow: column nowrap;
 align-items: center;
-  width:100%;
-  max-width: 36em;
+  width:80%;
   border: 2px dashed #0d99ff;
   border-radius: 1rem;
   box-shadow: 4px 4px 20px 6px rgba(0,0,0,.2);
@@ -321,10 +369,25 @@ const Main = styled.div`
   align-content:center;
   grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
   justify-content: center;
-  // background: linear-gradient(180deg,#e4f1fb,hsla(0,0%,85.1%,0));
   margin-top: 5px;
   width:100%;
   padding: 1rem;
+  .button{
+    padding: .75em 2em;
+    border-radius: .7em;
+    border: 1px solid #0d99ff;
+    transition: all .3s;
+    cursor: pointer;
+    color: #fff;
+    background: #0d99ff;
+    &:hover{
+        color: #0d99ff;
+        background:#fff;
+    }
+  @media screen and (max-width: 540px){
+      padding: .5em 2em;    
+      }
+  }
 `;
 
 const Text = styled.p`
@@ -363,6 +426,11 @@ border-radius: .7em;
   &::placeholder {
     color: palevioletred;
   }
+  }
+  .soulbound{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
   }
 `;
 
@@ -502,6 +570,71 @@ const SelectGroup = styled.div`
   margin: 2rem auto;
 `;
 
+const ToggleButton = styled.div`
+   /* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+} 
+`;
+
 if (!(state.sender || accountId)) {
   console.log("Please login here now");
   State.update({
@@ -531,7 +664,7 @@ return (
     </Heading>
 
     <Main className="container-fluid">
-      {!state.image.cid ? (
+      {state.image.cid ? (
         <div className="flex-grow-1">
           <Heading>
             Upload an image to create an NFT any of our supported blockchains
@@ -880,6 +1013,20 @@ return (
               )}
             </Card>
             <Card>
+              <div className="soulbound">
+                <p>SoulBound: {state.isSoulBound ? "Enabled" : "Disabled"}</p>
+                {/*<button onClick={handleToggle} className="button">
+                {state.isSoulBound ? "Disable" : "Enable"}
+              </button>*/}
+                <ToggleButton>
+                  <label className="switch">
+                    <input type="checkbox" onChange={handleToggle} />
+                    <span className="slider round"></span>
+                  </label>
+                </ToggleButton>
+              </div>
+            </Card>
+            <Card>
               <Card>
                 Title:
                 <Input
@@ -934,6 +1081,15 @@ return (
         </>
       )}
     </Main>
-    <Widget src="jgodwill.near/widget/GenaDrop.Footer" />
+    <h4 className="text-center mt-5">
+      💧
+      <a href="https://genadrop.io" target="_blank" rel="noopener noreferrer">
+        GenaDrop
+      </a>
+      <Widget
+        src="miraclx.near/widget/Attribution"
+        props={{ authors: [ownerId], dep: true }}
+      />
+    </h4>
   </>
 );
