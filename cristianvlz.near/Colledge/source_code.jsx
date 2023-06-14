@@ -10,7 +10,6 @@ State.init({ new_greeting: "" });
 State.init({ new_certificado: "" });
 State.init({ strUrl: "url..." });
 State.init({ strEmail: "" });
-State.init({ strNombre: "" });
 State.init({ strNombreAlumno: "" });
 State.init({ strNombreCurso: "" });
 State.init({ strFecha: "" });
@@ -375,14 +374,6 @@ return (
               placeholder="Email"
             />
           </span>
-          <span class="LidoStakeFormInputContainerSpan2 inputsClass">
-            <input
-              class="LidoStakeFormInputContainerSpan2Input"
-              value={state.strNombre}
-              onChange={(e) => State.update({ strNombre: e.target.value })}
-              placeholder="Nombre"
-            />
-          </span>
           <span class="LidoStakeFormInputContainerSpan2 inputsCenter">
             <input
               class="LidoStakeFormInputContainerSpan2Input"
@@ -430,10 +421,6 @@ return (
             <div class="LidoFooterRawRight">
               {state.strEmail ?? "correo"}{" "}
             </div>{" "}
-          </div>
-          <div class="LidoFooterRaw">
-            <div class="LidoFooterRawLeft">Nombre del certificado:</div>
-            <div class="LidoFooterRawRight">{state.strNombre ?? "nombre"} </div>
           </div>
           <div class="LidoFooterRaw">
             <div class="LidoFooterRawLeft">Fecha del certificado:</div>
