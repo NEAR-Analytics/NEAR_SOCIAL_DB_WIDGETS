@@ -1,7 +1,7 @@
 return (
   <>
     <a
-      href="https://nearvietnamhub.org/"
+      href="https://twitter.com/NearVietnamHub"
       title="Near Vietnam Hub"
       target="_blank"
     >
