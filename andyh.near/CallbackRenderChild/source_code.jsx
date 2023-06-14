@@ -1,9 +1,9 @@
 console.log("[NSCOMP:CallbackRenderChild]");
-console.log('----- awaiting')
+console.log("----- awaiting");
 const component = await props.renderComponent("i am the child", () =>
-console.log('----- awaited')
   console.log("all done")
 );
+console.log("----- awaited");
 return (
   <div>
     something really cool is loading:
