@@ -1,10 +1,7 @@
-const renderComponent = (msg, ext) => {
+const renderComponent = (msg, cb) => {
   console.log({ ext, agrs: [...arguments] });
   return (
-    <Widget
-      src="andyh.near/widget/CallbackRenderWidget"
-      props={{ ...arguments, msg }}
-    />
+    <Widget src="andyh.near/widget/CallbackRenderWidget" props={{ cb, msg }} />
     // <h2>{msg}</h2>
   );
 };
