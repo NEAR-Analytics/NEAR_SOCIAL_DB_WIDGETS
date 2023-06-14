@@ -1,5 +1,5 @@
 console.log("[NSCOMP:CallbackRenderWidget]");
-console.log({ cb: props.cb });
+console.log({ props });
 if (typeof props.cb === "function") {
   await props.cb();
 }
