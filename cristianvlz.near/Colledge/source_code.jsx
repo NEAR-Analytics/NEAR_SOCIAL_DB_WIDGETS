@@ -1,3 +1,104 @@
+/* NEAR BLOCKCHAIN */
+const contract = "hello.near-examples.near";
+const greeting = Near.view(contract, "get_greeting", {});
+
+// Use and manipulate state
+State.init({ new_greeting2: greeting });
+State.init({ new_greeting_text: "" });
+
+State.init({ new_greeting: "" });
+State.init({ new_certificado: "" });
+State.init({ strUrl: "url..." });
+State.init({ strEmail: "" });
+State.init({ strNombre: "" });
+State.init({ strNombreAlumno: "" });
+State.init({ strNombreCurso: "" });
+State.init({ strFecha: "" });
+
+const onBtnClick = () => {
+  State.update({
+    new_greeting_text: "Buscando...",
+  });
+  return asyncFetch("https://certificates.blckchn.xyz/verify/credential", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      jwt: state.strUrl,
+    }),
+  }).then((responseGql) => {
+    if (responseGql.body.verification) {
+      State.update({
+        new_greeting:
+          "https://certificates.blckchn.xyz/certificado?jwt=" + state.strUrl,
+      });
+      State.update({
+        new_greeting_text: "Descargar",
+      });
+    }
+  });
+};
+
+const onBtnClickGenerate = () => {
+  console.log(
+    state.strEmail,
+    state.strNombreAlumno,
+    state.strNombreCurso,
+    state.sender
+  );
+
+  return asyncFetch("https://certificates.blckchn.xyz/create/credential", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      email: state.strEmail,
+      nombre: state.strNombreAlumno,
+      curso: state.strNombreCurso,
+      wallet: state.sender,
+    }),
+  }).then((jwt) => {
+    State.update({
+      new_certificado:
+        "https://certificates.blckchn.xyz/certificado?jwt=" + jwt.body.jwt,
+    });
+    Near.call(contract, "set_greeting", {
+      greeting:
+        "https://certificates.blckchn.xyz/certificado?jwt=" + jwt.body.jwt,
+    });
+  });
+
+  /*let responseCreate = fetch(
+    "https://certificates.blckchn.xyz/create/credential",
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: state.strEmail,
+        nombre: state.strNombreAlumno,
+        curso: state.strNombreCurso,
+        wallet: state.sender,
+      }),
+    }
+  );
+
+  let jwt = responseCreate;
+  if (jwt != null) {
+    State.update({
+      new_certificado:
+        "https://certificates.blckchn.xyz/certificado?jwt=" + jwt.body.jwt,
+    });
+    Near.call(contract, "set_greeting", {
+      greeting:
+        "https://certificates.blckchn.xyz/certificado?jwt=" + jwt.body.jwt,
+    });
+  }*/
+
+  /*Near.call(contract, "set_greeting", {
+    greeting: state.new_greeting,
+  });*/
+};
+
+/* END NEAR BLOCKCHAIN */
+
 // FETCH LIDO ABI
 
 const lidoContract = "0xae7ab96520de3a18e5e111b5eaab095312d7fe84";
@@ -13,14 +114,6 @@ if (!lidoAbi.ok) {
 const iface = new ethers.utils.Interface(lidoAbi.body);
 
 // FETCH LIDO STAKING APR
-
-if (state.lidoArp === undefined) {
-  const apr = fetch(
-    "https://api.allorigins.win/get?url=https://stake.lido.fi/api/sma-steth-apr"
-  );
-  if (!apr) return;
-  State.update({ lidoArp: JSON.parse(apr?.body?.contents) ?? "..." });
-}
 
 // HELPER FUNCTIONS
 
@@ -177,6 +270,14 @@ if (!state.theme) {
     text-align: center;
     text-align-last: center;
      }
+
+     .wrap-text{
+       overflow-wrap: break-word;
+     }
+
+     .colledge-link{
+       color:blue
+     }
 `,
   });
 }
@@ -269,8 +370,8 @@ return (
           <span class="LidoStakeFormInputContainerSpan2 inputsClass">
             <input
               class="LidoStakeFormInputContainerSpan2Input"
-              value={state.strEther}
-              onChange={(e) => State.update({ strEther: e.target.value })}
+              value={state.strEmail}
+              onChange={(e) => State.update({ strEmail: e.target.value })}
               placeholder="Email"
             />
           </span>
@@ -327,7 +428,7 @@ return (
           <div class="LidoFooterRaw">
             <div class="LidoFooterRawLeft">Correo: </div>
             <div class="LidoFooterRawRight">
-              {state.strEther ?? "correo"}{" "}
+              {state.strEmail ?? "correo"}{" "}
             </div>{" "}
           </div>
           <div class="LidoFooterRaw">
@@ -351,7 +452,7 @@ return (
             </div>
           </div>
         </div>
-        <a
+        {/*<a
           href="https://www.colledge.social/mod/page/view.php?id=2429&uuid=1889-2-e3879b-c1992l"
           target="_blank"
         >
@@ -362,7 +463,16 @@ return (
           >
             <span>Solicitar certificado</span>{" "}
           </button>
-        </a>
+        </a>*/}
+        <button
+          class="LidoStakeFormSubmitContainer"
+          onClick={onBtnClickGenerate}
+        >
+          <span>Solicitar certificado</span>{" "}
+        </button>
+        <br />
+        <p class="text-center">certificado:</p>
+        <p class="text-center wrap-text">{state.new_certificado} </p>
       </div>
     </div>
 
@@ -412,14 +522,40 @@ return (
             />
           </span>
         </div>
+        <button class="LidoStakeFormSubmitContainer mt-4" onClick={onBtnClick}>
+          <span>Validar certificado</span>{" "}
+        </button>
 
-        <div class="LidoFooterContainer">
+        <p class="text-center mt-2">Descargar certificado:</p>
+        <p class="text-center text-decoration-underline wrap-text ">
+          <a href={state.new_greeting} target="_blank" class="colledge-link">
+            {state.new_greeting_text}
+          </a>
+        </p>
+
+        <p class="text-center mt-2">Descargar ultimo certificado:</p>
+        <p class="text-center text-decoration-underline wrap-text ">
+          <a href={state.new_greeting2} target="_blank" class="colledge-link">
+            Descargar
+          </a>
+        </p>
+        <p class="text-center mt-2">Ver mis transacciones:</p>
+        <p class="text-center text-decoration-underline wrap-text ">
+          <a
+            href="https://wallet.near.org/"
+            target="_blank"
+            class="colledge-link"
+          >
+            NEAR blockchain
+          </a>
+        </p>
+        {/*<div class="LidoFooterContainer">
           <div class="LidoFooterRaw">
             <div class="LidoFooterRawLeft">URL: </div>
             <div class="LidoFooterRawRight">{state.strUrl ?? "url"} </div>{" "}
           </div>
-        </div>
-        <a
+        </div>*/}
+        {/*<a
           href="https://www.colledge.social/mod/page/view.php?id=2429&uuid=1889-2-e3879b-c1992l"
           target="_blank"
         >
@@ -430,7 +566,7 @@ return (
           >
             <span>Validar certificado</span>{" "}
           </button>
-        </a>
+          </a>*/}
       </div>
     </div>
   </Theme>
