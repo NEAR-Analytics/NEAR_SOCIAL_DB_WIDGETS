@@ -3,6 +3,19 @@ const accountId = props.accountId ?? context.accountId;
 const daoId = props.daoId ?? "liberty.sputnik-dao.near";
 const role = props.role ?? "community";
 
+State.init({
+  nftHolder: false,
+  isMember,
+});
+
+const nftData = Near.view("mint.sharddog.near", "nft_supply_for_owner", {
+  account_id: accountId,
+});
+
+if (nftData > 0) {
+  State.update({ nftHolder: true });
+}
+
 let isBuilder = false;
 let widgets = Social.get(`${accountId}/widget/*`, "final", {
   return_type: "BlockHeight",
@@ -36,9 +49,15 @@ const check = groups.map((group) => {
     : group.filter((address) => address === accountId).length > 0;
 })?.[0];
 
-State.init({
-  isMember,
-});
+const followData = Social.keys(
+  `${daoId}/graph/follow/${context.accountId}`,
+  undefined,
+  {
+    values_only: true,
+  }
+);
+
+const isFollowing = Object.keys(followEdge || {}).length > 0;
 
 const handleJoin = () => {
   const gas = 200000000000000;
@@ -178,96 +197,35 @@ return (
           </Text>
         </div>
       </Flex>
-      {isBuilder ? (
+      <Text
+        size="18px"
+        weight="600"
+        style={{ textTransform: "uppercase", letterSpacing: "0.17em" }}
+      >
+        Create a New Adventure
+      </Text>
+      {isFollowing ? (
         <div>
-          <Text
-            size="18px"
-            weight="600"
-            style={{ textTransform: "uppercase", letterSpacing: "0.17em" }}
-          >
-            Your Adventure Has Begun
-          </Text>
-          <div>
-            <div className="m-2">
-              <Widget
-                src="near/widget/DIG.Button"
-                props={{
-                  href: "https://nearbuilders.com",
-                  label: "Community Groups",
-                  variant: "outline-success",
-                  size: "large",
-                }}
-              />
-            </div>
-            {check ? (
-              <div className="m-2">
-                <Widget
-                  src="near/widget/DIG.Button"
-                  props={{
-                    href: "https://wallet.near.org/linkdrop/v2.keypom.near/4japszHTmC37t94Ep47d16DfPWx3A83BMExt26iH4YgnjDtHJGwpXokeZQoxuogKCvagzAF4DN2wW8ePZvwKKCyj",
-                    label: "Get Started",
-                    variant: "outline-secondary",
-                    size: "large",
-                  }}
-                />
-              </div>
-            ) : (
-              <div>
-                <button className="btn btn-success" onClick={handleJoin}>
-                  Join DAO
-                </button>
-              </div>
-            )}
-          </div>
+          <Widget
+            src="mob.near/widget/FollowButton"
+            props={{ accountId: "liberty.sputnik-dao.near" }}
+          />
         </div>
       ) : (
-        <Flex>
-          <Text
-            size="18px"
-            weight="600"
-            style={{ textTransform: "uppercase", letterSpacing: "0.17em" }}
-          >
-            Begin a New Adventure
-          </Text>
-          <div>
-            <div className="m-2">
-              <Widget
-                src="near/widget/DIG.Button"
-                props={{
-                  href: "https://nearbuilders.com",
-                  label: "Community Groups",
-                  variant: "outline-success",
-                  size: "large",
-                }}
-              />
-            </div>
-            {check ? (
-              <div>
-                <Widget
-                  src="near/widget/DIG.Button"
-                  props={{
-                    href: "#/hack.near/widget/Academy",
-                    label: "Get Started",
-                    variant: "outline-secondary",
-                    size: "large",
-                  }}
-                />
-              </div>
-            ) : (
-              <div>
-                <button className="btn btn-success" onClick={handleJoin}>
-                  Join DAO
-                </button>
-              </div>
-            )}
-          </div>
-        </Flex>
+        <div className="m-2">
+          <button className="btn btn-success" onClick={handleJoin}>
+            Join Community
+          </button>
+        </div>
       )}
       <br />
     </Container>
-    <hr />
-
-    <Widget src="sking.near/widget/DAO.Page" props={{ daoId }} />
+    {!nftHolder && (
+      <Widget
+        src="hack.near/widget/dev.org"
+        props={{ accountId: "liberty.sputnik-dao.near", daoId }}
+      />
+    )}
     <hr />
     <br />
     <Flex>
