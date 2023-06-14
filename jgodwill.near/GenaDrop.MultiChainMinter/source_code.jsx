@@ -664,7 +664,7 @@ return (
     </Heading>
 
     <Main className="container-fluid">
-      {state.image.cid ? (
+      {!state.image.cid ? (
         <div className="flex-grow-1">
           <Heading>
             Upload an image to create an NFT any of our supported blockchains
