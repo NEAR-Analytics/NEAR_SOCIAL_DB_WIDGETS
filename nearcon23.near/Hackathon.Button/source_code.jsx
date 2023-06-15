@@ -5,7 +5,7 @@ const Link = styled.a`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 0.625em 1.25em;
+  padding: 10px 20px;
   width: 10.625em;
   gap: 0.5em;
   border: none;
@@ -14,13 +14,17 @@ const Link = styled.a`
   color: #11181c;
   font-style: normal;
   font-weight: 600;
-  font-size: 0.95em;
-  line-height: 1em;
+  font-size: 18px;
   text-align: center;
   white-space: nowrap;
+  transition: all 0.3s ease-in-out;
 
-  &:disabled {
-    background: #e5e5e5;
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: none;
+    background: #11181c;
+    color: #fff;
   }
 `;
 
