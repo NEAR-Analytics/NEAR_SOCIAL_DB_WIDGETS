@@ -1,4 +1,4 @@
-const accountId = props.accountId ?? "";
+const accountId = props.accountId ?? context.accountId;
 const daoId = props.daoId ?? "liberty.sputnik-dao.near";
 const role = props.role ?? "community";
 
@@ -129,7 +129,7 @@ return (
             communities.
           </Text>
         </div>
-        <Widget src="nycdao.near/widget/dao.cta" props={{ accountId }} />
+        <Widget src="nycdao.near/widget/dao.cta" props={{ accountId, daoId }} />
       </Flex>
     </Container>
     <Widget src="nycdao.near/widget/projects" />
