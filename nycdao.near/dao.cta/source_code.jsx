@@ -162,9 +162,6 @@ return (
           Begin a New Adventure
         </Text>
         <FlexContainer>
-          {follow}
-          {nftData}
-
           <Widget
             src="mob.near/widget/FollowButton"
             props={{
