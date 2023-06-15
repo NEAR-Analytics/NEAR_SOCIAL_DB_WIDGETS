@@ -2,38 +2,41 @@ const accountId = props.accountId ?? context.accountId;
 const daoId = props.daoId ?? "liberty.sputnik-dao.near";
 
 State.init({
-  nftHolder: false,
-  isFollower,
-  isMember,
+  isNftHolder: false,
+  isFollower: false,
+  isMember: false,
 });
 
+// Check if the user has an NFT
 const nftData = Near.view("mint.sharddog.near", "nft_supply_for_owner", {
   account_id: accountId,
 });
 
 if (nftData > 0) {
-  State.update({ nftHolder: true });
+  State.update({ isNftHolder: true });
 }
 
-// get DAO followers
-let followers = Social.keys(`*/graph/follow/${daoId}`, "final", {
-  return_type: "BlockHeight",
-  values_only: true,
-});
-
-if (followers === null) {
-  return "Loading followers...";
-}
-
-followers = Object.entries(followers || {});
-followers.sort(
-  (a, b) => b.graph.follow[accountId][1] - a.graph.follow[accountId][1]
+// Get DAO followers
+const followEdge = Social.keys(
+  `${accountId}/graph/follow/${daoId}`,
+  undefined,
+  {
+    values_only: true,
+  }
 );
 
-//check if user is a member of a group: [1]
-const isFollower = followers.includes(accountId);
+if (followEdge === null) {
+  return "Loading...";
+}
 
-// get DAO policy data
+const follow = followEdge && Object.keys(followEdge).length;
+
+// Check if the user is a follower
+if (follow > 0) {
+  State.update({ isFollower: true });
+}
+
+// Get DAO policy data
 const policy = Near.view(daoId, "get_policy");
 
 if (policy === null) {
@@ -42,16 +45,13 @@ if (policy === null) {
 
 const groups = policy.roles
   .filter((role) => role.name === "community")
-  .map((role) => {
-    const group = role.kind.Group;
+  .map((role) => role.kind.Group);
 
-    return group;
-  });
-
-//check if user is a member of a group: [1]
+// Check if the user is a member of a group
 const isMember = groups.some((group) => group.includes(accountId));
+State.update({ isMember });
 
-// function call used for membership requests
+// Function call used for membership requests
 const handleJoin = () => {
   const deposit = policy.proposal_bond;
   Near.call([
@@ -81,7 +81,7 @@ const Text = styled.p`
   line-height: ${(p) => p.lineHeight ?? "1.5"};
   font-weight: ${(p) => p.weight ?? "400"};
   color: ${(p) => p.color ?? "#000"};
-  margin-botton: 8px;
+  margin-bottom: 8px;
 `;
 
 const FlexContainer = styled.div`
@@ -105,10 +105,10 @@ const Flex = styled.div`
   flex-direction: column;
   flex-wrap: "nowrap";
 
-    @media (max-width: 998px) {
+  @media (max-width: 998px) {
     flex-direction: column;
     gap: var(--section-gap);
-    }
+  }
 `;
 
 const Container = styled.div`
@@ -125,7 +125,7 @@ const Container = styled.div`
 
 return (
   <Container>
-    {isFollower ? (
+    {state.isFollower ? (
       <Flex>
         <Text
           size="18px"
@@ -134,25 +134,23 @@ return (
         >
           Your Adventure Has Begun
         </Text>
-        {nftHolder ? (
-          <FlexContainer>
+        <FlexContainer>
+          {state.isNftHolder ? (
             <Widget
               src="near/widget/DIG.Button"
               props={{
-                href: "#/devs.near/widget/dev.social",
+                href: "#/nycdao.near/widget/demo",
                 label: "Demo Day Voting",
                 variant: "outline-secondary",
                 size: "large",
               }}
             />
-          </FlexContainer>
-        ) : (
-          <FlexContainer>
+          ) : (
             <button className="btn btn-success" onClick={handleJoin}>
               Join Community
             </button>
-          </FlexContainer>
-        )}
+          )}
+        </FlexContainer>
       </Flex>
     ) : (
       <Flex>
@@ -164,13 +162,13 @@ return (
           Begin a New Adventure
         </Text>
         <FlexContainer>
+          {follow}
+          {nftData}
+
           <Widget
-            src="near/widget/DIG.Button"
+            src="mob.near/widget/FollowButton"
             props={{
-              href: "#/hack.near/widget/Academy",
-              label: "Learn Together",
-              variant: "outline-secondary",
-              size: "large",
+              accountId,
             }}
           />
         </FlexContainer>
