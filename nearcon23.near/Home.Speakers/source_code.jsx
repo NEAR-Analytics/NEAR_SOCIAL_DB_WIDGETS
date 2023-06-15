@@ -61,7 +61,6 @@ const Speakers = styled.div`
 const illia = "bafkreietk36kek3bls24eaiiesfyu7ulrwh6d6wubijkwwnkaouxhqq7ze";
 const marieke = "bafkreid42v55z5yxdibholhalg5yjrlnezgebni3p3y2sz2yllccbsv2by";
 const alexC = "bafkreicf34idi2n54qvll52ec3b7ygnup4btr2spcqvewqcaimxri73uei";
-const alexS = "bafkreifcwn3jdxivwbkz2xzwct7eeyeqjit4otmn3msjg2ud7dlspmdw4y";
 const mapImage = (src) => `https://ipfs.near.social/ipfs/${src}`;
 
 return (
@@ -96,14 +95,6 @@ return (
           image: mapImage(alexC),
           name: "Alex Chiocci",
           org: "Pagoda",
-        }}
-      />
-      <Widget
-        src={`${ownerId}/widget/Home.SpeakerCard`}
-        props={{
-          image: mapImage(alexS),
-          name: "Alex Skidanov",
-          org: "Jasnah AI",
         }}
       />
     </Speakers>
