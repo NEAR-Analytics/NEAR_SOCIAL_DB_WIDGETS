@@ -134,7 +134,7 @@ return (
     </Container>
     <Widget
       src="nycdao.near/widget/dao.members"
-      props={{ accountId: "liberty.sputnik-dao.near", daoId }}
+      props={{ accountId, daoId, tab }}
     />
     <hr />
     <br />
