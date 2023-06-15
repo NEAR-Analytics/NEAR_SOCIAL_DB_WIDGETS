@@ -140,7 +140,6 @@ return (
           <div class="row">
             <div class="col">
               <H2>{project.title}</H2>
-              {project.content}
             </div>
             <div class="col-auto">
               <div class="dropdown ms-auto">
