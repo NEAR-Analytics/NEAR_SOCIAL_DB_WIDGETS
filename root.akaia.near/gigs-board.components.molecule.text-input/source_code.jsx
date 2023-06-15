@@ -26,6 +26,10 @@ const TextInput = ({
           {inputProps.required ? <span className="text-danger">*</span> : null}
         </span>
 
+        {(inputProps.max ?? null) !== null ? (
+          <span className="d-inline-flex">{`${value.length} / ${inputProps.max}`}</span>
+        ) : null}
+
         {format === "markdown" ? (
           <i class="bi bi-markdown text-muted" title="Markdown" />
         ) : null}
