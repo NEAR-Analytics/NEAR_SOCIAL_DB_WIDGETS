@@ -16,7 +16,7 @@ const renderItem = (a) => {
   return (
     <div key={JSON.stringify(a)} className="my-4">
       <Widget
-        src="nycdao.near/widget/project.view"
+        src="dev-support.near/widget/DevSupport.Question.Preview"
         props={{
           accountId: a.accountId,
           blockHeight: a.blockHeight,
