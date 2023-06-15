@@ -573,8 +573,9 @@ return (
       </Search>
       {props.noFilters ? (
         <a
-          href={`/${ownerId}/widget/Index?tab=${props.entity ?? "projects"
-            }${url()}`}
+          href={`/${ownerId}/widget/Index?tab=${
+            props.entity ?? "projects"
+          }${url()}`}
         >
           <svg
             width="14"
@@ -695,8 +696,9 @@ return (
             <div>
               <button onClick={() => clear()}>Clear</button>
               <a
-                href={`/${ownerId}/widget/Index?tab=${props.entity ?? "projects"
-                  }${url()}`}
+                href={`/${ownerId}/widget/Index?tab=${
+                  props.entity ?? "projects"
+                }${url()}`}
               >
                 <svg
                   width="14"
@@ -730,8 +732,8 @@ return (
               key === filters.first.value
                 ? filters.first.options.filter(({ value }) => set.has(value))
                 : filters.second
-                  .find(({ value }) => value === key)
-                  .options.filter(({ value }) => set.has(value));
+                    .find(({ value }) => value === key)
+                    .options.filter(({ value }) => set.has(value));
 
             return selected.map(({ value, text }) => (
               <div key={`${key}-${value}`}>
