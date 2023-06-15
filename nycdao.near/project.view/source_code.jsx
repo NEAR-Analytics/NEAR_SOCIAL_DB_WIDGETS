@@ -140,6 +140,10 @@ return (
           <div class="row">
             <div class="col">
               <H2>{project.title}</H2>
+              <Widget
+                src="mob.near/widget/MainPage.Post.Content"
+                props={{ content: { text: project.content.text } }}
+              />
             </div>
             <div class="col-auto">
               <div class="dropdown ms-auto">
