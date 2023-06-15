@@ -28,8 +28,4 @@ const Link = styled.a`
   }
 `;
 
-return (
-  <Link href={props.href ?? `/${ownerId}/widget/Index?tab=hackathon`}>
-    Apply to hack
-  </Link>
-);
+return <Link href="https://nearcon-hackathon.devpost.com/">Apply to hack</Link>;
