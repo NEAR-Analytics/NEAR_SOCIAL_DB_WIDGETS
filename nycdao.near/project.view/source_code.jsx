@@ -139,7 +139,7 @@ return (
         <div class="col">
           <div class="row">
             <div class="col">
-              <H2>{question.title}</H2>
+              <H2>{project.title}</H2>
             </div>
             <div class="col-auto">
               <div class="dropdown ms-auto">
@@ -189,14 +189,6 @@ return (
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <Widget
-            src="dev-support.near/widget/DevSupport.Question.Button.Answers"
-            props={{ accountId, blockHeight, adminContract }}
-          />
         </div>
       </div>
     </div>
