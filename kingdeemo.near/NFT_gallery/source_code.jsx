@@ -47,6 +47,22 @@ function fetchData() {
         nftData: response.body.data[state.chain].nfts,
         chainRate: response.body.data[state.chain].crypto_rates[4].rate,
       });
+
+  const priceConvert = (chain) => {
+    switch (chain) {
+      case "stacks":
+        return State.update({ conversion: 10000000000 });
+      case "sui":
+        return State.update({ conversion: 10000000000 });
+      case "near":
+        return State.update({ conversion: 1000000000000000000000000 });
+      case "aptos":
+        return State.update({ conversion: 100000000 });
+      default:
+        return 0;
+    }
+  };
+  priceConvert(state.chain);
 }
 
 fetchData();
@@ -77,20 +93,6 @@ const seachInputHandler = (e) => {
 
 const isPriceValid = typeof nft.listings[0]?.price === "number";
 
-const priceConvert = (chain) => {
-  switch (chain) {
-    case "stack":
-      return 1;
-    case "sui":
-      return 2;
-    case "near":
-      State.update({ conversion: 1000000000000000000000000 });
-    case "aptos":
-      State.update({ conversion: 100000000 });
-    default:
-      return 0;
-  }
-};
 const handleDropdownChange = (event) => {
   State.update({ chain: event.target.value });
 };
@@ -355,10 +357,10 @@ return (
                       typeof nft.listings[0].price === "number" ? (
                         <PriceArea>
                           <h6>{`${
-                            nft.listings[0].price.toFixed(2) / 100000000
+                            nft.listings[0].price.toFixed(2) / state.conversion
                           }${state.chain}`}</h6>
                           <span>{` ($${(
-                            (nft.listings[0].price / 100000000) *
+                            (nft.listings[0].price / state.conversion) *
                             state.chainRate
                           ).toFixed(2)})`}</span>
                         </PriceArea>
