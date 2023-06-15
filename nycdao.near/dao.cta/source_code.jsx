@@ -1,4 +1,4 @@
-const accountId = context.accountId;
+const accountId = props.accountId ?? context.accountId;
 const daoId = props.daoId ?? "liberty.sputnik-dao.near";
 
 State.init({
