@@ -3,7 +3,7 @@ const index = {
   key: "nyc",
   options: {
     limit: 9,
-    order: "desc",
+    order: "asc",
     accountId: props.accounts,
   },
 };
