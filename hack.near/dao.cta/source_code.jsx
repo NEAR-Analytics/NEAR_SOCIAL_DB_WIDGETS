@@ -46,7 +46,7 @@ const handleJoin = () => {
           kind: {
             AddMemberToRole: {
               member_id: accountId,
-              role: role,
+              role: "community",
             },
           },
         },
