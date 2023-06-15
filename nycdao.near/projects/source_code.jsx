@@ -20,8 +20,6 @@ const renderItem = (a) => {
         props={{
           accountId: a.accountId,
           blockHeight: a.blockHeight,
-          admins,
-          adminContract,
         }}
       />
     </div>
