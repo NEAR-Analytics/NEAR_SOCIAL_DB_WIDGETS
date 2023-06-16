@@ -1,19 +1,18 @@
 const accountId = props.accountId ?? context.accountId;
 const daoId = props.daoId ?? "liberty.sputnik-dao.near";
 const role = props.role ?? "community";
+const contractId = "mint.sharddog.near";
 
 const tab = props.tab === "following" ? props.tab : "members";
 
-State.init({
-  nftHolder: false,
-});
-
-const nftData = Near.view("mint.sharddog.near", "nft_supply_for_owner", {
+const nftData = Near.view(contractId, "nft_supply_for_owner", {
   account_id: accountId,
 });
 
+const isNftHolder = false;
+
 if (nftData > 0) {
-  State.update({ nftHolder: true });
+  isNftHolder = true;
 }
 
 const Wrapper = styled.div`
@@ -132,7 +131,15 @@ return (
         <Widget src="nycdao.near/widget/dao.cta" props={{ accountId, daoId }} />
       </Flex>
     </Container>
-    <Widget src="nycdao.near/widget/nyc.people" />
+    {isNftHolder && (
+      <div className="m-2 mb-5">
+        <h3 className="mb-3">Your Collection</h3>
+        <Widget src="near/widget/NFTCollection" props={{ accountId }} />
+      </div>
+    )}
+    <div className="m-2">
+      <Widget src="nycdao.near/widget/nyc.people" />
+    </div>
     <hr />
     <br />
     <Flex>
