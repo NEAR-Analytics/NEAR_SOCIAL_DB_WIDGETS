@@ -56,9 +56,9 @@ const Container = styled.div`
 
     & > div {
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       gap: 2em;
       width: 100%;
     }
@@ -80,12 +80,27 @@ return (
       <li>You will receive your NFT ticket via your wallet</li>
     </ol>
     <div>
-      <span>Ticketing fulfillment by</span>
+      <span>Ticketing solutions by</span>
       <div>
-        <a href="#">
+        <a
+          href="https://veriken.com/"
+          target="_blank"
+          referrerPolicy="unsafe-url"
+        >
+          <Widget src={`${ownerId}/widget/Register.VerikenLogo`} />
+        </a>
+        <a
+          href="https://keypom.xyz/"
+          target="_blank"
+          referrerPolicy="unsafe-url"
+        >
           <Widget src={`${ownerId}/widget/Register.KeypomLogo`} />
         </a>
-        <a href="#">
+        <a
+          href="https://www.mintbase.xyz/"
+          target="_blank"
+          referrerPolicy="unsafe-url"
+        >
           <Widget src={`${ownerId}/widget/Register.MintbaseLogo`} />
         </a>
       </div>
