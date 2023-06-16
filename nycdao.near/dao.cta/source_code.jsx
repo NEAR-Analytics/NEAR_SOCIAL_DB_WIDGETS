@@ -128,7 +128,7 @@ const Container = styled.div`
 
 return (
   <Container>
-    {isFollower ? (
+    {accountId ? (
       <Flex>
         <Text
           size="18px"
@@ -184,28 +184,17 @@ return (
         >
           Begin a New Adventure
         </Text>
-        {accountId ? (
-          <FlexContainer>
-            <Widget
-              src="nycdao.near/widget/nyc.join"
-              props={{
-                accountId: daoId,
-              }}
-            />
-          </FlexContainer>
-        ) : (
-          <FlexContainer>
-            <Widget
-              src="near/widget/DIG.Button"
-              props={{
-                href: "https://shard.dog/go?url=https://near.social",
-                label: "Create Account",
-                variant: "outline-secondary",
-                size: "large",
-              }}
-            />
-          </FlexContainer>
-        )}
+        <FlexContainer>
+          <Widget
+            src="near/widget/DIG.Button"
+            props={{
+              href: "https://shard.dog/go?url=https://near.social",
+              label: "Create Account",
+              variant: "outline-secondary",
+              size: "large",
+            }}
+          />
+        </FlexContainer>
       </Flex>
     )}
   </Container>
