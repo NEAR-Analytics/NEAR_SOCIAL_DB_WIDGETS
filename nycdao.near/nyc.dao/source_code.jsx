@@ -1,4 +1,4 @@
-const accountId = props.accountId ?? "hack.near";
+const accountId = props.accountId ?? context.accountId;
 const daoId = props.daoId ?? "liberty.sputnik-dao.near";
 const role = props.role ?? "community";
 const contractId = "mint.sharddog.near";
