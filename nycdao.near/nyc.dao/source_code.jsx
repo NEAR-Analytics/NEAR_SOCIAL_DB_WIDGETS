@@ -138,7 +138,7 @@ return (
           </Text>
         </div>
         {context.accountId && (
-          <div className="m-3" style={{ maxWidth: "80%" }}>
+          <div className="m-3" style={{ maxWidth: "75%" }}>
             <Widget
               src="near/widget/AccountProfileCard"
               props={{ accountId: daoId }}
