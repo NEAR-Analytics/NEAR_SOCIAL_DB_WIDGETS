@@ -1,6 +1,13 @@
 const accountId = props.accountId ?? context.accountId;
 const daoId = props.daoId ?? "liberty.sputnik-dao.near";
 
+// Check if the user has a NEAR Social profile
+const profile = props.profile ?? Social.getr(`${accountId}/profile`);
+
+if (profile === null) {
+  return "Loading...";
+}
+
 // Check if the user has an NFT
 const nftData = Near.view("mint.sharddog.near", "nft_supply_for_owner", {
   account_id: accountId,
@@ -142,15 +149,29 @@ return (
               }}
             />
           ) : (
-            <Widget
-              src="near/widget/DIG.Button"
-              props={{
-                href: "#/near/widget/ProfileEditor",
-                label: "Update Your Profile",
-                variant: "outline-secondary",
-                size: "large",
-              }}
-            />
+            <div>
+              {profile ? (
+                <Widget
+                  src="near/widget/DIG.Button"
+                  props={{
+                    href: "#/nycdao.near/widget/demo",
+                    label: "Demo Day Voting",
+                    variant: "outline-secondary",
+                    size: "large",
+                  }}
+                />
+              ) : (
+                <Widget
+                  src="near/widget/DIG.Button"
+                  props={{
+                    href: "#/near/widget/ProfileEditor",
+                    label: "Update Your Profile",
+                    variant: "outline-secondary",
+                    size: "large",
+                  }}
+                />
+              )}
+            </div>
           )}
         </FlexContainer>
       </Flex>
