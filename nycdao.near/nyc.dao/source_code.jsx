@@ -132,7 +132,7 @@ return (
         <Widget src="nycdao.near/widget/dao.cta" props={{ accountId, daoId }} />
       </Flex>
     </Container>
-    <Widget src="nycdao.near/widget/projects" />
+    <Widget src="nycdao.near/widget/nyc.people" />
     <hr />
     <br />
     <Flex>
