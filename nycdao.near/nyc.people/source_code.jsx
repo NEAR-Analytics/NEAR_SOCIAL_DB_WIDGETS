@@ -14,7 +14,7 @@ return (
         <h3>Community</h3>
         <div className="tab-pane fade in show active" role="tabpanel">
           <Widget
-            src="mob.near/widget/FollowersList"
+            src="near/widget/FollowersList"
             props={{ accountId: daoId }}
           />
         </div>
