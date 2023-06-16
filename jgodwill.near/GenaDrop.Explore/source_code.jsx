@@ -283,12 +283,12 @@ const HandleViewNft = (nft) => {
   console.log(nft);
 };
 
+if (state.isNFTButtonClicked) {
+  return <Widget src="agwaze.near/widget/GenaDrop.NFTDetails" props={state} />;
+}
+
 console.log(state.nftData);
-return state.isNFTButtonClicked ? (
-  <>
-    <Widget src="agwaze.near/widget/GenaDrop.NFTDetails" props={state} />
-  </>
-) : (
+return (
   <>
     <Hero className="w-100">
       <PageTitle>
