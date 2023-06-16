@@ -5,7 +5,7 @@ if (!accountId) {
     <div>
       <p>Please connect your NEAR wallet or create a new one:</p>
       <a href="https://near.org/signup" target="_blank" rel="noreferrer">
-        <FakeButton>Create NEAR Wallet</FakeButton>
+        <GameButton>Create NEAR Wallet</GameButton>
       </a>
     </div>
   );
