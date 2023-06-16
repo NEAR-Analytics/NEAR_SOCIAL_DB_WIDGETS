@@ -16,20 +16,20 @@ const GameContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh;
   background: #282c34;
   color: white;
   font-size: calc(10px + 2vmin);
-  border: 2px solid white; /* Added border */
-  margin: 20px; /* Added margin */
+  padding: 20px;
+  box-sizing: border-box;
 `;
 
 const GameButton = styled.button`
   background: palevioletred;
   color: white;
   font-size: 1em;
-  margin: 1em;
-  padding: 0.25em 1em;
+  margin: 10px;
+  padding: 0.5em 1em;
   border: 2px solid palevioletred;
   border-radius: 10px;
   &:hover {
@@ -40,11 +40,16 @@ const GameButton = styled.button`
 
 const Title = styled.h1`
   font-weight: bold;
-  padding-top: 10px; // Added top padding
+  margin-top: 20px; /* Added margin top */
 `;
 
 const Info = styled.p`
-  margin-top: 1em;
+  margin-top: 10px;
+`;
+
+const RulesContainer = styled.div`
+  margin-top: 20px;
+  text-align: center;
 `;
 
 function initGameState() {
@@ -167,6 +172,7 @@ return (
           style={{
             display: "flex",
             justifyContent: "space-between",
+            marginBottom: "20px",
             width: "100%",
           }}
         >
@@ -174,10 +180,8 @@ return (
             <Info>Total Love: {state.totalLove}</Info>
             <Info>Boost Level: {state.boostLevel}</Info>{" "}
             {/* Display Boost Level */}
-            <div style={{ display: "flex", flexDirection: "column" }}>
-              <GameButton onClick={claimLove}>Claim Love</GameButton>
-              <GameButton onClick={boostLove}>Boost Love</GameButton>
-            </div>
+            <GameButton onClick={claimLove}>Claim Love</GameButton>
+            <GameButton onClick={boostLove}>Boost Love</GameButton>
           </div>
           <div
             style={{
@@ -186,30 +190,29 @@ return (
               alignItems: "flex-end",
             }}
           >
-            <Info>Player ID: {accountId}</Info> {/* Display Player ID */}
             <Info>Boss Level: {state.bossLevel}</Info>{" "}
             {/* Display Boss Level */}
             <Info>Boss HP: {state.bossHP}</Info> {/* Display Boss HP */}
-            <div style={{ display: "flex", flexDirection: "column" }}>
-              <GameButton
-                onClick={state.claimLoveCounter > 0 ? spreadLove : undefined}
-                disabled={state.claimLoveCounter === 0}
-              >
-                Spread the Love
-              </GameButton>
-              <GameButton onClick={newGame}>New Game</GameButton>
-            </div>
+            <GameButton
+              onClick={state.claimLoveCounter > 0 ? spreadLove : undefined}
+              disabled={state.claimLoveCounter === 0}
+            >
+              Spread the Love
+            </GameButton>
           </div>
         </div>
-        <div style={{ marginTop: "20px" }}>
-          {" "}
-          {/* Added margin */}
-          <p>Rules:</p>
-          <p>1. Claim love</p>
-          <p>2. Spread it to attack the boss</p>
-          <p>3. Boost to generate love faster</p>
-          <p>4. New game to reset</p>
-        </div>
+        <RulesContainer>
+          <p>
+            <Info>Player ID: {accountId}</Info> {/* Display Player ID */}
+          </p>
+          <ol>
+            <li>Claim Love</li>
+            <li>Spread it to attack the boss</li>
+            <li>Boost to generate love faster</li>
+            <li>New Game to reset</li>
+          </ol>
+        </RulesContainer>
+        <GameButton onClick={newGame}>New Game</GameButton>
       </div>
     )}
   </GameContainer>
