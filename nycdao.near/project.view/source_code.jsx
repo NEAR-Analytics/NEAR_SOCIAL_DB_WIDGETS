@@ -1,24 +1,5 @@
 const accountId = props.accountId;
 const blockHeight = parseInt(props.blockHeight);
-const postType = props.postType ?? "post";
-const externalLink = `https://social.near.page/${
-  postType === "post" ? "p" : "c"
-}/${accountId}/${blockHeight}`;
-
-const clickPrompt =
-  props.clickPrompt ?? `Check out this project on the #BOS!\n${externalLink}`;
-
-const twitterUrl = new URL("https://twitter.com/intent/tweet");
-twitterUrl.searchParams.set("text", clickPrompt);
-
-const mailtoUrl = new URL("mailto:");
-mailtoUrl.searchParams.set("subject", `Check out this project on the #BOS!`);
-mailtoUrl.searchParams.set(
-  "body",
-  `Take a look.
-${externalLink}
-`
-);
 
 const project = JSON.parse(
   Social.get(`${accountId}/project/nyc`, blockHeight) ?? "null"
@@ -119,21 +100,6 @@ const Button = styled.button`
 
 return (
   <div class="row">
-    <div class="col-1 d-sm-block d-none">
-      <div
-        className="rounded-circle w-100 h-100"
-        style={{ width: "3em", height: "3em" }}
-      >
-        <Widget
-          src="mob.near/widget/Image"
-          props={{
-            image: project.content.img.ipfs_cid,
-            className: "profile-image d-inline-block",
-            style: { objectFit: "cover" },
-          }}
-        />
-      </div>
-    </div>
     <div class="col-sm-1 col-2">
       <Widget
         src="nycdao.near/widget/project.vouch"
@@ -150,53 +116,6 @@ return (
                 src="mob.near/widget/MainPage.Post.Content"
                 props={{ content: { text: project.content.text } }}
               />
-            </div>
-            <div class="col-auto">
-              <div class="dropdown ms-auto">
-                {blockHeight !== "now" && (
-                  <span>
-                    <Button
-                      className="btn me-1"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                      title="Share"
-                    >
-                      <i className="bi fs-4 bi-share" />
-                    </Button>
-                    <ul className="dropdown-menu">
-                      <li>
-                        <Widget
-                          src="mob.near/widget/CopyButton"
-                          props={{
-                            text: externalLink,
-                            className: "btn btn-outline-dark dropdown-item",
-                            label: `Copy Link`,
-                          }}
-                        />
-                      </li>
-                      <li className="dropdown-item">
-                        <a
-                          className="link-dark text-decoration-none"
-                          href={mailtoUrl.toString()}
-                          target="_blank"
-                        >
-                          <i className="bi bi-envelope-at" /> Email
-                        </a>
-                      </li>
-                      <li className="dropdown-item">
-                        <a
-                          className="link-dark text-decoration-none"
-                          href={twitterUrl.toString()}
-                          target="_blank"
-                        >
-                          <i className="bi bi-twitter" />
-                          Tweet
-                        </a>
-                      </li>
-                    </ul>
-                  </span>
-                )}
-              </div>
             </div>
           </div>
         </div>
