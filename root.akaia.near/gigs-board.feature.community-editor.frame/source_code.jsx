@@ -269,13 +269,13 @@ const CommunityEditorFrame = ({ handle }) => {
 
               twitter_handle: {
                 inputProps: { min: 2, max: 60 },
-                label: "Twitter",
+                label: "Twitter handle",
                 order: 2,
               },
 
               github_handle: {
                 inputProps: { min: 2, max: 60 },
-                label: "Github",
+                label: "Github organization handle",
                 order: 3,
               },
 
