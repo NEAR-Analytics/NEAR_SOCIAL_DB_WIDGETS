@@ -1,5 +1,19 @@
 const accountId = props.accountId || context.accountId;
 
+const GameButton = styled.button`
+  background: palevioletred;
+  color: white;
+  font-size: 1em;
+  margin: 10px;
+  padding: 0.5em 1em;
+  border: 2px solid palevioletred;
+  border-radius: 10px;
+  &:hover {
+    background: white;
+    color: palevioletred;
+  }
+`;
+
 if (!accountId) {
   return (
     <div>
@@ -22,20 +36,6 @@ const GameContainer = styled.div`
   font-size: calc(10px + 2vmin);
   padding: 20px;
   box-sizing: border-box;
-`;
-
-const GameButton = styled.button`
-  background: palevioletred;
-  color: white;
-  font-size: 1em;
-  margin: 10px;
-  padding: 0.5em 1em;
-  border: 2px solid palevioletred;
-  border-radius: 10px;
-  &:hover {
-    background: white;
-    color: palevioletred;
-  }
 `;
 
 const Title = styled.h1`
