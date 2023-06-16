@@ -2,6 +2,12 @@
 const contract = "hello.near-examples.near";
 const greeting = Near.view(contract, "get_greeting", {});
 
+console.log("print info");
+console.log(context);
+console.log(context.accountId);
+console.log("print info2");
+console.log(user);
+console.log(user.near);
 // Use and manipulate state
 State.init({ new_greeting2: greeting });
 State.init({ new_greeting_text: "" });
@@ -520,12 +526,12 @@ return (
           </a>
         </p>
 
-        <p class="text-center mt-2">Descargar ultimo certificado:</p>
+        {/*<p class="text-center mt-2">Descargar ultimo certificado:</p>
         <p class="text-center text-decoration-underline wrap-text ">
           <a href={state.new_greeting2} target="_blank" class="colledge-link">
             Descargar
           </a>
-        </p>
+        </p>*/}
         <p class="text-center mt-2">Ver mis transacciones:</p>
         <p class="text-center text-decoration-underline wrap-text ">
           <a
