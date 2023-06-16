@@ -1,7 +1,12 @@
 const renderComponent = (msg, cb) => {
   console.log({ msg, cb });
   return (
-    <Widget src="andyh.near/widget/CallbackRenderWidget" props={{ cb, msg }} />
+    <div>
+      <Widget
+        src="andyh.near/widget/CallbackRenderWidget"
+        props={{ cb, msg }}
+      />
+    </div>
     // <h2>{msg}</h2>
   );
 };
