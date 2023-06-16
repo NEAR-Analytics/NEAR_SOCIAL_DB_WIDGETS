@@ -128,12 +128,14 @@ return (
             communities.
           </Text>
         </div>
-        <div className="m-3">
-          <Widget
-            src="near/widget/AccountProfile"
-            props={{ accountId: daoId }}
-          />
-        </div>
+        {context.accountId && (
+          <div className="m-3">
+            <Widget
+              src="near/widget/AccountProfileCard"
+              props={{ accountId: daoId }}
+            />
+          </div>
+        )}
         <Widget src="nycdao.near/widget/dao.cta" props={{ accountId, daoId }} />
       </Flex>
     </Container>
@@ -146,7 +148,8 @@ return (
     <div className="m-2">
       <Widget src="nycdao.near/widget/nyc.people" />
     </div>
-    <hr />
+    <br />
+
     <br />
     <Flex>
       <Text
