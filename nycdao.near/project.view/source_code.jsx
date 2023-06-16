@@ -128,8 +128,8 @@ return (
           src="mob.near/widget/Image"
           props={{
             image: project.content.ipfs_cid,
-            className: { objectFit: "cover" },
-            style: "profile-image d-inline-block",
+            className: "profile-image d-inline-block",
+            style: { objectFit: "cover" },
           }}
         />
       </div>
