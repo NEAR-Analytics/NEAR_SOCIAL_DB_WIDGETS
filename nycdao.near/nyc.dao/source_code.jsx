@@ -86,7 +86,7 @@ const Flex = styled.div`
   gap: 8px;
   align-items: center;
   flex-direction: column;
-  flex-wrap: "nowrap";
+  flex-wrap: "wrap";
 
     @media (max-width: 998px) {
     flex-direction: column;
