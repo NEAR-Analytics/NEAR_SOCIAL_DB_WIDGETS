@@ -27,7 +27,7 @@ const handleMint = () => {
     {
       contractName: conrtactId,
       methodName: "sbt_mint",
-      args: { receiver: ogAccountId },
+      args: { receiver: state.ogAccountId },
       gas: "70000000000000",
       deposit: 0.007,
     },
