@@ -71,8 +71,10 @@ function startGame() {
   asyncFetch("https://rpc.mainnet.near.org/status").then((res) => {
     const data = res.body;
     if (res.ok) {
+      const blockHeight = data.sync_info.latest_block_height;
       State.update({
         ...initGameState(), // Reset game state
+        blockHeight: blockHeight, // Set initial block height
         gameStarted: true,
       });
     } else {
@@ -196,8 +198,12 @@ return (
             <GameButton
               onClick={state.claimLoveCounter > 0 ? spreadLove : undefined}
               disabled={state.claimLoveCounter === 0}
+              style={{
+                backgroundColor:
+                  state.claimLoveCounter === 0 ? "grey" : "palevioletred",
+              }}
             >
-              Spread the Love
+              {state.claimLoveCounter > 0 ? "Spread Love" : "Claim Love First"}
             </GameButton>
           </div>
         </div>
