@@ -1,4 +1,4 @@
-const conrtactId = props.conrtactId ?? "community-v1.i-am-human.testnet";
+const conrtactId = props.conrtactId ?? "community-v1.i-am-human.near";
 
 const Container = styled.div`
   padding: 30px 0;
