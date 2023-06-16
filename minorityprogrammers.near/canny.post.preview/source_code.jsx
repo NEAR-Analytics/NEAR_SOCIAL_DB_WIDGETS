@@ -126,6 +126,7 @@ return (
                 <a href={link}>{question.title}</a>
                 <i class="bi bi-arrow-right" />
               </H2>
+              <p>{question.content.text}</p>
             </div>
             <div class="col-auto">
               <div class="dropdown ms-auto">
