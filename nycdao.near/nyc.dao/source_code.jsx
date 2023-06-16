@@ -132,7 +132,7 @@ return (
           </span>
         </H1>
         <div className="mt-3">
-          <Text style={{ maxWidth: "380px" }}>
+          <Text style={{ maxWidth: "370px" }}>
             New Yorkers building a better future with our local and global
             communities.
           </Text>
