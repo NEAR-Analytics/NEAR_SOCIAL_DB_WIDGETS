@@ -1,5 +1,7 @@
+const daoId = props.daoId ?? "liberty.sputnik-dao.near";
+
 const followEdge = Social.keys(
-  `${context.accountId}/graph/follow/${props.accountId}`,
+  `${context.accountId}/graph/follow/${daoId}`,
   undefined,
   {
     values_only: true,
@@ -7,7 +9,7 @@ const followEdge = Social.keys(
 );
 
 const inverseEdge = Social.keys(
-  `${props.accountId}/graph/follow/${context.accountId}`,
+  `${daoId}/graph/follow/${context.accountId}`,
   undefined,
   {
     values_only: true,
@@ -21,17 +23,17 @@ const isInverse = Object.keys(inverseEdge || {}).length > 0;
 const type = follow ? "unfollow" : "follow";
 
 const data = {
-  graph: { follow: { [props.accountId]: isFollowing ? null : "" } },
+  graph: { follow: { [daoId]: isFollowing ? null : "" } },
   index: {
     graph: JSON.stringify({
       key: "follow",
       value: {
         type,
-        accountId: props.accountId,
+        accountId: daoId,
       },
     }),
     notify: JSON.stringify({
-      key: props.accountId,
+      key: daoId,
       value: {
         type,
       },
