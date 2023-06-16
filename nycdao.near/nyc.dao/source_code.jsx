@@ -128,6 +128,12 @@ return (
             communities.
           </Text>
         </div>
+        <div className="mt-2 mb-3">
+          <Widget
+            src="nycdao.near/widget/nyc.subscribe"
+            props={{ accountId, daoId }}
+          />
+        </div>
         <Widget src="nycdao.near/widget/dao.cta" props={{ accountId, daoId }} />
       </Flex>
     </Container>
