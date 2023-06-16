@@ -129,10 +129,7 @@ return (
           </Text>
         </div>
         <div className="mt-2 mb-1">
-          <Widget
-            src="nycdao.near/widget/nyc.subscribe"
-            props={{ accountId, daoId }}
-          />
+          <Widget src="nycdao.near/widget/nyc.subscribe" />
         </div>
         <Widget src="nycdao.near/widget/dao.cta" props={{ accountId, daoId }} />
       </Flex>
