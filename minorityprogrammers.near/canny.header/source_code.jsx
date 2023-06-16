@@ -25,8 +25,8 @@ const Button = styled.a`
 return (
   <div class="row">
     <div class="col-lg-8 col-sm-12">
-      <H1>Canny on BOS</H1>
-      <H6>Public feature requests</H6>
+      <H1>💡 BOS Feedback Board</H1>
+      <H6>Public feature requests for BOS</H6>
     </div>
     <div class="col-lg-4 col-sm-12">
       <Button
