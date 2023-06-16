@@ -1,6 +1,5 @@
 // TODO: Should be grabbed from contract side
 const props = {
-  widgetProvider: "rubycop.near",
   contractName: "elections-v2.gwg.testnet",
   ndcOrganization: "test",
   groups: [
@@ -113,7 +112,15 @@ const myVotes = [
   },
 ];
 
-const { widgetProvider, groups } = props;
+const widgets = {
+  header: "rubycop.near/widget/NDC.Elections.Header",
+  houses: "rubycop.near/widget/NDC.Elections.Houses",
+  candidates: "rubycop.near/widget/NDC.Elections.Candidates",
+  statistic: "rubycop.near/widget/NDC.Elections.Statistic",
+  activities: "rubycop.near/widget/NDC.Elections.Activities",
+};
+
+const { groups } = props;
 
 State.init({
   selectedGroup: groups[0].id,
@@ -152,11 +159,7 @@ return (
     {props.groups.map((group) => (
       <>
         {group.id === state.selectedGroup && (
-          <Widget
-            key={i}
-            src={`${widgetProvider}/widget/NDC-election-header`}
-            props={group}
-          />
+          <Widget key={i} src={widgets.header} props={group} />
         )}
       </>
     ))}
@@ -165,7 +168,7 @@ return (
         <H5>To Vote</H5>
         <Widget
           key={i}
-          src={`${widgetProvider}/widget/NDC-election-groups`}
+          src={widgets.houses}
           props={{
             selectedGroup: state.selectedGroup,
             groups: groups,
@@ -179,7 +182,7 @@ return (
             {group.id === state.selectedGroup && (
               <Widget
                 key={i}
-                src={`${widgetProvider}/widget/NDC-elections`}
+                src={widgets.candidates}
                 props={{
                   contractName: props.contractName,
                   ndcOrganization: props.ndcOrganization,
@@ -196,7 +199,7 @@ return (
           <H5>General</H5>
           <div className="d-flex justify-content-center">
             <Widget
-              src={`${widgetProvider}/widget/NDC-voting-stats`}
+              src={widgets.statistic}
               props={{
                 voted: humanVoted,
                 total: totalHumal,
@@ -208,7 +211,7 @@ return (
           <H5>My voting activity</H5>
           <div className="d-flex justify-content-center">
             <Widget
-              src={`${widgetProvider}/widget/NDC-voting-activity`}
+              src={widgets.activities}
               props={{
                 myVotes: myVotes,
               }}
