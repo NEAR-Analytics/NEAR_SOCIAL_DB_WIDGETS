@@ -115,7 +115,7 @@ const myVotes = [
 const widgets = {
   header: "rubycop.near/widget/NDC.Elections.Header",
   houses: "rubycop.near/widget/NDC.Elections.Houses",
-  candidates: "rubycop.near/widget/NDC.Elections.Candidates",
+  candidates: "rubycop.near/widget/NDC-elections", // should be renamed to NDC.Elections.Candidates
   statistic: "rubycop.near/widget/NDC.Elections.Statistic",
   activities: "rubycop.near/widget/NDC.Elections.Activities",
 };
