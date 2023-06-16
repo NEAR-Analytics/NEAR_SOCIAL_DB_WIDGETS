@@ -28,6 +28,8 @@ let keysVec = Near.view(state.keypom_contract, "get_keys_for_drop", {
   drop_id: my_drops[my_drops.length - state.counter].drop_id,
 }).sort((a, b) => a.key_id - b.key_id);
 
+console.log("keysVec", keysVec);
+
 let drop_type = "";
 
 if (my_drops[my_drops.length - state.counter].hasOwnProperty("simple")) {
