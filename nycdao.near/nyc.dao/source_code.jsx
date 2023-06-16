@@ -1,4 +1,4 @@
-const accountId = props.accountId ?? context.accountId;
+const accountId = props.accountId ?? "hack.near";
 const daoId = props.daoId ?? "liberty.sputnik-dao.near";
 const role = props.role ?? "community";
 const contractId = "mint.sharddog.near";
@@ -133,7 +133,7 @@ return (
     </Container>
     {isNftHolder && (
       <div className="m-2 mb-5">
-        <h3 className="mb-3">Your Collection</h3>
+        <h5 className="mb-3">Non-Fungible Things</h5>
         <Widget src="near/widget/NFTCollection" props={{ accountId }} />
       </div>
     )}
