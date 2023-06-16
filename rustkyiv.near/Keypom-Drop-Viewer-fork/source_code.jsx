@@ -153,8 +153,8 @@ if (!state.keys) {
               <th style={thStyle}>
                 {state.keys.map((key) => (
                   <div key={key}>
-                    {key.cur_key_use ===
-                    key.remaining_uses - 1 - key.remaining_uses ? (
+                    {key.remaining_uses ===
+                    key.cur_key_use + key.remaining_uses - 1 ? (
                       <span style={{ fontWeight: "bold", color: "red" }}>
                         Not Used
                       </span>
