@@ -132,13 +132,13 @@ return (
           </span>
         </H1>
         <div className="mt-3">
-          <Text style={{ maxWidth: "670px" }}>
+          <Text style={{ maxWidth: "380px" }}>
             New Yorkers building a better future with our local and global
             communities.
           </Text>
         </div>
         {context.accountId && (
-          <div className="m-3">
+          <div className="m-3" style={{ maxWidth: "380px" }}>
             <Widget
               src="near/widget/AccountProfileCard"
               props={{ accountId: daoId }}
