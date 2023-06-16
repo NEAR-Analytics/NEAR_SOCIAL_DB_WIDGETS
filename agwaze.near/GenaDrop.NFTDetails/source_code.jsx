@@ -190,7 +190,7 @@ return (
         <TopImageContainer>
           <HeaderText>Third Eye</HeaderText>
           <img
-            src={props.nft.image}
+            src={props.singleNftProps.image}
             alt="NFT"
             width="100%"
             height="100%"
