@@ -40,7 +40,7 @@ const GameContainer = styled.div`
 
 const Title = styled.h1`
   font-weight: bold;
-  margin-top: 20px; /* Added margin top */
+  margin-top: 20px;
 `;
 
 const Info = styled.p`
@@ -58,12 +58,12 @@ function initGameState() {
     love: 0,
     bossHP: 100,
     bossLevel: 1,
-    boostLevel: 1,
     totalLove: 0,
+    loveSpent: 0,
     claimLoveCounter: 0,
     gameStarted: false,
-    startingBlockHeight: 0, // Add startingBlockHeight property
-    highScore: 0, // Add highScore property
+    startingBlockHeight: 0,
+    highScore: 0,
   };
 }
 
@@ -77,7 +77,7 @@ function startGame() {
       State.update({
         ...initGameState(),
         blockHeight: blockHeight,
-        startingBlockHeight: blockHeight, // Set starting block height
+        startingBlockHeight: blockHeight,
         gameStarted: true,
       });
     } else {
@@ -89,7 +89,6 @@ function startGame() {
 function claimLove() {
   const oldBlockHeight = state.blockHeight;
   const oldLove = state.love;
-  const boostLevel = state.boostLevel;
   let totalLove = state.totalLove;
   let claimLoveCounter = state.claimLoveCounter;
 
@@ -99,15 +98,14 @@ function claimLove() {
       const newBlockHeight = data.sync_info.latest_block_height;
       if (newBlockHeight > oldBlockHeight) {
         const blockDifference = newBlockHeight - oldBlockHeight;
-        const love = oldLove + blockDifference * boostLevel; // Increase love based on block difference * boost level
+        const love = blockDifference;
 
-        // Update totalLove
-        totalLove += blockDifference * boostLevel;
+        totalLove += love;
         claimLoveCounter++;
 
         State.update({
           blockHeight: newBlockHeight,
-          love: love,
+          love: oldLove + love,
           totalLove: totalLove,
           claimLoveCounter: claimLoveCounter,
         });
@@ -121,51 +119,35 @@ function claimLove() {
 }
 
 function newGame() {
-  const score = calculateScore(); // Calculate the current score
-  const previousHighScore = state.highScore || 0; // Retrieve the previous high score from state
+  const score = calculateScore();
+  const previousHighScore = state.highScore || 0;
 
-  // Update the game state and include the high score
   State.update({
     ...initGameState(),
-    highScore: Math.max(score, previousHighScore), // Save the higher score between the current and previous high scores
+    highScore: Math.max(score, previousHighScore),
   });
 }
 
 function spreadLove() {
-  const love = state.totalLove; // Use totalLove to spread love
+  const love = state.totalLove;
   let bossHP = state.bossHP;
   let bossLevel = state.bossLevel;
   const clickCount = state.clickCount + 1;
 
-  bossHP -= love; // Decrease boss HP by love value
+  bossHP -= love;
 
   if (bossHP <= 0) {
     bossLevel++;
     bossHP = 100 * bossLevel + clickCount * 2;
   }
 
-  const difference = state.love - state.totalLove; // Calculate the difference between love and totalLove
-  const totalLove = difference > 0 ? state.totalLove + difference : 0; // Add the difference back to totalLove (minimum 0)
-
   State.update({
     bossHP: bossHP,
     bossLevel: bossLevel,
     clickCount: clickCount,
-    totalLove: totalLove, // Update totalLove with the new value
-    love: 0, // Reset love to 0
-    claimLoveCounter: 0, // Reset claimLoveCounter to 0
-  });
-}
-
-function boostLove() {
-  const clickCount = state.clickCount + 1;
-  const updatedLove = state.love * clickCount;
-  const updatedBoostLevel = state.boostLevel + 1;
-
-  State.update({
-    love: updatedLove,
-    boostLevel: updatedBoostLevel,
-    clickCount: clickCount,
+    totalLove: 0,
+    claimLoveCounter: 0,
+    loveSpent: state.loveSpent + love,
   });
 }
 
@@ -174,13 +156,13 @@ function calculateScore() {
     const { bossLevel, startingBlockHeight, blockHeight } = state;
     const blockDifference = blockHeight - startingBlockHeight;
     if (blockDifference <= 0) {
-      return 0; // Return 0 if no or negative block difference
+      return 0;
     }
-    const previousScore = state.score || 0; // Retrieve the previous score from state
+    const previousScore = state.score || 0;
     const score = previousScore + bossLevel * blockDifference;
-    return Math.max(score, 0); // Return the score or 0 (whichever is higher)
+    return Math.max(score, 0);
   } else {
-    return 0; // Return 0 if the game hasn't started yet
+    return 0;
   }
 }
 
@@ -189,8 +171,8 @@ return (
     <Title>Marma J Forever!</Title>
     {!state.gameStarted && (
       <div>
-        <Info>Player ID: {accountId}</Info> {/* Display Player ID */}
-        <div>High Score: {state.highScore}</div> {/* Display High Score */}
+        <Info>Player ID: {accountId}</Info>
+        <div>High Score: {state.highScore}</div>
         <GameButton onClick={startGame}>Start Game</GameButton>
       </div>
     )}
@@ -205,11 +187,9 @@ return (
           }}
         >
           <div>
-            <Info>Total Love: {state.totalLove}</Info>
-            <Info>Boost Level: {state.boostLevel}</Info>{" "}
-            {/* Display Boost Level */}
+            <Info>Current Love: {state.totalLove}</Info>
+            <Info>Love Spent: {state.loveSpent}</Info>
             <GameButton onClick={claimLove}>Claim Love</GameButton>
-            <GameButton onClick={boostLove}>Boost Love</GameButton>
           </div>
           <div
             style={{
@@ -218,9 +198,8 @@ return (
               alignItems: "flex-end",
             }}
           >
-            <Info>Boss Level: {state.bossLevel}</Info>{" "}
-            {/* Display Boss Level */}
-            <Info>Boss HP: {state.bossHP}</Info> {/* Display Boss HP */}
+            <Info>Boss Level: {state.bossLevel}</Info>
+            <Info>Boss HP: {state.bossHP}</Info>
             <GameButton
               onClick={state.claimLoveCounter > 0 ? spreadLove : undefined}
               disabled={state.claimLoveCounter === 0}
@@ -229,24 +208,22 @@ return (
                   state.claimLoveCounter === 0 ? "grey" : "palevioletred",
               }}
             >
-              {state.claimLoveCounter > 0 ? "Spread Love" : "Claim Love First"}
+              {state.claimLoveCounter > 0 ? "Spread Love" : "Claim First"}
             </GameButton>
           </div>
         </div>
         <RulesContainer>
           <p>
-            <Info>Player ID: {accountId}</Info> {/* Display Player ID */}
+            <Info>Player ID: {accountId}</Info>
           </p>
           <ol>
             <li>Claim Love</li>
             <li>Spread it to attack the boss</li>
-            <li>Boost to generate love faster</li>
             <li>New Game to reset</li>
           </ol>
         </RulesContainer>
         <GameButton onClick={newGame}>New Game</GameButton>
-        <div>Current Score: {calculateScore()}</div>{" "}
-        {/* Display Current Score */}
+        <div>Current Score: {calculateScore()}</div>
       </div>
     )}
   </GameContainer>
