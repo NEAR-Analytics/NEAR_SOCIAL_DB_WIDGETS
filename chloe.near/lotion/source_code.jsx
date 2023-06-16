@@ -1,190 +1,180 @@
-const Title = styled.h5`
-  color: #fff;
-  font-weight: 700;
-  font-size: 16px;
-  text-align: center;
-  text-transform: uppercase;
+const accountId = props.accountId || context.accountId;
+
+if (!accountId) {
+  return (
+    <div>
+      <p>Please connect your NEAR wallet or create a new one:</p>
+      <a href="https://near.org/signup" target="_blank" rel="noreferrer">
+        <FakeButton>Create NEAR Wallet</FakeButton>
+      </a>
+    </div>
+  );
+}
+
+const GameContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: #282c34;
+  color: white;
+  font-size: calc(10px + 2vmin);
 `;
 
-const Cover = styled.img`
-  border-radius: 5px;
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-`;
-
-const Description = styled.p`
-  color: #fff;
-  font-weight: 300;
-`;
-
-const FakeButton = styled.a`
-  border-radius: 5px;
-  width: auto;
-  text-transform: uppercase;
-  padding: 8px 14px;
-  background: rgba(155, 155, 155, 0.2);
-  color: #fff;
-  cursor: pointer;
-  border: 1px solid #000;
-  outline: 0;
-  font-weight: 600;
-  :hover {
-    opacity: 0.8;
-    text-decoration: none;
-    color: #fff;
+const GameButton = styled.button`
+  background: palevioletred;
+  color: white;
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid palevioletred;
+  border-radius: 10px;
+  &:hover {
+    background: white;
+    color: palevioletred;
   }
 `;
 
-const Card = styled.div`
-  border-radius: 8px;
-  color: #0c0c0c;
-  background: #000;
-  align-items: center;
-  justify-content: center;
-  max-width: 210px;
-  padding: 25px 32px;
-  display: flex;
-  flex-direction: column;
+const Title = styled.h1`
+  font-weight: bold;
 `;
 
-const Hero = styled.div`
-  display: flex;
-  flex-direction: column;
-  border-radius: 15px;
-  text-align: center;
-  justify-content: center;
-  padding: 15px;
-  background-color: #0c0c1f;
-  color: #fff;
+const Info = styled.p`
+  margin-top: 1em;
 `;
 
-const CardList = styled.div`
-  display: grid;
-  justify-items: center;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  grid-template-rows: repeat(200px, 1fr);
-  gap: 0.5rem;
-`;
+function initGameState() {
+  return {
+    clickCount: 0,
+    love: 0,
+    bossHP: 100,
+    bossLevel: 1,
+    boostLevel: 1,
+    totalLove: 0,
+    claimLoveCounter: 0,
+    gameStarted: false,
+  };
+}
 
-const WidgetCard = ({ title, coverSrc, description, actionButtons }) => {
-  return (
-    <Card>
-      <Title>{title}</Title>
-      <Cover src={coverSrc} alt={title} />
-      <Description>{description}</Description>
-      <div
-        style={{
-          display: "flex",
-          flexFlow: "row wrap",
-          justifyContent: "space-evenly",
-        }}
-      >
-        {actionButtons.map((button, index) => (
-          <FakeButton
-            key={index}
-            onClick={() => handleButtonClick(button.url)}
-            href={button.url}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {button.label}
-          </FakeButton>
-        ))}
-      </div>
-    </Card>
-  );
-};
+State.init(initGameState());
 
-const WidgetImages = [
-  {
-    title: "Chain Team Tactics Image",
-    url: "https://pd.marmaj.org/ctt/mint2.png",
-  },
-];
+function startGame() {
+  asyncFetch("https://rpc.mainnet.near.org/status").then((res) => {
+    const data = res.body;
+    if (res.ok) {
+      State.update({
+        ...initGameState(), // Reset game state
+        gameStarted: true,
+      });
+    } else {
+      console.error("Error fetching data: ", data.error);
+    }
+  });
+}
 
-const Mainnet = [
-  { title: "Chain Team Tactics", url: "https://pd.marmaj.org/chainteam" },
-];
+function claimLove() {
+  const oldBlockHeight = state.blockHeight;
+  const oldLove = state.love;
+  const boostLevel = state.boostLevel;
+  let totalLove = state.totalLove;
+  let claimLoveCounter = state.claimLoveCounter;
 
-const Testnet = [
-  {
-    title: "Chain Team Tactics",
-    url: "https://pd-testnet.marmaj.org/chainteam",
-  },
-];
+  asyncFetch("https://rpc.mainnet.near.org/status").then((res) => {
+    const data = res.body;
+    if (res.ok) {
+      const newBlockHeight = data.sync_info.latest_block_height;
+      if (newBlockHeight > oldBlockHeight) {
+        const blockDifference = newBlockHeight - oldBlockHeight;
+        const love = oldLove + blockDifference * boostLevel; // Increase love based on block difference * boost level
 
-const Wiki = [
-  {
-    title: "Chain Team Tactics Wiki",
-    url: "https://github.com/MarmaJFoundation/chainteamtactics-wiki/wiki",
-  },
-];
+        // Update totalLove
+        totalLove += blockDifference * boostLevel;
+        claimLoveCounter++;
+
+        State.update({
+          blockHeight: newBlockHeight,
+          love: love,
+          totalLove: totalLove,
+          claimLoveCounter: claimLoveCounter,
+        });
+      } else {
+        State.update({ blockHeight: newBlockHeight });
+      }
+    } else {
+      console.error("Error fetching data: ", data.error);
+    }
+  });
+}
+
+function spreadLove() {
+  const love = state.totalLove; // Use totalLove to spread love
+  let bossHP = state.bossHP;
+  let bossLevel = state.bossLevel;
+  const clickCount = state.clickCount + 1;
+
+  bossHP -= love; // Decrease boss HP by love value
+
+  if (bossHP <= 0) {
+    bossLevel++;
+    bossHP = 100 * bossLevel + clickCount * 2;
+  }
+
+  const difference = state.love - state.totalLove; // Calculate the difference between love and totalLove
+  const totalLove = difference > 0 ? state.totalLove + difference : 0; // Add the difference back to totalLove (minimum 0)
+
+  State.update({
+    bossHP: bossHP,
+    bossLevel: bossLevel,
+    clickCount: clickCount,
+    totalLove: totalLove, // Update totalLove with the new value
+    love: 0, // Reset love to 0
+    claimLoveCounter: 0, // Reset claimLoveCounter to 0
+  });
+}
+
+function boostLove() {
+  const clickCount = state.clickCount + 1;
+  const updatedLove = state.love * clickCount;
+  const updatedBoostLevel = state.boostLevel + 1;
+
+  State.update({
+    love: updatedLove,
+    boostLevel: updatedBoostLevel,
+    clickCount: clickCount,
+  });
+}
+
+function newGame() {
+  State.update(initGameState()); // Reset the game state
+}
 
 return (
-  <div
-    style={{
-      display: "flex",
-      flexFlow: "column",
-      alignItems: "space-evenly",
-      backgroundColor: "#0e0e1e",
-      padding: "20px",
-    }}
-  >
-    <Hero>
-      <a
-        href={Mainnet.url}
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{
-          textDecoration: "none",
-          color: "inherit",
-          marginBottom: "2rem",
-          textAlign: "center",
-        }}
-      >
-        <img
-          src={`https://user-images.githubusercontent.com/100770363/241338189-eb7cd1db-00a7-4dd3-ab44-d1ab6f24c2e8.png`}
-        />
-      </a>
-
-      <p
-        style={{ marginBottom: "20px", fontSize: "1.3em", fontWeight: "bold" }}
-      >
-        Chain Team Tactics
-      </p>
-      <p style={{ marginBottom: "20px", width: "100%", textAlign: "justify" }}>
-        Chain Team Tactics is an nft based pvp battle simulator. Collect a
-        minimum of 6 units and start to battle other players! Each battle is
-        fought as best of three and the starting player changes each round. To
-        make it more spicy, you will battle about your PXT stake (after beta).
-        Still don't understand? Take a game like Fire Emblem or Final Fantasy
-        Tactics, slap it onto the blockchain, and you're left with this amazing
-        game called Chain Team Tactics
-      </p>
-      <div style={{ marginBottom: "20px", width: "100%" }}>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        ></div>
+  <GameContainer>
+    <Title>Marma J Forever!</Title>
+    <Info>Total Love: {state.totalLove}</Info>
+    <Info>Boss HP: {state.bossHP}</Info>
+    <Info>Boss Level: {state.bossLevel}</Info>
+    <Info>Boost Level: {state.boostLevel}</Info>
+    <Info>Account ID: {accountId}</Info>
+    {!state.gameStarted && (
+      <GameButton onClick={startGame}>Start Game</GameButton>
+    )}
+    {state.gameStarted && (
+      <div>
+        <p>
+          Don't forget to claim your love before spreading it. (Claim Love
+          Counter: {state.claimLoveCounter})
+        </p>
+        <GameButton onClick={claimLove}>Claim Love</GameButton>
+        <GameButton
+          onClick={state.claimLoveCounter > 0 ? spreadLove : undefined}
+        >
+          Spread the Love
+        </GameButton>
+        <GameButton onClick={boostLove}>Boost Love</GameButton>
+        <GameButton onClick={newGame}>New Game</GameButton>
       </div>
-    </Hero>
-    <CardList>
-      {Mainnet.map((widget, index) => (
-        <WidgetCard
-          key={index}
-          coverSrc={WidgetImages[index].url}
-          description=""
-          actionButtons={[
-            { label: "Play", url: widget.url },
-            { label: "Test", url: Testnet[index].url },
-            { label: "Wiki", url: Wiki[index].url },
-          ]}
-        />
-      ))}
-    </CardList>
-  </div>
+    )}
+  </GameContainer>
 );
