@@ -124,11 +124,11 @@ return (
         </H1>
         <div className="mt-3">
           <Text style={{ maxWidth: "670px" }}>
-            Building a better future with fellow citizens of NYC and our global
+            New Yorkers building a better future with our local and global
             communities.
           </Text>
         </div>
-        <div className="mt-2 mb-3">
+        <div className="mt-2 mb-1">
           <Widget
             src="nycdao.near/widget/nyc.subscribe"
             props={{ accountId, daoId }}
