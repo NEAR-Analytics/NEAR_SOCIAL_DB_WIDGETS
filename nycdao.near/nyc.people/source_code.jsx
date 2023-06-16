@@ -12,12 +12,14 @@ return (
     <div className="m-2">
       <div className="tab-content">
         <h3>Community</h3>
-        <div className="mt-2 mb-3">
-          <Widget
-            src="nycdao.near/widget/nyc.subscribe"
-            props={{ accountId, daoId }}
-          />
-        </div>
+        {accountId && (
+          <div className="mt-3 mb-5">
+            <Widget
+              src="nycdao.near/widget/nyc.subscribe"
+              props={{ accountId, daoId }}
+            />
+          </div>
+        )}
         <div className="tab-pane fade in show active" role="tabpanel">
           <Widget
             src="near/widget/FollowersList"
