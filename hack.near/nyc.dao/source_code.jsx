@@ -1,87 +1,19 @@
-const ownerId = props.ownerId ?? "hack.near";
 const accountId = props.accountId ?? context.accountId;
 const daoId = props.daoId ?? "liberty.sputnik-dao.near";
 const role = props.role ?? "community";
+const contractId = "mint.sharddog.near";
 
-State.init({
-  nftHolder: false,
-  isMember,
-});
+const tab = props.tab === "following" ? props.tab : "members";
 
-const nftData = Near.view("mint.sharddog.near", "nft_supply_for_owner", {
+const nftData = Near.view(contractId, "nft_supply_for_owner", {
   account_id: accountId,
 });
 
+const isNftHolder = false;
+
 if (nftData > 0) {
-  State.update({ nftHolder: true });
+  isNftHolder = true;
 }
-
-let isBuilder = false;
-let widgets = Social.get(`${accountId}/widget/*`, "final", {
-  return_type: "BlockHeight",
-  values_only: true,
-});
-let widgetCount = 0;
-if (widgets) {
-  widgetCount = Object.keys(widgets).length;
-}
-if (widgetCount > 0) {
-  isBuilder = true;
-}
-
-const policy = Near.view(daoId, "get_policy");
-
-if (policy === null) {
-  return "";
-}
-
-const groups = policy.roles
-  .filter((role) => role.name === "community")
-  .map((role) => {
-    const group = role.kind.Group;
-
-    return group;
-  });
-
-const check = groups.map((group) => {
-  return !group
-    ? false
-    : group.filter((address) => address === accountId).length > 0;
-})?.[0];
-
-const followData = Social.keys(
-  `${daoId}/graph/follow/${context.accountId}`,
-  undefined,
-  {
-    values_only: true,
-  }
-);
-
-const isFollowing = Object.keys(followEdge || {}).length > 0;
-
-const handleJoin = () => {
-  const gas = 200000000000000;
-  const deposit = 100000000000000000000000;
-  Near.call([
-    {
-      contractName: daoId,
-      methodName: "add_proposal",
-      args: {
-        proposal: {
-          description: "potential member",
-          kind: {
-            AddMemberToRole: {
-              member_id: accountId,
-              role: role,
-            },
-          },
-        },
-      },
-      gas: gas,
-      deposit: deposit,
-    },
-  ]);
-};
 
 const Wrapper = styled.div`
   --section-gap: 23px;
@@ -196,36 +128,18 @@ return (
             communities.
           </Text>
         </div>
+        <Widget src="nycdao.near/widget/dao.cta" props={{ accountId, daoId }} />
       </Flex>
-      <Text
-        size="18px"
-        weight="600"
-        style={{ textTransform: "uppercase", letterSpacing: "0.17em" }}
-      >
-        Create a New Adventure
-      </Text>
-      {isFollowing ? (
-        <div>
-          <Widget
-            src="mob.near/widget/FollowButton"
-            props={{ accountId: "liberty.sputnik-dao.near" }}
-          />
-        </div>
-      ) : (
-        <div className="m-2">
-          <button className="btn btn-success" onClick={handleJoin}>
-            Join Community
-          </button>
-        </div>
-      )}
-      <br />
     </Container>
-    {!nftHolder && (
-      <Widget
-        src="hack.near/widget/dev.org"
-        props={{ accountId: "liberty.sputnik-dao.near", daoId }}
-      />
+    {isNftHolder && (
+      <div className="m-2 mb-5">
+        <h5 className="mb-3">Non-Fungible Things</h5>
+        <Widget src="near/widget/NFTCollection" props={{ accountId }} />
+      </div>
     )}
+    <div className="m-2">
+      <Widget src="nycdao.near/widget/nyc.people" />
+    </div>
     <hr />
     <br />
     <Flex>
