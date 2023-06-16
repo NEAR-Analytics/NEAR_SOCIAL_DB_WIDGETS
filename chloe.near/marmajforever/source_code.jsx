@@ -62,6 +62,8 @@ function initGameState() {
     totalLove: 0,
     claimLoveCounter: 0,
     gameStarted: false,
+    startingBlockHeight: 0, // Add startingBlockHeight property
+    highScore: 0, // Add highScore property
   };
 }
 
@@ -73,8 +75,9 @@ function startGame() {
     if (res.ok) {
       const blockHeight = data.sync_info.latest_block_height;
       State.update({
-        ...initGameState(), // Reset game state
-        blockHeight: blockHeight, // Set initial block height
+        ...initGameState(),
+        blockHeight: blockHeight,
+        startingBlockHeight: blockHeight, // Set starting block height
         gameStarted: true,
       });
     } else {
@@ -117,6 +120,17 @@ function claimLove() {
   });
 }
 
+function newGame() {
+  const score = calculateScore(); // Calculate the current score
+  const previousHighScore = state.highScore || 0; // Retrieve the previous high score from state
+
+  // Update the game state and include the high score
+  State.update({
+    ...initGameState(),
+    highScore: Math.max(score, previousHighScore), // Save the higher score between the current and previous high scores
+  });
+}
+
 function spreadLove() {
   const love = state.totalLove; // Use totalLove to spread love
   let bossHP = state.bossHP;
@@ -155,18 +169,30 @@ function boostLove() {
   });
 }
 
-function newGame() {
-  State.update(initGameState()); // Reset the game state
+function calculateScore() {
+  if (state.gameStarted) {
+    const { bossLevel, startingBlockHeight, blockHeight } = state;
+    const blockDifference = blockHeight - startingBlockHeight;
+    if (blockDifference <= 0) {
+      return 0; // Return 0 if no or negative block difference
+    }
+    const previousScore = state.score || 0; // Retrieve the previous score from state
+    const score = previousScore + bossLevel * blockDifference;
+    return Math.max(score, 0); // Return the score or 0 (whichever is higher)
+  } else {
+    return 0; // Return 0 if the game hasn't started yet
+  }
 }
 
 return (
   <GameContainer>
     <Title>Marma J Forever!</Title>
     {!state.gameStarted && (
-      <>
+      <div>
         <Info>Player ID: {accountId}</Info> {/* Display Player ID */}
+        <div>High Score: {state.highScore}</div> {/* Display High Score */}
         <GameButton onClick={startGame}>Start Game</GameButton>
-      </>
+      </div>
     )}
     {state.gameStarted && (
       <div>
@@ -219,6 +245,8 @@ return (
           </ol>
         </RulesContainer>
         <GameButton onClick={newGame}>New Game</GameButton>
+        <div>Current Score: {calculateScore()}</div>{" "}
+        {/* Display Current Score */}
       </div>
     )}
   </GameContainer>
