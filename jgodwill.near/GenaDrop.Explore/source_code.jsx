@@ -1,10 +1,13 @@
 const ownerId = "minorityprogrammers.near"; // attribution
+let accountId = context.accountId;
 initState({
   inputCollectionSlug: "genadrop-contract.nftgen.near" || "nft.genadrop.near",
   collectionSlug: "genadrop-contract.nftgen.near" || "nft.genadrop.near",
   collectionData: {},
   searchTerm: "",
   nftData: [],
+  singleNftProps: {},
+  isNFTButtonClicked: false,
   filteredNFTData: [],
 });
 const fetchData = () => {
@@ -41,9 +44,7 @@ const fetchData = () => {
           staked
           staked_owner
         }
-        nft_state_lists(
-          where: {listed: {_eq: true}}
-          limit: 1
+        nft_state_lists( limit: 1
           order_by: {list_contract: {name: desc}}
         ) {
           list_price
@@ -80,7 +81,6 @@ const fetchData = () => {
       }
     });
 
-    console.log(collectionData, nftData);
     State.update({ collectionData, nftData });
   }
 };
@@ -113,7 +113,6 @@ const getRarityColor = (rarity) => {
 
 const seachInputHandler = (e) => {
   const value = e.target.value.toLowerCase();
-  console.log(value);
   const searched = state.nftData.filter((nft) =>
     nft.name.toLowerCase().includes(value)
   );
@@ -165,7 +164,7 @@ const NFTCard = styled.div`
    &:hover &>div>img{
      transform:scale(1.05);
    }
-   button{
+   .button{
    padding: .75em 2em;
    border-radius: .7em;
    color: var(--main-color);
@@ -181,6 +180,13 @@ const NFTCard = styled.div`
   @media screen and (max-width: 540px){ 
     padding: .5em 2em;    
     }
+    }
+    .button.inactive{
+      border: 1px solid transparent;
+      background: #c4c4c4;
+      color: #fff;
+      padding: .5em 1em;
+      cursor:not-allowed;
     }
   `;
 
@@ -272,8 +278,17 @@ const PriceArea = styled.div`
   margin: 0px;
   }
 `;
+const HandleViewNft = (nft) => {
+  State.update({ singleNftProps: nft, isNFTButtonClicked: true });
+  console.log(nft);
+};
 
-return (
+console.log(state.nftData);
+return state.isNFTButtonClicked ? (
+  <>
+    <Widget src="agwaze.near/widget/GenaDrop.NFTDetails" props={state} />
+  </>
+) : (
   <>
     <Hero className="w-100">
       <PageTitle>
@@ -296,11 +311,11 @@ return (
             <a
               // href={`https://www.tradeport.xyz/near/collection/${state.collectionData.slug}/${nft.token_id}`}
               // target="_blank"
-              href={`#/mob.near/widget/MyPage?accountId=${nft.nft_state.owner}`}
+              //   href={`https://bos.genadrop.io/#/mob.near/widget/MyPage?accountId=${nft.nft_state.owner}`}
               // rel="noopener noreferrer"
               style={{ textDecoration: "none", color: "inherit" }}
             >
-              <NFTCard classNmae="card">
+              <NFTCard className="card">
                 <ImageCard>
                   <img
                     src={nft.image}
@@ -376,23 +391,42 @@ return (
                       <div style={{ color: "#a4a9b6", fontSize: "1.1rem" }}>
                         Price
                       </div>
-                      {nft.nft_state_lists && nft.nft_state_lists[0] && (
+                      {nft.nft_state_lists && (
                         <PriceArea>
                           <h6>
-                            {`${(
-                              nft.nft_state_lists[0].list_price /
-                              1000000000000000000000000
+                            {`${(nft.nft_state_lists[0].list_price
+                              ? nft.nft_state_lists[0].list_price /
+                                1000000000000000000000000
+                              : 0
                             ).toFixed(2)}N`}
                           </h6>
-                          <span>{` ($${(
-                            (nft.nft_state_lists[0].list_price /
-                              1000000000000000000000000) *
-                            1.56
-                          ).toFixed(2)})`}</span>
+                          <span>
+                            {`($${(nft.nft_state_lists[0].list_price
+                              ? (nft.nft_state_lists[0].list_price /
+                                  1000000000000000000000000) *
+                                1.56
+                              : 0
+                            ).toFixed(2)})`}
+                          </span>
                         </PriceArea>
                       )}
                     </div>
-                    <button>Buy Now </button>
+                    {nft.nft_state.owner === accountId ? (
+                      !nft.nft_state_lists[0].listed && (
+                        //Add logic from
+                        <button className="button active">List</button>
+                      )
+                    ) : !nft.nft_state_lists[0].listed ? (
+                      //Add logic from
+                      <button className="button inactive">Not Listed</button>
+                    ) : (
+                      <button
+                        onClick={() => HandleViewNft(nft)}
+                        className="button active"
+                      >
+                        Buy Now{" "}
+                      </button>
+                    )}
                   </div>
                 </NFTCardText>
               </NFTCard>
@@ -403,7 +437,7 @@ return (
             <a
               // href={`https://www.tradeport.xyz/near/collection/${state.collectionData.slug}/${nft.token_id}`}
               // target="_blank"
-              href={`#/mob.near/widget/MyPage?accountId=${nft.nft_state.owner}`}
+              href={`https://bos.genadrop.io/#/mob.near/widget/MyPage?accountId=${nft.nft_state.owner}`}
               // rel="noopener noreferrer"
               style={{ textDecoration: "none", color: "inherit" }}
             >
@@ -499,7 +533,7 @@ return (
                         </PriceArea>
                       )}
                     </div>
-                    <button>Buy Now </button>
+                    <button onClick={() => HandleViewNft(nft)}>Buy Now </button>
                   </div>
                 </NFTCardText>
               </NFTCard>
