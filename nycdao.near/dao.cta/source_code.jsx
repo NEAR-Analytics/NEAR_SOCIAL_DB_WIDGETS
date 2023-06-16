@@ -189,7 +189,7 @@ return (
             <Widget
               src="nycdao.near/widget/nyc.join"
               props={{
-                accountId,
+                accountId: daoId,
               }}
             />
           </FlexContainer>
