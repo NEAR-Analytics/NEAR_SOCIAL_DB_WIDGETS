@@ -129,7 +129,7 @@ return (
     <hr />
     {context.accountId && (
       <Answer>
-        <H2>Join the Discussion</H2>
+        <H2>Leave a commment</H2>
         <div class="px-2">
           <Widget
             src="minorityprogrammers.near/widget/canny.comment.edit"
