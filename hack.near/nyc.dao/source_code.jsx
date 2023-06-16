@@ -79,6 +79,11 @@ const Text = styled.p`
   font-weight: ${(p) => p.weight ?? "400"};
   color: ${(p) => p.color ?? "#000"};
   margin: 0;
+  max-width: 670px;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
 `;
 
 const Flex = styled.div`
@@ -88,10 +93,10 @@ const Flex = styled.div`
   flex-direction: column;
   flex-wrap: "nowrap";
 
-    @media (max-width: 998px) {
+  @media (max-width: 998px) {
     flex-direction: column;
     gap: var(--section-gap);
-    }
+  }
 `;
 
 const Container = styled.div`
@@ -104,6 +109,10 @@ const Container = styled.div`
   justify-content: center;
   text-align: center;
   padding: var(--section-gap) 24px;
+
+  @media (max-width: 768px) {
+    padding: var(--section-gap) 12px;
+  }
 `;
 
 return (
@@ -123,13 +132,13 @@ return (
           </span>
         </H1>
         <div className="mt-3">
-          <Text style={{ maxWidth: "670px" }}>
+          <Text style={{ maxWidth: "350px" }}>
             New Yorkers building a better future with our local and global
             communities.
           </Text>
         </div>
         {context.accountId && (
-          <div className="m-3">
+          <div className="m-3" style={{ maxWidth: "75%" }}>
             <Widget
               src="near/widget/AccountProfileCard"
               props={{ accountId: daoId }}
