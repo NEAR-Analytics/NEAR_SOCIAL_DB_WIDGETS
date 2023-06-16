@@ -1,19 +1,15 @@
 const accountId = props.accountId ?? context.accountId;
 const daoId = props.daoId ?? "liberty.sputnik-dao.near";
 
-State.init({
-  isNftHolder: false,
-  isFollower: false,
-  isMember: false,
-});
-
 // Check if the user has an NFT
 const nftData = Near.view("mint.sharddog.near", "nft_supply_for_owner", {
   account_id: accountId,
 });
 
+const isNftHolder = false;
+
 if (nftData > 0) {
-  State.update({ isNftHolder: true });
+  isNftHolder = true;
 }
 
 // Get DAO followers
@@ -30,10 +26,11 @@ if (followEdge === null) {
 }
 
 const follow = followEdge && Object.keys(followEdge).length;
+const isFollower = false;
 
 // Check if the user is a follower
 if (follow > 0) {
-  State.update({ isFollower: true });
+  isFollower = true;
 }
 
 // Get DAO policy data
@@ -49,7 +46,6 @@ const groups = policy.roles
 
 // Check if the user is a member of a group
 const isMember = groups.some((group) => group.includes(accountId));
-State.update({ isMember });
 
 // Function call used for membership requests
 const handleJoin = () => {
@@ -125,7 +121,7 @@ const Container = styled.div`
 
 return (
   <Container>
-    {state.isFollower ? (
+    {isFollower ? (
       <Flex>
         <Text
           size="18px"
@@ -135,7 +131,7 @@ return (
           Your Adventure Has Begun
         </Text>
         <FlexContainer>
-          {state.isNftHolder ? (
+          {isNftHolder ? (
             <Widget
               src="near/widget/DIG.Button"
               props={{
