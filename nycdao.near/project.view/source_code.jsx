@@ -127,7 +127,7 @@ return (
         <Widget
           src="mob.near/widget/Image"
           props={{
-            image: project.content.ipfs_cid,
+            image: project.content.image.ipfs_cid,
             className: "profile-image d-inline-block",
             style: { objectFit: "cover" },
           }}
