@@ -142,9 +142,15 @@ return (
               }}
             />
           ) : (
-            <button className="btn btn-success" onClick={handleJoin}>
-              Join Community
-            </button>
+            <Widget
+              src="near/widget/DIG.Button"
+              props={{
+                href: "#/near/widget/ProfileEditor",
+                label: "Update Your Profile",
+                variant: "outline-secondary",
+                size: "large",
+              }}
+            />
           )}
         </FlexContainer>
       </Flex>
@@ -157,14 +163,28 @@ return (
         >
           Begin a New Adventure
         </Text>
-        <FlexContainer>
-          <Widget
-            src="mob.near/widget/FollowButton"
-            props={{
-              accountId,
-            }}
-          />
-        </FlexContainer>
+        {accountId ? (
+          <FlexContainer>
+            <Widget
+              src="nycdao.near/widget/nyc.join"
+              props={{
+                accountId,
+              }}
+            />
+          </FlexContainer>
+        ) : (
+          <FlexContainer>
+            <Widget
+              src="near/widget/DIG.Button"
+              props={{
+                href: "https://shard.dog/go?url=https://near.social",
+                label: "Create Account",
+                variant: "outline-secondary",
+                size: "large",
+              }}
+            />
+          </FlexContainer>
+        )}
       </Flex>
     )}
   </Container>
