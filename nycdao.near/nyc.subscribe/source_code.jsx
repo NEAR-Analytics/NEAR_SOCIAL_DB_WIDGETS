@@ -1,7 +1,8 @@
+const accountId = props.accountId ?? context.accountId;
 const daoId = props.daoId ?? "liberty.sputnik-dao.near";
 
 const followEdge = Social.keys(
-  `${context.accountId}/graph/follow/${daoId}`,
+  `${accountId}/graph/follow/${daoId}`,
   undefined,
   {
     values_only: true,
@@ -9,7 +10,7 @@ const followEdge = Social.keys(
 );
 
 const inverseEdge = Social.keys(
-  `${daoId}/graph/follow/${context.accountId}`,
+  `${daoId}/graph/follow/${accountId}`,
   undefined,
   {
     values_only: true,
