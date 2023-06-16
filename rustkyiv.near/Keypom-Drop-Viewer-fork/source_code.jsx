@@ -158,11 +158,7 @@ if (!state.keys) {
                       <span style={{ fontWeight: "bold", color: "red" }}>
                         Not Used
                       </span>
-                    ) : key.cur_key_use -
-                        key.remaining_uses -
-                        1 -
-                        key.remaining_uses >
-                      0 ? (
+                    ) : key.cur_key_use > 0 ? (
                       <span style={{ fontWeight: "bold", color: "orange" }}>
                         Partly Used
                       </span>
