@@ -60,7 +60,6 @@ return (
     <br />
     <hr />
     <h3>Voter Profiles</h3>
-    <h5 className="m-3">{filteredHumans.length} Total</h5>
     <h5 className="m-3">{allHumanAccounts.length} Total</h5>
     <div className="m-3">{allHumanAccounts}</div>
   </>
