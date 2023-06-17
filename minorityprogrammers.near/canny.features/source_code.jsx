@@ -1,7 +1,7 @@
 const admins = props.admins;
 const daoId = props.daoId;
 const labelFilter = props.labelFilter; // pass in label // maybe add default to make it everything
-
+// check is questions.labels // an array contains the labelFilter
 const index = {
   action: "question",
   key: "minorityprogrammers",
@@ -14,6 +14,16 @@ const index = {
 // maybe check if labelFilter is not null
 if (!labelFilter && labelFilter.length > 0) {
   // maybe overwrite the index
+  index = {
+    action: "question",
+    key: "minorityprogrammers",
+    options: {
+      limit: 30,
+      order: "desc",
+      accountId: props.accounts,
+      labels: labelFilter, // may need to do an include tag
+    },
+  };
 }
 
 const renderItem = (a) => {
