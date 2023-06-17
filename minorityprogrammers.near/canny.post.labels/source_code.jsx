@@ -4,7 +4,7 @@ return props.labels ? (
       const labelRoute =
         "#/minorityprogrammers.near/widget/canny.main" +
         "?labelFilter=" +
-        { label };
+        label;
       return (
         <a href={labelRoute}>
           <span class="badge p-0 pe-2 text-primary">{label}</span>
