@@ -1,15 +1,20 @@
 const admins = props.admins;
 const daoId = props.daoId;
+const labelFilter = props.labelFilter; // pass in label // maybe add default to make it everything
 
 const index = {
   action: "question",
   key: "minorityprogrammers",
   options: {
-    limit: 10,
+    limit: 30,
     order: "desc",
     accountId: props.accounts,
   },
 };
+// maybe check if labelFilter is not null
+if (!labelFilter && labelFilter.length > 0) {
+  // maybe overwrite the index
+}
 
 const renderItem = (a) => {
   if (a.value.type !== "md") {
