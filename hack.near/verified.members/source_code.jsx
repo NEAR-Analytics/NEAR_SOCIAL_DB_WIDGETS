@@ -43,6 +43,7 @@ return (
     <hr />
     <div>
       <h3>Voter Profiles</h3>
+      <h5>{group[0].length} Total Members</h5>
       <div>
         {group.map((members, i) => (
           <div key={i}>
