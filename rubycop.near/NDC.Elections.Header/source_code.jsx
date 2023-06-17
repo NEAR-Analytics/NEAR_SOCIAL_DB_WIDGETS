@@ -28,7 +28,7 @@ const timer = setInterval(() => {
         Time remaining in <br /> current {type}
       </>
     );
-  else title = <>{type} is ended;</>;
+  else title = <>{type} is ended</>;
 
   const diff = new Date(parseInt(end)).getTime() - new Date().getTime();
 
