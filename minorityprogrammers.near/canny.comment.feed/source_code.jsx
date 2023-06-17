@@ -37,7 +37,7 @@ return (
         index,
         renderItem,
         nextLimit: 10,
-        loadMoreText: "See more answers",
+        loadMoreText: "See more comments",
         nested,
       }}
     />
