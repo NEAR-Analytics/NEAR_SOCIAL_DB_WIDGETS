@@ -1,40 +1,22 @@
+const accountId = props.accountId ?? context.accountId;
+
 const data = Social.keys("*/profile", "final");
 
 if (!data) {
   return "Loading...";
 }
 
-const accounts = Object.entries(data);
-const allHumanAccounts = [];
+const daoId = props.daoId ?? "rc-dao.sputnik-dao.near";
+const groupId = props.groupId ?? "voter";
+const policy = Near.view(daoId, "get_policy");
 
-for (let i = 0; i < accounts.length; ++i) {
-  const accountId = accounts[i][0];
+const group = policy.roles
+  .filter((role) => role.name === groupId)
+  .map((role) => {
+    const group = role.kind.Group;
 
-  let human = false;
-
-  const userSBTs = Near.view(
-    "registry.i-am-human.near",
-    "sbt_tokens_by_owner",
-    {
-      account: accountId,
-    }
-  );
-
-  for (let j = 0; j < userSBTs.length; j++) {
-    if ("fractal.i-am-human.near" === userSBTs[j][0]) {
-      human = true;
-      break;
-    }
-  }
-
-  if (human) {
-    allHumanAccounts.push(
-      <div className="mb-2" key={accountId}>
-        <Widget src="near/widget/AccountProfileCard" props={{ accountId }} />
-      </div>
-    );
-  }
-}
+    return group;
+  });
 
 const Container = styled.div`
   display: flex;
@@ -54,13 +36,26 @@ const Container = styled.div`
 return (
   <>
     <Container>
-      <Widget src="hack.near/widget/HumansOnNearMeter" />
-      <Widget src="hack.near/widget/GetVerified" />
+      <Widget src="hack.near/widget/Guide" />
+      <Widget src="hack.near/widget/progress.members" />
     </Container>
     <br />
     <hr />
-    <h3>Voter Profiles</h3>
-    <h5 className="m-3">{allHumanAccounts.length} Total</h5>
-    <div className="m-3">{allHumanAccounts}</div>
+    <div>
+      <h3>{groupId} profiles</h3>
+      <div>
+        {group.map((members, i) => (
+          <div key={i}>
+            {members.map((member, j) => (
+              <Widget
+                key={j}
+                src="near/widget/AccountProfileCard"
+                props={{ accountId: member }}
+              />
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
   </>
 );
