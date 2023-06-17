@@ -2,7 +2,9 @@ return props.labels ? (
   <div class="card-title">
     {props.labels.map((label) => {
       const labelRoute =
-        "#/minorityprogrammers.near/widget/canny.main" + "?label=" + { label };
+        "#/minorityprogrammers.near/widget/canny.main" +
+        "?labelFilter=" +
+        { label };
       return (
         <a href={labelRoute}>
           <span class="badge p-0 pe-2 text-primary">{label}</span>
