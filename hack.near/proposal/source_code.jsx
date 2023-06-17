@@ -2,19 +2,15 @@ const daoId = props.daoId ?? "rc-dao.sputnik-dao.near";
 const proposalId = props.proposalId;
 
 // if proposal is not provided and proposalId and daoId are provided then fetch proposal
-if (!proposal && proposalId && daoId) {
-  let new_proposal = Near.view(daoId, "get_proposal", {
-    id: Number(proposalId),
-  });
-  if (new_proposal) {
-    proposal = new_proposal;
-  } else if (new_proposal === null) {
-    return "Loading...";
-  } else {
-    return "Proposal not found, check console for details.";
-  }
-} else if (!proposal) {
-  return "Please provide a proposal or proposalId.";
+let new_proposal = Near.view(daoId, "get_proposal", {
+  id: Number(proposalId),
+});
+if (new_proposal) {
+  proposal = new_proposal;
+} else if (new_proposal === null) {
+  return "Loading...";
+} else {
+  return "Proposal not found, check console for details.";
 }
 
 proposal.type =
