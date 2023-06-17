@@ -10,6 +10,10 @@ const daoId = props.daoId ?? "rc-dao.sputnik-dao.near";
 const groupId = props.groupId ?? "voter";
 const policy = Near.view(daoId, "get_policy");
 
+if (!policy) {
+  return "Loading...";
+}
+
 const group = policy.roles
   .filter((role) => role.name === groupId)
   .map((role) => {
