@@ -42,7 +42,7 @@ return (
     <br />
     <hr />
     <div>
-      <h3>{groupId} profiles</h3>
+      <h3>Voter Profiles</h3>
       <div>
         {group.map((members, i) => (
           <div key={i}>
