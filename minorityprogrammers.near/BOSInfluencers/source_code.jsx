@@ -8,14 +8,28 @@ const limit = 100;
 
 for (let i = 0; i < accounts.length; ++i) {
   let accountId = accounts[i][0];
+  let widgets = Social.get(`${accountId}/widget/*`, "final", {
+    return_type: "BlockHeight",
+    values_only: true,
+  });
+  let widgetCount = 0;
+  if (widgets) {
+    widgetCount = Object.keys(widgets).length;
+  }
+  //   accountFollowerCount.push({
+  //     widgCount: widgetCount,
+  //   });
+  // add widgets here // need to add widgets to same array
   let subscribers = Social.keys(`*/graph/follow/${accountId}`, "final", {
     return_type: "BlockHeight",
     values_only: true,
   });
+
   if (subscribers) {
     accountFollowerCount.push({
       accountId: accountId,
       count: Object.keys(subscribers).length,
+      widgCount: widgetCount,
     });
   }
 }
@@ -58,6 +72,16 @@ return (
                 }}
               >
                 {rank.count}
+              </span>
+            </div>
+            <div>
+              Components:{" "}
+              <span
+                style={{
+                  fontWeight: "bold",
+                }}
+              >
+                {rank.widgCount}
               </span>
             </div>
           </div>
