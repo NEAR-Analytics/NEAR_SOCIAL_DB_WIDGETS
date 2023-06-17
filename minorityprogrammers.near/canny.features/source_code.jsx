@@ -1,6 +1,8 @@
 const admins = props.admins;
 const daoId = props.daoId;
-const labelFilter = props.labelFilter; // pass in label // maybe add default to make it everything
+const labelFilter = props.labelFilter; // pass in label
+// const labelFilter = "VM";  // just to error check
+// maybe add default to make it everything
 // check is questions.labels // an array contains the labelFilter
 const index = {
   action: "question",
@@ -9,9 +11,13 @@ const index = {
     limit: 30,
     order: "desc",
     accountId: props.accounts,
+    // labels: labels.include(labelFilter), // debug
   },
 };
 // maybe check if labelFilter is not null
+console.log(
+  "Label filter: " + !labelFilter + "labelFilter.length: " + labelFilter.length
+); // to debug
 if (!labelFilter && labelFilter.length > 0) {
   // maybe overwrite the index
   index = {
