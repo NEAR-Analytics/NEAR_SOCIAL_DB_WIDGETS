@@ -20,6 +20,11 @@ const predefinedLabels = [
   "Timeline",
   "Dev-tooling",
   "Multichain",
+  "NEAR-Social",
+  "NEAR-Org",
+  "NEARPad",
+  "Genadrop",
+  "UI-UX",
   "",
 ];
 
