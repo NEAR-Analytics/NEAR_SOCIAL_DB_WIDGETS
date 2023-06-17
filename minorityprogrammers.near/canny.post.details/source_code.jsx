@@ -98,7 +98,7 @@ return (
           &nbsp;in&nbsp;
           <TopicName>
             <Widget
-              src="minorityprogrammers.near/widget/canny.post.label"
+              src="minorityprogrammers.near/widget/canny.post.labels"
               props={{ labels: question.labels }}
             />
           </TopicName>
