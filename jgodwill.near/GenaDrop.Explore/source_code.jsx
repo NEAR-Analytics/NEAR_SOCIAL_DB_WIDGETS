@@ -421,7 +421,7 @@ return (
                       <button className="button inactive">Not Listed</button>
                     ) : (
                       <button
-                        onClick={() => HandleViewNft(nft)}
+                        // onClick={() => HandleViewNft(nft)}
                         className="button active"
                       >
                         Buy Now{" "}
@@ -547,7 +547,7 @@ return (
                       <button className="button inactive">Not Listed</button>
                     ) : (
                       <button
-                        onClick={() => HandleViewNft(nft)}
+                        // onClick={() => HandleViewNft(nft)}
                         className="button active"
                       >
                         Buy Now{" "}
