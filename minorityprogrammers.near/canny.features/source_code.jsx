@@ -18,7 +18,7 @@ const index = {
 console.log(
   "Label filter: " + !labelFilter + "labelFilter.length: " + labelFilter.length
 ); // to debug
-if (!labelFilter && labelFilter.length > 0) {
+if (labelFilter.length > 0) {
   // maybe overwrite the index
   index = {
     action: "question",
