@@ -8,28 +8,6 @@ const toggleQuestion = () => {
   State.update({ askQuestion: !state.askQuestion });
 };
 
-const daoId = "build.sputnik-dao.near";
-const policy = Near.view(daoId, "get_policy", {});
-
-if (policy === null) {
-  return "";
-}
-
-const groups = policy.roles
-  .filter((role) => role.kind.Group)
-  .map((role) => ({
-    name: role.name,
-    members: role.kind.Group,
-  }));
-
-const admins = policy.roles
-  .filter((role) => role.name === "council")
-  .map((role) => {
-    const group = role.kind.Group;
-
-    return group;
-  }); // take this out
-
 // const sortByCategories = ["Newest", "Popular"];
 // const filterByTopic = ["one", "two", "three"];
 
