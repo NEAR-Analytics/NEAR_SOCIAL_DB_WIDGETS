@@ -114,7 +114,7 @@ return (
     <div class="row">
       <div class="col-md-3">
         <Widget
-          src={`${ownerId}/widget/CommonComponentsLibrary.Navbar`}
+          src="hack.near/widget/CommonComponentsLibrary.Navbar"
           props={{
             tab: state.tab,
             onSelect,
