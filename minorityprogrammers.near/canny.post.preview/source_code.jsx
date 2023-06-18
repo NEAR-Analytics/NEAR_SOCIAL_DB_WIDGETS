@@ -200,7 +200,7 @@ return (
         <div class="col">
           <Widget
             src="minorityprogrammers.near/widget/canny.comment.repliesButton"
-            props={{ accountId, blockHeight, adminContract }}
+            props={{ accountId, blockHeight, adminContract, link }}
           />
         </div>
       </div>
