@@ -31,8 +31,8 @@ return (
     {proposals.map((proposal, i) => (
       <div key={proposal.id} className="mb-3">
         <Widget
-          src="hack.near/widget/dao.proposal"
-          props={{ daoId, proposal, policy }}
+          src="hack.near/widget/profile.human"
+          props={{ accountId: proposal.proposer, daoId }}
         />
       </div>
     ))}
