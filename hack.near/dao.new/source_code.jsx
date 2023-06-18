@@ -27,11 +27,11 @@ if (lastProposalId) {
 
 return (
   <div className="mt-3">
-    <h5>Recent Proposals</h5>
+    <h5>Most Recent Proposal</h5>
     {proposals.map((proposal, i) => (
       <div key={proposal.id} className="mb-3">
         <Widget
-          src="mob.near/widget/DAO.Proposal"
+          src="hack.near/widget/dao.proposal"
           props={{ daoId, proposal, policy }}
         />
       </div>
