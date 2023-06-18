@@ -121,7 +121,7 @@ return (
       />
     </div>
     <div className="p-1 m-1">
-      <h5>Library ID</h5>
+      <h5>Name</h5>
       <input
         placeholder="dev"
         type="text"
@@ -168,7 +168,24 @@ return (
     </div>
 
     <div className="p-1 m-1">
-      <h5>Example</h5>
+      <h5>Example JSON</h5>
+      <div className="p-1 m-1">
+        <Widget
+          src="near/widget/DIG.Button"
+          props={{
+            href: "#/manzanal.near/widget/CommonComponentsLibrary",
+            label: "Template",
+            variant: "outline-secondary",
+            size: "small",
+          }}
+        />
+      </div>
+      <div className="p-1 m-1">
+        <Widget
+          src="miraclx.near/widget/Attribution"
+          props={{ authors: ["manzanal.near"], dep: true }}
+        />
+      </div>
       {library}
     </div>
   </div>
