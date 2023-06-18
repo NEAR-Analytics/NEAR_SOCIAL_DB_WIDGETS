@@ -179,7 +179,7 @@ return (
                     {accountId}
                   </a>
                 </Trancate>{" "}
-                // hyperlink name &nbsp;in&nbsp;
+                &nbsp;in&nbsp;
                 <TopicName>
                   <Widget
                     src="minorityprogrammers.near/widget/canny.post.labels"
