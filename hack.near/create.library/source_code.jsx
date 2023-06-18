@@ -115,7 +115,7 @@ return (
     </div>
     {validDao && (
       <>
-        <div className="d-flex p-1 m-1 flex-row">
+        <div className="p-1 m-1">
           <Widget
             src="near/widget/AccountProfileCard"
             props={{ accountId: state.daoId }}
