@@ -94,7 +94,9 @@ return (
       <H1>{question.title}</H1>
       <H6>
         <div class="d-flex">
-          <Trancate>{accountId}</Trancate>
+          <a href={`#/near/widget/ProfilePage?accountId=${accountId}`}>
+            <Trancate>{accountId}</Trancate>
+          </a>
           &nbsp;in&nbsp;
           <TopicName>
             <Widget
