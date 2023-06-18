@@ -11,10 +11,9 @@ let domain = ".near";
 State.init({
   accountId: accountId ?? "",
   daoId: daoId ?? "",
-  data: props.data ?? "",
+  libraryId: state.libraryId ?? "",
+  data: state.data ?? "",
   isDao: false,
-  isAccount: false,
-  isAddress: false,
 });
 
 const checkDao = (daoId) => {
@@ -23,21 +22,7 @@ const checkDao = (daoId) => {
   }
 };
 
-const checkOrgAccount = (daoId) => {
-  if (daoId.indexOf(domain) !== -1) {
-    return State.update({ isAddress: true });
-  }
-};
-
-const checkAccount = (accountId) => {
-  if (accountId.indexOf(domain) !== -1) {
-    return State.update({ isAccount: true });
-  }
-};
-
 const validDao = checkDao(state.daoId);
-const validAccount = checkAccount(state.accountId);
-const validOrgAccount = checkOrgAccount(state.daoId);
 
 const curation_args = state.data;
 
@@ -72,23 +57,29 @@ const handleProposal = () => {
   ]);
 };
 
-const handleGrant = () => {
-  Near.call([
-    {
-      contractName: "social.near",
-      methodName: "grant_write_permission",
-      args: {
-        predecessor_id: state.accountId,
-        keys: [state.daoId],
+const handleCreate = () =>
+  Social.set({
+    widget: {
+      [`${state.libraryId}.library`]: {
+        "": `const accountId = props.accountId ?? context.accountId; const library = ${state.data}; return (<Widget src="hack.near/widget/dev.library" props={{ data: library }} />);`,
+        metadata: {
+          tags: {
+            build: "",
+          },
+        },
       },
-      deposit: "1",
     },
-  ]);
-};
+  });
 
 const onChangeDao = (daoId) => {
   State.update({
     daoId,
+  });
+};
+
+const onChangeLibrary = (libraryId) => {
+  State.update({
+    libraryId,
   });
 };
 
@@ -100,23 +91,14 @@ const onChangeData = (data) => {
 
 return (
   <div className="d-flex flex-column">
-    <div className="d-flex p-1 m-1 flex-row">
-      <Widget
-        src="mob.near/widget/ProfileImage"
-        props={{ accountId: state.daoId }}
-      />
-      <h1 className="px-2">Settings</h1>
-    </div>
     <div className="p-1 m-1">
-      <p>{proposal_args}</p>
-
       <div>
         <h2>
           <b>Organization Account:</b>
         </h2>
-        {!validOrgAccount ? (
+        {!validDao ? (
           <p>
-            ↳ must be a valid NEAR account ~ <i>example.near</i>
+            ↳ must be a valid DAO account ~ <i>example.sputnik-dao.near</i>
           </p>
         ) : (
           <div>
@@ -131,32 +113,61 @@ return (
         ></input>
       </div>
     </div>
-    {validOrgAccount && (
-      <div className="p-1 m-1">
-        <h3>Propose Update:</h3>
-        <div className="w-100 d-flex gap-2">
-          <div>
-            {validDao && (
-              <div>
-                <p>↳ propose to update our components library</p>
-              </div>
-            )}
-          </div>
+    {validDao && (
+      <>
+        <div className="d-flex p-1 m-1 flex-row">
+          <Widget
+            src="near/widget/AccountProfileCard"
+            props={{ accountId: state.daoId }}
+          />
         </div>
-        <div className="w-100 d-flex gap-2">
+        <div className="p-1 m-1">
+          <h5>Library ID</h5>
           <input
-            placeholder="JSON goes here"
+            placeholder="dev"
             type="text"
-            value={state.data}
-            onChange={(e) => onChangeData(e.target.value)}
+            value={state.libraryId}
+            onChange={(e) => onChangeLibrary(e.target.value)}
           ></input>
-          <div>
-            <button disabled={!validDao} onClick={handleProposal}>
-              Submit
-            </button>
+        </div>
+        <div className="p-1 m-1">
+          <h5>Propose Update</h5>
+          <div className="w-100 d-flex gap-2">
+            <div>
+              {validDao && (
+                <div>
+                  <p>↳ propose to update our components library</p>
+                </div>
+              )}
+            </div>
+          </div>
+          <div className="w-100 d-flex gap-2">
+            <input
+              placeholder="JSON goes here"
+              type="text"
+              value={state.data}
+              onChange={(e) => onChangeData(e.target.value)}
+            ></input>
+            <div>
+              <button
+                disabled={!validDao || !state.name}
+                onClick={handleProposal}
+              >
+                Submit
+              </button>
+            </div>
+            <div>
+              <button
+                disabled={!validDao || !state.name}
+                onClick={handleCreate}
+                className="btn btn-outline-success"
+              >
+                Create
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      </>
     )}
   </div>
 );
