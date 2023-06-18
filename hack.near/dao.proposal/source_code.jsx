@@ -10,11 +10,6 @@ const bgClassname =
 return (
   <div className={`border p-2 ${bgClassname}`}>
     <div className="mb-2">
-      <div className="float-end">
-        {new Date(parseFloat(proposal.submission_time) / 1e6).toLocaleString()}
-      </div>
-    </div>
-    <div className="mb-2">
       <div>
         <Widget
           src="hack.near/widget/profile.human"
