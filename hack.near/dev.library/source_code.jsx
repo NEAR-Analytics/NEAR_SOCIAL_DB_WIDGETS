@@ -1,5 +1,9 @@
-const ownerId = "build.sputnik-dao.near";
-const curatedComps = props.data;
+const ownerId = "manzanal.near";
+const accountId = props.accountId ?? context.accountId;
+
+const curatedComps =
+  props.data ?? Social.get(`${accountId}/settings/dev/library`);
+
 const filterTag = props.commonComponentTag ?? "dev";
 const debug = props.debug ?? false;
 
@@ -110,7 +114,7 @@ return (
     <div class="row">
       <div class="col-md-3">
         <Widget
-          src={`manzanal.near/widget/CommonComponentsLibrary.Navbar`}
+          src={`${ownerId}/widget/CommonComponentsLibrary.Navbar`}
           props={{
             tab: state.tab,
             onSelect,
@@ -124,7 +128,7 @@ return (
         <hr className="border-2" />
         <Widget
           src="miraclx.near/widget/Attribution"
-          props={{ authors: ["manzanal.near"], dep: true }}
+          props={{ authors: [ownerId], dep: true }}
         />
       </div>
       <div class="col-md-9">
