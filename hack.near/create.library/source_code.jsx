@@ -150,7 +150,7 @@ return (
             ></input>
             <div>
               <button
-                disabled={!validDao || !state.name}
+                disabled={!validDao || !state.libraryId}
                 onClick={handleProposal}
               >
                 Submit
@@ -158,7 +158,7 @@ return (
             </div>
             <div>
               <button
-                disabled={!validDao || !state.name}
+                disabled={!validDao || !state.libraryId}
                 onClick={handleCreate}
                 className="btn btn-outline-success"
               >
