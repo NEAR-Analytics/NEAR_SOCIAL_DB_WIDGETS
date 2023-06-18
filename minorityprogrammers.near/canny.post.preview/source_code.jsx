@@ -103,13 +103,15 @@ const Item = styled.div`
 return (
   <div class="row">
     <div class="col-1 d-sm-block d-none">
-      <Widget
-        src="dev-support.near/widget/ProfileImage"
-        props={{
-          accountId,
-          imageClassName: "rounded-circle w-100 h-100",
-        }}
-      />
+      <a href={`#/near/widget/ProfilePage?accountId=${accountId}`}>
+        <Widget
+          src="dev-support.near/widget/ProfileImage"
+          props={{
+            accountId,
+            imageClassName: "rounded-circle w-100 h-100",
+          }}
+        />
+      </a>
     </div>
     <div class="col-sm-1 col-2">
       <Widget
