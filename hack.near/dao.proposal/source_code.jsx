@@ -79,28 +79,6 @@ return (
           </div>
         ))}
       </div>
-      {context.accountId && proposal.status === "InProgress" && (
-        <div className="mt-2 d-flex flex-row gap-2">
-          <button
-            className="btn flex-fill btn-success"
-            onClick={() => vote("VoteApprove")}
-          >
-            Approve
-          </button>
-          <button
-            className="btn flex-fill btn-danger"
-            onClick={() => vote("VoteReject")}
-          >
-            Reject
-          </button>
-          <button
-            className="btn flex-fill btn-warning"
-            onClick={() => vote("VoteRemove")}
-          >
-            Spam
-          </button>
-        </div>
-      )}
     </div>
   </div>
 );
