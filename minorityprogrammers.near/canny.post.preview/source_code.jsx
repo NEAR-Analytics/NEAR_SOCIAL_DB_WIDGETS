@@ -174,8 +174,12 @@ return (
           <div class="row">
             <H6>
               <div class="d-flex">
-                <Trancate>{accountId}</Trancate>
-                &nbsp;in&nbsp;
+                <Trancate>
+                  <a href={`#/near/widget/ProfilePage?accountId=${accountId}`}>
+                    {accountId}
+                  </a>
+                </Trancate>{" "}
+                // hyperlink name &nbsp;in&nbsp;
                 <TopicName>
                   <Widget
                     src="minorityprogrammers.near/widget/canny.post.labels"
