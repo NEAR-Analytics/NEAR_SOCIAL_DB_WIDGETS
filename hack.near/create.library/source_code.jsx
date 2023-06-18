@@ -24,7 +24,17 @@ const checkDao = (daoId) => {
 
 const validDao = checkDao(state.daoId);
 
-const curation_args = state.data;
+const curation_args = JSON.stringify({
+  data: {
+    [state.daoId]: {
+      widget: {
+        [`${state.libraryId}.library`]: {
+          "": `const accountId = props.accountId ?? context.accountId; const library = ${state.data}; return (<Widget src="hack.near/widget/dev.library" props={{ data: library }} />);`,
+        },
+      },
+    },
+  },
+});
 
 const proposal_args = Buffer.from(curation_args, "utf-8").toString("base64");
 
