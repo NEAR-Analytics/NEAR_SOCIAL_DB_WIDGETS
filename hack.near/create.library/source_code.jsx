@@ -7,7 +7,7 @@ if (defaultLibrary === null) {
   return "Loading...";
 }
 
-const library = JSON.stringify(defaultLibrary);
+const library = [defaultLibrary];
 
 const policy = Near.view(daoId, "get_policy");
 
