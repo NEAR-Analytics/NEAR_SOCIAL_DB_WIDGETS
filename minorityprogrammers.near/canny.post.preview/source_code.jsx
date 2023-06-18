@@ -199,7 +199,7 @@ return (
       <div class="row">
         <div class="col">
           <Widget
-            src="dev-support.near/widget/DevSupport.Question.Button.Answers"
+            src="minorityprogrammers.near/widget/canny.comment.repliesButton"
             props={{ accountId, blockHeight, adminContract }}
           />
         </div>
