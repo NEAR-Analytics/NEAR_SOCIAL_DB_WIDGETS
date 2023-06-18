@@ -1,6 +1,14 @@
 const accountId = props.accountId ?? context.accountId;
 const daoId = props.daoId ?? "build.sputnik-dao.near";
 
+const defaultLibrary = Social.get("hack.near/settings/dev/library");
+
+if (defaultLibrary === null) {
+  return "Loading...";
+}
+
+const library = JSON.stringify(defaultLibrary);
+
 const policy = Near.view(daoId, "get_policy");
 
 const deposit = policy.proposal_bond;
@@ -102,82 +110,66 @@ const onChangeData = (data) => {
 return (
   <div className="d-flex flex-column">
     <div className="p-1 m-1">
-      <div>
-        <h2>
-          <b>Organization Account:</b>
-        </h2>
-        {!validDao ? (
-          <p>
-            ↳ must be a valid DAO account ~ <i>example.sputnik-dao.near</i>
-          </p>
-        ) : (
-          <div>
-            <p>↳ must have permission to propose function calls</p>
-          </div>
-        )}
+      <h2>
+        <b>Make a Library</b>
+      </h2>
+    </div>
+    <div className="p-1 m-1">
+      <Widget
+        src="near/widget/AccountProfileCard"
+        props={{ accountId: state.daoId }}
+      />
+    </div>
+    <div className="p-1 m-1">
+      <h5>Library ID</h5>
+      <input
+        placeholder="dev"
+        type="text"
+        value={state.libraryId}
+        onChange={(e) => onChangeLibrary(e.target.value)}
+      ></input>
+    </div>
+    <div className="p-1 m-1">
+      <h5>Components</h5>
+      <div className="w-100 d-flex gap-2">
+        <div>
+          {validDao && (
+            <div>
+              <p>↳ propose an update</p>
+            </div>
+          )}
+        </div>
+      </div>
+      <div className="w-100 d-flex gap-2">
         <input
-          placeholder="<example>.sputnik-dao.near"
+          placeholder="JSON goes here"
           type="text"
-          value={state.daoId}
-          onChange={(e) => onChangeDao(e.target.value)}
+          value={state.data}
+          onChange={(e) => onChangeData(e.target.value)}
         ></input>
+        <div>
+          <button
+            disabled={!validDao || !state.libraryId}
+            onClick={handleProposal}
+          >
+            Submit
+          </button>
+        </div>
+        <div>
+          <button
+            disabled={!state.libraryId || !state.data}
+            onClick={handleCreate}
+            className="btn btn-outline-success"
+          >
+            Create
+          </button>
+        </div>
       </div>
     </div>
-    {validDao && (
-      <>
-        <div className="p-1 m-1">
-          <Widget
-            src="near/widget/AccountProfileCard"
-            props={{ accountId: state.daoId }}
-          />
-        </div>
-        <div className="p-1 m-1">
-          <h5>Library ID</h5>
-          <input
-            placeholder="dev"
-            type="text"
-            value={state.libraryId}
-            onChange={(e) => onChangeLibrary(e.target.value)}
-          ></input>
-        </div>
-        <div className="p-1 m-1">
-          <h5>Propose Update</h5>
-          <div className="w-100 d-flex gap-2">
-            <div>
-              {validDao && (
-                <div>
-                  <p>↳ propose to update our components library</p>
-                </div>
-              )}
-            </div>
-          </div>
-          <div className="w-100 d-flex gap-2">
-            <input
-              placeholder="JSON goes here"
-              type="text"
-              value={state.data}
-              onChange={(e) => onChangeData(e.target.value)}
-            ></input>
-            <div>
-              <button
-                disabled={!validDao || !state.libraryId}
-                onClick={handleProposal}
-              >
-                Submit
-              </button>
-            </div>
-            <div>
-              <button
-                disabled={!validDao || !state.libraryId}
-                onClick={handleCreate}
-                className="btn btn-outline-success"
-              >
-                Create
-              </button>
-            </div>
-          </div>
-        </div>
-      </>
-    )}
+
+    <div className="p-1 m-1">
+      <h5>Example</h5>
+      {library}
+    </div>
   </div>
 );
