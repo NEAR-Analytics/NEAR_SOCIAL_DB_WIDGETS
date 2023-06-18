@@ -11,7 +11,7 @@ let domain = ".near";
 State.init({
   accountId: accountId ?? "",
   daoId: daoId ?? "",
-  data,
+  data: props.data ?? "",
   isDao: false,
   isAccount: false,
   isAddress: false,
@@ -39,68 +39,7 @@ const validDao = checkDao(state.daoId);
 const validAccount = checkAccount(state.accountId);
 const validOrgAccount = checkOrgAccount(state.daoId);
 
-const curation_args = [
-  {
-    category: "Buttons",
-    id: "buttons",
-    icon: "bi-egg",
-    components: [
-      { accountId: "mob.near", widgetName: "CopyButton" },
-      { accountId: "mob.near", widgetName: "CommentButton" },
-      { accountId: "rubycop.near", widgetName: "NftVotingButton" },
-      { accountId: "mob.near", widgetName: "LikeButton" },
-      { accountId: "mob.near", widgetName: "LikeButton.Faces" },
-      { accountId: "mob.near", widgetName: "FollowButton" },
-      { accountId: "mob.near", widgetName: "NotificationButton" },
-      { accountId: "mob.near", widgetName: "PokeButton" },
-      { accountId: "peechz.near", widgetName: "TwitterFollowButton" },
-    ],
-  },
-  {
-    category: "Search",
-    icon: "bi-search",
-    id: "search",
-    components: [
-      { accountId: "mob.near", widgetName: "ComponentSearch" },
-      { accountId: "mob.near", widgetName: "ComponentSearch.Item" },
-      { accountId: "manzanal.near", widgetName: "SerchComponent" },
-    ],
-  },
-  {
-    category: "Time and Date",
-    id: "time",
-    icon: "bi-calendar",
-    components: [{ accountId: "mob.near", widgetName: "TimeAgo" }],
-  },
-  {
-    category: "Compose",
-    id: "compose",
-    icon: "bi-envelope-paper",
-    components: [{ accountId: "mob.near", widgetName: "Common.Compose" }],
-  },
-  {
-    category: "Markdown",
-    id: "markdown",
-    icon: "bi-markdown",
-    components: [{ accountId: "mob.near", widgetName: "MarkdownEditorDemo" }],
-  },
-  {
-    category: "Metadata",
-    id: "metadata",
-    icon: "bi-box-seam",
-    components: [{ accountId: "mob.near", widgetName: "MetadataEditor" }],
-  },
-  {
-    category: "Widget Tools",
-    id: "tools",
-    icon: "bi-tools",
-    components: [
-      { accountId: "mob.near", widgetName: "Explorer" },
-      { accountId: "mob.near", widgetName: "WidgetHistory" },
-      { accountId: "mob.near", widgetName: "WidgetSource" },
-    ],
-  },
-];
+const curation_args = state.data;
 
 const proposal_args = Buffer.from(curation_args, "utf-8").toString("base64");
 
