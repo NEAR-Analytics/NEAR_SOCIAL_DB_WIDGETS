@@ -53,7 +53,7 @@ return (
       <label className="text-muted">Proposer</label>
       <div>
         <Widget
-          src="mob.near/widget/Profile.ShortInlineBlock"
+          src="hack.near/widget/profile.human"
           props={{ accountId: proposal.proposer }}
         />
       </div>
