@@ -12,6 +12,8 @@ if (library === null) {
   return "Loading...";
 }
 
+console.log(library);
+
 return (
   <>
     <CommitButton data={{ settings: { dev: { library: data } } }}>
