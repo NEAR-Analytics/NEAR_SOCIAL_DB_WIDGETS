@@ -62,23 +62,5 @@ return (
       <label className="text-muted">Description</label>
       <div>{proposal.description}</div>
     </div>
-    <div className="mb-2">
-      <label className="text-muted">Votes</label>
-      <div>
-        {Object.entries(proposal.votes).map(([accountId, vote]) => (
-          <div key={accountId} className="mb-1 d-flex flex-row gap-2">
-            <div className="m-auto text-center" style={{ minWidth: "5em" }}>
-              {mapVote(vote)}
-            </div>
-            <div className="flex-grow-1">
-              <Widget
-                src="mob.near/widget/Profile.ShortInlineBlock"
-                props={{ accountId }}
-              />
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
   </div>
 );
