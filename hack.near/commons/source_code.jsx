@@ -16,7 +16,6 @@ const library = [data];
 
 return (
   <>
-    <Widget src="mob.near/widget/ProfileOnboarding" />
     <Widget src="hack.near/widget/dev.library" props={{ data: library }} />
   </>
 );
