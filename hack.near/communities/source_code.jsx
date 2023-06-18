@@ -178,7 +178,7 @@ return (
           />
         )}
 
-        {(!human && (
+        {(human && (
           <div>
             <div className="mb-5">
               <button className="btn btn-outline-success" onClick={handleJoin}>
