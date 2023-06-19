@@ -185,13 +185,8 @@ return (
           <FlexContainer>
             <div className="m-1">
               <Widget
-                src="near/widget/DIG.Button"
-                props={{
-                  href: "https://wallet.near.org/linkdrop/v2.keypom.near/4japszHTmC37t94Ep47d16DfPWx3A83BMExt26iH4YgnjDtHJGwpXokeZQoxuogKCvagzAF4DN2wW8ePZvwKKCyj",
-                  label: "Join Community",
-                  variant: "outline-secondary",
-                  size: "large",
-                }}
+                src="near/widget/AccountProfileCard"
+                props={{ accountId: daoId }}
               />
             </div>
           </FlexContainer>
