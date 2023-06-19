@@ -182,7 +182,7 @@ return (
 
       <FeedWrapper>
         <Widget
-          src="efiz.near/widget/Posts.Feed-Domains-1"
+          src="hack.near/widget/view.posts"
           props={{ accounts, domains: state.choose, hashtags: state.hashtags }}
         />
       </FeedWrapper>
