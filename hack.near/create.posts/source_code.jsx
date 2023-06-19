@@ -480,7 +480,7 @@ return (
         onCommit={onCommit}
         className="commit-post-button"
       >
-        Post
+        publish
       </CommitButton>
     </Actions>
   </Wrapper>
