@@ -69,7 +69,7 @@ const H1 = styled.h1`
 
   span {
     display: inline-block;
-    background: #DC9DFF;
+    background: #6ce89f;
     border-radius: 20px;
     position: relative;
     padding: 0.1em 0.2em 0;
