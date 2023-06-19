@@ -406,7 +406,7 @@ return (
 
         <Textarea data-value={state.text}>
           <textarea
-            placeholder="What's happening?"
+            placeholder="what's happening?"
             onInput={(event) => textareaInputHandler(event.target.value)}
             onKeyUp={(event) => {
               if (event.key === "Escape") {
@@ -421,9 +421,9 @@ return (
               href="https://www.markdownguide.org/basic-syntax/"
               target="_blank"
             >
-              Markdown
+              markdown
             </a>
-            is supported
+            supported
           </TextareaDescription>
         </Textarea>
       </>
@@ -470,7 +470,7 @@ return (
           onChange={(value) => {
             State.update({ choose: value });
           }}
-          placeholder="Domains"
+          placeholder="domains"
         />
       )}
       <CommitButton
