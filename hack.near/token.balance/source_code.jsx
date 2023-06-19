@@ -107,9 +107,8 @@ const sendTokens = () => {
 
 return (
   <>
-    <h3>View ERC-20 Balance</h3>
+    <h5>Get Balance</h5>
     <div class="mb-3">
-      <label for="selectToken">Select token</label>
       <select
         class="form-select"
         id="selectToken"
@@ -136,7 +135,9 @@ return (
         <div class="text-secondary mt-3">Resolved to {state.receiver}</div>
       )}
       {state.receiverBalance != "0" && (
-        <div class="text-secondary mt-3">Balance: {state.receiverBalance}</div>
+        <div class="text-secondary mt-3">
+          Account Balance: {state.receiverBalance}
+        </div>
       )}
 
       {state.senderBalance != "0" && (
