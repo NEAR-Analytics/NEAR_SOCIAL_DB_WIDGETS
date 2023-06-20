@@ -40,8 +40,8 @@ const Container = styled.div`
 return (
   <>
     <Container>
-      <Widget src="hack.near/widget/communities" />
       <Widget src="hack.near/widget/progress.members" />
+      <Widget src="hack.near/widget/communities" />
     </Container>
     <br />
     <hr />
