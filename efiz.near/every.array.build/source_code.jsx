@@ -60,8 +60,10 @@ return (
         <Widget
           src="efiz.near/widget/create"
           props={{
-            type: item.type,
-            value: inputValue,
+            item: {
+              type: item.type,
+              value: inputValue,
+            },
             onChange: (e) => handleInputChange(index, e.target.value),
           }}
         />
@@ -72,8 +74,10 @@ return (
       <Widget
         src="efiz.near/widget/create"
         props={{
-          type: item.type,
-          value: state.newInputValue,
+          item: {
+            type: item.type,
+            value: state.newInputValue,
+          },
           onChange: (e) => State.update({ newInputValue: e.target.value }),
         }}
       />
@@ -87,16 +91,3 @@ return (
     <p>{JSON.stringify(state)}</p>
   </Container>
 );
-
-//   <Input
-
-//     onChange={(e) => handleInputChange(index, e.target.value)}
-//     value={inputValue}
-//     placeholder={item.name}
-//   />
-//   <Input
-//   type="text"
-//   placeholder=""
-//   value={state.newInputValue}
-//   onChange={(e) => State.update({ newInputValue: e.target.value })}
-// />
