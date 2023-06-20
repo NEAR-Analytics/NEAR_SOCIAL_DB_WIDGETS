@@ -9,7 +9,7 @@ const Root = styled.div`
 const MainContainer = styled.div`
     padding: 30px;
     height: auto;
-    max-width: 1200px;
+    max-width: 1300px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -18,21 +18,28 @@ const MainContainer = styled.div`
 const TopSection = styled.div`
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: flex-start;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
+  @media screen and (max-width: 600px) {
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 const TopImageContainer = styled.div`
   padding: 1em;
   background: #ffffff;
     width: 50%;
+    min-width: 355px;
   border: 2px solid #cacdd5;
+  margin-right: 20px;
   box-shadow: 2px 7px 22px rgba(28, 27, 28, 0.1);
   border-radius: 0.7em;
   &>img {
     width: 100%;
-    height: 548px;
+    max-height: 548px;
   }
 `;
 
@@ -50,7 +57,10 @@ const PriceArea = styled.div`
   }
   &>h6{
     font-weight: 700;
-    font-size: 1.2rem;
+    margin-left: 5px;
+    margin-top: 4px;
+    margin-right: 3px;
+    font-size: 1.3rem;
   }
   &>span{
   font-size: 1.2rem;
@@ -63,12 +73,14 @@ const PriceBucket = styled.div`
   flex-direction: row;
   align-items: flex-end;
   justify-content: space-between;
+    margin-top: 30px;
   width: 100%;
-
 `;
 
 const RightSection = styled.div`
-    width: 45%;
+    width: 46%;
+    min-width: 350px;
+    margin-left: 10px;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -181,22 +193,47 @@ const RowBody = styled.div`
     }
 `;
 
-const tokenId = props.tokenId;
+const MintDetails = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    color: #525c76;
+    &>span {
+        font-size: 14px;
+    }
+    &>a {
+        cursor: pointer;
+    }
+`;
+
+const HandleList = () => {
+  console.log(props.singleNftProps);
+};
 
 return (
   <Root>
     <MainContainer>
       <TopSection>
         <TopImageContainer>
-          <HeaderText>Third Eye</HeaderText>
+          <HeaderText>{props.singleNftProps.name || "AI Sunset"}</HeaderText>
           <img
-            src={props.singleNftProps.image}
+            src={
+              props.singleNftProps.image ||
+              "https://genadrop.mypinata.cloud/ipfs/QmZbtU8RnMymJAJRpTriZgDXVeeCpm5RyXMJNquGoVc4Rb"
+            }
             alt="NFT"
             width="100%"
             height="100%"
             className="rounded-3"
           />
-          <div style={{ display: "flex", marginTop: "10px" }}>
+          <div
+            style={{
+              display: "flex",
+              marginTop: "10px",
+              justifyContent: "space-between",
+            }}
+          >
             <p
               style={{
                 marginBottom: "0.5em",
@@ -207,7 +244,9 @@ return (
               Created by
             </p>
             <span style={{ fontSize: "0.9rem", fontWeight: 600 }}>
-              3728328327832
+              {props.singleNftProps.nft_state.owner.length > 12
+                ? props.singleNftProps.nft_state.owner.slice(0, 12) + "..."
+                : props.singleNftProps.nft_state.owner}
             </span>
           </div>
         </TopImageContainer>
@@ -216,24 +255,50 @@ return (
             <div>
               <p style={{ color: "#b2b7c2", marginBottom: 0 }}>CURRENT PRICE</p>
               <PriceArea>
+                <Widget src="agwaze.near/widget/GenaDrop.NearLogo" />
                 <h6>
-                  {`${(200000000000000000 / 1000000000000000000000000).toFixed(
-                    2
-                  )}N`}
+                  {`${(
+                    props.singleNftProps.nft_state_lists[0].list_price ||
+                    0 / 1000000000000000000000000
+                  ).toFixed(2)}`}
                 </h6>
                 <span>{` ($${(
-                  (400000000000000000000000 / 1000000000000000000000000) *
-                  1.56
+                  (props.singleNftProps.nft_state_lists[0].list_price ||
+                    0 / 1000000000000000000000000) * 1.56
                 ).toFixed(2)})`}</span>
               </PriceArea>
             </div>
-            <div>
-              <button>Not Listed</button>
+            <div onClick={() => HandleList()}>
+              {props.singleNftProps.nft_state_lists[0].listed ? (
+                <button
+                  style={{
+                    backgroundColor: "#525c76",
+                    borderColor: "#525c76",
+                    cursor: "not-allowed",
+                  }}
+                >
+                  Listed
+                </button>
+              ) : props.singleNftProps.nft_state.owner ? (
+                <button>List</button>
+              ) : (
+                <button
+                  style={{
+                    backgroundColor: "#525c76",
+                    borderColor: "#525c76",
+                    cursor: "not-allowed",
+                  }}
+                >
+                  Not Listed
+                </button>
+              )}
             </div>
           </PriceBucket>
           <Description>
             <h6>Description</h6>
-            <span>Ai generated sunset cliffs</span>
+            <span>
+              {props.singleNftProps.description || "Ai generated sunset cliffs"}
+            </span>
           </Description>
           <Description>
             <h6>Attributes</h6>
@@ -262,36 +327,29 @@ return (
           </Description>
           <Description>
             <h6>Details</h6>
-            <div></div>
+            <MintDetails>
+              <span>Mint Address</span>
+              <a
+                target="_blank"
+                href={`https://explorer.near.org/?query=${
+                  props.singleNftProps.nft_state.owner ||
+                  "genadrop-contract.nftgen.near"
+                }`}
+              >
+                {props.singleNftProps.nft_state.owner.length > 8
+                  ? props.singleNftProps.nft_state.owner.slice(0, 8) +
+                    "..." +
+                    "near"
+                  : props.singleNftProps.nft_state.owner ||
+                    "genadrop-contract.nftgen.near".slice(0, 8) +
+                      "..." +
+                      "near"}
+              </a>
+            </MintDetails>
           </Description>
         </RightSection>
       </TopSection>
     </MainContainer>
-    <TransactionTable>
-      <TableHeader>
-        <h1>Transaction History</h1>
-      </TableHeader>
-      <TableBody>
-        <RowType>Minting</RowType>
-        <RowBody>
-          <span>From</span>
-          <p>---</p>
-          <span>To</span>
-          <p>waze.near</p>
-          <p>10 months ago</p>
-        </RowBody>
-      </TableBody>
-      <TableBody>
-        <RowType>Listing</RowType>
-        <RowBody>
-          <span>From</span>
-          <p>---</p>
-          <span>To</span>
-          <p>waze.near</p>
-          <p>10 months ago</p>
-        </RowBody>
-      </TableBody>
-    </TransactionTable>
     <Widget src="jgodwill.near/widget/GenaDrop.Footer" />
   </Root>
 );
