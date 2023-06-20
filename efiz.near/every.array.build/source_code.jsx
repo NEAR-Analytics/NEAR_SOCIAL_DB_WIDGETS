@@ -19,7 +19,7 @@ const Row = styled.div`
 `;
 
 State.init({
-  inputValues: [],
+  inputValues: item.value,
   newInputValue: "",
 });
 
@@ -53,7 +53,7 @@ const handleDeleteClick = (index) => {
 
 return (
   <Container>
-    {state.inputValues?.map((inputValue, index) => (
+    {state.inputValues?.map((inputValue, index) => {
       <Row key={index}>
         <Widget
           src="efiz.near/widget/create"
@@ -66,23 +66,23 @@ return (
           }}
         />
         <Button onClick={() => handleDeleteClick(index)}>Delete</Button>
-      </Row>
-    ))}
-    <Row>
-      <Widget
-        src="efiz.near/widget/create"
-        props={{
-          item: {
-            type: item.type,
-            value: state.newInputValue,
-          },
-          onChange: (e) => State.update({ newInputValue: e.target.value }), // How do I handle nested?
-        }}
-      />
-      <Button onClick={handleAddClick}>Add</Button>
-    </Row>
-    <p>{JSON.stringify(state)}</p>
+      </Row>;
+    })}
   </Container>
 );
+// <p>{JSON.stringify(state)}</p>
 
+// <Row>
+//       <Widget
+//         src="efiz.near/widget/create"
+//         props={{
+//           item: {
+//             type: item.type,
+//             value: state.newInputValue,
+//           },
+//           onChange: (e) => State.update({ newInputValue: e.target.value }), // How do I handle nested?
+//         }}
+//       />
+//       <Button onClick={handleAddClick}>Add</Button>
+//     </Row>
 //  disabled={state.newInputValue} // Check that full state is good
