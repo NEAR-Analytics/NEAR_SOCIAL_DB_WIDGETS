@@ -40,7 +40,7 @@ return (
     <h1>🌸 Support ReFI on NEAR</h1>
     <h3>Show on chain that you support ReFi on NEAR!</h3>
     <CommitButton
-      data={{ post: { sesh: "I Support ReFI on NEAR!" } }}
+      data={{ post: { refi: "I Support ReFI on NEAR!" } }}
       onCommit={() => {
         State.update({
           // TODO: Feed needs reload?
