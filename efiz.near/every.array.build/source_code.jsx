@@ -30,8 +30,6 @@ const handleInputChange = (index, value) => {
 };
 
 const handleAddClick = () => {
-  if (state.newInputValue.trim() === "") return;
-
   const newInputValues = [...state.inputValues, state.newInputValue];
 
   State.update({
