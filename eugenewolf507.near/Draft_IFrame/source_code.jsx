@@ -15,7 +15,6 @@ window.iFrameResizer = {
 </script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.3.6/iframeResizer.contentWindow.js"></script>
 <p id="messageText">loading...</p>
-<button>Click</button>
 `;
 
 return (
