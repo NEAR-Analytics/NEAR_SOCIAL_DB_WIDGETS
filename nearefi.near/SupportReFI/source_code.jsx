@@ -15,7 +15,7 @@ const getFirstSBTToken = () => {
   return view?.[0]?.[1]?.[0];
 };
 const hasSBTToken = getFirstSBTToken() !== undefined;
-hasSBTToken = true; // for debug
+// hasSBTToken = true; // for debug
 console.log("Has SBT Token: " + hasSBTToken);
 const processData = (data) => {
   const accounts = Object.entries(data);
