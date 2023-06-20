@@ -20,7 +20,6 @@ const Row = styled.div`
 
 State.init({
   inputValues: item.value,
-  newInputValue: "",
 });
 
 const handleInputChange = (index, value) => {
@@ -34,7 +33,6 @@ const handleAddClick = () => {
 
   State.update({
     inputValues: newInputValues,
-    newInputValue: "",
   });
 
   if (onChange) {
@@ -53,7 +51,7 @@ const handleDeleteClick = (index) => {
 
 return (
   <Container>
-    {state.inputValues?.map((inputValue, index) => {
+    {state.inputValues?.map((inputValue, index) => (
       <Row key={index}>
         <Widget
           src="efiz.near/widget/create"
@@ -66,8 +64,8 @@ return (
           }}
         />
         <Button onClick={() => handleDeleteClick(index)}>Delete</Button>
-      </Row>;
-    })}
+      </Row>
+    ))}
   </Container>
 );
 // <p>{JSON.stringify(state)}</p>
