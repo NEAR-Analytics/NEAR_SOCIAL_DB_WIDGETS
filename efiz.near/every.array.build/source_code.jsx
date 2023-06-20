@@ -53,13 +53,6 @@ const handleDeleteClick = (index) => {
   }
 };
 
-const handleInputChange = (name, value) => {
-  State.update({ [name]: value });
-  if (props.onChange) {
-    props.onChange({ [name]: value });
-  }
-};
-
 return (
   <Container>
     {state.inputValues?.map((inputValue, index) => (
@@ -85,7 +78,7 @@ return (
             type: item.type,
             value: state.newInputValue,
           },
-          onChange: handleInputChange, // How do I handle nested?
+          onChange: (e) => State.update({ newInputValue: e.target.value }), // How do I handle nested?
         }}
       />
       <Button onClick={handleAddClick}>Add</Button>
@@ -94,4 +87,4 @@ return (
   </Container>
 );
 
-// disabled={state.newInputValue.trim() === ""} // Check that full state is good
+//  disabled={state.newInputValue} // Check that full state is good
