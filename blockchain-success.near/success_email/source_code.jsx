@@ -94,8 +94,8 @@ return (
         style={{
           display: "flex",
           flexDirection: "row",
-          alignItems: "left",
-          height: "16px",
+          alignItems: "center",
+          height: "36px",
         }}
       >
         {props.symbol !== "none" && (
