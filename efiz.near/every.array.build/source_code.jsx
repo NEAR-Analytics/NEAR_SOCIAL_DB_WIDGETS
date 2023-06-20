@@ -56,22 +56,24 @@ const handleDeleteClick = (index) => {
 return (
   <Container>
     {state.inputValues?.map((inputValue, index) => (
-      <Row>
-        <Input
-          key={index}
-          onChange={(e) => handleInputChange(index, e.target.value)}
-          value={inputValue}
-          placeholder={item.name}
+      <Row key={index}>
+        <Widget
+          src="efiz.near/widget/create"
+          props={{
+            type: item.type,
+            onChange: (e) => handleInputChange(index, e.target.value),
+          }}
         />
         <Button onClick={() => handleDeleteClick(index)}>Delete</Button>
       </Row>
     ))}
     <Row>
-      <Input
-        type="text"
-        placeholder=""
-        value={state.newInputValue}
-        onChange={(e) => State.update({ newInputValue: e.target.value })}
+      <Widget
+        src="efiz.near/widget/create"
+        props={{
+          type: item.type,
+          onChange: (e) => State.update({ newInputValue: e.target.value }),
+        }}
       />
       <Button
         onClick={handleAddClick}
@@ -82,3 +84,16 @@ return (
     </Row>
   </Container>
 );
+
+//   <Input
+
+//     onChange={(e) => handleInputChange(index, e.target.value)}
+//     value={inputValue}
+//     placeholder={item.name}
+//   />
+//   <Input
+//   type="text"
+//   placeholder=""
+//   value={state.newInputValue}
+//   onChange={(e) => State.update({ newInputValue: e.target.value })}
+// />
