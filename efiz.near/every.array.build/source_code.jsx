@@ -82,6 +82,7 @@ return (
         Add
       </Button>
     </Row>
+    <p>{JSON.stringify(state)}</p>
   </Container>
 );
 
