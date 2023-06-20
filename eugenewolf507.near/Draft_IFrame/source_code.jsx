@@ -15,20 +15,19 @@ window.iFrameResizer = {
 </script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.3.6/iframeResizer.contentWindow.js"></script>
 <p id="messageText">loading...</p>
-<button>Clic<button/>
+<button>Click</button>
 `;
 
 return (
-  <div>
-    <iframe
-      iframeResizer={{
-        onResized: ({ width, height }) => {
-          console.log("iframe resized", width, height);
-        },
-      }}
-      className="w-100 border border-primary"
-      srcDoc={code}
-      message="my message"
-    />
-  </div>
+  <iframe
+    iframeResizer={{
+      log: true,
+      onResized: ({ width, height }) => {
+        console.log("iframe resized", width, height);
+      },
+    }}
+    className="border border-primary"
+    srcDoc={code}
+    message="my message"
+  />
 );
