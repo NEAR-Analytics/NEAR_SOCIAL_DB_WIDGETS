@@ -15,7 +15,7 @@ const processData = (data) => {
   const allItems = accounts
     .map((account) => {
       const accountId = account[0];
-      const blockHeights = account[1].post.sesh;
+      const blockHeights = account[1].post.refi;
       return blockHeights.map((blockHeight) => ({
         accountId,
         blockHeight,
@@ -55,7 +55,7 @@ return (
       {state.allItems
         ? state.allItems.map(({ accountId }) => (
             <div>
-              I want to sesh! 💨
+              I support ReFi
               <Widget
                 src="miraclx.near/widget/Attribution"
                 props={{
