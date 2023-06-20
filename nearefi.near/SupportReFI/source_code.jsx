@@ -15,6 +15,7 @@ const getFirstSBTToken = () => {
   return view?.[0]?.[1]?.[0];
 };
 const hasSBTToken = getFirstSBTToken() !== undefined;
+hasSBTToken = true; // for debug
 console.log("Has SBT Token: " + hasSBTToken);
 const processData = (data) => {
   const accounts = Object.entries(data);
@@ -49,6 +50,7 @@ return (
       <div>
         <h1>🌸 Support ReFI on NEAR</h1>
         <h3>Show on chain that you support ReFi on NEAR!</h3>
+        <h4>Number of Humans Supporting: {state.allItems.length}</h4>
         <CommitButton
           data={{ post: { refi: "I Support ReFI on NEAR!" } }}
           onCommit={() => {
@@ -59,7 +61,6 @@ return (
         >
           Show Support ❤️
         </CommitButton>
-
         <br />
         <div>
           {state.allItems
