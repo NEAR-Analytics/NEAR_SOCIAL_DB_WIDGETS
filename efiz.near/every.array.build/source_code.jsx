@@ -61,6 +61,7 @@ return (
           src="efiz.near/widget/create"
           props={{
             type: item.type,
+            value: inputValue,
             onChange: (e) => handleInputChange(index, e.target.value),
           }}
         />
@@ -72,6 +73,7 @@ return (
         src="efiz.near/widget/create"
         props={{
           type: item.type,
+          value: state.newInputValue,
           onChange: (e) => State.update({ newInputValue: e.target.value }),
         }}
       />
