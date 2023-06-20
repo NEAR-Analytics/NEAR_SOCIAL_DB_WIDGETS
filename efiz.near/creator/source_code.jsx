@@ -126,7 +126,7 @@ return (
       <Header></Header>
       <Widget
         src="efiz.near/widget/Every.Thing.View"
-        props={{ path: state.template, data: state.config }}
+        props={{ path: state.template, data: state.config?.children }}
       />
     </MainContent>
   </Container>
