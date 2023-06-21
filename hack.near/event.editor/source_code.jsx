@@ -14,6 +14,9 @@ State.init({
 
 const metadata = {
   name: options.name ? state.metadata.name : undefined,
+  date: options.date ? state.metadata.date : undefined,
+  time: options.time ? state.metadata.time : undefined,
+
   description: options.name ? state.metadata.description : undefined,
   linktree:
     options.linktree && Object.keys(state.linktree).length > 0
@@ -63,6 +66,22 @@ const onNameChange = debounce((e) => {
     metadata: {
       ...state.metadata,
       name: e.target.value,
+    },
+  });
+});
+const onDateChange = debounce((e) => {
+  State.update({
+    metadata: {
+      ...state.metadata,
+      date: e.target.value,
+    },
+  });
+});
+const onTimeChange = debounce((e) => {
+  State.update({
+    metadata: {
+      ...state.metadata,
+      time: e.target.value,
     },
   });
 });
