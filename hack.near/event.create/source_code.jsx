@@ -96,28 +96,6 @@ return (
               explore
             </a>
           </div>
-          <div className="d-flex justify-content-center m-2">
-            <div className="col-6 m-2">
-              <h5>date</h5>
-              <input
-                type="date"
-                value={state.date}
-                onChange={(e) => {
-                  State.update({ data: e.target.value });
-                }}
-              />
-            </div>
-            <div className="col-6 m-2">
-              <h5>time</h5>
-              <input
-                type="time"
-                value={state.time}
-                onChange={(e) => {
-                  State.update({ time: e.target.value });
-                }}
-              />
-            </div>
-          </div>
           <div className="mb-2">
             <h5>id</h5>
             <input
@@ -130,7 +108,7 @@ return (
           </div>
           <h5 className="mt-3">metadata</h5>
           <Widget
-            src="near/widget/MetadataEditor"
+            src="hack.near/widget/event.editor"
             props={{
               initialMetadata: event,
               onChange: (event) => State.update({ event }),
