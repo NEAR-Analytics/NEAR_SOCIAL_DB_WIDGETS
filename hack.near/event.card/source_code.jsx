@@ -3,7 +3,7 @@ if (!accountId) {
   return "Please connect your NEAR account :)";
 }
 
-const eventId = props.eventId ?? "boshacks";
+const eventId = props.eventId ?? "workshop";
 
 if (!eventId) {
   return "No event ID...";
@@ -28,6 +28,9 @@ const showEditButton =
   accountId === context.accountId;
 
 const name = event.name || "TBA";
+const date = event.date;
+const time = event.time;
+
 const image = event.image;
 const backgroundImage = event.backgroundImage;
 const tags = Object.keys(event.tags ?? {});
@@ -111,7 +114,10 @@ return (
             </div>
           </div>
           <div>
-            <Widget src="mob.near/widget/FollowStats" props={{ accountId }} />
+            <b>Date:</b> {date}
+          </div>
+          <div>
+            <b>Time:</b> {time}
           </div>
         </div>
         <div style={{ minWidth: "12rem" }}>
