@@ -17,11 +17,11 @@ return (
     <div className="row">
       <div className="col-lg-6">
         <h3>
-          <b>create your own event page</b>
+          <b>create an event page</b>
         </h3>
         <br />
         <div className="mb-2">
-          <CommitButton data={{ event: state.event }}>save</CommitButton>
+          <CommitButton data={{ events: state.event }}>save</CommitButton>
           <a
             className="btn btn-outline-primary ms-2"
             href={`#/mob.near/widget/eventPage?accountId=${accountId}`}
@@ -41,23 +41,21 @@ return (
             <h5>date</h5>
             <input
               type="date"
-              value={state.deadline}
+              value={state.date}
               onChange={(e) => {
-                State.update({ deadline: e.target.value });
+                State.update({ data: e.target.value });
               }}
             />
-            {state.error_deadline && <Error>{state.error_deadline}</Error>}
           </div>
           <div className="col-6 mb-2">
             <h5>time</h5>
             <input
               type="time"
-              value={state.deadline}
+              value={state.time}
               onChange={(e) => {
-                State.update({ deadline: e.target.value });
+                State.update({ time: e.target.value });
               }}
             />
-            {state.error_deadline && <Error>{state.error_deadline}</Error>}
           </div>
         </div>
 
