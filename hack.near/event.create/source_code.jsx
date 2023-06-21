@@ -36,7 +36,7 @@ const handleProposal = () => {
       methodName: "add_proposal",
       args: {
         proposal: {
-          description: "update DAO profile on NEAR Social",
+          description: "proposing an event",
           kind: {
             FunctionCall: {
               receiver_id: "social.near",
@@ -79,7 +79,7 @@ return (
             </CommitButton>
             <a
               className="btn btn-outline-success ms-2"
-              href={`#/hack.near/widget/event.page?accountId=${accountId}`}
+              onClick={handleProposal}
             >
               propose
             </a>
