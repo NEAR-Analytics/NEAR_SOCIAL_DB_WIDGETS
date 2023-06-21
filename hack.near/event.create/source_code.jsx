@@ -9,7 +9,7 @@ const tomorrow = today + 86400000;
 
 State.init({
   participants: "",
-  date: new Date(tomorrow).toISOString().substring(0, 10),
+  date,
   time,
 });
 
