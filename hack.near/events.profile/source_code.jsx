@@ -3,9 +3,7 @@ if (!accountId) {
   return "Please connect your NEAR account :)";
 }
 
-const eventId = props.eventId;
-
-const events = props.events ?? Social.getr(`${accountId}/community/*`);
+const events = props.events ?? Social.get(`${accountId}/community/*`);
 
 if (!events) {
   return "Loading...";
