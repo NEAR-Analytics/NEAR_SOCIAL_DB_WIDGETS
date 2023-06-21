@@ -114,8 +114,8 @@ return (
               onChange: (event) => State.update({ event }),
               options: {
                 name: { placeholder: "title" },
-                date: { label: "date", value: state.date },
-                time: { label: "time", value: state.time },
+                date: { label: "date" },
+                time: { label: "time" },
                 image: { label: "logo" },
                 backgroundImage: { label: "image" },
                 description: { label: "description" },
