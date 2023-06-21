@@ -88,9 +88,9 @@ return (
           title: "Creative works",
           description: (
             <>
-              Want to create more opportunities for your artist community?
-              Creatives Constellation funds your projects, competitions,
-              bounties to introduce more creators into NEAR.
+              Do you want to create more opportunities for your artist
+              community? Creatives Constellation funds your projects,
+              competitions, bounties to introduce more creators into NEAR.
             </>
           ),
           color: "#7269E1",
