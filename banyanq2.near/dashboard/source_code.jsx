@@ -8,6 +8,30 @@ const Text = styled.p`
   margin: 0;
 `;
 
+let followerTarget = 100;
+let builderTarget = 30;
+let componentTarget = 30;
+let nycSubscribers = Social.keys(`*/graph/follow/nycdao.near`, "final", {
+  return_type: "BlockHeight",
+  values_only: true,
+});
+let nycFollowers = 0;
+if (nycSubscribers) {
+  nycFollowers = Object.keys(nycSubscribers).length;
+}
+
+let sfSubscribers = Social.keys(`*/graph/follow/sfdao.near`, "final", {
+  return_type: "BlockHeight",
+  values_only: true,
+});
+let sfFollowers = 0;
+if (sfSubscribers) {
+  sfFollowers = Object.keys(sfSubscribers).length;
+}
+const currentBuilderCount = Object.keys(
+  following["banyanq2"].graph.follow || {}
+).length;
+
 const Flex = styled.div`
   display: flex;
   gap: 15px;
@@ -35,9 +59,16 @@ const Container = styled.div`
 return (
   <div>
     <h1>Banyan Q2 Dashboard (April 1 - June 30)</h1>
-    <p> New BOS Builder Target: 30</p>
-    <p> New BOS Component: 30</p>
-    <p> BOS Follower Target 100</p>
+    <p> New BOS Builder Target: {builderTarget}</p>
+    <p> New BOS Component: {componentTarget}</p>
+    <p>
+      {" "}
+      BOS Follower Target {followerTarget}. Progress:{" "}
+      {(nycFollowers + sfFollowers) / followerTarget}
+    </p>
+    <p> Current NYC Followers: {nycFollowers}</p>
+    <p> Current SF Followers: {sfFollowers}</p>
+
     <Widget
       src="devs.near/widget/dev.rank"
       props={{
