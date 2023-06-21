@@ -157,7 +157,7 @@ return (
       <div className="col-lg-6">
         <Widget
           src="hack.near/widget/event.view"
-          props={{ accountId, event: state.event }}
+          props={{ accountId, eventId: state.eventId }}
         />
       </div>
     </div>
