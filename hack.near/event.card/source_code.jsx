@@ -15,7 +15,7 @@ const link =
     ? `https://social.near.page/u/${accountId}`
     : props.link);
 
-const event = Social.get(`${accountId}/event/${eventId}`);
+const event = Social.get(`${accountId}/event/${eventId}/**`);
 
 if (event === null) {
   return "Loading...";
@@ -31,6 +31,8 @@ const name = event.name || "TBA";
 const image = event.image;
 const backgroundImage = event.backgroundImage;
 const tags = Object.keys(event.tags ?? {});
+
+const nameHeader = <h4 className="mt-0 mb-0 text-truncate">{name}</h4>;
 
 return (
   <div className="bg-white shadow rounded overflow-hidden">
@@ -66,9 +68,7 @@ return (
           props={{
             image: event.image,
             style: { width: "10rem", height: "10rem" },
-            className: "mb-2",
-            imageClassName: "rounded-circle w-100 h-100 img-thumbnail d-block",
-            thumbnail: false,
+            className: "rounded-circle img-thumbnail d-block mb-2",
           }}
         />
       </div>
@@ -80,10 +80,10 @@ return (
             <div className="me-2 position-relative">
               {link ? (
                 <a className="text-truncate text-dark" href={link}>
-                  {name}
+                  {nameHeader}
                 </a>
               ) : (
-                name
+                nameHeader
               )}
               <div className="small text-truncate">
                 <i className="bi bi-person-fill text-secondary"></i>
