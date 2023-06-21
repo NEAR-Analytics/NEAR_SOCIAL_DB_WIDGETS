@@ -3,31 +3,34 @@ if (!accountId) {
   return "Please connect your NEAR account :)";
 }
 
+const eventId = props.eventId ?? "boshacks";
+
+if (!eventId) {
+  return "No event ID...";
+}
+
 const link =
   props.link &&
   (props.link === true
     ? `https://social.near.page/u/${accountId}`
     : props.link);
 
-const events = props.events ?? Social.getr(`${accountId}/event/*`);
+const event = Social.get(`${accountId}/event/${eventId}`);
 
-if (events === null) {
+if (event === null) {
   return "Loading...";
 }
 
 const showEditButton =
-  events !== undefined &&
+  event !== undefined &&
   (!props.event || props.showEditButton) &&
   accountId &&
   accountId === context.accountId;
 
-const event = events.id;
 const name = event.name || "TBA";
 const image = event.image;
 const backgroundImage = event.backgroundImage;
 const tags = Object.keys(event.tags ?? {});
-
-const nameHeader = <h4 className="mt-0 mb-0 text-truncate">{name}</h4>;
 
 return (
   <div className="bg-white shadow rounded overflow-hidden">
@@ -59,10 +62,9 @@ return (
         style={{ transform: "translateY(7rem)" }}
       >
         <Widget
-          src="mob.near/widget/ProfileImage"
+          src="mob.near/widget/Image"
           props={{
-            event,
-            accountId,
+            image: event.image,
             style: { width: "10rem", height: "10rem" },
             className: "mb-2",
             imageClassName: "rounded-circle w-100 h-100 img-thumbnail d-block",
@@ -78,10 +80,10 @@ return (
             <div className="me-2 position-relative">
               {link ? (
                 <a className="text-truncate text-dark" href={link}>
-                  {nameHeader}
+                  {name}
                 </a>
               ) : (
-                nameHeader
+                name
               )}
               <div className="small text-truncate">
                 <i className="bi bi-person-fill text-secondary"></i>
