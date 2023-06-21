@@ -1,4 +1,5 @@
 const accountId = context.accountId;
+const daoId = props.daoId ?? "build.sputnik-dao.near";
 if (!accountId) {
   return "Please connect your NEAR account :)";
 }
@@ -12,6 +13,51 @@ State.init({
   time,
 });
 
+const policy = Near.view(daoId, "get_policy");
+
+const deposit = policy.proposal_bond;
+
+const event_args = JSON.stringify({
+  data: {
+    [state.daoId]: {
+      event: {
+        [state.eventId]: state.event,
+      },
+    },
+  },
+});
+
+const proposal_args = Buffer.from(event_args, "utf-8").toString("base64");
+
+const handleProposal = () => {
+  Near.call([
+    {
+      contractName: daoId,
+      methodName: "add_proposal",
+      args: {
+        proposal: {
+          description: "update DAO profile on NEAR Social",
+          kind: {
+            FunctionCall: {
+              receiver_id: "social.near",
+              actions: [
+                {
+                  method_name: "set",
+                  args: proposal_args,
+                  deposit: "80000000000000000000000",
+                  gas: "300000000000000",
+                },
+              ],
+            },
+          },
+        },
+      },
+      deposit: deposit,
+      gas: "300000000000000",
+    },
+  ]);
+};
+
 return (
   <>
     <div className="row">
@@ -22,7 +68,15 @@ return (
           </h3>
           <hr />
           <div className="mb-3">
-            <CommitButton data={{ event: state.event }}>save</CommitButton>
+            <CommitButton
+              data={{
+                event: {
+                  [state.eventId]: state.event,
+                },
+              }}
+            >
+              save
+            </CommitButton>
             <a
               className="btn btn-outline-success ms-2"
               href={`#/hack.near/widget/event.page?accountId=${accountId}`}
@@ -34,6 +88,12 @@ return (
               href={`#/hack.near/widget/event.page?accountId=${accountId}`}
             >
               view
+            </a>
+            <a
+              className="btn btn-outline-primary ms-2"
+              href={`#/hack.near/widget/events`}
+            >
+              explore
             </a>
           </div>
           <div className="d-flex justify-content-center m-2">
@@ -58,7 +118,6 @@ return (
               />
             </div>
           </div>
-          <br />
           <div className="mb-2">
             <h5>id</h5>
             <input
@@ -76,7 +135,9 @@ return (
               initialMetadata: event,
               onChange: (event) => State.update({ event }),
               options: {
-                name: { label: "title" },
+                name: { placeholder: "title" },
+                date: { label: "date", value: state.date },
+                time: { label: "time", value: state.time },
                 image: { label: "logo" },
                 backgroundImage: { label: "image" },
                 description: { label: "description" },
