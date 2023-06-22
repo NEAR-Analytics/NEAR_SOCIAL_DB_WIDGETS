@@ -5,7 +5,7 @@ const Container = styled.div`
   flex-direction: column;
   height: 100vh;
   background-color: black;
-  `;
+`;
 
 const Header = styled.div`
   height: 300px;
@@ -23,6 +23,8 @@ const Logo = styled.img`
 const Navigation = styled.div`
   display: flex;
   flex-direction: row;
+  width: 100%;
+  justify-content: center;
   gap: 8px;
 `;
 
