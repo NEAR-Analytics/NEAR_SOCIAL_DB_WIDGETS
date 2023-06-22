@@ -1,4 +1,4 @@
-return styled.button`
+const Button = styled.button`
   display: flex;
   flex-direction: column;
   align-self: ${(props) => (props.alignSelf ? props.alignSelf : "unset")};
@@ -13,3 +13,7 @@ return styled.button`
     overflow: hidden;
   }
 `;
+
+return (
+  <Button onClick={props.onClick ?? undefined}>{props.content ?? ""}</Button>
+);
