@@ -1,5 +1,6 @@
 // Don't forget to put space between emoji and text -> "❤️ Positive"
 const initialEmoji = "🤍 Like";
+// It is important that 'Heart' Positive emoji is first
 const emojiArray = [
   "❤️ Positive",
   "🙏 Thank you",
@@ -205,7 +206,7 @@ position: relative;
   background: transparent;
   width: 35px;
   height: 35px;
-  color: "";
+  color: ${({ isHeart }) => (isHeart ? "red" : "")};
 `;
 
 const SmallButtonSpan = styled.span`
@@ -286,8 +287,8 @@ const Overlay = () => (
     show={state.show}
   >
     {emojiArray &&
-      emojiArray.map((item) => (
-        <SmallButton onClick={() => clickHandler(item)}>
+      emojiArray.map((item, index) => (
+        <SmallButton onClick={() => clickHandler(item)} isHeart={index === 0}>
           <OverlayTrigger
             placement="top"
             overlay={
