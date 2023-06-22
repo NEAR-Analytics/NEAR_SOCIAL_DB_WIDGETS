@@ -9,7 +9,6 @@ const {
   voters_num,
   seats,
   result,
-  voters,
   electionContract,
   registryContract,
   ndcOrganization,
@@ -20,7 +19,7 @@ const widgets = {
 };
 
 const _bookmarked = Social.index(ndcOrganization, typ);
-const currentUser = context.accountId;
+const currentUser = context.candidateId;
 
 State.init({
   loading: false,
@@ -195,10 +194,10 @@ const Loader = () => (
   />
 );
 
-const handleSelectCandidate = (accountId) => {
-  const selectedItems = state.selectedCandidates.includes(accountId)
-    ? state.selectedCandidates.filter((el) => el !== accountId)
-    : [...state.selectedCandidates, accountId];
+const handleSelectCandidate = (candidateId) => {
+  const selectedItems = state.selectedCandidates.includes(candidateId)
+    ? state.selectedCandidates.filter((el) => el !== candidateId)
+    : [...state.selectedCandidates, candidateId];
 
   const availableVotes = seats - selectedItems.length;
   if (availableVotes < 0) return;
@@ -209,24 +208,24 @@ const handleSelectCandidate = (accountId) => {
   });
 };
 
-const selectedBookmarks = (accountId) => {
-  let selectedItems = state.bookmarked.includes(accountId)
-    ? state.bookmarked.filter((el) => el !== accountId)
-    : [...state.bookmarked, accountId];
+const selectedBookmarks = (candidateId) => {
+  let selectedItems = state.bookmarked.includes(candidateId)
+    ? state.bookmarked.filter((el) => el !== candidateId)
+    : [...state.bookmarked, candidateId];
 
   return [...new Set(selectedItems)];
 };
 
-const handleBookmarkCandidate = (accountId) => {
-  let selectedItems = selectedBookmarks(accountId);
-  State.update({ loading: accountId });
+const handleBookmarkCandidate = (candidateId) => {
+  let selectedItems = selectedBookmarks(candidateId);
+  State.update({ loading: candidateId });
 
   Social.set(
     {
       index: {
         [ndcOrganization]: JSON.stringify({
           key: typ,
-          value: selectedBookmarks(accountId),
+          value: selectedBookmarks(candidateId),
         }),
       },
     },
@@ -254,11 +253,11 @@ const handleVote = () => {
   ]);
 };
 
-const isHuman = () => {
+const isIAmHuman = () => {
   Near.view({
     contractName: registryContract,
     methodName: "is_human",
-    args: { account: accountId },
+    args: { account: context.accountId },
   });
 };
 
@@ -266,17 +265,17 @@ const gotoIAHVerification = () => {
   window.location.href = "https://i-am-human.app/";
 };
 
-const alreadyVoted = (accountId) =>
+const alreadyVoted = (candidateId) =>
   voters.some(
-    (v) => v.accountId === currentUser && v.candidateId === accountId
+    (v) => v.candidateId === currentUser && v.candidateId === candidateId
   );
 
 const filterBy = (option) => {
   if (option.bookmark)
     if (!state.filter.bookmark)
       State.update({
-        candidates: state.candidates.filter(([accountId, _votes], _index) =>
-          state.bookmarked.includes(accountId)
+        candidates: state.candidates.filter(([candidateId, _votes], _index) =>
+          state.bookmarked.includes(candidateId)
         ),
         filter: { bookmark: true },
       });
@@ -302,8 +301,8 @@ const filterBy = (option) => {
   else if (option.my_votes)
     if (!state.filter.my_votes)
       State.update({
-        candidates: state.candidates.filter(([accountId, _votes], _index) =>
-          alreadyVoted(accountId)
+        candidates: state.candidates.filter(([candidateId, _votes], _index) =>
+          alreadyVoted(candidateId)
         ),
         filter: { my_votes: true },
       });
@@ -319,7 +318,7 @@ const filterBy = (option) => {
     });
 };
 
-const CandidateList = ({ accountId, votes }) => {
+const CandidateList = ({ candidateId, votes }) => {
   return (
     <div>
       <CandidateItem
@@ -328,21 +327,21 @@ const CandidateList = ({ accountId, votes }) => {
           if (e.target.id === "input" || e.target.id === "bookmark") return;
 
           State.update({
-            selected: state.selected === accountId ? null : accountId,
+            selected: state.selected === candidateId ? null : candidateId,
           });
         }}
-        selected={state.selected === accountId}
+        selected={state.selected === candidateId}
       >
         <div className="d-flex">
-          <Bookmark selected={state.selected === accountId}>
-            {state.loading === accountId ? (
+          <Bookmark selected={state.selected === candidateId}>
+            {state.loading === candidateId ? (
               <Loader />
             ) : (
               <i
                 id="bookmark"
-                onClick={() => handleBookmarkCandidate(accountId)}
+                onClick={() => handleBookmarkCandidate(candidateId)}
                 className={`bi ${
-                  state.bookmarked.includes(accountId)
+                  state.bookmarked.includes(candidateId)
                     ? "bi-bookmark-fill"
                     : "bi-bookmark"
                 }`}
@@ -353,14 +352,14 @@ const CandidateList = ({ accountId, votes }) => {
             <Widget
               src="mob.near/widget/ProfileImage"
               props={{
-                accountId,
+                accountId: candidateId,
                 imageClassName: "rounded-circle w-100 h-100",
                 style: { width: "24px", height: "24px", marginRight: 4 },
               }}
             />
             <UserLink
-              src={`https://wallet.near.org/profile/${accountId}`}
-              title={accountId}
+              src={`https://wallet.near.org/profile/${candidateId}`}
+              title={candidateId}
             />
           </div>
         </div>
@@ -368,7 +367,7 @@ const CandidateList = ({ accountId, votes }) => {
           <NominationLink
             className="d-flex"
             href={ref_link}
-            selected={state.selected === accountId}
+            selected={state.selected === candidateId}
           >
             <span className="d-none d-md-block">Nomination</span>
 
@@ -378,25 +377,22 @@ const CandidateList = ({ accountId, votes }) => {
           <Votes>
             <input
               id="input"
-              disabled={alreadyVoted(accountId)}
-              onClick={() => handleSelectCandidate(accountId)}
+              disabled={alreadyVoted(candidateId)}
+              onClick={() => handleSelectCandidate(candidateId)}
               className="form-check-input"
               type="checkbox"
               checked={
-                state.selectedCandidates.includes(accountId) ||
-                alreadyVoted(accountId)
+                state.selectedCandidates.includes(candidateId) ||
+                alreadyVoted(candidateId)
               }
             />
           </Votes>
         </div>
       </CandidateItem>
-      {state.selected === accountId && (
+      {state.selected === candidateId && (
         <Widget
           src={widgets.voters}
-          props={{
-            houseId: id,
-            candidateId: state.selected,
-          }}
+          props={{ houseId: id, candidateId: candidateId }}
         />
       )}
     </div>
@@ -502,9 +498,9 @@ return (
   <Container>
     <h1>{title}</h1>
     <Filters />
-    {state.candidates.map(([accountId, votes], index) => (
-      <CandidateList accountId={accountId} votes={votes} key={index} />
+    {state.candidates.map(([candidateId, votes], index) => (
+      <CandidateList candidateId={candidateId} votes={votes} key={index} />
     ))}
-    {isHuman() ? <CastVotes /> : <VerifyHuman />}
+    {isIAmHuman() ? <CastVotes /> : <VerifyHuman />}
   </Container>
 );
