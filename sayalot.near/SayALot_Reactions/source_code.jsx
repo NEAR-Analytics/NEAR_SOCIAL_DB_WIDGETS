@@ -14,7 +14,8 @@ const emojiArray = [
   "⋈ Bowtie",
 ];
 const item = props.item;
-const accountThatIsLoggedIn = "silkking.near" || context.accountId;
+
+const accountThatIsLoggedIn = context.accountId;
 
 if (!item) {
   return "";
@@ -247,6 +248,19 @@ overflow: visible !important;
 padding-left: 8px;
 `;
 
+const Reactions = styled.div`
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: start;
+  width: 8em;
+  height: 2.5em;
+  padding: 6px 12px;
+  margin: 2px 0;
+  border: 0;
+  border-radius: .375rem;
+`;
+
 const EmojiListWrapper = styled.div`
 display: flex;
 flex-wrap: wrap;
@@ -304,22 +318,29 @@ const Overlay = () => (
   </EmojiListWrapper>
 );
 
+const Stats = () => (
+  (likesStatistics && likesStatistics.length) ?
+    likesStatistics.map((obj) => {
+      const userReaction = userEmoji ? userEmoji.value.type.slice(0, 2) : ""
+      return (
+        <StatWrapper title={`${obj.text}`} isUserVote={obj.emoji === userReaction}>
+          <EmojiWrapper>{obj.emoji}</EmojiWrapper>
+          <EmojiQty>{obj.quantity}</EmojiQty>
+        </StatWrapper>
+      )
+    })
+    : <></>
+)
+
 return (
   <EmojiWrapper>
     <Button
-      // onClick={() => clickHandler(initialEmoji)}
       onMouseEnter={handleOnMouseEnter}
       onMouseLeave={handleOnMouseLeave}
     >
-      {likesStatistics && likesStatistics.length && likesStatistics.map((obj) => {
-        return (
-          <StatWrapper title={`${obj.text}`} isUserVote={obj.emoji === userEmoji.value.type.slice(0, 2)}>
-            <EmojiWrapper>{obj.emoji}</EmojiWrapper>
-            <EmojiQty>{obj.quantity}</EmojiQty>
-          </StatWrapper>
-        )
-      })}
+      {!userEmoji ? initialEmoji : <Stats />}
     </Button>
+    {!userEmoji ? <Reactions><Stats /></Reactions> : <></>}
     <Overlay />
   </EmojiWrapper>
 );
