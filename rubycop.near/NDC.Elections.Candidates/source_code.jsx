@@ -276,11 +276,7 @@ const handleVote = () => {
 };
 
 const isIAmHuman = () => {
-  Near.view({
-    contractName: registryContract,
-    methodName: "is_human",
-    args: { account: context.accountId },
-  });
+  Near.view(registryContract, "is_human", { account: context.accountId });
 };
 
 const gotoIAHVerification = () => {
