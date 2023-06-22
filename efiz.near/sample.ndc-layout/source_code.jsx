@@ -4,7 +4,6 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background-color: black;
 `;
 
 const Header = styled.div`
@@ -26,6 +25,7 @@ const Navigation = styled.div`
   width: 100%;
   justify-content: center;
   gap: 8px;
+  background-color: black;
 `;
 
 const Button = styled.button`
