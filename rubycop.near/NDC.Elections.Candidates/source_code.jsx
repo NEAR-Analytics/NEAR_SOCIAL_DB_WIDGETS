@@ -164,6 +164,19 @@ const CastVotesSection = styled.div`
   .text-secondary {
     margin-left: 10px;
   }
+
+  &.not-verified {
+    h4 {
+      font-size: 16px;
+      margin: 0 0 5px 0;
+      font-weight: 600;
+    }
+
+    h5 {
+      margin: 0;
+      font-size: 12px;
+    }
+  }
 `;
 
 const UserLink = ({ title, src }) => (
@@ -472,10 +485,12 @@ const CastVotes = () => (
 );
 
 const VerifyHuman = () => (
-  <CastVotesSection className="d-flex align-items-center justify-content-between">
-    <div className="d-flex align-items-end">
-      <H4>Want to vote?</H4>
-      <p>Click on the button next to and Verify as a Human to proceed.</p>
+  <CastVotesSection className="not-verified d-flex align-items-center justify-content-between">
+    <div>
+      <h4>Want to vote?</h4>
+      <h5 className="text-secondary">
+        Click on the button next to and Verify as a Human to proceed.
+      </h5>
     </div>
     <PrimaryButton onClick={handleIsHuman}>Verify as Human</PrimaryButton>
   </CastVotesSection>
