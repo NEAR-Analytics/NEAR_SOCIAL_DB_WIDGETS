@@ -44,4 +44,6 @@ const code = `
     </div>
   `;
 
-return <iframe className="w-100" srcDoc={code} />;
+return (
+  <iframe className="w-100" srcDoc={code} style={{ height, backgroundColor }} />
+);
