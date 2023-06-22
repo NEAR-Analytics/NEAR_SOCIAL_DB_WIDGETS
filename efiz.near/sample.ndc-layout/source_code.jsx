@@ -21,9 +21,9 @@ const Logo = styled.img`
 `;
 
 const Navigation = styled.div`
-  height: 20px;
-  width: 100%;
   display: flex;
+  flex-direction: row;
+  gap: 8px;
 `;
 
 const Button = styled.button`
@@ -33,6 +33,9 @@ const Button = styled.button`
   border-radius: 10px;
   border: none;
   gap: 10px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 `;
 
 function Content() {
