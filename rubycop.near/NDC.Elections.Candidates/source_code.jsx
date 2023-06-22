@@ -11,7 +11,8 @@ const {
   result,
   voters,
   votes,
-  contractName,
+  electionContract,
+  registryContract,
   ndcOrganization,
 } = props;
 
@@ -232,11 +233,21 @@ const handleBookmarkCandidate = (accountId) => {
 const handleVote = () => {
   Near.call([
     {
-      contractName: contractName,
+      contractName: electionContract,
       methodName: "vote",
       args: { prop_id: id, vote: state.selectedCandidates },
       gas: "70000000000000",
       deposit: 0.002,
+    },
+  ]);
+};
+
+const handleIsHuman = () => {
+  Near.call([
+    {
+      contractName: registryContract,
+      methodName: "is_human",
+      args: { account: accountId },
     },
   ]);
 };
@@ -431,6 +442,45 @@ const Filters = () => {
   );
 };
 
+const CastVotes = () => (
+  <CastVotesSection className="d-flex align-items-center justify-content-between">
+    <div className="d-flex align-items-end">
+      <H3>{state.availableVotes}</H3>
+      <span>/</span>
+      <H4>{votes.total}</H4>
+      <span className="text-secondary">votes left</span>
+      {state.selectedCandidates.length > 0 && (
+        <SecondaryButton
+          onClick={() =>
+            State.update({
+              selectedCandidates: [],
+              availableVotes: votes.total,
+            })
+          }
+        >
+          Reset Selection
+        </SecondaryButton>
+      )}
+    </div>
+    <PrimaryButton
+      disabled={!state.selectedCandidates.length}
+      onClick={handleVote}
+    >
+      Cast {state.selectedCandidates.length || ""} Votes
+    </PrimaryButton>
+  </CastVotesSection>
+);
+
+const VerifyHuman = () => (
+  <CastVotesSection className="d-flex align-items-center justify-content-between">
+    <div className="d-flex align-items-end">
+      <H4>Want to vote?</H4>
+      <p>Click on the button next to and Verify as a Human to proceed.</p>
+    </div>
+    <PrimaryButton onClick={handleIsHuman}>Verify as Human</PrimaryButton>
+  </CastVotesSection>
+);
+
 return (
   <Container>
     <h1>{title}</h1>
@@ -438,31 +488,6 @@ return (
     {state.candidates.map(([accountId, votes], index) => (
       <CandidateList accountId={accountId} votes={votes} key={index} />
     ))}
-    <CastVotesSection className="d-flex align-items-center justify-content-between">
-      <div className="d-flex align-items-end">
-        <H3>{state.availableVotes}</H3>
-        <span>/</span>
-        <H4>{votes.total}</H4>
-        <span className="text-secondary">votes left</span>
-        {state.selectedCandidates.length > 0 && (
-          <SecondaryButton
-            onClick={() =>
-              State.update({
-                selectedCandidates: [],
-                availableVotes: votes.total,
-              })
-            }
-          >
-            Reset Selection
-          </SecondaryButton>
-        )}
-      </div>
-      <PrimaryButton
-        disabled={!state.selectedCandidates.length}
-        onClick={handleVote}
-      >
-        Cast {state.selectedCandidates.length || ""} Votes
-      </PrimaryButton>
-    </CastVotesSection>
+    {is_human ? <CastVotes /> : <VerifyHuman />}
   </Container>
 );
