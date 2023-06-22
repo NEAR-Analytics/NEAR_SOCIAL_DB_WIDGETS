@@ -4,22 +4,8 @@ if (!accountId) {
 }
 
 const contractId = "app.chess-game.near";
+const buttonWidget = "chess-game.near/widget/ChessGameButton";
 
-const Button = styled.button`
-  display: flex;
-  flex-direction: column;
-  align-self: ${(props) => (props.alignSelf ? props.alignSelf : "unset")};
-  border: 1px solid black;
-  border-radius: 4px;
-  font-size: ${(props) => (props.fontSize ? props.fontSize : "1rem")};
-  max-width: 220px;
-
-  > * {
-    max-width: 100%;
-    text-overflow: ellipsis;
-    overflow: hidden;
-  }
-`;
 const Challenge = styled.div`
   display: flex;
   font-size: 1.2rem;
@@ -109,11 +95,21 @@ const renderOpenChallenges = (challenges) => {
           <Challenge>
             <span>{challenge_id.split("-vs-").join(" vs ")}</span>
             {!is_challenger && (
-              <Button onClick={acceptChallenge(challenge_id)}>Accept</Button>
+              <Widget
+                src={buttonWidget}
+                props={{
+                  onClick: acceptChallenge(challenge_id),
+                  content: "Accept",
+                }}
+              />
             )}
-            <Button onClick={rejectChallenge(challenge_id, is_challenger)}>
-              Reject
-            </Button>
+            <Widget
+              src={buttonWidget}
+              props={{
+                onClick: rejectChallenge(challenge_id, is_challenger),
+                content: "Reject",
+              }}
+            />
           </Challenge>
         );
       })}
@@ -136,8 +132,13 @@ return (
     )}
     <span>Account ID:</span>
     <input onChange={updateChallengedId} value={state.challenged_id} />
-    <Button onClick={challenge} fontSize="1.4rem">
-      Challenge!
-    </Button>
+    <Widget
+      src={buttonWidget}
+      props={{
+        onClick: challenge,
+        fontSize: "1.4rem",
+        content: "Challenge!",
+      }}
+    />
   </GameCreator>
 );
