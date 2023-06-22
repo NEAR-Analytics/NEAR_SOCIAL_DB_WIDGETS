@@ -41,7 +41,7 @@ const Text = styled.p`
 `;
 
 if (followers !== null && followers.length === 0) {
-  return <Text>This account doesn&apos;t have any followers yet.</Text>;
+  return <Text>No one has recieved any of this badge yet.</Text>;
 }
 
 return (
