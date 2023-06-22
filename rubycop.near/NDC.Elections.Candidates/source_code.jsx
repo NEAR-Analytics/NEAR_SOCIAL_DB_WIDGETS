@@ -1,4 +1,7 @@
 const {
+  electionContract,
+  registryContract,
+  ndcOrganization,
   id,
   typ,
   title,
@@ -9,9 +12,6 @@ const {
   voters_num,
   seats,
   result,
-  electionContract,
-  registryContract,
-  ndcOrganization,
 } = props;
 
 const widgets = {
@@ -20,6 +20,27 @@ const widgets = {
 
 const _bookmarked = Social.index(ndcOrganization, typ);
 const currentUser = context.candidateId;
+
+const fetchVoters = () => {
+  // indexer call to get voters for particular 'houseId'
+  return [
+    {
+      accountId: "rubycop.near",
+      candidateId: "zomland.near",
+      txn_url: "3ZunLtfdnkAC1oTgUxy5KXJb7qQWULmcFpVvkaq2pd6b",
+    },
+    {
+      accountId: "voter1.near",
+      candidateId: "zomland.near",
+      txn_url: "3ZunLtfdnkAC1oTgUxy5KXJb7qQWULmcFpVvkaq2pd6b",
+    },
+    {
+      accountId: "voter1",
+      candidateId: "zomland.near",
+      txn_url: "3ZunLtfdnkAC1oTgUxy5KXJb7qQWULmcFpVvkaq2pd6b",
+    },
+  ];
+};
 
 State.init({
   loading: false,
@@ -34,6 +55,7 @@ State.init({
     votes: false,
     my_votes: false,
   },
+  voters: fetchVoters(),
 });
 
 const H4 = styled.h4`
@@ -266,7 +288,7 @@ const gotoIAHVerification = () => {
 };
 
 const alreadyVoted = (candidateId) =>
-  voters.some(
+  state.voters.some(
     (v) => v.candidateId === currentUser && v.candidateId === candidateId
   );
 
@@ -390,10 +412,7 @@ const CandidateList = ({ candidateId, votes }) => {
         </div>
       </CandidateItem>
       {state.selected === candidateId && (
-        <Widget
-          src={widgets.voters}
-          props={{ houseId: id, candidateId: candidateId }}
-        />
+        <Widget src={widgets.voters} props={{ voters: state.voters }} />
       )}
     </div>
   );
