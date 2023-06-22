@@ -1,3 +1,5 @@
+const buttonWidget = "chess-game.near/widget/ChessGameButton";
+
 State.init({
   difficulty: "Easy",
 });
@@ -27,21 +29,6 @@ const GameCreator = styled.div`
     align-self: center;
   }
 `;
-const Button = styled.button`
-  display: flex;
-  flex-direction: column;
-  align-self: ${(props) => (props.alignSelf ? props.alignSelf : "unset")};
-  border: 1px solid black;
-  border-radius: 4px;
-  font-size: ${(props) => (props.fontSize ? props.fontSize : "1rem")};
-  max-width: 220px;
-
-  > * {
-    max-width: 100%;
-    text-overflow: ellipsis;
-    overflow: hidden;
-  }
-`;
 
 return (
   <GameCreator>
@@ -55,8 +42,13 @@ return (
     <span>
       <i>Higher difficulties consume more gas!</i>
     </span>
-    <Button onClick={createAiGame} fontSize="1.4rem">
-      Create
-    </Button>
+    <Widget
+      src={buttonWidget}
+      props={{
+        onClick: createAiGame,
+        fontSize: "1.4rem",
+        content: "Create",
+      }}
+    />
   </GameCreator>
 );
