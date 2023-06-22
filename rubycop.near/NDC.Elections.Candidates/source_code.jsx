@@ -10,7 +10,6 @@ const {
   seats,
   result,
   voters,
-  votes,
   electionContract,
   registryContract,
   ndcOrganization,
@@ -25,7 +24,7 @@ const currentUser = context.accountId;
 
 State.init({
   loading: false,
-  availableVotes: votes.available,
+  availableVotes: seats,
   selected: null,
   bookmarked: _bookmarked ? _bookmarked[_bookmarked.length - 1].value : [],
   selectedCandidates: [],
@@ -201,7 +200,7 @@ const handleSelectCandidate = (accountId) => {
     ? state.selectedCandidates.filter((el) => el !== accountId)
     : [...state.selectedCandidates, accountId];
 
-  const availableVotes = votes.total - selectedItems.length;
+  const availableVotes = seats - selectedItems.length;
   if (availableVotes < 0) return;
 
   State.update({
@@ -255,14 +254,18 @@ const handleVote = () => {
   ]);
 };
 
-const handleIsHuman = () => {
-  Near.call([
+const isHuman = () => {
+  Near.view([
     {
       contractName: registryContract,
       methodName: "is_human",
       args: { account: accountId },
     },
   ]);
+};
+
+const gotoIAHVerification = () => {
+  window.location.href = "https://i-am-human.app/";
 };
 
 const alreadyVoted = (accountId) =>
@@ -461,14 +464,14 @@ const CastVotes = () => (
     <div className="d-flex align-items-end">
       <H3>{state.availableVotes}</H3>
       <span>/</span>
-      <H4>{votes.total}</H4>
+      <H4>{seats}</H4>
       <span className="text-secondary">votes left</span>
       {state.selectedCandidates.length > 0 && (
         <SecondaryButton
           onClick={() =>
             State.update({
               selectedCandidates: [],
-              availableVotes: votes.total,
+              availableVotes: seats,
             })
           }
         >
@@ -493,7 +496,7 @@ const VerifyHuman = () => (
         Click on the button next to and Verify as a Human to proceed.
       </h5>
     </div>
-    <PrimaryButton onClick={handleIsHuman}>Verify as Human</PrimaryButton>
+    <PrimaryButton onClick={gotoIAHVerification}>Verify as Human</PrimaryButton>
   </CastVotesSection>
 );
 
@@ -504,6 +507,6 @@ return (
     {state.candidates.map(([accountId, votes], index) => (
       <CandidateList accountId={accountId} votes={votes} key={index} />
     ))}
-    {is_human ? <CastVotes /> : <VerifyHuman />}
+    {isHuman() ? <CastVotes /> : <VerifyHuman />}
   </Container>
 );
