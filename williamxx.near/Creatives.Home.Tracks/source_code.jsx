@@ -6,7 +6,7 @@ const Container = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   flex-wrap: nowrap;
-  gap: 3em;
+  gap: 2em;
   background: #fff;
 `;
 
