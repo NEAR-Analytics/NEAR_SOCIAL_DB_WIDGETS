@@ -33,12 +33,12 @@ const unfilteredLikes = Social.index("like", item, {
 
 // ========= ARRAY LAST LIKE FOR EACH USER =========
 // arrayLastLikeForEachUser - array of objects {accountId, blockHeight, value: {type: "😁 LOL"}}
-const uniqueAccounts = {};
+const uniqueAccounts = [];
 const arrayLastLikeForEachUser =
   unfilteredLikes &&
   unfilteredLikes.filter((obj) => {
-    if (!uniqueAccounts[obj.accountId]) {
-      uniqueAccounts[obj.accountId] = true;
+    if (!uniqueAccounts.includes(obj.accountId)) {
+      uniqueAccounts.push(obj.accountId);
       return true;
     }
     return false;
@@ -50,10 +50,15 @@ const getLikeStats = (acc, likeObj) => {
     return acc;
   }
   if (!acc.hasOwnProperty(likeObj.value.type)) {
-    acc[likeObj.value.type] = {};
-    acc[likeObj.value.type].quantity = 0;
-    acc[likeObj.value.type].emoji = likeObj.value.type.slice(0, 2);
-    acc[likeObj.value.type].accounts = [];
+    acc[likeObj.value.type] = {
+        quantity: 0,
+        emoji: likeObj.value.type.slice(0, 2),
+        text: likeObj.value.type.slice(2),
+        accounts: []
+    };
+    // acc[likeObj.value.type].quantity = 0;
+    // acc[likeObj.value.type].emoji = likeObj.value.type.slice(0, 2);
+    // acc[likeObj.value.type].accounts = [];
   }
   acc[likeObj.value.type].quantity += 1;
   acc[likeObj.value.type].accounts = [
@@ -283,7 +288,14 @@ return (
       onMouseEnter={handleOnMouseEnter}
       onMouseLeave={handleOnMouseLeave}
     >
-      {state.emoji === undefined ? initialEmoji : state.emoji}
+      {likesStatistics && likesStatistics.length && likesStatistics.map((obj) => {
+        return (
+            <div title={`${obj.text}`}>
+                <span>{obj.emoji}</span>
+                <span>{obj.quantity}</span>
+            </div>
+        )
+      })}
     </Button>
     <Overlay />
   </EmojiWrapper>
