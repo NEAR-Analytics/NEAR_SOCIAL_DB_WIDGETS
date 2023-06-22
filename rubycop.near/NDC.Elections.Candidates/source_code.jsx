@@ -393,7 +393,8 @@ const CandidateList = ({ accountId, votes }) => {
         <Widget
           src={widgets.voters}
           props={{
-            voters: voters.filter((v) => v.candidateId === accountId),
+            houseId: id,
+            candidateId: state.selected,
           }}
         />
       )}
