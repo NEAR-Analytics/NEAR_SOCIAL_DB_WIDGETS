@@ -264,15 +264,13 @@ const handleBookmarkCandidate = (candidateId) => {
 };
 
 const handleVote = () => {
-  Near.call([
-    {
-      contractName: electionContract,
-      methodName: "vote",
-      args: { prop_id: id, vote: state.selectedCandidates },
-      gas: "70000000000000",
-      deposit: 0.002,
-    },
-  ]);
+  Near.call(
+    electionContract,
+    "vote",
+    { prop_id: id, vote: state.selectedCandidates },
+    "70000000000000",
+    0.002
+  );
 };
 
 const isIAmHuman = () => {
