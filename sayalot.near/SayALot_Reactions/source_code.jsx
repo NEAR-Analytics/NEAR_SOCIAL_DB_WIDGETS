@@ -13,7 +13,7 @@ const emojiArray = [
   "⋈ Bowtie",
 ];
 const item = props.item;
-const accountThatIsLoggedIn = context.accountId;
+const accountThatIsLoggedIn = "silkking.near" || context.accountId;
 
 if (!item) {
   return "";
@@ -44,6 +44,13 @@ const arrayLastLikeForEachUser =
     return false;
   });
 
+
+// ========= GET USER EMOJI =========
+const userEmoji = arrayLastLikeForEachUser.find((obj) => {
+  return obj.accountId === accountThatIsLoggedIn
+})
+
+
 // ========= GET LIKES STATISTICS =========
 const getLikeStats = (acc, likeObj) => {
   if (likeObj.value.type === initialEmoji) {
@@ -51,10 +58,10 @@ const getLikeStats = (acc, likeObj) => {
   }
   if (!acc.hasOwnProperty(likeObj.value.type)) {
     acc[likeObj.value.type] = {
-        quantity: 0,
-        emoji: likeObj.value.type.slice(0, 2),
-        text: likeObj.value.type.slice(2),
-        accounts: []
+      quantity: 0,
+      emoji: likeObj.value.type.slice(0, 2),
+      text: likeObj.value.type.slice(2),
+      accounts: []
     };
     // acc[likeObj.value.type].quantity = 0;
     // acc[likeObj.value.type].emoji = likeObj.value.type.slice(0, 2);
@@ -83,7 +90,7 @@ const doesUserVoted = () => {
   const resObject = arrayLastLikeForEachUser.find(
     (item) => item.accountId === accountThatIsLoggedIn
   );
-  return resObject ? true : false;
+  return resObject;
 };
 
 // ========= UPDATE EMOJI STATE IF USER VOTED SOMETIME BEFORE =========
@@ -256,6 +263,20 @@ box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15) !important;
   }
 `;
 
+const StatWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  overflow: visible !important;
+  border-radius: ${({ isUserVote }) => (isUserVote ? "1rem" : "0")};
+  background-color: ${({ isUserVote }) => (isUserVote ? "rgba(0, 191, 255, 0.3)" : "transparent")};
+`;
+
+const EmojiQty = styled.span`
+  width: 1rem;
+  padding-right: 8px;
+`;
+
 // =============== NEW JSX ===============!!!!!!!!
 const Overlay = () => (
   <EmojiListWrapper
@@ -284,16 +305,16 @@ const Overlay = () => (
 return (
   <EmojiWrapper>
     <Button
-      onClick={() => clickHandler(initialEmoji)}
+      // onClick={() => clickHandler(initialEmoji)}
       onMouseEnter={handleOnMouseEnter}
       onMouseLeave={handleOnMouseLeave}
     >
       {likesStatistics && likesStatistics.length && likesStatistics.map((obj) => {
         return (
-            <div title={`${obj.text}`}>
-                <span>{obj.emoji}</span>
-                <span>{obj.quantity}</span>
-            </div>
+          <StatWrapper title={`${obj.text}`} isUserVote={obj.emoji === userEmoji.value.type.slice(0, 2)}>
+            <EmojiWrapper>{obj.emoji}</EmojiWrapper>
+            <EmojiQty>{obj.quantity}</EmojiQty>
+          </StatWrapper>
         )
       })}
     </Button>
