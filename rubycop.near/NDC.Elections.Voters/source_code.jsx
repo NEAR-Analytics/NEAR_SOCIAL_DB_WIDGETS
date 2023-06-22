@@ -1,4 +1,4 @@
-const { candidateId, houseId } = props;
+const { voters } = props;
 
 const VotersContainer = styled.div`
   padding: 5px 0;
@@ -48,27 +48,9 @@ const UserLink = ({ title, src }) => (
   </>
 );
 
-const getHouseVoters = () => {
-  // indexer call to get voters for particular 'houseId', 'candidateId'
-  return [
-    {
-      accountId: "rubycop.near",
-      txn_url: "3ZunLtfdnkAC1oTgUxy5KXJb7qQWULmcFpVvkaq2pd6b",
-    },
-    {
-      accountId: "voter1.near",
-      txn_url: "3ZunLtfdnkAC1oTgUxy5KXJb7qQWULmcFpVvkaq2pd6b",
-    },
-    {
-      accountId: "voter1",
-      txn_url: "3ZunLtfdnkAC1oTgUxy5KXJb7qQWULmcFpVvkaq2pd6b",
-    },
-  ];
-};
-
 return (
   <VotersContainer>
-    {getHouseVoters().map((voter) => (
+    {voters.map((voter) => (
       <VoterItem className="d-flex align-items-center justify-content-between">
         <div className="d-flex">
           <Bookmark />
