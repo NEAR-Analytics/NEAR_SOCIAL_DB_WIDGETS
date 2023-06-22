@@ -205,6 +205,7 @@ position: relative;
   background: transparent;
   width: 35px;
   height: 35px;
+  color: red;
 `;
 
 const SmallButtonSpan = styled.span`
