@@ -157,6 +157,21 @@ const PrimaryButton = styled.button`
   border: 0;
 `;
 
+const PrimaryLink = styled.a`
+  padding: 8px 20px;
+  background: #FFD50D;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  color: inherit;
+
+  &:hover {
+    text-decoration: none;
+    color: inherit;
+  }
+`;
+
 const SecondaryButton = styled.button`
   padding: 4px 10px;
   border: 1px solid #FFD50D;
@@ -275,10 +290,6 @@ const handleVote = () => {
 
 const isIAmHuman = () => {
   Near.view(registryContract, "is_human", { account: context.accountId });
-};
-
-const gotoIAHVerification = () => {
-  window.location.href = "https://i-am-human.app/";
 };
 
 const alreadyVoted = (candidateId) =>
@@ -503,7 +514,7 @@ const VerifyHuman = () => (
         Click on the button next to and Verify as a Human to proceed.
       </h5>
     </div>
-    <PrimaryButton onClick={gotoIAHVerification}>Verify as Human</PrimaryButton>
+    <PrimaryLink href="https://i-am-human.app/">Verify as Human</PrimaryLink>
   </CastVotesSection>
 );
 
