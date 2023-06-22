@@ -1,3 +1,5 @@
+const { onClick, content, ...props } = props;
+
 const Button = styled.button`
   display: flex;
   flex-direction: column;
@@ -15,5 +17,7 @@ const Button = styled.button`
 `;
 
 return (
-  <Button onClick={props.onClick ?? undefined}>{props.content ?? ""}</Button>
+  <Button onClick={onClick ?? undefined} {...props}>
+    {content ?? ""}
+  </Button>
 );
