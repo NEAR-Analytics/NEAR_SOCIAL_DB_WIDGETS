@@ -255,13 +255,11 @@ const handleVote = () => {
 };
 
 const isHuman = () => {
-  Near.view([
-    {
-      contractName: registryContract,
-      methodName: "is_human",
-      args: { account: accountId },
-    },
-  ]);
+  Near.view({
+    contractName: registryContract,
+    methodName: "is_human",
+    args: { account: accountId },
+  });
 };
 
 const gotoIAHVerification = () => {
