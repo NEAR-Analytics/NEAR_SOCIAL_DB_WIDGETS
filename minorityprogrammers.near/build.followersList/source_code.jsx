@@ -1,8 +1,8 @@
 const accountId = props.accountId;
 
 if (!accountId) {
-  return "";
-  //   accountId = "build.sputnik-dao.near";
+  return "No Account ID passed into props";
+  // accountId = "build.sputnik-dao.near";
 }
 
 let followers = Social.keys(`*/graph/follow/${accountId}`, "final", {
