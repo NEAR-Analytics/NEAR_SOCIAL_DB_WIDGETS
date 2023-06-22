@@ -4,16 +4,16 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background-color: {data.container.backgroundColor};
+  background-color: black;
   `;
 
 const Header = styled.div`
-  height: {data.header.height};
+  height: 300px;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: {data.header.backgroundColor};
+  background-color: black;
 `;
 
 const Logo = styled.img`
@@ -44,7 +44,7 @@ function Content() {
       <>
         <Widget
           src={"efiz.near/widget/Every.Thing.View"}
-          props={{ path: state.thingSrc, ...state.p }}
+          props={{ path: state.thingSrc }}
         />
       </>
     );
@@ -56,17 +56,15 @@ return (
     <Widget
       src="efiz.near/widget/marquee"
       props={{
-        text: data.marquee.text,
-        fontFamily: data.marquee.fontFamily,
-        fontSize: data.marquee.fontSize,
-        textColor: data.marquee.textColor,
-        backgroundColor: data.marquee.backgroundColor,
-        height: data.marquee.height,
-        width: data.marquee.width,
+        text: "Join the Movement",
       }}
     />
     <Header>
-      <Logo src={data.logoSrc} />
+      <Logo
+        src={
+          "https://ipfs.near.social/ipfs/bafkreie6esjs3h2bdwrvwdt4zksk3nzfqdds3waej5solgh3vk6a7dm7ly"
+        }
+      />
     </Header>
     <Navigation>
       {data &&
