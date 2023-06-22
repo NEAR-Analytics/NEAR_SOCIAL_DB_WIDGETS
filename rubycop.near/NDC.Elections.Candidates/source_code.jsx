@@ -510,7 +510,7 @@ const VerifyHuman = () => (
 return (
   <Container>
     <h1>{title}</h1>
-    <Filters />
+    {state.candidates.length > 0 && <Filters />}
     {state.candidates.map(([candidateId, votes], index) => (
       <CandidateList candidateId={candidateId} votes={votes} key={index} />
     ))}
