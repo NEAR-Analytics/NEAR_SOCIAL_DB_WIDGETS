@@ -189,6 +189,7 @@ const overlayContent = (
   </AccountSearch>
 );
 
+console.log("state", state);
 return (
   <GameCreator>
     <h2>PvP:</h2>
