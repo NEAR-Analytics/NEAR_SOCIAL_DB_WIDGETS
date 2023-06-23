@@ -67,6 +67,7 @@ const H3 = styled.h3`
 `;
 
 const Container = styled.div`
+  position: relative:
   font-family: Avenir;
   font-size: 16px;
 `;
@@ -145,6 +146,20 @@ const Nomination = styled.div`
 
 const FilterRow = styled.div`
   padding: 15px 20px;
+`;
+
+const CandidatesContainer = styled.div`
+  overflow-y: scroll;
+  height: 100%;
+  width: 100%;
+`;
+
+const StickyContainer = styled.div`
+  position: "fixed",
+  left: 0;
+  bottom: 0;
+  height: 60px;
+  width: 100%;
 `;
 
 const PrimaryButton = styled.button`
@@ -530,9 +545,13 @@ return (
   <Container>
     <h1>{title}</h1>
     {state.candidates.length > 0 && <Filters />}
-    {state.candidates.map(([candidateId, votes], index) => (
-      <CandidateList candidateId={candidateId} votes={votes} key={index} />
-    ))}
-    {isIAmHuman() ? <CastVotes /> : <VerifyHuman />}
+    <CandidatesContainer>
+      {state.candidates.map(([candidateId, votes], index) => (
+        <CandidateList candidateId={candidateId} votes={votes} key={index} />
+      ))}
+    </CandidatesContainer>
+    <div className="position-sticky">
+      {isIAmHuman() ? <CastVotes /> : <VerifyHuman />}
+    </div>
   </Container>
 );
