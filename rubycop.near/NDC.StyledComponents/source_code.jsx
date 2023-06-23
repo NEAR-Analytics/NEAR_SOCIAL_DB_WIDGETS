@@ -26,7 +26,7 @@ const StyledButton = styled.button`
 if (Button)
   return (
     <StyledButton
-      className={`align-items-center d-flex ${Button.type}`}
+      className={`align-items-center d-flex ${Button.type ?? "primary"}`}
       onClick={Button.onClick}
       disabled={Button.disabled}
     >
