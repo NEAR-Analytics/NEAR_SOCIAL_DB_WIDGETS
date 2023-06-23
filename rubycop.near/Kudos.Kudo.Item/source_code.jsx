@@ -1,4 +1,4 @@
-const { accountId, votes, description, tags, createdAt } = props;
+const { accountId, upvotes, description, tags, createdAt } = props;
 
 const Container = styled.div`
   padding: 14px 16px;
@@ -103,7 +103,7 @@ return (
       </div>
       <div className="d-flex justify-content-between align-items-center gap-2">
         <VoteButton onClick={handleVote}>
-          {votes}
+          {upvotes}
           <Widget
             src="mob.near/widget/Image"
             props={{
