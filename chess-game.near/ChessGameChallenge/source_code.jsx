@@ -15,7 +15,7 @@ const buttonWidget = "chess-game.near/widget/ChessGameButton";
 //         console.log("action", action);
 //         const methodName = action.FunctionCall?.method_name;
 //         console.log("methodName", methodName);
-//         if (!methodName) break;
+//         if (!methodName) continue;
 //         if (
 //           methodName === "challenge" ||
 //           methodName === "accept_challenge" ||
