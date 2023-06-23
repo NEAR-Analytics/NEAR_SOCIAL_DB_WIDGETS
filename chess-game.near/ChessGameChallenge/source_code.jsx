@@ -70,6 +70,9 @@ const challenges1 = Near.view(contractId, "get_challenges", {
   account_id: accountId,
   is_challenger: false,
 });
+if (challenges0 == null || challenges1 == null) {
+  return "";
+}
 const openChallenges = [
   ...challenges0.map((id) => ({
     challenge_id: id,
@@ -90,8 +93,9 @@ if (!state.eloRatings) {
       skip,
       limit,
     });
+    if (newEloRatings == null) return "";
     skip += limit;
-    if (newEloRatings === 0) break;
+    if (newEloRatings.length === 0) break;
     eloRatings = eloRatings.concat(newEloRatings);
     if (newEloRatings < limit) break;
   }
@@ -185,11 +189,10 @@ const renderEloRatings = (eloRatings) => {
 
 const overlayContent = (
   <AccountSearch visible={state.displaySearch}>
-    {renderEloRatings(state.eloRatings)}
+    {renderEloRatings(eloRatings)}
   </AccountSearch>
 );
 
-console.log("state", state);
 return (
   <GameCreator>
     <h2>PvP:</h2>
