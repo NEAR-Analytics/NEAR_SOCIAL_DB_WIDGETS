@@ -1,6 +1,7 @@
 const profileIcon = "chess-game.near/widget/ProfileIcon";
 const githubIcon = "chess-game.near/widget/GithubIcon";
 const twitterIcon = "chess-game.near/widget/TwitterIcon";
+const discordIcon = "chess-game.near/widget/DiscordIcon";
 
 const Header = styled.div`
   display: flex;
@@ -48,6 +49,10 @@ return (
     <a href="https://twitter.com/protocolpawns" target="_blank">
       <Widget src={twitterIcon} props={{ height: "2rem" }} />
       <span>Twitter</span>
+    </a>
+    <a href="https://discord.com/invite/wKqEnXjaVH" target="_blank">
+      <Widget src={discordIcon} props={{ height: "2rem" }} />
+      <span>Discord</span>
     </a>
   </Header>
 );
