@@ -16,6 +16,7 @@ const {
 
 const widgets = {
   voters: "rubycop.near/widget/NDC.Elections.Voters",
+  button: "rubycop.near/widget/NDC.StyledComponents",
 };
 
 const _bookmarked = Social.index(ndcOrganization, typ);
@@ -162,16 +163,6 @@ const StickyContainer = styled.div`
   width: 100%;
 `;
 
-const PrimaryButton = styled.button`
-  padding: 8px 20px;
-  background: #FFD50D;
-  border-radius: 10px;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 24px;
-  border: 0;
-`;
-
 const PrimaryLink = styled.a`
   padding: 8px 20px;
   background: #FFD50D;
@@ -185,16 +176,6 @@ const PrimaryLink = styled.a`
     text-decoration: none;
     color: inherit;
   }
-`;
-
-const SecondaryButton = styled.button`
-  padding: 4px 10px;
-  border: 1px solid #FFD50D;
-  background: transparent;
-  border-radius: 10px;
-  font-size: 12px;
-  font-weight: 500;
-  margin-left: 10px;
 `;
 
 const CastVotesSection = styled.div`
@@ -508,24 +489,31 @@ const CastVotes = () => (
       <H4>{seats}</H4>
       <span className="text-secondary">votes left</span>
       {state.selectedCandidates.length > 0 && (
-        <SecondaryButton
-          onClick={() =>
-            State.update({
-              selectedCandidates: [],
-              availableVotes: seats,
-            })
-          }
-        >
-          Reset Selection
-        </SecondaryButton>
+        <Widget
+          src={widgets.button}
+          props={{
+            Button: {
+              text: "Reset Selection",
+              onClick: () =>
+                State.update({
+                  selectedCandidates: [],
+                  availableVotes: seats,
+                }),
+            },
+          }}
+        />
       )}
     </div>
-    <PrimaryButton
-      disabled={!state.selectedCandidates.length}
-      onClick={handleVote}
-    >
-      Cast {state.selectedCandidates.length || ""} Votes
-    </PrimaryButton>
+    <Widget
+      src={widgets.button}
+      props={{
+        Button: {
+          disabled: !state.selectedCandidates.length,
+          text: `Cast ${state.selectedCandidates.length || ""} Votes`,
+          onClick: handleVote,
+        },
+      }}
+    />
   </CastVotesSection>
 );
 
