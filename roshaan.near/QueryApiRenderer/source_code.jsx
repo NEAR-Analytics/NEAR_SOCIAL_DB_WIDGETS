@@ -3,6 +3,10 @@ const indexer_user = props.user;
 const queryName = props.queryName;
 const stateHandler = props.stateHandler;
 
+State.init({
+  data: [],
+});
+
 const QUERYAPI_ENDPOINT =
   props.graphqlEndpoint ||
   "https://near-queryapi.dev.api.pagoda.co/v1/graphql/";
@@ -33,17 +37,10 @@ function fetchGraphQL(operationsDoc, operationName, variables) {
 fetchGraphQL(query, queryName, {}).then((result) => {
   if (result.status === 200) {
     if (result.body.data && stateHandler) {
-      stateHandler(State, result.body.data);
+      const data = stateHandler(result.body.data);
+      State.update({ data });
     }
   }
-});
-
-const renderData = (a) => {
-  return <div key={JSON.stringify(a)}>{JSON.stringify(a)}</div>;
-};
-
-State.init({
-  data: [],
 });
 
 const renderedData = state.data.map(renderer);
