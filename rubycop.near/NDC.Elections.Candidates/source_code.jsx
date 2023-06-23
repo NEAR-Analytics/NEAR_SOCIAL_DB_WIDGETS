@@ -544,12 +544,20 @@ const VerifyHuman = () => (
 return (
   <Container>
     <h1>{title}</h1>
-    {state.candidates.length > 0 && <Filters />}
-    <CandidatesContainer>
-      {state.candidates.map(([candidateId, votes], index) => (
-        <CandidateList candidateId={candidateId} votes={votes} key={index} />
-      ))}
-    </CandidatesContainer>
+    {state.candidates.length > 0 && (
+      <>
+        <Filters />
+        <CandidatesContainer>
+          {state.candidates.map(([candidateId, votes], index) => (
+            <CandidateList
+              candidateId={candidateId}
+              votes={votes}
+              key={index}
+            />
+          ))}
+        </CandidatesContainer>
+      </>
+    )}
     <div className="position-sticky">
       {isIAmHuman() ? <CastVotes /> : <VerifyHuman />}
     </div>
