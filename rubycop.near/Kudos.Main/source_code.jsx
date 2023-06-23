@@ -40,6 +40,7 @@ const Container = styled.div`
   margin: 20px;
   padding: 16px;
   background: #F8F8F9;
+  border-radius: 10px;
 `;
 
 return (
