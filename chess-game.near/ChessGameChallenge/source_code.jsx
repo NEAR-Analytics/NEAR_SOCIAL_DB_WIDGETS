@@ -6,28 +6,27 @@ if (!accountId) {
 const contractId = "app.chess-game.near";
 const buttonWidget = "chess-game.near/widget/ChessGameButton";
 
-// afterConfirmTx((txConfirmations) => {
-//   console.log("afterConfirmTx", txConfirmations);
-//   for (const tx of txConfirmations) {
-//     const actions = tx?.transaction?.actions;
-//     if (Array.isArray(actions)) {
-//       for (const action of actions) {
-//         console.log("action", action);
-//         const methodName = action.FunctionCall?.method_name;
-//         console.log("methodName", methodName);
-//         if (!methodName) break;
-//         if (
-//           methodName === "challenge" ||
-//           methodName === "accept_challenge" ||
-//           methodName === "reject_challenge"
-//         ) {
-//           console.log("updateOpenChallenges");
-//           updateOpenChallenges();
-//         }
-//       }
-//     }
-//   }
-// });
+afterConfirmTx((txConfirmations) => {
+  console.log("afterConfirmTx", txConfirmations);
+  for (const tx of txConfirmations) {
+    const actions = tx?.transaction?.actions;
+    if (Array.isArray(actions)) {
+      for (const action of actions) {
+        console.log("action", action);
+        const methodName = action.FunctionCall?.method_name;
+        console.log("methodName", methodName);
+        if (!methodName) break;
+        if (
+          methodName === "challenge" ||
+          methodName === "accept_challenge" ||
+          methodName === "reject_challenge"
+        ) {
+          updateOpenChallenges();
+        }
+      }
+    }
+  }
+});
 
 const Challenge = styled.div`
   display: flex;
@@ -86,7 +85,6 @@ const SearchResult = styled.div`
 `;
 
 function updateOpenChallenges() {
-  console.log("updateOpenChallengesupdateOpenChallenges");
   Near.asyncView(contractId, "get_challenges", {
     account_id: accountId,
     is_challenger: true,
@@ -162,7 +160,6 @@ const rejectChallenge = (challenge_id, is_challenger) => () => {
 };
 
 const renderOpenChallenges = (challenges) => {
-  console.log("challenges", challenges);
   if (challenges == null) {
     return "";
   }
