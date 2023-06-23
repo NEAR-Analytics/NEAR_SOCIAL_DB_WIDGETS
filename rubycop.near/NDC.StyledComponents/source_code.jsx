@@ -10,6 +10,10 @@ const StyledButton = styled.button`
 
   &.primary {
     background: #FFD50D;
+
+    &.dark {
+      background: linear-gradient(90deg, #9333EA 0%, #4F46E5 100%);
+    }
   }
 
   &.secondary {
