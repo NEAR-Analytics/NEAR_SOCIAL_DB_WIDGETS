@@ -129,7 +129,7 @@ if (!state.eloRatings) {
     if (newEloRatings < limit) break;
   }
 }
-eloRatings.sort((a, b) => a[1] - b[1]);
+eloRatings.sort((a, b) => b[1] - a[1]);
 
 State.init({
   challenged_id: "",
