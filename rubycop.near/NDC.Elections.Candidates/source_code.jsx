@@ -150,7 +150,7 @@ const FilterRow = styled.div`
 
 const CandidatesContainer = styled.div`
   overflow-y: scroll;
-  height: 100%;
+  height: 490px;
   width: 100%;
 `;
 
