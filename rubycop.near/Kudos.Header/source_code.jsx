@@ -1,5 +1,5 @@
 const Header = styled.div`
-    background: linear-gradient(90deg, #9333EA 0%, #4F46E5 100%);
+  background: linear-gradient(90deg, #9333EA 0%, #4F46E5 100%);
 `;
 
 const PrimaryButton = styled.button`
@@ -36,6 +36,7 @@ return (
       props={{
         Button: {
           text: "Give a Kudo",
+          size: "sm",
           icon: (
             <Widget
               src="mob.near/widget/Image"
