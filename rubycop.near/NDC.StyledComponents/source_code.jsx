@@ -20,6 +20,7 @@ if (PrimaryButton)
     <StyledPrimaryButton
       className="align-items-center d-flex"
       onClick={PrimaryButton.onClick}
+      disabled={PrimaryButton.disabled}
     >
       <div>{PrimaryButton.text}</div>
       {PrimaryButton.icon && <div className="fs-5">{PrimaryButton.icon}</div>}
