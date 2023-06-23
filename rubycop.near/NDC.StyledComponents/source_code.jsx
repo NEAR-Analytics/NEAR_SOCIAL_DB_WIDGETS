@@ -1,9 +1,9 @@
 const { Button } = props;
 
 const StyledButton = styled.button`
-  padding: 8px 20px;
+  padding: ${(props) => (props.size === "sm" ? "4px 12px" : "8px 20px")};
+  font-size: ${(props) => (props.size === "sm" ? "12px" : "14px")};
   border-radius: 10px;
-  font-size: 14px;
   font-weight: 500;
   line-height: 24px;
   border: 0;
@@ -26,7 +26,9 @@ const StyledButton = styled.button`
 if (Button)
   return (
     <StyledButton
-      className={`align-items-center d-flex ${Button.type ?? "primary"}`}
+      className={`align-items-center d-flex ${Button.type ?? "primary"} ${
+        Button.size
+      }`}
       onClick={Button.onClick}
       disabled={Button.disabled}
     >
