@@ -19,10 +19,9 @@ const renderData = (a) => {
 
 return (
   <Widget
-    src="dev-queryapi.dataplatform.near/widget/QueryApiRenderer"
+    src="roshaan.near/widget/QueryApiRenderer"
     props={{
       query: query,
-      renderer: renderData,
       stateHandler: stateHandler,
       user: `roshaan_near`,
       queryName: MyQuery,
