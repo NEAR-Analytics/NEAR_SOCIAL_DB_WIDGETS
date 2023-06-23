@@ -30,16 +30,22 @@ const buttonWidget = "chess-game.near/widget/ChessGameButton";
 
 const Challenge = styled.div`
   display: flex;
+  flex-direction: column;
+  align-items: flex-end;
   font-size: 1.2rem;
   flex-wrap: wrap;
   gap: 0.2rem;
   border-radius: 0.4rem;
   border: 1px solid black;
   padding: 0.3rem;
-
-  > *:first-child {
-    flex: 1 0 100%;
-  }
+`;
+const ChallengeInfo = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.2rem;
+  margin-bottom: 0.4rem;
 `;
 const GameSelector = styled.div`
   display: flex;
@@ -166,9 +172,24 @@ const renderOpenChallenges = (challenges) => {
   return (
     <GameSelector>
       {challenges.map(({ challenge_id, is_challenger }) => {
+        const [challengerId, challengedId] = challenge_id.split("-vs-");
+        const challengerElo = state.eloRatings.find(
+          ([accountId]) => accountId === challengerId
+        )?.[1];
+        const challengedElo = state.eloRatings.find(
+          ([accountId]) => accountId === challengedId
+        )?.[1];
         return (
           <Challenge>
-            <span>{challenge_id.split("-vs-").join(" vs ")}</span>
+            <ChallengeInfo>
+              <div>
+                {challengerId} {challengerElo != null && <>({challengerElo})</>}
+              </div>
+              <div>vs</div>
+              <div>
+                {challengedId} {challengedElo != null && <>({challengedElo})</>}
+              </div>
+            </ChallengeInfo>
             {!is_challenger && (
               <Widget
                 src={buttonWidget}
