@@ -1,6 +1,6 @@
 const accountId = props.accountId || context.accountId;
 
-const GameButton = styled.button`
+const Button = styled.button`
   background: palevioletred;
   color: white;
   font-size: 1em;
@@ -19,13 +19,13 @@ if (!accountId) {
     <div>
       <p>Please connect your NEAR wallet or create a new one:</p>
       <a href="https://near.org/signup" target="_blank" rel="noreferrer">
-        <GameButton>Create NEAR Wallet</GameButton>
+        <Button>Create NEAR Wallet</Button>
       </a>
     </div>
   );
 }
 
-const GameContainer = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -54,12 +54,12 @@ const ButtonContainer = styled.div`
   margin-top: 20px;
 `;
 
-const PigButton = styled(GameButton)`
+const EnterButton = styled(Button)`
   background: #ffbd2a;
   border-color: #ffbd2a;
 `;
 
-const VerifyButton = styled(GameButton)`
+const VerifyButton = styled(Button)`
   background: #60b347;
   border-color: #60b347;
 `;
@@ -73,16 +73,16 @@ const handleClickEnter = () => {
 };
 
 return (
-  <GameContainer>
+  <Container>
     <Title>
       Hello {accountId}! Welcome to Piglet, your community crowd funding
       platform.
     </Title>
     <ButtonContainer>
-      <PigButton onClick={handleClickEnter}>Enter the Platform</PigButton>
+      <EnterButton onClick={handleClickEnter}>Enter the Platform</EnterButton>
       <VerifyButton onClick={handleClickVerify}>
         Verify Your Humanity
       </VerifyButton>
     </ButtonContainer>
-  </GameContainer>
+  </Container>
 );
