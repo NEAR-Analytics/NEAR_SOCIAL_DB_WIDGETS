@@ -43,6 +43,24 @@ const GameCreator = styled.div`
     align-self: center;
   }
 `;
+const AccountSearch = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  max-height: 400px;
+  max-width: 100%;
+  overflow: auto;
+`;
+const SearchResult = styled.div`
+  background: #ddd;
+  line-height: 2rem;
+  padding: 0.5rem;
+  cursor: pointer;
+
+  &:hover {
+    background: #bbf;
+  }
+`;
 
 const challenges0 = Near.view(contractId, "get_challenges", {
   account_id: accountId,
@@ -63,8 +81,27 @@ const openChallenges = [
   })),
 ];
 
+let eloRatings = [...(state?.eloRatings ?? [])];
+if (!state.eloRatings) {
+  let skip = 0;
+  const limit = 100;
+  while (true) {
+    let newEloRatings = Near.view(contractId, "get_elo_ratings", {
+      skip,
+      limit,
+    });
+    skip += limit;
+    if (newEloRatings === 0) break;
+    eloRatings = eloRatings.concat(newEloRatings);
+    if (newEloRatings < limit) break;
+  }
+}
+eloRatings.sort((a, b) => a[1] - b[1]);
+
 State.init({
   challenged_id: "",
+  eloRatings,
+  displaySearch: state.displaySearch ?? false,
 });
 
 const updateChallengedId = ({ target }) => {
@@ -117,6 +154,38 @@ const renderOpenChallenges = (challenges) => {
   );
 };
 
+const onFocus = () => {
+  State.update({
+    displaySearch: true,
+  });
+};
+const onBlur = () => {
+  State.update({
+    displaySearch: false,
+  });
+};
+const selectPlayer = (accountId) => () => {
+  State.update({ challenged_id: accountId });
+};
+
+const renderEloRatings = (eloRatings) =>
+  eloRatings
+    .filter(([accountId]) =>
+      state.challenged_id.split(" ").some((val) => accountId.includes(val))
+    )
+    .map(([accountId, eloRating]) => (
+      <SearchResult onClick={selectPlayer(accountId)}>
+        {accountId.length > 20 ? accountId.substr(0, 20) + "..." : accountId}{" "}
+        (ELO: {eloRating})
+      </SearchResult>
+    ));
+
+const overlayContent = (
+  <AccountSearch visible={state.displaySearch}>
+    {renderEloRatings(state.eloRatings)}
+  </AccountSearch>
+);
+
 return (
   <GameCreator>
     <h2>PvP:</h2>
@@ -131,7 +200,19 @@ return (
       renderOpenChallenges(openChallenges)
     )}
     <span>Account ID:</span>
-    <input onChange={updateChallengedId} value={state.challenged_id} />
+    <OverlayTrigger
+      show={state.displaySearch}
+      delay={{ show: 250, hide: 300 }}
+      placement="bottom"
+      overlay={overlayContent}
+    >
+      <input
+        onChange={updateChallengedId}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        value={state.challenged_id}
+      />
+    </OverlayTrigger>
     <Widget
       src={buttonWidget}
       props={{
