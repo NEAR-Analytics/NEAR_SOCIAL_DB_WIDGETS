@@ -32,7 +32,7 @@ function fetchGraphQL(operationsDoc, operationName, variables) {
 
 fetchGraphQL(query, queryName, {}).then((result) => {
   if (result.status === 200) {
-    if (result.body.data) {
+    if (result.body.data && stateHandler) {
       stateHandler(State, result.body.data);
     }
   }
