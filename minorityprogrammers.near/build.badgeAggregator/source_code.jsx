@@ -1,20 +1,67 @@
 // list all the componeents
 // list follower account for each
 // create an array of all the badge
+
+// future show badget b6 showing which individual followed them
 const devBadges = {
   badges: [
     {
-      account: "devs.near",
+      account: "homework1.near",
       name: "Name 1",
       description: "Description 1",
     },
     {
-      account: "hw2.near",
+      account: "homework2.near",
       name: "Name 2",
       description: "Description 2",
     },
     {
-      account: "hw1.near",
+      account: "homework3.near",
+      name: "Name 3",
+      description: "Description 3",
+    },
+    {
+      account: "homework4.near",
+      name: "Name 3",
+      description: "Description 3",
+    },
+    {
+      account: "homework5.near",
+      name: "Name 3",
+      description: "Description 3",
+    },
+    {
+      account: "homework6.near",
+      name: "Name 3",
+      description: "Description 3",
+    },
+    {
+      account: "workshop1.near",
+      name: "Name 3",
+      description: "Description 3",
+    },
+    {
+      account: "workshop2.near",
+      name: "Name 3",
+      description: "Description 3",
+    },
+    {
+      account: "workshop3.near",
+      name: "Name 3",
+      description: "Description 3",
+    },
+    {
+      account: "workshop4.near",
+      name: "Name 3",
+      description: "Description 3",
+    },
+    {
+      account: "workshop5.near",
+      name: "Name 3",
+      description: "Description 3",
+    },
+    {
+      account: "workshop6.near",
       name: "Name 3",
       description: "Description 3",
     },
@@ -22,6 +69,66 @@ const devBadges = {
       account: "devbadge.near",
       name: "Dev Badge",
       description: "Description 4",
+    },
+    {
+      account: "boshacks.near",
+      name: "Dev Badge",
+      description: "Description 4",
+    },
+    {
+      account: "bugfinder.near",
+      name: "Dev Badge",
+      description: "Description 4",
+    },
+    {
+      account: "bugfixer.near",
+      name: "Dev Badge",
+      description: "Description 4",
+    },
+    {
+      account: "boswin.near",
+      name: "Dev Badge",
+      description: "Description 4",
+    },
+    {
+      account: "ethdev.near",
+      name: "Dev Badge",
+      description: "Description 4",
+    },
+    {
+      account: "contractdeploy.near",
+      name: "Dev Badge",
+      description: "Description 4",
+    },
+    {
+      account: "tooling.near",
+      name: "Dev Badge",
+      description: "Description 4",
+    },
+    {
+      account: "apidev.near",
+      name: "Dev Badge",
+      description: "Description 4",
+    },
+    {
+      account: "refidev.near",
+      name: "Dev Badge",
+      description: "Description 4",
+    },
+    {
+      account: "aidev.near",
+      name: "Dev Badge",
+      description: "Description 4",
+    },
+    {
+      account: "50badge.near",
+      name: "Dev Badge",
+      description: "Description 4",
+    },
+    {
+      account: "officehours.near",
+      name: "Dev Badge",
+      description: "You have attended office ",
     },
   ],
 };
