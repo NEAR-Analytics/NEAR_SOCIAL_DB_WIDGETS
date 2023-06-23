@@ -360,21 +360,23 @@ const CandidateList = ({ candidateId, votes }) => {
         selected={state.selected === candidateId}
       >
         <div className="d-flex">
-          <Bookmark selected={state.selected === candidateId}>
-            {state.loading === candidateId ? (
-              <Loader />
-            ) : (
-              <i
-                id="bookmark"
-                onClick={() => handleBookmarkCandidate(candidateId)}
-                className={`bi ${
-                  state.bookmarked.includes(candidateId)
-                    ? "bi-bookmark-fill"
-                    : "bi-bookmark"
-                }`}
-              />
-            )}
-          </Bookmark>
+          {isIAmHuman() && (
+            <Bookmark selected={state.selected === candidateId}>
+              {state.loading === candidateId ? (
+                <Loader />
+              ) : (
+                <i
+                  id="bookmark"
+                  onClick={() => handleBookmarkCandidate(candidateId)}
+                  className={`bi ${
+                    state.bookmarked.includes(candidateId)
+                      ? "bi-bookmark-fill"
+                      : "bi-bookmark"
+                  }`}
+                />
+              )}
+            </Bookmark>
+          )}
           <div className="d-flex">
             <Widget
               src="mob.near/widget/ProfileImage"
@@ -401,19 +403,21 @@ const CandidateList = ({ candidateId, votes }) => {
             <i className="bi bi-arrow-up-right" />
           </NominationLink>
           <Votes>{votes}</Votes>
-          <Votes>
-            <input
-              id="input"
-              disabled={alreadyVoted(candidateId)}
-              onClick={() => handleSelectCandidate(candidateId)}
-              className="form-check-input"
-              type="checkbox"
-              checked={
-                state.selectedCandidates.includes(candidateId) ||
-                alreadyVoted(candidateId)
-              }
-            />
-          </Votes>
+          {isIAmHuman() && (
+            <Votes>
+              <input
+                id="input"
+                disabled={alreadyVoted(candidateId)}
+                onClick={() => handleSelectCandidate(candidateId)}
+                className="form-check-input"
+                type="checkbox"
+                checked={
+                  state.selectedCandidates.includes(candidateId) ||
+                  alreadyVoted(candidateId)
+                }
+              />
+            </Votes>
+          )}
         </div>
       </CandidateItem>
       {state.selected === candidateId && (
@@ -427,14 +431,16 @@ const Filters = () => {
   return (
     <FilterRow className="d-flex align-items-center justify-content-between">
       <div className="d-flex">
-        <Bookmark
-          role="button"
-          className="text-secondary"
-          onClick={() => filterBy({ bookmark: true })}
-        >
-          <small>Bookmark</small>
-          <i className="bi bi-funnel" />
-        </Bookmark>
+        {isIAmHuman() && (
+          <Bookmark
+            role="button"
+            className="text-secondary"
+            onClick={() => filterBy({ bookmark: true })}
+          >
+            <small>Bookmark</small>
+            <i className="bi bi-funnel" />
+          </Bookmark>
+        )}
         <div
           role="button"
           className="text-secondary"
@@ -464,14 +470,16 @@ const Filters = () => {
             }`}
           />
         </Votes>
-        <Action
-          role="button"
-          className="text-secondary"
-          onClick={() => filterBy({ my_votes: true })}
-        >
-          <small>My votes</small>
-          <i className="bi bi-funnel" />
-        </Action>
+        {isIAmHuman() && (
+          <Action
+            role="button"
+            className="text-secondary"
+            onClick={() => filterBy({ my_votes: true })}
+          >
+            <small>My votes</small>
+            <i className="bi bi-funnel" />
+          </Action>
+        )}
       </div>
     </FilterRow>
   );
