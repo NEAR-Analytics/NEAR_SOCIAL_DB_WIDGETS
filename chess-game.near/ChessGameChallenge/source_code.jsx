@@ -6,6 +6,29 @@ if (!accountId) {
 const contractId = "app.chess-game.near";
 const buttonWidget = "chess-game.near/widget/ChessGameButton";
 
+// afterConfirmTx((txConfirmations) => {
+//   console.log("afterConfirmTx", txConfirmations);
+//   for (const tx of txConfirmations) {
+//     const actions = tx?.transaction?.actions;
+//     if (Array.isArray(actions)) {
+//       for (const action of actions) {
+//         console.log("action", action);
+//         const methodName = action.FunctionCall?.method_name;
+//         console.log("methodName", methodName);
+//         if (!methodName) break;
+//         if (
+//           methodName === "challenge" ||
+//           methodName === "accept_challenge" ||
+//           methodName === "reject_challenge"
+//         ) {
+//           console.log("updateOpenChallenges");
+//           updateOpenChallenges();
+//         }
+//       }
+//     }
+//   }
+// });
+
 const Challenge = styled.div`
   display: flex;
   font-size: 1.2rem;
@@ -62,27 +85,35 @@ const SearchResult = styled.div`
   }
 `;
 
-const challenges0 = Near.view(contractId, "get_challenges", {
-  account_id: accountId,
-  is_challenger: true,
-});
-const challenges1 = Near.view(contractId, "get_challenges", {
-  account_id: accountId,
-  is_challenger: false,
-});
-if (challenges0 == null || challenges1 == null) {
-  return "";
-}
-const openChallenges = [
-  ...challenges0.map((id) => ({
-    challenge_id: id,
+function updateOpenChallenges() {
+  console.log("updateOpenChallengesupdateOpenChallenges");
+  Near.asyncView(contractId, "get_challenges", {
+    account_id: accountId,
     is_challenger: true,
-  })),
-  ...challenges1.map((id) => ({
-    challenge_id: id,
-    is_challenger: false,
-  })),
-];
+  }).then((challenges0) => {
+    Near.asyncView(contractId, "get_challenges", {
+      account_id: accountId,
+      is_challenger: false,
+    }).then((challenges1) => {
+      if (challenges0 == null || challenges1 == null) {
+        return "";
+      }
+      const openChallenges = [
+        ...challenges0.map((id) => ({
+          challenge_id: id,
+          is_challenger: true,
+        })),
+        ...challenges1.map((id) => ({
+          challenge_id: id,
+          is_challenger: false,
+        })),
+      ];
+      State.update({
+        openChallenges,
+      });
+    });
+  });
+}
 
 let eloRatings = [...(state?.eloRatings ?? [])];
 if (!state.eloRatings) {
@@ -106,7 +137,9 @@ State.init({
   challenged_id: "",
   eloRatings,
   displaySearch: state.displaySearch ?? false,
+  openChallenges: null,
 });
+updateOpenChallenges();
 
 const updateChallengedId = ({ target }) => {
   State.update({ challenged_id: target.value });
@@ -129,6 +162,10 @@ const rejectChallenge = (challenge_id, is_challenger) => () => {
 };
 
 const renderOpenChallenges = (challenges) => {
+  console.log("challenges", challenges);
+  if (challenges == null) {
+    return "";
+  }
   return (
     <GameSelector>
       {challenges.map(({ challenge_id, is_challenger }) => {
@@ -197,14 +234,14 @@ return (
   <GameCreator>
     <h2>PvP:</h2>
     <h3>Open challenges:</h3>
-    {openChallenges.length === 0 ? (
+    {state.openChallenges && state.openChallenges.length === 0 ? (
       <span>
         No open challenges found.
         <br />
         Challenge your first opponent now below!
       </span>
     ) : (
-      renderOpenChallenges(openChallenges)
+      renderOpenChallenges(state.openChallenges)
     )}
     <span>Account ID:</span>
     <OverlayTrigger
