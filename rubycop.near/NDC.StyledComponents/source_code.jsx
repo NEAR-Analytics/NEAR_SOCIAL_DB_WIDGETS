@@ -32,7 +32,11 @@ if (Button)
       disabled={Button.disabled}
     >
       <div>{Button.text}</div>
-      {Button.icon && <div className="fs-5">{Button.icon}</div>}
+      {Button.icon && (
+        <div className={`${Button.size === "sm" ? "fs-7" : "fs-5"}`}>
+          {Button.icon}
+        </div>
+      )}
     </StyledButton>
   );
 
