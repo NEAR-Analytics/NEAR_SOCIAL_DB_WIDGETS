@@ -1,6 +1,8 @@
 const query = props.query || "";
 const indexer_user = props.user;
 const queryName = props.queryName;
+const statehandler = props.stateHandler;
+
 const QUERYAPI_ENDPOINT =
   props.graphqlEndpoint ||
   "https://near-queryapi.dev.api.pagoda.co/v1/graphql/";
@@ -31,9 +33,7 @@ function fetchGraphQL(operationsDoc, operationName, variables) {
 fetchGraphQL(query, queryName, {}).then((result) => {
   if (result.status === 200) {
     if (result.body.data) {
-      const data = result.body.data.roshaan_near_feed_indexer_posts;
-      State.update({ data });
-      console.log(data);
+      stateHandler(State, result.body.data);
     }
   }
 });
