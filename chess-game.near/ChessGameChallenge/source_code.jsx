@@ -169,7 +169,7 @@ const selectPlayer = (accountId) => () => {
 };
 
 const renderEloRatings = (eloRatings) =>
-  state.challenged_id == null
+  state.challenged_id == null || !Array.isArray(eloRatings)
     ? ""
     : eloRatings
         .filter(([accountId]) =>
