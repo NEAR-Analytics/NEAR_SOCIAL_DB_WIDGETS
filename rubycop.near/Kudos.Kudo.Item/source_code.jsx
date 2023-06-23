@@ -126,7 +126,7 @@ return (
               text: "Mint SBT",
               className: "primary dark",
               size: "sm",
-              onClick: handleMintSBT(),
+              onClick: handleMintSBT,
             },
           }}
         />
@@ -154,7 +154,7 @@ return (
               text: "Reply",
               size: "sm",
               icon: <i className="bi bi-arrow-90deg-left" />,
-              onClick: handleReply(),
+              onClick: handleReply,
             },
           }}
         />
