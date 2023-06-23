@@ -32,7 +32,7 @@ if (Button)
   return (
     <StyledButton
       size={Button.size}
-      className={`align-items-center d-flex ${Button.type ?? "primary"}`}
+      className={`align-items-center d-flex ${Button.className ?? "primary"}`}
       onClick={Button.onClick}
       disabled={Button.disabled}
     >
