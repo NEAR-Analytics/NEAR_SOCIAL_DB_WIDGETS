@@ -36,7 +36,7 @@ return (
     <Widget
       src="rubycop.near/widget/NDC.StyledComponents"
       props={{
-        PrimaryButton: {
+        Button: {
           text: "Give a Kudo",
           icon: <i className="bi bi-plus" />,
           onClick: handleAddKudo,
