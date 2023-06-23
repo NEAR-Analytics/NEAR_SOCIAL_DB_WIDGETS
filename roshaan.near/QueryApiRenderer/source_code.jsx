@@ -1,7 +1,7 @@
 const query = props.query || "";
 const indexer_user = props.user;
 const queryName = props.queryName;
-const statehandler = props.stateHandler;
+const stateHandler = props.stateHandler;
 
 const QUERYAPI_ENDPOINT =
   props.graphqlEndpoint ||
