@@ -169,16 +169,20 @@ const selectPlayer = (accountId) => () => {
 };
 
 const renderEloRatings = (eloRatings) =>
-  eloRatings
-    .filter(([accountId]) =>
-      state.challenged_id.split(" ").some((val) => accountId.includes(val))
-    )
-    .map(([accountId, eloRating]) => (
-      <SearchResult onClick={selectPlayer(accountId)}>
-        {accountId.length > 20 ? accountId.substr(0, 20) + "..." : accountId}{" "}
-        (ELO: {eloRating})
-      </SearchResult>
-    ));
+  state.challenged_id == null
+    ? ""
+    : eloRatings
+        .filter(([accountId]) =>
+          state.challenged_id.split(" ").some((val) => accountId.includes(val))
+        )
+        .map(([accountId, eloRating]) => (
+          <SearchResult onClick={selectPlayer(accountId)}>
+            {accountId.length > 20
+              ? accountId.substr(0, 20) + "..."
+              : accountId}{" "}
+            (ELO: {eloRating})
+          </SearchResult>
+        ));
 
 const overlayContent = (
   <AccountSearch visible={state.displaySearch}>
