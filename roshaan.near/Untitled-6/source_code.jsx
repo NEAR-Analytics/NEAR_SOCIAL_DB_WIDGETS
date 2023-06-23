@@ -8,10 +8,9 @@ const query = `query MyQuery {
     }
   }`;
 
-const stateHandler = (state, queryData) => {
-  console.log(queryData);
+const stateHandler = (queryData) => {
   let data = queryData.roshaan_near_feed_indexer_comments;
-  state.update({ data });
+  return data;
 };
 
 const renderData = (a) => {
@@ -24,9 +23,9 @@ return (
     props={{
       query: query,
       renderer: renderData,
+      stateHandler: stateHandler,
       user: `roshaan_near`,
       queryName: MyQuery,
-      stateHandler,
     }}
   />
 );
