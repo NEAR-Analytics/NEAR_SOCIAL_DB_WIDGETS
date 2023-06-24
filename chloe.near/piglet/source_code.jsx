@@ -1,27 +1,3 @@
-const accountId = props.accountId || context.accountId;
-
-function loadData {
-  asyncFetch("https://rpc.mainnet.near.org/status")
-    .then((res) => {
-      State.update({
-        isLoading: false, // The data has loaded
-        tableData: data.validators,
-      });
-    })
-};
-
-State.init({
-  isCrowd: false,
-  isVerified: false,
-  chainOne: false,
-  chainTwo: false,
-  chainThree: false,
-  tableData: [], // This state will hold the fetched data for the table
-});
-
-// Fetch data right after initializing the state
-loadData();
-
 // Styling components
 const Button = styled.button`
   background: palevioletred;
@@ -80,11 +56,38 @@ const PiggyImage = styled.img`
   margin-bottom: 20px;
 `;
 
+const accountId = props.accountId || context.accountId;
+
+function initPiggyState() {
+  return {
+    isCrowd: false,
+    isVerified: false,
+    chainOne: false,
+    chainTwo: false,
+    chainThree: false,
+    tableData: [], // This state will hold the fetched data for the table
+  };
+}
+
+State.init(initPiggyState());
+
+// Fetch data right after initializing the state
+//loadData();
+
+function loadData() {
+  asyncFetch("https://rpc.mainnet.near.org/status").then((res) => {
+    State.update({
+      isLoading: false, // The data has loaded
+      tableData: data.validators,
+    });
+  });
+}
+
 // Handle the click event for verification
 function handleClickVerify() {
   State.update({ isVerified: true });
   alert("You are now verified as a human.");
-};
+}
 
 function handleClickCrowd() {
   State.update({ isCrowd: true });
@@ -95,13 +98,13 @@ function handleClickCrowd() {
 
     alert("Oink, oink. You are saving!");
   });
-};
+}
 
 // Handle the click event for entering the platform
 function handleClickEnter() {
   State.update({ isPiggy: true });
   alert("You have successfully entered the crowd funding platform.");
-};
+}
 
 // $sDAI?
 function handleEnterChainOne() {
@@ -109,12 +112,12 @@ function handleEnterChainOne() {
   alert(
     "You have successfully entered the crowd saving platform on Chain One."
   );
-};
+}
 
 // $shETH
 function handleEnterChainTwo() {
   State.update({ chainTwo: true });
-};
+}
 
 //???
 function handleEnterChainThree() {
@@ -122,7 +125,7 @@ function handleEnterChainThree() {
   alert(
     "You have successfully entered the crowd saving platform on Chain Three."
   );
-};
+}
 
 return (
   <Container>
