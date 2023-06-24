@@ -59,16 +59,14 @@ return (
     >
       Join the DAO
     </button>
-    <div className="m-2">
-      <Widget
-        src="near/widget/DIG.Button"
-        props={{
-          href: "#/hack.near/widget/verified.members",
-          label: "All Members",
-          variant: "outline-dark",
-          size: "small",
-        }}
-      />
-    </div>
+    <Widget
+      src="near/widget/DIG.Button"
+      props={{
+        href: "#/hack.near/widget/verified.members",
+        label: "All Members",
+        variant: "outline-dark",
+        size: "small",
+      }}
+    />
   </div>
 );
