@@ -1,4 +1,4 @@
-let { onLoad, onRefresh } = props;
+let { onLoad, onRefresh, loaded } = props;
 
 const OWNER_ID = "minorityprogrammers.near"; // attribution
 
@@ -198,10 +198,6 @@ let GenaDropSDK = {
   },
 };
 
-const loadSDK = () => {
+if (onLoad && !loaded) {
   onLoad(GenaDropSDK);
-};
-
-if (onLoad) {
-  loadSDK();
 }
