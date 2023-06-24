@@ -278,14 +278,6 @@ const ChainIcon = styled.option`
   }
 `;
 
-if (!state.sender) {
-  console.log("Please login here now");
-  State.update({
-    showAlert: true,
-    toastMessage: "Please connect wallet",
-  });
-}
-
 return (
   <>
     {state.showAlert && (
