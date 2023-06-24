@@ -1,8 +1,9 @@
 const value = props.value || "no-name button";
-const callback = props.callback || (() => console.log("button clicked"));
+const handleButtonClick =
+  props.handleButtonClick || (() => console.log("button clicked"));
 
 return (
-  <button class="btn btn-primary" onClick={callback}>
+  <button class="btn btn-primary" onClick={handleButtonClick}>
     {value}
   </button>
 );
