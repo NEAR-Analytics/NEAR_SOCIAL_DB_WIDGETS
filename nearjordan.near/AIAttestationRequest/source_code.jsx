@@ -33,6 +33,7 @@
 
   function queryGPT3() {
     const xhr = new XMLHttpRequest();
+console.log("xhr", xhr);
     xhr.open("POST", "https://api.openai.com/v1/chat/completions");
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.setRequestHeader("Authorization", "Bearer " + state.apiKey);
