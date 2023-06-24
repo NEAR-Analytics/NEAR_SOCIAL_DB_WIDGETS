@@ -3,9 +3,8 @@ const queryGPT3 = () => {
     const data = res.body;
 console.log("data", data);
     const a = data.choices[0].message.content;
-    State.update({ answer: a });
     const attestationRequest = { question: state.question, answer: a };
-    State.update({ cid: ethers.utils.sha256(ethers.utils.toUtf8Bytes(JSON.stringify(attestationRequest))) });
+    State.update({ answer: a, attestationRequestCID: ethers.utils.sha256(ethers.utils.toUtf8Bytes(JSON.stringify(attestationRequest))) });
 });
 };
 
