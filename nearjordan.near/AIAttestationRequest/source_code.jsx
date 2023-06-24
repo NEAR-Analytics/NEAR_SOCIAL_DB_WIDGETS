@@ -26,7 +26,7 @@
 //   return data;
 // }
 
-async function queryGPT3() {
+function queryGPT3() {
   console.log("queryGPT3");
   const requestBody = {
     model: "gpt-3.5-turbo",
