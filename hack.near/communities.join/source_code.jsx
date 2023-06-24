@@ -54,19 +54,16 @@ return (
   <div>
     <button
       disabled={validMember}
-      className="btn btn-outline-success m-2"
+      className="btn btn-outline-success m-1"
       onClick={handleProposal}
     >
       Join DAO
     </button>
-    <Widget
-      src="near/widget/DIG.Button"
-      props={{
-        href: "#/hack.near/widget/verified.members",
-        label: "Members",
-        variant: "outline-dark",
-        size: "small",
-      }}
-    />
+    <button
+      className="btn btn-outline-primary m-1"
+      href="#/hack.near/widget/verified.members"
+    >
+      Members
+    </button>
   </div>
 );
