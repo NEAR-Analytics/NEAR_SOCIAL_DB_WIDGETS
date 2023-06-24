@@ -84,6 +84,7 @@ const NEAR_SOCIAL_IPFS_URL = "https://ipfs.near.social";
 const NEAR_SOCIAL_ADD_ENDPOINT = `${NEAR_SOCIAL_IPFS_URL}/add`;
 const GENADROP_NEAR_CONTRACT = "genadrop-contract.nftgen.near";
 const NEAR_NETWORK_CHAIN_ID = "0";
+const MINTED_NFTS_STORAGE_KEY = "GenaDropSDK.mintedNfts";
 
 let accountId = context.accountId;
 
@@ -91,6 +92,7 @@ let GenaDropSDK = {
   network: null,
   isSoulBound: false,
   lastMintLink: "",
+  mintedNfts: [],
   mint: (recipient, title, description, imageCid, props) => {
     switch (GenaDropSDK.network) {
       case NEAR_NETWORK_CHAIN_ID:
@@ -131,6 +133,18 @@ let GenaDropSDK = {
                   ricit.transactionHash
                 }`;
 
+                GenaDropSDK.logNft({
+                  account: accountId,
+                  recipient: recipient,
+                  title: title,
+                  description: description,
+                  image: `https://ipfs.io/ipfs/${imageCid}`,
+                  tx: ricit.transactionHash,
+                  link:
+                    contractAddresses[GenaDropSDK.network][2] +
+                    ricit.transactionHash,
+                });
+
                 GenaDropSDK.refresh();
               })
           : contract
@@ -141,6 +155,19 @@ let GenaDropSDK = {
                   contractAddresses[GenaDropSDK.network][2] +
                   ricit.transactionHash
                 }`;
+
+                GenaDropSDK.logNft({
+                  account: accountId,
+                  recipient: recipient,
+                  title: title,
+                  description: description,
+                  image: `https://ipfs.io/ipfs/${imageCid}`,
+                  tx: ricit.transactionHash,
+                  link:
+                    contractAddresses[GenaDropSDK.network][2] +
+                    ricit.transactionHash,
+                });
+
                 GenaDropSDK.refresh();
               });
       }
@@ -196,8 +223,21 @@ let GenaDropSDK = {
       onRefresh(GenaDropSDK);
     }
   },
+  logNft: (log) => {
+    GenaDropSDK.mintedNfts.push(log);
+    Storage.set(MINTED_NFTS_STORAGE_KEY, GenaDropSDK.mintedNfts);
+  },
+  getMintedNfts: () => {
+    return GenaDropSDK.mintedNfts.filter((nft) => nft.account == accountId);
+  },
 };
 
 if (onLoad && !loaded) {
+  let mintedNfts = Storage.get(MINTED_NFTS_STORAGE_KEY);
+
+  if (!!mintedNfts) {
+    GenaDropSDK.mintedNfts = mintedNfts;
+  }
+
   onLoad(GenaDropSDK);
 }
