@@ -1,10 +1,11 @@
 //<script src="https://unpkg.com/ipfs-http-client/dist/index.min.js"></script>
 
-  const ipfs = window.IpfsHttpClient.create({
-    host: "localhost",
-    port: 5001,
-    protocol: "http",
-  });
+  // Once above IPFS library can be imported:
+  // const ipfs = window.IpfsHttpClient.create({
+  //   host: "localhost",
+  //   port: 5001,
+  //   protocol: "http",
+  // });
 
   async function addFile(content) {
     // Workaround - return hex string
@@ -17,14 +18,17 @@
   }
 
   async function getFile(cid) {
-    const stream = ipfs.cat(cid);
-    let data = "";
+    return "<DUMMY CID RESOLVE>"
 
-    for await (const chunk of stream) {
-      data += new TextDecoder().decode(chunk);
-    }
+    // Once above IPFS library can be imported:
+    // const stream = ipfs.cat(cid);
+    // let data = "";
 
-    return data;
+    // for await (const chunk of stream) {
+    //   data += new TextDecoder().decode(chunk);
+    // }
+
+    // return data;
   }
 
   function queryGPT3() {
