@@ -79,7 +79,7 @@ return (<>
     placeholder="Enter your query"
     rows="10"
     cols="50"></textarea>
-  <button onclick="queryGPT3()">Query GPT-3.5</button>
+  <button onclick="queryGPT3">Query GPT-3.5</button>
   <div>{state.answer}</div>
   <div>{state.attestationRequestCID}</div>
 </>)
