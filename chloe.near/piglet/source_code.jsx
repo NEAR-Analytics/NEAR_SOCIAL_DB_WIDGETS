@@ -64,7 +64,7 @@ const handleClickVerify = async () => {
 
 // Handle the click event for verification
 const handleClickCrowd = async () => {
-  State.update({ is });
+  State.update({ isCro });
 };
 
 // Handle the click event for entering the platform
@@ -171,7 +171,9 @@ return (
         </Button>
       </>
     ) : (
-      <Button onClick={handleClickVerify}>Verify Your Humanity</Button>
+      <Button onClick={handleClickCroud}>
+        Check to see if you are a part of the croud.{" "}
+      </Button>
     )}
   </Container>
 );
