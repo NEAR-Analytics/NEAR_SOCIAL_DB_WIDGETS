@@ -65,13 +65,13 @@ console.log("response", response);
   }
 
 return (<>
-  <input placeholder="LLM API KEY" onChange={(e) => State.update({apiKey: e.target.value})} />
+  <input type="password" placeholder="LLM API KEY" onChange={(e) => State.update({apiKey: e.target.value})} />
   <textarea
     onChange={(e) => State.update({question: e.target.value})}
     placeholder="Enter your query"
     rows="10"
     cols="50"></textarea>
-  <button onclick="queryGPT3">Query GPT-3.5</button>
+  <button onclick={queryGPT3}>Query GPT-3.5</button>
   <div>{state.answer}</div>
   <div>{state.attestationRequestCID}</div>
 </>)
