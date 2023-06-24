@@ -93,7 +93,19 @@ return (
   <Container>
     <Header>FAQ:</Header>
     <Header>
-      1. To interact with Piglet, you will need to verify with Sismo Connect
+      1. The first step with Piglet is to purchace an NFT from Unlock Protocol.
+      If you do not yet have an NFT, you can get one at
+      <a
+        href="https://app.unlock-protocol.com/checkout?id=39b62ad3-07f2-442d-b2ef-d136d6a83374"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Unlock Protocol Checkout
+      </a>
+    </Header>
+
+    <Header>
+      2. To interact with Piglet, you will need to verify with Sismo Connect
       (workdcoin/polygon ID)
     </Header>
     <Header>
