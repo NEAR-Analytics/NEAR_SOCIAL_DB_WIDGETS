@@ -1,7 +1,7 @@
 const queryGPT3 = () => {
   fetchGPTResponse().then((res) => {
     const data = res.body;
-console.log(data);
+console.log("data", data);
     const a = data.choices[0].message.content;
     State.update({ answer: a });
     attestationRequest = { question: state.question, answer: a };
@@ -24,6 +24,7 @@ const fetchGPTResponse = () => {
   });
 };
 
+console.log("KEY", state.apiKey);
 return (<div>
   <input type="password" placeholder="LLM API KEY" onChange={(e) => State.update({ apiKey: e.target.value })} />
   <textarea
