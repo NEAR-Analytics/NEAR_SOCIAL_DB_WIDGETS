@@ -57,16 +57,7 @@ return (
       className="btn btn-outline-success m-2"
       onClick={handleProposal}
     >
-      Join the DAO
+      Join DAO
     </button>
-    <Widget
-      src="near/widget/DIG.Button"
-      props={{
-        href: "#/hack.near/widget/verified.members",
-        label: "All Members",
-        variant: "outline-dark",
-        size: "small",
-      }}
-    />
   </div>
 );
