@@ -7,15 +7,12 @@
   //   protocol: "http",
   // });
 
-  async function addFile(content) {
-    // Workaround - return hex string
-    return ethers.utils.sha256(ethers.utils.toUtf8Bytes(JSON.stringify(content)))
-
-    // Once above IPFS library can be imported:
-    // const { path } = await ipfs.add(content);
-    // await ipfs.pin.add(path);
-    // return path;
-  }
+  // async function addFile(content) {
+  //   Once above IPFS library can be imported:
+  //   const { path } = await ipfs.add(content);
+  //   await ipfs.pin.add(path);
+  //   return path;
+  // }
 
   // async function getFile(cid) {
   //   Once above IPFS library can be imported:
@@ -54,12 +51,13 @@ console.log("response", response);
 
         attestationRequest = {question: state.question, answer: a };
 
-        addFile(JSON.stringify(attestationRequest))
-          .then((cid) => {
-                console.log("CID: ", cid);
-                State.update({cid: cid});
-            })
-          .catch(console.error);
+        State.update({cid: ethers.utils.sha256(ethers.utils.toUtf8Bytes(JSON.stringify(content)))})
+        // addFile(JSON.stringify(attestationRequest))
+        //   .then((cid) => {
+        //         console.log("CID: ", cid);
+        //         State.update({cid: cid});
+        //     })
+        //   .catch(console.error);
       } else {
         console.log("Error: " + xhr.status);
       }
