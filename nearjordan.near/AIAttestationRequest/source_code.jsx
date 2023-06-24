@@ -69,7 +69,6 @@ console.log("response", response);
         console.log("Error: " + xhr.status);
       }
     };
-  }
 
 return (<>
   <input placeholder="LLM API KEY" onChange={(e) => State.update({apiKey: e.target.value})} />
