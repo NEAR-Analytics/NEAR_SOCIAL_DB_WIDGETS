@@ -1,11 +1,26 @@
 const accountId = props.accountId || context.accountId;
 
+function loadData {
+  asyncFetch("https://rpc.mainnet.near.org/status")
+    .then((res) => {
+      State.update({
+        isLoading: false, // The data has loaded
+        tableData: data.validators,
+      });
+    })
+};
+
 State.init({
+  isCrowd: false,
   isVerified: false,
   chainOne: false,
   chainTwo: false,
   chainThree: false,
+  tableData: [], // This state will hold the fetched data for the table
 });
+
+// Fetch data right after initializing the state
+loadData();
 
 // Styling components
 const Button = styled.button`
@@ -19,6 +34,15 @@ const Button = styled.button`
   &:hover {
     background: white;
     color: palevioletred;
+  }
+`;
+
+const Table = styled.table`
+  width: 100%;
+  margin-top: 20px;
+  th, td {
+    border: 1px solid black;
+    padding: 10px;
   }
 `;
 
@@ -57,37 +81,43 @@ const PiggyImage = styled.img`
 `;
 
 // Handle the click event for verification
-const handleClickVerify = async () => {
+function handleClickVerify() {
   State.update({ isVerified: true });
   alert("You are now verified as a human.");
 };
 
-// Handle the click event for verification
-const handleClickCrowd = async () => {
-  State.update({ isCro });
+function handleClickCrowd() {
+  State.update({ isCrowd: true });
+
+  asyncFetch("https://rpc.mainnet.near.org/status").then((res) => {
+    const updatedTableData = res.body.validators;
+    State.update({ tableData: updatedTableData });
+
+    alert("Oink, oink. You are saving!");
+  });
 };
 
 // Handle the click event for entering the platform
-const handleClickEnter = async () => {
+function handleClickEnter() {
   State.update({ isPiggy: true });
   alert("You have successfully entered the crowd funding platform.");
 };
 
-const handleEnterChainOne = () => {
+// $sDAI?
+function handleEnterChainOne() {
   State.update({ chainOne: true });
   alert(
     "You have successfully entered the crowd saving platform on Chain One."
   );
 };
 
-const handleEnterChainTwo = () => {
+// $shETH
+function handleEnterChainTwo() {
   State.update({ chainTwo: true });
-  alert(
-    "You have successfully entered the crowd saving platform on Chain Two."
-  );
 };
 
-const handleEnterChainThree = () => {
+//???
+function handleEnterChainThree() {
   State.update({ chainThree: true });
   alert(
     "You have successfully entered the crowd saving platform on Chain Three."
@@ -138,8 +168,9 @@ return (
         <>Welcome to Piglet, your community crowd saving platform.</>
       )}
     </Title>
-
-    {state.isVerified ? (
+    {state.isLoading ? (
+      <div>Loading data...</div>
+    ) : state.isVerified ? (
       <>
         <Info>Thank you for verifying your humanity, piglet.</Info>
         <Info>
@@ -171,9 +202,27 @@ return (
         </Button>
       </>
     ) : (
-      <Button onClick={handleClickCroud}>
-        Check to see if you are a part of the croud.{" "}
+      <Button onClick={handleClickCrowd}>
+        Check to see if you are a part of the crowd.
       </Button>
+    )}
+    {state.isCrowd && (
+      <Table>
+        <thead>
+          <tr>
+            <th>Account Id</th>
+            <th>Is Slashed</th>
+          </tr>
+        </thead>
+        <tbody>
+          {state.tableData.map((item, index) => (
+            <tr key={index}>
+              <td>{item.account_id}</td>
+              <td>{item.is_slashed ? "True" : "False"}</td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
     )}
   </Container>
 );
