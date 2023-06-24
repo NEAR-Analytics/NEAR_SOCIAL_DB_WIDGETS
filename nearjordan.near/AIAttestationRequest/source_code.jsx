@@ -26,38 +26,31 @@
 //   return data;
 // }
 
-async function queryGPT3() {
-  console.log("queryGPT3");
-  const requestBody = {
-    model: "gpt-3.5-turbo",
-    messages: [{ role: "user", content: state.question }],
-    temperature: 0.0,
-  };
-
-  try {
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + state.apiKey,
-      },
-      body: JSON.stringify(requestBody),
-    });
-
-    const data = await response.json();
+const queryGPT3 = () => {
+  fetchGPTResponse().then((res) => {
+    const data = res.body;
 console.log(data);
     const a = data.choices[0].message.content;
-
     State.update({ answer: a });
-
     attestationRequest = { question: state.question, answer: a };
+    State.update({ cid: ethers.utils.sha256(ethers.utils.toUtf8Bytes(JSON.stringify(content))) });
+});
+};
 
-    State.update({ cid: ethers.utils.sha256(ethers.utils.toUtf8Bytes(JSON.stringify(content))) })
-  } catch (error) {
-    console.error('Error:', error);
-    return '';
-  }
-}
+const fetchGPTResponse = () => {
+  return asyncFetch("https://api.openai.com/v1/chat/completions", {
+    body: {
+      model: "gpt-3.5-turbo",
+      messages: [{ role: "user", content: state.question }],
+      temperature: 0.0,
+    },
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + state.apiKey,
+    },
+    method: "POST",
+  });
+};
 
 return (<>
   <input type="password" placeholder="LLM API KEY" onChange={(e) => State.update({ apiKey: e.target.value })} />
