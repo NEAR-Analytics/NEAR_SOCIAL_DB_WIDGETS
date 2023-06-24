@@ -1,74 +1,68 @@
 //<script src="https://unpkg.com/ipfs-http-client/dist/index.min.js"></script>
 
-  // Once above IPFS library can be imported:
-  // const ipfs = window.IpfsHttpClient.create({
-  //   host: "localhost",
-  //   port: 5001,
-  //   protocol: "http",
-  // });
+// Once above IPFS library can be imported:
+// const ipfs = window.IpfsHttpClient.create({
+//   host: "localhost",
+//   port: 5001,
+//   protocol: "http",
+// });
 
-  // async function addFile(content) {
-  //   Once above IPFS library can be imported:
-  //   const { path } = await ipfs.add(content);
-  //   await ipfs.pin.add(path);
-  //   return path;
-  // }
+// async function addFile(content) {
+//   Once above IPFS library can be imported:
+//   const { path } = await ipfs.add(content);
+//   await ipfs.pin.add(path);
+//   return path;
+// }
 
-  // async function getFile(cid) {
-  //   Once above IPFS library can be imported:
-  //   const stream = ipfs.cat(cid);
-  //   let data = "";
+// async function getFile(cid) {
+//   Once above IPFS library can be imported:
+//   const stream = ipfs.cat(cid);
+//   let data = "";
 
-  //   for await (const chunk of stream) {
-  //     data += new TextDecoder().decode(chunk);
-  //   }
+//   for await (const chunk of stream) {
+//     data += new TextDecoder().decode(chunk);
+//   }
 
-  //   return data;
-  // }
+//   return data;
+// }
 
-  async function queryGPT3() {
-console.log("queryGPT3");
-    const xhr = new XMLHttpRequest();
-console.log("xhr", xhr);
-    xhr.open("POST", "https://api.openai.com/v1/chat/completions");
-    xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.setRequestHeader("Authorization", "Bearer " + state.apiKey);
+async function queryGPT3() {
+  console.log("queryGPT3");
+  const requestBody = {
+    model: "gpt-3.5-turbo",
+    messages: [{ role: "user", content: state.question }],
+    temperature: 0.0,
+  };
 
-    const data = JSON.stringify({
-      model: "gpt-3.5-turbo",
-      messages: [{ role: "user", content: state.question }],
-      temperature: 0.0,
+  try {
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + state.apiKey,
+      },
+      body: JSON.stringify(requestBody),
     });
 
-    xhr.send(data);
+    const data = await response.json();
+console.log(data);
+    const a = data.choices[0].message.content;
 
-    xhr.onload = function () {
-      console.log("xhr", xhr);
-      if (xhr.status === 200) {
-        const response = JSON.parse(xhr.responseText);
-console.log("response", response);
-        const a = response.choices[0].message.content;
-        State.update({answer: a});
+    State.update({ answer: a });
 
-        attestationRequest = {question: state.question, answer: a };
+    attestationRequest = { question: state.question, answer: a };
 
-        State.update({cid: ethers.utils.sha256(ethers.utils.toUtf8Bytes(JSON.stringify(content)))})
-        // addFile(JSON.stringify(attestationRequest))
-        //   .then((cid) => {
-        //         console.log("CID: ", cid);
-        //         State.update({cid: cid});
-        //     })
-        //   .catch(console.error);
-      } else {
-        console.log("Error: " + xhr.status);
-      }
-    };
+    State.update({ cid: ethers.utils.sha256(ethers.utils.toUtf8Bytes(JSON.stringify(content))) })
+  } catch (error) {
+    console.error('Error:', error);
+    return '';
   }
+}
 
 return (<>
-  <input type="password" placeholder="LLM API KEY" onChange={(e) => State.update({apiKey: e.target.value})} />
+  <input type="password" placeholder="LLM API KEY" onChange={(e) => State.update({ apiKey: e.target.value })} />
   <textarea
-    onChange={(e) => State.update({question: e.target.value})}
+    onChange={(e) => State.update({ question: e.target.value })}
     placeholder="Enter your query"
     rows="10"
     cols="50"></textarea>
