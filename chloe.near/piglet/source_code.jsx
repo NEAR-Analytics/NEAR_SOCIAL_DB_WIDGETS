@@ -63,7 +63,9 @@ const handleClickVerify = async () => {
 };
 
 // Handle the click event for verification
-const handleClickCrowd
+const handleClickCrowd = async () => {
+  State.update({ is });
+};
 
 // Handle the click event for entering the platform
 const handleClickEnter = async () => {
@@ -107,16 +109,20 @@ return (
       </a>
     </Header>
     <Header>
-      2.Continue collecting NFTs according to your savings goals! If you
-      selected the
+      2. Continue collecting NFTs according to your savings goals! If you
+      selected the recurring option, the savings will be topped up
+      automatically, and if you chose manual, then you will have to come back
+      weekly to get a new piggy.
     </Header>
     <Header>
-      3. Once verified, you can enter the pool and start interacting with NFTs
-      to support your saving goals.
+      3. This is the page to see how your saving is going. Records for all user
+      savings are saved, aggregated, and then displayed, powered by The Graph
+      Substreams!
     </Header>
     <Header>
       4. To interact with Piglet crowd savings voting platform, you will need to
-      verify with Sismo Connect (workdcoin/polygon ID)
+      verify with Sismo Connect (workdcoin/polygon ID). This step is not needed
+      to take part in the personal savings flow.
     </Header>
     <PiggyImage
       src="https://github.com/doulos819/mjr/blob/main/images/photo_2023-06-23_11-46-49.jpg?raw=true"
