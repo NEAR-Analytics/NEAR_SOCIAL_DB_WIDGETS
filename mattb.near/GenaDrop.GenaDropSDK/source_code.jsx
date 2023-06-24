@@ -198,6 +198,10 @@ let GenaDropSDK = {
   },
 };
 
-if (onLoad) {
+const loadSDK = () => {
   onLoad(GenaDropSDK);
+};
+
+if (onLoad) {
+  loadSDK();
 }
