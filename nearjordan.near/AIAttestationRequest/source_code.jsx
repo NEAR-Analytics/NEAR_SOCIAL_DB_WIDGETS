@@ -27,6 +27,7 @@
   // }
 
   function queryGPT3() {
+console.log("queryGPT3");
     const xhr = new XMLHttpRequest();
 console.log("xhr", xhr);
     xhr.open("POST", "https://api.openai.com/v1/chat/completions");
