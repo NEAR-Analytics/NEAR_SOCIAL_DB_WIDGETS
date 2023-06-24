@@ -17,19 +17,17 @@
     // return path;
   }
 
-  async function getFile(cid) {
-    return "<DUMMY CID RESOLVE>"
+  // async function getFile(cid) {
+  //   Once above IPFS library can be imported:
+  //   const stream = ipfs.cat(cid);
+  //   let data = "";
 
-    // Once above IPFS library can be imported:
-    // const stream = ipfs.cat(cid);
-    // let data = "";
+  //   for await (const chunk of stream) {
+  //     data += new TextDecoder().decode(chunk);
+  //   }
 
-    // for await (const chunk of stream) {
-    //   data += new TextDecoder().decode(chunk);
-    // }
-
-    // return data;
-  }
+  //   return data;
+  // }
 
   function queryGPT3() {
     const xhr = new XMLHttpRequest();
