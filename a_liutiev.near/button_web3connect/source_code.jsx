@@ -1,3 +1,8 @@
-const label = props.label || "No-name button web3connect";
+const web3connectLabel = props.web3connectLabel || "No-name button web3connect";
 
-return <Web3Connect className="FormSubmitContainer" connectLabel={label} />;
+return (
+  <Web3Connect
+    className="FormSubmitContainer"
+    connectLabel={web3connectLabel}
+  />
+);
