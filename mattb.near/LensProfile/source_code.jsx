@@ -336,7 +336,7 @@ function getAllowedNetwork() {
 
 // Displays an overlay if login is required
 function getConnectionOverlay() {
-  if (!!state.isConnected && (!props.requireLogin || !!state.account)) return;
+  if (!props.requireLogin || !!state.isConnected) return;
 
   return (
     <>
