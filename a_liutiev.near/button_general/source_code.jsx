@@ -9,6 +9,6 @@ return (
     class="btn btn-primary"
     onClick={() => console.log("BUTTON HAS BEEN CLICKED")}
   >
-    <span>`${value}`</span>
+    {value}
   </button>
 );
