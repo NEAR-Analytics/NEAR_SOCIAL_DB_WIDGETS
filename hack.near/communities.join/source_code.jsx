@@ -59,11 +59,11 @@ return (
     >
       Join DAO
     </button>
-    <button
+    <a
       className="btn btn-outline-success m-1"
       href="#/hack.near/widget/verified.members"
     >
       Members
-    </button>
+    </a>
   </div>
 );
