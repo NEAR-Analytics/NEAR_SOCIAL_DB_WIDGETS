@@ -1,5 +1,13 @@
 const accountId = props.accountId || context.accountId;
 
+State.init({
+  isVerified: false,
+  chainOne: false,
+  chainTwo: false,
+  chainThree: false,
+});
+
+// Styling components
 const Button = styled.button`
   background: palevioletred;
   color: white;
@@ -14,16 +22,11 @@ const Button = styled.button`
   }
 `;
 
-if (!accountId) {
-  return (
-    <div>
-      <p>Please connect your NEAR wallet or create a new one:</p>
-      <a href="https://near.org/signup" target="_blank" rel="noreferrer">
-        <Button>Create NEAR Wallet</Button>
-      </a>
-    </div>
-  );
-}
+const Header = styled.p`
+  text-align: left;
+  font-size: 0.8em;
+  margin-top: 10px;
+`;
 
 const Container = styled.div`
   display: flex;
@@ -31,7 +34,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background: #282c34;
+  background: #ffc0cb; /* Update background color to a lighter pink */
   color: white;
   font-size: calc(10px + 2vmin);
   padding: 20px;
@@ -47,42 +50,108 @@ const Info = styled.p`
   margin-top: 10px;
 `;
 
-const ButtonContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 20px;
+const PiggyImage = styled.img`
+  width: 200px;
+  height: auto;
+  margin-bottom: 20px;
 `;
 
-const EnterButton = styled(Button)`
-  background: #ffbd2a;
-  border-color: #ffbd2a;
-`;
-
-const VerifyButton = styled(Button)`
-  background: #60b347;
-  border-color: #60b347;
-`;
-
-const handleClickVerify = () => {
+// Handle the click event for verification
+const handleClickVerify = async () => {
+  State.update({ isVerified: true });
   alert("You are now verified as a human.");
 };
 
-const handleClickEnter = () => {
+// Handle the click event for entering the platform
+const handleClickEnter = async () => {
+  State.update({ isPiggy: true });
   alert("You have successfully entered the crowd funding platform.");
+};
+
+const handleEnterChainOne = () => {
+  State.update({ chainOne: true });
+  alert(
+    "You have successfully entered the crowd saving platform on Chain One."
+  );
+};
+
+const handleEnterChainTwo = () => {
+  State.update({ chainTwo: true });
+  alert(
+    "You have successfully entered the crowd saving platform on Chain Two."
+  );
+};
+
+const handleEnterChainThree = () => {
+  State.update({ chainThree: true });
+  alert(
+    "You have successfully entered the crowd saving platform on Chain Three."
+  );
 };
 
 return (
   <Container>
+    <Header>FAQ:</Header>
+    <Header>
+      1. To interact with Piglet, you will need to verify with Sismo Connect
+      (workdcoin/polygon ID)
+    </Header>
+    <Header>
+      2. Once logged in, verify your account to enter the Piglet crowd savings
+      pool.
+    </Header>
+    <Header>
+      3. Once verified, you can enter the pool and start interacting with NFTs
+      to support your saving goals.
+    </Header>
+    <PiggyImage
+      src="https://github.com/doulos819/mjr/blob/main/images/photo_2023-06-23_11-46-49.jpg?raw=true"
+      alt="Piggy"
+    />
     <Title>
-      Hello {accountId}! Welcome to Piglet, your community crowd funding
-      platform.
+      {accountId ? (
+        <>
+          Hello {accountId}! Welcome to Piglet, your community crowd saving
+          platform.
+        </>
+      ) : (
+        <>Welcome to Piglet, your community crowd saving platform.</>
+      )}
     </Title>
-    <ButtonContainer>
-      <EnterButton onClick={handleClickEnter}>Enter the Platform</EnterButton>
-      <VerifyButton onClick={handleClickVerify}>
-        Verify Your Humanity
-      </VerifyButton>
-    </ButtonContainer>
+
+    {state.isVerified ? (
+      <>
+        <Info>Thank you for verifying your humanity, piglet.</Info>
+        <Info>
+          You can now deposit into the piggy bank of your choice{" "}
+          {accountId ? `, ${accountId}` : ""}!
+        </Info>
+        <Button
+          onClick={state.chainOne ? undefined : handleEnterChainOne}
+          disabled={state.chainOne}
+          style={{ backgroundColor: state.chainOne ? "grey" : "palevioletred" }}
+        >
+          Enter Piggy Bank 1
+        </Button>
+        <Button
+          onClick={state.chainTwo ? undefined : handleEnterChainTwo}
+          disabled={state.chainTwo}
+          style={{ backgroundColor: state.chainTwo ? "grey" : "palevioletred" }}
+        >
+          Enter Piggy Bank 2
+        </Button>
+        <Button
+          onClick={state.chainThree ? undefined : handleEnterChainThree}
+          disabled={state.chainThree}
+          style={{
+            backgroundColor: state.chainThree ? "grey" : "palevioletred",
+          }}
+        >
+          Enter Piggy Bank 3
+        </Button>
+      </>
+    ) : (
+      <Button onClick={handleClickVerify}>Verify Your Humanity</Button>
+    )}
   </Container>
 );
