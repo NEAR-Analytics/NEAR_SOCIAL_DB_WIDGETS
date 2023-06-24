@@ -60,10 +60,6 @@ console.log("response", response);
           .then((cid) => {
                 console.log("CID: ", cid);
                 State.update({cid: cid});
-            
-                getFile(cid)
-                .then((r) => console.log("Verification: ", JSON.parse(r)))
-                .catch(console.error);
             })
           .catch(console.error);
       } else {
