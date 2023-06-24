@@ -12,7 +12,7 @@ return (
       />
       <Widget
         src="a_liutiev.near/widget/button_general"
-        props={{ value, callback: () => console.log("ok") }}
+        props={{ value, callback }}
       />
     </div>
   </div>
