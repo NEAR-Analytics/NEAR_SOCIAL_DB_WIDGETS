@@ -1,5 +1,5 @@
 const accountId = props.accountId ?? context.accountId;
-const daoId = props.daoId ?? "gordonjun.near"; // temporarily
+const daoId = props.daoId ?? "liberty.sputnik-dao.near"; // temporarily
 
 const profile = props.profile ?? Social.getr(`${accountId}/profile`);
 
@@ -30,6 +30,7 @@ return (
       <div className="tab-content">
         <h2 className="mb-3">clan members</h2>
         <ComposeWrapper>
+          <br />
           <div className="tab-pane fade in show active" role="tabpanel">
             <Widget
               src="near/widget/FollowersList"
