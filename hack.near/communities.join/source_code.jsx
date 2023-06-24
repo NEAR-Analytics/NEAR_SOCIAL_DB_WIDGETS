@@ -54,13 +54,13 @@ return (
   <div>
     <button
       disabled={validMember}
-      className="btn btn-outline-success m-1"
+      className="btn btn-success m-1"
       onClick={handleProposal}
     >
       Join DAO
     </button>
     <button
-      className="btn btn-outline-primary m-1"
+      className="btn btn-outline-success m-1"
       href="#/hack.near/widget/verified.members"
     >
       Members
