@@ -198,6 +198,6 @@ let GenaDropSDK = {
   },
 };
 
-if (onLoad && false) {
+if (onLoad && !loaded) {
   onLoad(GenaDropSDK);
 }
