@@ -71,7 +71,7 @@ return (
         loadMore={loadMore}
         hasMore={state.currentPage ? state.currentPage < state.lastPage : true} // infinite
       >
-        {state.contents.map(createCard)}
+        {state.contents && state.contents.map(createCard)}
       </InfiniteScroll>
     </div>
   </>
