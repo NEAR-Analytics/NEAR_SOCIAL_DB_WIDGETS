@@ -255,19 +255,19 @@ return (
             <>
               <ul
                 className="nav nav-pills nav-fill mb-4"
-                id="pills-tab"
-                role="tablist"
+                id="pills-tab2"
+                role="tablist2"
               >
                 {pillsVesting.map(({ id, title }, i) => (
                   <li className="nav-item" role="presentation" key={i}>
                     <button
                       className={`nav-link ${i === 0 ? "active" : ""}`}
-                      id={`pills-${id}-tab`}
+                      id={`pills2-${id}-tab`}
                       data-bs-toggle="pill"
-                      data-bs-target={`#pills-${id}`}
+                      data-bs-target={`#pills2-${id}`}
                       type="button"
                       role="tab"
-                      aria-controls={`pills-${id}`}
+                      aria-controls={`pills2-${id}`}
                       aria-selected={i === 0}
                       onClick={() => {
                         const key = `load${id}`;
@@ -282,7 +282,7 @@ return (
               <div className="tab-content" id="pills-tabContent">
                 <div
                   className="tab-pane fade show active"
-                  id="pills-vesting"
+                  id="pills2-vesting"
                   role="tabpanel"
                   aria-labelledby="pills-vesting-tab"
                 >
@@ -452,7 +452,7 @@ return (
                 </div>
                 <div
                   className="tab-pane fade release"
-                  id="pills-release"
+                  id="pills2-release"
                   role="tabpanel"
                   aria-labelledby="pills-release-tab"
                 >
