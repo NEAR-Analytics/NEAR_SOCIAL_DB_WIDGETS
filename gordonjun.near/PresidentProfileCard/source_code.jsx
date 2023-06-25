@@ -32,17 +32,11 @@ const Card = styled.div`
 
 const CardLeft = styled.div`
   display: flex;
+  flex-direction: column;
   gap: 16px;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
   min-width: 0;
-
-  > div {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    min-width: 0;
-  }
 `;
 
 const Avatar = styled.a`
