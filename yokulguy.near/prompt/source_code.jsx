@@ -3,7 +3,7 @@ const getRandomInt = (max) => {
 };
 const getPrompt = (page, cb) =>
   asyncFetch(
-    `https://33b4-77-252-46-248.ngrok-free.app/api/prompt/pagination?page=${page}`
+    `https://alpha.tryhologram.art/api/prompt/pagination?page=${page}`
   ).then(cb);
 
 const initialPage = getRandomInt(10);
