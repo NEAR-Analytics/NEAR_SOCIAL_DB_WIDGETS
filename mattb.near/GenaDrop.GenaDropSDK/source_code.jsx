@@ -95,7 +95,15 @@ let GenaDropSDK = {
   mintedNfts: [],
   chains: CHAINS,
   contractAddresses: CONTRACT_ADDRESSES,
-  mint: (recipient, title, description, network, imageCid, props) => {
+  mint: (
+    recipient,
+    title,
+    description,
+    network,
+    imageCid,
+    isSoulBound,
+    props
+  ) => {
     if (NEAR_NETWORK_CHAIN_ID == network) {
       GenaDropSDK.mintOnNear(recipient, title, description, imageCid, props);
     } else {
@@ -105,12 +113,21 @@ let GenaDropSDK = {
         description,
         network,
         imageCid,
+        isSoulBound,
         props
       );
     }
   },
-  defaultMint: (recipient, title, description, network, imageCid, props) => {
-    const CA = GenaDropSDK.isSoulBound
+  defaultMint: (
+    recipient,
+    title,
+    description,
+    network,
+    imageCid,
+    isSoulBound,
+    props
+  ) => {
+    const CA = isSoulBound
       ? GenaDropSDK.contractAddresses[network][3]
       : GenaDropSDK.contractAddresses[network][0];
 
@@ -127,10 +144,12 @@ let GenaDropSDK = {
         const cid = res.body.cid;
         const Id = Math.floor(Math.random() * (9999999 - 100000 + 1) + 100000);
 
+        console.log(`ipfs://${cid}`);
+
         const recipient =
           recipient || Ethers.send("eth_requestAccounts", [])[0];
 
-        GenaDropSDK.isSoulBound
+        isSoulBound
           ? contract
               .safeMint(recipient, `ipfs://${cid}`)
               .then((transactionHash) => transactionHash.wait())
