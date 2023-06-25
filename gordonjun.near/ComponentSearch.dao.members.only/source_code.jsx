@@ -129,8 +129,5 @@ return (
       )}
     </div>
     {props.debug && <pre>{JSON.stringify(state.result, undefined, 2)}</pre>}
-    <div className="mt-3">
-      {JSON.stringify(keys)}
-    </div>
   </>
 );
