@@ -1,8 +1,8 @@
 const userId = context.accountId;
-const ownerId = "every.near";
+const ownerId = "near";
 
 if (!userId) {
-  return "Please sign in with NEAR wallet to trust other accounts";
+  return "Please connect your NEAR account :)";
 }
 
 const accounts = Social.keys(`*/graph/trust/*`, "final", {
@@ -73,7 +73,7 @@ let trustBlocks = trustRank.map((accountId) => (
       />
       <label className="form-check-label" for={`trust-${accountId}`}>
         <Widget
-          src="near/widget/Profile"
+          src="near/widget/AccountProfile"
           props={{
             accountId,
           }}
@@ -86,7 +86,7 @@ let trustBlocks = trustRank.map((accountId) => (
         </span>
         <a
           className="btn btn-sm btn-outline-secondary border-0"
-          href={`#/mob.near/widget/ProfilePage?accountId=${accountId}`}
+          href={`#/hack.near/widget/trusted.profile?accountId=${accountId}`}
           target="_blank"
         >
           <i className="bi bi-window-plus me-1" title="Open in new tab"></i>
@@ -166,7 +166,7 @@ return (
         name="trust-dev"
       />
       <label className="form-check-label" for="trust-dev">
-        Join us: {ownerId}
+        Join {ownerId} community!
       </label>
     </div>
 
