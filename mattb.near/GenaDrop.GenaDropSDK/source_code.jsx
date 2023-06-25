@@ -136,7 +136,7 @@ let GenaDropSDK = {
               .then((transactionHash) => transactionHash.wait())
               .then((ricit) => {
                 GenaDropSDK.lastMintLink = `${
-                  GenaDropSDK.contractAddresses[GenaDropSDK.network][2] +
+                  GenaDropSDK.contractAddresses[network][2] +
                   ricit.transactionHash
                 }`;
 
@@ -148,7 +148,7 @@ let GenaDropSDK = {
                   image: `https://ipfs.io/ipfs/${imageCid}`,
                   tx: ricit.transactionHash,
                   link:
-                    GenaDropSDK.contractAddresses[GenaDropSDK.network][2] +
+                    GenaDropSDK.contractAddresses[network][2] +
                     ricit.transactionHash,
                   network: network,
                 });
@@ -160,7 +160,7 @@ let GenaDropSDK = {
               .then((transactionHash) => transactionHash.wait())
               .then((ricit) => {
                 GenaDropSDK.lastMintLink = `${
-                  GenaDropSDK.contractAddresses[GenaDropSDK.network][2] +
+                  GenaDropSDK.contractAddresses[network][2] +
                   ricit.transactionHash
                 }`;
 
@@ -172,7 +172,7 @@ let GenaDropSDK = {
                   image: `https://ipfs.io/ipfs/${imageCid}`,
                   tx: ricit.transactionHash,
                   link:
-                    GenaDropSDK.contractAddresses[GenaDropSDK.network][2] +
+                    GenaDropSDK.contractAddresses[network][2] +
                     ricit.transactionHash,
                   network: network,
                 });
