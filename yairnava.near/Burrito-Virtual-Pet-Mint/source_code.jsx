@@ -233,7 +233,7 @@ return (
                     <div>
                       <label style={{ color: "black", "font-weight": "500" }}>
                         {" "}
-                        Contract to add your NFTs to wallet
+                        Burrito’s contract to add your NFTs to wallet
                         0x559bB1D9a4236e6Fc3D3314c8832Ddf5476606C2
                       </label>
                     </div>
