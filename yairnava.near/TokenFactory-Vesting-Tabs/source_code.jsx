@@ -57,7 +57,7 @@ return (
         role="tabpanel"
         aria-labelledby="pills-vesting-tab"
       >
-        <Widget src="yairnava.near/widget/Vesting" />
+        <Widget src="yairnava.near/widget/TokenVesting" />
       </div>
     </div>
   </>
