@@ -16,9 +16,14 @@ const Button = styled.button`
 const Table = styled.table`
   width: 100%;
   margin-top: 20px;
+
   th, td {
     border: 1px solid black;
     padding: 10px;
+  }
+
+  .sender-row {
+    color: green;
   }
 `;
 
@@ -261,29 +266,30 @@ return (
 
     <Info> ${state.sender} </Info>
 
-    {state.isCrowd && (
-      <Table>
-        <thead>
-          <tr>
-            <th>Address</th>
-            <th>Value</th>
-          </tr>
-        </thead>
-        <tbody>
-          {state.tableData.length > 0 ? (
-            state.tableData.map((item, index) => (
-              <tr key={index}>
-                <td>{item.address}</td>
-                <td>{item.value}</td>
-              </tr>
-            ))
-          ) : (
-            <tr>
-              <td colSpan="2">No data to display</td>
+    <Table>
+      <thead>
+        <tr>
+          <th>Address</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        {state.tableData.length > 0 ? (
+          state.tableData.map((item, index) => (
+            <tr
+              key={index}
+              className={item.address === state.sender ? "sender-row" : ""}
+            >
+              <td>{item.address}</td>
+              <td>{item.value}</td>
             </tr>
-          )}
-        </tbody>
-      </Table>
-    )}
+          ))
+        ) : (
+          <tr>
+            <td colSpan="2">No data to display</td>
+          </tr>
+        )}
+      </tbody>
+    </Table>
   </Container>
 );
