@@ -18,8 +18,6 @@ State.init({
   tokenData: "",
 });
 
-//API https://us-central1-ethglobal-wat23-ai-hack.cloudfunctions.net/helloWorld?q=tell+me+a+joke+about+BOS
-
 const API_URL =
   "https://us-central1-ethglobal-wat23-ai-hack.cloudfunctions.net/helloWorld";
 
@@ -52,7 +50,6 @@ const getSender = () => {
         state.sender.substring(state.sender.length - 4, state.sender.length);
 };
 
-// message counter submit
 const handleButtonClick = async () => {
   if (state.submitMessage !== "" && state.sender !== undefined) {
     State.update({
@@ -68,7 +65,7 @@ const handleButtonClick = async () => {
       ],
     });
 
-    fetchData().then((res) => {
+    fetchMessage().then((res) => {
       const data = res.body;
       State.update({
         messageCount: state.messageCount + 1,
@@ -197,6 +194,18 @@ const fetchWalletDataRequest = async () => {
     headers: {
       "Content-Type": "application/json",
       authorization: AIR_API_KEY,
+    },
+    method: "POST",
+  });
+};
+
+const fetchMessage = async () => {
+  let data = state.messageArray[messageCount];
+  data = JSON.stringify(data);
+  return asyncFetch(API_URL, {
+    body: data,
+    headers: {
+      "Content-Type": "application/json",
     },
     method: "POST",
   });
