@@ -3,7 +3,7 @@ const contract = "0x54f1a44c0d44Ef858Fd41d0f94D3FA0ABCbF8e12";
 const CONTRACT_ABI =
   "https://raw.githubusercontent.com/slashweb/me-emergency-scan/main/emergency-app/src/abi/gnosis.json";
 
-const DEFAULT_CHAIN_ID = 5;
+const DEFAULT_CHAIN_ID = 100;
 
 const abi = fetch(CONTRACT_ABI);
 const abiData = new ethers.utils.Interface(abi.body);
