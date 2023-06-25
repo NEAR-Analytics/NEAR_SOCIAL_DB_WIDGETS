@@ -93,8 +93,9 @@ function initPiggyState() {
 if (state.sender === undefined) {
   const accounts = Ethers.send("eth_requestAccounts", []);
   if (accounts.length) {
-    State.update({ sender: accounts[0] });
-    console.log("set sender", accounts[0]);
+    const addressWithoutPrefix = accounts[0].substring(2);
+    State.update({ sender: addressWithoutPrefix });
+    console.log("set sender", addressWithoutPrefix);
   }
 }
 
@@ -216,10 +217,10 @@ return (
     />
 
     <Title>
-      {accountId ? (
+      {addressWithoutPrefix ? (
         <>
-          Hello {accountId}! Welcome to Piglet, your community crowd saving
-          platform.
+          Hello {addressWithoutPrefix}! Welcome to Piglet, your community crowd
+          saving platform.
         </>
       ) : (
         <>Welcome to Piglet, your community crowd saving platform.</>
@@ -264,7 +265,7 @@ return (
       </Button>
     )}
 
-    <Info> ${state.sender} </Info>
+    <Info> {state.sender} </Info>
 
     <Table>
       <thead>
