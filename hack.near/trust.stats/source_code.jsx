@@ -32,7 +32,7 @@ return (
           ) : (
             "?"
           )}{" "}
-          <span className="text-muted">Trusting</span>
+          <span className="text-muted">trusting</span>
         </a>
       </div>
       <div>
@@ -45,7 +45,7 @@ return (
           ) : (
             "?"
           )}{" "}
-          <span className="text-muted">Trusted By</span>
+          <span className="text-muted">trusted By</span>
         </a>
       </div>
     </div>
