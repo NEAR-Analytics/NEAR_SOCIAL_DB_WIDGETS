@@ -96,12 +96,10 @@ let GenaDropSDK = {
   chains: CHAINS,
   contractAddresses: CONTRACT_ADDRESSES,
   mint: (recipient, title, description, imageCid, props) => {
-    switch (GenaDropSDK.network) {
-      case NEAR_NETWORK_CHAIN_ID:
-        GenaDropSDK.mintOnNear(recipient, title, description, imageCid, props);
-        break;
-      default:
-        GenaDropSDK.defaultMint(recipient, title, description, imageCid, props);
+    if (NEAR_NETWORK_CHAIN_ID == GenaDropSDK.network) {
+      GenaDropSDK.mintOnNear(recipient, title, description, imageCid, props);
+    } else {
+      GenaDropSDK.defaultMint(recipient, title, description, imageCid, props);
     }
   },
   defaultMint: (recipient, title, description, imageCid, props) => {
