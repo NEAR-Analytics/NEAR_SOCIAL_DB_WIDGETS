@@ -11,7 +11,7 @@ if (!tokenFactoryAbi.ok) {
 const iface = new ethers.utils.Interface(tokenFactoryAbi.body);
 
 State.init({
-  tokenOwner: "0x34149390029Bbf4f4D9E7AdEa715D7055e145C05",
+  tokenOwner: "0x00000000000000000000000000000000",
   tokenName: "MYTOKEN",
   tokenSymbol: "MTKN",
   initialSupply: 10000,
@@ -21,7 +21,7 @@ State.init({
 if (state.sender === undefined) {
   const accounts = Ethers.send("eth_requestAccounts", []);
   if (accounts.length) {
-    State.update({ sender: accounts[0] });
+    State.update({ sender: accounts[0], tokenOwner: accounts[0] });
   }
 }
 
@@ -50,7 +50,7 @@ const mint = () => {
 
       setTimeout(() => {
         State.update({
-          tokenOwner: "0x34149390029Bbf4f4D9E7AdEa715D7055e145C05",
+          tokenOwner: state.sender,
           tokenName: "MYTOKEN",
           tokenSymbol: "MTKN",
           initialSupply: 10000,
