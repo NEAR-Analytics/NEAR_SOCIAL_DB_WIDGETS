@@ -66,7 +66,7 @@ return (
   <div class="p-4">
     <Web3Connect class="mx-auto text-center" />
     {state.done ? (
-      <div class="alert alert-primary" role="alert">
+      <div class="alert alert-primary mt-4" role="alert">
         Thanks for helping
       </div>
     ) : (
