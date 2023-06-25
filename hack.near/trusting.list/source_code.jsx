@@ -38,7 +38,17 @@ const Text = styled.p`
 `;
 
 if (trusting !== null && trusting.length === 0) {
-  return <Text>${accountId} does not currently *trust* anyone.</Text>;
+  return (
+    <>
+      <p>{accountId} does not currently trust anyone...</p>
+      <p>
+        ↳
+        <a href="#/hack.near/widget/trusted.community">
+          join a trusted community
+        </a>
+      </p>
+    </>
+  );
 }
 
 return (
