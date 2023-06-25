@@ -2,7 +2,7 @@ State.init({
   value: "submit",
   inputSubmitLabel: "Type Message",
   web3connectLabel: "Connect Wallet",
-  emptyMessage: "start the thread pussy...",
+  emptyMessage: "start the thread boss...",
   walletMessage: "View wallet data on AirChain",
   walletAddress: "",
 
@@ -94,14 +94,16 @@ const handleButtonClick = async () => {
   }
 };
 
-const fetchTokenData = () => {
+const fetchTokenData2 = () => {
   fetchTokenDataRequest().then((res) => {
     let data = res.body;
     data = data.data.TokenBalances.TokenBalance;
 
     let tokenData = data.map(
       ({ tokenType, formattedAmount }) =>
-        `Token Type: ${tokenType}, Amount: ${formattedAmount.toFixed(2)}`
+        ` Token Addresses: ${tokenAddress}, Amount: ${formattedAmount.toFixed(
+          2
+        )}`
     );
 
     State.update({
@@ -115,6 +117,54 @@ const fetchTokenData = () => {
           payload:
             "Here's the token data from your wallet - provided by AirTable" +
             tokenData,
+        },
+      ],
+    });
+  });
+};
+const fetchTokenData = () => {
+  fetchTokenDataRequest().then((res) => {
+    let data = res.body;
+    data = data.data.TokenBalances.TokenBalance;
+
+    let tokenData = data.map(
+      ({ tokenType, formattedAmount }) =>
+        ` Token Type: ${tokenType}, Amount: ${formattedAmount.toFixed(2)}`
+    );
+
+    State.update({
+      messageCount: state.messageCount + 1,
+      messageArray: [
+        ...state.messageArray,
+        {
+          id: state.messageCount,
+          sender: "AI",
+          date: new Date().toLocaleTimeString(),
+          payload:
+            "Here's the token data from your wallet - provided by AirTable" +
+            tokenData,
+        },
+      ],
+    });
+  });
+};
+
+const fetchWalletData = () => {
+  fetchWalletDataRequest().then((res) => {
+    let data = res.body;
+    data = data.data.Wallet.addresses;
+    let walletData = data[0];
+    State.update({
+      messageCount: state.messageCount + 1,
+      messageArray: [
+        ...state.messageArray,
+        {
+          id: state.messageCount,
+          sender: "AI",
+          date: new Date().toLocaleTimeString(),
+          payload:
+            "Here's your wallet addresss that your requested - provided by AirTable " +
+            walletData,
         },
       ],
     });
@@ -137,7 +187,7 @@ const fetchTokenDataRequest = async () => {
   });
 };
 
-const fetchNftDataRequest = async () => {
+const fetchWalletDataRequest = async () => {
   let data =
     '{"query":"query wallets {\\n  Wallet(input: {identity: \\"' +
     walletAddress +
@@ -180,10 +230,14 @@ return (
           <a href="#" onClick={fetchTokenData}>
             Token,
           </a>
-          <a href="#" onClick={fetchNftDataRequest}>
+          <a href="#" onClick={fetchWalletData}>
             Wallet
           </a>
-          &<a href="#">NFT Data</a>
+          &
+          <a href="#" onClick={fetchWalletData2}>
+            {" "}
+            Address Data
+          </a>
           on AirChain
         </p>
       </div>
