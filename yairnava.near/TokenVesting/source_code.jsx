@@ -9,7 +9,7 @@ if (!tokenVestingAbi.ok) {
 }
 
 const iface = new ethers.utils.Interface(tokenVestingAbi.body);
-const pills = [
+const pillsVesting = [
   { id: "vesting", title: "Vesting" },
   { id: "release", title: "Release" },
 ];
@@ -258,7 +258,7 @@ return (
                 id="pills-tab"
                 role="tablist"
               >
-                {pills.map(({ id, title }, i) => (
+                {pillsVesting.map(({ id, title }, i) => (
                   <li className="nav-item" role="presentation" key={i}>
                     <button
                       className={`nav-link ${i === 0 ? "active" : ""}`}
