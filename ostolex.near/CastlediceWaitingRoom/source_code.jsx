@@ -82,7 +82,7 @@ if (!sender) {
 const castledice = new ethers.Contract(
   contractId,
   abiObj,
-  Ethers.provider("https://testnet.aurora.dev").getSigner()
+  Ethers.provider("https://mainnet.aurora.dev").getSigner()
 );
 
 // If accountId the same as user
