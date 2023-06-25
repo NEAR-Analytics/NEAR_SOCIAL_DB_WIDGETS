@@ -16,6 +16,7 @@ State.init({
   tokenSymbol: "MTKN",
   initialSupply: 10000,
   minting: false,
+  showMessage: false,
 });
 
 if (state.sender === undefined) {
@@ -46,6 +47,7 @@ const mint = () => {
 
       State.update({
         minting: true,
+        showMessage: true,
       });
 
       setTimeout(() => {
@@ -57,6 +59,12 @@ const mint = () => {
           minting: false,
         });
       }, "10000");
+
+      setTimeout(() => {
+        State.update({
+          showMessage: false,
+        });
+      }, "20000");
     });
 };
 
@@ -262,6 +270,15 @@ return (
                     />
                   </div>
                 </div>
+                {state.showMessage ? (
+                  <div class="col-12">
+                    <div style={{ "text-align": "center" }} class="mb-3">
+                      <label>
+                        Minting done visit All tokens tab or start a vesting
+                      </label>
+                    </div>
+                  </div>
+                ) : null}
                 <div class="col-12">
                   <div class="mb-3">
                     <ItemMintButton
@@ -271,6 +288,16 @@ return (
                     >
                       Create Token
                     </ItemMintButton>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div style={{ "text-align": "center" }}>
+                    <label>
+                      Powered by{" "}
+                      <a href="https://ow.academy/" target="_blank">
+                        Open Web Academy
+                      </a>
+                    </label>
                   </div>
                 </div>
               </div>
