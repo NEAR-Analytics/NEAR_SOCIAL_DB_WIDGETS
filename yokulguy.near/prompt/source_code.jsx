@@ -49,7 +49,7 @@ const createCard = ({ imageUrl, creatorAddress, prompt, objectName, ipfsUrl }) =
       <img class="border border-dark rounded" src={imageUrl} />
       <p>⛓️ {creatorAddress}</p>
       <p>🖌️ {prompt}</p>
-      {sender && ipfsUrl && <button class="btn btn-primary" onClick={mint(ipfsUrl)}>Mint</button>}
+      {sender && ipfsUrl && <button class="btn btn-primary" onClick={() => mint(ipfsUrl)}>Mint</button>}
     </div>
   );
 };
