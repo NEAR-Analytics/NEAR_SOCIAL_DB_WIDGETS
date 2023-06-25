@@ -42,7 +42,7 @@ const Text = styled.p`
 if (trustedList !== null && trustedList.length === 0) {
   return (
     <>
-      <p>{accountId} does not currently *trust* anyone...</p>
+      <p>{accountId} is not currently trusted by anyone...</p>
       <p>
         ↳
         <a href="#/hack.near/widget/trusted.community">
