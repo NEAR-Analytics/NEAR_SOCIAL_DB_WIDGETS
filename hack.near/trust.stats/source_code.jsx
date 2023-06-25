@@ -45,9 +45,7 @@ return (
           ) : (
             "?"
           )}{" "}
-          <span className="text-muted">
-            Trusted User{numTrusted !== 1 && "s"}
-          </span>
+          <span className="text-muted">Truster{numTrusted !== 1 && "s"}</span>
         </a>
       </div>
     </div>
