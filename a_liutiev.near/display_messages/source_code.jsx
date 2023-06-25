@@ -10,7 +10,7 @@ return (
       </div>
     ) : (
       messageArray.map((message) =>
-        message.sender === "AI" ? (
+        message.sender !== "AI" ? (
           // user
           <div>
             <div className="d-flex justify-content-between">
