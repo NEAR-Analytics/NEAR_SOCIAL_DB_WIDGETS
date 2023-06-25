@@ -1,5 +1,4 @@
 const userId = context.accountId;
-const ownerId = "near";
 
 if (!userId) {
   return "Please connect your NEAR account :)";
@@ -21,15 +20,8 @@ if (trustingData === null) {
 
 const trusting = trustingData[userId]["graph"]["trust"] ?? {};
 
-let trustDev = prop.trustDev ?? false;
-
-if (trustDev) {
-  trusting[ownerId] = true;
-}
-
 State.init({
   trusting,
-  trustDev,
 });
 
 let trustGraph = [];
@@ -47,11 +39,6 @@ let handleChange = (accountId) => {
   let trusting = state.trusting;
   trusting[accountId] = !trusting[accountId];
   State.update({ trusting });
-};
-
-let trustDevChange = () => {
-  handleChange(ownerId);
-  State.update({ trustDev: !state.trustDev });
 };
 
 let trustBlocks = trustRank.map((accountId) => (
@@ -141,7 +128,8 @@ return (
   <>
     <h3>Open Web of Trust</h3>
     <p>Connect with people you know!</p>
-
+    <hr />
+    <h5>Expand Your Network</h5>
     <div className="mb-3">
       <CommitButton
         disabled={context.loading}
@@ -153,22 +141,7 @@ return (
         {context.loading ? "Loading..." : "Save Connections"}
       </CommitButton>
     </div>
-    <br />
-    <h5>Community</h5>
     <ul className="list-group">{trustBlocks}</ul>
-    <div className="form-check pt-3">
-      <input
-        className="form-check-input"
-        type="checkbox"
-        id={`trust-dev`}
-        onChange={() => trustDevChange()}
-        checked={state.trustDev}
-        name="trust-dev"
-      />
-      <label className="form-check-label" for="trust-dev">
-        Join {ownerId} community!
-      </label>
-    </div>
 
     <div className="mt-3 mb-3">
       <CommitButton
