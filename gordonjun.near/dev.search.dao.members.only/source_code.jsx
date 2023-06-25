@@ -1,52 +1,133 @@
-const daoId = props.daoId ?? "bbclan.near";
+const daoId = props.daoId ?? 'bbclan.near';
+
+const allMetadata =
+  Social.get(
+    ["*/widget/*/metadata/name", "*/widget/*/metadata/tags/*"],
+    "final"
+  ) || {};
+
+let daoFollowers = Social.keys(`*/graph/follow/${daoId}`, "final", {
+  return_type: "BlockHeight",
+  values_only: true,
+});
+daoFollowers = Object.entries(daoFollowers || {}).map(
+  ([accountId]) => accountId
+);
+let keys = {};
+
+for (let i = 0; i < daoFollowers.length; i++) {
+    let userWidgetkeys = Social.keys([`${daoFollowers[i]}/widget/*`], "final", { values_only: true })
+    keys = Object.assign(keys, userWidgetkeys);
+}
+
+const requiredTag = props.filterTag;
+const boostedTag = props.boostedTag;
+const inputTerm = props.term;
+
+const computeResults = (term) => {
+  const terms = (term || "")
+    .toLowerCase()
+    .split(/[^\w._\/-]/)
+    .filter((s) => !!s.trim());
+
+  const matchedWidgets = [];
+
+  const limit = props.limit ?? 30;
+
+  const MaxSingleScore = 1;
+  const MaxScore = MaxSingleScore * 4;
+
+  const computeScore = (s) => {
+    s = s.toLowerCase();
+    return (
+      terms
+        .map((term) => {
+          const pos = s.indexOf(term);
+          return pos >= 0 ? Math.exp(-pos) : 0;
+        })
+        .reduce((s, v) => s + v, 0) / terms.length
+    );
+  };
+
+  Object.entries(keys).forEach(([accountId, data]) => {
+    Object.keys(data.widget).forEach((componentId) => {
+      const widgetSrc = `${accountId}/widget/${componentId}`;
+      const widgetSrcScore = computeScore(widgetSrc);
+      const componentIdScore = computeScore(componentId);
+      const metadata = allMetadata[accountId].widget[componentId].metadata;
+      const name = metadata.name || componentId;
+      if (requiredTag && !(metadata.tags && requiredTag in metadata.tags)) {
+        return;
+      }
+      const boosted =
+        boostedTag && metadata.tags && boostedTag in metadata.tags;
+      const tags = Object.keys(metadata.tags || {}).slice(0, 10);
+      const nameScore = computeScore(name);
+      const tagsScore = Math.min(
+        MaxSingleScore,
+        tags.map(computeScore).reduce((s, v) => s + v, 0)
+      );
+      const score =
+        (widgetSrcScore + componentIdScore + nameScore + tagsScore) / MaxScore;
+      if (score > 0) {
+        matchedWidgets.push({
+          score,
+          accountId,
+          widgetName: componentId,
+          widgetSrc,
+          name,
+          tags,
+          boosted,
+        });
+      }
+    });
+  });
+
+  matchedWidgets.sort(
+    (a, b) => (b.boosted ? 2 : 0) + b.score - (a.boosted ? 2 : 0) - a.score
+  );
+  const result = matchedWidgets.slice(0, limit);
+
+  State.update({
+    term,
+    result,
+  });
+
+  if (props.onChange) {
+    props.onChange({ term, result });
+  }
+};
+
+if (props.term && props.term !== state.oldTerm) {
+  State.update({
+    oldTerm: props.term,
+  });
+  if (props.term !== state.term) {
+    computeResults(props.term);
+  }
+}
 
 return (
-  <div>
-    <h2 className="mb-3">apps</h2>
-    <div className="mb-2">
-      <Widget
-        src="gordonjun.near/widget/ComponentSearch.dao.members.only"
-        props={{
-          boostedTag: "app",
-          placeholder: "🔍  search for widgets",
-          limit: 10,
-          daoId: daoId,
-          onChange: ({ result }) => {
-            State.update({ apps: result });
-          },
-        }}
+  <>
+    <div className="input-group">
+      <input
+        type="text"
+        className={`form-control ${state.term ? "border-end-0" : ""}`}
+        value={state.term ?? ""}
+        onChange={(e) => computeResults(e.target.value)}
+        placeholder={props.placeholder ?? `🔍 Search Components`}
       />
-    </div>
-    {state.apps && (
-      <div className="mb-2">
-        {state.apps.map((app, i) => (
-          <div key={i}>
-            <Widget
-              src="mob.near/widget/ComponentSearch.Item"
-              props={{
-                link: `#/${app.widgetSrc}`,
-                accountId: app.accountId,
-                widgetName: app.widgetName,
-                onHide: () => State.update({ apps: null }),
-                extraButtons: ({ widgetPath }) => (
-                  <a
-                    target="_blank"
-                    className="btn btn-outline-secondary"
-                    href={`#/mob.near/widget/WidgetSource?src=${widgetPath}`}
-                  >
-                    Source
-                  </a>
-                ),
-              }}
-            />
-          </div>
-        ))}
-      </div>
-    )}
 
-    <Widget
-      src="mob.near/widget/WidgetIcons"
-      props={{ tag: "app", limit: 24, daoId: daoId }}
-    />
-  </div>
+      {state.term && (
+        <button
+          className="btn btn-outline-secondary border border-start-0"
+          type="button"
+          onClick={() => computeResults("")}
+        >
+          <i className="bi bi-x"></i>
+        </button>
+      )}
+    </div>
+    {props.debug && <pre>{JSON.stringify(state.result, undefined, 2)}</pre>}
+  </>
 );
