@@ -144,7 +144,7 @@ const cssFont = fetch(
   "https://fonts.googleapis.com/css2?family=Lexend:wght@200;300;400;500;600;700;800"
 ).body;
 const css = fetch(
-  "https://indigo-fluttering-emu-841.mypinata.cloud/ipfs/QmRR5YSEY4ot49AGGTY5i7UoyH4FNx7KDRvVjDPuSbzEdn"
+  "https://nativonft.mypinata.cloud/ipfs/QmQNCGVCwmkPxcKqDdubvb8Goy5xP8md2MfWCAix7HxgGE"
 ).body;
 
 if (!cssFont || !css) return "";
