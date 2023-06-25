@@ -218,8 +218,7 @@ return (
           : state.message
       }
       onMessage={onGameMessage}
-      class="w-100 h-100"
-      style={{ width: "100%", height: "800px" }}
+      style={{ width: "100%", height: "100%" }}
     />
     {state.showDice && (
       <Widget
