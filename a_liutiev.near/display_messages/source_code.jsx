@@ -15,7 +15,7 @@ return (
           <div>
             <div className="d-flex justify-content-between">
               <p className="small mb-1 text-muted">{message.date}</p>
-              <p className="small mb-1">{sender}</p>
+              <p className="small mb-1">{message.sender}</p>
             </div>
 
             <div className="d-flex flex-row justify-content-end mb-4 pt-1">
