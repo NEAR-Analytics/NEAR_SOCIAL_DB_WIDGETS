@@ -138,8 +138,9 @@ const fetchTokenData = () => {
           sender: "AI",
           date: new Date().toLocaleTimeString(),
           payload:
-            "Here's the token data from your wallet - provided by AirTable" +
-            tokenData,
+            `Here's the token data from your wallet - provided by AirTable:
+            
+            ` + tokenData,
         },
       ],
     });
@@ -265,6 +266,5 @@ return (
         }}
       />
     </div>
-    <div></div>
   </div>
 );
