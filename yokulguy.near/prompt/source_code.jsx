@@ -41,8 +41,8 @@ const mint = async (id, ipfsUrl) => {
   hologram.mint(ipfsUrl).then(res => {
     console.log(res)
     hasBeenMinted[id] = true;
+    State.update()
   });
-  State.update()
 }
 
 const createCard = ({ id, imageUrl, creatorAddress, prompt, objectName, ipfsUrl }) => {
