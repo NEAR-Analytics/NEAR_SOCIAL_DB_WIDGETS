@@ -90,8 +90,9 @@ return (
       </InfiniteScroll>
     </div>
 
-    <div class="fixed-bottom bg-dark">
+    <div class="fixed-bottom bg-dark text-center">
       <a href="https://tofunft.com/discover/items?contracts=85949&network=1313161554">Explore in marketplace</a>
+      <span> | </span>
       <a href="https://explorer.aurora.dev/address/0xC0769C1a52f54e5cE83F4B8919017cff6c4Dc39C/transactions#address-tabs">Explore in Aurorascan</a>
     </div>
   </>
