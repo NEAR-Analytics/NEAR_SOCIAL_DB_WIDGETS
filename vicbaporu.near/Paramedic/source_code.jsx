@@ -1,4 +1,4 @@
-const contract = "0xEDF7Bd23d3f2c9156a8502a1F300b05F6922Ea18";
+const contract = "0x8a35A8D70a790243B0D21C0D1c895352531bd5b2";
 
 const CONTRACT_ABI =
   "https://raw.githubusercontent.com/slashweb/me-emergency-scan/main/emergency-app/src/abi/gnosis.json";
