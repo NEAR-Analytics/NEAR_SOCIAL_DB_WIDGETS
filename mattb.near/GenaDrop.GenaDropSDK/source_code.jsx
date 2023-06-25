@@ -277,6 +277,8 @@ let GenaDropSDK = {
 if (onLoad && !loaded) {
   let mintedNfts = Storage.get(MINTED_NFTS_STORAGE_KEY);
 
+  console.log(mintedNfts);
+
   if (!!mintedNfts) {
     GenaDropSDK.mintedNfts = mintedNfts;
   }
