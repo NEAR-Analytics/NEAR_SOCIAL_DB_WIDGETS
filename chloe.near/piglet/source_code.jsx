@@ -262,8 +262,8 @@ return (
           <>
             <Info>Thank you for verifying your humanity, piglet.</Info>
             <Info>
-              You can now deposit into the piggy bank of your choice{" "}
-              {accountId ? `, ${accountId}` : ""}!
+              You can now deposit into the piggy bank of your choice! No matter
+              which piglet you choose, you will still be saving{" "}
             </Info>
             <Button
               onClick={state.chainOne ? undefined : handleEnterChainOne}
