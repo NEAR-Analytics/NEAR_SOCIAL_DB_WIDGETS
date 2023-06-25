@@ -39,7 +39,7 @@ return (
             </div>
             <div className="d-flex flex-row justify-content-start">
               <img
-                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
+                src="https://static.vecteezy.com/system/resources/previews/004/996/790/original/robot-chatbot-icon-sign-free-vector.jpg"
                 style={{ width: "45px", height: "100%" }}
               />
               <div>
