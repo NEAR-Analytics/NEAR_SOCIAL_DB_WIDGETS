@@ -6,14 +6,6 @@ const getPrompt = (page, cb) =>
     `https://alpha.tryhologram.art/api/prompt/pagination?page=${page}`
   ).then(cb);
 
-// const mint = () => {
-//   const sender = Ethers.send("eth_requestAccounts", [])[0];
-//   if (!sender) return "Please login first";
-//
-//   return <p>Account: {sender}</p>;
-//   const hologram = new ethers.Contract(CONTRACT_ADDRESS, contract.abi, signer);
-// }
-
 const initialPage = getRandomInt(10);
 const lastPage = initialPage + 10;
 const sender = Ethers.send("eth_requestAccounts", [])[0];
@@ -42,7 +34,12 @@ const loadMore = () => {
   });
 };
 
-const createCard = ({ imageUrl, creatorAddress, prompt, objectName }) => {
+const mint = () => {
+  const hologram = new ethers.Contract(CONTRACT_ADDRESS, contract.abi, sender);
+  console.log({hologram});
+}
+
+const createCard = ({ imageUrl, creatorAddress, prompt, objectName, ipfsUrl }) => {
   return (
     <div class="text-center p-2">
       <p>
@@ -51,6 +48,7 @@ const createCard = ({ imageUrl, creatorAddress, prompt, objectName }) => {
       <img class="border border-dark rounded" src={imageUrl} />
       <p>⛓️ {creatorAddress}</p>
       <p>🖌️ {prompt}</p>
+      {sender && ipfsUrl && <button class="btn btn-primary" onClick={mint(ipfsUrl)}>Mint</button>}
     </div>
   );
 };
