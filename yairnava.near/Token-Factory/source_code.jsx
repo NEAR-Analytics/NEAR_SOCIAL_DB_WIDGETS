@@ -1,7 +1,7 @@
-const tokenFactoryContract = "0xcb49f7451e4079F54bdDD5D96693A4dBeefD32Bf";
+const tokenFactoryContract = "0xA6f5dfd3C36b1874a213893af4BEDddC9EFB9d63";
 
 const tokenFactoryAbi = fetch(
-  "https://indigo-fluttering-emu-841.mypinata.cloud/ipfs/QmPQqP4zu1zNiZiLpLNi55mjBPZTRjXYpPmGYk5jDAgmQf"
+  "https://indigo-fluttering-emu-841.mypinata.cloud/ipfs/QmQ3HSBoEjcsodCEUJK1YQGCMPjAv6Co4enebiGM5rMCKj"
 );
 
 if (!tokenFactoryAbi.ok) {
