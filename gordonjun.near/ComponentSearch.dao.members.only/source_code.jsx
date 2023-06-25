@@ -10,12 +10,14 @@ let daoFollowers = Social.keys(`*/graph/follow/${daoId}`, "final", {
   return_type: "BlockHeight",
   values_only: true,
 });
-daoFollowers = Object.keys(daoFollowers || {});
-let keys = Object.keys({});
+daoFollowers = Object.entries(daoFollowers || {}).map(
+  ([accountId]) => accountId
+);
+let keys = {};
 
 for (let i = 0; i < daoFollowers.length; i++) {
     let userWidgetkeys = Social.keys([`${daoFollowers[i]}/widget/*`], "final", { values_only: true })
-    keys.concat(userWidgetkeys);
+    keys = Object.assign(keys, userWidgetkeys);
 }
 
 const requiredTag = props.filterTag;
@@ -127,5 +129,8 @@ return (
       )}
     </div>
     {props.debug && <pre>{JSON.stringify(state.result, undefined, 2)}</pre>}
+    <div className="mt-3">
+      {JSON.stringify(keys)}
+    </div>
   </>
 );
