@@ -38,12 +38,12 @@ if (!sender) {
   );
 }
 
-const contractId = "0x530cbC8336a0A2214c6ee536067195A24C42f469";
+const contractId = "0xAb926c04Fa3E0CbE23f51BE4Ea2B0777cbB675CC";
 
 const castledice = new ethers.Contract(
   contractId,
   abiObj,
-  Ethers.provider("https://testnet.aurora.dev").getSigner()
+  Ethers.provider("https://mainnet.aurora.dev").getSigner()
 );
 
 const externalAppUrl = "https://castledice.ostolex.com/";
