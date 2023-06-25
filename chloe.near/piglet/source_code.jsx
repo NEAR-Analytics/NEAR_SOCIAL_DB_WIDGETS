@@ -272,7 +272,7 @@ return (
                 backgroundColor: state.chainOne ? "grey" : "palevioletred",
               }}
             >
-              Enter Piggy Bank 1
+              Enter The $sDAI Piggy Bank
             </Button>
             <Button
               onClick={state.chainTwo ? undefined : handleEnterChainTwo}
@@ -281,7 +281,7 @@ return (
                 backgroundColor: state.chainTwo ? "grey" : "palevioletred",
               }}
             >
-              Enter Piggy Bank 2
+              Enter The $unshETH Piggy Bank
             </Button>
             <Button
               onClick={state.chainThree ? undefined : handleEnterChainThree}
@@ -290,7 +290,7 @@ return (
                 backgroundColor: state.chainThree ? "grey" : "palevioletred",
               }}
             >
-              Enter Piggy Bank 3
+              Enter $APE Piggy Bank
             </Button>
           </>
         )}
