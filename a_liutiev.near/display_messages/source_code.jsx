@@ -4,7 +4,7 @@ const sender = props.sender || "Alex Astrum";
 
 return (
   <div class="card-body">
-    {messageArray.length === 0 ? (
+    {messageArray.length !== 0 ? (
       <div class="m-0 text-center">
         <p className="small mb-1 text-muted">{emptyMessage}</p>
       </div>
