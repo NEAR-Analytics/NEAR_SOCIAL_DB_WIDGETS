@@ -22,7 +22,7 @@ const Table = styled.table`
     padding: 10px;
   }
 
-  .sender-row {
+  .sender-row td {
     color: green;
   }
 `;
@@ -40,7 +40,7 @@ const Container = styled.div`
   justify-content: center;
   min-height: 100vh;
   background: #ffc0cb;
-//   color: black; 
+color: black; 
   font-size: calc(10px + 2vmin);
   padding: 20px;
   box-sizing: border-box;
@@ -315,11 +315,8 @@ return (
           <tbody>
             {state.tableData.length > 0 ? (
               state.tableData.map((item, index) => (
-                <tr
-                  key={index}
-                  className={item.address === state.sender ? "sender-row" : ""}
-                >
-                  <td>{item.address}</td>
+                <tr key={index} className={item.isSender ? "sender-row" : ""}>
+                  <td>{item.addressLower}</td>
                   <td>{item.value}</td>
                 </tr>
               ))
