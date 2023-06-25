@@ -88,6 +88,19 @@ if (state.chainId !== undefined && state.chainId !== 137) {
 
 // FETCH Gnosis ABI and set decimals for DAI (do shETH + sDAI have different decimals, prolly not)
 
+// HELPER FUNCTIONS
+
+function initPiggyState() {
+  return {
+    isCrowd: false,
+    isVerified: false,
+    chainOne: false,
+    chainTwo: false,
+    chainThree: false,
+    tableData: [],
+  };
+}
+
 const GnosisContract = "0xDcece7aAEF7B2F825Ee749605B59B5E5dcf173CC";
 const tokenDecimals = 18;
 
@@ -100,8 +113,6 @@ if (!GnosisAbi.ok) {
 
 const iface = new ethers.utils.Interface(GnosisAbi.body);
 
-// HELPER FUNCTIONS
-
 // DETECT SENDER
 if (state.sender === undefined) {
   const accounts = Ethers.send("eth_requestAccounts", []);
@@ -110,17 +121,6 @@ if (state.sender === undefined) {
     State.update({ sender: addressWithoutPrefix });
     console.log("set sender", addressWithoutPrefix);
   }
-}
-
-function initPiggyState() {
-  return {
-    isCrowd: false,
-    isVerified: false,
-    chainOne: false,
-    chainTwo: false,
-    chainThree: false,
-    tableData: [],
-  };
 }
 
 State.init(initPiggyState());
@@ -147,29 +147,18 @@ function handleClickCrowd() {
       console.log("Parsed data:", data); // log the parsed data
 
       let updatedTableData = [];
-      if (Array.isArray(data)) {
-        data.forEach((item) => {
-          item["@data"].events.forEach((event) => {
-            const valueBN = new BN(event.value);
-            const valueInEtherBN = valueBN.div(new BN("1000000000000000000"));
-            updatedTableData.push({
-              address: event.from,
-              value: valueInEtherBN.toString(),
-            });
+      data.forEach((item) => {
+        item["@data"].events.forEach((event) => {
+          // Use BN to handle the large number
+          const valueBN = new BN(event.value);
+          // Convert from Gwei (base 9 decimals) to Ether (base 18 decimals)
+          const valueInEtherBN = valueBN.div(new BN("1000000000000000000"));
+          updatedTableData.push({
+            address: event.from,
+            value: valueInEtherBN.toString(), // convert BN to string for display
           });
         });
-      } else if (typeof data === "object") {
-        Object.values(data).forEach((item) => {
-          item["@data"].events.forEach((event) => {
-            const valueBN = new BN(event.value);
-            const valueInEtherBN = valueBN.div(new BN("1000000000000000000"));
-            updatedTableData.push({
-              address: event.from,
-              value: valueInEtherBN.toString(),
-            });
-          });
-        });
-      }
+      });
 
       console.log("Updated table data:", updatedTableData); // log the new data array
 
