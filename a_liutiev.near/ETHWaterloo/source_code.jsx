@@ -23,6 +23,8 @@ const API_URL =
 
 const AIR_API_KEY = "6e4d51488a7546c5b9ee7a048ec3fc57";
 const AIR_API = "https://api.airstack.xyz/gql";
+const QN_API =
+  "https://frequent-purple-silence.discover.quiknode.pro/4a03560450188f062f4f1cf6bd075ef784d54e65/";
 
 const value = state.value || "n/a";
 const web3connectLabel = state.web3connectLabel || "n/a";
@@ -91,15 +93,23 @@ const handleButtonClick = async () => {
   }
 };
 
-const fetchTokenDataAlternate = () => {
-  fetchTokenDataRequest().then((res) => {
+const fetchAccountBalances = () => {
+  fetchBalanceRequest().then((res) => {
     let data = res.body;
     data = data.data.TokenBalances.TokenBalance;
-    let tokenData = data.map(
-      ({ tokenAddress, tokenType }) =>
-        ` 
-         - Token Address: ${tokenAddress} - Token Type: ${tokenType}`
-    );
+    let tokenData = [];
+    fetchUSDCConverter(data);
+    // data.forEach(({ token, formattedAmount, tokenType }) => {
+    //   total += formattedAmount; // add formattedAmount to the running total
+    //   fetch
+
+    //   // Add a string to the tokenData array for each object in the data array
+    //   tokenData.push(
+    //     `- Token: ${
+    //       token.symbol
+    //     } - Token Type: ${tokenType} - Amount: ${formattedAmount.toFixed(2)}`
+    //   );
+    // });
 
     State.update({
       messageCount: state.messageCount + 1,
@@ -119,7 +129,7 @@ const fetchTokenDataAlternate = () => {
 };
 
 const fetchTokenData = () => {
-  fetchTokenDataRequest().then((res) => {
+  fetchBalanceRequest().then((res) => {
     let data = res.body;
     console.log(data);
     data = data.data.TokenBalances.TokenBalance;
@@ -172,11 +182,11 @@ const fetchWalletData = () => {
   });
 };
 
-const fetchTokenDataRequest = async () => {
+const fetchBalanceRequest = async () => {
   let data =
-    '{"query":"query MyTokenBalances {\\n  TokenBalances(\\n    input: {filter: {owner: {_eq: \\"' +
+    '{"query":"query BalanceCheck {\\n  TokenBalances(\\n    input: {filter: {owner: {_in: [\\"' +
     walletAddress +
-    '\\"}}, blockchain: ethereum, limit: 10}\\n  ) {\\n    TokenBalance {\\n      tokenAddress\\n      amount\\n      formattedAmount\\n      tokenType\\n      owner {\\n        addresses\\n      }\\n      tokenNfts {\\n        address\\n        tokenId\\n        blockchain\\n      }\\n    }\\n  }\\n}","operationName":"MyTokenBalances"}';
+    '\\"]}}, blockchain: ethereum, limit: 10}\\n  ) {\\n    TokenBalance {\\n      tokenAddress\\n      amount\\n      formattedAmount\\n      tokenType\\n      token {\\n        name\\n        symbol\\n      }\\n    }\\n  }\\n}","operationName":"BalanceCheck"}';
 
   return asyncFetch(AIR_API, {
     body: data,
@@ -250,8 +260,8 @@ return (
           <button class="btn btn-light me-2" onClick={fetchWalletData}>
             Wallet Details
           </button>
-          <button class="btn btn-light" onClick={fetchTokenDataAlternate}>
-            Address Data
+          <button class="btn btn-light" onClick={fetchAccountBalances}>
+            Account Balance Check
           </button>
         </div>
       </div>
