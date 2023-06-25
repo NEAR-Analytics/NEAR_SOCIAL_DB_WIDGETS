@@ -98,8 +98,7 @@ const fetchTokenDataAlternate = () => {
     let tokenData = data.map(
       ({ tokenAddress, tokenType }) =>
         ` 
-        - Token Address: ${tokenAddress}, Token Type: ${tokenType}
-        `
+         - Token Address: ${tokenAddress} - Token Type: ${tokenType}`
     );
 
     State.update({
@@ -111,7 +110,7 @@ const fetchTokenDataAlternate = () => {
           sender: "AI",
           date: new Date().toLocaleTimeString(),
           payload:
-            `Here's more advanced token data from your wallet - provided by AirTable
+            `Here's more advanced token data from your wallet:
             ` + tokenData,
         },
       ],
@@ -122,11 +121,17 @@ const fetchTokenDataAlternate = () => {
 const fetchTokenData = () => {
   fetchTokenDataRequest().then((res) => {
     let data = res.body;
+    console.log(data);
     data = data.data.TokenBalances.TokenBalance;
 
     let tokenData = data.map(
-      ({ tokenType, formattedAmount }) =>
-        ` Token Type: ${tokenType}, Amount: ${formattedAmount.toFixed(2)}`
+      ({ tokenType, formattedAmount, tokenAddress }) =>
+        `
+        - Token Type: ${tokenType}, Amount: ${formattedAmount.toFixed(
+          2
+        )}, Token Address: ${
+          tokenAddress.substring(0, 4) + ".." + tokenAddress.slice(-4)
+        }`
     );
 
     State.update({
@@ -137,10 +142,8 @@ const fetchTokenData = () => {
           id: state.messageCount,
           sender: "AI",
           date: new Date().toLocaleTimeString(),
-          payload:
-            `Here's the token data from your wallet - provided by AirTable:
-            
-            ` + tokenData,
+          payload: `Here's the token data from your wallet:
+            ${tokenData}`,
         },
       ],
     });
@@ -160,9 +163,9 @@ const fetchWalletData = () => {
           id: state.messageCount,
           sender: "AI",
           date: new Date().toLocaleTimeString(),
-          payload:
-            "Here's your wallet addresss that your requested - provided by AirTable " +
-            walletData,
+          payload: `Here are your wallet details: 
+          
+          - ${walletData}`,
         },
       ],
     });
