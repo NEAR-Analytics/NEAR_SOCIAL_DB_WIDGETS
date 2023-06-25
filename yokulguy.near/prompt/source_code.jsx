@@ -36,7 +36,9 @@ const loadMore = () => {
 const createCard = ({ imageUrl, creatorAddress, prompt, objectName }) => {
   return (
     <div class="text-center p-2">
-      <p>⚡️ {objectName} ⚡️</p>
+      <p>
+        <strong>⚡️ {objectName} ⚡️</strong>
+      </p>
       <img class="border border-dark rounded" src={imageUrl} />
       <p>⛓️ {creatorAddress}</p>
       <p>🖌️ {prompt}</p>
