@@ -123,8 +123,6 @@ function handleClickVerify() {
 function handleClickCrowd() {
   State.update({ isCrowd: true });
 
-  getSender();
-
   asyncFetch(
     "https://raw.githubusercontent.com/doulos819/piglet/main/output.json"
   )
@@ -160,12 +158,14 @@ function handleClickCrowd() {
 }
 
 const getSender = () => {
-  return !state.sender
-    ? ""
-    : state.sender.substring(0, 6) +
+  return state.sender
+    ? state.sender.substring(0, 6) +
         "..." +
-        state.sender.substring(state.sender.length - 4, state.sender.length);
+        state.sender.substring(state.sender.length - 4, state.sender.length)
+    : "";
 };
+
+getSender();
 
 // Handle the click event for entering the platform
 function handleClickEnter() {
