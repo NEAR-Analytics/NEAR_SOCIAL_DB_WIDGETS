@@ -34,8 +34,8 @@ const fetchGPTResponse = () => {
   return asyncFetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
     headers: {
-      "{Content-Type": "application/json",
-      "Authorization": "Bearer " + state.apiKey,
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + state.apiKey,
     },
     body: {
       model: "gpt-3.5-turbo",
@@ -46,6 +46,7 @@ const fetchGPTResponse = () => {
 };
 
 console.log("KEY", state.apiKey);
+console.log("quesion", state.question);
 return (<div>
   <input type="password" placeholder="LLM API KEY" onChange={(e) => State.update({ apiKey: e.target.value })} />
   <textarea
