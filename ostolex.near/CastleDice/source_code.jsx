@@ -36,7 +36,6 @@ const BigButton = styled.button`
   font-weight: bold;
   background-size: contain;
 `;
-
 if (!state.next) {
   return (
     <Background>
