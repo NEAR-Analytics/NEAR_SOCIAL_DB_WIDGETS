@@ -19,9 +19,12 @@ State.init({
   selectedTokenAddress: "",
   batchAmount: 0,
   depositAmount: 0,
+
+  balance: 0,
 });
 
 // HOST NAME API.
+const ACTIVE_STATUS = "POOL_STATUS::ACTIVE";
 var contract;
 const API = "https://dev-pocket-api.hamsterbox.xyz/api";
 const CONTRACT_DATA = {
@@ -96,7 +99,7 @@ const handleGetPocket = async (id) => {
 const handleGetPockets = (walletAddress) => {
   try {
     asyncFetch(
-      `${API}/pool/decimals-formatted?limit=20&offset=0&chainId=bnb&ownerAddress=${walletAddress}&statuses=POOL_STATUS%3A%3AACTIVE&sortBy=DATE_START_DESC`
+      `${API}/pool/decimals-formatted?limit=20&offset=0&chainId=bnb&ownerAddress=${walletAddress}&statuses=POOL_STATUS%3A%3AACTIVE&statuses=POOL_STATUS%3A%3ACLOSED&sortBy=DATE_START_DESC`
     ).then((result) => {
       State.update({
         pocketList: result.body,
@@ -184,6 +187,32 @@ const handleCreatePocket = () => {
   });
 };
 
+const handleSyncPocket = () => {
+  if (!state.pocket) return;
+  asyncFetch(`${API}/pool/evm/${state.pocket._id}/sync`, {
+    method: "POST",
+    headers: {
+      "content-type": "text/plain;charset=UTF-8",
+    },
+  }).then(() => {
+    handleGetPocket(state.pocket._id);
+  });
+};
+
+const handleClosePocket = () => {
+  if (!state.pocket) return;
+  try {
+    contract.closePocket(state.pocket._id);
+  } catch {}
+};
+const handleWithdraw = () => {
+  if (!state.pocket) return;
+  try {
+    console.log("Withdraw", state.pocket._id);
+    contract.withdraw(state.pocket._id);
+  } catch {}
+};
+
 // DETECT SENDER
 if (state.sender === undefined) {
   State.update({
@@ -194,8 +223,8 @@ if (state.sender === undefined) {
 // Forbith
 if (!state.sender) return "Please login first";
 
-// FETCH SENDER BALANCE
-if (state.balance === undefined && state.sender) {
+// Get sender balance.
+if (state.sender) {
   Ethers.provider()
     .getBalance(state.sender)
     .then((balance) => {
@@ -237,8 +266,7 @@ if (!cssFont || !css) return "";
 if (!state.theme) {
   State.update({
     theme: styled.div`
-      font-family: 'Poppins',sans-serif;
-        sans-serif;
+      font-family: "Poppins", sans-serif;
       ${cssFont}
       ${css}
       .button-primary-36-px,
@@ -258,14 +286,16 @@ if (!state.theme) {
         height: 36px;
         position: relative;
       }
-      .sync-button {    display: flex;
-    justify-items: center;
-    align-items: center;
-    padding: 0 10px;
-    border: 2px solid #606060;
-    border-radius: 12px;
-    font-family: 'Poppins',sans-serif
-}}
+      .sync-button {
+        display: flex;
+        justify-items: center !important;
+        align-items: center !important;
+        padding: 0 10px !important;
+        border: 2px solid #606060 !important;
+        border-radius: 12px !important;
+        font-family: "Poppins", sans-serif !important;
+        font-size: 12px;
+      }
       .ic-16-refresh,
       .ic-16-refresh * {
         box-sizing: border-box;
@@ -357,7 +387,7 @@ const createPocketScreen = () => {
               </div>
             </div>
 
-            <div class="balance-319-23-bnb">Balance: 319.23 BNB</div>
+            <div class="balance-319-23-bnb">Balance: {state.balance} BNB</div>
           </div>
 
           <svg
@@ -584,7 +614,7 @@ const createPocketScreen = () => {
                 </svg>
               </div>
 
-              <div class="_2-043-54-bnb">2,043.54 BNB</div>
+              <div class="_2-043-54-bnb">{state.balance} BNB</div>
             </div>
           </div>
         </div>
@@ -663,18 +693,6 @@ const pocketDetailScreen = () => {
       </div>
       <div class="frame-48098193">
         <div class="frame-48098188">
-          <div class="strategy-desk">
-            <div class="strategy">Strategy</div>
-
-            <div class="frame-48097840">
-              <div class="frame-48098084"></div>
-
-              <div class="_10-sol-100-517-06-block">
-                10 SOL &lt;= 100,517.06 BLOCK
-              </div>
-            </div>
-          </div>
-
           <div class="pool-info-desk">
             <div class="pool-info">Pool Info</div>
 
@@ -829,9 +847,11 @@ const pocketDetailScreen = () => {
                   </div>
                 </div>
               </div>
-              <div class="button3" onClick={() => handleDepositPocket()}>
-                <div class="button2">Deposit Now</div>
-              </div>
+              {state.pocket && state.pocket.status === ACTIVE_STATUS && (
+                <div class="button3" onClick={() => handleDepositPocket()}>
+                  <div class="button2">Deposit Now</div>
+                </div>
+              )}
             </div>
           </div>
           <div class="tp-sl">
@@ -870,23 +890,54 @@ const pocketDetailScreen = () => {
 
           <div class="status-desk">
             <div class="status">Status</div>
-
             <div class="frame-48098267">
               <div class="frame-48097882">
-                <div class="tag">
-                  <div class="tag-marker">Ongoing</div>
-                </div>
+                {state.pocket && (
+                  <div
+                    class="tag"
+                    style={{
+                      background:
+                        state.pocket.status === ACTIVE_STATUS
+                          ? "rgba(38, 198, 115, 0.12) !important"
+                          : "rgba(247, 85, 85, 0.12) !important",
+                    }}
+                  >
+                    <div
+                      class="tag-marker"
+                      style={{
+                        color:
+                          state.pocket.satus === ACTIVE_STATUS
+                            ? "#26c673"
+                            : "#f44949",
+                      }}
+                    >
+                      {state.pocket.status === ACTIVE_STATUS
+                        ? "Ongoing"
+                        : "Closed"}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
 
-          <div class="button-desk">
+          <div
+            class="button-desk"
+            style={{ cursor: "pointer" }}
+            onClick={() =>
+              state.pocket.status === "POOL_STATUS::CLOSED"
+                ? handleWithdraw()
+                : handleClosePocket()
+            }
+          >
             <div class="button-primary">
               <div class="frame-48098095">
                 <div class="iconly-light-arrow-right"></div>
-
-                <div class="button4">Close Pocket</div>
-
+                <div class="button4">
+                  {state.pocket.status === "POOL_STATUS::CLOSED"
+                    ? "Withdraw Pocket"
+                    : "Close Pocket"}
+                </div>
                 <div class="iconly-light-arrow-right"></div>
               </div>
             </div>
@@ -926,6 +977,35 @@ return (
         )}
         <div class="pocket-detail">
           {state.currentScreen ? "Pocket Detail" : "Pocket List"}
+          {state.currentScreen === 2 && state.pocket._id && (
+            <div
+              class="sync-button"
+              style={{ cursor: "pointer", marginLeft: "10px" }}
+              onClick={() => handleSyncPocket()}
+            >
+              <div class="sync">Sync Pocket</div>
+              <div class="ic-16-refresh" style={{ marginLeft: "10px" }}>
+                <div class="ic-16-refresh">
+                  <svg
+                    class="refresh-2"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M14.6668 7.99967C14.6668 11.6797 11.6802 14.6663 8.00016 14.6663C4.32016 14.6663 2.0735 10.9597 2.0735 10.9597M2.0735 10.9597H5.08683M2.0735 10.9597V14.293M1.3335 7.99967C1.3335 4.31967 4.2935 1.33301 8.00016 1.33301C12.4468 1.33301 14.6668 5.03967 14.6668 5.03967M14.6668 5.03967V1.70634M14.6668 5.03967H11.7068"
+                      stroke="#735CF7"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
         {state.currentScreen === 0 && (
           <>
