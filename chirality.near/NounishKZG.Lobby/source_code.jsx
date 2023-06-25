@@ -4936,7 +4936,7 @@ if (!state?.contributions) {
     }).then((res) => {
       console.log(res);
       res?.body?.contributions &&
-        State.({
+        State.update({
           contributions: resp.body.contributions,
         });
     });
