@@ -56,7 +56,22 @@ const PiggyImage = styled.img`
   margin-bottom: 20px;
 `;
 
-const accountId = props.accountId || context.accountId;
+if (
+  state.chainId === undefined &&
+  ethers !== undefined &&
+  Ethers.send("eth_requestAccounts", [])[0]
+) {
+  Ethers.provider()
+    .getNetwork()
+    .then((chainIdData) => {
+      if (chainIdData?.chainId) {
+        State.update({ chainId: chainIdData.chainId });
+      }
+    });
+}
+if (state.chainId !== undefined && state.chainId !== 137) {
+  return <p>Switch to Polygon Mainnet</p>;
+}
 
 function initPiggyState() {
   return {
@@ -69,6 +84,15 @@ function initPiggyState() {
   };
 }
 
+// DETECT SENDER
+if (state.sender === undefined) {
+  const accounts = Ethers.send("eth_requestAccounts", []);
+  if (accounts.length) {
+    State.update({ sender: accounts[0] });
+    console.log("set sender", accounts[0]);
+  }
+}
+
 State.init(initPiggyState());
 
 // Handle the click event for verification
@@ -79,6 +103,8 @@ function handleClickVerify() {
 
 function handleClickCrowd() {
   State.update({ isCrowd: true });
+
+  getSender();
 
   asyncFetch(
     "https://raw.githubusercontent.com/doulos819/piglet/main/output.json"
@@ -109,6 +135,14 @@ function handleClickCrowd() {
       console.error("Error fetching data:", error); // log any fetch errors
     });
 }
+
+const getSender = () => {
+  return !state.sender
+    ? ""
+    : state.sender.substring(0, 6) +
+        "..." +
+        state.sender.substring(state.sender.length - 4, state.sender.length);
+};
 
 // Handle the click event for entering the platform
 function handleClickEnter() {
@@ -171,6 +205,7 @@ return (
       src="https://github.com/doulos819/mjr/blob/main/images/photo_2023-06-23_11-46-49.jpg?raw=true"
       alt="Piggy"
     />
+
     <Title>
       {accountId ? (
         <>
@@ -219,6 +254,9 @@ return (
         Check to see if you are a part of the crowd.
       </Button>
     )}
+
+    <Info> ${state.sender} </Info>
+
     {state.isCrowd && (
       <Table>
         <thead>
