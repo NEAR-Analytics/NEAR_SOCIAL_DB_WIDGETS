@@ -4,6 +4,10 @@ const pills = [
   { id: "vesting", title: "Token Vesting" },
 ];
 
+const x = () => {
+  console.log("X");
+};
+
 return (
   <>
     <div style={{ display: "flex", "justify-content": "center" }}>
@@ -25,6 +29,7 @@ return (
             aria-controls={`pills-${id}`}
             aria-selected={i === 0}
             onClick={() => {
+              x();
               const key = `load${id}`;
               !state[key] && State.update({ [key]: true });
             }}
