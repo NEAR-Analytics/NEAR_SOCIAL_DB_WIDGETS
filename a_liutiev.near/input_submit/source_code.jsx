@@ -12,6 +12,7 @@ return (
         placeholder={inputSubmitLabel}
         type="text"
         onChange={handleInputChange}
+        required
       />
       <Widget
         src="a_liutiev.near/widget/button_general"
