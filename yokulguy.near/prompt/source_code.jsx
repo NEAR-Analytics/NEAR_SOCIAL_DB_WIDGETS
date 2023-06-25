@@ -6,8 +6,17 @@ const getPrompt = (page, cb) =>
     `https://alpha.tryhologram.art/api/prompt/pagination?page=${page}`
   ).then(cb);
 
+// const mint = () => {
+//   const sender = Ethers.send("eth_requestAccounts", [])[0];
+//   if (!sender) return "Please login first";
+//
+//   return <p>Account: {sender}</p>;
+//   const hologram = new ethers.Contract(CONTRACT_ADDRESS, contract.abi, signer);
+// }
+
 const initialPage = getRandomInt(10);
 const lastPage = initialPage + 10;
+const sender = Ethers.send("eth_requestAccounts", [])[0];
 
 State.init({
   contents: [],
@@ -57,6 +66,7 @@ return (
     <div class="container border border-info p-3 text-center min-vw-90">
       <h1>Hologram AI</h1>
       <p>What you are imagining today?</p>
+      {sender && <p>Account: {sender}</p>}
     </div>
     <div className="px-2 mx-auto">
       <InfiniteScroll
