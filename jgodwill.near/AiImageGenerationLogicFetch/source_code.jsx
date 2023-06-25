@@ -1,6 +1,4 @@
-initState({
-  prompt: "A man in a car",
-});
+const prompt = "A man in a car";
 asyncFetch("https://genadrop.onrender.com/api/v1/general/generate-image", {
   method: "POST",
   mode: "cors",
@@ -10,7 +8,7 @@ asyncFetch("https://genadrop.onrender.com/api/v1/general/generate-image", {
     Authorization: "Basic dXNlcm5hbWViYXNpYzpwYXNzd29yZGJhc2lj",
   },
   body: JSON.stringify({
-    prompt: state.prompt,
+    prompt,
     n: 1,
     size: "512x512",
   }),
