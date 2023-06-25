@@ -66,6 +66,7 @@ return (
     <div class="container border border-info p-3 text-center min-vw-90">
       <h1>Hologram AI</h1>
       <p>What you are imagining today?</p>
+      <p>Minting available in Aurora only 🌈</p>
       {sender && <p>Account: {sender}</p>}
     </div>
     <div className="px-2 mx-auto">
