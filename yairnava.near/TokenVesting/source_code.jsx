@@ -1,14 +1,19 @@
-const tokenVestingContract = "0xf3ebedb4AF312d9F702778d15Ae47D145D1F3833";
+const tokenVestingContract = "0xc6c1eF43bFd3667879110e03A2b905C3d4c1AEAF";
 
 const tokenVestingAbi = fetch(
-  "https://indigo-fluttering-emu-841.mypinata.cloud/ipfs/QmWgiPS57myEEEgjT1caTwMzTKcxNbquf3QGwMepjq3s1b"
+  "https://nativonft.mypinata.cloud/ipfs/QmYmXh9X6eP7ik2Ebu6dfFYBZbVxwS1LjJ5BAnRzJHoUEU"
 );
 
-if (!tokenVestingAbi.ok) {
+const tokenAbi = fetch(
+  "https://indigo-fluttering-emu-841.mypinata.cloud/ipfs/QmcbCqCvJRLpRVBKzxo3m17gb7rKb8CMDWWD7nBwhAXEnp"
+);
+
+if (!tokenVestingAbi.ok && !tokenAbi.ok) {
   return "Loading";
 }
 
 const iface = new ethers.utils.Interface(tokenVestingAbi.body);
+
 const pillsVesting = [
   { id: "vesting", title: "Vesting" },
   { id: "release", title: "Release" },
@@ -17,12 +22,12 @@ const pillsVesting = [
 State.init({
   error: "",
   general: true,
-  _beneficiary: "0x000000000",
-  _cliffDuration: null,
-  _vestingDuration: null,
-  _start: null,
-  _totalTokens: null,
-  _tokenAddress: "0x000000000",
+  _beneficiary: "0x34149390029Bbf4f4D9E7AdEa715D7055e145C05",
+  _cliffDuration: 300,
+  _vestingDuration: 600,
+  _start: 1692957162,
+  _totalTokens: 100000,
+  _tokenAddress: "0x4b4aF57aE847D60367367cD209Ad2a9f5659B8a8",
 });
 
 if (state.sender === undefined) {
@@ -31,6 +36,23 @@ if (state.sender === undefined) {
     State.update({ sender: accounts[0] });
   }
 }
+
+const allowToken = () => {
+  console.log("Allow Token");
+  const contractTokenFactory = new ethers.Contract(
+    state._tokenAddress,
+    tokenAbi.body,
+    Ethers.provider().getSigner()
+  );
+
+  contractTokenFactory.approve(tokenVestingContract, 1).then((res) => {
+    if (res) {
+      console.log(res);
+    } else {
+      console.log("error");
+    }
+  });
+};
 
 const setVesting = () => {
   console.log("setVesting");
@@ -425,6 +447,27 @@ return (
                             })
                           }
                         />
+                      </div>
+                    </div>
+                    <div
+                      class="col-12"
+                      style={{ display: "flex", "justify-content": "center" }}
+                    >
+                      <div class="mb-3  mt-4 ">
+                        {state.error != "" ? (
+                          <label class="text-danger bg-white rounded mx-2 px-2 ">
+                            {state.error}
+                          </label>
+                        ) : (
+                          <button
+                            style={{ "text-align": "center" }}
+                            onClick={async () => {
+                              allowToken();
+                            }}
+                          >
+                            Allow Use Of Token
+                          </button>
+                        )}
                       </div>
                     </div>
                     <div
