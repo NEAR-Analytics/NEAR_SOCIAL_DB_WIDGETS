@@ -93,6 +93,8 @@ let GenaDropSDK = {
   isSoulBound: false,
   lastMintLink: "",
   mintedNfts: [],
+  chains: CHAINS,
+  contractAddresses: CONTRACT_ADDRESSES,
   mint: (recipient, title, description, imageCid, props) => {
     switch (GenaDropSDK.network) {
       case NEAR_NETWORK_CHAIN_ID:
