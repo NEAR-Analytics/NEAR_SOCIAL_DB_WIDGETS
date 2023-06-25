@@ -33,7 +33,7 @@ const BigButton = styled.button`
   background-size: contain;
 `;
 
-const website = "https:/https://near.org/";
+const website = "https://near.org/";
 const widgetOwner = "ostolex.near";
 
 const Heading1 = styled.div`
