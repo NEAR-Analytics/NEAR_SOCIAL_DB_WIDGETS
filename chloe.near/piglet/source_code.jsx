@@ -127,11 +127,8 @@ function handleClickCrowd() {
     "https://raw.githubusercontent.com/doulos819/piglet/main/output.json"
   )
     .then((res) => {
-      console.log("Fetch response:", res); // log the raw fetch response
-
       // Parse the response body into an object
       const data = JSON.parse(res.body);
-      console.log("Parsed data:", data); // log the parsed data
 
       let updatedTableData = [];
       data.forEach((item) => {
@@ -140,17 +137,23 @@ function handleClickCrowd() {
           const valueBN = new BN(event.value);
           // Convert from Gwei (base 9 decimals) to Ether (base 18 decimals)
           const valueInEtherBN = valueBN.div(new BN("1000000000000000000"));
+
+          // Preprocess the address to lowercase
+          const addressLower = event.from.toLowerCase();
+
+          // Preprocess the sender to lowercase
+          const senderLower = state.sender ? state.sender.toLowerCase() : "";
+
           updatedTableData.push({
             address: event.from,
             value: valueInEtherBN.toString(), // convert BN to string for display
+            addressLower: addressLower, // store lowercase address
+            isSender: addressLower === senderLower, // check if it matches the sender (case-insensitive)
           });
         });
       });
 
-      console.log("Updated table data:", updatedTableData); // log the new data array
-
       State.update({ tableData: updatedTableData });
-      console.log("State after update:", State.get()); // log the state after the update
     })
     .catch((error) => {
       console.error("Error fetching data:", error); // log any fetch errors
