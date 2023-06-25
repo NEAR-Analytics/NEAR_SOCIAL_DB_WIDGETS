@@ -1,5 +1,6 @@
 const messageArray = props.messageArray || [];
 const emptyMessage = props.emptyMessage || "start the thread...";
+const sender = props.sender || "Alex Astrum";
 
 return (
   <div class="card-body">
@@ -9,7 +10,7 @@ return (
       </div>
     ) : (
       messageArray.map((message) =>
-        message.sender !== "AI" ? (
+        message.sender === sender ? (
           // user
           <div>
             <div className="d-flex justify-content-between">
