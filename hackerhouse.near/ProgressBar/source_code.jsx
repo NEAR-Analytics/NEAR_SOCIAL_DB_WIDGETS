@@ -175,10 +175,10 @@ const sizes = {
 const propsSize = props.size ? props.size : "large";
 
 console.log("propsSize", propsSize);
-const numerator = props.numerator ?? 1;
+const numerator = props.numerator ?? 0;
 
 const total = props.total ?? 3000;
-const percentage = (numerator / 3000) * 100;
+const percentage = (numerator / total) * 100;
 const widgetTitle = props.infoTitle ? props.infoTitle : "Target";
 
 return (
