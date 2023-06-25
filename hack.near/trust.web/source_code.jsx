@@ -66,11 +66,9 @@ return (
   <div>
     <iframe
       srcDoc={scriptSrc}
-      height="93%"
-      onMessage={(data) => {
-        State.update({ ...data });
-      }}
-      style={{ width: "93%" }}
+      width="888"
+      height="888"
+      style={{ width: "100%", height: "100%" }}
     />
   </div>
 );
