@@ -7,8 +7,8 @@ const vicePresidentProfile =
   Social.get(`${vicePresidentId}/profile/**`, "final");
 const presidentTags = Object.keys(presidentProfile.tags || {});
 const vicePresidentTags = Object.keys(vicePresidentProfile.tags || {});
-const presidentProfileUrl = `#/near/widget/ProfilePage?accountId=${presidentId}`;
-const vicePresidentProfileUrl = `#/near/widget/ProfilePage?accountId=${vicePresidentId}`;
+const presidentProfileURL = `#/near/widget/ProfilePage?accountId=${presidentId}`;
+const vicePresidentProfileURL = `#/near/widget/ProfilePage?accountId=${vicePresidentId}`;
 
 State.init({
   show: false,
@@ -151,10 +151,10 @@ return (
             </div>
           </CardLeft>
 
-          {!!context.accountId && context.accountId !== props.accountId && (
+          {!!context.accountId && context.accountId !== accountId && (
             <Widget
               src="near/widget/FollowButton"
-              props={{ accountId: props.accountId }}
+              props={{ accountId: accountId }}
             />
           )}
         </Card>
