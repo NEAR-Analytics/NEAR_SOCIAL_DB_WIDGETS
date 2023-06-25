@@ -1,11 +1,12 @@
 const queryGPT3 = () => {
   fetchGPTResponse().then((res) => {
 console.log(res);
-//     const data = res.body;
+//     const data = res.json();
 // console.log("data", data);
 //     const a = data.choices[0].message.content;
-//     const attestationRequest = { question: state.question, answer: a };
-//     State.update({ answer: a, attestationRequestCID: ethers.utils.sha256(ethers.utils.toUtf8Bytes(JSON.stringify(attestationRequest))) });
+const a = "<ANSWER>";
+     const attestationRequest = { question: state.question, answer: a };
+     State.update({ answer: a, attestationRequestCID: ethers.utils.sha256(ethers.utils.toUtf8Bytes(JSON.stringify(attestationRequest))) });
 });
 };
 
