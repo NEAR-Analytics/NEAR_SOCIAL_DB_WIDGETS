@@ -127,7 +127,8 @@ const ItemBody = styled.div`
         line-height: 1.6em;
         border-radius: 0px 0px 20px 20px;
         margin: -20px 0px 0px;
-        padding: 32px;
+        padding-inline: 32px;
+        padding-top: 32px;
         box-shadow: none;
         background: #feb75b;
         color: black;
@@ -219,7 +220,7 @@ return (
                     >
                       Mint Burrito
                     </ItemMintButton>
-                    <br /> <br /> <br />
+                    <br /> <br />
                     <div>
                       <a
                         href="#/yairnava.near/widget/Burrito-Virtual-Pet-Interact"
@@ -227,6 +228,14 @@ return (
                       >
                         Go to Play
                       </a>
+                    </div>
+                    <br />
+                    <div>
+                      <label style={{ color: "black", "font-weight": "500" }}>
+                        {" "}
+                        Contract to add your NFTs to wallet
+                        0x559bB1D9a4236e6Fc3D3314c8832Ddf5476606C2
+                      </label>
                     </div>
                   </div>
                 </div>
