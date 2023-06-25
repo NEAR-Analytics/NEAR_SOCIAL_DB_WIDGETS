@@ -113,7 +113,7 @@ return (
     <p> Current NYC Followers: {nycFollowers}</p>
     <p> Current SF Followers: {sfFollowers}</p>
     <Widget
-      src="devs.near/widget/dev.rank"
+      src="banyanq2.near/widget/DevTracker"
       props={{
         ownerId: "banyanq2.near",
       }}
