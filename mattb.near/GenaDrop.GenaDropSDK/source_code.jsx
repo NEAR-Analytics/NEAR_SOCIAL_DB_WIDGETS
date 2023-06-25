@@ -95,17 +95,24 @@ let GenaDropSDK = {
   mintedNfts: [],
   chains: CHAINS,
   contractAddresses: CONTRACT_ADDRESSES,
-  mint: (recipient, title, description, imageCid, props) => {
-    if (NEAR_NETWORK_CHAIN_ID == GenaDropSDK.network) {
+  mint: (recipient, title, description, network, imageCid, props) => {
+    if (NEAR_NETWORK_CHAIN_ID == network) {
       GenaDropSDK.mintOnNear(recipient, title, description, imageCid, props);
     } else {
-      GenaDropSDK.defaultMint(recipient, title, description, imageCid, props);
+      GenaDropSDK.defaultMint(
+        recipient,
+        title,
+        description,
+        network,
+        imageCid,
+        props
+      );
     }
   },
-  defaultMint: (recipient, title, description, imageCid, props) => {
+  defaultMint: (recipient, title, description, network, imageCid, props) => {
     const CA = GenaDropSDK.isSoulBound
-      ? GenaDropSDK.contractAddresses[GenaDropSDK.network][3]
-      : GenaDropSDK.contractAddresses[GenaDropSDK.network][0];
+      ? GenaDropSDK.contractAddresses[network][3]
+      : GenaDropSDK.contractAddresses[network][0];
 
     console.log("CONTRACT ADD", CA);
 
@@ -143,6 +150,7 @@ let GenaDropSDK = {
                   link:
                     GenaDropSDK.contractAddresses[GenaDropSDK.network][2] +
                     ricit.transactionHash,
+                  network: network,
                 });
 
                 GenaDropSDK.refresh();
@@ -166,6 +174,7 @@ let GenaDropSDK = {
                   link:
                     GenaDropSDK.contractAddresses[GenaDropSDK.network][2] +
                     ricit.transactionHash,
+                  network: network,
                 });
 
                 GenaDropSDK.refresh();
