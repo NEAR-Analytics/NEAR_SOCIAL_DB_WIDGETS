@@ -164,7 +164,7 @@ let GenaDropSDK = {
                   recipient: recipient,
                   title: title,
                   description: description,
-                  image: `https://ipfs.io/ipfs/${imageCid}`,
+                  image: GenaDropSDK.getIpfsURL(imageCid),
                   tx: ricit.transactionHash,
                   link:
                     GenaDropSDK.contractAddresses[network][2] +
@@ -188,7 +188,7 @@ let GenaDropSDK = {
                   recipient: recipient,
                   title: title,
                   description: description,
-                  image: `https://ipfs.io/ipfs/${imageCid}`,
+                  image: GenaDropSDK.getIpfsURL(imageCid),
                   tx: ricit.transactionHash,
                   link:
                     GenaDropSDK.contractAddresses[network][2] +
@@ -211,10 +211,21 @@ let GenaDropSDK = {
           metadata: {
             title: title,
             description: description,
-            media: `https://ipfs.io/ipfs/${imageCid}`,
+            media: GenaDropSDK.getIpfsURL(imageCid),
             reference: `ipfs://${CID}`,
           },
           receiver_id: recipient || accountId,
+        });
+
+        GenaDropSDK.logNft({
+          account: accountId,
+          recipient: recipient,
+          title: title,
+          description: description,
+          image: GenaDropSDK.getIpfsURL(imageCid),
+          tx: ricit.transactionHash,
+          link: "",
+          network: network,
         });
       }
     );
@@ -257,6 +268,9 @@ let GenaDropSDK = {
   },
   getMintedNfts: () => {
     return GenaDropSDK.mintedNfts.filter((nft) => nft.account == accountId);
+  },
+  getIpfsURL: (cid) => {
+    return `https://ipfs.near.social/ipfs/${cid}`;
   },
 };
 
