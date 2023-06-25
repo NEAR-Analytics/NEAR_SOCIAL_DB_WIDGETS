@@ -40,7 +40,7 @@ const Container = styled.div`
   justify-content: center;
   min-height: 100vh;
   background: #ffc0cb;
-  color: black; 
+//   color: black; 
   font-size: calc(10px + 2vmin);
   padding: 20px;
   box-sizing: border-box;
