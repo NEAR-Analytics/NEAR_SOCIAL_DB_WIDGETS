@@ -104,14 +104,14 @@ let GenaDropSDK = {
   },
   defaultMint: (recipient, title, description, imageCid, props) => {
     const CA = GenaDropSDK.isSoulBound
-      ? contractAddresses[GenaDropSDK.network][3]
-      : contractAddresses[GenaDropSDK.network][0];
+      ? GenaDropSDK.contractAddresses[GenaDropSDK.network][3]
+      : GenaDropSDK.contractAddresses[GenaDropSDK.network][0];
 
     console.log("CONTRACT ADD", CA);
 
     const contract = new ethers.Contract(
       CA,
-      mintSingle,
+      MINT_SINGLE,
       Ethers.provider().getSigner()
     );
 
@@ -129,7 +129,7 @@ let GenaDropSDK = {
               .then((transactionHash) => transactionHash.wait())
               .then((ricit) => {
                 GenaDropSDK.lastMintLink = `${
-                  contractAddresses[GenaDropSDK.network][2] +
+                  GenaDropSDK.contractAddresses[GenaDropSDK.network][2] +
                   ricit.transactionHash
                 }`;
 
@@ -141,7 +141,7 @@ let GenaDropSDK = {
                   image: `https://ipfs.io/ipfs/${imageCid}`,
                   tx: ricit.transactionHash,
                   link:
-                    contractAddresses[GenaDropSDK.network][2] +
+                    GenaDropSDK.contractAddresses[GenaDropSDK.network][2] +
                     ricit.transactionHash,
                 });
 
@@ -152,7 +152,7 @@ let GenaDropSDK = {
               .then((transactionHash) => transactionHash.wait())
               .then((ricit) => {
                 GenaDropSDK.lastMintLink = `${
-                  contractAddresses[GenaDropSDK.network][2] +
+                  GenaDropSDK.contractAddresses[GenaDropSDK.network][2] +
                   ricit.transactionHash
                 }`;
 
@@ -164,7 +164,7 @@ let GenaDropSDK = {
                   image: `https://ipfs.io/ipfs/${imageCid}`,
                   tx: ricit.transactionHash,
                   link:
-                    contractAddresses[GenaDropSDK.network][2] +
+                    GenaDropSDK.contractAddresses[GenaDropSDK.network][2] +
                     ricit.transactionHash,
                 });
 
