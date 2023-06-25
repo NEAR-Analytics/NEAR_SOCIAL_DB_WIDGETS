@@ -51,6 +51,19 @@ const Flex = styled.div`
     gap: var(--section-gap);
     }
 `;
+let componentsURL =
+  "https://raw.githubusercontent.com/NEARBuilders/BuildDAO/main/tracker/q2components.json";
+function loadComponents() {
+  const res = fetch(componentsURL);
+  return res.body && JSON.parse(res.body);
+}
+
+const componentList = loadComponents();
+if (!componentList) {
+  return "⧗ Loading Components...";
+}
+numQualityComponents = componentList.components.length;
+console.log(componentList);
 
 const Container = styled.div`
   display: flex;
@@ -63,6 +76,7 @@ const Container = styled.div`
   text-align: center;
   padding: var(--section-gap) 24px;
 `;
+
 return (
   <div>
     <h1>Banyan Q2 Dashboard (April 1 - June 30)</h1>
@@ -85,20 +99,17 @@ return (
           total: followerTarget,
         }}
       />
-      <Widget
-        src="hackerhouse.near/widget/ProgressBar"
-        props={{
-          infoTitle: "New Quality BOS Components ",
-          numerator: numQualityComponents,
-          total: componentTarget,
-        }}
-      />
+      <a href={componentsURL} rel="noopener noreferrer" target="_blank">
+        <Widget
+          src="hackerhouse.near/widget/ProgressBar"
+          props={{
+            infoTitle: "New Quality BOS Components ",
+            numerator: numQualityComponents,
+            total: componentTarget,
+          }}
+        />
+      </a>
     </div>
-    <p>
-      {" "}
-      BOS Follower Target {followerTarget}. Progress:{" "}
-      {(nycFollowers + sfFollowers) / followerTarget}
-    </p>
     <p> Current NYC Followers: {nycFollowers}</p>
     <p> Current SF Followers: {sfFollowers}</p>
     <Widget
@@ -117,6 +128,7 @@ return (
       props={{ accountId: "sfdao.near" }}
     />
     <br />
+    // ADD COMPONENT MAPPING
     <Flex>
       <Text
         size="14px"
