@@ -42,6 +42,7 @@ const mint = async (id, ipfsUrl) => {
     console.log(res)
     hasBeenMinted[id] = true;
   });
+  State.update()
 }
 
 const createCard = ({ id, imageUrl, creatorAddress, prompt, objectName, ipfsUrl }) => {
