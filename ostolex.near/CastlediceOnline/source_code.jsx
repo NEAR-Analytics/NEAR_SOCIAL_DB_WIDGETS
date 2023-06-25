@@ -197,8 +197,8 @@ if (state.actionsCount === null) {
 const Background = styled.div`
 position: fixed;
 width: 100vw;
-height: calc(-62px + 100vh);
-top: 62px;
+height: calc(-98px + 100vh);
+top: 98px;
 left: 0;
 `;
 
