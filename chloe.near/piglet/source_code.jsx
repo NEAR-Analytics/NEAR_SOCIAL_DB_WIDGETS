@@ -40,7 +40,7 @@ const Container = styled.div`
   justify-content: center;
   min-height: 100vh;
   background: #ffc0cb;
-  color: black; /* Update text color to black */
+  color: black; 
   font-size: calc(10px + 2vmin);
   padding: 20px;
   box-sizing: border-box;
@@ -59,6 +59,13 @@ const PiggyImage = styled.img`
   width: 200px;
   height: auto;
   margin-bottom: 20px;
+`;
+
+const PiggyImagesContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 81.9px; /* Add the desired spacing between the images */
 `;
 
 const CoverImage = styled.img`
@@ -195,7 +202,7 @@ return (
     />
     <Header>FAQ:</Header>
     <Header>
-      1. The first step with Piglet is to purchace an NFT from Unlock Protocol.
+      1. The first step with Piglet is to purchase an NFT from Unlock Protocol.
       If you do not yet have an NFT, you can get one at
       <a
         href="https://app.unlock-protocol.com/checkout?id=39b62ad3-07f2-442d-b2ef-d136d6a83374"
@@ -221,86 +228,105 @@ return (
       verify with Sismo Connect (workdcoin/polygon ID). This step is not needed
       to take part in the personal savings flow.
     </Header>
-    <PiggyImage
-      src="https://github.com/doulos819/mjr/blob/main/images/photo_2023-06-23_11-46-49.jpg?raw=true"
-      alt="Piggy"
-    />
+    <PiggyImagesContainer>
+      <PiggyImage
+        src="https://github.com/doulos819/mjr/blob/main/images/photo_2023-06-23_11-46-49.jpg?raw=true"
+        alt="Piggy 1"
+      />
+      <PiggyImage
+        src="https://github.com/doulos819/piglet/blob/main/photo_2023-06-25_04-48-47.jpg?raw=true"
+        alt="Piggy 2"
+      />
+    </PiggyImagesContainer>
 
     <Title>
-      {addressWithoutPrefix ? (
+      {state.sender ? (
         <>
-          Hello {addressWithoutPrefix}! Welcome to Piglet, your community crowd
-          saving platform.
+          Hello {state.sender}! Welcome to Piglet, your community crowd saving
+          platform.
         </>
       ) : (
         <>Welcome to Piglet, your community crowd saving platform.</>
       )}
     </Title>
+
     {state.isLoading ? (
       <div>Loading data...</div>
-    ) : state.isVerified ? (
-      <>
-        <Info>Thank you for verifying your humanity, piglet.</Info>
-        <Info>
-          You can now deposit into the piggy bank of your choice{" "}
-          {accountId ? `, ${accountId}` : ""}!
-        </Info>
-        <Button
-          onClick={state.chainOne ? undefined : handleEnterChainOne}
-          disabled={state.chainOne}
-          style={{ backgroundColor: state.chainOne ? "grey" : "palevioletred" }}
-        >
-          Enter Piggy Bank 1
-        </Button>
-        <Button
-          onClick={state.chainTwo ? undefined : handleEnterChainTwo}
-          disabled={state.chainTwo}
-          style={{ backgroundColor: state.chainTwo ? "grey" : "palevioletred" }}
-        >
-          Enter Piggy Bank 2
-        </Button>
-        <Button
-          onClick={state.chainThree ? undefined : handleEnterChainThree}
-          disabled={state.chainThree}
-          style={{
-            backgroundColor: state.chainThree ? "grey" : "palevioletred",
-          }}
-        >
-          Enter Piggy Bank 3
-        </Button>
-      </>
     ) : (
-      <Button onClick={handleClickCrowd}>
-        Check to see if you are a part of the crowd.
-      </Button>
-    )}
-
-    <Info> {state.sender} </Info>
-
-    <Table>
-      <thead>
-        <tr>
-          <th>Address</th>
-          <th>Value</th>
-        </tr>
-      </thead>
-      <tbody>
-        {state.tableData.length > 0 ? (
-          state.tableData.map((item, index) => (
-            <tr
-              key={index}
-              className={item.address === state.sender ? "sender-row" : ""}
-            >
-              <td>{item.address}</td>
-              <td>{item.value}</td>
-            </tr>
-          ))
-        ) : (
-          <tr>
-            <td colSpan="2">No data to display</td>
-          </tr>
+      <>
+        {!state.isVerified && (
+          <Button onClick={handleClickVerify}>Verify as a human</Button>
         )}
-      </tbody>
-    </Table>
+
+        {state.isVerified && (
+          <>
+            <Info>Thank you for verifying your humanity, piglet.</Info>
+            <Info>
+              You can now deposit into the piggy bank of your choice{" "}
+              {accountId ? `, ${accountId}` : ""}!
+            </Info>
+            <Button
+              onClick={state.chainOne ? undefined : handleEnterChainOne}
+              disabled={state.chainOne}
+              style={{
+                backgroundColor: state.chainOne ? "grey" : "palevioletred",
+              }}
+            >
+              Enter Piggy Bank 1
+            </Button>
+            <Button
+              onClick={state.chainTwo ? undefined : handleEnterChainTwo}
+              disabled={state.chainTwo}
+              style={{
+                backgroundColor: state.chainTwo ? "grey" : "palevioletred",
+              }}
+            >
+              Enter Piggy Bank 2
+            </Button>
+            <Button
+              onClick={state.chainThree ? undefined : handleEnterChainThree}
+              disabled={state.chainThree}
+              style={{
+                backgroundColor: state.chainThree ? "grey" : "palevioletred",
+              }}
+            >
+              Enter Piggy Bank 3
+            </Button>
+          </>
+        )}
+
+        <Button onClick={handleClickCrowd}>
+          Check to see if you are a part of the crowd.
+        </Button>
+
+        <Info> {state.sender} </Info>
+
+        <Table>
+          <thead>
+            <tr>
+              <th>Address</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            {state.tableData.length > 0 ? (
+              state.tableData.map((item, index) => (
+                <tr
+                  key={index}
+                  className={item.address === state.sender ? "sender-row" : ""}
+                >
+                  <td>{item.address}</td>
+                  <td>{item.value}</td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="2">No data to display</td>
+              </tr>
+            )}
+          </tbody>
+        </Table>
+      </>
+    )}
   </Container>
 );
