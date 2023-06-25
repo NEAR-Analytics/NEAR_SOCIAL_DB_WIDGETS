@@ -1,4 +1,4 @@
-const virtualPetContract = "0xF7c0fd237B21a1c41277333C94d1B4a6DB5e0c3e";
+const virtualPetContract = "0x559bB1D9a4236e6Fc3D3314c8832Ddf5476606C2";
 
 const virtualPetAbi = fetch(
   "https://indigo-fluttering-emu-841.mypinata.cloud/ipfs/QmcNGm5jYV5fp4KqUZ3ew7F5kkPP7tnr6xP8vx5hPmEjhA"
