@@ -2,26 +2,67 @@ State.init({
   value: "submit",
   inputSubmitLabel: "Type Message",
   web3connectLabel: "Connect Wallet",
+  emptyMessage: "start the thread pussy...",
+
   messageCount: 0,
   inputValue: "",
+  submitMessage: "",
+  messageArray: [],
 });
+
+//API https://us-central1-ethglobal-wat23-ai-hack.cloudfunctions.net/helloWorld?q=tell+me+a+joke+about+BOS
+
+const API_URL =
+  "https://us-central1-ethglobal-wat23-ai-hack.cloudfunctions.net/helloWorld";
 
 const value = state.value || "n/a";
 const web3connectLabel = state.web3connectLabel || "n/a";
 const inputSubmitLabel = state.inputSubmitLabel || "n/a";
-// const callback = state.callback || (() => console.log("button clicked"));
+const messageCount = state.messageCount || 0;
+const messageArray = state.messageArray || [];
+const emptyMessage = state.emptyMessage || "";
 
+// message counter submit
 const handleButtonClick = () => {
-  State.update({
-    messageCount: state.messageCount + 1,
-  });
-
-  console.log(state.messageCount);
+  if (state.submitMessage !== "") {
+    State.update({
+      messageCount: state.messageCount + 1,
+      messageArray: [
+        ...state.messageArray,
+        {
+          id: state.messageCount,
+          sender: "Alex 0x00",
+          date: new Date().toLocaleTimeString(),
+          payload: state.submitMessage,
+        },
+      ],
+    });
+    fetchData();
+  } else return;
 };
 
+const fetchData = () => {
+  console.log(state.messageArray[messageCount]);
+
+  let data = state.messageArray[messageCount];
+  data = JSON.stringify(data);
+
+  console.log("SENT JSON object:", data);
+
+  asyncFetch(API_URL, {
+    body: data,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+  });
+};
+
+// message hander
 const handleInputChange = (e) => {
-  console.log(e.target.value);
-  // State.uupdate({ inputValue: e.target.value });
+  State.update({
+    submitMessage: e.target.value,
+  });
 };
 
 function messageAI() {}
@@ -41,9 +82,11 @@ return (
       </div>
     </div>
 
-    <div class="card-body">tree</div>
+    <Widget
+      src="a_liutiev.near/widget/display_messages"
+      props={{ emptyMessage, messageArray }}
+    />
     <br />
-
     <div class="card-footer text-muted justify-content-start align-items-center p-3">
       <Widget
         src="a_liutiev.near/widget/input_submit"
@@ -51,11 +94,10 @@ return (
           value,
           inputSubmitLabel,
           handleButtonClick,
-          this.handleInputChange,
+          handleInputChange,
         }}
       />
     </div>
-
     <div></div>
   </div>
 );
