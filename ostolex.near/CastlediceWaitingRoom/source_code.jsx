@@ -60,6 +60,7 @@ const abiObjData = fetch(
 if (!abiObjData) {
   return <h1>Fetching ABI...</h1>;
 }
+const abiObj = JSON.parse(abiObjData.body);
 
 const contractId = "0xAb926c04Fa3E0CbE23f51BE4Ea2B0777cbB675CC";
 
