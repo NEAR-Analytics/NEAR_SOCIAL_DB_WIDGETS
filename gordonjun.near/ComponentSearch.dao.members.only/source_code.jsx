@@ -15,7 +15,7 @@ let keys = Object.keys({});
 
 for (let i = 0; i < daoFollowers.length; i++) {
     let userWidgetkeys = Social.keys([`${daoFollowers[i]}/widget/*`], "final", { values_only: true })
-    keys.push(userWidgetkeys);
+    keys.concat(userWidgetkeys);
 }
 
 const requiredTag = props.filterTag;
