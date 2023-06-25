@@ -266,7 +266,6 @@ return (
                   <div class="mb-3">
                     <ItemMintButton
                       onClick={async () => {
-                        x();
                         mint();
                       }}
                     >
