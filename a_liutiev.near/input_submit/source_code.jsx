@@ -11,7 +11,7 @@ return (
         className="form-control"
         placeholder={inputSubmitLabel}
         type="text"
-        value={handleInputChange}
+        onChange={handleInputChange}
       />
       <Widget
         src="a_liutiev.near/widget/button_general"
