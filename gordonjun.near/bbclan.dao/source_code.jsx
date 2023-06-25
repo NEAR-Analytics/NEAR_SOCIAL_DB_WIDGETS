@@ -90,7 +90,6 @@ const Text = styled.p`
 `;
 
 const Flex = styled.div`
-  display: flex;
   gap: 8px;
   align-items: center;
   flex-direction: column;
@@ -128,9 +127,10 @@ return (
           style={{ maxWidth: "100%", height: "auto" }}
         />
         <br />
+        <br />
         <H1>bbclan</H1>
         <div className="mt-3">
-          <Text style={{ maxWidth: "350px" }}>
+          <Text style={{ maxWidth: "600px" }}>
             A clan that was formed by two individuals named Bibi and Pipi. These
             two individuals and the other clan members vibe like Sumikko Gurashi
             characters. The primary members of the clan include Bibi and Pipi,
@@ -138,7 +138,7 @@ return (
           </Text>
         </div>
         {context.accountId && (
-          <div className="m-3" style={{ maxWidth: "100%" }}>
+          <div className="m-3">
             <Widget
               src="gordonjun.near/widget/PresidentProfileCard"
               props={{
