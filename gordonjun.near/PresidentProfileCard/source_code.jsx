@@ -1,111 +1,163 @@
-const accountId = props.accountId ?? "gordonjun.near";
-const tag = props.tag;
-const daoId = props.daoId ?? "bbclan.near";
+const presidentId = props.presidentId ?? "gordonjun.near";
+const vicePresidentId = props.vicePresidentId ?? "Pipi";
+const presidentProfile =
+  props.presidentProfile || Social.get(`${presidentId}/profile/**`, "final");
+const vicePresidentProfile =
+  props.vicePresidentProfile ||
+  Social.get(`${vicePresidentId}/profile/**`, "final");
+const presidentTags = Object.keys(presidentProfile.tags || {});
+const vicePresidentTags = Object.keys(vicePresidentProfile.tags || {});
+const presidentProfileURL = `#/near/widget/ProfilePage?accountId=${presidentId}`;
+const vicePresidentProfileURL = `#/near/widget/ProfilePage?accountId=${vicePresidentId}`;
 
-let daoFollowers = Social.keys(`*/graph/follow/${daoId}`, "final", {
-  return_type: "BlockHeight",
-  values_only: true,
-});
-daoFollowers = Object.entries(daoFollowers || {}).map(
-  ([accountId]) => accountId
-);
-
-let keys = [];
-
-if (tag) {
-  let taggedWidgetsDict = {};
-  for (let i = 0; i < daoFollowers.length; i++) {
-    let taggedWidgets = Social.keys(
-      `${daoFollowers[i]}/widget/*/metadata/tags/${tag}`,
-      "final"
-    );
-    taggedWidgetsDict = Object.assign(taggedWidgetsDict, taggedWidgets);
-  }
-
-  if (taggedWidgetsDict === null) {
-    return "Loading tags";
-  }
-
-  keys = Object.entries(taggedWidgetsDict)
-    .map((kv) => Object.keys(kv[1].widget).map((w) => `${kv[0]}/widget/${w}`))
-    .flat();
-
-  if (!keys.length) {
-    return `No widgets found by tag #${tag}`;
-  }
-} else {
-  for (let i = 0; i < daoFollowers.length; i++) {
-    let userWidgetkeys = Social.keys(`${daoFollowers[i]}/widget/*`, "final", {
-      values_only: true,
-    });
-    let userWidget = Object.entries(userWidgetkeys)
-      .map((kv) => Object.keys(kv[1].widget).map((w) => `${kv[0]}/widget/${w}`))
-      .flat();
-
-    keys.push(...userWidget);
-  }
-}
-
-const data = Social.keys(keys, "final", {
-  return_type: "BlockHeight",
+State.init({
+  show: false,
 });
 
-if (data === null) {
-  return "Loading widgets";
-}
+const Card = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  border-radius: 12px;
+  z-index: 1070;
+  background: #fff;
+  border: 1px solid #eceef0;
+  box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1),
+    0px 1px 2px rgba(16, 24, 40, 0.06);
+  overflow: hidden;
+  padding: 16px;
+`;
 
-const processData = (data) => {
-  const accounts = Object.entries(data);
+const CardLeft = styled.div`
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
 
-  const allItems = accounts
-    .map((account) => {
-      const accountId = account[0];
-      return Object.entries(account[1].widget).map((kv) => ({
-        accountId,
-        widgetName: kv[0],
-        blockHeight: kv[1],
-      }));
-    })
-    .flat();
+  > div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-width: 0;
+  }
+`;
 
-  allItems.sort((a, b) => b.blockHeight - a.blockHeight);
-  return allItems;
-};
+const Avatar = styled.a`
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0;
+  border: 1px solid #eceef0;
+  overflow: hidden;
+  border-radius: 56px;
+  transition: border-color 200ms;
 
-const renderTag = (tag, tagBadge) => (
-  <a href={makeLink(accountId, tag)}>{tagBadge}</a>
-);
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
 
-const renderItem = (a) => {
-  return (
-    <a
-      href={`#/${a.accountId}/widget/${a.widgetName}`}
-      className="text-decoration-none"
-      key={JSON.stringify(a)}
-    >
-      <Widget
-        src="mob.near/widget/WidgetImage"
-        props={{
-          tooltip: true,
-          accountId: a.accountId,
-          widgetName: a.widgetName,
-        }}
-      />
-    </a>
-  );
-};
+  &:hover,
+  &:focus {
+    border-color: #d0d5dd;
+  }
+`;
 
-if (JSON.stringify(data) !== JSON.stringify(state.data || {})) {
-  State.update({
-    data,
-    allItems: processData(data),
-  });
-}
+const TextLink = styled.a`
+  display: block;
+  margin: 0;
+  font-size: 14px;
+  line-height: 18px;
+  color: ${(p) => (p.bold ? "#11181C !important" : "#687076 !important")};
+  font-weight: ${(p) => (p.bold ? "600" : "400")};
+  font-size: ${(p) => (p.small ? "12px" : "14px")};
+  overflow: ${(p) => (p.ellipsis ? "hidden" : "visible")};
+  text-overflow: ${(p) => (p.ellipsis ? "ellipsis" : "unset")};
+  white-space: nowrap;
+  outline: none;
 
+  &:focus,
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
+const TagsWrapper = styled.div`
+  padding-top: 4px;
+`;
+
+const Text = styled.p`
+  font-family: "FK Grotesk", sans-serif;
+  font-size: ${(p) => p.size ?? "18px"};
+  line-height: ${(p) => p.lineHeight ?? "1.5"};
+  font-weight: ${(p) => p.weight ?? "400"};
+  color: ${(p) => p.color ?? "#000"};
+  margin: 0;
+  max-width: 670px;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
+`;
 return (
-  <div className="d-flex flex-wrap gap-1 my-3">
-    {state.allItems
-      .slice(0, props.limit ? parseInt(props.limit) : 999)
-      .map(renderItem)}
-  </div>
+  <>
+    {["President", "Vice President"].map((role) => {
+      // Role-specific variables
+      const profileUrl =
+        role === "President" ? presidentProfileURL : vicePresidentProfileURL;
+      const profile =
+        role === "President" ? presidentProfile : vicePresidentProfile;
+      const accountId = role === "President" ? presidentId : vicePresidentId;
+      const tags = role === "President" ? presidentTags : vicePresidentTags;
+
+      return (
+        <Card key={role}>
+          <CardLeft>
+            <div className="mt-3">
+              <Text style={{ maxWidth: "350px" }}>{role}:</Text>
+            </div>
+            <Avatar href={profileUrl}>
+              <Widget
+                src="mob.near/widget/Image"
+                props={{
+                  image: profile.image,
+                  alt: profile.name,
+                  fallbackUrl:
+                    "https://ipfs.near.social/ipfs/bafkreibiyqabm3kl24gcb2oegb7pmwdi6wwrpui62iwb44l7uomnn3lhbi",
+                }}
+              />
+            </Avatar>
+
+            <div>
+              <TextLink href={profileUrl} ellipsis bold>
+                {profile.name || accountId.split(".near")[0]}
+              </TextLink>
+              <TextLink href={profileUrl} ellipsis>
+                @{accountId}
+              </TextLink>
+
+              {tags.length > 0 && (
+                <TagsWrapper>
+                  <Widget
+                    src="near/widget/Tags"
+                    props={{ tags, scroll: true }}
+                  />
+                </TagsWrapper>
+              )}
+            </div>
+          </CardLeft>
+
+          {!!context.accountId && context.accountId !== accountId && (
+            <Widget
+              src="near/widget/FollowButton"
+              props={{ accountId: accountId }}
+            />
+          )}
+        </Card>
+      );
+    })}
+  </>
 );
