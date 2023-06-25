@@ -21,7 +21,7 @@ return (
             <div className="d-flex flex-row justify-content-end mb-4 pt-1">
               <div>
                 <p className="small p-2 me-3 mb-3 text-white rounded-3 bg-primary">
-                  {message.payload}
+                  <Markdown text={message.payload} />
                 </p>
               </div>
               <img
@@ -47,7 +47,7 @@ return (
                   className="small p-2 ms-3 mb-3 rounded-3"
                   style={{ backgroundColor: "#f5f6f7" }}
                 >
-                  {message.payload}
+                  <Markdown text={message.payload} />
                 </p>
               </div>
             </div>
