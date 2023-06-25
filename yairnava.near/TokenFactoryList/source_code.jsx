@@ -1,7 +1,7 @@
-const tokenFactoryContract = "0xA6f5dfd3C36b1874a213893af4BEDddC9EFB9d63";
+const tokenFactoryContract = "0xdf709303b00d429033c55ec2EA02dc934e6D4593";
 
 const tokenFactoryAbi = fetch(
-  "https://indigo-fluttering-emu-841.mypinata.cloud/ipfs/QmQ3HSBoEjcsodCEUJK1YQGCMPjAv6Co4enebiGM5rMCKj"
+  "https://nativonft.mypinata.cloud/ipfs/QmQoXbrvBppKDy7i3TGwXcuzp3c98PT8U1CWF2pnm56ptH"
 );
 
 if (!tokenFactoryAbi.ok) {
