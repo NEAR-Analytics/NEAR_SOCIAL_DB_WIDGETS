@@ -1,5 +1,5 @@
 const queryGPT3 = () => {
-  res = fetch("https://api.openai.com/v1/chat/completions", {
+  const res = fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
     headers: {
       "{Content-Type": "application/json",
