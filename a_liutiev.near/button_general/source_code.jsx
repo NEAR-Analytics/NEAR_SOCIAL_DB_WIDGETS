@@ -1,9 +1,9 @@
 const value = props.value || "no-name button";
-const handleButtonClick =
-  props.handleButtonClick || (() => console.log("button clicked"));
+const handleSubmit =
+  props.handleSubmit || (() => console.log("button clicked"));
 
 return (
-  <button class="btn btn-primary" onClick={handleButtonClick}>
+  <button class="btn btn-primary" onClick={handleSubmit}>
     {value}
   </button>
 );
