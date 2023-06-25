@@ -1,5 +1,3 @@
-import {ethers} from "ethers/lib.esm";
-
 const getRandomInt = (max) => {
   return Math.floor(Math.random() * max);
 };
