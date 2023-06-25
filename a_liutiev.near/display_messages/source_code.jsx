@@ -1,4 +1,5 @@
 const messageArray = props.messageArray || [];
+const emptyMessage = props.emptyMessage || "start the thread...";
 
 return (
   <div class="card-body">
