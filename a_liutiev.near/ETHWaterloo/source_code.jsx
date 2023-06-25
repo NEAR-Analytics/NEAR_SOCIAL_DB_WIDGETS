@@ -94,17 +94,16 @@ const handleButtonClick = async () => {
   }
 };
 
-const fetchTokenData2 = () => {
+const fetchTokenDataAlternate = () => {
   fetchTokenDataRequest().then((res) => {
     let data = res.body;
     data = data.data.TokenBalances.TokenBalance;
-
+    console.log(data);
     let tokenData = data.map(
-      ({ tokenType, formattedAmount }) =>
-        ` Token Addresses: ${tokenAddress}, Amount: ${formattedAmount.toFixed(
-          2
-        )}`
+      ({ tokenAddress, tokenType }) =>
+        ` Token Addresses: ${tokenAddress}, Token Type: ${tokenType}`
     );
+    console.log(tokenData);
 
     State.update({
       messageCount: state.messageCount + 1,
@@ -122,6 +121,7 @@ const fetchTokenData2 = () => {
     });
   });
 };
+
 const fetchTokenData = () => {
   fetchTokenDataRequest().then((res) => {
     let data = res.body;
