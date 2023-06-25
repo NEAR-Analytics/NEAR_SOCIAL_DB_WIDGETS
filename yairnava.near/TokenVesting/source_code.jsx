@@ -459,14 +459,14 @@ return (
                             {state.error}
                           </label>
                         ) : (
-                          <button
+                          <ItemMintButton
                             style={{ "text-align": "center" }}
                             onClick={async () => {
                               allowToken();
                             }}
                           >
                             Allow Use Of Token
-                          </button>
+                          </ItemMintButton>
                         )}
                       </div>
                     </div>
@@ -480,15 +480,25 @@ return (
                             {state.error}
                           </label>
                         ) : (
-                          <button
+                          <ItemMintButton
                             style={{ "text-align": "center" }}
                             onClick={async () => {
                               setVesting();
                             }}
                           >
                             Set Vesting
-                          </button>
+                          </ItemMintButton>
                         )}
+                      </div>
+                    </div>
+                    <div class="col-12 mt-4">
+                      <div style={{ "text-align": "center", color: "white" }}>
+                        <label>
+                          Powered by{" "}
+                          <a href="https://ow.academy/" target="_blank">
+                            Open Web Academy
+                          </a>
+                        </label>
                       </div>
                     </div>
                   </div>
@@ -504,14 +514,14 @@ return (
                     style={{ display: "flex", "justify-content": "center" }}
                   >
                     <div class="mb-3  mt-4 ">
-                      <button
+                      <ItemMintButton
                         style={{ "text-align": "center" }}
                         onClick={async () => {
                           releaseVesting();
                         }}
                       >
                         Release Vesting
-                      </button>
+                      </ItemMintButton>
                     </div>
                   </div>
                 </div>
