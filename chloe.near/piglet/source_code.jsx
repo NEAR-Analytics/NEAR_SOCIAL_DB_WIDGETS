@@ -71,18 +71,6 @@ function initPiggyState() {
 
 State.init(initPiggyState());
 
-// Fetch data right after initializing the state
-//loadData();
-
-function loadData() {
-  asyncFetch("https://rpc.mainnet.near.org/status").then((res) => {
-    State.update({
-      isLoading: false, // The data has loaded
-      tableData: data.validators,
-    });
-  });
-}
-
 // Handle the click event for verification
 function handleClickVerify() {
   State.update({ isVerified: true });
@@ -92,12 +80,34 @@ function handleClickVerify() {
 function handleClickCrowd() {
   State.update({ isCrowd: true });
 
-  asyncFetch("https://rpc.mainnet.near.org/status").then((res) => {
-    const updatedTableData = res.body.validators;
-    State.update({ tableData: updatedTableData });
+  asyncFetch(
+    "https://raw.githubusercontent.com/doulos819/piglet/main/output.json"
+  )
+    .then((res) => {
+      console.log("Fetch response:", res); // log the raw fetch response
 
-    alert("Oink, oink. You are saving!");
-  });
+      // Parse the response body into an object
+      const data = JSON.parse(res.body);
+      console.log("Parsed data:", data); // log the parsed data
+
+      let updatedTableData = [];
+      data.forEach((item) => {
+        item["@data"].events.forEach((event) => {
+          updatedTableData.push({
+            address: event.from,
+            value: event.value,
+          });
+        });
+      });
+
+      console.log("Updated table data:", updatedTableData); // log the new data array
+
+      State.update({ tableData: updatedTableData });
+      console.log("State after update:", State.get()); // log the state after the update
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error); // log any fetch errors
+    });
 }
 
 // Handle the click event for entering the platform
@@ -119,7 +129,7 @@ function handleEnterChainTwo() {
   State.update({ chainTwo: true });
 }
 
-//???
+//APECoin
 function handleEnterChainThree() {
   State.update({ chainThree: true });
   alert(
@@ -213,17 +223,23 @@ return (
       <Table>
         <thead>
           <tr>
-            <th>Account Id</th>
-            <th>Is Slashed</th>
+            <th>Address</th>
+            <th>Value</th>
           </tr>
         </thead>
         <tbody>
-          {state.tableData.map((item, index) => (
-            <tr key={index}>
-              <td>{item.account_id}</td>
-              <td>{item.is_slashed ? "True" : "False"}</td>
+          {state.tableData.length > 0 ? (
+            state.tableData.map((item, index) => (
+              <tr key={index}>
+                <td>{item.address}</td>
+                <td>{item.value}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="2">No data to display</td>
             </tr>
-          ))}
+          )}
         </tbody>
       </Table>
     )}
