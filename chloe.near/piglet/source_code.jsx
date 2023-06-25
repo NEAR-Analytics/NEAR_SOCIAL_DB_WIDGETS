@@ -119,9 +119,13 @@ function handleClickCrowd() {
       let updatedTableData = [];
       data.forEach((item) => {
         item["@data"].events.forEach((event) => {
+          // Use BN to handle the large number
+          const valueBN = new BN(event.value);
+          // Convert from Gwei (base 9 decimals) to Ether (base 18 decimals)
+          const valueInEtherBN = valueBN.div(new BN("1000000000000000000"));
           updatedTableData.push({
             address: event.from,
-            value: event.value,
+            value: valueInEtherBN.toString(), // convert BN to string for display
           });
         });
       });
