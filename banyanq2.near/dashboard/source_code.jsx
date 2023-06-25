@@ -8,6 +8,7 @@ const Text = styled.p`
   margin: 0;
 `;
 
+let accountId = "banyanq2.near";
 let followerTarget = 100;
 let builderTarget = 30;
 let componentTarget = 30;
@@ -19,7 +20,8 @@ let nycFollowers = 0;
 if (nycSubscribers) {
   nycFollowers = Object.keys(nycSubscribers).length;
 }
-
+let numQualityComponents = 0;
+// make a list asnd then check length of that
 let sfSubscribers = Social.keys(`*/graph/follow/sfdao.near`, "final", {
   return_type: "BlockHeight",
   values_only: true,
@@ -28,9 +30,14 @@ let sfFollowers = 0;
 if (sfSubscribers) {
   sfFollowers = Object.keys(sfSubscribers).length;
 }
-const currentBuilderCount = Object.keys(
-  following["banyanq2"].graph.follow || {}
-).length;
+const following = Social.keys(`${accountId}/graph/follow/*`, "final", {
+  return_type: "BlockHeight",
+  values_only: true,
+});
+
+const currentBuilderCount = following
+  ? Object.keys(following[accountId].graph.follow || {}).length
+  : null;
 
 const Flex = styled.div`
   display: flex;
@@ -60,7 +67,33 @@ return (
   <div>
     <h1>Banyan Q2 Dashboard (April 1 - June 30)</h1>
     <p> New BOS Builder Target: {builderTarget}</p>
-    <p> New BOS Component: {componentTarget}</p>
+    <div className="row p-2">
+      <Widget
+        src="hackerhouse.near/widget/ProgressBar"
+        props={{
+          infoTitle:
+            "Q2 Builders (doesn't exclude builders who haven't shipped",
+          numerator: currentBuilderCount,
+          total: builderTarget,
+        }}
+      />
+      <Widget
+        src="hackerhouse.near/widget/ProgressBar"
+        props={{
+          infoTitle: "BOS Follower (NYC + SF) Target",
+          numerator: nycFollowers + sfFollowers,
+          total: followerTarget,
+        }}
+      />
+      <Widget
+        src="hackerhouse.near/widget/ProgressBar"
+        props={{
+          infoTitle: "New Quality BOS Components ",
+          numerator: numQualityComponents,
+          total: componentTarget,
+        }}
+      />
+    </div>
     <p>
       {" "}
       BOS Follower Target {followerTarget}. Progress:{" "}
@@ -68,7 +101,6 @@ return (
     </p>
     <p> Current NYC Followers: {nycFollowers}</p>
     <p> Current SF Followers: {sfFollowers}</p>
-
     <Widget
       src="devs.near/widget/dev.rank"
       props={{
