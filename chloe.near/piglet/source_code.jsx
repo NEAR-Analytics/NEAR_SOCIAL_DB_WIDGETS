@@ -39,8 +39,8 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background: #ffc0cb; /* Update background color to a lighter pink */
-  color: white;
+  background: #ffc0cb;
+  color: black; /* Update text color to black */
   font-size: calc(10px + 2vmin);
   padding: 20px;
   box-sizing: border-box;
@@ -57,6 +57,12 @@ const Info = styled.p`
 
 const PiggyImage = styled.img`
   width: 200px;
+  height: auto;
+  margin-bottom: 20px;
+`;
+
+const CoverImage = styled.img`
+  width: 90%;
   height: auto;
   margin-bottom: 20px;
 `;
@@ -183,6 +189,10 @@ function handleEnterChainThree() {
 
 return (
   <Container>
+    <CoverImage
+      src="https://github.com/doulos819/piglet/blob/main/photo_2023-06-25_02-54-33.jpg?raw=true"
+      alt="Cover"
+    />
     <Header>FAQ:</Header>
     <Header>
       1. The first step with Piglet is to purchace an NFT from Unlock Protocol.
