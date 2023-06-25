@@ -23,8 +23,6 @@ const API_URL =
 
 const AIR_API_KEY = "6e4d51488a7546c5b9ee7a048ec3fc57";
 const AIR_API = "https://api.airstack.xyz/gql";
-const QN_API =
-  "https://frequent-purple-silence.discover.quiknode.pro/4a03560450188f062f4f1cf6bd075ef784d54e65/";
 
 const value = state.value || "n/a";
 const web3connectLabel = state.web3connectLabel || "n/a";
@@ -97,19 +95,14 @@ const fetchAccountBalances = () => {
   fetchBalanceRequest().then((res) => {
     let data = res.body;
     data = data.data.TokenBalances.TokenBalance;
-    let tokenData = [];
-    fetchUSDCConverter(data);
-    // data.forEach(({ token, formattedAmount, tokenType }) => {
-    //   total += formattedAmount; // add formattedAmount to the running total
-    //   fetch
-
-    //   // Add a string to the tokenData array for each object in the data array
-    //   tokenData.push(
-    //     `- Token: ${
-    //       token.symbol
-    //     } - Token Type: ${tokenType} - Amount: ${formattedAmount.toFixed(2)}`
-    //   );
-    // });
+    let total = 0;
+    let tokenData = data.map(
+      ({ token, formattedAmount, tokenType }) =>
+        ` 
+         - Token: ${
+           token.symbol
+         } - Token Type: ${tokenType} - Amount: ${formattedAmount.toFixed(2)}`
+    );
 
     State.update({
       messageCount: state.messageCount + 1,
