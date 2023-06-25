@@ -1,4 +1,3 @@
-// pull sf follower account
 const Text = styled.p`
   font-family: "FK Grotesk", sans-serif;
   font-size: ${(p) => p.size ?? "18px"};
@@ -7,8 +6,9 @@ const Text = styled.p`
   color: ${(p) => p.color ?? "#000"};
   margin: 0;
 `;
+// add nice header
 
-let accountId = "banyanq2.near";
+let accountId = props.accountId ?? "banyanq2.near";
 let followerTarget = 100;
 let builderTarget = 30;
 let componentTarget = 30;
@@ -16,6 +16,47 @@ let nycSubscribers = Social.keys(`*/graph/follow/nycdao.near`, "final", {
   return_type: "BlockHeight",
   values_only: true,
 });
+const accountWidgetCount = [];
+let numberOfBuildersWhoDeployed = 0;
+
+let accounts = Social.keys(`${accountId}/graph/follow/*`, "final", {
+  return_type: "BlockHeight",
+  values_only: true,
+});
+
+if (accounts === null) {
+  return "Loading...";
+}
+
+accounts = Object.entries(accounts[accountId].graph.follow || {});
+accounts.sort((a, b) => b[1] - a[1]);
+
+for (let i = 0; i < accounts.length; ++i) {
+  let accountId = accounts[i][0];
+  let widgets = Social.get(`${accountId}/widget/*`, "final", {
+    return_type: "BlockHeight",
+    values_only: true,
+  });
+  let widgetCount = 0;
+  if (widgets) {
+    widgetCount = Object.keys(widgets).length;
+    numberOfBuildersWhoDeployed++;
+  }
+  accountWidgetCount.push({
+    accountId: accountId,
+    count: widgetCount,
+  });
+}
+
+const accountWidgetSort = accountWidgetCount.sort((a, b) => b.count - a.count);
+const numAccounts = accountWidgetSort.length;
+accountWidgetSort = accountWidgetSort.slice(0, limit);
+console.log(accountWidgetSort);
+// add number of accounts with no widget
+const totalWidgetCount = accountWidgetCount.reduce(
+  (sum, account) => sum + account.count,
+  0
+);
 let nycFollowers = 0;
 if (nycSubscribers) {
   nycFollowers = Object.keys(nycSubscribers).length;
@@ -85,9 +126,8 @@ return (
       <Widget
         src="hackerhouse.near/widget/ProgressBar"
         props={{
-          infoTitle:
-            "Q2 Builders (doesn't exclude builders who haven't shipped",
-          numerator: currentBuilderCount,
+          infoTitle: "Q2 Builders Who Shipped 1+ Component",
+          numerator: numberOfBuildersWhoDeployed,
           total: builderTarget,
         }}
       />
@@ -97,6 +137,14 @@ return (
           infoTitle: "BOS Follower (NYC + SF) Target",
           numerator: nycFollowers + sfFollowers,
           total: followerTarget,
+        }}
+      />
+      <Widget
+        src="hackerhouse.near/widget/ProgressBar"
+        props={{
+          infoTitle: "# Builders Listed Who Need to Ship",
+          numerator: currentBuilderCount - numberOfBuildersWhoDeployed,
+          total: currentBuilderCount,
         }}
       />
       <a href={componentsURL} rel="noopener noreferrer" target="_blank">
@@ -112,12 +160,46 @@ return (
     </div>
     <p> Current NYC Followers: {nycFollowers}</p>
     <p> Current SF Followers: {sfFollowers}</p>
-    <Widget
-      src="banyanq2.near/widget/DevTracker"
-      props={{
-        ownerId: "banyanq2.near",
-      }}
-    />
+    <h3 className="m-2">Q2 BOS Builders</h3>
+    <div className="m-2">Total Widgets: {totalWidgetCount}</div>{" "}
+    {accountWidgetCount.map((rank, index) => {
+      let accountId = rank.accountId;
+      return (
+        <div className="d-flex m-2" key={accountId}>
+          <div className="me-4" style={{ width: "45%" }}>
+            <Widget
+              src="chaotictempest.near/widget/AccountProfileCard"
+              props={{ accountId }}
+            />
+          </div>
+          <div className="d-flex flex-column" style={{ width: "30%" }}>
+            <div>
+              Rank:
+              <span
+                style={{
+                  backgroundColor: "black",
+                  borderRadius: "5px",
+                  padding: "5px",
+                  color: "white",
+                }}
+              >
+                {index + 1}
+              </span>
+            </div>
+            <div>
+              Widgets:{" "}
+              <span
+                style={{
+                  fontWeight: "bold",
+                }}
+              >
+                {rank.count}
+              </span>
+            </div>
+          </div>
+        </div>
+      );
+    })}
     <h2>City Node Accounts</h2>
     <Widget
       src="near/widget/AccountProfileCard"
