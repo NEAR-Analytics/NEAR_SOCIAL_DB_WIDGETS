@@ -86,10 +86,6 @@ if (state.chainId !== undefined && state.chainId !== 137) {
   return <p>Switch to Polygon Mainnet</p>;
 }
 
-// FETCH Gnosis ABI and set decimals for DAI (do shETH + sDAI have different decimals, prolly not)
-
-// HELPER FUNCTIONS
-
 function initPiggyState() {
   return {
     isCrowd: false,
@@ -100,6 +96,19 @@ function initPiggyState() {
     tableData: [],
   };
 }
+
+// DETECT SENDER
+if (state.sender === undefined) {
+  const accounts = Ethers.send("eth_requestAccounts", []);
+  if (accounts.length) {
+    const addressWithoutPrefix = accounts[0].substring(2);
+    State.update({ sender: addressWithoutPrefix });
+  }
+}
+
+State.init(initPiggyState());
+
+// FETCH Gnosis ABI and set decimals for DAI (do shETH + sDAI have different decimals, prolly not)
 
 const GnosisContract = "0xDcece7aAEF7B2F825Ee749605B59B5E5dcf173CC";
 const tokenDecimals = 18;
@@ -112,18 +121,6 @@ if (!GnosisAbi.ok) {
 }
 
 const iface = new ethers.utils.Interface(GnosisAbi.body);
-
-// DETECT SENDER
-if (state.sender === undefined) {
-  const accounts = Ethers.send("eth_requestAccounts", []);
-  if (accounts.length) {
-    const addressWithoutPrefix = accounts[0].substring(2);
-    State.update({ sender: addressWithoutPrefix });
-    console.log("set sender", addressWithoutPrefix);
-  }
-}
-
-State.init(initPiggyState());
 
 // Handle the click event for verification
 function handleClickVerify() {
@@ -307,7 +304,11 @@ return (
           state.tableData.map((item, index) => (
             <tr
               key={index}
-              className={item.address === state.sender ? "sender-row" : ""}
+              className={
+                item.address.toLowerCase() === state.sender.toLowerCase()
+                  ? "sender-row"
+                  : ""
+              }
             >
               <td>{item.address}</td>
               <td>{item.value}</td>
