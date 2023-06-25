@@ -150,14 +150,7 @@ const handleCreatePocket = () => {
       batchVolume: ethers.BigNumber.from(
         `0x${(state.depositAmount * Math.pow(10, 18)).toString(16)}`
       ),
-      stopConditions: [
-        {
-          operator: "0",
-          value: parseInt(
-            (new Date().getTime() / 1000 + 60000).toString()
-          ).toString(),
-        },
-      ],
+      stopConditions: [],
       frequency: "3600",
       openingPositionCondition: {
         value0: "0",
