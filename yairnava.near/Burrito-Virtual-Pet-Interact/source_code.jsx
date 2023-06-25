@@ -147,7 +147,7 @@ const _getIsBoredImg = (img) => {
     case "https://pin.ski/3Jjp95g":
       return "https://pin.ski/43T4jlC";
     case "https://pin.ski/3NwRR57":
-      return "https://pin.ski/3Jv5oHU";
+      return "https://pin.ski/3plbDr8";
     case "https://pin.ski/3JfJ1X6":
       return "https://pin.ski/3CH3ksL";
   }
