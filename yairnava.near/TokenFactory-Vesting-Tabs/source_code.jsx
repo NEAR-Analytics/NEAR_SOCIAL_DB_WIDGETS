@@ -49,7 +49,7 @@ return (
         role="tabpanel"
         aria-labelledby="pills-mytokenlist-tab"
       >
-        <Widget src="yairnava.near/widget/Token-Factory-AllTokens" />
+        <Widget src="yairnava.near/widget/TokenFactoryList" />
       </div>
       <div
         className="tab-pane fade vesting"
