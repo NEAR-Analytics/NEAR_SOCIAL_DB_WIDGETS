@@ -43,6 +43,9 @@ const mint = async (id, ipfsUrl) => {
     hasBeenMinted[id] = true;
     console.log({ hasBeenMinted });
     State.update()
+    if (window.confirm('Open in Marketplace')) {
+      window.open('https://tofunft.com/discover/items?contracts=85949&network=1313161554', '_blank');
+    };
   });
 }
 
