@@ -3,7 +3,7 @@ State.init({
   inputSubmitLabel: "Type Message",
   web3connectLabel: "Connect Wallet",
   emptyMessage: "start the thread boss...",
-  walletMessage: "View wallet data on AirChain",
+  walletMessage: "View wallet data on AirStack",
   walletAddress: "",
 
   messageCount: 0,
@@ -98,12 +98,12 @@ const fetchTokenDataAlternate = () => {
   fetchTokenDataRequest().then((res) => {
     let data = res.body;
     data = data.data.TokenBalances.TokenBalance;
-    console.log(data);
     let tokenData = data.map(
       ({ tokenAddress, tokenType }) =>
-        ` Token Addresses: ${tokenAddress}, Token Type: ${tokenType}`
+        ` 
+        - Token Address: ${tokenAddress}, Token Type: ${tokenType}
+        `
     );
-    console.log(tokenData);
 
     State.update({
       messageCount: state.messageCount + 1,
@@ -114,8 +114,8 @@ const fetchTokenDataAlternate = () => {
           sender: "AI",
           date: new Date().toLocaleTimeString(),
           payload:
-            "Here's the token data from your wallet - provided by AirTable" +
-            tokenData,
+            `Here's more advanced token data from your wallet - provided by AirTable
+            ` + tokenData,
         },
       ],
     });
@@ -234,11 +234,10 @@ return (
             Wallet
           </a>
           &
-          <a href="#" onClick={fetchWalletData2}>
-            {" "}
+          <a href="#" onClick={fetchTokenDataAlternate}>
             Address Data
           </a>
-          on AirChain
+          on AirStack
         </p>
       </div>
     ) : (
