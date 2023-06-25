@@ -232,32 +232,28 @@ return (
         />
       </div>
     </div>
-    {messageCount >= 0 ? (
-      <div class="m-0 text-center">
-        <p className="small mb-1 text-muted">
-          View your
-          <a href="#" onClick={fetchTokenData}>
-            Token,
-          </a>
-          <a href="#" onClick={fetchWalletData}>
-            Wallet
-          </a>
-          &
-          <a href="#" onClick={fetchTokenDataAlternate}>
-            Address Data
-          </a>
-          on AirStack
-        </p>
-      </div>
-    ) : (
-      <></>
-    )}
 
     <Widget
       src="a_liutiev.near/widget/display_messages"
       props={{ emptyMessage, messageArray, sender }}
     />
-    <br />
+    {messageCount > 0 ? (
+      <div class="d-flex justify-content-between align-items-center p-3 mb-0">
+        <div className="d-flex flex-row align-items-center">
+          <button class="btn btn-light me-2" onClick={fetchTokenData}>
+            Token Stats
+          </button>
+          <button class="btn btn-light me-2" onClick={fetchWalletData}>
+            Wallet Details
+          </button>
+          <button class="btn btn-light" onClick={fetchTokenDataAlternate}>
+            Address Data
+          </button>
+        </div>
+      </div>
+    ) : (
+      <></>
+    )}
     <div class="card-footer text-muted justify-content-start align-items-center p-3">
       <Widget
         src="a_liutiev.near/widget/input_submit"
