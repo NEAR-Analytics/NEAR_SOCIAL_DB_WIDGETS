@@ -1,5 +1,5 @@
-const accountId = props.accountId ?? context.accountId;
-const memberId = props.memberId ?? "multi.near";
+const accountId = context.accountId;
+const memberId = props.memberId ?? context.accountId;
 const roleId = props.roleId ?? "voter";
 const daoId = props.daoId ?? "rc-dao.sputnik-dao.near";
 
@@ -8,6 +8,10 @@ if (!accountId) {
 }
 
 const policy = Near.view(daoId, "get_policy");
+
+if (policy === null) {
+  return "";
+}
 const deposit = policy.proposal_bond;
 
 const group = policy.roles
@@ -28,8 +32,8 @@ const handleProposal = () => {
           description: "add member to DAO",
           kind: {
             AddMemberToRole: {
-              member_id: memberId ?? accountId,
-              role: roleId ?? "council",
+              member_id: memberId,
+              role: roleId,
             },
           },
         },
@@ -52,13 +56,11 @@ const validMember = checkMembership(groupMembers);
 
 return (
   <div>
-    <button
-      disabled={validMember}
-      className="btn btn-success m-1"
-      onClick={handleProposal}
-    >
-      Join DAO
-    </button>
+    {validMember && (
+      <button className="btn btn-success m-1" onClick={handleProposal}>
+        Join DAO
+      </button>
+    )}
     <a
       className="btn btn-outline-success m-1"
       href="#/hack.near/widget/verified.members"
