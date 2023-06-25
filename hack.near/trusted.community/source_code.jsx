@@ -126,8 +126,10 @@ const data = {
 
 return (
   <>
-    <h3>Open Web of Trust</h3>
-    <p>Connect with people you know!</p>
+    <h3 className="text-center">Open Web of Trust</h3>
+    <p className="text-center">Connect with people you know!</p>
+    <br />
+    <Widget src="hack.near/widget/trust.web" />
     <hr />
     <h5>Expand Your Network</h5>
     <div className="mb-3">
