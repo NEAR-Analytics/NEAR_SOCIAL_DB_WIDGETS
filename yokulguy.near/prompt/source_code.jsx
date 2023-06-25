@@ -75,7 +75,7 @@ return (
       </div>
     )}
 
-    <div class="fixed-top container border border-info p-3 text-center min-vw-90">
+    <div class="container border border-info p-3 text-center min-vw-90">
       <h1>Hologram AI</h1>
       <p>What you are imagining today?</p>
       <p>Minting available in Aurora only 🌈</p>
@@ -88,6 +88,11 @@ return (
       >
         {state.contents && state.contents.map(createCard)}
       </InfiniteScroll>
+    </div>
+
+    <div class="fixed-bottom bg-dark">
+      <a href="https://tofunft.com/discover/items?contracts=85949&network=1313161554">Explore in marketplace</a>
+      <a href="https://explorer.aurora.dev/address/0xC0769C1a52f54e5cE83F4B8919017cff6c4Dc39C/transactions#address-tabs">Explore in Aurorascan</a>
     </div>
   </>
 );
