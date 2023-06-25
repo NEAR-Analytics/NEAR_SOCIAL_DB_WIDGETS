@@ -56,7 +56,7 @@ const validMember = checkMembership(groupMembers);
 
 return (
   <div>
-    {validMember && (
+    {!validMember && (
       <button className="btn btn-success m-1" onClick={handleProposal}>
         Join DAO
       </button>
