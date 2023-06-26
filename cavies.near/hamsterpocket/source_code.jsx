@@ -445,7 +445,7 @@ const createPocketScreen = () => {
                     defaultSelected={[
                       {
                         id: state.selectedTokenAddress,
-                        label: "ETH",
+                        label: state.whiteLists[state.selectedTokenAddress],
                       },
                     ]}
                     filterBy={() => true}
