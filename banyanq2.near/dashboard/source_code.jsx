@@ -292,6 +292,10 @@ return (
       src="near/widget/AccountProfileCard"
       props={{ accountId: "sfdao.near" }}
     />
+    <Widget
+      src="near/widget/AccountProfileCard"
+      props={{ accountId: "liberty.sputnik-dao.near" }}
+    />
     <br />
     <Flex>
       <Text
