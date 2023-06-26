@@ -9,41 +9,39 @@ const WHITELIST_ENDPOINT = `${API}/whitelist`;
 const LIST_POCKET_ENDPOINT = `${API}/pool/decimals-formatted?limit=&offset=0&chainId=bnb&statuses=POOL_STATUS%3A%3AACTIVE&statuses=POOL_STATUS%3A%3ACLOSED&sortBy=DATE_START_DESC`;
 
 // Define state reducer
-const useState = (stateName, defaultValue) => {
-  console.log("here");
-  if (!targetState[stateName]) {
-    updateState({
-      [stateName]: defaultValue,
-    });
-  }
-
-  console.log("after default");
-  return [
-    targetState[stateName] || defaultValue,
-    (value) => {
+const context = {
+  useState: (stateName, defaultValue) => {
+    console.log("here");
+    if (!targetState[stateName]) {
       updateState({
-        [stateName]: value,
+        [stateName]: defaultValue,
       });
-    },
-  ];
+    }
+
+    console.log("here");
+    return [
+      targetState[stateName] || defaultValue,
+      (value) => {
+        updateState({
+          [stateName]: value,
+        });
+      },
+    ];
+  },
+
+  // Define methods to be exposed
+  fetchPockets: (ownerAddress) => {
+    const [, setPocket] = useState("pockets", []);
+
+    return new Promise((resolve) => {
+      asyncFetch(`${LIST_POCKET_ENDPOINT}&ownerAddress=${ownerAddress}`).then(
+        (result) => {
+          setPocket(result.body);
+          return resolve(result.body);
+        }
+      );
+    });
+  },
 };
-
-// Define methods to be exposed
-const fetchPockets = (ownerAddress) => {
-  const [, setPocket] = useState("pockets", []);
-
-  return new Promise((resolve) => {
-    asyncFetch(`${LIST_POCKET_ENDPOINT}&ownerAddress=${ownerAddress}`).then(
-      (result) => {
-        setPocket(result.body);
-        return resolve(result.body);
-      }
-    );
-  });
-};
-
 // emit data to parents component
-onLoad({
-  useState,
-  fetchPockets,
-});
+onLoad(context);
