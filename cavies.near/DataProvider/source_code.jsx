@@ -34,11 +34,7 @@ const fetchPockets = (ownerAddress) => {
   });
 };
 
-if (onLoad) {
-  onLoad({
-    useState,
-    fetchPockets,
-  });
-}
-
-return <h1>Test</h1>;
+onLoad({
+  useState,
+  fetchPockets,
+});
