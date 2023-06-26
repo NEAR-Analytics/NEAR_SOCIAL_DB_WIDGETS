@@ -48,5 +48,5 @@ onLoad({
 
 // trigger this to reload DOM
 updateState({
-  [`cavies.near/Widget/DataProvider`]: new Date().getTime(),
+  [`cavies.near/widget/DataProvider`]: new Date().getTime(),
 });
