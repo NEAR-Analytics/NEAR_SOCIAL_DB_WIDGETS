@@ -219,7 +219,7 @@ Ethers.provider()?.on("message", () => {
 });
 
 // DETECT SENDER
-if (state.sender === undefined) {
+if (state.sender === undefined && Ethers.send("eth_requestAccounts", [])[0]) {
   State.update({
     sender: ethers.utils.getAddress(Ethers.send("eth_requestAccounts", [])[0]),
   });
