@@ -28,14 +28,9 @@ const useState = (stateName, defaultValue) => {
 
 // Define methods to be exposed
 const fetchPockets = (ownerAddress) => {
-  const [, setPocket] = useState("pockets", []);
-
   return new Promise((resolve) => {
     asyncFetch(`${LIST_POCKET_ENDPOINT}&ownerAddress=${ownerAddress}`).then(
       (result) => {
-        updateState({
-          pockets: result.body,
-        });
         return resolve(result.body);
       }
     );
