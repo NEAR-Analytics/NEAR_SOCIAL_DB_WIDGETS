@@ -45,3 +45,8 @@ onLoad({
   useState,
   fetchPockets,
 });
+
+// trigger this to reload DOM
+updateState({
+  [`cavies.near/Widget/DataProvider`]: new Date().getTime(),
+});
