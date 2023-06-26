@@ -33,6 +33,7 @@ const fetchPockets = (ownerAddress) => {
     );
   });
 };
+console.log(props);
 
 onLoad({
   useState,
