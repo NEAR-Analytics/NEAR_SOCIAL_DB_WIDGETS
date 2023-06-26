@@ -2,8 +2,8 @@
 const [accountId, widget, widgetName] = props.src.split("/");
 // comment
 // const widgetPath = props.src;
-// const widgetPath = props.src ?? "near/widget/ComponentDetailsPage";
-const widgetPath = "near/widget/ComponentDetailsPage";
+const widgetPath = props.src ?? "near/widget/ComponentDetailsPage";
+// const widgetPath = "near/widget/ComponentDetailsPage";
 
 // const widgetPath = `${accountId}/widget/${widgetName}`;
 const blockHeight = props.blockHeight ?? 0;
