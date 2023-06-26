@@ -10,12 +10,14 @@ const LIST_POCKET_ENDPOINT = `${API}/pool/decimals-formatted?limit=&offset=0&cha
 
 // Define state reducer
 const useState = (stateName, defaultValue) => {
+  console.log("here");
   if (!targetState[stateName]) {
     updateState({
       [stateName]: defaultValue,
     });
   }
 
+  console.log("after default");
   return [
     targetState[stateName] || defaultValue,
     (value) => {
@@ -33,7 +35,6 @@ const fetchPockets = (ownerAddress) => {
   return new Promise((resolve) => {
     asyncFetch(`${LIST_POCKET_ENDPOINT}&ownerAddress=${ownerAddress}`).then(
       (result) => {
-        console.log(result);
         setPocket(result.body);
         return resolve(result.body);
       }
@@ -46,5 +47,3 @@ onLoad({
   useState,
   fetchPockets,
 });
-
-console.log("widget reloaded");
