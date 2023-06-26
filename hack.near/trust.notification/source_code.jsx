@@ -175,8 +175,6 @@ return (
             props={{ accountId: props.accountId }}
           />
         )}
-
-        {actionable && <Button href={postUrl}>View</Button>}
       </div>
     </Wrapper>
   </>
