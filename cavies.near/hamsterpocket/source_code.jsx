@@ -210,14 +210,12 @@ if (!(Ethers.provider() && Ethers.provider().network.chainId === 56)) {
   console.log("Checking here", Ethers.provider().network.chainId);
   return <h1>👉 Please connect to BNB chain to continue</h1>;
 }
-
-Ethers.provider()?.on("message", () => {
+if (!state.loaded) {
   console.log("Fetch config");
   State.update({ loaded: true });
   reloadConfig();
   loaded += 1;
-});
-
+}
 // DETECT SENDER
 if (state.sender === undefined && Ethers.send("eth_requestAccounts", [])[0]) {
   State.update({
