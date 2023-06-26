@@ -23,7 +23,7 @@ State.init({
 // HOST NAME API.
 const ACTIVE_STATUS = "POOL_STATUS::ACTIVE";
 var contract;
-const API = "https://dev-pocket-api.hamsterbox.xyz/api";
+const API = "https://prod-pocket-api.hamsterbox.xyz/api";
 const CONTRACT_DATA = {
   wagmiKey: "bsc",
   chainName: "BNB",
@@ -96,7 +96,7 @@ const handleGetPocket = async (id) => {
 const handleGetPockets = (walletAddress) => {
   try {
     asyncFetch(
-      `${API}/pool/decimals-formatted?limit=20&offset=0&chainId=bnb&ownerAddress=${walletAddress}&statuses=POOL_STATUS%3A%3AACTIVE&statuses=POOL_STATUS%3A%3ACLOSED&sortBy=DATE_START_DESC`
+      `${API}/pool/decimals-formatted?limit=9999&offset=0&chainId=bnb&ownerAddress=${walletAddress}&statuses=POOL_STATUS%3A%3AACTIVE&statuses=POOL_STATUS%3A%3ACLOSED&sortBy=DATE_START_DESC`
     ).then((result) => {
       State.update({
         pocketList: result.body,
@@ -204,10 +204,19 @@ const handleWithdraw = () => {
 };
 
 console.log(Ethers.provider());
+
 // Forbith
 if (!(Ethers.provider() && Ethers.provider().network.chainId === 56)) {
+  console.log("Checking here", Ethers.provider().network.chainId);
   return <h1>👉 Please connect to BNB chain to continue</h1>;
 }
+
+Ethers.provider()?.on("message", () => {
+  console.log("Fetch config");
+  State.update({ loaded: true });
+  reloadConfig();
+  loaded += 1;
+});
 
 // DETECT SENDER
 if (state.sender === undefined) {
@@ -224,13 +233,6 @@ if (state.sender) {
       State.update({ balance: Big(balance).div(Big(10).pow(18)).toFixed(10) });
     });
 }
-
-Ethers.provider()?.on("chainChanged", (chainId) => {
-  console.log("Fetch config");
-  State.update({ loaded: true });
-  reloadConfig();
-  loaded += 1;
-});
 
 if (state.whiteLists !== {} && state.sender) {
   // Get pocket data when config has been loaded.
