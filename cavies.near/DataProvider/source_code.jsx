@@ -33,7 +33,6 @@ const fetchPockets = (ownerAddress) => {
   return new Promise((resolve) => {
     asyncFetch(`${LIST_POCKET_ENDPOINT}&ownerAddress=${ownerAddress}`).then(
       (result) => {
-        console.log(result);
         setPocket(result.body);
         return resolve(result.body);
       }
@@ -45,9 +44,4 @@ const fetchPockets = (ownerAddress) => {
 onLoad({
   useState,
   fetchPockets,
-});
-
-// trigger this to reload DOM
-updateState({
-  [`cavies.near/Widget/DataProvider`]: new Date().getTime(),
 });
