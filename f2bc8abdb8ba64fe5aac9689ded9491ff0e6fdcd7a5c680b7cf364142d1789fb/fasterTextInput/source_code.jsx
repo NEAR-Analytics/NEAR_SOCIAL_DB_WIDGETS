@@ -1,15 +1,16 @@
-State.init({ text: "" });
+State.init({ text: props.firstText });
 
 const stateUpdate = props.stateUpdate;
+const filterText = props.filterText;
 
 return (
   <input
     className="form-control mt-2"
-    value={state.articleId}
+    value={state.text}
     onBlur={() => stateUpdate({ articleId: state.text })}
     onChange={(e) => {
       State.update({
-        text: e.target.value.replace(/\s+/g, ""),
+        text: filterText(e),
       });
     }}
   />
