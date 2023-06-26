@@ -15,6 +15,15 @@ const forceReload = props.forceReload ?? false;
 
 State.init({ loadComplete: false });
 
+if (forceReload) {
+  State.update({
+    forceReload: false,
+    factoryAbi: undefined,
+    erc20Abi: undefined,
+    routerAbi: undefined,
+  });
+}
+
 if (state.loadComplete && !forceReload) {
   return state.debugOutput ?? <div />;
 }
@@ -63,7 +72,6 @@ const expandToken = (value, decimals) => {
 };
 
 const callTxBalancerZKEVM = (input, onComplete, gasPrice, gasLimit) => {
-  console.log("callTxBalancerZKEVM", input, onComplete);
   if (
     input.sender &&
     input.routerContract !== undefined &&
@@ -1057,6 +1065,7 @@ if (ethers !== undefined && Ethers.send("eth_requestAccounts", [])[0]) {
             callTx: callTxBalancerZKEVM,
             callTokenApproval: callTokenApprovalEVM,
           });
+
           State.update({ loadComplete: true });
         }
       } else {
