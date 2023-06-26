@@ -92,9 +92,12 @@ let GenaDropSDK = {
   network: null,
   isSoulBound: false,
   lastMintLink: "",
-  mintedNfts: [],
   chains: CHAINS,
   contractAddresses: CONTRACT_ADDRESSES,
+  mintedNfts: [],
+  init: () => {
+    Storage.get(MINTED_NFTS_STORAGE_KEY);
+  },
   mint: (
     recipient,
     title,
@@ -263,11 +266,16 @@ let GenaDropSDK = {
     }
   },
   logNft: (log) => {
-    GenaDropSDK.mintedNfts.push(log);
+    let mintedNfts = Storage.get(MINTED_NFTS_STORAGE_KEY) ?? [];
+    mintedNfts.push(log);
+
+    GenaDropSDK.mintedNfts = mintedNfts;
     Storage.set(MINTED_NFTS_STORAGE_KEY, GenaDropSDK.mintedNfts);
+
+    GenaDropSDK.refresh();
   },
   getMintedNfts: () => {
-    return GenaDropSDK.mintedNfts.filter((nft) => nft.account == accountId);
+    return Storage.get(MINTED_NFTS_STORAGE_KEY);
   },
   getIpfsURL: (cid) => {
     return `https://ipfs.near.social/ipfs/${cid}`;
@@ -275,16 +283,6 @@ let GenaDropSDK = {
 };
 
 if (onLoad && !loaded) {
-  let mintedNfts = Storage.get(
-    MINTED_NFTS_STORAGE_KEY,
-    "mattb.near/widget/GenaDrop.MultiChainMinter"
-  );
-
-  console.log(mintedNfts);
-
-  if (!!mintedNfts) {
-    GenaDropSDK.mintedNfts = mintedNfts;
-  }
-
+  GenaDropSDK.init();
   onLoad(GenaDropSDK);
 }
