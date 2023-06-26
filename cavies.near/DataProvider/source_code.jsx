@@ -31,6 +31,8 @@ const context = {
 
   // Define methods to be exposed
   fetchPockets: (ownerAddress) => {
+    console.log({ ownerAddress });
+
     const [, setPocket] = useState("pockets", []);
 
     return asyncFetch(
