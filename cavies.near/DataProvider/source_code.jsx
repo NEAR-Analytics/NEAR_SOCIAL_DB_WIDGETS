@@ -32,13 +32,12 @@ const context = {
   // Define methods to be exposed
   fetchPockets: (ownerAddress) => {
     console.log({ ownerAddress });
-
-    // const [, setPocket] = useState("pockets", []);
+    const [, setPocket] = context.useState("pockets", []);
 
     return asyncFetch(
       `${LIST_POCKET_ENDPOINT}&ownerAddress=${ownerAddress}`
     ).then((result) => {
-      // setPocket(result.body);
+      setPocket(result.body);
       return result.body;
     });
   },
