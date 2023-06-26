@@ -79,6 +79,14 @@ const reloadConfig = () => {
   });
 };
 
+console.log("changed");
+if (!state.loaded) {
+  console.log("Fetch config");
+  State.update({ loaded: true });
+  reloadConfig();
+  loaded += 1;
+}
+
 const handleGetPocket = async (id) => {
   try {
     asyncFetch(`${API}/pool/${id}/decimals-formatted`).then((result) => {
@@ -121,8 +129,12 @@ const handleSyncWallet = () => {
 
 const handleDepositPocket = () => {
   if (contract === undefined) return;
+
+  const desiredAmount =
+    state.pocketDepositedAmount * Math.pow(10, state.baseToken.decimals);
+
   contract.depositEther(state.pocket._id, {
-    value: 0.001 * Math.pow(10, state.baseToken.decimals),
+    value: desiredAmount,
   });
 };
 
@@ -133,7 +145,6 @@ const handleCreatePocket = () => {
       "content-type": "text/plain;charset=UTF-8",
     },
   }).then(async (result) => {
-    console.log(result.body);
     const createdParams = {
       id: result.body._id,
       owner: state.sender,
@@ -165,12 +176,15 @@ const handleCreatePocket = () => {
     };
 
     try {
-      await contract.createPocketAndDepositEther(createdParams, {
-        value: ethers.BigNumber.from(
-          `0x${(state.depositAmount * Math.pow(10, 18)).toString(16)}`
-        ),
-      });
-      State.update({ currentScreen: 0 });
+      contract
+        .createPocketAndDepositEther(createdParams, {
+          value: ethers.BigNumber.from(
+            `0x${(state.depositAmount * Math.pow(10, 18)).toString(16)}`
+          ),
+        })
+        .then(() => {
+          State.update({ currentScreen: 0 });
+        });
     } catch (err) {
       console.error(err);
     }
@@ -205,22 +219,16 @@ const handleWithdraw = () => {
 
 console.log(Ethers.provider());
 
-// Forbith
-if (!(Ethers.provider() && Ethers.provider().network.chainId === 56)) {
-  console.log("Checking here", Ethers.provider().network.chainId);
-  return <h1>👉 Please connect to BNB chain to continue</h1>;
-}
-if (!state.loaded) {
-  console.log("Fetch config");
-  State.update({ loaded: true });
-  reloadConfig();
-  loaded += 1;
-}
 // DETECT SENDER
 if (state.sender === undefined && Ethers.send("eth_requestAccounts", [])[0]) {
   State.update({
     sender: ethers.utils.getAddress(Ethers.send("eth_requestAccounts", [])[0]),
   });
+}
+
+// Forbith
+if (!(state.sender && Ethers.provider().network.chainId === 56)) {
+  return <h1>👉 Please connect to BNB chain and reload page to continue</h1>;
 }
 
 // Get sender balance.
@@ -630,6 +638,7 @@ const createPocketScreen = () => {
         >
           <div class="deposit">Back</div>
         </div>
+
         {state.balance && state.balance > 0 && (
           <div
             class="frame-48098260"
