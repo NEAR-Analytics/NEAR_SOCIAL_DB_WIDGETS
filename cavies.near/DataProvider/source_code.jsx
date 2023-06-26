@@ -34,7 +34,13 @@ const fetchPockets = (ownerAddress) => {
   });
 };
 
+// emit data to parents component
 onLoad({
   useState,
   fetchPockets,
+});
+
+// trigger this to reload DOM
+State.update({
+  [`cavies.near/Widget/DataProvider`]: new Date().getTime(),
 });
