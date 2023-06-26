@@ -89,6 +89,7 @@ const MINTED_NFTS_STORAGE_KEY = "GenaDropSDK.mintedNfts";
 let accountId = context.accountId;
 
 let GenaDropSDK = {
+  initialized: false,
   network: null,
   isSoulBound: false,
   lastMintLink: "",
@@ -97,6 +98,7 @@ let GenaDropSDK = {
   mintedNfts: [],
   init: () => {
     Storage.get(MINTED_NFTS_STORAGE_KEY);
+    GenaDrop.initialized = true;
     GenaDropSDK.refresh();
   },
   mint: (
@@ -286,6 +288,5 @@ let GenaDropSDK = {
 };
 
 if (onLoad && !loaded) {
-  GenaDropSDK.init();
   onLoad(GenaDropSDK);
 }
