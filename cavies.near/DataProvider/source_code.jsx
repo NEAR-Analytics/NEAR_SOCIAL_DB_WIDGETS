@@ -11,14 +11,12 @@ const LIST_POCKET_ENDPOINT = `${API}/pool/decimals-formatted?limit=1000&offset=0
 // Define state reducer
 const context = {
   useState: (stateName, defaultValue) => {
-    console.log("here");
     if (!targetState[stateName]) {
       updateState({
         [stateName]: defaultValue,
       });
     }
 
-    console.log("here");
     return [
       targetState[stateName] || defaultValue,
       (value) => {
@@ -31,7 +29,6 @@ const context = {
 
   // Define methods to be exposed
   fetchPockets: (ownerAddress) => {
-    console.log({ ownerAddress, targetState });
     const res = context.useState("pockets", []);
 
     return asyncFetch(
@@ -42,5 +39,6 @@ const context = {
     });
   },
 };
+
 // emit data to parents component
 onLoad(context);
