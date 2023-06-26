@@ -8,6 +8,8 @@ const {
   DEX,
   debug,
 } = props;
+console.log("DexData2", DEX);
+
 let onLoad = props.onLoad;
 const forceReload = props.forceReload ?? false;
 
