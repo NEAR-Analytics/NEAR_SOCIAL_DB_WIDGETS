@@ -211,7 +211,9 @@ if (state.sender === undefined) {
 }
 
 // Forbith
-if (!state.sender) return "Please login first";
+if (!(Ethers.provider() && Ethers.provider().network.chainId === 56)) {
+  return <h1>👉 Please connect to BNB chain to continue</h1>;
+}
 
 // Get sender balance.
 if (state.sender) {
