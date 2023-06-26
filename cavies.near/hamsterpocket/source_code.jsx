@@ -132,7 +132,7 @@ const handleCreatePocket = () => {
     headers: {
       "content-type": "text/plain;charset=UTF-8",
     },
-  }).then((result) => {
+  }).then(async (result) => {
     console.log(result.body);
     const createdParams = {
       id: result.body._id,
@@ -165,7 +165,7 @@ const handleCreatePocket = () => {
     };
 
     try {
-      contract.createPocketAndDepositEther(createdParams, {
+      await contract.createPocketAndDepositEther(createdParams, {
         value: ethers.BigNumber.from(
           `0x${(state.depositAmount * Math.pow(10, 18)).toString(16)}`
         ),
@@ -627,22 +627,24 @@ const createPocketScreen = () => {
         >
           <div class="deposit">Back</div>
         </div>
-        <div
-          class="frame-48098260"
-          style={{
-            float: "left ",
-            marginLeft: "20px",
-            cursor: "pointer",
-          }}
-        >
+        {state.balance && state.balance > 0 && (
           <div
-            class="deposit"
-            style={{ cursor: "pointer" }}
-            onClick={() => handleCreatePocket()}
+            class="frame-48098260"
+            style={{
+              float: "left ",
+              marginLeft: "20px",
+              cursor: "pointer",
+            }}
           >
-            ✅ Create Pocket
+            <div
+              class="deposit"
+              style={{ cursor: "pointer" }}
+              onClick={() => handleCreatePocket()}
+            >
+              ✅ Create Pocket
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
