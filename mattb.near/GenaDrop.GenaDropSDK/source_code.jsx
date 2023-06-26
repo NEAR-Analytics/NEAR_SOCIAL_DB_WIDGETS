@@ -269,8 +269,10 @@ let GenaDropSDK = {
     let mintedNfts = Storage.get(MINTED_NFTS_STORAGE_KEY) ?? [];
     mintedNfts.push(log);
 
+    console.log(mintedNfts);
+
     GenaDropSDK.mintedNfts = mintedNfts;
-    Storage.set(MINTED_NFTS_STORAGE_KEY, GenaDropSDK.mintedNfts);
+    Storage.set(MINTED_NFTS_STORAGE_KEY, mintedNfts);
 
     GenaDropSDK.refresh();
   },
