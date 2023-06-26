@@ -947,7 +947,7 @@ if (ethers !== undefined && Ethers.send("eth_requestAccounts", [])[0]) {
         State.update({ loadComplete: true });
       } else if (chainIdData.chainId === 1101) {
         // ZKEVM
-
+        console.log("ZKEVM", DEX, state);
         if (DEX === "QuickSwap") {
           if (state.erc20Abi == undefined) {
             const erc20Abi = fetch(
