@@ -203,6 +203,7 @@ const handleWithdraw = () => {
   } catch {}
 };
 
+console.log(Ethers.provider());
 // Forbith
 if (!(Ethers.provider() && Ethers.provider().network.chainId === 56)) {
   return <h1>👉 Please connect to BNB chain to continue</h1>;
@@ -224,13 +225,12 @@ if (state.sender) {
     });
 }
 
-console.log("state reload", state);
-if (!state.loaded) {
+Ethers.provider()?.on("chainChanged", (chainId) => {
   console.log("Fetch config");
   State.update({ loaded: true });
   reloadConfig();
   loaded += 1;
-}
+});
 
 if (state.whiteLists !== {} && state.sender) {
   // Get pocket data when config has been loaded.
