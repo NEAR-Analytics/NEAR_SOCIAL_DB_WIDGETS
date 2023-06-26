@@ -315,7 +315,11 @@ const Theme = state.theme;
 
 const pocketListScreen = () => {
   if (state.pocketList.length === 0) {
-    return <div>You don't have any pockets, create one 🚀</div>;
+    return (
+      <>
+        <div>You don't have any pockets, create one 🚀</div>
+      </>
+    );
   }
 
   return (
