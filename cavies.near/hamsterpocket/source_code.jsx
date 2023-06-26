@@ -432,25 +432,28 @@ const createPocketScreen = () => {
               </div>
 
               <div class="frame">
-                <select
-                  class="token-select"
-                  onChange={(e) => {
-                    State.update({
-                      selectedTokenAddress: e.target.value,
-                    });
-                  }}
-                >
-                  {state.whiteLists !== {} &&
-                    Object.keys(state.whiteLists).map((address, index) => {
-                      if (state.whiteLists[address].symbol === "WBNB")
-                        return null;
-                      return (
-                        <option value={address} key={`token-inde${index}`}>
-                          {state.whiteLists[address].symbol}
-                        </option>
-                      );
-                    })}
-                </select>
+                {state.whiteLists && Object.keys(state.whiteLists).length > 0 && (
+                  <Typeahead
+                    defaultSelected={[
+                      {
+                        id: state.selectedTokenAddress,
+                        label: "ETH",
+                      },
+                    ]}
+                    filterBy={() => true}
+                    options={Object.keys(state.whiteLists)
+                      .filter((w) => state.whiteLists[w].symbol !== "WBNB")
+                      .map((address) => {
+                        return {
+                          id: address,
+                          label: state.whiteLists[address].symbol,
+                        };
+                      })}
+                    onChange={(value) => {
+                      State.update({ selectedTokenAddress: value[0].id });
+                    }}
+                  />
+                )}
               </div>
             </div>
             {/* <div class="balance-25-5">Balance: 25.5</div> */}
