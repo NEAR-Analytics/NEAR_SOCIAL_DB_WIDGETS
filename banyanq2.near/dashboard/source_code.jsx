@@ -293,7 +293,6 @@ return (
       props={{ accountId: "sfdao.near" }}
     />
     <br />
-    // ADD COMPONENT MAPPING
     <Flex>
       <Text
         size="14px"
