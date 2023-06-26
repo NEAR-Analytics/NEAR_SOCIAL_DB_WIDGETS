@@ -29,15 +29,17 @@ const context = {
 
   // Define methods to be exposed
   fetchPockets: (ownerAddress) => {
-    const res = context.useState("pockets", []);
+    const [_, setPockets] = context.useState("pockets", []);
 
     return asyncFetch(
       `${LIST_POCKET_ENDPOINT}&ownerAddress=${ownerAddress}`
     ).then((result) => {
-      res[1](result.body);
+      setPockets(result.body);
       return result.body;
     });
   },
+
+  //
 };
 
 // emit data to parents component
