@@ -10,6 +10,12 @@ const LIST_POCKET_ENDPOINT = `${API}/pool/decimals-formatted?limit=&offset=0&cha
 
 // Define state reducer
 const useState = (stateName, defaultValue) => {
+  if (!targetState[stateName]) {
+    updateState({
+      [stateName]: defaultValue,
+    });
+  }
+
   return [
     targetState[stateName] || defaultValue,
     (value) => {
