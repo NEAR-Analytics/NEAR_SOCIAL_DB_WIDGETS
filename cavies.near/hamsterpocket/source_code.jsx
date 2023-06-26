@@ -23,7 +23,7 @@ State.init({
 // HOST NAME API.
 const ACTIVE_STATUS = "POOL_STATUS::ACTIVE";
 var contract;
-const API = "https://prod-pocket-api.hamsterbox.xyz/api";
+const API = "https://dev-pocket-api.hamsterbox.xyz/api";
 const CONTRACT_DATA = {
   wagmiKey: "bsc",
   chainName: "BNB",
