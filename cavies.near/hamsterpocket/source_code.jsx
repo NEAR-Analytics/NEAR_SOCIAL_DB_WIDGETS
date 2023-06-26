@@ -203,16 +203,16 @@ const handleWithdraw = () => {
   } catch {}
 };
 
+// Forbith
+if (!(Ethers.provider() && Ethers.provider().network.chainId === 56)) {
+  return <h1>👉 Please connect to BNB chain to continue</h1>;
+}
+
 // DETECT SENDER
 if (state.sender === undefined) {
   State.update({
     sender: ethers.utils.getAddress(Ethers.send("eth_requestAccounts", [])[0]),
   });
-}
-
-// Forbith
-if (!(Ethers.provider() && Ethers.provider().network.chainId === 56)) {
-  return <h1>👉 Please connect to BNB chain to continue</h1>;
 }
 
 // Get sender balance.
