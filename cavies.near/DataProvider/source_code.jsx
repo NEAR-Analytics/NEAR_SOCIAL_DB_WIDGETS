@@ -33,7 +33,9 @@ const fetchPockets = (ownerAddress) => {
   return new Promise((resolve) => {
     asyncFetch(`${LIST_POCKET_ENDPOINT}&ownerAddress=${ownerAddress}`).then(
       (result) => {
-        setPocket(result.body);
+        updateState({
+          pockets: result.body,
+        });
         return resolve(result.body);
       }
     );
