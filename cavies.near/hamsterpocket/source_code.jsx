@@ -481,7 +481,9 @@ const createPocketScreen = () => {
             <div class="frame-48097891">
               <div class="amount-each-batch">
                 <span>
-                  <span class="amount-each-batch-span">💰 Batch amount</span>
+                  <span class="amount-each-batch-span">
+                    💰 Hourly buy amount
+                  </span>
                   <span class="amount-each-batch-span2"> </span>
                   <span class="amount-each-batch-span3">*</span>
                 </span>
@@ -718,6 +720,14 @@ const pocketDetailScreen = () => {
                   <div class="frame-48098084">
                     #{state.pocket && state.pocket._id}
                   </div>
+                </div>
+              </div>
+
+              <div class="frame-480978472">
+                <div class="strategy2">Frequency</div>
+
+                <div class="frame-48097840">
+                  <div class="frame-48098084">Hourly</div>
                 </div>
               </div>
 
