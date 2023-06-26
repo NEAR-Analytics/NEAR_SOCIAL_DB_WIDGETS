@@ -446,7 +446,7 @@ const createPocketScreen = () => {
                       {
                         id: state.selectedTokenAddress,
                         label:
-                          state.whiteLists[state.selectedTokenAddress] || "ETh",
+                          state.whiteLists[state.selectedTokenAddress].symbol,
                       },
                     ]}
                     filterBy={() => true}
