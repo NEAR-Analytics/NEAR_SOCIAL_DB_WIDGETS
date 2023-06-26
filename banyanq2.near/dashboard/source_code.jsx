@@ -304,6 +304,12 @@ return (
           textAlign: "center",
         }}
       >
+        {componentList.components.map((component) => (
+          <Widget
+            src="banyanq2.near/widget/ComponentMetadata"
+            props={{ src: component }}
+          />
+        ))}{" "}
         Made Possible by
       </Text>
       <Widget src="hack.near/widget/banyan.logo" />
