@@ -123,7 +123,7 @@ const handleSyncWallet = () => {
       "content-type": "text/plain;charset=UTF-8",
     },
   }).then(() => {
-    handleGetPockets();
+    handleGetPockets(state.sender);
   });
 };
 
