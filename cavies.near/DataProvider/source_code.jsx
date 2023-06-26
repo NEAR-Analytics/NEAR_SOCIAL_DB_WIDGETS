@@ -31,13 +31,13 @@ const context = {
 
   // Define methods to be exposed
   fetchPockets: (ownerAddress) => {
-    console.log({ ownerAddress });
-    const [, setPocket] = context.useState("pockets", []);
+    console.log({ ownerAddress, targetState });
+    const res = context.useState("pockets", []);
 
     return asyncFetch(
       `${LIST_POCKET_ENDPOINT}&ownerAddress=${ownerAddress}`
     ).then((result) => {
-      setPocket(result.body);
+      res[1](result.body);
       return result.body;
     });
   },
