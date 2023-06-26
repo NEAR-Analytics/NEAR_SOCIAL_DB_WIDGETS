@@ -33,13 +33,11 @@ const context = {
   fetchPockets: (ownerAddress) => {
     const [, setPocket] = useState("pockets", []);
 
-    return new Promise((resolve) => {
-      asyncFetch(`${LIST_POCKET_ENDPOINT}&ownerAddress=${ownerAddress}`).then(
-        (result) => {
-          setPocket(result.body);
-          return resolve(result.body);
-        }
-      );
+    return asyncFetch(
+      `${LIST_POCKET_ENDPOINT}&ownerAddress=${ownerAddress}`
+    ).then((result) => {
+      setPocket(result.body);
+      return result.body;
     });
   },
 };
