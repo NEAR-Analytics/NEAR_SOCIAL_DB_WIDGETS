@@ -98,7 +98,7 @@ let GenaDropSDK = {
   mintedNfts: [],
   init: () => {
     Storage.get(MINTED_NFTS_STORAGE_KEY);
-    GenaDropSDK.initialized = true;
+    GenaDrop.initialized = true;
     GenaDropSDK.refresh();
   },
   mint: (
@@ -288,5 +288,6 @@ let GenaDropSDK = {
 };
 
 if (onLoad && !loaded) {
+  GenaDropSDK.init();
   onLoad(GenaDropSDK);
 }
