@@ -10,7 +10,7 @@ let connections = Social.keys(`${accountId}/graph/connect/*`, "final", {
 });
 
 if (connections === null) {
-  return "Loading";
+  return "";
 }
 
 connections = Object.entries(connections[accountId].graph.connect || {});
