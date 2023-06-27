@@ -371,6 +371,11 @@ return (
     <NwWidget>
       <Header>
         <H2>News</H2>
+        <Promo>
+          <a href={nwSite} target="_blank">
+            Widget by Nearweek
+          </a>
+        </Promo>
       </Header>
       <Tabs>
         <TabNavs>
@@ -385,6 +390,22 @@ return (
         </TabNavs>
       </Tabs>
       <>
+        <TabContent active={state.active === 0}>
+          <>
+            {articles.length > 0 ? (
+              articles.map((article, index) => (
+                <Post post={article} index={index} />
+              ))
+            ) : (
+              <div>Loading ...</div>
+            )}
+            <TabContentFooter>
+              <ButtonLink href="//nearweek.medium.com" target="_blank">
+                View All
+              </ButtonLink>
+            </TabContentFooter>
+          </>
+        </TabContent>
         <TabContent active={state.active === 1}>
           <>
             {articles.length > 0 ? (
