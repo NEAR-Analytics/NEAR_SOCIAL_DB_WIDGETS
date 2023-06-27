@@ -75,6 +75,7 @@ return (
       </Section>
       <div className="col-md-9">
         <Container className="d-grid gap-3">
+          <h4>{state.selectedItem} Kudos</h4>
           {data.map((kudo, index) => (
             <Widget
               key={index}
