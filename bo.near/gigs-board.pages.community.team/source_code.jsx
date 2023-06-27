@@ -116,6 +116,11 @@ const Team = (
   <div class="d-flex flex-column align-items-center gap-4 p-4">
     {widget("components.molecule.tile", {
       heading: "Community Moderators",
+      children: <div className="flex-grow-1 d-flex flex-column gap-3">
+      <div
+        className={`d-flex flex-column gap-1}`}
+      >
+        </div></div>
     })}
     {widget("components.molecule.tile", {
       heading: "Admins",
