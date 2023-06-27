@@ -162,7 +162,7 @@ return (
   <div className="iframeContainer container">
     <iframe
       onLoad={() => console.log("iframe loaded")}
-      className="vh-100 w-100"
+      className="vh-70 w-100"
       style={{}}
       srcDoc={src}
     />
