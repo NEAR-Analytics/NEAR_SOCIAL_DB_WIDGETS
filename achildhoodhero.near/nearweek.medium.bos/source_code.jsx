@@ -56,15 +56,9 @@ const fetchData = (url) => {
     },
   });
 };
-const fetchDaoNews = fetchData(
-  "https://nearweek.com/api/md/dao-news?populate=deep&sort=createdAt:desc&pagination[pageSize]=12"
-);
-const fetchAudio = fetchData(
-  "https://nearweek.com/api/show-audio?populate=deep&sort=createdAt:desc&pagination[pageSize]=12"
-);
 
 const fetchMedium = fetch(
-  "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/nearprotocol/tagged/nearweek",
+  "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@nearweek",
   { method: "GET" }
 );
 
