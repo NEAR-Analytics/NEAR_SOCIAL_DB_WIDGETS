@@ -39,7 +39,7 @@ return (
       {filteredDaos.map((dao, j) => (
         <div className="d-flex m-2">
           <Widget
-            src="chaotictempest.near/widget/AccountProfileCard"
+            src="ndcplug.near/widget/DAOProfileCard"
             props={{ accountId: dao }}
           />
         </div>
