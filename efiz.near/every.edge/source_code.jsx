@@ -3,6 +3,10 @@ const blockHeight = props.blockHeight;
 
 const edges = Social.index("edges", path);
 
+if (!edges) {
+  return <></>;
+}
+
 return (
   <div>
     {edges?.map((it) => {
