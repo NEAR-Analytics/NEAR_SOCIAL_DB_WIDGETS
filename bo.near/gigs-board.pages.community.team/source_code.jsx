@@ -113,31 +113,27 @@ console.log(admins);
 console.log(moderators);
 
 const UserList = (name, users) => {
-    return <div>
-        {users.map((user, i) => 
-                <div>
-                <div>
-                    {name + ' #' + (i+1) }
-                </div>
-                <div>
-                    {user}
-                </div>
-                </div>
-        )}
-
+  return (
+    <div>
+      {users.map((user, i) => (
+        <div class="row pb-3">
+          <div class="col-4"><b>{name + " #" + (i + 1)}</b></div>
+          <div class="col-8">{user}</div>
+        </div>
+      ))}
     </div>
-}
+  );
+};
 
 const Team = (
   <div class="d-flex flex-column align-items-center gap-4 p-4">
     {widget("components.molecule.tile", {
       heading: "Community Moderators",
-      children: UserList('Moderator', moderators)
+      children: UserList("Moderator", moderators),
     })}
     {widget("components.molecule.tile", {
       heading: "Admins",
-      children: UserList('Admin', admins)
-
+      children: UserList("Admin", admins),
     })}
   </div>
 );
