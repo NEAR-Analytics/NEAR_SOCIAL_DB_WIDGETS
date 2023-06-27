@@ -12,7 +12,13 @@ const QUERYAPI_ENDPOINT =
   "https://near-queryapi.dev.api.pagoda.co/v1/graphql/";
 
 const defaultRenderer = (data) => {
-  return <div key={JSON.stringify(data)}>{JSON.stringify(data)}</div>;
+  return (
+    <div key={JSON.stringify(data)}>
+      <p>Account ID: {data.account_id}</p>
+      <p>Block Height: {data.block_height}</p>
+      <p>Block Timestamp: {data.block_timestamp}</p>
+    </div>
+  );
 };
 
 const renderer = props.renderer || defaultRenderer;
