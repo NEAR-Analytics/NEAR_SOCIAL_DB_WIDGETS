@@ -3,8 +3,8 @@ const path = props.path;
 
 const daoId = data.daoId;
 const name = data.name || "No-name profile";
-const image = data.image;
-const backgroundImage = data.backgroundImage;
+const image = data.logo;
+const backgroundImage = data.background;
 const tags = Object.keys(data.tags ?? {});
 const link = `https://everything.dev/${path}`;
 
