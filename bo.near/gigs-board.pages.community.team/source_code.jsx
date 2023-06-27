@@ -51,45 +51,34 @@ function href(widgetName, linkProps) {
   }${linkPropsQuery}`;
 }
 /* END_INCLUDE: "common.jsx" */
-/* INCLUDE: "core/adapter/dev-hub" */
-const contractAccountId =
-  props.nearDevGovGigsContractAccountId ||
-  (context.widgetSrc ?? "devgovgigs.near").split("/", 1)[0];
+/* INCLUDE: "core/lib/gui/attractable" */
+const AttractableDiv = styled.div`
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+  transition: box-shadow 0.6s;
 
-const DevHub = {
-  edit_community_github: ({ handle, github }) =>
-    Near.call(contractAccountId, "edit_community_github", { handle, github }) ??
-    null,
+  &:hover {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  }
+`;
 
-  get_access_control_info: () =>
-    Near.view(contractAccountId, "get_access_control_info") ?? null,
+const AttractableLink = styled.a`
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+  transition: box-shadow 0.6s;
 
-  get_all_authors: () =>
-    Near.view(contractAccountId, "get_all_authors") ?? null,
+  &:hover {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  }
+`;
 
-  get_all_communities: () =>
-    Near.view(contractAccountId, "get_all_communities") ?? null,
+const AttractableImage = styled.img`
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+  transition: box-shadow 0.6s;
 
-  get_all_labels: () => Near.view(contractAccountId, "get_all_labels") ?? null,
-
-  get_community: ({ handle }) =>
-    Near.view(contractAccountId, "get_community", { handle }) ?? null,
-
-  get_post: ({ post_id }) =>
-    Near.view(contractAccountId, "get_post", { post_id }) ?? null,
-
-  get_posts_by_author: ({ author }) =>
-    Near.view(contractAccountId, "get_posts_by_author", { author }) ?? null,
-
-  get_posts_by_label: ({ label }) =>
-    Near.view(nearDevGovGigsContractAccountId, "get_posts_by_label", {
-      label,
-    }) ?? null,
-
-  get_root_members: () =>
-    Near.view(contractAccountId, "get_root_members") ?? null,
-};
-/* END_INCLUDE: "core/adapter/dev-hub" */
+  &:hover {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  }
+`;
+/* END_INCLUDE: "core/lib/gui/attractable" */
 
 if (!props.handle) {
   return (
@@ -106,20 +95,15 @@ if (communityData === null || root_members === null) {
   return <div>Loading...</div>;
 }
 
-console.log(communityData);
-console.log(root_members);
+const moderators = root_members["team:moderators"].children;
+const admins = communityData.admins;
 
-const Team = (
-  <div>
-    {Object.keys(root_members).map((member) =>
-      widget(
-        "entity.team.TeamInfo",
-        { member, members_list: access_info.members_list },
-        member
-      )
-    )}
-  </div>
-);
+console.log(admins);
+console.log(moderators);
+
+const Team = <div>
+   {widget("components.molecule.tile", {})}
+</div>
 
 return widget("components.template.community-page", {
   handle: props.handle,
