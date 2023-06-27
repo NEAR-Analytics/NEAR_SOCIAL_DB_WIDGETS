@@ -9,8 +9,12 @@ const tags = Object.keys(data.tags ?? {});
 const link = `https://everything.dev/${path}`;
 
 const nameHeader = <h4 className="mt-0 mb-0 text-truncate">{data.name}</h4>;
-console.log(image);
-console.log(backgroundImage);
+return (
+  <>
+    <p>{JSON.stringify(data)}</p>
+    <br />
+  </>
+);
 
 return (
   <div className="bg-white shadow rounded overflow-hidden">
