@@ -23,6 +23,7 @@ const Wrapper = styled.div`
 
 return (
   <Wrapper>
+    <hr />
     <div>
       <h3>Edit Freelancer Profile</h3>
     </div>
