@@ -38,7 +38,7 @@ const Text = styled.p`
 `;
 
 if (connections !== null && connections.length === 0) {
-  return <p>{accountId} is not yet connected...</p>;
+  return "";
 }
 
 return (
