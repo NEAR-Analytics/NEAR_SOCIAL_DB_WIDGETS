@@ -1039,7 +1039,7 @@ const renderScreenTitle = () => {
   if (state.currentScreen === 0) return "🏆 Your active pockets";
   if (state.currentScreen === 1) return "🚀 Create a pocket";
 
-  return "🥽 Pocket details";
+  return "🥽 Pocket performance";
 };
 const renderAppScreen = () => {
   if (state.currentScreen === 0) return pocketListScreen();
