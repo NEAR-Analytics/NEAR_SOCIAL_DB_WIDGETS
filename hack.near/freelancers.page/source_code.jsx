@@ -137,7 +137,6 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center;
   padding: 8px;
 
   @media (max-width: 480px) {
@@ -147,6 +146,8 @@ const Container = styled.div`
 
 const Proposals = styled.div`
   max-width: 555px;
+  text-align: left;
+
 
   @media (max-width: 480px) {
     max-width: 380px;
@@ -185,9 +186,7 @@ return (
       ) : (
         <div>
           {!profile ? (
-            <Proposals>
-              <Widget src="hack.near/widget/pro.editor" />
-            </Proposals>
+            <Widget src="hack.near/widget/pro.editor" />
           ) : (
             <div>
               {!human ? (
