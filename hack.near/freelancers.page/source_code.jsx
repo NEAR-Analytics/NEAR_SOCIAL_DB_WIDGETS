@@ -1,23 +1,11 @@
 const accountId = context.accountId;
-const daoId = props.daoId ?? "build.sputnik-dao.near";
-const role = props.role ?? "voter";
+const orgId = props.orgId ?? "freelancerdao.near";
 
 let profile = Social.getr(`${accountId}/profile`);
 
 if (profile === null) {
   return "";
 }
-
-const policy = Near.view(daoId, "get_policy");
-const deposit = policy.proposal_bond;
-
-if (policy === null) {
-  return "";
-}
-
-const group = policy.roles
-  .filter((role) => role.name === roleId)
-  .map((role) => role.kind.Group);
 
 // IAH Verification
 let human = false;
@@ -30,29 +18,6 @@ for (let i = 0; i < userSBTs.length; i++) {
     human = true;
   }
 }
-
-const handleJoin = () => {
-  const gas = 200000000000000;
-  const deposit = 100000000000000000000000;
-  Near.call([
-    {
-      contractName: daoId,
-      methodName: "add_proposal",
-      args: {
-        proposal: {
-          description: "potential member",
-          kind: {
-            AddMemberToRole: {
-              member_id: accountId,
-            },
-          },
-        },
-      },
-      gas: gas,
-      deposit: deposit,
-    },
-  ]);
-};
 
 const H1 = styled.h1`
   font-family: "FK Grotesk", sans-serif;
@@ -211,14 +176,14 @@ return (
                   <Widget
                     src="hack.near/widget/connect.button"
                     props={{
-                      accountId: daoId,
+                      accountId: orgId,
                     }}
                   />
                   <br />
                   <Widget
                     src="hack.near/widget/connections"
                     props={{
-                      accountId: daoId,
+                      accountId: orgId,
                     }}
                   />
                 </div>
