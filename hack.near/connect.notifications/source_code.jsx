@@ -1,4 +1,4 @@
-const accountId = "build.sputnik-dao.near";
+const accountId = context.accountId;
 
 if (!accountId) {
   return <></>;
