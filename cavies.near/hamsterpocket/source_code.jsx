@@ -317,7 +317,7 @@ const pocketListScreen = () => {
   if (state.pocketList.length === 0) {
     return (
       <>
-        <div>You don't have any pockets, create one 🚀</div>
+        <div>You don't have any strategies, create one 🚀</div>
       </>
     );
   }
