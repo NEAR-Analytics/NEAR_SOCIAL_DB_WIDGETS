@@ -1023,8 +1023,8 @@ const pocketDetailScreen = () => {
                 <div class="iconly-light-arrow-right"></div>
                 <div class="button4">
                   {state.pocket.status === "POOL_STATUS::CLOSED"
-                    ? "💳 Withdraw Pocket"
-                    : "💀 Close Pocket"}
+                    ? "💳 Withdraw Fund"
+                    : "💀 Close Strategy"}
                 </div>
                 <div class="iconly-light-arrow-right"></div>
               </div>
@@ -1036,10 +1036,10 @@ const pocketDetailScreen = () => {
   );
 };
 const renderScreenTitle = () => {
-  if (state.currentScreen === 0) return "🏆 Your active pockets";
-  if (state.currentScreen === 1) return "🚀 Create a pocket";
+  if (state.currentScreen === 0) return "🏆 Your active strategies";
+  if (state.currentScreen === 1) return "🚀 Create a strategy";
 
-  return "🥽 Pocket performance";
+  return "🥽 Strategy performance";
 };
 const renderAppScreen = () => {
   if (state.currentScreen === 0) return pocketListScreen();
@@ -1077,7 +1077,7 @@ return (
               style={{ cursor: "pointer", marginLeft: "10px" }}
               onClick={() => handleSyncPocket()}
             >
-              <div class="sync">Sync Pocket</div>
+              <div class="sync">Refresh</div>
               <div class="ic-16-refresh" style={{ marginLeft: "10px" }}>
                 <div class="ic-16-refresh">
                   <svg
@@ -1115,7 +1115,7 @@ return (
               style={{ cursor: "pointer" }}
               onClick={() => handleSyncWallet()}
             >
-              <div class="sync">Sync</div>
+              <div class="sync">Refresh</div>
               <div class="ic-16-refresh" style={{ marginLeft: "10px" }}>
                 <div class="ic-16-refresh">
                   <svg
