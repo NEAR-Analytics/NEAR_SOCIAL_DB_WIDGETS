@@ -40,8 +40,56 @@ for (let i = 0; i < userSBTs.length; i++) {
   }
 }
 
+const Title = styled.h1`
+  font-weight: 600;
+  font-size: ${(p) => p.size || "25px"};
+  line-height: 1.2em;
+  color: #11181c;
+  margin: ${(p) => (p.margin ? "0 0 23px" : "0")};
+  overflow-wrap: anywhere;
+`;
+
+const Text = styled.p`
+  margin: 0;
+  line-height: 1.5rem;
+  color: ${(p) => (p.bold ? "#11181C" : "#687076")} !important;
+  font-weight: ${(p) => (p.bold ? "600" : "400")};
+  font-size: ${(p) => (p.small ? "12px" : "14px")};
+  overflow: ${(p) => (p.ellipsis ? "hidden" : "")};
+  text-overflow: ${(p) => (p.ellipsis ? "ellipsis" : "")};
+  white-space: ${(p) => (p.ellipsis ? "nowrap" : "")};
+  overflow-wrap: anywhere;
+
+  b {
+    font-weight: 600;
+    color: #11181c;
+  }
+`;
+
+const TextBadge = styled.p`
+  display: inline-block;
+  margin: 0;
+  font-size: 10px;
+  line-height: 1.1rem;
+  background: #687076;
+  color: #fff;
+  font-weight: 600;
+  white-space: nowrap;
+  padding: 0 6px;
+  border-radius: 3px;
+`;
+
+const accountConnections = Social.keys(
+  `${accountId}/graph/connect/${context.accountId}`,
+  undefined,
+  {
+    values_only: true,
+  }
+);
+const accountIsConnected = Object.keys(accountConnections || {}).length > 0;
+
 return (
-  <div className="bg-white shadow rounded overflow-hidden">
+  <div className="bg-white shadow rounded overflow-hidden m-3">
     <div className="px-4 pt-0 pb-5 bg-dark position-relative">
       {backgroundImage && (
         <Widget
@@ -86,36 +134,16 @@ return (
       <div className="d-md-flex justify-content-between pt-3 mb-2">
         <div style={{ paddingTop: "3rem" }}>
           <div className="me-2 d-sm-flex gap-1 flex-row align-items-center">
-            <div className="me-2 position-relative">
-              {link ? (
-                <a className="text-truncate text-dark" href={link}>
-                  {nameHeader}
-                </a>
-              ) : (
-                nameHeader
-              )}
-              <div>
-                {human ? (
-                  <i className="bi bi-patch-check"></i>
-                ) : (
-                  <i className="bi bi-patch-question"></i>
-                )}
-                {accountId}
-                <Widget
-                  src="mob.near/widget/CopyButton"
-                  props={{
-                    text: accountId,
-                    className: "btn btn-sm btn-outline-dark border-0",
-                  }}
-                />
-                <Widget
-                  src="hack.near/widget/connect.badge"
-                  props={{ accountId }}
-                />
-              </div>
-            </div>
+            <Title>{profile.name || accountId}</Title>
+            {accountIsConnected && (
+              <h5 className="m-2">
+                <i className="bi bi-patch-check me-1"></i>
+              </h5>
+            )}
           </div>
-          <div>
+          <Text>@{accountId}</Text>
+
+          <div className="m-1">
             <Widget
               src="hack.near/widget/connect.stats"
               props={{ accountId }}
