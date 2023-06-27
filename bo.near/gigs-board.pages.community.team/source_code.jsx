@@ -117,10 +117,25 @@ const UserList = (name, users) => {
     <div>
       {users.map((user, i) => (
         <div className={`row ${i < users.length - 1 ? "mb-3" : ""}`}>
-          <div class="col-4">
+          <div class="col-3">
             <b>{name + " #" + (i + 1)}</b>
           </div>
-          <div class="col-8">{user}</div>
+          <div class="col-9">
+            <span
+              key={user}
+              className="d-inline-flex"
+              style={{ fontWeight: 500 }}
+            >
+              <Widget
+                src="neardevgov.near/widget/ProfileLine"
+                props={{
+                  accountId: user,
+                  hideAccountId: true,
+                  tooltip: true,
+                }}
+              />
+            </span>
+          </div>
         </div>
       ))}
     </div>
