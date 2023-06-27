@@ -379,12 +379,7 @@ return (
       </Header>
       <Tabs>
         <TabNavs>
-          <Tab
-            mobile={false}
-            onClick={handleTabClick}
-            active={state.active === 1}
-            id={1}
-          >
+          <Tab mobile={false} onClick={handleTabClick} active={true} id={1}>
             Articles
           </Tab>
         </TabNavs>
