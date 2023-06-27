@@ -159,16 +159,11 @@ const Button = styled.button`
 `;
 //
 return (
-  <div className="iframeContainer" style={{ display: block }}>
+  <div className="iframeContainer container">
     <iframe
       onLoad={() => console.log("iframe loaded")}
-      className="w-100 h-100"
-      style={{
-        position: fixed,
-        inset: "0px",
-        height: "100%!important;",
-        width: "100%!important;",
-      }}
+      className="vh-100 w-100"
+      style={{}}
       srcDoc={src}
     />
   </div>
