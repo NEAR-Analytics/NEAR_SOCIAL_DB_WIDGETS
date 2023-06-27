@@ -106,6 +106,9 @@ if (communityData === null || root_members === null) {
   return <div>Loading...</div>;
 }
 
+console.log(communityData);
+console.log(root_members);
+
 const Team = (
   <div>
     {Object.keys(root_members).map((member) =>
