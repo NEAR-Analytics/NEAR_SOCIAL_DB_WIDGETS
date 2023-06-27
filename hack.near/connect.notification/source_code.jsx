@@ -157,6 +157,7 @@ return (
 
       <Text bold>
         <Text as={actionable ? "a" : "p"}>{notificationMessage[type]}</Text>
+        <br />
         <Widget
           src="mob.near/widget/TimeAgo"
           props={{ blockHeight: props.blockHeight }}
