@@ -190,7 +190,7 @@ return (
             </Proposals>
           ) : (
             <div>
-              {!human ? (
+              {human ? (
                 <div className="row">
                   <div className="col-auto mt-5">
                     <Widget
