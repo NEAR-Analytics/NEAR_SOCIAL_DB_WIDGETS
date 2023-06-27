@@ -139,18 +139,20 @@ const src = `
 
 
 `;
-
+//
 return (
-  <div className="w-100 h-100">
-    <iframe
-      iframeResizer={{
-        onResized: ({ width, height }) => {
-          console.log("iframe resized", width, height);
-        },
-      }}
-      onLoad={() => console.log("iframe loaded")}
-      className="position-absolute w-100 h-100"
-      srcDoc={src}
-    />
-  </div>
+  <>
+    <div className="min-vw-100 min-vh-100" style={{ "min-height": "500px" }}>
+      <iframe
+        iframeResizer={{
+          onResized: ({ width, height }) => {
+            console.log("iframe resized", width, height);
+          },
+        }}
+        onLoad={() => console.log("iframe loaded")}
+        className="position-absolute w-100 h-100"
+        srcDoc={src}
+      />
+    </div>
+  </>
 );
