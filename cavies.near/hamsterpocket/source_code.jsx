@@ -670,7 +670,7 @@ const createPocketScreen = () => {
             }}
           >
             <div class="deposit" style={{ cursor: "pointer" }}>
-              ✅ Create Pocket
+              ✅ Save
             </div>
           </div>
         )}
