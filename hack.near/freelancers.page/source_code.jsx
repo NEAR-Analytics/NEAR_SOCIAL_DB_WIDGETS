@@ -1,5 +1,5 @@
 const accountId = context.accountId;
-const daoId = props.daoId ?? "rc-dao.sputnik-dao.near";
+const daoId = props.daoId ?? "build.sputnik-dao.near";
 const role = props.role ?? "voter";
 
 let profile = Social.getr(`${accountId}/profile`);
