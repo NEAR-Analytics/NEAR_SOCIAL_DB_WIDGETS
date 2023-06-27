@@ -1,7 +1,8 @@
 State.init({ text: props.firstText });
 
+const returnText = (e) => e;
 const stateUpdate = props.stateUpdate;
-const filterText = props.filterText;
+const filterText = props.filterText ?? returnText;
 
 return (
   <input
