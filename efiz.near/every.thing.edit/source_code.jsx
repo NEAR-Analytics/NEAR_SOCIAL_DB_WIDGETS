@@ -3,6 +3,7 @@ const blockHeight = props.blockHeight;
 
 function handleSubmit(val) {
   const parts = path.split("/");
+  const creatorId = parts[0];
   parts.shift(); // Remove the first element
   const newData = {
     [parts[0]]: {
