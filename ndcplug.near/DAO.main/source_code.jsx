@@ -27,8 +27,9 @@ if (props.tab && props.tab !== state.selectedTab) {
   });
 }
 
+const daoPageAccount = "ndcplug.near";
 const profile = props.profile ?? Social.getr(`${daoId}/profile`);
-const accountUrl = `#/sking.near/widget/DAO.Page?daoId=${daoId}`;
+const accountUrl = `#/${daoPageAccount}/widget/DAO.Page?daoId=${daoId}`;
 
 const Wrapper = styled.div`
   padding-bottom: 48px;
