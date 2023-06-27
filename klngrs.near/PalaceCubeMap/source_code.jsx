@@ -117,11 +117,17 @@ const src = `
 			function onWindowResize() {
 
 				console.log(window.innerWidth, window.innerHeight)
+				var canvasContainer = document.getElementById("canvas-container");
+				var canvas = canvasContainer.firstChild;
+				canvasContainer.style.height = canvas.style.height = window.innerHeight + "px";
+				canvasContainer.style.width = canvas.style.width = window.innerWidth + "px";
+				canvas.style.margin = "auto";
+				canvas.style.width = "auto";
 
-				// camera.aspect = window.innerWidth / window.innerHeight;
-				// camera.updateProjectionMatrix();
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
 
-				// renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.setSize( window.innerWidth, window.innerHeight );
 
 			}
 
@@ -159,13 +165,10 @@ return (
         iframeResizer={{
           onResized: ({ width, height }) => {
             console.log("iframe resized", width, height);
-            var canvas = document.getElementById("canvas-container");
-            canvas.style.height = height + "px";
-            canvas.style.width = height + "px";
           },
         }}
         onLoad={() => console.log("iframe loaded")}
-        className="position-absolute w-100 h-100"
+        className="w-100 h-100"
         srcDoc={src}
       />
     </div>
