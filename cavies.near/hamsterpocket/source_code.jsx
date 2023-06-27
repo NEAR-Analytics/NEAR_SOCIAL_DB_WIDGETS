@@ -258,7 +258,7 @@ const cssFont = fetch(
   "https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800"
 ).body;
 const css = fetch(
-  "https://raw.githubusercontent.com/CaviesLabs/hamsterpocket-assets/main/style.css"
+  "https://raw.githubusercontent.com/CaviesLabs/hamsterpocket-assets/main/style.css?v=1"
 ).body;
 
 if (!cssFont || !css) return "";
