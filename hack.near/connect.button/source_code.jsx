@@ -57,7 +57,7 @@ const Wrapper = styled.div`
     height: 39px;
     border-radius: 100px;
     font-weight: 600;
-    font-size: 18px;
+    font-size: 15px;
     line-height: 39px;
     text-align: center;
     cursor: pointer;
