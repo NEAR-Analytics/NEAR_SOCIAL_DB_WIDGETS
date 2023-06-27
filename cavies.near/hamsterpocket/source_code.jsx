@@ -1131,9 +1131,10 @@ return (
             >
               <div class="button-connectwallet">🚀 Create</div>
             </div>
+
             <div
               class="sync-button"
-              style={{ cursor: "pointer" }}
+              style={{ cursor: "pointer", marginLeft: "10px", height: "32px" }}
               onClick={() => handleSyncWallet()}
             >
               <div class="sync">Refresh</div>
