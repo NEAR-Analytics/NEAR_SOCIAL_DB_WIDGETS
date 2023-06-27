@@ -825,7 +825,16 @@ const pocketDetailScreen = () => {
                 <div class="strategy2">APL (ROI)</div>
                 <div class="frame-48097840">
                   <div class="frame-48098084">
-                    <div class="_10-usdc-monthly3">
+                    <div
+                      class="_10-usdc-monthly3"
+                      style={{
+                        color: (state.pocket?.currentROIValue || "0").includes(
+                          "-"
+                        )
+                          ? "red"
+                          : undefined,
+                      }}
+                    >
                       {state.pocket?.currentROIValue} {state.baseToken?.symbol}{" "}
                       ({state.pocket?.currentROI}%)
                     </div>
