@@ -112,18 +112,32 @@ const admins = communityData.admins;
 console.log(admins);
 console.log(moderators);
 
+const UserList = (name, users) => {
+    return <div>
+        {users.map((user, i) => 
+                <div>
+                <div>
+                    {name + ' #' + (i+1) }
+                </div>
+                <div>
+                    {user}
+                </div>
+                </div>
+        )}
+
+    </div>
+}
+
 const Team = (
   <div class="d-flex flex-column align-items-center gap-4 p-4">
     {widget("components.molecule.tile", {
       heading: "Community Moderators",
-      children: <div className="flex-grow-1 d-flex flex-column gap-3">
-      <div
-        className={`d-flex flex-column gap-1}`}
-      >
-        </div></div>
+      children: UserList('Moderator', moderators)
     })}
     {widget("components.molecule.tile", {
       heading: "Admins",
+      children: UserList('Admin', admins)
+
     })}
   </div>
 );
