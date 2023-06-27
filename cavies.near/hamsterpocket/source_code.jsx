@@ -358,16 +358,16 @@ const pocketListScreen = () => {
                 }}
               >
                 <div
-                  class="_10-usdc-monthly3"
                   style={{
                     textAlign: "right",
-                    color: (state.pocket?.currentROIValue || "0").includes("-")
+                    color: (pocket?.currentROIValue || "0").includes("-")
                       ? "red"
-                      : undefined,
+                      : "#26c673",
                   }}
                 >
-                  PNL: {pocket?.currentROIValue} {pocket.baseTokenInfo?.symbol}{" "}
-                  ({pocket?.currentROI}%)
+                  💵 {pocket?.currentROIValue} {pocket?.baseTokenInfo[0].symbol}{" "}
+                  ({pocket?.currentROI}
+                  %)
                 </div>
               </div>
             </div>
