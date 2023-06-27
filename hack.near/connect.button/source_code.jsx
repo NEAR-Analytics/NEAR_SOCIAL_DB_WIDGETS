@@ -54,7 +54,7 @@ const Wrapper = styled.div`
     justify-content: center;
     gap: 8px;
     padding: 8px 16px;
-    height: 32px;
+    height: 39px;
     border-radius: 100px;
     font-weight: 600;
     font-size: 23px;
