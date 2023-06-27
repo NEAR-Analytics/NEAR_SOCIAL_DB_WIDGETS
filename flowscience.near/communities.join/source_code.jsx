@@ -1,5 +1,5 @@
 const accountId = context.accountId;
-const memberId = props.memberId ?? context.accountId;
+const memberId = props.memberId ?? "flowscience.near";
 const roleId = props.roleId ?? "Council";
 const daoId = props.daoId ?? "cannabis-genome.sputnik-dao.near";
 
@@ -79,7 +79,7 @@ return (
     )}
     <a
       className="btn btn-outline-success m-1"
-      href="#/hack.near/widget/verified.members"
+      href="#/flowscience.near/widget/verified.members"
     >
       Members
     </a>
