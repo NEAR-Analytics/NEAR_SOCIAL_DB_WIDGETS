@@ -156,9 +156,7 @@ return (
       </div>
 
       <Text bold>
-        <Text as={actionable ? "a" : "p"} href={actionable ? postUrl : ""}>
-          {notificationMessage[type]}
-        </Text>
+        <Text as={actionable ? "a" : "p"}>{notificationMessage[type]}</Text>
         <Widget
           src="mob.near/widget/TimeAgo"
           props={{ blockHeight: props.blockHeight }}
@@ -167,7 +165,7 @@ return (
       </Text>
 
       <div>
-        {(type === "connect" || type === "block") && (
+        {(type === "connect" || type === "disconnect") && (
           <Widget
             src="hack.near/widget/connect.button"
             props={{ accountId: props.accountId }}
