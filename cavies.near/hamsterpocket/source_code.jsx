@@ -453,7 +453,9 @@ const createPocketScreen = () => {
                         };
                       })}
                     onChange={(value) => {
-                      State.update({ selectedTokenAddress: value[0].id });
+                      if (value[0].id) {
+                        State.update({ selectedTokenAddress: value[0].id });
+                      }
                     }}
                   />
                 )}
