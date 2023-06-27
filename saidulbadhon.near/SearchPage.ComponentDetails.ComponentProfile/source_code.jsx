@@ -58,7 +58,7 @@ const Thumbnail = styled.div`
 return (
   <Wrapper
     // href={`/#/adminalpha.near/widget/ComponentDetailsPage?src=${props.src}`}
-    href={`/${props.src}`}
+    href={`/search?src=${props.src}`}
   >
     <Thumbnail>
       <Widget
