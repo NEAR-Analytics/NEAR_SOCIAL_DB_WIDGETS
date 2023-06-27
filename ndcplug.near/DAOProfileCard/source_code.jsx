@@ -1,7 +1,7 @@
 const accountId = props.accountId ?? "hack.near";
 const profile = props.profile || Social.get(`${accountId}/profile/**`, "final");
 const tags = Object.keys(profile.tags || {});
-const profileUrl = `/sking.near/widget/DAO.Page?daoId=${accountId}`;
+const profileUrl = `/ndcplug.near/widget/DAO.main?daoId=${accountId}`;
 const onPointerUp =
   props.onClick ??
   ((event) => {
