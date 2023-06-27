@@ -90,9 +90,11 @@ function dateToDays(date) {
 
 const news = [...(fetchDaoNews?.body.data ?? []), ...posts]
   .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-  .slice(0, 12);
+  .slice(0, 24);
 
-const blog = [...mediumPosts];
+const blog = [...mediumPosts]
+  .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+  .slice(0, 24);
 const audio = [...(fetchAudio?.body.data ?? [])].map((item) => {
   return {
     title: item.Title,
