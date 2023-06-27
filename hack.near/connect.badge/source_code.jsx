@@ -3,7 +3,7 @@ if (!props.accountId || !context.accountId) {
 }
 
 const o = Social.keys(
-  `${props.accountId}/graph/follow/${context.accountId}`,
+  `${props.accountId}/graph/connect/${context.accountId}`,
   undefined,
   {
     values_only: true,
