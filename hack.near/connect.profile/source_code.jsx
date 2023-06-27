@@ -1,3 +1,5 @@
+const orgId = props.orgId ?? "freelancerdao.near";
+
 const accountId = props.accountId ?? context.accountId;
 if (!accountId) {
   return "missing *accountId*";
@@ -80,7 +82,7 @@ const TextBadge = styled.p`
 `;
 
 const accountConnections = Social.keys(
-  `${accountId}/graph/connect/${context.accountId}`,
+  `${orgId}/graph/connect/${context.accountId}`,
   undefined,
   {
     values_only: true,
