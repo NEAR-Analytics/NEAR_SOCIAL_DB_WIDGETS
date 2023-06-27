@@ -371,11 +371,6 @@ return (
     <NwWidget>
       <Header>
         <H2>News</H2>
-        <Promo>
-          <a href={nwSite} target="_blank">
-            Widget by Nearweek
-          </a>
-        </Promo>
       </Header>
       <Tabs>
         <TabNavs>
@@ -390,7 +385,7 @@ return (
         </TabNavs>
       </Tabs>
       <>
-        <TabContent active={state.active === 0}>
+        <TabContent active={state.active === 1}>
           <>
             {articles.length > 0 ? (
               articles.map((article, index) => (
