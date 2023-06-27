@@ -92,7 +92,7 @@ const news = [...(fetchDaoNews?.body.data ?? []), ...posts]
   .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
   .slice(0, 12);
 
-const articles = [...mediumPosts];
+const blog = [...mediumPosts];
 const audio = [...(fetchAudio?.body.data ?? [])].map((item) => {
   return {
     title: item.Title,
@@ -380,17 +380,15 @@ return (
       <Tabs>
         <TabNavs>
           <Tab mobile={false} onClick={handleTabClick} active={true} id={1}>
-            Articles
+            Blog
           </Tab>
         </TabNavs>
       </Tabs>
       <>
         <TabContent active={state.active === 0}>
           <>
-            {articles.length > 0 ? (
-              articles.map((article, index) => (
-                <Post post={article} index={index} />
-              ))
+            {blog.length > 0 ? (
+              blog.map((blog, index) => <Post post={blog} index={index} />)
             ) : (
               <div>Loading ...</div>
             )}
@@ -403,10 +401,8 @@ return (
         </TabContent>
         <TabContent active={state.active === 1}>
           <>
-            {articles.length > 0 ? (
-              articles.map((article, index) => (
-                <Post post={article} index={index} />
-              ))
+            {blog.length > 0 ? (
+              blog.map((blog, index) => <Post post={blog} index={index} />)
             ) : (
               <div>Loading ...</div>
             )}
