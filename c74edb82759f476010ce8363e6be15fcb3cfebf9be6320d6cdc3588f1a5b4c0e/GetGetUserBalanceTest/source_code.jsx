@@ -84,4 +84,4 @@ function getUserBalance(poolAddress, userAddress) {
 
 props.getGetUserBalance(getUserBalance);
 
-return <></>;
+return <>a</>;
