@@ -9,12 +9,6 @@ const tags = Object.keys(data.tags ?? {});
 const link = `https://everything.dev/${path}`;
 
 const nameHeader = <h4 className="mt-0 mb-0 text-truncate">{data.name}</h4>;
-return (
-  <>
-    <p>{JSON.stringify(data)}</p>
-    <br />
-  </>
-);
 
 return (
   <div className="bg-white shadow rounded overflow-hidden">
@@ -37,14 +31,11 @@ return (
         style={{ transform: "translateY(7rem)" }}
       >
         <Widget
-          src="mob.near/widget/ProfileImage"
+          src="mob.near/widget/Image"
           props={{
-            profile,
-            accountId,
+            image,
             style: { width: "10rem", height: "10rem" },
-            className: "mb-2",
-            imageClassName: "rounded-circle w-100 h-100 img-thumbnail d-block",
-            thumbnail: false,
+            className: "rounded-circle img-thumbnail d-block mb-2",
           }}
         />
       </div>
