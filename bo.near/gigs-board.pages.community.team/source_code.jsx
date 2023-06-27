@@ -112,8 +112,13 @@ const admins = communityData.admins;
 console.log(admins);
 console.log(moderators);
 
-const Team = <div>
-   {widget("components.molecule.tile", {})}
+const Team = <div class="d-flex flex-column align-items-center gap-4 p-4">
+   {widget("components.molecule.tile", {
+    header: 'Community Moderators'
+   })}
+      {widget("components.molecule.tile", {
+    header: 'Admins'
+   })}
 </div>
 
 return widget("components.template.community-page", {
