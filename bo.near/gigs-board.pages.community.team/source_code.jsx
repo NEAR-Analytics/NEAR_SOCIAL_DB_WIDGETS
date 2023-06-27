@@ -100,9 +100,9 @@ if (!props.handle) {
 }
 
 const communityData = DevHub.get_community({ handle: props.handle });
-const  root_members = DevHub.get_root_members() ?? null;
+const root_members = DevHub.get_root_members() ?? null;
 
-if (communityData === null) {
+if (communityData === null || root_members === null) {
   return <div>Loading...</div>;
 }
 
