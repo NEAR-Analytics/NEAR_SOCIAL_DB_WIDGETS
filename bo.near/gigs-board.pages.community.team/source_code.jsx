@@ -116,8 +116,10 @@ const UserList = (name, users) => {
   return (
     <div>
       {users.map((user, i) => (
-        <div class="row pb-3">
-          <div class="col-4"><b>{name + " #" + (i + 1)}</b></div>
+        <div className={`row ${i < users.length - 1 ? "mb-3" : ""}`}>
+          <div class="col-4">
+            <b>{name + " #" + (i + 1)}</b>
+          </div>
           <div class="col-8">{user}</div>
         </div>
       ))}
