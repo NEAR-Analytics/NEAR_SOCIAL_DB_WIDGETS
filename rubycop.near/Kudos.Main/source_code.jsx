@@ -28,6 +28,7 @@ for (let i = 0; i < upvotes.length; i++) {
 const widgets = {
   header: "rubycop.near/widget/Kudos.Header",
   filter: "rubycop.near/widget/Kudos.Filter",
+  navigation: "rubycop.near/widget/Kudos.Navigation",
   item: "rubycop.near/widget/Kudos.Kudo.Item",
   itemNew: "rubycop.near/widget/Kudos.Kudo.New",
   mintSBT: "rubycop.near/widget/Kudos.MintSBT",
@@ -36,35 +37,61 @@ const widgets = {
   //   commentReply: "rubycop.near/widget/Kudos.Comment.Reply",
 };
 
+State.init({
+  selectedItem: "My",
+});
+
+const handleSelect = (itemType) => {
+  State.update({ selectedItem: itemType });
+};
+
 const Container = styled.div`
   margin: 20px;
-  padding: 16px;
+`;
+
+const Section = styled.div`
+  padding: 20px;
   background: #F8F8F9;
   border-radius: 10px;
 `;
 
+const H5 = styled.h5`
+  margin-bottom: 20px;
+`;
+
 return (
-  <>
+  <div>
     <Widget src={widgets.header} />
-    <Container>
-      <Widget src={widgets.filter} />
-    </Container>
-    <Container className="d-grid gap-3">
-      {data.map((kudo, index) => (
+    <Container className="d-flex row">
+      <Section className="col-md-3">
+        <H5>Home</H5>
         <Widget
-          key={index}
-          src={widgets.item}
+          src={widgets.navigation}
           props={{
-            accountId: kudo.accountId,
-            description: kudo.value.answer,
-            upvotes: upvotesMap[kudo.blockHeight]
-              ? upvotesMap[kudo.blockHeight]
-              : 0,
-            tags: kudo.tags ?? [],
-            createdAt: kudo.createdAt ?? 1687561302337,
+            selectedItem: state.selectedItem,
+            handleSelect,
           }}
         />
-      ))}
+      </Section>
+      <div className="col-md-9">
+        <Container className="d-grid gap-3">
+          {data.map((kudo, index) => (
+            <Widget
+              key={index}
+              src={widgets.item}
+              props={{
+                accountId: kudo.accountId,
+                description: kudo.value.answer,
+                upvotes: upvotesMap[kudo.blockHeight]
+                  ? upvotesMap[kudo.blockHeight]
+                  : 0,
+                tags: kudo.tags ?? [],
+                createdAt: kudo.createdAt ?? 1687561302337,
+              }}
+            />
+          ))}
+        </Container>
+      </div>
     </Container>
-  </>
+  </div>
 );
