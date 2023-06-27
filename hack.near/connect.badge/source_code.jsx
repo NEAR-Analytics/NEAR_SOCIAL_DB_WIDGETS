@@ -3,7 +3,7 @@ if (!props.accountId || !context.accountId) {
 }
 
 const o = Social.keys(
-  `${props.accountId}/graph/connect/${context.accountId}`,
+  `${props.accountId}/graph/follow/${context.accountId}`,
   undefined,
   {
     values_only: true,
@@ -11,9 +11,7 @@ const o = Social.keys(
 );
 
 return o && Object.keys(o).length ? (
-  <span className="badge bg-secondary fw-light">
-    <i className="bi bi-patch-check"></i>
-  </span>
+  <span className="badge bg-secondary fw-light">✅</span>
 ) : (
   ""
 );
