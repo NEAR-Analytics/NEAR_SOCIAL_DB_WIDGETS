@@ -157,7 +157,6 @@ return (
 
       <Text bold>
         <Text>{notificationMessage[type]}</Text>
-        <br />
         <Widget
           src="mob.near/widget/TimeAgo"
           props={{ blockHeight: props.blockHeight }}
