@@ -638,6 +638,7 @@ const createPocketScreen = () => {
 
         {state.balance && state.balance > 0 && (
           <div
+            onClick={() => handleCreatePocket()}
             class="frame-48098260"
             style={{
               float: "left ",
@@ -645,11 +646,7 @@ const createPocketScreen = () => {
               cursor: "pointer",
             }}
           >
-            <div
-              class="deposit"
-              style={{ cursor: "pointer" }}
-              onClick={() => handleCreatePocket()}
-            >
+            <div class="deposit" style={{ cursor: "pointer" }}>
               ✅ Create Pocket
             </div>
           </div>
