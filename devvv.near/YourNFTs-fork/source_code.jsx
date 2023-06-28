@@ -17,30 +17,26 @@ const allNfts = f.body.list;
 
 return (
   <div className="d-flex gap-1 flex-wrap">
-    {allNfts.map((contractId, i) => (
-      <Widget
-        key={i}
-        src={
-          thumbnails
-            ? "mob.near/widget/NftCollectionThumbs"
-            : "mob.near/widget/NftCollection"
-        }
-        props={{ accountId, contractId }}
-      />
-    ))}
-
-    <div
-      className="tab-pane fade"
-      id="pills-nfts"
-      role="tabpanel"
-      aria-labelledby="pills-nfts-tab"
-    >
-      {state.loadnfts && (
-        <Widget
-          src="devvv.near/widget/canny.comment.edit"
-          props={{ accountId }}
-        />
-      )}
-    </div>
+    {allNfts.map(
+      (contractId, i) => (
+        (
+          <Widget
+            key={i}
+            src={
+              thumbnails
+                ? "mob.near/widget/NftCollectionThumbs"
+                : "mob.near/widget/NftCollection"
+            }
+            props={{ accountId, contractId }}
+          />
+        ),
+        (
+          <Widget
+            src="devvv.near/widget/canny.comment.edit"
+            props={{ accountId }}
+          />
+        )
+      )
+    )}
   </div>
 );
