@@ -28,12 +28,12 @@ const Row = styled.div`
 
 function composeData() {
   const newThing = JSON.parse(Social.get(state.newPath, blockHeight) || "null");
-  if (!newThing) {
-    State.update({
-      errorMessage: `thing at path: "${state.newPath}" does not exist`,
-    });
-    return null;
-  }
+  // if (!newThing) {
+  //   State.update({
+  //     errorMessage: `thing at path: "${state.newPath}" does not exist`,
+  //   });
+  //   return null;
+  // }
 
   const edges = [];
   edges.push({
