@@ -24,19 +24,6 @@ const apiKey = "36f2b87a-7ee6-40d8-80b9-5e68e587a5b5";
 const _bookmarked = Social.index(ndcOrganization, typ);
 const currentUser = context.accountId;
 
-const fetchVoters = (candidateId) => {
-  asyncFetch(
-    `https://api.pikespeak.ai/election/votes-by-candidate?candidate=${candidateId}`,
-    {
-      headers: {
-        "x-api-key": apiKey,
-      },
-    }
-  ).then((resp) => {
-    State.update({ voters: resp.body });
-  });
-};
-
 State.init({
   loading: false,
   availableVotes: seats,
