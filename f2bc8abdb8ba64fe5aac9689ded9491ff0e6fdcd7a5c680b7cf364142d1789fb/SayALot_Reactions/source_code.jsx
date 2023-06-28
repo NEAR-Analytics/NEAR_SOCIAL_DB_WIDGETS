@@ -296,13 +296,13 @@ const EmojiQty = styled.span`
 
 const AccountsListContainer = styled.div`
   position: absolute;
-  bottom: 0px;
+  bottom: 2rem;
   background-color: rgb(230, 230, 230);
   border-radius: 12px;
   max-width: 20rem;
 
   div {
-    margin: 1rem;
+    margin: 0.5rem;
     backgorund-color: white;
     border-radius: 12px;
     overflow: hidden;
