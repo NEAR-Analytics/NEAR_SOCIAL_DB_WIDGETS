@@ -5,6 +5,36 @@ if (!accountId) {
   return "Please connect your NEAR wallet :)";
 }
 
+if (
+  !props.accountId ||
+  !context.accountId ||
+  context.accountId === props.accountId
+) {
+  return "";
+}
+
+const followEdge = Social.keys(
+  `${context.accountId}/graph/follow/${daoId}`,
+  undefined,
+  {
+    values_only: true,
+  }
+);
+
+const inverseEdge = Social.keys(
+  `${daoId}/graph/follow/${context.accountId}`,
+  undefined,
+  {
+    values_only: true,
+  }
+);
+
+const loading = followEdge === null || inverseEdge === null;
+const isFollowing = Object.keys(followEdge || {}).length > 0;
+const isInverse = Object.keys(inverseEdge || {}).length > 0;
+
+const type = follow ? "unfollow" : "follow";
+
 const follow_args = JSON.stringify({
   data: {
     [daoId]: {
@@ -98,9 +128,10 @@ const Wrapper = styled.div`
 `;
 
 return (
-  <Wrapper>
-    <button className="join-button" onClick={handleProposal}>
-      Connect
-    </button>
+  <Wrapper className={props.className}>
+    <CommitButton disabled={loading} className="join-button" data={data}>
+      {isFollowing && <i className="bi-16 bi bi-check"></i>}
+      {isFollowing ? "Connected" : isInverse ? "Connect" : "Connect"}
+    </CommitButton>
   </Wrapper>
 );
