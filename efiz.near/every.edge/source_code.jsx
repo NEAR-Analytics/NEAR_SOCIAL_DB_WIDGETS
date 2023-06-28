@@ -86,6 +86,12 @@ return (
     <Header>
       <Title>edges</Title>
       <ButtonRow>
+        {state.view !== "VIEW" ? (
+          <IconLabelButton onClick={() => State.update({ view: "VIEW" })}>
+            <i class="bi bi-eye"></i>
+            <span>view</span>
+          </IconLabelButton>
+        ) : null}
         <IconLabelButton onClick={() => State.update({ view: "CONNECT" })}>
           <i class="bi bi-link"></i>
           <span>connect</span>
