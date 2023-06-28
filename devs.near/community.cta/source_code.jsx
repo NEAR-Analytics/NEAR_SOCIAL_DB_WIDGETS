@@ -76,7 +76,7 @@ return (
         <FlexContainer>
           <div className="m-1">
             <Widget
-              src="hack.near/widget/dao.connect"
+              src="devs.near/widget/dao.connect"
               props={{
                 daoId,
                 accountId,
