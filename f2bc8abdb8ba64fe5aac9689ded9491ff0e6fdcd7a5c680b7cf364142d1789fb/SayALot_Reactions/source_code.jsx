@@ -345,9 +345,10 @@ const renderReactionList = (accounts) => {
       onBlur={() => State.update({ expandReactionList: "" })}
     >
       <div>
-        {accounts.map((acc) => {
-          return <AccountContainer>{acc}</AccountContainer>;
-        })}
+        {accounts &&
+          accounts.map((acc) => {
+            return <AccountContainer>{acc}</AccountContainer>;
+          })}
       </div>
     </AccountsListContainer>
   );
@@ -366,6 +367,8 @@ const Stats = () =>
               {obj.accounts.map((acc, i) => {
                 if (i < 7) {
                   return <div className="text-truncate text-start">{acc}</div>;
+                } else {
+                  return <></>;
                 }
               })}
             </Tooltip>
