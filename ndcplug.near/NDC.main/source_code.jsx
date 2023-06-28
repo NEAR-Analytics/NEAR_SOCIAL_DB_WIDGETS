@@ -136,9 +136,10 @@ return (
             link: "https://i-am-human.app/community-scoreboard",
           }}
         />
-        <Widget src="ndcplug.near/widget/NDC.verifyHuman" />
+        <Widget src="ndcplug.near/widget/NDC.profileCard" />
       </Left>
       <Center className="col-lg-6 p-2 p-md-3">
+        <Widget src="ndcplug.near/widget/NDC.verifyHuman" />
         <Widget src="7418d5cb7d7657e526b8bccf28750939105828d0f5b34a7254bd107477d84a2c/widget/ProgressMeterBarWidget" />
       </Center>
 
