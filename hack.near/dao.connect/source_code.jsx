@@ -1,14 +1,6 @@
 const accountId = props.accountId ?? context.accountId;
 const daoId = props.daoId ?? "multi.sputnik-dao.near";
 
-if (
-  !props.accountId ||
-  !context.accountId ||
-  context.accountId === props.accountId
-) {
-  return "";
-}
-
 const followEdge = Social.keys(
   `${accountId}/graph/follow/${daoId}`,
   undefined,
@@ -89,47 +81,9 @@ const handleProposal = () => {
   ]);
 };
 
-const Wrapper = styled.div`
-  .follow-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 8px 16px;
-    height: 32px;
-    border-radius: 100px;
-    font-weight: 600;
-    font-size: 12px;
-    line-height: 15px;
-    text-align: center;
-    cursor: pointer;
-    background: #FBFCFD;
-    border: 1px solid #D7DBDF;
-    color: #006ADC !important;
-    white-space: nowrap;
-
-    &:hover,
-    &:focus {
-      background: #ECEDEE;
-      text-decoration: none;
-      outline: none;
-    }
-
-    i {
-      color: #7E868C;
-    }
-
-    .bi-16 {
-      font-size: 16px;
-    }
-  }
-`;
-
 return (
-  <Wrapper>
-    <button className="join-button" onClick={handleProposal}>
-      {isFollowing && <i className="bi-16 bi bi-check"></i>}
-      {isFollowing ? "Connected" : isInverse ? "Connect" : "Connect"}
-    </button>
-  </Wrapper>
+  <button className="btn btn-outline-secondary" onClick={handleProposal}>
+    {isFollowing && <i className="bi-16 bi bi-check"></i>}
+    {isFollowing ? "Connected" : isInverse ? "Connect" : "Connect"}
+  </button>
 );
