@@ -340,6 +340,7 @@ const Overlay = () => (
 );
 
 const renderReactionList = (accounts) => {
+  return <></>;
   return (
     <AccountsListContainer
       onBlur={() => State.update({ expandReactionList: "" })}
