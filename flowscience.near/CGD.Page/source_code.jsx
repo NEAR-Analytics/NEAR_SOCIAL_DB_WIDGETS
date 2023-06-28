@@ -1,3 +1,7 @@
+//fix members tab
+//add subDAOs tab
+//add dataSets tab
+
 State.init({
   selectedTab: props.tab || "proposals",
 });
