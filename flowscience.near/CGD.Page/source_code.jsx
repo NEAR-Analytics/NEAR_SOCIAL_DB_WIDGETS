@@ -1,6 +1,7 @@
 //fix members tab
 //add subDAOs tab
 //add dataSets tab
+//add link to CGD.Community page
 
 State.init({
   selectedTab: props.tab || "proposals",
