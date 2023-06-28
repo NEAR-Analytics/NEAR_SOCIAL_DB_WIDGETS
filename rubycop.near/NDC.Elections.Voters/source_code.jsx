@@ -14,6 +14,7 @@ asyncFetch(
     },
   }
 ).then((resp) => {
+  consol.log("--", resp.body);
   State.update({ voters: resp.body });
 });
 
