@@ -1,4 +1,3 @@
-//fix members tab
 //add subDAOs tab w/link to CGD.Factory
 //add dataSets tab
 //add link to CGD.Community page and/or Join
