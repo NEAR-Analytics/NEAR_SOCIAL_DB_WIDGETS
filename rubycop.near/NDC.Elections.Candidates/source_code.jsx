@@ -337,8 +337,6 @@ const filterBy = (option) => {
 };
 
 const CandidateList = ({ candidateId, votes }) => {
-  fetchVoters(candidateId);
-
   return (
     <div>
       <CandidateItem
@@ -414,7 +412,7 @@ const CandidateList = ({ candidateId, votes }) => {
         </div>
       </CandidateItem>
       {state.selected === candidateId && (
-        <Widget src={widgets.voters} props={{ voters }} />
+        <Widget src={widgets.voters} candidateId={candidateId} />
       )}
     </div>
   );
