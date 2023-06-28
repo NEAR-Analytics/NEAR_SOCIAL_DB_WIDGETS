@@ -97,7 +97,7 @@ return (
             image: profile.image,
             alt: profile.name,
             fallbackUrl:
-              "https://ipfs.near.social/ipfs/bafkreibiyqabm3kl24gcb2oegb7pmwdi6wwrpui62iwb44l7uomnn3lhbi",
+              "https://ipfs.near.social/ipfs/bafkreigntstuf6xnfn25zddw6gzlzva7eqpm7kwrkmnj27gw5iguvk7aku",
           }}
         />
       </Avatar>
@@ -127,3 +127,4 @@ return (
   </Card>
 );
 // add number of members and recent activity, like time for last proposal using time ago
+// change default dao amount
