@@ -19,28 +19,22 @@ const widgets = {
   button: "rubycop.near/widget/NDC.StyledComponents",
 };
 
-const _bookmarked = Social.index(ndcOrganization, typ);
-const currentUser = context.candidateId;
+const apiKey = "36f2b87a-7ee6-40d8-80b9-5e68e587a5b5";
 
-const fetchVoters = () => {
-  // indexer call to get voters for particular 'houseId'
-  return [
+const _bookmarked = Social.index(ndcOrganization, typ);
+const currentUser = context.accountId;
+
+const fetchVoters = (candidateId) => {
+  asyncFetch(
+    `https://api.pikespeak.ai/election/votes-by-candidate?candidate=${candidateId}`,
     {
-      accountId: "rubycop.near",
-      candidateId: "zomland.near",
-      txn_url: "3ZunLtfdnkAC1oTgUxy5KXJb7qQWULmcFpVvkaq2pd6b",
-    },
-    {
-      accountId: "voter1.near",
-      candidateId: "zomland.near",
-      txn_url: "3ZunLtfdnkAC1oTgUxy5KXJb7qQWULmcFpVvkaq2pd6b",
-    },
-    {
-      accountId: "voter1",
-      candidateId: "zomland.near",
-      txn_url: "3ZunLtfdnkAC1oTgUxy5KXJb7qQWULmcFpVvkaq2pd6b",
-    },
-  ];
+      headers: {
+        "x-api-key": apiKey,
+      },
+    }
+  ).then((resp) => {
+    State.update({ voters: resp.body });
+  });
 };
 
 State.init({
@@ -56,7 +50,7 @@ State.init({
     votes: false,
     my_votes: false,
   },
-  voters: fetchVoters(),
+  voters: [],
 });
 
 const H4 = styled.h4`
@@ -288,10 +282,13 @@ const isIAmHuman = () => {
   Near.view(registryContract, "is_human", { account: context.accountId });
 };
 
-const alreadyVoted = (candidateId) =>
-  state.voters.some(
+const alreadyVoted = async (candidateId) => {
+  const voters = await fetchVoters(candidateId);
+
+  voters.some(
     (v) => v.candidateId === currentUser && v.candidateId === candidateId
   );
+};
 
 const filterBy = (option) => {
   if (option.bookmark)
@@ -341,7 +338,9 @@ const filterBy = (option) => {
     });
 };
 
-const CandidateList = ({ candidateId, votes }) => {
+const CandidateList = async ({ candidateId, votes }) => {
+  const voters = await fetchVoters(candidateId);
+
   return (
     <div>
       <CandidateItem
@@ -417,7 +416,7 @@ const CandidateList = ({ candidateId, votes }) => {
         </div>
       </CandidateItem>
       {state.selected === candidateId && (
-        <Widget src={widgets.voters} props={{ voters: state.voters }} />
+        <Widget src={widgets.voters} props={{ voters }} />
       )}
     </div>
   );
