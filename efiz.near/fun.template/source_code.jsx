@@ -187,7 +187,7 @@ function Edges() {
   }
 
   return (
-    <Grid>
+    <>
       {edges?.map((it) => {
         const parts = it.value.path?.split("/");
         return (
@@ -196,7 +196,7 @@ function Edges() {
           </Button>
         );
       })}
-    </Grid>
+    </>
   );
 }
 
