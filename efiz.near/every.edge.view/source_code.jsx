@@ -60,7 +60,8 @@ const HeaderContainer = styled.div`
   margin-bottom: 0.5rem;
 `;
 
-function Edge(thing) {
+function Edge({ thing }) {
+  console.log(thing);
   const data = thing.data;
   const type = thing.type;
   const name = data.name;
