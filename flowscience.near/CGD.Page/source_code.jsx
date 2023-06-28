@@ -11,6 +11,7 @@ State.init({
 const accountId = props.accountId ?? context.accountId;
 const daoId = props.daoId ?? "cannabisgenome.near";
 const astroId = props.astroId ?? "cannabis-genome.sputnik-dao.near";
+const roleId = props.roleId ?? "Council";
 
 const page = accountId
   ? Social.get(`${accountId}/settings/dao/page`)
@@ -277,7 +278,6 @@ return (
               roleId,
             }}
           />
-          //          <Widget src="hack.near/widget/DAO.Groups" props={{ astroId }} />
         )}
 
         {state.selectedTab === "projects" && (
