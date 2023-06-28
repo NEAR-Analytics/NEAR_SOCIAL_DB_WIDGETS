@@ -361,36 +361,16 @@ const Stats = () =>
     likesStatistics.map((obj) => {
       const userReaction = userEmoji ? userEmoji.value.type.slice(0, 2) : "";
       return (
-        <OverlayTrigger
-          placement="top"
-          onMouseOver={() => State.update({ expandReactionList: obj.text })}
-          overlay={
-            <Tooltip>
-              {obj.accounts.map((acc, i) => {
-                let maxAmountOfAcc = 7;
-
-                if (i < maxAmountOfAcc - 1) {
-                  return <div className="text-truncate text-start">{acc}</div>;
-                } else if (i == maxAmountOfAcc) {
-                  return <div>...</div>;
-                } else {
-                  <></>;
-                }
-              })}
-            </Tooltip>
-          }
-        >
-          <>
-            {state.expandReactionList && renderReactionList(obj.accounts)}
-            <StatWrapper
-              title={`${obj.text}`}
-              isUserVote={obj.emoji === userReaction}
-            >
-              <EmojiWrapper>{obj.emoji}</EmojiWrapper>
-              <EmojiQty>{obj.quantity}</EmojiQty>
-            </StatWrapper>
-          </>
-        </OverlayTrigger>
+        <div onMouseOver={() => State.update({ expandReactionList: obj.text })}>
+          {state.expandReactionList && renderReactionList(obj.accounts)}
+          <StatWrapper
+            title={`${obj.text}`}
+            isUserVote={obj.emoji === userReaction}
+          >
+            <EmojiWrapper>{obj.emoji}</EmojiWrapper>
+            <EmojiQty>{obj.quantity}</EmojiQty>
+          </StatWrapper>
+        </div>
       );
     })
   ) : (
