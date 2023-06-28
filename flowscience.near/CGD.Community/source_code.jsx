@@ -1,4 +1,6 @@
 //add datasets subPage
+//add treasury analytics page
+//add Lido integration
 
 const accountId = context.accountId;
 const daoId = props.daoId ?? "cannabis-genome.sputnik-dao.near";
