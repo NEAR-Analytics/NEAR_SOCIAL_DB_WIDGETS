@@ -1,7 +1,9 @@
 const accountId = props.accountId ?? context.accountId;
 const profile = props.profile || Social.get(`${accountId}/profile/**`, "final");
 const tags = Object.keys(profile.tags || {});
-const profileUrl = `#/hack.near/widget/DAO.Page?daoId=${accountId}`;
+const pageUrl = `#/hack.near/widget/DAO.Page?daoId=${accountId}`;
+const profileUrl = `#/hack.near/widget/DAO.Profile?daoId=${accountId}`;
+const editorUrl = `#/hack.near/widget/DAO.Profile.Editor?daoId=${accountId}`;
 
 State.init({
   show: false,
@@ -98,7 +100,7 @@ return (
       </Avatar>
 
       <div>
-        <TextLink href={profileUrl} ellipsis bold>
+        <TextLink href={pageUrl} ellipsis bold>
           {profile.name || accountId.split(".near")[0]}
         </TextLink>
         <TextLink href={profileUrl} ellipsis>
