@@ -398,7 +398,7 @@ const CandidateList = ({ candidateId, votes }) => {
           )}
         </div>
       </CandidateItem>
-
+      {console.log(candidateId)}
       <Widget src={widgets.voters} candidateId={candidateId} />
     </div>
   );
