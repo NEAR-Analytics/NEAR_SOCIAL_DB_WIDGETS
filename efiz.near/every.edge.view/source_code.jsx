@@ -18,7 +18,10 @@ const Box = styled.div`
 // return <Box>{JSON.stringify(thing)}</Box>;
 
 return (
-  <Link to={`/${path}`}>
+  <Link
+    to={`/${path}`}
+    style={{ textDecoration: "none", color: "inherit", cursor: "pointer" }}
+  >
     <Box>{JSON.stringify(thing)}</Box>
   </Link>
 );
