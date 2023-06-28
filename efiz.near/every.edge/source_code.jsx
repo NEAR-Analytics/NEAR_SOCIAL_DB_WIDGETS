@@ -27,11 +27,13 @@ const Title = styled.h2`
 const path = props.path;
 const blockHeight = props.blockHeight;
 
-const edges = Social.index("edge", path);
+const thing = JSON.parse(Social.get(path, blockheight) || "null");
 
-if (!edges) {
+if (!thing) {
   return <></>;
 }
+
+const edges = thing.data?.edges || [];
 
 State.init({
   view: "VIEW",
@@ -56,7 +58,7 @@ function Content() {
             return (
               <Widget
                 src="efiz.near/widget/every.edge.view"
-                props={{ path: it.value.path, blockHeight }}
+                props={{ path: it.path, blockHeight }}
               />
             );
           })}
