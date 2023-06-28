@@ -82,8 +82,8 @@ const handleProposal = () => {
 };
 
 return (
-  <button className="btn btn-outline-secondary" onClick={handleProposal}>
+  <button className="btn btn-outline-success" onClick={handleProposal}>
     {isFollowing && <i className="bi-16 bi bi-check"></i>}
-    {isFollowing ? "Connected" : isInverse ? "Connect" : "Connect"}
+    {isFollowing ? "Member" : isInverse ? "Join" : "Connect"}
   </button>
 );
