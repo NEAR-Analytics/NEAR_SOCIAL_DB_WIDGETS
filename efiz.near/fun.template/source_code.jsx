@@ -180,7 +180,7 @@ const Grid = styled.div`
 `;
 
 function Edges() {
-  const edges = Social.index("edges", path);
+  const edges = Social.index("edge", path);
 
   if (!edges) {
     return <></>;
