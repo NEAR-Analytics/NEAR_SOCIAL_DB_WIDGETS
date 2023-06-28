@@ -27,7 +27,7 @@ const Title = styled.h2`
 const path = props.path;
 const blockHeight = props.blockHeight;
 
-const edges = Social.index("edges", path);
+const edges = Social.index("edge", path);
 
 if (!edges) {
   return <></>;
