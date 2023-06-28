@@ -294,20 +294,20 @@ const EmojiQty = styled.span`
   padding-right: 8px;
 `;
 
-const AccountsListContainer = styled.div`
+const AccountsListBigContainer = styled.div`
   position: absolute;
   bottom: 2rem;
-  background-color: blue;
+  background-color: rgb(230, 230, 230);
   border-radius: 12px;
   max-width: 20rem;
+`;
 
-  div {
-    margin: 0.5rem;
-    backgorund-color: white;
-    border-radius: 12px;
-    overflow: hidden;
-    text-overflow: ellpisis;
-  }
+const AccountsListSmallContainer = styled.div`
+  margin: 0.5rem;
+  backgorund-color: white;
+  border-radius: 12px;
+  overflow: hidden;
+  text-overflow: ellpisis;
 `;
 
 const AccountContainer = styled.span`
@@ -342,16 +342,16 @@ const Overlay = () => (
 
 const renderReactionList = (accounts) => {
   return (
-    <AccountsListContainer
+    <AccountsListBigContainer
       onMouseLeave={() => State.update({ expandReactionList: "" })}
     >
-      <div>
+      <AccountsListSmallContainer>
         {accounts &&
           accounts.map((acc) => {
             return <AccountContainer>{acc}</AccountContainer>;
           })}
-      </div>
-    </AccountsListContainer>
+      </AccountsListSmallContainer>
+    </AccountsListBigContainer>
   );
 };
 
