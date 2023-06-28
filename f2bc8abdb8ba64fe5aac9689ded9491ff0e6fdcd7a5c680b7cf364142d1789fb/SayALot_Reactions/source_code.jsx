@@ -304,10 +304,10 @@ const AccountsListBigContainer = styled.div`
 
 const AccountsListSmallContainer = styled.div`
   margin: 0.5rem;
-  backgorund-color: white;
   border-radius: 12px;
   overflow: hidden;
   text-overflow: ellpisis;
+  background-color: white;
 `;
 
 const AccountContainer = styled.span`
