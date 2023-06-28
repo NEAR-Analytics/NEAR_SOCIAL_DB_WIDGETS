@@ -1,21 +1,21 @@
 const text = `
 ## **Quick Start**
 ### **🏆 What is HamsterPocket?**
-HamsterPocket is your personal digital magic piggy bank. You place one type of digital coin inside, and over time, it transforms into another type of coin, all by itself. It's like having a robot assistant, working tirelessly, transparently, and securely for you.
+HamsterPocket is your personal digital magic piggy bank. You place one type of token inside, and over time, it transforms into another type, all by itself. It's like having a robot assistant, working tirelessly, transparently, and securely for you.
 
 ![hamsterpocket](https://raw.githubusercontent.com/CaviesLabs/hamsterpocket-assets/main/1.png)
 ### **💡 How Does it Work?**
 
 ##### **🛠 Step 1: Setting Up Your HamsterPocket**
 Here you decide the rules for your HamsterPocket, including:
-- Source Token: The digital token you're starting with.
-- Target Token: The digital token you want to collect.
-- Frequency: How often the conversion should happen.
-- Price: The desired price for your target token.
-- Amount: The number of tokens to be converted at a time.
-- Stop-Loss: The safety net - if your potential loss reaches a specific limit, the pocket will stop or close.
-- Take Profit: The victory lap - if your potential profit hits a specific threshold, the pocket will stop or close.
-- Pocket Closure Conditions: Additional options for when the pocket should stop, such as reaching a certain time or accumulated token amount.
+- **Source Token**: The token you're starting with.
+- **Target Token**: The token you want to collect.
+- **Frequency**: How often the conversion should happen.
+- **Price**: The desired price for your target token.
+- **Amount**: The number of tokens to be converted at a time.
+- **Stop-Loss**: The safety net - if your potential loss reaches a specific limit, the pocket will stop or close.
+- **Take Profit**: The victory lap - if your potential profit hits a specific threshold, the pocket will stop or close.
+- **Pocket Closure Conditions**: Additional options for when the pocket should stop, such as reaching a certain time or accumulated token amount.
 
 ![Busy Mr Hamser](https://raw.githubusercontent.com/CaviesLabs/hamsterpocket-assets/main/2.png)
 
@@ -38,7 +38,9 @@ Note: You also have the flexibility to pause your HamsterPocket and resume it wh
 
 When the job is done, you can open your HamsterPocket and collect your new tokens, along with any remaining source tokens.
 
-Remember: While HamsterPocket adds an element of fun to trading, it's a tool that deals with real value. So, make sure to carefully consider the rules you set for your HamsterPocket! Enjoy the magic of automated trading with HamsterPocket.
+Remember: While HamsterPocket adds an element of fun to trading, it's a tool that deals with real value. As such, please make sure to carefully consider the rules you set for your HamsterPocket.
+
+#### **Enjoy the magic of automated trading with HamsterPocket!**
 `;
 
 const cssFont = fetch(
@@ -63,7 +65,7 @@ return (
       style={{ display: "flex", justifyContent: "center" }}
     >
       <div style={{ width: "50vw" }}>
-        <div style={{ marginBottom: 32 }}>
+        <div style={{ marginBottom: 32, marginLeft: 32 }}>
           {" "}
           👉 About Us:
           <a
@@ -97,7 +99,9 @@ return (
             Email
           </a>
         </div>
-        <Markdown text={text} />
+        <div style={{ padding: 32 }}>
+          <Markdown text={text} />
+        </div>
       </div>
     </div>
   </Theme>
