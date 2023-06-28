@@ -340,6 +340,7 @@ const Overlay = () => (
 );
 
 const renderReactionList = (accounts) => {
+  return <p>aisjfbaksfbabakfabsfajbfajdaakjv</p>;
   return (
     <AccountsListContainer
       onMouseLeave={() => State.update({ expandReactionList: "" })}
