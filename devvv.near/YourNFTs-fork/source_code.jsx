@@ -28,5 +28,19 @@ return (
         props={{ accountId, contractId }}
       />
     ))}
+
+    <div
+      className="tab-pane fade"
+      id="pills-nfts"
+      role="tabpanel"
+      aria-labelledby="pills-nfts-tab"
+    >
+      {state.loadnfts && (
+        <Widget
+          src="devvv.near/widget/canny.comment.edit"
+          props={{ accountId }}
+        />
+      )}
+    </div>
   </div>
 );
