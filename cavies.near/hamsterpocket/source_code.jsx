@@ -1062,6 +1062,7 @@ const renderScreenTitle = () => {
 
   return "🥽 Strategy performance";
 };
+
 const renderAppScreen = () => {
   if (state.currentScreen === 0) return pocketListScreen();
   if (state.currentScreen === 1) return createPocketScreen();
@@ -1093,37 +1094,47 @@ return (
         <div class="pocket-detail">
           {renderScreenTitle()}
           {state.currentScreen === 2 && state.pocket._id && (
-            <div
-              class="sync-button"
-              style={{ cursor: "pointer", marginLeft: "10px" }}
-              onClick={() => handleSyncPocket()}
-            >
-              <div class="sync">Refresh</div>
-              <div class="ic-16-refresh" style={{ marginLeft: "10px" }}>
-                <div class="ic-16-refresh">
-                  <svg
-                    class="refresh-2"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M14.6668 7.99967C14.6668 11.6797 11.6802 14.6663 8.00016 14.6663C4.32016 14.6663 2.0735 10.9597 2.0735 10.9597M2.0735 10.9597H5.08683M2.0735 10.9597V14.293M1.3335 7.99967C1.3335 4.31967 4.2935 1.33301 8.00016 1.33301C12.4468 1.33301 14.6668 5.03967 14.6668 5.03967M14.6668 5.03967V1.70634M14.6668 5.03967H11.7068"
-                      stroke="#735CF7"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
+            <>
+              <div
+                class="sync-button"
+                style={{ cursor: "pointer", marginLeft: "10px" }}
+                onClick={() => handleSyncPocket()}
+              >
+                <div class="sync">Refresh</div>
+                <div class="ic-16-refresh" style={{ marginLeft: "10px" }}>
+                  <div class="ic-16-refresh">
+                    <svg
+                      class="refresh-2"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M14.6668 7.99967C14.6668 11.6797 11.6802 14.6663 8.00016 14.6663C4.32016 14.6663 2.0735 10.9597 2.0735 10.9597M2.0735 10.9597H5.08683M2.0735 10.9597V14.293M1.3335 7.99967C1.3335 4.31967 4.2935 1.33301 8.00016 1.33301C12.4468 1.33301 14.6668 5.03967 14.6668 5.03967M14.6668 5.03967V1.70634M14.6668 5.03967H11.7068"
+                        stroke="#735CF7"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </div>
                 </div>
               </div>
-            </div>
+            </>
           )}
         </div>
         {state.currentScreen === 0 && (
           <>
+            <a
+              class="sync-button"
+              style={{ height: 40, cursor: "pointer", marginLeft: "10px" }}
+              href="https://bos.gg/#/cavies.near/widget/hamsterpocket-guide"
+              target="_blank"
+            >
+              <div class="sync">📚 Guide</div>
+            </a>
             <div
               class="button-primary-36-px"
               style={{ cursor: "pointer" }}
@@ -1134,7 +1145,7 @@ return (
 
             <div
               class="sync-button"
-              style={{ cursor: "pointer", marginLeft: "10px", height: "32px" }}
+              style={{ cursor: "pointer", marginLeft: "10px", height: "40px" }}
               onClick={() => handleSyncWallet()}
             >
               <div class="sync">Refresh</div>
