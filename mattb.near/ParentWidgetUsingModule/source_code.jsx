@@ -8,6 +8,8 @@ State.init({
 let a = state.a;
 let b = state.b;
 
+State.update({ a: 2 });
+
 console.log(a, b, state, obj, Module);
 
 return (
