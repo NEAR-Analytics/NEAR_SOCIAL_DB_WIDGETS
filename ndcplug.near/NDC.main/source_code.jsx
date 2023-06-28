@@ -1,93 +1,3 @@
-let { ids, org } = props;
-
-ids = props.ids ? ids : [4, 8, 7]; // for testing purposes
-org = props.org ? org : "test"; // for testing purposes
-
-const electionContract = "elections-v1.gwg.testnet";
-const registryContract = "registry-unstable.i-am-human.testnet";
-const apiKey = "36f2b87a-7ee6-40d8-80b9-5e68e587a5b5";
-const contractProps = {
-  houses: [
-    {
-      id: 2,
-      typ: "CouncileOfAdvisors",
-      ref_link: "example.com",
-      start: 1689820065441,
-      end: 1690820065441,
-      quorum: 100,
-      voters_num: 150,
-      seats: 10,
-      result: [],
-    },
-    {
-      id: 3,
-      typ: "HouseOfMerit",
-      title: "House Of Merit",
-      ref_link: "example.com",
-      start: 1685820065441,
-      end: 1696820065441,
-      quorum: 100,
-      voters_num: 150,
-      seats: 10,
-      result: [
-        ["zomland.near", 150],
-        ["asfsdfsfdfddfsdfdfsdfdf.near", 150],
-        ["blabla.near", 10],
-        ["rubycop.near", 50],
-      ],
-    },
-    {
-      id: 4,
-      typ: "TransparancyCommision",
-      ref_link: "example.com",
-      start: 1655820065441,
-      end: 165820065441,
-      quorum: 100,
-      voters_num: 150,
-      seats: 10,
-      result: [],
-    },
-  ],
-};
-
-const { houses } = contractProps;
-
-State.init({
-  selectedHouse: houses[0].id,
-  humanVoted: 0,
-  myVotes: [],
-});
-
-// TODO: Should be grabbed from indexer
-const totalHumal = 1000;
-
-asyncFetch("https://api.pikespeak.ai/election/total-votes", {
-  headers: {
-    "x-api-key": apiKey,
-  },
-}).then((resp) => {
-  State.update({ humanVoted: resp.body });
-});
-
-asyncFetch(
-  `https://api.pikespeak.ai/election/votes-by-voter?voter=${context.accountId}`,
-  {
-    headers: {
-      "x-api-key": apiKey,
-    },
-  }
-).then((resp) => {
-  State.update({ myVotes: resp.body });
-});
-
-const widgets = {
-  header: "ndcplug.near/widget/NDC.main.header",
-  houses: "rubycop.near/widget/NDC.Elections.Houses",
-  candidates: "rubycop.near/widget/NDC.Elections.Candidates",
-  statistic: "rubycop.near/widget/NDC.Elections.Statistic",
-  activities: "rubycop.near/widget/NDC.Elections.Activities",
-};
-
 const handleSelect = (item) => {
   State.update({ selectedHouse: item.id });
 };
@@ -123,11 +33,11 @@ const H5 = styled.h5`
 
 return (
   <div>
-    <Widget src={widgets.header} />
+    <Widget src="ndcplug.near/widget/NDC.main.header" />
 
     <Container className="d-flex row">
       <Left className="col-lg">
-        <H5>I Am Human Scoreboard</H5>
+        <Widget src="ndcplug.near/widget/NDC.profileCard" />
         <Widget
           src="ndcplug.near/widget/NDC.linkCard"
           props={{
@@ -136,7 +46,6 @@ return (
             link: "https://i-am-human.app/community-scoreboard",
           }}
         />
-        <Widget src="ndcplug.near/widget/NDC.profileCard" />
       </Left>
       <Center className="col-lg-6 p-2 p-md-3">
         <Widget src="ndcplug.near/widget/NDC.verifyHuman" />
