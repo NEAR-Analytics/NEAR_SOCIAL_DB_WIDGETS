@@ -363,7 +363,9 @@ const Stats = () =>
         <OverlayTrigger
           placement="top"
           overlay={
-            <Tooltip>
+            <Tooltip
+              onClick={() => State.update({ expandReactionList: obj.text })}
+            >
               {obj.accounts.map((acc, i) => {
                 if (i < 7) {
                   return <div className="text-truncate text-start">{acc}</div>;
