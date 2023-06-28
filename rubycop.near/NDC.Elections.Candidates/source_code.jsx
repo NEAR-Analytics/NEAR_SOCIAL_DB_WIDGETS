@@ -336,8 +336,8 @@ const filterBy = (option) => {
     });
 };
 
-const CandidateList = async ({ candidateId, votes }) => {
-  const voters = await fetchVoters(candidateId);
+const CandidateList = ({ candidateId, votes }) => {
+  fetchVoters(candidateId);
 
   return (
     <div>
