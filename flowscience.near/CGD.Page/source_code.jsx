@@ -270,7 +270,14 @@ return (
         )}
 
         {state.selectedTab === "members" && (
-          <Widget src="hack.near/widget/DAO.Groups" props={{ astroId }} />
+          <Widget
+            src="flowscience.near/widget/communities.join"
+            props={{
+              memberId: accountId,
+              roleId,
+            }}
+          />
+          //          <Widget src="hack.near/widget/DAO.Groups" props={{ astroId }} />
         )}
 
         {state.selectedTab === "projects" && (
