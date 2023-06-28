@@ -31,7 +31,7 @@ const H1 = styled.h1`
 
   span {
     display: inline-block;
-    background: green;
+    background: #6CE89F;
     border-radius: 20px;
     position: relative;
     padding: 0.1em 0.2em 0;
