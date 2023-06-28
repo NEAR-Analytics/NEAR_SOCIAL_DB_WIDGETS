@@ -1,8 +1,9 @@
 //fix members tab
 //add subDAOs tab w/link to CGD.Factory
 //add dataSets tab
-//add link to CGD.Community page
+//add link to CGD.Community page and/or Join
 //add link to CGD.SubDAOs
+//fix tab content reset after loading
 
 State.init({
   selectedTab: props.tab || "proposals",
