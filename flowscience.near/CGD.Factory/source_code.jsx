@@ -1,5 +1,6 @@
 //add an input box to upload a dataset to IPFS
-//add a feature to post in CGD as a proposal & specify who can vote to approve (e.g. cofounders)
+//add a feature to post in CGD Community as a proposal & specify which members/groups can vote to approve (e.g. enable cofounders for the subDAO)
+//add feature to customize dao config permissions and vote policies
 
 const accountId = props.accountId ?? context.accountId;
 
@@ -150,7 +151,7 @@ const onChangePurpose = (purpose) => {
 
 return (
   <div className="mb-3">
-    <h3>DAO Factory</h3>
+    <h3>CGD SubDAO Factory</h3>
     <div className="mb-2">
       Name:
       <input type="text" onChange={(e) => onChangeName(e.target.value)} />
@@ -160,7 +161,7 @@ return (
       <input type="text" onChange={(e) => onChangePurpose(e.target.value)} />
     </div>
     <button className="btn btn-outline-success mt-3" onClick={handleCreate}>
-      Create DAO
+      Create SubDAO
     </button>
   </div>
 );
