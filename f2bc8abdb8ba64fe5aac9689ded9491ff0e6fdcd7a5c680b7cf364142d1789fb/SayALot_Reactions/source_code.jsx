@@ -340,10 +340,9 @@ const Overlay = () => (
 );
 
 const renderReactionList = (accounts) => {
-  return <></>;
   return (
     <AccountsListContainer
-      onBlur={() => State.update({ expandReactionList: "" })}
+      onMouseLeave={() => State.update({ expandReactionList: "" })}
     >
       <div>
         {accounts &&
