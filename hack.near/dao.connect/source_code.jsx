@@ -1,9 +1,5 @@
-const accountId = context.accountId;
+const accountId = props.accountId ?? context.accountId;
 const daoId = props.daoId ?? "meta.sputnik-dao.near";
-
-if (!accountId) {
-  return "Please connect your NEAR wallet :)";
-}
 
 if (
   !props.accountId ||
@@ -14,7 +10,7 @@ if (
 }
 
 const followEdge = Social.keys(
-  `${context.accountId}/graph/follow/${daoId}`,
+  `${accountId}/graph/follow/${daoId}`,
   undefined,
   {
     values_only: true,
@@ -22,7 +18,7 @@ const followEdge = Social.keys(
 );
 
 const inverseEdge = Social.keys(
-  `${daoId}/graph/follow/${context.accountId}`,
+  `${daoId}/graph/follow/${accountId}`,
   undefined,
   {
     values_only: true,
@@ -128,10 +124,10 @@ const Wrapper = styled.div`
 `;
 
 return (
-  <Wrapper className={props.className}>
-    <CommitButton disabled={loading} className="join-button" data={data}>
+  <Wrapper>
+    <button disabled={loading} className="join-button" onClick={handleProposal}>
       {isFollowing && <i className="bi-16 bi bi-check"></i>}
       {isFollowing ? "Connected" : isInverse ? "Connect" : "Connect"}
-    </CommitButton>
+    </button>
   </Wrapper>
 );
