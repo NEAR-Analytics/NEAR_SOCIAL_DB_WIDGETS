@@ -10,6 +10,7 @@ State.init({
 
 const accountId = props.accountId ?? context.accountId;
 const daoId = props.daoId ?? "cannabisgenome.near";
+const astroId = props.astroId ?? "cannabis-genome.sputnik-dao.near";
 
 const page = accountId
   ? Social.get(`${accountId}/settings/dao/page`)
@@ -244,7 +245,7 @@ return (
 
         {state.selectedTab === "proposals" && (
           <>
-            <Widget src="mob.near/widget/DAO.Main" props={{ daoId }} />
+            <Widget src="mob.near/widget/DAO.Main" props={{ astroId }} />
           </>
         )}
 
@@ -266,7 +267,7 @@ return (
         )}
 
         {state.selectedTab === "members" && (
-          <Widget src="hack.near/widget/DAO.Groups" props={{ daoId }} />
+          <Widget src="hack.near/widget/DAO.Groups" props={{ astroId }} />
         )}
 
         {state.selectedTab === "projects" && (
