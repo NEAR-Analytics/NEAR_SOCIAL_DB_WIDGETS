@@ -207,17 +207,10 @@ return (
         <Row>
           <Column>
             <Title>{data.name}</Title>
-            <Subtitle>{data.tagline}</Subtitle>
           </Column>
         </Row>
       </InnerContainer>
     </Container>
-    {data.isUnderConstruction === "true" ? (
-      <Widget
-        src="efiz.near/widget/Every.Thing.View"
-        props={{ path: "efiz.near/thing/under.construction" }}
-      />
-    ) : null}
     <ButtonRow>
       <Edges />
     </ButtonRow>
