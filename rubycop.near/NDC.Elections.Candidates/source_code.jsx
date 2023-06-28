@@ -283,9 +283,7 @@ const isIAmHuman = () => {
 };
 
 const alreadyVoted = async (candidateId) => {
-  const voters = await fetchVoters(candidateId);
-
-  voters.some(
+  state.voters.some(
     (v) => v.candidateId === currentUser && v.candidateId === candidateId
   );
 };
