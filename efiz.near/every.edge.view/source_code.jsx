@@ -7,4 +7,18 @@ if (!thing) {
   return <></>;
 }
 
-return <p>{JSON.stringify(thing)}</p>;
+const Box = styled.div`
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+`;
+
+// return <Box>{JSON.stringify(thing)}</Box>;
+
+return (
+  <Link to={`/${path}`}>
+    <Box>{JSON.stringify(thing)}</Box>
+  </Link>
+);
