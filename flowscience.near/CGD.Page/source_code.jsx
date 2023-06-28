@@ -245,7 +245,10 @@ return (
 
         {state.selectedTab === "proposals" && (
           <>
-            <Widget src="mob.near/widget/DAO.Main" props={{ astroId }} />
+            <Widget
+              src="hack.near/widget/dao.proposals"
+              props={{ astroId, accountId, limit: 8 }}
+            />
           </>
         )}
 
