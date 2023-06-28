@@ -1,5 +1,6 @@
 const { candidateId } = props;
 console.log(candidateId);
+
 const apiKey = "36f2b87a-7ee6-40d8-80b9-5e68e587a5b5";
 
 State.init({
