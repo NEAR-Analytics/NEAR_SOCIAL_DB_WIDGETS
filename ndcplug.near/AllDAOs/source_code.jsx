@@ -22,7 +22,11 @@ const filtered_daos = filteredDaos.length;
 
 return (
   <div className="m-1">
-    <h2 className="mb-2">Every DAO</h2>
+    <Widget
+      src="ndcplug.near/widget/common.NEARBrandHeader"
+      props={{ topText: "DAO", bottomText: "Social" }}
+    />
+    <h2 className="mb-2">Search All DAOs on NEAR</h2>
     {!state.name ? (
       <h5 className="mb-3">Total: {total_daos}</h5>
     ) : (
