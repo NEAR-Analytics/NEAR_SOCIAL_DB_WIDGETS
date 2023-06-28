@@ -190,11 +190,13 @@ function Edges() {
     <>
       {edges?.map((it) => {
         const parts = it.value.path?.split("/");
-        return (
-          <Button onClick={() => State.update({ thingSrc: it.value.path })}>
-            {parts[2]}
-          </Button>
-        );
+        if (!["core.feed", "core.marketplace"].includes(parts[2])) {
+          return (
+            <Button onClick={() => State.update({ thingSrc: it.value.path })}>
+              {parts[2]}
+            </Button>
+          );
+        }
       })}
     </>
   );
