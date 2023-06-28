@@ -362,6 +362,7 @@ const Stats = () =>
       return (
         <OverlayTrigger
           placement="top"
+          onClick={() => State.update({ expandReactionList: obj.text })}
           overlay={
             <Tooltip>
               {obj.accounts.map((acc, i) => {
