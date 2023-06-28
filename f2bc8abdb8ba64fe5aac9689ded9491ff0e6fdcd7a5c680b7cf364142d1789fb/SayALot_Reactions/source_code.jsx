@@ -375,15 +375,17 @@ const Stats = () =>
             </Tooltip>
           }
         >
-          {/*state.expandReactionList == obj.text &&
-            renderReactionList(obj.accounts)*/}
-          <StatWrapper
-            title={`${obj.text}`}
-            isUserVote={obj.emoji === userReaction}
-          >
-            <EmojiWrapper>{obj.emoji}</EmojiWrapper>
-            <EmojiQty>{obj.quantity}</EmojiQty>
-          </StatWrapper>
+          <>
+            {state.expandReactionList == obj.text &&
+              renderReactionList(obj.accounts)}
+            <StatWrapper
+              title={`${obj.text}`}
+              isUserVote={obj.emoji === userReaction}
+            >
+              <EmojiWrapper>{obj.emoji}</EmojiWrapper>
+              <EmojiQty>{obj.quantity}</EmojiQty>
+            </StatWrapper>
+          </>
         </OverlayTrigger>
       );
     })
