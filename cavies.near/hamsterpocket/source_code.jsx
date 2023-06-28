@@ -1125,6 +1125,16 @@ return (
             </>
           )}
         </div>
+        <div>
+          <a
+            class="sync-button"
+            style={{ height: 40, cursor: "pointer", marginLeft: "10px" }}
+            href="https://bos.gg/#/cavies.near/widget/hamsterpocket-guide"
+            target="_blank"
+          >
+            <div class="sync">📚 Checkout Guide</div>
+          </a>{" "}
+        </div>
         {state.currentScreen === 0 && (
           <>
             <div
@@ -1164,16 +1174,6 @@ return (
             </div>
           </>
         )}
-      </div>
-      <div>
-        <a
-          class="sync-button"
-          style={{ height: 40, cursor: "pointer", marginLeft: "10px" }}
-          href="https://bos.gg/#/cavies.near/widget/hamsterpocket-guide"
-          target="_blank"
-        >
-          <div class="sync">📚 Checkout Guide</div>
-        </a>{" "}
       </div>
       <div class="frame-48098194">{renderAppScreen()}</div>
     </div>
