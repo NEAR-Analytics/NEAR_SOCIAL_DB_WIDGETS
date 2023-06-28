@@ -361,7 +361,6 @@ const Stats = () =>
       return (
         <OverlayTrigger
           placement="top"
-          onClick={() => State.update({ expandReactionList: obj.text })}
           overlay={
             <Tooltip>
               {obj.accounts.map((acc, i) => {
@@ -406,7 +405,11 @@ const Spinner = () => {
 
 return (
   <EmojiWrapper>
-    <Button onMouseEnter={handleOnMouseEnter} onMouseLeave={handleOnMouseLeave}>
+    <Button
+      onMouseEnter={handleOnMouseEnter}
+      onMouseLeave={handleOnMouseLeave}
+      onClick={() => State.update({ expandReactionList: obj.text })}
+    >
       {state.loading && <Spinner />}
       {!userEmoji ? initialEmoji : <Stats />}
     </Button>
