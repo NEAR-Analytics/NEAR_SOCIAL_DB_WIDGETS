@@ -115,15 +115,9 @@ return (
     </CardLeft>
 
     {!!context.accountId && context.accountId !== props.accountId && (
-      <Widget
-        src="near/widget/FollowButton"
-        props={{ accountId: props.accountId }}
-      />
+      <Widget src="near/widget/FollowButton" props={{ accountId }} />
     )}
 
-    <Widget
-      src="hack.near/widget/dao.connect"
-      props={{ daoId: props.accountId }}
-    />
+    <Widget src="hack.near/widget/dao.connect" props={{ daoId: accountId }} />
   </Card>
 );
