@@ -399,7 +399,7 @@ const CandidateList = ({ candidateId, votes }) => {
         </div>
       </CandidateItem>
       {state.selected === candidateId && (
-        <Widget src={widgets.voters} candidateId={state.selected} />
+        <Widget src={widgets.voters} candidateId={candidateId} />
       )}
     </div>
   );
