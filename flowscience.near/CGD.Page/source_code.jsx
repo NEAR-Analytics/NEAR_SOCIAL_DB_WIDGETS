@@ -3,7 +3,6 @@
 //add dataSets tab
 //add link to CGD.Community page and/or Join
 //add link to CGD.SubDAOs
-//fix tab content reset after loading
 
 State.init({
   selectedTab: props.tab || "proposals",
@@ -273,7 +272,7 @@ return (
 
         {state.selectedTab === "members" && (
           <Widget
-            src="flowscience.near/widget/communities.join"
+            src="flowscience.near/widget/verified.members"
             props={{
               memberId: accountId,
               roleId,
