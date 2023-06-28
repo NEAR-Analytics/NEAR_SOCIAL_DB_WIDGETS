@@ -362,7 +362,7 @@ const Stats = () =>
       return (
         <OverlayTrigger
           placement="top"
-          onClick={() => State.update({ expandReactionList: obj.text })}
+          {/*onClick={() => State.update({ expandReactionList: obj.text })}*/}
           overlay={
             <Tooltip>
               {obj.accounts.map((acc, i) => {
@@ -375,8 +375,8 @@ const Stats = () =>
             </Tooltip>
           }
         >
-          {state.expandReactionList == obj.text &&
-            renderReactionList(obj.accounts)}
+          {/*state.expandReactionList == obj.text &&
+            renderReactionList(obj.accounts)*/}
           <StatWrapper
             title={`${obj.text}`}
             isUserVote={obj.emoji === userReaction}
