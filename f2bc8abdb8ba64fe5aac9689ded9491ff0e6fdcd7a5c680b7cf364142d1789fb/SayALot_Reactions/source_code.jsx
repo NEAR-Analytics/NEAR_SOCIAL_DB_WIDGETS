@@ -247,6 +247,7 @@ padding-left: 8px;
 `;
 
 const Reactions = styled.div`
+  position: relative;
   background: transparent;
   display: inline-flex;
   align-items: center;
@@ -292,6 +293,27 @@ const EmojiQty = styled.span`
   padding-right: 8px;
 `;
 
+const AccountsListContainer = styled.div`
+  position: absolute;
+  bottom: 0px;
+  background-color: rgb(230, 230, 230);
+  border-radius: 12px;
+  max-width: 20rem
+
+  div {
+    margin: 1rem;
+    backgorund-color: white;
+    border-radius: 12px;
+    overflow: hidden;
+    text-overflow: ellpisis;
+  }
+`;
+
+const AccountContainer = styled.span`
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
 // =============== NEW JSX ===============!!!!!!!!
 const Overlay = () => (
   <EmojiListWrapper
@@ -317,6 +339,20 @@ const Overlay = () => (
   </EmojiListWrapper>
 );
 
+const renderReactionList = (accounts) => {
+  return (
+    <AccountsListContainer
+      onBlur={() => State.update({ expandReactionList: "" })}
+    >
+      <div>
+        {accounts.map((acc) => {
+          return <AccountContainer>{acc}</AccountContainer>;
+        })}
+      </div>
+    </AccountsListContainer>
+  );
+};
+
 const Stats = () =>
   likesStatistics && likesStatistics.length ? (
     likesStatistics.map((obj) => {
@@ -324,14 +360,19 @@ const Stats = () =>
       return (
         <OverlayTrigger
           placement="top"
+          onClick={() => State.update({ expandReactionList: obj.text })}
           overlay={
             <Tooltip>
-              {obj.accounts.map((acc) => (
-                <div className="text-truncate text-start">{acc}</div>
-              ))}
+              {obj.accounts.map((acc, i) => {
+                if (i < 7) {
+                  return <div className="text-truncate text-start">{acc}</div>;
+                }
+              })}
             </Tooltip>
           }
         >
+          {state.expandReactionList == obj.text &&
+            renderReactionList(obj.accounts)}
           <StatWrapper
             title={`${obj.text}`}
             isUserVote={obj.emoji === userReaction}
