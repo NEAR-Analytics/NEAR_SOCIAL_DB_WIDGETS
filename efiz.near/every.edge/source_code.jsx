@@ -44,6 +44,7 @@ const Grid = styled.div`
   @media (hover: none) {
     grid-template-columns: repeat(1, 1fr);
   }
+  padding: 20px;
 `;
 
 function Content() {
