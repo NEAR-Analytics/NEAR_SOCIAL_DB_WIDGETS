@@ -119,6 +119,6 @@ return (
       <Widget src="near/widget/FollowButton" props={{ accountId: daoId }} />
     )}
 
-    <Widget src="hack.near/widget/dao.connect" props={{ daoId }} />
+    <Widget src="hack.near/widget/dao.connect" props={{ accountId, daoId }} />
   </Card>
 );
