@@ -1,3 +1,5 @@
+//redesign to display only CGD subDAOs
+
 const accountId = props.accountId ?? context.accountId;
 
 const dao = accountId ? Social.get(`${accountId}/profile/dao`) : undefined;
