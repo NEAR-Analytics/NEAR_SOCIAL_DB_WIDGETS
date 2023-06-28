@@ -184,7 +184,7 @@ return (
     <Main>
       <SidebarWrapper>
         <Widget
-          src="hack.near/widget/DAO.Page.Sidebar"
+          src="ndcplug.near/widget/DAO.main.sidebar"
           props={{
             daoId,
             profile,
@@ -303,3 +303,6 @@ return (
     </Main>
   </Wrapper>
 );
+
+// add dao drop down so you can select daos and update this page
+// add conditional from image if no near social image fallback to dao contract, make this a helper function
