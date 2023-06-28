@@ -297,7 +297,7 @@ const EmojiQty = styled.span`
 const AccountsListContainer = styled.div`
   position: absolute;
   bottom: 2rem;
-  background-color: rgb(230, 230, 230);
+  background-color: blue;
   border-radius: 12px;
   max-width: 20rem;
 
@@ -364,11 +364,6 @@ const Stats = () =>
           placement="top"
           overlay={
             <Tooltip
-              style={{
-                textOverflow: "ellipsis",
-                backgroundColor: "white",
-                padding: "0.5rem",
-              }}
               onClick={() => State.update({ expandReactionList: obj.text })}
             >
               {obj.accounts.map((acc, i) => {
