@@ -367,8 +367,10 @@ const Stats = () =>
               {obj.accounts.map((acc, i) => {
                 if (i < 7) {
                   return <div className="text-truncate text-start">{acc}</div>;
+                } else if (i == 8) {
+                  return <div>...</div>;
                 } else {
-                  return <></>;
+                  <></>;
                 }
               })}
             </Tooltip>
