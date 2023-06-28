@@ -16,7 +16,6 @@ const Card = styled.div`
   gap: 16px;
   width: 100%;
   border-radius: 12px;
-  z-index: 1070;
   background: #fff;
   border: 1px solid #eceef0;
   box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1),
