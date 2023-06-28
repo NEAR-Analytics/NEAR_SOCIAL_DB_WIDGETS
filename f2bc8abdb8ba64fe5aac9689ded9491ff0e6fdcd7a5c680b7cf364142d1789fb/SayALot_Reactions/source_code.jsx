@@ -306,7 +306,8 @@ const AccountsListSmallContainer = styled.div`
   margin: 0.5rem;
   border-radius: 12px;
   overflow: hidden;
-  text-overflow: ellpisis;
+  padding: 10px;
+  text-overflow: ellipsis;
   background-color: white;
 `;
 
