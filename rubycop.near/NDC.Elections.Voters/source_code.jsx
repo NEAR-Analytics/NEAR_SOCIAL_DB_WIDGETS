@@ -1,4 +1,21 @@
-const { voters } = props;
+const { candidateId } = props;
+
+const apiKey = "36f2b87a-7ee6-40d8-80b9-5e68e587a5b5";
+
+State.init({
+  voters: [],
+});
+
+asyncFetch(
+  `https://api.pikespeak.ai/election//election/votes-by-candidate?candidate=${candidateId}`,
+  {
+    headers: {
+      "x-api-key": apiKey,
+    },
+  }
+).then((resp) => {
+  State.update({ voters: resp.body });
+});
 
 const VotersContainer = styled.div`
   padding: 5px 0;
@@ -50,7 +67,7 @@ const UserLink = ({ title, src }) => (
 
 return (
   <VotersContainer>
-    {voters.map((voter) => (
+    {state.voters.map((voter) => (
       <VoterItem className="d-flex align-items-center justify-content-between">
         <div className="d-flex">
           <Bookmark />
