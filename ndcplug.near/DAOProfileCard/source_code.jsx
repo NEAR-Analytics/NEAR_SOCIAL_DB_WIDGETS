@@ -1,4 +1,4 @@
-const accountId = props.accountId ?? "hack.near";
+const accountId = props.accountId ?? "blunt.sputnik-dao.near";
 const profile = props.profile || Social.get(`${accountId}/profile/**`, "final");
 const tags = Object.keys(profile.tags || {});
 const profileUrl = `/ndcplug.near/widget/DAO.main?daoId=${accountId}`;
@@ -21,7 +21,6 @@ const Card = styled.div`
   gap: 16px;
   width: 100%;
   border-radius: 12px;
-  z-index: 1070;
   background: #fff;
   border: 1px solid #ECEEF0;
   box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1), 0px 1px 2px rgba(16, 24, 40, 0.06);
@@ -127,3 +126,4 @@ return (
     )}
   </Card>
 );
+// add number of members and recent activity, like time for last proposal using time ago
