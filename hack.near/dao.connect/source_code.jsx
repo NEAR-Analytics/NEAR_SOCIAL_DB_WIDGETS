@@ -41,16 +41,16 @@ const follow_args = JSON.stringify({
       },
       index: {
         graph: {
-          key: follow,
+          key: "follow",
           value: {
-            type: follow,
+            type: "follow",
             accountId: [accountId],
           },
         },
         notify: {
           key: [accountId],
           value: {
-            type: follow,
+            type: "follow",
           },
         },
       },
