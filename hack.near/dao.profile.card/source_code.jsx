@@ -1,9 +1,10 @@
 const accountId = props.accountId ?? context.accountId;
-const profile = props.profile || Social.get(`${accountId}/profile/**`, "final");
+const daoId = props.daoId ?? "multi.sputnik-dao.near";
+const profile = props.profile || Social.get(`${daoId}/profile/**`, "final");
 const tags = Object.keys(profile.tags || {});
-const pageUrl = `#/hack.near/widget/DAO.Page?daoId=${accountId}`;
-const profileUrl = `#/hack.near/widget/DAO.Profile?daoId=${accountId}`;
-const editorUrl = `#/hack.near/widget/DAO.Profile.Editor?daoId=${accountId}`;
+const pageUrl = `#/hack.near/widget/DAO.Page?daoId=${daoId}`;
+const profileUrl = `#/hack.near/widget/DAO.Profile?daoId=${daoId}`;
+const editorUrl = `#/hack.near/widget/DAO.Profile.Editor?daoId=${daoId}`;
 
 State.init({
   show: false,
@@ -100,10 +101,10 @@ return (
 
       <div>
         <TextLink href={pageUrl} ellipsis bold>
-          {profile.name || accountId.split(".near")[0]}
+          {profile.name || daoId.split(".sputnik-dao.near")[0]}
         </TextLink>
         <TextLink href={profileUrl} ellipsis>
-          @{accountId}
+          @{daoId}
         </TextLink>
 
         {tags.length > 0 && (
@@ -114,10 +115,10 @@ return (
       </div>
     </CardLeft>
 
-    {!!context.accountId && context.accountId !== props.accountId && (
-      <Widget src="near/widget/FollowButton" props={{ accountId }} />
+    {!!context.accountId && context.accountId !== daoId && (
+      <Widget src="near/widget/FollowButton" props={{ accountId: daoId }} />
     )}
 
-    <Widget src="hack.near/widget/dao.connect" props={{ daoId: accountId }} />
+    <Widget src="hack.near/widget/dao.connect" props={{ daoId }} />
   </Card>
 );
