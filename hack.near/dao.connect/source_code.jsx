@@ -1,6 +1,14 @@
 const accountId = props.accountId ?? context.accountId;
 const daoId = props.daoId ?? "multi.sputnik-dao.near";
 
+const policy = Near.view(daoId, "get_policy");
+
+if (policy === null) {
+  return "";
+}
+
+const deposit = policy.proposal_bond;
+
 const followEdge = Social.keys(
   `${accountId}/graph/follow/${daoId}`,
   undefined,
