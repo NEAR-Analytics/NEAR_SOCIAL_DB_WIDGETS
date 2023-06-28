@@ -90,12 +90,13 @@ return (
           <i class="bi bi-link"></i>
           <span>connect</span>
         </IconLabelButton>
-        <IconLabelButton onClick={() => State.update({ view: "BUILD" })}>
-          <i class="bi bi-hammer"></i>
-          <span>build</span>
-        </IconLabelButton>
       </ButtonRow>
     </Header>
     <Content />
   </>
 );
+
+// <IconLabelButton onClick={() => State.update({ view: "BUILD" })}>
+//           <i class="bi bi-hammer"></i>
+//           <span>build</span>
+//         </IconLabelButton>
