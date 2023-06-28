@@ -364,12 +364,19 @@ const Stats = () =>
           placement="top"
           overlay={
             <Tooltip
+              style={{
+                textOverflow: "ellipsis",
+                backgroundColor: "white",
+                padding: "0.5rem",
+              }}
               onClick={() => State.update({ expandReactionList: obj.text })}
             >
               {obj.accounts.map((acc, i) => {
-                if (i < 7) {
+                let maxAmountOfAcc = 7;
+
+                if (i < maxAmountOfAcc - 1) {
                   return <div className="text-truncate text-start">{acc}</div>;
-                } else if (i == 8) {
+                } else if (i == maxAmountOfAcc) {
                   return <div>...</div>;
                 } else {
                   <></>;
