@@ -183,6 +183,7 @@ const clickHandler = (emojiMessage) => {
 
 // =============== CSS Styles ===============
 const Button = styled.button`
+  min-width: fit-content;
   background: transparent;
   display: inline-flex;
   align-items: center;
@@ -298,7 +299,7 @@ const AccountsListContainer = styled.div`
   bottom: 0px;
   background-color: rgb(230, 230, 230);
   border-radius: 12px;
-  max-width: 20rem
+  max-width: 20rem;
 
   div {
     margin: 1rem;
@@ -340,7 +341,6 @@ const Overlay = () => (
 );
 
 const renderReactionList = (accounts) => {
-  return <p>aisjfbaksfbabakfabsfajbfajdaakjv</p>;
   return (
     <AccountsListContainer
       onMouseLeave={() => State.update({ expandReactionList: "" })}
