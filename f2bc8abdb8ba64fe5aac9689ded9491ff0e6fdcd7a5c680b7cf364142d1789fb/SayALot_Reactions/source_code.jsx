@@ -375,8 +375,7 @@ const Stats = () =>
           }
         >
           <>
-            {state.expandReactionList == obj.text &&
-              renderReactionList(obj.accounts)}
+            {true && renderReactionList(obj.accounts)}
             <StatWrapper
               title={`${obj.text}`}
               isUserVote={obj.emoji === userReaction}
