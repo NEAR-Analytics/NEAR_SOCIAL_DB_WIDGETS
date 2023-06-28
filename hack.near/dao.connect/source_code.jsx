@@ -1,5 +1,5 @@
 const accountId = props.accountId ?? context.accountId;
-const daoId = props.daoId ?? "meta.sputnik-dao.near";
+const daoId = props.daoId ?? "multi.sputnik-dao.near";
 
 if (
   !props.accountId ||
@@ -90,7 +90,7 @@ const handleProposal = () => {
 };
 
 const Wrapper = styled.div`
-  .join-button {
+  .follow-button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -105,7 +105,7 @@ const Wrapper = styled.div`
     cursor: pointer;
     background: #FBFCFD;
     border: 1px solid #D7DBDF;
-    color: ${props.primary ? "#006ADC" : "#11181C"} !important;
+    color: #006ADC !important;
     white-space: nowrap;
 
     &:hover,
@@ -116,16 +116,18 @@ const Wrapper = styled.div`
     }
 
     i {
-      display: inline-block;
-      transform: rotate(90deg);
       color: #7E868C;
+    }
+
+    .bi-16 {
+      font-size: 16px;
     }
   }
 `;
 
 return (
   <Wrapper>
-    <button disabled={loading} className="join-button" onClick={handleProposal}>
+    <button className="join-button" onClick={handleProposal}>
       {isFollowing && <i className="bi-16 bi bi-check"></i>}
       {isFollowing ? "Connected" : isInverse ? "Connect" : "Connect"}
     </button>
