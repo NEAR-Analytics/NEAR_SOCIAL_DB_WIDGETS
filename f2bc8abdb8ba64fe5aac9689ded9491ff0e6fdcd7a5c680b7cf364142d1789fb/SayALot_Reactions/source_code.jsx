@@ -347,10 +347,11 @@ const Overlay = () => (
 
 function scrollContainer(e) {
   let oldScrollValue = state.translate;
-  let newScrollValue = oldScrollValue + e.deltaY;
 
   console.log(Object.keys(e));
-  console.log(e.deltaY);
+  console.log(e.clientY);
+
+  let newScrollValue = oldScrollValue + e.clientY;
 
   State.update({ translate: newScrollValue });
 }
