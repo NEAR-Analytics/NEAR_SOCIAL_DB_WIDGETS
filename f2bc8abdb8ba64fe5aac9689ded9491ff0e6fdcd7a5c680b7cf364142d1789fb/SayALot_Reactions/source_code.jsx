@@ -351,7 +351,7 @@ const CloseButton = styled.div`
   width: 25px;
 
   :hover {
-    background-color: #0b5ed7;
+    background-color: #929bed;
   }
 `;
 
