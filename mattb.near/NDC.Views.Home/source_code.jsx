@@ -89,6 +89,7 @@ const Navigation = styled.div`
                 font-weight:bold;
                 opacity:.6;
                 color:${DEFAULT_TEXT_COLOR};
+                text-decoration:none;
 
                 &:hover {
                     opacity:1;
@@ -127,6 +128,7 @@ const ScoreBoard = styled.a`
     cursor:pointer;
     transition: all .2s;
     color:${DEFAULT_TEXT_COLOR};
+    text-decoration:none!important;
     
     &:hover {
         transition: all .2s;
@@ -176,6 +178,7 @@ const Info = styled.div`
         border:0;
         letter-spacing:-.5px;
         padding:.5rem 1rem;
+        text-decoration:none;
     }
 
     a.primary {
