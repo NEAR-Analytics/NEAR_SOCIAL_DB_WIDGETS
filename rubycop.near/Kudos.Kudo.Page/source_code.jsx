@@ -29,7 +29,7 @@ return (
         src={widgets.item}
         props={{
           isIAmHuman,
-          replyTo: kudo.id,
+          id: kudo.id,
           accountId: kudo.accountId,
           description: kudo.value.answer,
           upvotes: upvotesMap[kudo.blockHeight]
@@ -47,7 +47,7 @@ return (
           src={widgets.item}
           props={{
             isIAmHuman,
-            replyTo: comment.id,
+            id: comment.id,
             accountId: comment.accountId,
             description: comment.description,
             createdAt: comment.createdAt,
