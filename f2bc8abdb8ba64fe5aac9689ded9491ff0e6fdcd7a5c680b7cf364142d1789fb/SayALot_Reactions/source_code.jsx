@@ -367,11 +367,6 @@ const Overlay = () => (
 let maxAmountOfAccountsShown = 7;
 
 const renderReactionListModal = (accounts, objText) => {
-  let accountsa = [
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
-    22, 23, 24, 25, 26, 27, 28, 29, 30, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50,
-  ];
-
   return (
     <div
       className="modal"
@@ -393,7 +388,7 @@ const renderReactionListModal = (accounts, objText) => {
             </button>
           </div>
           <div className="modal-body">
-            {accountsa.map((acc) => {
+            {accounts.map((acc) => {
               return <AccountContainer title={acc}>{acc}</AccountContainer>;
             })}
           </div>
@@ -404,18 +399,13 @@ const renderReactionListModal = (accounts, objText) => {
 };
 
 const renderReactionList = (accounts, objText) => {
-  let accountsa = [
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
-    22, 23, 24, 25, 26, 27, 28, 29, 30, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50,
-  ];
-
   return (
     <AccountsListBigContainer
       onMouseLeave={() => State.update({ expandReactionList: "" })}
     >
       <AccountsListSmallContainer>
-        {accountsa &&
-          accountsa.map((acc, i) => {
+        {accounts &&
+          accounts.map((acc, i) => {
             if (i < maxAmountOfAccountsShown - 1) {
               return <AccountContainer title={acc}>{acc}</AccountContainer>;
             } else if (i == maxAmountOfAccountsShown) {
@@ -425,7 +415,7 @@ const renderReactionList = (accounts, objText) => {
                     State.update({ showReactionsListModal: objText })
                   }
                 >{`And ${
-                  accountsa.length - maxAmountOfAccountsShown
+                  accounts.length - maxAmountOfAccountsShown
                 } more...`}</ShowMoreIndicator>
               );
             } else {
