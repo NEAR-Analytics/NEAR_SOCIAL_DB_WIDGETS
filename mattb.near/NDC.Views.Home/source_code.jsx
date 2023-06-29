@@ -22,7 +22,7 @@ const Main = styled.div`
     background-image: url(${BACKGROUND_DECORATION_URL});
     background-size:1200px auto;
     background-repeat: no-repeat;
-    background-position: top left;
+    background-position: bottom left;
 
     * {
         font-family: 'Avenir', sans-serif;
