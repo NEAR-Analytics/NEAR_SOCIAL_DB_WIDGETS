@@ -394,7 +394,7 @@ const renderReactionListModal = (accounts, objText) => {
           </div>
           <div className="modal-body">
             {accountsa.map((acc) => {
-              return <AccountContainer>{acc}</AccountContainer>;
+              return <AccountContainer title={acc}>{acc}</AccountContainer>;
             })}
           </div>
         </div>
@@ -417,7 +417,7 @@ const renderReactionList = (accounts, objText) => {
         {accountsa &&
           accountsa.map((acc, i) => {
             if (i < maxAmountOfAccountsShown - 1) {
-              return <AccountContainer>{acc}</AccountContainer>;
+              return <AccountContainer title={acc}>{acc}</AccountContainer>;
             } else if (i == maxAmountOfAccountsShown) {
               return (
                 <ShowMoreIndicator
@@ -436,8 +436,6 @@ const renderReactionList = (accounts, objText) => {
     </AccountsListBigContainer>
   );
 };
-
-console.log(3, state.showReactionsListModal);
 
 const Stats = () =>
   likesStatistics && likesStatistics.length ? (
