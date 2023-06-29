@@ -368,7 +368,7 @@ const renderReactionList = (accounts) => {
           accountsa.map((acc) => {
             return <AccountContainer>{acc}</AccountContainer>;
           })}
-        {accountsa.length > 20 && accountsa.length - 20 > translate && (
+        {accountsa.length > 8 && (
           <i
             onClick={() => State.update({ translate: state.translate + 1 })}
             className="bi bi-caret-down"
