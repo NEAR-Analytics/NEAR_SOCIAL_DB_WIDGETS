@@ -7,12 +7,14 @@ const widgets = {
 // const comments = Social.index(`kudos/${kudo.id}/comments`);
 const comments = [
   {
+    id: 1,
     accountId: "rubycop.near",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer quam enim, dignissim sed ante at, convallis maximus enim.",
     createdAt: 2323234234,
   },
   {
+    id: 2,
     accountId: "test.near",
     description: "Lorem ipsum dolor ",
     createdAt: 1323254234,
@@ -27,6 +29,7 @@ return (
         src={widgets.item}
         props={{
           isIAmHuman,
+          replyTo: kudo.id,
           accountId: kudo.accountId,
           description: kudo.value.answer,
           upvotes: upvotesMap[kudo.blockHeight]
@@ -44,6 +47,7 @@ return (
           src={widgets.item}
           props={{
             isIAmHuman,
+            replyTo: comment.id,
             accountId: comment.accountId,
             description: comment.description,
             createdAt: comment.createdAt,
