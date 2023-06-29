@@ -133,92 +133,100 @@ const handleMintSBT = () => {};
 const handleReply = () => {};
 const handleShare = () => {};
 
+State.init({
+  showModal: false,
+});
+
 return (
-  <Container canMint={canMint}>
-    {canMint && (
-      <Mint onClick={handleMintSBT}>
-        <p className="text-white text-center align-items-center">
-          <span className="gift">🎁</span>
-          <b>Congratulations!</b>{" "}
-          <i>Click on the gift box to mint your Proof of Kudos</i>
-        </p>
-      </Mint>
-    )}
-    <div className="p-3">
-      <div className="d-flex justify-content-between align-items-center">
+  <>
+    <Container canMint={canMint}>
+      {canMint && (
+        <Mint onClick={handleMintSBT}>
+          <p className="text-white text-center align-items-center">
+            <span className="gift">🎁</span>
+            <b>Congratulations!</b>{" "}
+            <i>Click on the gift box to mint your Proof of Kudos</i>
+          </p>
+        </Mint>
+      )}
+      <div className="p-3">
         <div className="d-flex justify-content-between align-items-center">
-          <Widget
-            src="mob.near/widget/ProfileImage"
-            props={{
-              accountId,
-              imageClassName: "rounded-circle w-100 h-100",
-              style: { width: "32px", height: "32px", marginRight: 5 },
-            }}
-          />
-          <UserLink
-            src={`https://wallet.near.org/profile/${accountId}`}
-            title={accountId}
-          />
-        </div>
-        {upvotes !== undefined && (
-          <div className="d-flex justify-content-between align-items-center gap-2">
-            <VoteButton onClick={handleVote} disabled={!isIAmHuman}>
-              {upvotes}
-              <Widget
-                src="mob.near/widget/Image"
-                props={{
-                  image: {
-                    url: isIAmHuman
-                      ? "https://bafkreihtxbozr3tpmzyijzvgmnzjhfnvfudu5twxi5e736omfor6rrbcde.ipfs.nftstorage.link"
-                      : "https://bafkreiew3fr6fxxw6p5zibr7my7ykdqyppblaldsudsnropawfkghjkhuu.ipfs.nftstorage.link",
-                  },
-                  style: {
-                    height: "15px",
-                    marginBottom: "3px",
-                  },
-                  alt: "kudos",
-                  fallbackUrl:
-                    "https://ipfs.near.social/ipfs/bafkreibmiy4ozblcgv3fm3gc6q62s55em33vconbavfd2ekkuliznaq3zm",
-                }}
-              />
-            </VoteButton>
+          <div className="d-flex justify-content-between align-items-center">
+            <Widget
+              src="mob.near/widget/ProfileImage"
+              props={{
+                accountId,
+                imageClassName: "rounded-circle w-100 h-100",
+                style: { width: "32px", height: "32px", marginRight: 5 },
+              }}
+            />
+            <UserLink
+              src={`https://wallet.near.org/profile/${accountId}`}
+              title={accountId}
+            />
           </div>
-        )}
-      </div>
-      <Description className="text-secondary">{description}</Description>
-      <Tags className="d-flex gap-2">
-        {tags.map((tag) => (
-          <Tag>#{tag}</Tag>
-        ))}
-      </Tags>
-      <div className="d-flex justify-content-between align-items-center">
-        <CreatedAt>
-          <i className="bi bi-clock" />
-          {getDateAgo()}
-          {requesterId && (
-            <>
-              by <b>{requesterId}</b>
-            </>
+          {upvotes !== undefined && (
+            <div className="d-flex justify-content-between align-items-center gap-2">
+              <VoteButton onClick={handleVote} disabled={!isIAmHuman}>
+                {upvotes}
+                <Widget
+                  src="mob.near/widget/Image"
+                  props={{
+                    image: {
+                      url: isIAmHuman
+                        ? "https://bafkreihtxbozr3tpmzyijzvgmnzjhfnvfudu5twxi5e736omfor6rrbcde.ipfs.nftstorage.link"
+                        : "https://bafkreiew3fr6fxxw6p5zibr7my7ykdqyppblaldsudsnropawfkghjkhuu.ipfs.nftstorage.link",
+                    },
+                    style: {
+                      height: "15px",
+                      marginBottom: "3px",
+                    },
+                    alt: "kudos",
+                    fallbackUrl:
+                      "https://ipfs.near.social/ipfs/bafkreibmiy4ozblcgv3fm3gc6q62s55em33vconbavfd2ekkuliznaq3zm",
+                  }}
+                />
+              </VoteButton>
+            </div>
           )}
-        </CreatedAt>
-        <div className="d-flex justify-content-between align-items-center gap-2">
-          <ShareButton onClick={handleShare}>
-            <i className="bi bi-share-fill" />
-          </ShareButton>
-          <Widget
-            src="rubycop.near/widget/NDC.StyledComponents"
-            props={{
-              Button: {
-                text: "Reply",
-                disabled: !isIAmHuman,
-                size: "sm",
-                icon: <i className="bi bi-arrow-90deg-left" />,
-                onClick: handleReply,
-              },
-            }}
-          />
+        </div>
+        <Description className="text-secondary">{description}</Description>
+        <Tags className="d-flex gap-2">
+          {tags.map((tag) => (
+            <Tag>#{tag}</Tag>
+          ))}
+        </Tags>
+        <div className="d-flex justify-content-between align-items-center">
+          <CreatedAt>
+            <i className="bi bi-clock" />
+            {getDateAgo()}
+            {requesterId && (
+              <>
+                by <b>{requesterId}</b>
+              </>
+            )}
+          </CreatedAt>
+          <div className="d-flex justify-content-between align-items-center gap-2">
+            <ShareButton onClick={handleShare}>
+              <i className="bi bi-share-fill" />
+            </ShareButton>
+            <Widget
+              src="rubycop.near/widget/NDC.StyledComponents"
+              props={{
+                Button: {
+                  text: "Reply",
+                  disabled: !isIAmHuman,
+                  size: "sm",
+                  icon: <i className="bi bi-arrow-90deg-left" />,
+                  onClick: () => State.update({ showModal: true }),
+                },
+              }}
+            />
+          </div>
         </div>
       </div>
-    </div>
-  </Container>
+    </Container>
+
+    {showModal && <Modal></Modal>}
+  </>
 );
