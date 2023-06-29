@@ -181,8 +181,8 @@ const clickHandler = (emojiMessage) => {
   });
 };
 
-function showWhenCalled() {
-  return state.showReactionsListModal == obj.text ? { display: "block" } : {};
+function showWhenCalled(objText) {
+  return state.showReactionsListModal == objText ? { display: "block" } : {};
 }
 
 // =============== CSS Styles ===============
@@ -373,7 +373,12 @@ const renderReactionListModal = (accounts, objText) => {
   ];
 
   return (
-    <div className="modal" style={showWhenCalled()} tabindex="-1" role="dialog">
+    <div
+      className="modal"
+      style={showWhenCalled(objText)}
+      tabindex="-1"
+      role="dialog"
+    >
       <div className="modal-dialog" role="document">
         <div className="modal-content">
           <div className="modal-header">
