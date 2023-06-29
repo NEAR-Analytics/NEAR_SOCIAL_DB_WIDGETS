@@ -5,6 +5,8 @@ const DEFAULT_COMPONENT_COLOR = !!props.darkmode
 const DEFAULT_GRADIENT =
   "linear-gradient(90deg, rgb(147, 51, 234) 0%, rgb(79, 70, 229) 100%)";
 
+const DEFAULT_TEXT_COLOR = !!props.darkmode ? "#fff" : "#000";
+
 const DEFAULT_LOGO_URL = !!props.darkmode
   ? "https://ipfs.near.social/ipfs/bafkreihbueuso62ltstbcxdhlmdnacomlb2hxun5fxh34f4rvgtgb5pfi4"
   : "https://ipfs.near.social/ipfs/bafkreiavgky7fgrvwl4x4rxcypgew5ou6ahwf6mrcbtyswbvtbnrkrrobu";
@@ -52,7 +54,7 @@ const PollContainer = styled.div`
     border-radius:20px;
 `;
 
-const ScoreBoard = styled.div`
+const ScoreBoard = styled.a`
     display:flex;
     align-items:center;
     justify-content:center;
@@ -61,8 +63,19 @@ const ScoreBoard = styled.div`
     border-radius:10px;
     box-sizing:border-box;
     padding: .8rem;
-    background-color:rgb(248, 248, 249);
+    background-color:#fff;
+    border: 2px solid rgba(0,0,0,.05);
     margin-bottom:.8rem;
+    cursor:pointer;
+    transition: all .2s;
+    color:${DEFAULT_TEXT_COLOR};
+    
+    &:hover {
+        transition: all .2s;
+        border: 2px solid rgb(79, 70, 229);
+        background: linear-gradient(90deg, rgba(147, 51, 234, 0.08) 0%, rgba(79, 70, 229, 0.08) 100%);
+        box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 30px;
+    }
 
     & > div {
         h1 {
@@ -73,6 +86,8 @@ const ScoreBoard = styled.div`
 
         p {
             font-size:.8rem;
+            margin:0;
+            padding:0;
         }
     }
 `;
@@ -117,6 +132,13 @@ const Info = styled.div`
     }
 `;
 
+const Title = styled.h1`
+    margin:0;
+    padding:0;
+    font-size:2rem;
+    font-weight:bold;
+`;
+
 return (
   <Main>
     <Header>
@@ -151,22 +173,39 @@ return (
           </Info>
           <ScoreBoard>
             <div>
-              <h1>Community Leaderboard</h1>
-              <div>
+              <h1>
                 <Logo
                   src={I_AM_HUMAN_LOGO_URL}
                   style={{
                     maxWidth: "30px",
                   }}
-                />
-              </div>
+                />{" "}
+                Community Scoreboard
+              </h1>
+              <div></div>
               <p>See which communities are onboarding the most humans</p>
             </div>
           </ScoreBoard>
         </Section>
         <Section>
+          <Title>Activity</Title>
           <PollContainer>
-            <Widget src="neardigitalcollective.near/widget/EasyPoll.Main@94242300" />
+            <Widget
+              src={`neardigitalcollective.near/widget/EasyPoll.Questions`}
+              props={{
+                sharedBlockHeight: 0,
+                whitelist: [
+                  "neardigitalcollective.near",
+                  "blaze.near",
+                  "jlw.near",
+                  "joep.near",
+                  "sarahkornfeld.near",
+                  "yuensid.near",
+                ],
+                indexVersion: "3.2.0",
+                canOperate: false,
+              }}
+            />
           </PollContainer>
         </Section>
         <Section>...</Section>
