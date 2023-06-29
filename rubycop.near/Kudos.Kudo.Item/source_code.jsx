@@ -10,6 +10,8 @@ const {
 
 const widget = {
   button: "rubycop.near/widget/NDC.StyledComponents",
+  modal: "frichard5.near/widget/NDC-modal",
+  comment: "rubycop.near/widget/Kudos.Comment.Reply",
 };
 
 const Container = styled.div`
@@ -20,6 +22,10 @@ const Container = styled.div`
   @media (max-width: 768px) {
     background: #fff;
   }
+`;
+
+const InputField = styled.div`
+  margin: 20px 0;
 `;
 
 const Mint = styled.div`
@@ -109,26 +115,14 @@ const StyledLink = styled.a`
 `;
 
 const Modal = styled.div`
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0,0.5);
-
-  .modal {
-    background: #F8F8F9;
-    margin: 20% auto;
-    padding: 20px;
-    border-radius: 10px;
-    width: 60%;
-    
-    @media (max-width: 768px) {
-      width: 90%;
-    }
+  background: #F8F8F9;
+  margin: 20% auto;
+  padding: 20px;
+  border-radius: 10px;
+  width: 50%;
+  
+  @media (max-width: 768px) {
+    width: 90%;
   }
 
   .content {
@@ -166,8 +160,66 @@ const handleReply = () => {};
 const handleShare = () => {};
 
 State.init({
-  showModal: false,
+  isOpen: false,
+  comment: "",
 });
+
+const Content = () => (
+  <>
+    <h4>Reply to comment</h4>
+    <div className="content">
+      <div className="d-flex justify-content-between align-items-center">
+        <div>
+          <Widget
+            src="mob.near/widget/ProfileImage"
+            props={{
+              accountId,
+              imageClassName: "rounded-circle w-100 h-100",
+              style: { width: "32px", height: "32px", marginRight: 5 },
+            }}
+          />
+          <UserLink
+            src={`https://wallet.near.org/profile/${accountId}`}
+            title={accountId}
+          />
+        </div>
+        <CreatedAt>
+          <i className="bi bi-clock" />
+          {date}
+        </CreatedAt>
+      </div>
+      <Description className="text-secondary">{description}</Description>
+      <InputField>
+        <input
+          type="text"
+          value={state.comment}
+          onChange={(e) => State.update({ comment: e.target.value })}
+        />
+      </InputField>
+    </div>
+    <div className="d-grid gap-3 d-flex align-items-center justify-content-end">
+      <Widget
+        src={widget.button}
+        props={{
+          Button: {
+            text: "Cancel",
+            className: "secondary",
+            onClick: () => State.update({ isOpen: false }),
+          },
+        }}
+      />
+      <Widget
+        src={widget.button}
+        props={{
+          Button: {
+            text: "Submit",
+            onClick: () => State.update({ isOpen: false }),
+          },
+        }}
+      />
+    </div>
+  </>
+);
 
 return (
   <>
@@ -250,7 +302,7 @@ return (
                   // disabled: !isIAmHuman,
                   size: "sm",
                   icon: <i className="bi bi-arrow-90deg-left" />,
-                  onClick: () => State.update({ showModal: true }),
+                  onClick: () => State.update({ isOpen: true }),
                 },
               }}
             />
@@ -259,36 +311,20 @@ return (
       </div>
     </Container>
 
-    {state.showModal && (
-      <Modal>
-        <div className="modal">
-          <h4>Reply to comment</h4>
-          <div className="content">
-            <p>Some text in the Modal..</p>
-          </div>
-          <div className="d-flex align-items-center justify-content-end">
-            <Widget
-              src={widget.button}
-              props={{
-                Button: {
-                  text: "Cancel",
-                  className: "secondary",
-                  onClick: () => State.update({ showModal: false }),
-                },
-              }}
+    <Widget
+      src={widget.comment}
+      props={{
+        isOpen: state.isOpen,
+        handleClose: () => State.update({ isOpen: false }),
+        input: (
+          <InputField>
+            <input
+              type="text"
+              onChange={(e) => State.update({ comment: e.target.value })}
             />
-            <Widget
-              src={widget.button}
-              props={{
-                Button: {
-                  text: "Submit",
-                  onClick: () => State.update({ showModal: false }),
-                },
-              }}
-            />
-          </div>
-        </div>
-      </Modal>
-    )}
+          </InputField>
+        ),
+      }}
+    />
   </>
 );
