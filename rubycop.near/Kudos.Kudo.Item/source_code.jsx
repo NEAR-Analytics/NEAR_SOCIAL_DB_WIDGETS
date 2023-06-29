@@ -1,4 +1,5 @@
 const {
+  id,
   accountId,
   requesterId,
   upvotes,
@@ -10,7 +11,6 @@ const {
 
 const widget = {
   button: "rubycop.near/widget/NDC.StyledComponents",
-  modal: "frichard5.near/widget/NDC-modal",
   comment: "rubycop.near/widget/Kudos.Comment.Reply",
 };
 
@@ -115,6 +115,25 @@ const StyledLink = styled.a`
 `;
 
 const Modal = styled.div`
+  position: fixed;
+  z-index: 101;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100vh;
+  background: rgba(128, 128, 128, 0.65);
+`;
+
+const ComponentWrapper = styled.div`
+  position: absolute;
+  width: 100%;
+  z-index: 100;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
+
+const ModalContent = styled.div`
   background: #F8F8F9;
   margin: 20% auto;
   padding: 20px;
@@ -156,7 +175,7 @@ const getDateAgo = () => {
 
 const canMint = upvotes >= 5;
 const handleMintSBT = () => {};
-const handleReply = () => {};
+const handleCreateComment = (id, comment) => {};
 const handleShare = () => {};
 
 State.init({
@@ -165,7 +184,7 @@ State.init({
 });
 
 const Content = () => (
-  <>
+  <ModalContent>
     <h4>Reply to comment</h4>
     <div className="content">
       <div className="d-flex justify-content-between align-items-center">
@@ -213,12 +232,15 @@ const Content = () => (
         props={{
           Button: {
             text: "Submit",
-            onClick: () => State.update({ isOpen: false }),
+            onClick: () => {
+              State.update({ isOpen: false });
+              handleCreateComment(id, comment);
+            },
           },
         }}
       />
     </div>
-  </>
+  </ModalContent>
 );
 
 return (
@@ -311,20 +333,12 @@ return (
       </div>
     </Container>
 
-    <Widget
-      src={widget.comment}
-      props={{
-        isOpen: state.isOpen,
-        handleClose: () => State.update({ isOpen: false }),
-        input: (
-          <InputField>
-            <input
-              type="text"
-              onChange={(e) => State.update({ comment: e.target.value })}
-            />
-          </InputField>
-        ),
-      }}
-    />
+    {state.isOpen && (
+      <Modal isOpen={state.isOpen}>
+        <ComponentWrapper>
+          <Content />
+        </ComponentWrapper>
+      </Modal>
+    )}
   </>
 );
