@@ -8,6 +8,10 @@ const {
   isIAmHuman,
 } = props;
 
+const widget = {
+  button: "rubycop.near/widget/NDC.StyledComponents",
+};
+
 const Container = styled.div`
   border-radius: 10px;
   background: #F8F8F9;
@@ -113,28 +117,22 @@ const Modal = styled.div`
   height: 100%;
   overflow: auto;
   background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgba(0,0,0,0.5);
 
-  .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
+  .modal {
+    background: #F8F8F9;
+    margin: 20% auto;
     padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
+    border-radius: 10px;
+    width: 60%;
+    
+    @media (max-width: 768px) {
+      width: 90%;
+    }
   }
 
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
-
-  .close:hover,
-  .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
+  .content {
+    margin: 18px 0; 
   }
 `;
 
@@ -261,16 +259,34 @@ return (
       </div>
     </Container>
 
-    {showModal && (
+    {state.showModal && (
       <Modal>
-        <div className="modal-content">
-          <span
-            className="close"
-            onClick={() => State.update({ showModal: false })}
-          >
-            &times;
-          </span>
-          <p>Some text in the Modal..</p>
+        <div className="modal">
+          <h4>Reply to comment</h4>
+          <div className="content">
+            <p>Some text in the Modal..</p>
+          </div>
+          <div className="d-flex align-items-center justify-content-end">
+            <Widget
+              src={widget.button}
+              props={{
+                Button: {
+                  text: "Cancel",
+                  className: "secondary",
+                  onClick: () => State.update({ showModal: false }),
+                },
+              }}
+            />
+            <Widget
+              src={widget.button}
+              props={{
+                Button: {
+                  text: "Submit",
+                  onClick: () => State.update({ showModal: false }),
+                },
+              }}
+            />
+          </div>
         </div>
       </Modal>
     )}
