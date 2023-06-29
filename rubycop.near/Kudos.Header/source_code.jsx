@@ -1,3 +1,5 @@
+const { isIAmHuman } = props;
+
 const widget = {
   button: "rubycop.near/widget/NDC.StyledComponents",
 };
