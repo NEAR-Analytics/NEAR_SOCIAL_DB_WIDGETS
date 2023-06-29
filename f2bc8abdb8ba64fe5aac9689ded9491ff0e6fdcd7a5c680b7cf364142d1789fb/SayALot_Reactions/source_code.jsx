@@ -300,7 +300,7 @@ const AccountsListBigContainer = styled.div`
   bottom: 2rem;
   background-color: rgb(230, 230, 230);
   border-radius: 12px;
-  max-width: 20rem;
+  width: 40vw;
 `;
 
 const AccountsListSmallContainer = styled.div`
