@@ -432,6 +432,8 @@ const renderReactionList = (accounts, objText) => {
   );
 };
 
+console.log(3, state.showReactionsListModal);
+
 const Stats = () =>
   likesStatistics && likesStatistics.length ? (
     likesStatistics.map((obj) => {
