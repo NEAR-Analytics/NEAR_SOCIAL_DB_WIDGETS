@@ -11,7 +11,7 @@ return (
     props={{
       data: thing.data,
       type: type,
-      template: thing.template,
+      template: thing.template?.src,
       thingId: parts[2],
     }}
   />
