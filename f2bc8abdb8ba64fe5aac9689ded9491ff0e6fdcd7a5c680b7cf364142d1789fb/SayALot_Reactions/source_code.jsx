@@ -182,7 +182,9 @@ const clickHandler = (emojiMessage) => {
 };
 
 function showWhenCalled(objText) {
-  return state.showReactionsListModal == objText ? { display: "block" } : {};
+  return state.showReactionsListModal == objText || true
+    ? { display: "block" }
+    : {};
 }
 
 // =============== CSS Styles ===============
