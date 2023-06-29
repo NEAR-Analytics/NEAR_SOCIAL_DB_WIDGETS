@@ -59,6 +59,21 @@ const InputField = styled.div`
   margin: 20px 0;
 `;
 
+const PrimaryLink = styled.a`
+  padding: 4px 20px;
+  background: #FFD50D;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  color: inherit;
+
+  &:hover {
+    text-decoration: none;
+    color: inherit;
+  }
+`;
+
 State.init({
   isOpen: false,
   receiverId: "",
@@ -148,34 +163,40 @@ return (
             "https://ipfs.near.social/ipfs/bafkreibmiy4ozblcgv3fm3gc6q62s55em33vconbavfd2ekkuliznaq3zm",
         }}
       />
-      <Widget
-        src="rubycop.near/widget/NDC.StyledComponents"
-        props={{
-          Button: {
-            text: "Give a Kudo",
-            size: "sm",
-            icon: (
-              <Widget
-                src="mob.near/widget/Image"
-                props={{
-                  image: {
-                    url: "https://bafkreieynbjyuycbo7naqp5dtiajcsmpiwyt7n2mk35746463nkcjte2yy.ipfs.nftstorage.link/",
-                  },
-                  alt: "kudos",
-                  style: {
-                    height: "20px",
-                    objectFit: "cover",
-                    margin: "0 0 3px 5px",
-                  },
-                  fallbackUrl:
-                    "https://ipfs.near.social/ipfs/bafkreibmiy4ozblcgv3fm3gc6q62s55em33vconbavfd2ekkuliznaq3zm",
-                }}
-              />
-            ),
-            onClick: () => State.update({ isOpen: true }),
-          },
-        }}
-      />
+      {isIAmHuman ? (
+        <Widget
+          src="rubycop.near/widget/NDC.StyledComponents"
+          props={{
+            Button: {
+              text: "Give a Kudo",
+              size: "sm",
+              icon: (
+                <Widget
+                  src="mob.near/widget/Image"
+                  props={{
+                    image: {
+                      url: "https://bafkreieynbjyuycbo7naqp5dtiajcsmpiwyt7n2mk35746463nkcjte2yy.ipfs.nftstorage.link/",
+                    },
+                    alt: "kudos",
+                    style: {
+                      height: "20px",
+                      objectFit: "cover",
+                      margin: "0 0 3px 5px",
+                    },
+                    fallbackUrl:
+                      "https://ipfs.near.social/ipfs/bafkreibmiy4ozblcgv3fm3gc6q62s55em33vconbavfd2ekkuliznaq3zm",
+                  }}
+                />
+              ),
+              onClick: () => State.update({ isOpen: true }),
+            },
+          }}
+        />
+      ) : (
+        <PrimaryLink href="https://i-am-human.app/">
+          Verify as Human
+        </PrimaryLink>
+      )}
     </Header>
 
     {state.isOpen && (
