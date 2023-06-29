@@ -319,6 +319,12 @@ const AccountContainer = styled.p`
   max-width: 100%;
 `;
 
+const ShowMoreIndicator = styled.p`
+    color: var(--bs-link-color);
+    cursor: pointer;
+    text-decoration: underline;
+`;
+
 // =============== NEW JSX ===============!!!!!!!!
 const Overlay = () => (
   <EmojiListWrapper
