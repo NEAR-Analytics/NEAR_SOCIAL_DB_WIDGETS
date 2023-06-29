@@ -1,3 +1,15 @@
+const ModalCard = styled.div`
+width: 100%;
+height: 100%;
+z-index: 1;
+background: rgba(0, 0, 0, 0.70);
+padding-top: 25%;
+padding-bottom: 25%;
+ 
+@media only screen and (max-width: 480px) {
+ 
+}
+`;
 const CardStyled = styled.div`
  
 width: 80%;
@@ -26,8 +38,8 @@ height: auto;
 margin-top:18px;
 @media only screen and (max-width: 480px) {
   
-  width: 326px;
-  height: 1030px;
+   
+   
 }
   `;
 
@@ -256,33 +268,6 @@ const filesOnChange = (files) => {
     uploadFileUpdateState(files[0]);
   }
 };
-const handleInputs = (_params) => {
-  switch (_params._type) {
-    case "issued1":
-      State.update({ issued1: _params.event.target.value });
-      break;
-    case "issued2":
-      State.update({ issued2: _params.event.target.value });
-      break;
-    case "issued3":
-      State.update({ issued3: _params.event.target.value });
-      break;
-    case "addition_platform":
-      State.update({ addition_platform: _params.event.target.value });
-      break;
-    case "house_intended":
-      break;
-
-    case "agreement":
-      State.update({ agreement: _params.event.target.value });
-      break;
-      agreement;
-    case "tags":
-      State.update({ tags: _params.event.target.value });
-      break;
-    default:
-  }
-};
 
 const handleName = (item) => {
   State.update({ name: item });
@@ -358,132 +343,103 @@ const handleDeclaration = (item) => {
   State.update({ agreement: item.target.checked });
 };
 return (
-  <>
+  <ModalCard>
     <div
       style={{
-        "font-family": "Avenir",
+        display: "flex",
+        "justify-content": "center",
+        "padding-top": "16px",
+        "margin-bottom": "15px",
       }}
     >
-      <div
-        style={{
-          display: "flex",
-          "justify-content": "center",
-          "padding-top": "16px",
-          "margin-bottom": "15px",
-        }}
-      >
-        <HiddeableWidget>
+      <HiddeableWidget>
+        <Widget
+          src={`syi216.near/widget/NDC.nomination.card`}
+          props={{
+            name: state.name,
+            profileAccount: state.profileAccount,
+            issued1: state.issued1,
+            issued2: state.issued2,
+            issued3: state.issued3,
+            house_intended: state.house_intended,
+            afiliation: state.afiliation,
+            tags: state.tags.split(";"),
+          }}
+        />
+      </HiddeableWidget>
+    </div>
+    <CardStyled name="compose" class="Cardstyled">
+      <div className="d-flex flex-column ">
+        <div className="d-flex flex-column">
+          <H1styled>Self Nominate</H1styled>
+        </div>
+        <CardForm name="cardform">
           <Widget
-            src={`syi216.near/widget/NDC.nomination.card`}
+            src={`dokxo.near/widget/Compose.Profile`}
             props={{
+              img: state.img,
               name: state.name,
               profileAccount: state.profileAccount,
+              house_intended: state.house_intended,
+
+              filesOnChange: (file) => filesOnChange(file),
+              handleName: (text) => handleName(text),
+              handleProfile: (text) => handleProfile(text),
+              handleHouse: (text) => handleHouse(text),
+            }}
+          />
+          <Widget
+            src={`dokxo.near/widget/Compose.Platform`}
+            props={{
               issued1: state.issued1,
               issued2: state.issued2,
               issued3: state.issued3,
-              house_intended: state.house_intended,
-              afiliation: state.afiliation,
-              tags: state.tags.split(";"),
+              addition_platform: state.addition_platform,
+
+              handleIssued1: (file) => handleIssued1(file),
+              handleIssued2: (text) => handleIssued2(text),
+              handleIssued3: (text) => handleIssued3(text),
+              handleAditional: (text) => handleAditional(text),
             }}
           />
-        </HiddeableWidget>
-      </div>
-      <CardStyled name="compose" class="Cardstyled">
-        <div className="d-flex flex-column ">
-          <div className="d-flex flex-column">
-            <H1styled>Self Nominate</H1styled>
+          <Widget
+            src={`dokxo.near/widget/Compose.Affiliations`}
+            props={{
+              affiliations: state.afiliation,
+
+              addFields: () => addFields(),
+              removeField: (index) => removeField(index),
+              handleAFFCompanyName: (_params) => handleAFFCompanyName(_params),
+              handleAFFStartdate: (_params) => handleAFFStartdate(_params),
+              handleAFFEnddate: (_params) => handleAFFEnddate(_params),
+              handleAFFRole: (_params) => handleAFFRole(_params),
+            }}
+          />
+
+          <Widget
+            src={`dokxo.near/widget/Compose.TagAndDeclaration`}
+            props={{
+              agreement: state.agreement,
+              tags: state.tags,
+              handleTags: (item) => handleTags(item),
+              handleDeclaration: (item) => handleDeclaration(item),
+            }}
+          />
+          <div
+            class="row col-sm-12  mx-0  "
+            style={{
+              width: "100%",
+              "padding-left": "16px",
+              "padding-right": "16px",
+            }}
+          >
+            <Submitcontainer>
+              <CancelBtn> Cancel </CancelBtn>
+              <SubmitBtn onClick={validatedInputs}> Submit </SubmitBtn>
+            </Submitcontainer>
           </div>
-          <CardForm name="cardform">
-            <Widget
-              src={`dokxo.near/widget/Compose.Profile`}
-              props={{
-                img: state.img,
-                name: state.name,
-                profileAccount: state.profileAccount,
-                house_intended: state.house_intended,
-
-                filesOnChange: (file) => filesOnChange(file),
-                handleName: (text) => handleName(text),
-                handleProfile: (text) => handleProfile(text),
-                handleHouse: (text) => handleHouse(text),
-              }}
-            />
-            <Widget
-              src={`dokxo.near/widget/Compose.Platform`}
-              props={{
-                issued1: state.issued1,
-                issued2: state.issued2,
-                issued3: state.issued3,
-                addition_platform: state.addition_platform,
-
-                handleIssued1: (file) => handleIssued1(file),
-                handleIssued2: (text) => handleIssued2(text),
-                handleIssued3: (text) => handleIssued3(text),
-                handleAditional: (text) => handleAditional(text),
-              }}
-            />
-            <Widget
-              src={`dokxo.near/widget/Compose.Affiliations`}
-              props={{
-                affiliations: state.afiliation,
-
-                addFields: () => addFields(),
-                removeField: (index) => removeField(index),
-                handleAFFCompanyName: (_params) =>
-                  handleAFFCompanyName(_params),
-                handleAFFStartdate: (_params) => handleAFFStartdate(_params),
-                handleAFFEnddate: (_params) => handleAFFEnddate(_params),
-                handleAFFRole: (_params) => handleAFFRole(_params),
-              }}
-            />
-
-            <div
-              class="row col-sm-12  mx-0  "
-              style={{ "padding-left": "16px", "padding-right": "16px" }}
-            >
-              <FormsectionHouse_ name="FormsectionHouse_">
-                <H2styled>{"House"} </H2styled>
-                <FormsectionHouseDropdown
-                  name="house-intended"
-                  id="house-intended"
-                  onChange={(e) =>
-                    State.update({ house_intended: e.target.value })
-                  }
-                >
-                  <option default value="0">
-                    Select house
-                  </option>
-                  <option value="Council of Advisors">
-                    Council of Advisors
-                  </option>
-                  <option value="House Of Merit">House Of Merit</option>
-                  <option value="Transparency Commission">
-                    Transparency Commission
-                  </option>
-                </FormsectionHouseDropdown>
-              </FormsectionHouse_>
-            </div>
-            <Widget
-              src={`dokxo.near/widget/Compose.TagAndDeclaration`}
-              props={{
-                agreement: state.agreement,
-                tags: state.tags,
-                handleTags: (item) => handleTags(item),
-                handleDeclaration: (item) => handleDeclaration(item),
-              }}
-            />
-            <div
-              class="row col-sm-12  mx-0  "
-              style={{ "padding-left": "16px", "padding-right": "16px" }}
-            >
-              <Submitcontainer>
-                <CancelBtn> Cancel </CancelBtn>
-                <SubmitBtn onClick={validatedInputs}> Submit </SubmitBtn>
-              </Submitcontainer>
-            </div>
-          </CardForm>
-        </div>
-      </CardStyled>
-    </div>
-  </>
+        </CardForm>
+      </div>
+    </CardStyled>
+  </ModalCard>
 );
