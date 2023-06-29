@@ -182,9 +182,7 @@ const clickHandler = (emojiMessage) => {
 };
 
 function showWhenCalled() {
-  return state.showReactionsListModal == obj.text || true
-    ? { display: "block" }
-    : {};
+  return state.showReactionsListModal == obj.text ? { display: "block" } : {};
 }
 
 // =============== CSS Styles ===============
@@ -445,7 +443,7 @@ const Stats = () =>
         >
           {state.expandReactionList == obj.text &&
             renderReactionList(obj.accounts, obj.text)}
-          {(state.showReactionsListModal == obj.text || true) &&
+          {state.showReactionsListModal == obj.text &&
             renderReactionListModal(obj.accounts, obj.text)}
           <StatWrapper
             title={`${obj.text}`}
