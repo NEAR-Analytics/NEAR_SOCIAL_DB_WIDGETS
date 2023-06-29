@@ -1,11 +1,13 @@
-const DEFAULT_BACKGROUND_COLOR = !!props.darkmode ? "rgba(0,0,0,.9)" : "#fff";
-const DEFAULT_COMPONENT_COLOR = !!props.darkmode ? "rgba(0,0,0,.8)" : "#fff";
+const { darkmode } = props;
+
+const DEFAULT_BACKGROUND_COLOR = darkmode ? "#191919" : "#fff";
+const DEFAULT_COMPONENT_COLOR = darkmode ? "rgba(0,0,0,.8)" : "#fff";
 const DEFAULT_GRADIENT =
   "linear-gradient(90deg, rgb(147, 51, 234) 0%, rgb(79, 70, 229) 100%)";
 
-const DEFAULT_TEXT_COLOR = !!props.darkmode ? "#fff" : "#000";
+const DEFAULT_TEXT_COLOR = darkmode ? "#fff" : "#000";
 
-const DEFAULT_LOGO_URL = !!props.darkmode
+const DEFAULT_LOGO_URL = darkmode
   ? "https://ipfs.near.social/ipfs/bafkreihbueuso62ltstbcxdhlmdnacomlb2hxun5fxh34f4rvgtgb5pfi4"
   : "https://ipfs.near.social/ipfs/bafkreiavgky7fgrvwl4x4rxcypgew5ou6ahwf6mrcbtyswbvtbnrkrrobu";
 
@@ -290,6 +292,8 @@ return (
               src="mattb.near/widget/NDC.Components.ProgressMeterHumans"
               props={{
                 width: 250,
+                backgroundColor: DEFAULT_BACKGROUND_COLOR,
+                color: DEFAULT_TEXT_COLOR,
               }}
             />
           </ProgressWrapper>
