@@ -1,11 +1,10 @@
 let data = Social.index("kudo", "answer");
-if (!data) {
-  return "Loading answers";
-}
+
+if (!data) return "Loading answers";
+
 const upvotes = Social.index("kudo", "upvote");
-if (!upvotes) {
-  return "Loading upvotes";
-}
+if (!upvotes) return "Loading upvotes";
+
 const blackList = ["webuidl.near"];
 data = data.filter((d) => !blackList.includes(d.accountId));
 
@@ -37,12 +36,19 @@ const widgets = {
   //   commentReply: "rubycop.near/widget/Kudos.Comment.Reply",
 };
 
+const kudosContract = "kudos-contract.near";
+const registryContract = "registry-unstable.i-am-human.testnet";
+
 State.init({
   selectedItem: "My",
 });
 
 const handleSelect = (itemType) => {
   State.update({ selectedItem: itemType });
+};
+
+const isIAmHuman = () => {
+  Near.view(registryContract, "is_human", { account: context.accountId });
 };
 
 const Container = styled.div`
@@ -61,7 +67,7 @@ const H5 = styled.h5`
 
 return (
   <div>
-    <Widget src={widgets.header} />
+    <Widget src={widgets.header} props={{ isIAmHuman }} />
     <Container className="d-flex row">
       <Section className="col-md-3">
         <H5>Home</H5>
@@ -74,23 +80,29 @@ return (
         />
       </Section>
       <div className="col-md-9">
-        <Container className="d-grid gap-3">
+        <Container>
           <h4>{state.selectedItem} Kudos</h4>
-          {data.map((kudo, index) => (
-            <Widget
-              key={index}
-              src={widgets.item}
-              props={{
-                accountId: kudo.accountId,
-                description: kudo.value.answer,
-                upvotes: upvotesMap[kudo.blockHeight]
-                  ? upvotesMap[kudo.blockHeight]
-                  : 0,
-                tags: kudo.tags ?? [],
-                createdAt: kudo.createdAt ?? 1687561302337,
-              }}
-            />
-          ))}
+
+          <div className="d-flex flex-wrap">
+            {data.map((kudo, index) => (
+              <div className="col col-md-6 p-3">
+                <Widget
+                  key={index}
+                  src={widgets.item}
+                  props={{
+                    isIAmHuman,
+                    accountId: kudo.accountId,
+                    description: kudo.value.answer,
+                    upvotes: upvotesMap[kudo.blockHeight]
+                      ? upvotesMap[kudo.blockHeight]
+                      : 0,
+                    tags: kudo.tags ?? [],
+                    createdAt: kudo.createdAt,
+                  }}
+                />
+              </div>
+            ))}
+          </div>
         </Container>
       </div>
     </Container>
