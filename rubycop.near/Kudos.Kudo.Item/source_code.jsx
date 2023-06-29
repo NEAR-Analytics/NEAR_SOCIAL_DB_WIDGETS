@@ -1,4 +1,12 @@
-const { accountId, upvotes, description, tags, createdAt, isIAmHuman } = props;
+const {
+  accountId,
+  requesterId,
+  upvotes,
+  description,
+  tags,
+  createdAt,
+  isIAmHuman,
+} = props;
 
 const Container = styled.div`
   border-radius: 10px;
@@ -144,7 +152,7 @@ return (
             props={{
               accountId,
               imageClassName: "rounded-circle w-100 h-100",
-              style: { width: "32px", height: "32px", marginRight: 4 },
+              style: { width: "32px", height: "32px", marginRight: 5 },
             }}
           />
           <UserLink
@@ -152,28 +160,30 @@ return (
             title={accountId}
           />
         </div>
-        <div className="d-flex justify-content-between align-items-center gap-2">
-          <VoteButton onClick={handleVote} disabled={!isIAmHuman}>
-            {upvotes}
-            <Widget
-              src="mob.near/widget/Image"
-              props={{
-                image: {
-                  url: isIAmHuman
-                    ? "https://bafkreihtxbozr3tpmzyijzvgmnzjhfnvfudu5twxi5e736omfor6rrbcde.ipfs.nftstorage.link"
-                    : "https://bafkreiew3fr6fxxw6p5zibr7my7ykdqyppblaldsudsnropawfkghjkhuu.ipfs.nftstorage.link",
-                },
-                style: {
-                  height: "15px",
-                  marginBottom: "3px",
-                },
-                alt: "kudos",
-                fallbackUrl:
-                  "https://ipfs.near.social/ipfs/bafkreibmiy4ozblcgv3fm3gc6q62s55em33vconbavfd2ekkuliznaq3zm",
-              }}
-            />
-          </VoteButton>
-        </div>
+        {upvotes && (
+          <div className="d-flex justify-content-between align-items-center gap-2">
+            <VoteButton onClick={handleVote} disabled={!isIAmHuman}>
+              {upvotes}
+              <Widget
+                src="mob.near/widget/Image"
+                props={{
+                  image: {
+                    url: isIAmHuman
+                      ? "https://bafkreihtxbozr3tpmzyijzvgmnzjhfnvfudu5twxi5e736omfor6rrbcde.ipfs.nftstorage.link"
+                      : "https://bafkreiew3fr6fxxw6p5zibr7my7ykdqyppblaldsudsnropawfkghjkhuu.ipfs.nftstorage.link",
+                  },
+                  style: {
+                    height: "15px",
+                    marginBottom: "3px",
+                  },
+                  alt: "kudos",
+                  fallbackUrl:
+                    "https://ipfs.near.social/ipfs/bafkreibmiy4ozblcgv3fm3gc6q62s55em33vconbavfd2ekkuliznaq3zm",
+                }}
+              />
+            </VoteButton>
+          </div>
+        )}
       </div>
       <Description className="text-secondary">{description}</Description>
       <Tags className="d-flex gap-2">
@@ -184,7 +194,12 @@ return (
       <div className="d-flex justify-content-between align-items-center">
         <CreatedAt>
           <i className="bi bi-clock" />
-          {getDateAgo()} by <b>{context.accountId}</b>
+          {getDateAgo()}
+          {requesterId && (
+            <>
+              by <b>{requesterId}</b>
+            </>
+          )}
         </CreatedAt>
         <div className="d-flex justify-content-between align-items-center gap-2">
           <ShareButton onClick={handleShare}>
