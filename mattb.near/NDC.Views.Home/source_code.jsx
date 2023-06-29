@@ -317,7 +317,7 @@ function changeView(view) {
 }
 
 if (!state.render) {
-    changeView("home");
+    changeView(state.currentView);
 }
 
 return (
