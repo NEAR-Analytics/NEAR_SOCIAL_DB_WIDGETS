@@ -315,9 +315,10 @@ const AccountsListSmallContainer = styled.div`
   transform: translateY(${state.translate}rem);
 `;
 
-const AccountContainer = styled.span`
+const AccountContainer = styled.p`
   overflow: hidden;
   text-overflow: ellipsis;
+  max-width: 100%;
 `;
 
 // =============== NEW JSX ===============!!!!!!!!
