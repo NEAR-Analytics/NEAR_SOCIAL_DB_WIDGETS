@@ -340,10 +340,11 @@ const ShowMoreIndicator = styled.p`
 `;
 
 const CloseButton = styled.div`
+  cursor: pointer;
   border-radius: 12px;
   border: 1px solid black;
   background-color: transparent;
-  transition: all 0.5s
+  transition: all 0.5s;
 
   :hover {
     background-color: rgb(230, 230, 230);
@@ -393,7 +394,7 @@ const renderReactionListModal = (accounts, objText) => {
               onClick={() => State.update({ showReactionsListModal: "" })}
               type="button"
             >
-              <i className="bi bi-x-lg"></i>
+              <i className="bi bi-x"></i>
             </CloseButton>
           </div>
           <div className="modal-body">
