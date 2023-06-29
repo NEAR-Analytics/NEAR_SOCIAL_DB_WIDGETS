@@ -369,14 +369,6 @@ const renderReactionListModal = (accounts, objText) => {
   ];
 
   return (
-    <>
-      {accountsa.map((acc) => {
-        return <AccountContainer>{acc}</AccountContainer>;
-      })}
-    </>
-  );
-
-  return (
     <div className="modal" tabindex="-1" role="dialog">
       <div className="modal-dialog" role="document">
         <div className="modal-content">
@@ -448,7 +440,8 @@ const Stats = () =>
         >
           {state.expandReactionList == obj.text &&
             renderReactionList(obj.accounts, obj.text)}
-          {true && renderReactionListModal(obj.accounts, obj.text)}
+          {(state.showReactionsListModal == obj.text || true) &&
+            renderReactionListModal(obj.accounts, obj.text)}
           <StatWrapper
             title={`${obj.text}`}
             isUserVote={obj.emoji === userReaction}
