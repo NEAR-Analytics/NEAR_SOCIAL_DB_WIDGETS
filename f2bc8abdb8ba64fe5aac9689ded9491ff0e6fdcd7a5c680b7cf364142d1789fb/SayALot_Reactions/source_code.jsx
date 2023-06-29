@@ -346,8 +346,7 @@ const Overlay = () => (
 );
 
 const renderReactionList = (accounts) => {
-  let accounts = accounts;
-  accounts = [
+  let accountsa = [
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
     22, 23, 24, 25, 26, 27, 28, 29, 30, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50,
   ];
@@ -364,11 +363,11 @@ const renderReactionList = (accounts) => {
             className="bi bi-caret-up"
           ></i>
         )}
-        {accounts &&
-          accounts.map((acc) => {
+        {accountsa &&
+          accountsa.map((acc) => {
             return <AccountContainer>{acc}</AccountContainer>;
           })}
-        {accounts.length > 20 && accounts.length - 20 > translate && (
+        {accountsa.length > 20 && accountsa.length - 20 > translate && (
           <i
             onClick={() => State.update({ translate: state.translate + 1 })}
             className="bi bi-caret-down"
