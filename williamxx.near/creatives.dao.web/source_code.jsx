@@ -213,6 +213,7 @@ return (
           />
         </div>
         <Widget src="williamxx.near/widget/Creatives.Home.Tracks" />
+        <Widget src="williamxx.near/widget/Number.Page" />
       </FlexContainer>
       <Widget src="hack.near/widget/creatives.why" />
       <br />
