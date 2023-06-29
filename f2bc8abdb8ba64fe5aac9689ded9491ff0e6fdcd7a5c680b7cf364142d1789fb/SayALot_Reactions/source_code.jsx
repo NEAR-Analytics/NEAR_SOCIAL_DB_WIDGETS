@@ -26,6 +26,7 @@ State.init({
   likesStatistics: [],
   show: false,
   loading: false,
+  translate: 0,
 });
 
 // ========= UNFILTERED LIKES and SOCIAL.INDEX =========
@@ -309,6 +310,8 @@ const AccountsListSmallContainer = styled.div`
   padding: 10px;
   text-overflow: ellipsis;
   background-color: white;
+  max-height: 20rem;
+  transform: translateY(${state.translate}px);
 `;
 
 const AccountContainer = styled.span`
@@ -341,12 +344,21 @@ const Overlay = () => (
   </EmojiListWrapper>
 );
 
+function scrollContainer(e) {
+  let oldScrollValue = state.translate;
+  let newScrollValue = oldScrollValue + e.deltaY;
+
+  State.update({ translate: newScrollValue });
+}
+
 const renderReactionList = (accounts) => {
   return (
     <AccountsListBigContainer
-      onMouseLeave={() => State.update({ expandReactionList: "" })}
+      onMouseLeave={() =>
+        State.update({ expandReactionList: "", translate: 0 })
+      }
     >
-      <AccountsListSmallContainer>
+      <AccountsListSmallContainer onWheel={scrollContainer}>
         {accounts &&
           accounts.map((acc) => {
             return <AccountContainer>{acc}</AccountContainer>;
@@ -361,7 +373,12 @@ const Stats = () =>
     likesStatistics.map((obj) => {
       const userReaction = userEmoji ? userEmoji.value.type.slice(0, 2) : "";
       return (
-        <div onMouseOver={() => State.update({ expandReactionList: obj.text })}>
+        <div
+          onMouseOver={() => State.update({ expandReactionList: obj.text })}
+          onMouseLeave={() =>
+            State.update({ expandReactionList: "", translate: 0 })
+          }
+        >
           {state.expandReactionList == obj.text &&
             renderReactionList(obj.accounts)}
           <StatWrapper
