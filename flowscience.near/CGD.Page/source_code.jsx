@@ -240,6 +240,12 @@ return (
           >
             Rewards
           </TabsButton>
+          <TabsButton
+            href={`${accountUrl}&tab=subDAOs`}
+            selected={state.selectedTab === "subDAOs"}
+          >
+            SubDAOs
+          </TabsButton>
         </Tabs>
 
         {state.selectedTab === "proposals" && (
@@ -291,6 +297,12 @@ return (
 
         {state.selectedTab === "rewards" && (
           <Widget src="sking.near/widget/DAO.Rewards" props={{ daoId }} />
+        )}
+        {state.selectedTab === "subDAOs" && (
+          <Widget
+            src="sflowscience.near/widget/CGD.Factory"
+            props={{ daoId }}
+          />
         )}
       </Content>
     </Main>
