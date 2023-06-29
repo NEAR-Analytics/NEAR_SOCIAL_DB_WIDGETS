@@ -183,7 +183,7 @@ const clickHandler = (emojiMessage) => {
 
 function showWhenCalled(objText) {
   return state.showReactionsListModal == objText || true
-    ? { display: "block" }
+    ? { display: "block", backdropFilter: "blur(3px)", cursor: "auto" }
     : {};
 }
 
@@ -324,7 +324,9 @@ const AccountContainer = styled.p`
   text-overflow: ellipsis;
   max-width: 100%;
   text-align: start;
-  margin: 0.2rem
+  margin: 0.2rem;
+  user-select: text;
+  cursor: text;
 `;
 
 const ShowMoreIndicator = styled.p`
@@ -332,7 +334,7 @@ const ShowMoreIndicator = styled.p`
   cursor: pointer;
   text-decoration: underline;
   text-align: start;
-  margin: 0.2rem
+  margin: 0.2rem;
 
   :hover {
       color: var(--bs-indigo);
