@@ -128,6 +128,7 @@ display: flex;
 justify-content: flex-end;
 align-items: center;
 gap: 8px;
+margin-bottom:16px;
 
 `;
 const SubmitBtn = styled.button`
