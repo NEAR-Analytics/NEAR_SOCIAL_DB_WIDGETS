@@ -384,7 +384,6 @@ const renderReactionListModal = (accounts, objText) => {
               onClick={() => State.update({ showReactionsListModal: "" })}
               type="button"
               className="close"
-              data-dismiss="modal"
               aria-label="Close"
             >
               <span aria-hidden="true">&times;</span>
