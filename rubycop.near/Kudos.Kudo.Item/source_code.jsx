@@ -58,7 +58,7 @@ const Description = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 14px;
   margin: 12px 0;
 `;
 
