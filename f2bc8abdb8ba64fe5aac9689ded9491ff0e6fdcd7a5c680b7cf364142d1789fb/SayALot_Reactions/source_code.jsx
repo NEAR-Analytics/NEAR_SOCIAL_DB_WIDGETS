@@ -312,7 +312,7 @@ const AccountsListSmallContainer = styled.div`
   text-overflow: ellipsis;
   background-color: white;
   max-height: 20rem;
-  transform: translateY(${state.translate}px);
+  transform: translateY(${state.translate}rem);
 `;
 
 const AccountContainer = styled.span`
@@ -345,29 +345,35 @@ const Overlay = () => (
   </EmojiListWrapper>
 );
 
-function scrollContainer(e) {
-  let oldScrollValue = state.translate;
-
-  console.log(Object.keys(e));
-  console.log(e.clientY);
-
-  let newScrollValue = oldScrollValue + e.clientY;
-
-  State.update({ translate: newScrollValue });
-}
-
 const renderReactionList = (accounts) => {
+  let accounts = accounts;
+  accounts = [
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
+    22, 23, 24, 25, 26, 27, 28, 29, 30, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50,
+  ];
   return (
     <AccountsListBigContainer
       onMouseLeave={() =>
         State.update({ expandReactionList: "", translate: 0 })
       }
     >
-      <AccountsListSmallContainer onWheel={scrollContainer}>
+      <AccountsListSmallContainer>
+        {state.transform > 0 && (
+          <i
+            onClick={() => State.update({ translate: state.translate - 1 })}
+            className="bi bi-caret-up"
+          ></i>
+        )}
         {accounts &&
           accounts.map((acc) => {
             return <AccountContainer>{acc}</AccountContainer>;
           })}
+        {accounts.length > 20 && accounts.length - 20 > translate && (
+          <i
+            onClick={() => State.update({ translate: state.translate + 1 })}
+            className="bi bi-caret-down"
+          ></i>
+        )}
       </AccountsListSmallContainer>
     </AccountsListBigContainer>
   );
