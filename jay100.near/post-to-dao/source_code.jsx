@@ -76,8 +76,8 @@ return (
                         {
                           method_name: "set",
                           args: encodedArgs,
-                          deposit: "0",
-                          gas: "2000000",
+                          deposit: "100000000000000000000000",
+                          gas: "219000000000000",
                         },
                       ],
                     },
@@ -89,7 +89,7 @@ return (
                 "test-og-sbt.sputnik-dao.near",
                 "add_proposal",
                 proposal,
-                "220Tg"
+                "219000000000000Tg"
               );
 
               onCompose();
