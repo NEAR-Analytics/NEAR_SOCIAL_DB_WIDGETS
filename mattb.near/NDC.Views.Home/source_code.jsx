@@ -45,8 +45,9 @@ const Wrapper = styled.div`
 `;
 
 const Navigation = styled.div`
+    position:relative;
     display:flex;
-    justify-content:space-between;
+    justify-content:center;
     align-items:center;
     max-width:1300px;
     margin:0 auto;
@@ -54,6 +55,13 @@ const Navigation = styled.div`
     color:${DEFAULT_TEXT_COLOR};
     font-size:.9rem;
     letter-spacing:-.5px;
+    min-height:70px;
+
+    img {
+        position:absolute;
+        left:1rem;
+        border:1rem;
+    }
 
     ul {
         display:flex;
@@ -61,6 +69,7 @@ const Navigation = styled.div`
         padding:0;
         margin:0;
         list-style:none;
+        flex-wrap:wrap;
 
         li {
             padding:0;
@@ -187,6 +196,13 @@ const Title = styled.h1`
     font-weight:bold;
 `;
 
+const ProgressWrapper = styled.div`
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-top:2rem;
+`;
+
 return (
   <Main>
     <Header>
@@ -195,7 +211,15 @@ return (
         <ul>
           <li>
             <a
-              href="https://near.social/#/neardigitalcollective.near/widget/NDCDocs"
+              href="#/neardigitalcollective.near/widget/NDCDocs"
+              target="_blank"
+            >
+              Home
+            </a>
+          </li>
+          <li>
+            <a
+              href="#/neardigitalcollective.near/widget/NDCDocs"
               target="_blank"
             >
               NDCDocs
@@ -203,17 +227,14 @@ return (
           </li>
           <li>
             <a
-              href="https://near.org/frichard5.near/widget/NDC-alldaos_overview"
+              href="frichard5.near/widget/NDC-alldaos_overview"
               target="_blank"
             >
               Funding dashboard
             </a>
           </li>
           <li>
-            <a
-              href="https://near.social/#/sayalot.near/widget/SayALot"
-              target="_blank"
-            >
+            <a href="#/sayalot.near/widget/SayALot" target="_blank">
               Say A Lot
             </a>
           </li>
@@ -263,6 +284,15 @@ return (
               <p>See which communities are onboarding the most humans</p>
             </div>
           </ScoreBoard>
+
+          <ProgressWrapper>
+            <Widget
+              src="mattb.near/widget/NDC.Components.ProgressMeterHumans"
+              props={{
+                width: 250,
+              }}
+            />
+          </ProgressWrapper>
         </Section>
         <Section>
           <Title>Activity</Title>
