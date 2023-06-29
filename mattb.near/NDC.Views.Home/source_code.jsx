@@ -1,9 +1,5 @@
-const DEFAULT_BACKGROUND_COLOR = !!props.darkmode
-  ? "rgba(0,0,0,.9)"
-  : "rgba(0,0,0,.02)";
-const DEFAULT_COMPONENT_COLOR = !!props.darkmode
-  ? "rgba(0,0,0,.8)"
-  : "rgb(248, 248, 249)";
+const DEFAULT_BACKGROUND_COLOR = !!props.darkmode ? "rgba(0,0,0,.9)" : "#fff";
+const DEFAULT_COMPONENT_COLOR = !!props.darkmode ? "rgba(0,0,0,.8)" : "#fff";
 const DEFAULT_GRADIENT =
   "linear-gradient(90deg, rgb(147, 51, 234) 0%, rgb(79, 70, 229) 100%)";
 
@@ -26,12 +22,11 @@ const Main = styled.div`
     background-image: url(${BACKGROUND_DECORATION_URL});
     background-size:1200px auto;
     background-repeat: no-repeat;
-    background-position: bottom left;
+    background-position: top left;
 
     * {
         font-family: 'Avenir', sans-serif;
     }
-
 `;
 
 const Header = styled.div`
@@ -142,9 +137,10 @@ const Info = styled.div`
 `;
 
 const Title = styled.h1`
+    color:${DEFAULT_TEXT_COLOR};
     margin:0;
     padding:0;
-    font-size:2rem;
+    font-size:1.5rem;
     font-weight:bold;
 `;
 
@@ -203,24 +199,24 @@ return (
           <Title>Activity</Title>
           <PollContainer>
             <Widget
-              src={`neardigitalcollective.near/widget/EasyPoll.Questions`}
+              src={`neardigitalcollective.near/widget/EasyPoll.Main`}
               props={{
                 sharedBlockHeight: 0,
-                whitelist: [
-                  "neardigitalcollective.near",
-                  "blaze.near",
-                  "jlw.near",
-                  "joep.near",
-                  "sarahkornfeld.near",
-                  "yuensid.near",
-                ],
-                indexVersion: "3.2.0",
-                canOperate: false,
+              }}
+            />
+            <Widget
+              src={`neardigitalcollective.near/widget/NDCDocs_OneArticle`}
+              props={{
+                lastEditor: "blaze.near",
+                blockHeight: "94478867",
+                articleId: "TheNDC",
               }}
             />
           </PollContainer>
         </Section>
-        <Section>...</Section>
+        <Section>
+          <Widget src="neardigitalcollective.near/widget/OfficeHours" />
+        </Section>
       </Body>
     </Wrapper>
   </Main>
