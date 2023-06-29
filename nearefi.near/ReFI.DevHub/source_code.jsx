@@ -71,7 +71,7 @@ const DevHub = {
   get_all_labels: () => Near.view(contractAccountId, "get_all_labels") ?? null,
 
   get_community: ({ handle }) =>
-    Near.view(contractAccountId, "get_community", { handle }) ?? null,
+    Near.view("devgovgigs.near", "get_community", { handle }) ?? null,
 
   get_post: ({ post_id }) =>
     Near.view(contractAccountId, "get_post", { post_id }) ?? null,
