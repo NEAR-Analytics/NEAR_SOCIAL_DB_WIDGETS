@@ -26,7 +26,6 @@ State.init({
   likesStatistics: [],
   show: false,
   loading: false,
-  translate: 0,
 });
 
 // ========= UNFILTERED LIKES and SOCIAL.INDEX =========
@@ -305,7 +304,6 @@ const AccountsListBigContainer = styled.div`
 `;
 
 const AccountsListSmallContainer = styled.div`
-  position: relative;
   margin: 0.5rem;
   border-radius: 12px;
   overflow: hidden;
@@ -313,23 +311,12 @@ const AccountsListSmallContainer = styled.div`
   text-overflow: ellipsis;
   background-color: white;
   max-height: 20rem;
-  transform: translateY(${state.translate}rem);
 `;
 
 const AccountContainer = styled.p`
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 100%;
-`;
-
-const ScrollIconTop = styled.i`
-  position: fixed;
-  top: 10px;
-`;
-
-const ScrollIconBottom = styled.i`
-  position: fixed;
-  bottom: 10px;
 `;
 
 // =============== NEW JSX ===============!!!!!!!!
@@ -364,37 +351,13 @@ const renderReactionList = (accounts) => {
   ];
   return (
     <AccountsListBigContainer
-      onMouseLeave={() =>
-        State.update({ expandReactionList: "", translate: 0 })
-      }
+      onMouseLeave={() => State.update({ expandReactionList: "" })}
     >
       <AccountsListSmallContainer>
-        {state.transform > 0 && (
-          <ScrollIconTop
-            onClick={() => State.update({ translate: state.translate - 1 })}
-            className="bi bi-caret-up"
-          ></ScrollIconTop>
-        )}
         {accountsa &&
-          accountsa.map((acc, i) => {
-            if (i == 0) {
-              return (
-                <AccountContainer className="mt-1">{acc}</AccountContainer>
-              );
-            } else if (i == accontsa.length) {
-              return (
-                <AccountContainer className="mb-1">{acc}</AccountContainer>
-              );
-            } else {
-              return <AccountContainer>{acc}</AccountContainer>;
-            }
+          accountsa.map((acc) => {
+            return <AccountContainer>{acc}</AccountContainer>;
           })}
-        {accountsa.length > 8 && (
-          <ScrollIconBottom
-            onClick={() => State.update({ translate: state.translate + 1 })}
-            className="bi bi-caret-down"
-          ></ScrollIconBottom>
-        )}
       </AccountsListSmallContainer>
     </AccountsListBigContainer>
   );
@@ -407,9 +370,7 @@ const Stats = () =>
       return (
         <div
           onMouseOver={() => State.update({ expandReactionList: obj.text })}
-          onMouseLeave={() =>
-            State.update({ expandReactionList: "", translate: 0 })
-          }
+          onMouseLeave={() => State.update({ expandReactionList: "" })}
         >
           {state.expandReactionList == obj.text &&
             renderReactionList(obj.accounts)}
