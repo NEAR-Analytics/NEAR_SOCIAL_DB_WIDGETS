@@ -344,19 +344,69 @@ const Overlay = () => (
   </EmojiListWrapper>
 );
 
-const renderReactionList = (accounts) => {
+let maxAmountOfAccountsShown = 7;
+
+const renderReactionListModal = (accounts, objText) => {
   let accountsa = [
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
     22, 23, 24, 25, 26, 27, 28, 29, 30, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50,
   ];
+
+  return (
+    <div className="modal" tabindex="-1" role="dialog">
+      <div className="modal-dialog" role="document">
+        <div className="modal-content">
+          <div className="modal-header">
+            <h5 className="modal-title">{`All ${objText} reactions`}</h5>
+            <button
+              onClick={() => State.update({ showReactionsListModal: "" })}
+              type="button"
+              className="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div className="modal-body">
+            {accountsa.map((acc) => {
+              return <AccountContainer>{acc}</AccountContainer>;
+            })}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const renderReactionList = (accounts, objText) => {
+  let accountsa = [
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
+    22, 23, 24, 25, 26, 27, 28, 29, 30, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50,
+  ];
+
   return (
     <AccountsListBigContainer
       onMouseLeave={() => State.update({ expandReactionList: "" })}
     >
       <AccountsListSmallContainer>
         {accountsa &&
-          accountsa.map((acc) => {
-            return <AccountContainer>{acc}</AccountContainer>;
+          accountsa.map((acc, i) => {
+            if (i < maxAmountOfAccountsShown - 1) {
+              return <AccountContainer>{acc}</AccountContainer>;
+            } else if (i == maxAmountOfAccountsShown) {
+              return (
+                <ShowMoreIndicator
+                  onClick={() =>
+                    State.update({ showReactionsListModal: objText })
+                  }
+                >{`And ${
+                  accountsa.length - maxAmountOfAccountsShown
+                } more`}</ShowMoreIndicator>
+              );
+            } else {
+              return <></>;
+            }
           })}
       </AccountsListSmallContainer>
     </AccountsListBigContainer>
@@ -373,7 +423,9 @@ const Stats = () =>
           onMouseLeave={() => State.update({ expandReactionList: "" })}
         >
           {state.expandReactionList == obj.text &&
-            renderReactionList(obj.accounts)}
+            renderReactionList(obj.accounts, obj.text)}
+          {state.showReactionsListModal == obj.text &&
+            renderReactionListModal(obj.accounts, obj.text)}
           <StatWrapper
             title={`${obj.text}`}
             isUserVote={obj.emoji === userReaction}
