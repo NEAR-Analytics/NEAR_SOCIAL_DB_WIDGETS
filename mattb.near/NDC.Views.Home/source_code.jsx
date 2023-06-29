@@ -1,4 +1,6 @@
-const DEFAULT_BACKGROUND_COLOR = !!props.darkmode ? "rgba(0,0,0,.9)" : "#fff";
+const DEFAULT_BACKGROUND_COLOR = !!props.darkmode
+  ? "rgba(0,0,0,.9)"
+  : "rgba(0,0,0,.02)";
 const DEFAULT_COMPONENT_COLOR = !!props.darkmode
   ? "rgba(0,0,0,.8)"
   : "rgb(248, 248, 249)";
@@ -14,10 +16,17 @@ const DEFAULT_LOGO_URL = !!props.darkmode
 const I_AM_HUMAN_LOGO_URL =
   "https://ipfs.near.social/ipfs/bafybeibs7rgjyqlrhqg3o5iiy3i235mtz3nlntswmye32f3myqk4owbxzy";
 
+const BACKGROUND_DECORATION_URL =
+  "https://ipfs.near.social/ipfs/bafybeicwdaezq3bnsd7nocof2ktc3rlla6u5s5iqxe5p2c6at2leqnc7wi";
+
 const Main = styled.div`
     width:100%;
     min-height:100vh;
     background-color:${DEFAULT_BACKGROUND_COLOR};
+    background-image: url(${BACKGROUND_DECORATION_URL});
+    background-size:1200px auto;
+    background-repeat: no-repeat;
+    background-position: bottom left;
 
     * {
         font-family: 'Avenir', sans-serif;
@@ -63,7 +72,7 @@ const ScoreBoard = styled.a`
     border-radius:10px;
     box-sizing:border-box;
     padding: .8rem;
-    background-color:#fff;
+    background-color:${DEFAULT_COMPONENT_COLOR};
     border: 2px solid rgba(0,0,0,.05);
     margin-bottom:.8rem;
     cursor:pointer;
