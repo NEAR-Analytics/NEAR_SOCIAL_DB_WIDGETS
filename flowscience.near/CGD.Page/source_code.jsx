@@ -1,6 +1,6 @@
 //add subDAOs tab w/link to CGD.Factory
 //add dataSets tab
-//add link to CGD.Community page and/or Join
+//add link to CGD.Community page
 //add link to CGD.SubDAOs
 
 State.init({
@@ -8,8 +8,7 @@ State.init({
 });
 
 const accountId = props.accountId ?? context.accountId;
-const daoId = props.daoId ?? "cannabisgenome.near";
-const astroId = props.astroId ?? "cannabis-genome.sputnik-dao.near";
+const daoId = props.daoId ?? "cannabis-genome.sputnik-dao.near";
 const roleId = props.roleId ?? "Council";
 
 const page = accountId
@@ -247,7 +246,7 @@ return (
           <>
             <Widget
               src="hack.near/widget/dao.proposals"
-              props={{ astroId, accountId, limit: 8 }}
+              props={{ daoId, accountId, limit: 8 }}
             />
           </>
         )}
