@@ -95,9 +95,9 @@ const CommunityActivityPage = ({ handle }) => {
   handle = "refi";
   const communityData = DevHub.get_community({ handle });
 
-  if (communityData === null) {
-    return <div>Rengerating 🌸...</div>;
-  }
+  //   if (communityData === null) {
+  //     return <div>Rengerating 🌸...</div>;
+  //   }
 
   return widget("components.template.community-page", {
     handle,
@@ -133,7 +133,7 @@ const CommunityActivityPage = ({ handle }) => {
           <Widget src="nearefi.near/widget/NDC.verifyHuman" />
         </div>
       ) : (
-        <div>Loading ...</div>
+        <div>Rengerating ...</div>
       ),
   });
 };
