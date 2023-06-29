@@ -297,6 +297,7 @@ const EmojiQty = styled.span`
 
 const AccountsListBigContainer = styled.div`
   position: absolute;
+  overflow: hidden;
   bottom: 2rem;
   background-color: rgb(230, 230, 230);
   border-radius: 12px;
@@ -347,6 +348,8 @@ const Overlay = () => (
 function scrollContainer(e) {
   let oldScrollValue = state.translate;
   let newScrollValue = oldScrollValue + e.deltaY;
+
+  console.log(newScrollValue);
 
   State.update({ translate: newScrollValue });
 }
