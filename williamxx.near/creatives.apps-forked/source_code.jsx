@@ -1,5 +1,5 @@
 State.init({
-  selectedTab: props.tab || "fingerprints",
+  selectedTab: props.tab || "discussion",
 });
 
 const accountId = props.accountId ?? context.accountId;
