@@ -67,6 +67,7 @@ return (
   <Container>
     <Text>
       <h2> </h2>
+      <h2> </h2>
       <h2>50K</h2>
       <p>NFTs minted</p>
       <h2> </h2>
