@@ -61,6 +61,17 @@ const Section = styled.div`
   border-radius: 10px;
 `;
 
+const CenterSection = styled.div`
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+
+  @media (max-width: 768px) {
+    margin: 20px 0;
+    background: #F8F8F9;
+  }
+`;
+
 const H5 = styled.h5`
   margin-bottom: 20px;
 `;
@@ -79,32 +90,30 @@ return (
           }}
         />
       </Section>
-      <div className="col-md-9">
-        <Container>
-          <h4>{state.selectedItem} Kudos</h4>
+      <CenterSection className="col-md-9">
+        <h4>{state.selectedItem} Kudos</h4>
 
-          <div className="d-flex flex-wrap">
-            {data.map((kudo, index) => (
-              <div className="col col-md-6 p-3">
-                <Widget
-                  key={index}
-                  src={widgets.item}
-                  props={{
-                    isIAmHuman,
-                    accountId: kudo.accountId,
-                    description: kudo.value.answer,
-                    upvotes: upvotesMap[kudo.blockHeight]
-                      ? upvotesMap[kudo.blockHeight]
-                      : 0,
-                    tags: kudo.tags ?? [],
-                    createdAt: kudo.createdAt,
-                  }}
-                />
-              </div>
-            ))}
-          </div>
-        </Container>
-      </div>
+        <div className="d-flex flex-wrap">
+          {data.map((kudo, index) => (
+            <div className="col col-md-6 p-3">
+              <Widget
+                key={index}
+                src={widgets.item}
+                props={{
+                  isIAmHuman,
+                  accountId: kudo.accountId,
+                  description: kudo.value.answer,
+                  upvotes: upvotesMap[kudo.blockHeight]
+                    ? upvotesMap[kudo.blockHeight]
+                    : 0,
+                  tags: kudo.tags ?? [],
+                  createdAt: kudo.createdAt,
+                }}
+              />
+            </div>
+          ))}
+        </div>
+      </CenterSection>
     </Container>
   </div>
 );
