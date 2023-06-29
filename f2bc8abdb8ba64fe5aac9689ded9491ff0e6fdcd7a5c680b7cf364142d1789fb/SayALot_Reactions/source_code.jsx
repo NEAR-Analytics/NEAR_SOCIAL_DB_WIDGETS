@@ -33,6 +33,10 @@ const unfilteredLikes = Social.index("like", item, {
   order: "desc",
 });
 
+if (!unfilteredLikes) {
+  return "Loading...";
+}
+
 // ========= ARRAY LAST LIKE FOR EACH USER =========
 // arrayLastLikeForEachUser - array of objects {accountId, blockHeight, value: {type: "😁 LOL"}}
 const uniqueAccounts = [];
