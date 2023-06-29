@@ -32,7 +32,7 @@ const Text = styled.div`
     font-family: "FK Grotesk";
     font-style: normal;
     font-weight: 600;
-    font-size: 80px;
+    font-size: 70px;
     line-height: 41px;
     color: #000000;
   }
