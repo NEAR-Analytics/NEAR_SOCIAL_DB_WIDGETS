@@ -181,6 +181,12 @@ const clickHandler = (emojiMessage) => {
   });
 };
 
+function showWhenCalled() {
+  return state.showReactionsListModal == obj.text || true
+    ? { display: "block" }
+    : {};
+}
+
 // =============== CSS Styles ===============
 const Button = styled.button`
   min-width: fit-content;
@@ -369,15 +375,13 @@ const renderReactionListModal = (accounts, objText) => {
   ];
 
   return (
-    <div className="modal" tabindex="-1" role="dialog">
+    <div className="modal" style={showWhenCalled()} tabindex="-1" role="dialog">
       <div className="modal-dialog" role="document">
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title">{`All ${objText} reactions`}</h5>
             <button
-              onClick={() =>
-                State.update({ showReactionsListModal: "", objIndexShown: -1 })
-              }
+              onClick={() => State.update({ showReactionsListModal: "" })}
               type="button"
               className="close"
               data-dismiss="modal"
@@ -397,7 +401,7 @@ const renderReactionListModal = (accounts, objText) => {
   );
 };
 
-const renderReactionList = (accounts, objText, i) => {
+const renderReactionList = (accounts, objText) => {
   let accountsa = [
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
     22, 23, 24, 25, 26, 27, 28, 29, 30, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50,
@@ -409,17 +413,14 @@ const renderReactionList = (accounts, objText, i) => {
     >
       <AccountsListSmallContainer>
         {accountsa &&
-          accountsa.map((acc, u) => {
-            if (u < maxAmountOfAccountsShown - 1) {
+          accountsa.map((acc, i) => {
+            if (i < maxAmountOfAccountsShown - 1) {
               return <AccountContainer>{acc}</AccountContainer>;
-            } else if (u == maxAmountOfAccountsShown) {
+            } else if (i == maxAmountOfAccountsShown) {
               return (
                 <ShowMoreIndicator
                   onClick={() =>
-                    State.update({
-                      showReactionsListModal: objText,
-                      objIndexShown: i,
-                    })
+                    State.update({ showReactionsListModal: objText })
                   }
                 >{`And ${
                   accountsa.length - maxAmountOfAccountsShown
@@ -436,7 +437,7 @@ const renderReactionList = (accounts, objText, i) => {
 
 const Stats = () =>
   likesStatistics && likesStatistics.length ? (
-    likesStatistics.map((obj, i) => {
+    likesStatistics.map((obj) => {
       const userReaction = userEmoji ? userEmoji.value.type.slice(0, 2) : "";
       return (
         <div
@@ -444,7 +445,9 @@ const Stats = () =>
           onMouseLeave={() => State.update({ expandReactionList: "" })}
         >
           {state.expandReactionList == obj.text &&
-            renderReactionList(obj.accounts, obj.text, i)}
+            renderReactionList(obj.accounts, obj.text)}
+          {(state.showReactionsListModal == obj.text || true) &&
+            renderReactionListModal(obj.accounts, obj.text)}
           <StatWrapper
             title={`${obj.text}`}
             isUserVote={obj.emoji === userReaction}
@@ -472,35 +475,18 @@ const Spinner = () => {
 };
 
 return (
-  <>
-    {likesStatistics &&
-      likesStatistics.length &&
-      likesStatistics.map((obj, i) => {
-        return (
-          <>
-            {((state.showReactionsListModal == obj.text &&
-              state.objIndexShown == i) ||
-              true) &&
-              renderReactionListModal(obj.accounts, obj.text)}
-          </>
-        );
-      })}
-    <EmojiWrapper>
-      <Button
-        onMouseEnter={handleOnMouseEnter}
-        onMouseLeave={handleOnMouseLeave}
-      >
-        {state.loading && <Spinner />}
-        {!userEmoji ? initialEmoji : <Stats />}
-      </Button>
-      {!userEmoji ? (
-        <Reactions>
-          <Stats />
-        </Reactions>
-      ) : (
-        <></>
-      )}
-      <Overlay />
-    </EmojiWrapper>
-  </>
+  <EmojiWrapper>
+    <Button onMouseEnter={handleOnMouseEnter} onMouseLeave={handleOnMouseLeave}>
+      {state.loading && <Spinner />}
+      {!userEmoji ? initialEmoji : <Stats />}
+    </Button>
+    {!userEmoji ? (
+      <Reactions>
+        <Stats />
+      </Reactions>
+    ) : (
+      <></>
+    )}
+    <Overlay />
+  </EmojiWrapper>
 );
