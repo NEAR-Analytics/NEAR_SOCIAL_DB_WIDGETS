@@ -375,7 +375,9 @@ const renderReactionListModal = (accounts, objText) => {
           <div className="modal-header">
             <h5 className="modal-title">{`All ${objText} reactions`}</h5>
             <button
-              onClick={() => State.update({ showReactionsListModal: "" })}
+              onClick={() =>
+                State.update({ showReactionsListModal: "", objIndexShown: -1 })
+              }
               type="button"
               className="close"
               data-dismiss="modal"
@@ -395,7 +397,7 @@ const renderReactionListModal = (accounts, objText) => {
   );
 };
 
-const renderReactionList = (accounts, objText) => {
+const renderReactionList = (accounts, objText, i) => {
   let accountsa = [
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
     22, 23, 24, 25, 26, 27, 28, 29, 30, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50,
@@ -407,14 +409,17 @@ const renderReactionList = (accounts, objText) => {
     >
       <AccountsListSmallContainer>
         {accountsa &&
-          accountsa.map((acc, i) => {
-            if (i < maxAmountOfAccountsShown - 1) {
+          accountsa.map((acc, u) => {
+            if (u < maxAmountOfAccountsShown - 1) {
               return <AccountContainer>{acc}</AccountContainer>;
-            } else if (i == maxAmountOfAccountsShown) {
+            } else if (u == maxAmountOfAccountsShown) {
               return (
                 <ShowMoreIndicator
                   onClick={() =>
-                    State.update({ showReactionsListModal: objText })
+                    State.update({
+                      showReactionsListModal: objText,
+                      objIndexShown: i,
+                    })
                   }
                 >{`And ${
                   accountsa.length - maxAmountOfAccountsShown
@@ -431,7 +436,7 @@ const renderReactionList = (accounts, objText) => {
 
 const Stats = () =>
   likesStatistics && likesStatistics.length ? (
-    likesStatistics.map((obj) => {
+    likesStatistics.map((obj, i) => {
       const userReaction = userEmoji ? userEmoji.value.type.slice(0, 2) : "";
       return (
         <div
@@ -439,7 +444,7 @@ const Stats = () =>
           onMouseLeave={() => State.update({ expandReactionList: "" })}
         >
           {state.expandReactionList == obj.text &&
-            renderReactionList(obj.accounts, obj.text)}
+            renderReactionList(obj.accounts, obj.text, i)}
           <StatWrapper
             title={`${obj.text}`}
             isUserVote={obj.emoji === userReaction}
@@ -470,10 +475,12 @@ return (
   <>
     {likesStatistics &&
       likesStatistics.length &&
-      likesStatistics.map((obj) => {
+      likesStatistics.map((obj, i) => {
         return (
           <>
-            {(state.showReactionsListModal == obj.text || true) &&
+            {((state.showReactionsListModal == obj.text &&
+              state.objIndexShown == i) ||
+              true) &&
               renderReactionListModal(obj.accounts, obj.text)}
           </>
         );
