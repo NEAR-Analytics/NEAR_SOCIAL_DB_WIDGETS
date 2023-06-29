@@ -440,8 +440,6 @@ const Stats = () =>
         >
           {state.expandReactionList == obj.text &&
             renderReactionList(obj.accounts, obj.text)}
-          {(state.showReactionsListModal == obj.text || true) &&
-            renderReactionListModal(obj.accounts, obj.text)}
           <StatWrapper
             title={`${obj.text}`}
             isUserVote={obj.emoji === userReaction}
@@ -469,18 +467,33 @@ const Spinner = () => {
 };
 
 return (
-  <EmojiWrapper>
-    <Button onMouseEnter={handleOnMouseEnter} onMouseLeave={handleOnMouseLeave}>
-      {state.loading && <Spinner />}
-      {!userEmoji ? initialEmoji : <Stats />}
-    </Button>
-    {!userEmoji ? (
-      <Reactions>
-        <Stats />
-      </Reactions>
-    ) : (
-      <></>
-    )}
-    <Overlay />
-  </EmojiWrapper>
+  <>
+    {likesStatistics &&
+      likesStatistics.length &&
+      likesStatistics.map((obj) => {
+        return (
+          <>
+            {(state.showReactionsListModal == obj.text || true) &&
+              renderReactionListModal(obj.accounts, obj.text)}
+          </>
+        );
+      })}
+    <EmojiWrapper>
+      <Button
+        onMouseEnter={handleOnMouseEnter}
+        onMouseLeave={handleOnMouseLeave}
+      >
+        {state.loading && <Spinner />}
+        {!userEmoji ? initialEmoji : <Stats />}
+      </Button>
+      {!userEmoji ? (
+        <Reactions>
+          <Stats />
+        </Reactions>
+      ) : (
+        <></>
+      )}
+      <Overlay />
+    </EmojiWrapper>
+  </>
 );
