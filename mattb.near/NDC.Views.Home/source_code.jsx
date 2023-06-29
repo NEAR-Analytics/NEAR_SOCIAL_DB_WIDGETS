@@ -98,7 +98,7 @@ const Navigation = styled.div`
     }
 `;
 
-const Body = styled.div`
+const Grid = styled.div`
     display: grid;
     grid-template-columns: 290px minmax(0px, 1fr) 290px;
     gap: 16px;
@@ -207,7 +207,62 @@ const ProgressWrapper = styled.div`
 
 let views = {
     home: () => <>
-        <Title>Activity</Title>
+        <Grid>
+          <Section>
+          <Info>
+            <h1>I-AM-HUMAN Onboarding Competition</h1>
+            <p>
+              Get your personal tracking links to onboard humans and see scores
+              here. For more information, join this telegram group for
+              competition details.
+            </p>
+            <a
+              className="btn primary"
+              target="_blank"
+              href="https://t.me/+fcNhYGxK891lMjMx"
+            >
+              Join the community
+            </a>
+            <a
+              className="btn secondary"
+              target="_blank"
+              href="https://t.me/+gVXWvooKWzozNmE0"
+            >
+              Learn more
+            </a>
+          </Info>
+          <ScoreBoard
+            href="https://i-am-human.app/community-scoreboard"
+            target="_blank"
+          >
+            <div>
+              <h1>
+                <Logo
+                  src={I_AM_HUMAN_LOGO_URL}
+                  style={{
+                    maxWidth: "30px",
+                  }}
+                />{" "}
+                Community Scoreboard
+              </h1>
+              <div></div>
+              <p>See which communities are onboarding the most humans</p>
+            </div>
+          </ScoreBoard>
+
+          <ProgressWrapper>
+            <Widget
+              src="mattb.near/widget/NDC.Components.ProgressMeterHumans"
+              props={{
+                width: 250,
+                backgroundColor: DEFAULT_BACKGROUND_COLOR,
+                color: DEFAULT_TEXT_COLOR,
+              }}
+            />
+          </ProgressWrapper>
+        </Section>
+        <Section>
+          <Title>Activity</Title>
           <PollContainer>
             <Widget
               src={`neardigitalcollective.near/widget/EasyPoll.Main`}
@@ -224,10 +279,27 @@ let views = {
               }}
             />
           </PollContainer>
+        </Section>
+        <Section>
+          <Widget src="neardigitalcollective.near/widget/OfficeHours" />
+        </Section>
+        </Grid>
     </>,
-    docs: () => <></>,
-    funding: () => <></>,
-    sayalot: () => <></>,
+    docs: () => <>
+        <Widget
+              src={`neardigitalcollective.near/widget/NDCDocs_OneArticle`}
+              props={{
+                lastEditor: "blaze.near",
+                blockHeight: "94478867"
+              }}
+            />
+    </>,
+    funding: () => <>
+        <Widget src="frichard5.near/widget/NDC-alldaos_overview" />
+    </>,
+    sayalot: () => <>
+        <Widget src="sayalot.near/widget/SayALot" />
+    </>,
 };
 
 State.init({
@@ -283,67 +355,7 @@ return (
       </Navigation>
     </Header>
     <Wrapper>
-      <Body>
-        <Section>
-          <Info>
-            <h1>I-AM-HUMAN Onboarding Competition</h1>
-            <p>
-              Get your personal tracking links to onboard humans and see scores
-              here. For more information, join this telegram group for
-              competition details.
-            </p>
-            <a
-              className="btn primary"
-              target="_blank"
-              href="https://t.me/+fcNhYGxK891lMjMx"
-            >
-              Join the community
-            </a>
-            <a
-              className="btn secondary"
-              target="_blank"
-              href="https://t.me/+gVXWvooKWzozNmE0"
-            >
-              Learn more
-            </a>
-          </Info>
-          <ScoreBoard
-            href="https://i-am-human.app/community-scoreboard"
-            target="_blank"
-          >
-            <div>
-              <h1>
-                <Logo
-                  src={I_AM_HUMAN_LOGO_URL}
-                  style={{
-                    maxWidth: "30px",
-                  }}
-                />{" "}
-                Community Scoreboard
-              </h1>
-              <div></div>
-              <p>See which communities are onboarding the most humans</p>
-            </div>
-          </ScoreBoard>
-
-          <ProgressWrapper>
-            <Widget
-              src="mattb.near/widget/NDC.Components.ProgressMeterHumans"
-              props={{
-                width: 250,
-                backgroundColor: DEFAULT_BACKGROUND_COLOR,
-                color: DEFAULT_TEXT_COLOR,
-              }}
-            />
-          </ProgressWrapper>
-        </Section>
-        <Section>
-          {state.render}
-        </Section>
-        <Section>
-          <Widget src="neardigitalcollective.near/widget/OfficeHours" />
-        </Section>
-      </Body>
+        {state.render}
     </Wrapper>
   </Main>
 );
