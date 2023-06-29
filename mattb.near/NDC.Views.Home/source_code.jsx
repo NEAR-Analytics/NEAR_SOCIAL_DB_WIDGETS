@@ -13,9 +13,6 @@ const I_AM_HUMAN_LOGO_URL =
   "https://ipfs.near.social/ipfs/bafybeibs7rgjyqlrhqg3o5iiy3i235mtz3nlntswmye32f3myqk4owbxzy";
 
 const Main = styled.div`
-    position: absolute;
-    top:10px;
-    left:0;
     width:100%;
     min-height:100vh;
     background-color:${DEFAULT_BACKGROUND_COLOR};
