@@ -329,6 +329,10 @@ const ShowMoreIndicator = styled.p`
   text-align: start;
   margin-left: 0.2rem;
   margin-right: 0.2rem;
+
+  :hover {
+      color: var(--bs-indigo);
+  }
 `;
 
 // =============== NEW JSX ===============!!!!!!!!
@@ -414,7 +418,7 @@ const renderReactionList = (accounts, objText) => {
                   }
                 >{`And ${
                   accountsa.length - maxAmountOfAccountsShown
-                } more`}</ShowMoreIndicator>
+                } more...`}</ShowMoreIndicator>
               );
             } else {
               return <></>;
@@ -436,8 +440,7 @@ const Stats = () =>
         >
           {state.expandReactionList == obj.text &&
             renderReactionList(obj.accounts, obj.text)}
-          {state.showReactionsListModal == obj.text &&
-            renderReactionListModal(obj.accounts, obj.text)}
+          {true && renderReactionListModal(obj.accounts, obj.text)}
           <StatWrapper
             title={`${obj.text}`}
             isUserVote={obj.emoji === userReaction}
