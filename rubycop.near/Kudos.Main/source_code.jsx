@@ -31,9 +31,9 @@ const widgets = {
   item: "rubycop.near/widget/Kudos.Kudo.Item",
   itemNew: "rubycop.near/widget/Kudos.Kudo.New",
   mintSBT: "rubycop.near/widget/Kudos.MintSBT",
-  //   kudoPage: "rubycop.near/widget/Kudos.Kudo.Page",
-  //   comment: "rubycop.near/widget/Kudos.Comment",
-  //   commentReply: "rubycop.near/widget/Kudos.Comment.Reply",
+  kudoPage: "rubycop.near/widget/Kudos.Kudo.Page",
+  // comment: "rubycop.near/widget/Kudos.Comment",
+  // commentReply: "rubycop.near/widget/Kudos.Comment.Reply",
 };
 
 const kudosContract = "kudos-contract.near";
@@ -41,6 +41,7 @@ const registryContract = "registry-unstable.i-am-human.testnet";
 
 State.init({
   selectedItem: "My",
+  selectedKudo: null,
 });
 
 const handleSelect = (itemType) => {
@@ -76,6 +77,15 @@ const H5 = styled.h5`
   margin-bottom: 20px;
 `;
 
+if (state.selectedKudo)
+  return (
+    <Widget
+      key={index}
+      src={widgets.kudoPage}
+      props={{ kudo: state.selectedKudo }}
+    />
+  );
+
 return (
   <div>
     <Widget src={widgets.header} props={{ isIAmHuman }} />
@@ -95,7 +105,10 @@ return (
 
         <div className="d-flex flex-wrap">
           {data.map((kudo, index) => (
-            <div className="col col-md-6 p-3">
+            <div
+              onClick={() => State.update({ selectedKudo: kudo })}
+              className="col col-md-6 p-3"
+            >
               <Widget
                 key={index}
                 src={widgets.item}
