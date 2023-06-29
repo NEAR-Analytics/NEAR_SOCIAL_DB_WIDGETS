@@ -466,11 +466,7 @@ const Spinner = () => {
 
 return (
   <EmojiWrapper>
-    <Button
-      onMouseEnter={handleOnMouseEnter}
-      onMouseLeave={handleOnMouseLeave}
-      onClick={() => State.update({ expandReactionList: obj.text })}
-    >
+    <Button onMouseEnter={handleOnMouseEnter} onMouseLeave={handleOnMouseLeave}>
       {state.loading && <Spinner />}
       {!userEmoji ? initialEmoji : <Stats />}
     </Button>
