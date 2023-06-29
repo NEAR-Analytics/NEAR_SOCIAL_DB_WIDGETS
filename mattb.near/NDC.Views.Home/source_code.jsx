@@ -44,6 +44,49 @@ const Wrapper = styled.div`
     padding:1rem;
 `;
 
+const Navigation = styled.div`
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    max-width:1300px;
+    margin:0 auto;
+    padding:1rem;
+    color:${DEFAULT_TEXT_COLOR};
+    font-size:.9rem;
+    letter-spacing:-.5px;
+
+    ul {
+        display:flex;
+        align-items:center;
+        padding:0;
+        margin:0;
+        list-style:none;
+
+        li {
+            padding:0;
+            
+            &:not(:last-of-type) {
+                margin-right:1rem;
+            }
+
+            a {
+                cursor:pointer;
+                transition:all .2s;
+                border-radius:10px;
+                background-color:rgba(0,0,0,.05);
+                padding:.5rem 1rem;
+                font-weight:bold;
+                opacity:.6;
+                color:${DEFAULT_TEXT_COLOR};
+
+                &:hover {
+                    opacity:1;
+                }
+            }
+        }
+    }
+`;
+
 const Body = styled.div`
     display: grid;
     grid-template-columns: 290px minmax(0px, 1fr) 290px;
@@ -147,9 +190,35 @@ const Title = styled.h1`
 return (
   <Main>
     <Header>
-      <Wrapper>
+      <Navigation>
         <Logo src={DEFAULT_LOGO_URL} />
-      </Wrapper>
+        <ul>
+          <li>
+            <a
+              href="https://near.social/#/neardigitalcollective.near/widget/NDCDocs"
+              target="_blank"
+            >
+              NDCDocs
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://near.org/frichard5.near/widget/NDC-alldaos_overview"
+              target="_blank"
+            >
+              Funding dashboard
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://near.social/#/sayalot.near/widget/SayALot"
+              target="_blank"
+            >
+              Say A Lot
+            </a>
+          </li>
+        </ul>
+      </Navigation>
     </Header>
     <Wrapper>
       <Body>
