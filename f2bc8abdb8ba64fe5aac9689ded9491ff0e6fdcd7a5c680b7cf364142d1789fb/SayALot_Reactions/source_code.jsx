@@ -349,7 +349,8 @@ function scrollContainer(e) {
   let oldScrollValue = state.translate;
   let newScrollValue = oldScrollValue + e.deltaY;
 
-  console.log(newScrollValue);
+  console.log(Object.keys(e));
+  console.log(e.deltaY);
 
   State.update({ translate: newScrollValue });
 }
