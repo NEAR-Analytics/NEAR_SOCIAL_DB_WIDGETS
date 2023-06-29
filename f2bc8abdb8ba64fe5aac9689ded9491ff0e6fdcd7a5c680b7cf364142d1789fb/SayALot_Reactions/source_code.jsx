@@ -339,6 +339,17 @@ const ShowMoreIndicator = styled.p`
   }
 `;
 
+const CloseButton = styled.div`
+  border-radius: 12px;
+  border: 1px solid black;
+  background-color: transparent;
+  transition: all 0.5s
+
+  :hover {
+    background-color: rgb(230, 230, 230);
+  }
+`;
+
 // =============== NEW JSX ===============!!!!!!!!
 const Overlay = () => (
   <EmojiListWrapper
@@ -378,14 +389,12 @@ const renderReactionListModal = (accounts, objText) => {
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title">{`All ${objText} reactions`}</h5>
-            <button
+            <CloseButton
               onClick={() => State.update({ showReactionsListModal: "" })}
               type="button"
-              className="close"
-              aria-label="Close"
             >
-              <span aria-hidden="true">&times;</span>
-            </button>
+              <i className="bi bi-x-lg"></i>
+            </CloseButton>
           </div>
           <div className="modal-body">
             {accounts.map((acc) => {
