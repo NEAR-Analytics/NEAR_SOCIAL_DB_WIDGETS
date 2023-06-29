@@ -299,10 +299,7 @@ return (
           <Widget src="sking.near/widget/DAO.Rewards" props={{ daoId }} />
         )}
         {state.selectedTab === "subDAOs" && (
-          <Widget
-            src="sflowscience.near/widget/CGD.Factory"
-            props={{ daoId }}
-          />
+          <Widget src="flowscience.near/widget/CGD.Factory" props={{ daoId }} />
         )}
       </Content>
     </Main>
