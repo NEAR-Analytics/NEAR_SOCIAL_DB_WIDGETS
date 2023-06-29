@@ -160,7 +160,7 @@ return (
             title={accountId}
           />
         </div>
-        {upvotes && (
+        {upvotes != null && (
           <div className="d-flex justify-content-between align-items-center gap-2">
             <VoteButton onClick={handleVote} disabled={!isIAmHuman}>
               {upvotes}
