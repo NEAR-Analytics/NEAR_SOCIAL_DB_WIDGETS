@@ -153,23 +153,20 @@ return (
   <div className="mb-3">
     <h3>CGD SubDAO Factory</h3>
     <div className="mb-2">
-      Name:
+      Name of SubDAO or Data Set
       <input type="text" onChange={(e) => onChangeName(e.target.value)} />
     </div>
     <div className="mb-2">
-      Purpose:
+      Description
       <input type="text" onChange={(e) => onChangePurpose(e.target.value)} />
     </div>
     <div className="mb-2">
-      Data URI:
+      Encrypted Data CID (only for data already on IPFS)
       <input type="text" onChange={(e) => onChangePurpose(e.target.value)} />
     </div>
-
-    <button className="btn btn-outline-success mt-3" onClick={handleCreate}>
-      Upload Data
-    </button>
+    <Widget src="mob.near/widget/IpfsImageUploadDemo" />{" "}
+    <Widget src="nearhorizon.near/widget/IpfsFilesUpload" />
     <Widget src="sking.near/widget/DAO.Permissions" />
-
     <button className="btn btn-outline-success mt-3" onClick={handleCreate}>
       Create SubDAO
     </button>
