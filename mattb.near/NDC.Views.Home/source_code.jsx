@@ -171,7 +171,10 @@ return (
               Learn more
             </a>
           </Info>
-          <ScoreBoard>
+          <ScoreBoard
+            href="https://i-am-human.app/community-scoreboard"
+            target="_blank"
+          >
             <div>
               <h1>
                 <Logo
