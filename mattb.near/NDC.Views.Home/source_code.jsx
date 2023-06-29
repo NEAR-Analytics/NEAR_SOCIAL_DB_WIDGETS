@@ -1,4 +1,4 @@
-const { darkmode } = props;
+const { view, darkmode } = props;
 
 const DEFAULT_BACKGROUND_COLOR = darkmode ? "#191919" : "#fff";
 const DEFAULT_COMPONENT_COLOR = darkmode ? "rgba(0,0,0,.8)" : "#fff";
@@ -205,6 +205,46 @@ const ProgressWrapper = styled.div`
     margin-top:2rem;
 `;
 
+let views = {
+    home: () => <>
+        <Title>Activity</Title>
+          <PollContainer>
+            <Widget
+              src={`neardigitalcollective.near/widget/EasyPoll.Main`}
+              props={{
+                sharedBlockHeight: 0,
+              }}
+            />
+            <Widget
+              src={`neardigitalcollective.near/widget/NDCDocs_OneArticle`}
+              props={{
+                lastEditor: "blaze.near",
+                blockHeight: "94478867",
+                articleId: "TheNDC",
+              }}
+            />
+          </PollContainer>
+    </>,
+    docs: () => <></>,
+    funding: () => <></>,
+    sayalot: () => <></>,
+};
+
+State.init({
+    currentView: view || "home",
+    render: ""
+});
+
+function changeView(view) {
+    if (view in views) {
+        State.update({render: views[view](), currentView: view});
+    }
+}
+
+if (!state.render) {
+    changeView("home");
+}
+
 return (
   <Main>
     <Header>
@@ -213,30 +253,29 @@ return (
         <ul>
           <li>
             <a
-              href="#/neardigitalcollective.near/widget/NDCDocs"
-              target="_blank"
+              onClick={() => changeView("home")}
             >
               Home
             </a>
           </li>
           <li>
             <a
-              href="#/neardigitalcollective.near/widget/NDCDocs"
-              target="_blank"
+              onClick={() => changeView("docs")}
             >
               NDCDocs
             </a>
           </li>
           <li>
             <a
-              href="frichard5.near/widget/NDC-alldaos_overview"
-              target="_blank"
+              onClick={() => changeView("funding")}
             >
               Funding dashboard
             </a>
           </li>
           <li>
-            <a href="#/sayalot.near/widget/SayALot" target="_blank">
+            <a
+              onClick={() => changeView("sayalot")}
+            >
               Say A Lot
             </a>
           </li>
@@ -299,23 +338,7 @@ return (
           </ProgressWrapper>
         </Section>
         <Section>
-          <Title>Activity</Title>
-          <PollContainer>
-            <Widget
-              src={`neardigitalcollective.near/widget/EasyPoll.Main`}
-              props={{
-                sharedBlockHeight: 0,
-              }}
-            />
-            <Widget
-              src={`neardigitalcollective.near/widget/NDCDocs_OneArticle`}
-              props={{
-                lastEditor: "blaze.near",
-                blockHeight: "94478867",
-                articleId: "TheNDC",
-              }}
-            />
-          </PollContainer>
+          {state.render}
         </Section>
         <Section>
           <Widget src="neardigitalcollective.near/widget/OfficeHours" />
