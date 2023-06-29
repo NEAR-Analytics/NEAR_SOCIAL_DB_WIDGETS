@@ -362,7 +362,8 @@ const Stats = () =>
       const userReaction = userEmoji ? userEmoji.value.type.slice(0, 2) : "";
       return (
         <div onMouseOver={() => State.update({ expandReactionList: obj.text })}>
-          {state.expandReactionList && renderReactionList(obj.accounts)}
+          {state.expandReactionList == obj.text &&
+            renderReactionList(obj.accounts)}
           <StatWrapper
             title={`${obj.text}`}
             isUserVote={obj.emoji === userReaction}
