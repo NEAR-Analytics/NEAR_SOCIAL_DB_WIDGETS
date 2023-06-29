@@ -32,7 +32,7 @@ const Text = styled.div`
     font-family: "FK Grotesk";
     font-style: normal;
     font-weight: 600;
-    font-size: 90px;
+    font-size: 80px;
     line-height: 41px;
     color: #000000;
   }
@@ -74,7 +74,6 @@ return (
       <h2> </h2>
       <h2> </h2>
       <h2> </h2>
-      <h2> </h2>
       <h2>25+</h2>
       <p>Countries with active creative communities</p>
       <h2> </h2>
@@ -82,10 +81,8 @@ return (
       <h2> </h2>
       <h2> </h2>
       <h2> </h2>
-      <h2> </h2>
       <h2>70+</h2>
       <p>DAOs associated with Creatives Constellation worldwide</p>
-      <h2> </h2>
       <h2> </h2>
       <h2> </h2>
       <h2> </h2>
