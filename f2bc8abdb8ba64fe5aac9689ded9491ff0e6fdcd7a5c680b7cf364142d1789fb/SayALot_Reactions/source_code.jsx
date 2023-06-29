@@ -317,12 +317,18 @@ const AccountContainer = styled.p`
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 100%;
+  text-align: start;
+  margin-left: 0.2rem;
+  margin-right: 0.2rem;
 `;
 
 const ShowMoreIndicator = styled.p`
-    color: var(--bs-link-color);
-    cursor: pointer;
-    text-decoration: underline;
+  color: var(--bs-link-color);
+  cursor: pointer;
+  text-decoration: underline;
+  text-align: start;
+  margin-left: 0.2rem;
+  margin-right: 0.2rem;
 `;
 
 // =============== NEW JSX ===============!!!!!!!!
