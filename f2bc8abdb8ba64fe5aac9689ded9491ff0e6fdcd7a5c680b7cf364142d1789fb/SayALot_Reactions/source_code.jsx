@@ -186,7 +186,7 @@ const clickHandler = (emojiMessage) => {
 };
 
 function showWhenCalled(objText) {
-  return state.showReactionsListModal == objText || true
+  return state.showReactionsListModal == objText
     ? { display: "block", backdropFilter: "blur(3px)", cursor: "auto" }
     : {};
 }
@@ -355,7 +355,7 @@ const CloseButton = styled.div`
   width: 25px;
 
   :hover {
-    background-color: rgb(146, 155, 237, 0.2);
+    background-color: rgb(146, 155, 237, 0.4);
   }
 `;
 
@@ -456,7 +456,7 @@ const Stats = () =>
         >
           {state.expandReactionList == obj.text &&
             renderReactionList(obj.accounts, obj.text)}
-          {(state.showReactionsListModal == obj.text || true) &&
+          {state.showReactionsListModal == obj.text &&
             renderReactionListModal(obj.accounts, obj.text)}
           <StatWrapper
             title={`${obj.text}`}
