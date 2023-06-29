@@ -92,7 +92,7 @@ const isIAmHuman = () => {
 const VerifyHuman = () => (
   <CastVotesSection className="not-verified d-flex align-items-center justify-content-between">
     <div>
-      <h4>Want to vote?</h4>
+      <h4>Want to participate on NEAR ReFi?</h4>
       <h5 className="text-secondary">
         Click on the button next to and Verify as a Human to proceed.
       </h5>
