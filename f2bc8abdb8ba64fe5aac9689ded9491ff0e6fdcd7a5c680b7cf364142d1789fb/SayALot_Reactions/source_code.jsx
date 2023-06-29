@@ -347,6 +347,8 @@ const CloseButton = styled.div`
   border: 1px solid black;
   background-color: transparent;
   transition: all 0.5s;
+  height: 26px;
+  width: 25px;
 
   :hover {
     background-color: rgb(230, 230, 230);
