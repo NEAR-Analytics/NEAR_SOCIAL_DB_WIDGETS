@@ -1,118 +1,202 @@
-const css = fetch(
-  "https://emerald-related-swordtail-341.mypinata.cloud/ipfs/Qmf7S21gTQSmcKLPrVckP3f7QUSm4SZLZVWYAGk4tCNAFH?_gl=1*1h86bh5*rs_ga*YTcxZDg1OTgtZTYyOC00M2U2LWE4MTctNzUzMDRkMjA3ZWVl*rs_ga_5RMPXG14TE*MTY4NzMwMDc0OC4xNS4xLjE2ODczMDA4NTAuMTkuMC4w"
-).body;
-if (!css) return "";
+const CardStyled = styled.div`
+ 
+width: 80%;
+height: 100%;
+left: 16px;
+top: 469px;
 
+background: #F8F8F9;
+border-radius: 10px;
+margin-left:auto;
+margin-right:auto;
+@media only screen and (max-width: 480px) {
+  width: 100%;
+}
+
+  `;
+const CardForm = styled.div`
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 18px;
+width: 100%;
+height: auto;
+ 
+margin-top:18px;
+@media only screen and (max-width: 480px) {
+  
+  width: 326px;
+  height: 1030px;
+}
+  `;
+
+const FormsectionHouse_ = styled.div`
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+ 
+width: 33%;
+height: 54px;
+flex: none;
+display: none;
+order: 6;
+flex-grow: 0;
+@media only screen and (max-width: 480px) {
+  
+  
+  display: flex;
+}
+
+  `;
+const FormsectionHouseDropdown = styled.select`
+box-sizing: border-box;
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 8px 10px;
+gap: 10px;
+width: 100%;
+height: 32px;
+background: #FFFFFF;
+border: 1px solid #D0D6D9;
+border-radius: 8px;
+flex: none;
+order: 1;
+
+font-size:12px;
+font-family: 'Avenir';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 120%;
+ 
+display: flex;
+align-items: center;
+
+color: #828688;
+@media only screen and (max-width: 480px) {
+   
+}
+  `;
+
+const H1styled = styled.h1`
+ 
+margin-left:16px;
+margin-top:16px;
+margin-right:auto; 
+width: 104px;
+height: 19px;
+font-family: 'Avenir';
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 120%;
+color: #000000;
+`;
+const H2styled = styled.h1`
+ 
+height: 14px;
+font-family: 'Avenir';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 120%;
+display: flex;
+align-items: center;
+color: #000000;
+flex: none;
+order: 0;
+flex-grow: 0;
+`;
+
+const Submitcontainer = styled.div`
+display: flex;
+justify-content: flex-end;
+align-items: center;
+gap: 8px;
+
+`;
+const SubmitBtn = styled.button`
+ display: flex;
+width: 107px;
+padding: 8px 12px;
+justify-content: center;
+align-items: center;
+gap: 10px;
+color:#000;
+display: flex;
+width: 107px;
+padding: 8px 12px;
+justify-content: center;
+align-items: center;
+gap: 10px;
+border-radius: 10px;
+ border-width: 1px;
+  border: solid 1px transparent;
+ 
+ 
+  background-image: linear-gradient(#FFD50D, #FFD50D), radial-gradient(circle at top left,#F0E1CE, #F0E1CE);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+@media only screen and (max-width: 480px) {
+ 
+}
+
+`;
+const CancelBtn = styled.button`
+  display: flex;
+width: 107px;
+padding: 8px 12px;
+justify-content: center;
+align-items: center;
+gap: 10px;
+color:#9333EA;
+border-radius: 10px;
+ border-width: 1px;
+  border: solid 1px #9333EA;
+ 
+ 
+  background-image: linear-gradient(#fff, #fff), radial-gradient(circle at top left,#F0E1CE, #F0E1CE);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+@media only screen and (max-width: 480px) {
+ 
+}
+`;
+
+const HiddeableWidget = styled.div`
+  display: none;
+  @media (max-width: 480px) {
+    display: block;
+  }
+`;
 // State
 State.init({
   theme,
   img: { uploading: false, cid: null, name: "" },
   name: "",
   profileAccount: "",
+  house_intended: "",
   issued1: "",
   issued2: "",
   issued3: "",
-  house_intended: "",
+  addition_platform: "",
+
   afiliation: [
     {
       company_name: "",
       start_date: "",
       end_date: "",
+      role: "",
     },
   ],
   agreement: false,
   tags: "",
   error_msg: "",
 });
-if (!state.theme) {
-  State.update({
-    theme: styled.div`
-      ${css}
-  `,
-  });
-}
-const handleInputs = (_type, _param) => {
-  switch (_type) {
-    case "name":
-      State.update({ name: _param.target.value });
-      break;
-    case "profileAccount":
-      State.update({ profileAccount: _param.target.value });
-      break;
 
-    case "issued1":
-      State.update({ issued1: _param.target.value });
-      break;
-    case "issued2":
-      State.update({ issued2: _param.target.value });
-      break;
-    case "issued3":
-      State.update({ issued3: _param.target.value });
-      break;
-
-    case "house_intended":
-      State.update({ house_intended: _param.target.value });
-      break;
-
-    case "agreement":
-      State.update({ agreement: _param.target.value });
-      break;
-      agreement;
-    case "tags":
-      State.update({ tags: _param.target.value });
-      break;
-    default:
-  }
-};
-
-const addFields = () => {
-  var temp = state.afiliation;
-  let object = {
-    company_name: "",
-    start_date: "",
-    end_date: "",
-  };
-
-  if (temp.length === 6) {
-    return;
-  } else {
-    temp.push(object);
-    State.update({ afiliation: temp });
-  }
-};
-
-const handleFieldsChange = (event, index, _input) => {
-  let data = state.afiliation;
-
-  switch (_input) {
-    case "company":
-      console.log("updating the company");
-      data[index].company_name = event.target.value;
-      break;
-    case "start":
-      console.log("updating the company");
-      data[index].start_date = event.target.value;
-      break;
-    case "end":
-      console.log("updating the company");
-      data[index].end_date = event.target.value;
-      break;
-    default:
-      break;
-  }
-  console.log(data[index]);
-  console.log(data);
-  State.update({ afiliation: data });
-};
-const removeField = (index) => {
-  let data = state.afiliation;
-  console.log(data);
-  data.splice(index, 1);
-  console.log(data);
-  State.update({ afiliation: data });
-};
-
-const submitButton = () => {};
 const validatedInputs = () => {
   const {
     name,
@@ -151,6 +235,7 @@ const validatedInputs = () => {
 };
 
 const uploadFileUpdateState = (body) => {
+  console.log("sending img");
   asyncFetch("https://ipfs.near.social/add", {
     method: "POST",
     headers: { Accept: "application/json" },
@@ -160,7 +245,7 @@ const uploadFileUpdateState = (body) => {
     const _cid = res.body.cid;
     const _name = body.name;
     State.update({ img: { uploading: true, cid: _cid, name: _name } });
-    console.log("final ", state.img);
+    console.log("final ", state);
   });
 
   console.log("final ", state.img);
@@ -171,15 +256,112 @@ const filesOnChange = (files) => {
     uploadFileUpdateState(files[0]);
   }
 };
-const Theme = state.theme;
+const handleInputs = (_params) => {
+  switch (_params._type) {
+    case "issued1":
+      State.update({ issued1: _params.event.target.value });
+      break;
+    case "issued2":
+      State.update({ issued2: _params.event.target.value });
+      break;
+    case "issued3":
+      State.update({ issued3: _params.event.target.value });
+      break;
+    case "addition_platform":
+      State.update({ addition_platform: _params.event.target.value });
+      break;
+    case "house_intended":
+      break;
+
+    case "agreement":
+      State.update({ agreement: _params.event.target.value });
+      break;
+      agreement;
+    case "tags":
+      State.update({ tags: _params.event.target.value });
+      break;
+    default:
+  }
+};
+
+const handleName = (item) => {
+  State.update({ name: item });
+};
+const handleProfile = (item) => {
+  State.update({ profileAccount: item });
+};
+const handleHouse = (item) => {
+  State.update({ house_intended: item });
+};
+const handleIssued1 = (item) => {
+  State.update({ issued1: item });
+};
+const handleIssued2 = (item) => {
+  State.update({ issued2: item });
+};
+const handleIssued3 = (item) => {
+  State.update({ issued3: item });
+};
+const handleAditional = (item) => {
+  State.update({ addition_platform: item });
+};
+const addFields = () => {
+  var temp = state.afiliation;
+  let object = {
+    company_name: "",
+    start_date: "",
+    end_date: "",
+    role: "",
+  };
+
+  if (temp.length === 6) {
+    return;
+  } else {
+    temp.push(object);
+    State.update({ afiliation: temp });
+  }
+};
+const removeField = (index) => {
+  let data = state.afiliation;
+  console.log(data);
+  data.splice(index, 1);
+  console.log(data);
+  State.update({ afiliation: data });
+};
+const handleAFFCompanyName = (params) => {
+  let data = state.afiliation;
+  console.log("updating the company", params);
+  data[params.index].company_name = params.event.target.value;
+  State.update({ afiliation: data });
+};
+const handleAFFStartdate = (params) => {
+  let data = state.afiliation;
+
+  data[params.index].start_date = params.event.target.value;
+  State.update({ afiliation: data });
+};
+const handleAFFEnddate = (params) => {
+  let data = state.afiliation;
+
+  data[params.index].end_date = params.event.target.value;
+  State.update({ afiliation: data });
+};
+const handleAFFRole = (params) => {
+  let data = state.afiliation;
+  data[params.index].role = params.event.target.value;
+  State.update({ afiliation: data });
+};
+const handleTags = (item) => {
+  State.update({ tags: item.target.value });
+};
+const handleDeclaration = (item) => {
+  State.update({ agreement: item.target.checked });
+};
 return (
-  <Theme>
+  <>
     <div
       style={{
-        background: "#FFFFFF",
-        position: "relative",
-        width: "390px",
-        height: "full",
+        "font-family": "Avenir",
       }}
     >
       <div
@@ -190,339 +372,118 @@ return (
           "margin-bottom": "15px",
         }}
       >
-        <Widget
-          src={`syi216.near/widget/NDC.nomination.card`}
-          props={{
-            name: state.name,
-            profileAccount: state.profileAccount,
-            issued1: state.issued1,
-            issued2: state.issued2,
-            issued3: state.issued3,
-            house_intended: state.house_intended,
-            afiliation: state.afiliation,
-            tags: state.tags.split(";"),
-          }}
-        />
+        <HiddeableWidget>
+          <Widget
+            src={`syi216.near/widget/NDC.nomination.card`}
+            props={{
+              name: state.name,
+              profileAccount: state.profileAccount,
+              issued1: state.issued1,
+              issued2: state.issued2,
+              issued3: state.issued3,
+              house_intended: state.house_intended,
+              afiliation: state.afiliation,
+              tags: state.tags.split(";"),
+            }}
+          />
+        </HiddeableWidget>
       </div>
-      <div name="compose" class="CardStyled">
+      <CardStyled name="compose" class="Cardstyled">
         <div className="d-flex flex-column ">
           <div className="d-flex flex-column">
-            <h1 class="H1styled">Self Nominate</h1>
+            <H1styled>Self Nominate</H1styled>
           </div>
-          <div class="CardForm">
-            <div class="Formsection" style={{ order: "0" }}>
-              <h2 class="H2styled">Profile picture </h2>
+          <CardForm name="cardform">
+            <Widget
+              src={`dokxo.near/widget/Compose.Profile`}
+              props={{
+                img: state.img,
+                name: state.name,
+                profileAccount: state.profileAccount,
+                house_intended: state.house_intended,
 
-              <label class="LabelFile custom-file-upload">
-                <Files
-                  multiple={false}
-                  accepts={["image/*"]}
-                  minFileSize={1}
-                  clickable
-                  onChange={filesOnChange}
-                  style={{
-                    display: "flex",
-                    "justify-content": "center",
-                    "padding-top": "16px",
-                    "margin-bottom": "15px",
-                  }}
+                filesOnChange: (file) => filesOnChange(file),
+                handleName: (text) => handleName(text),
+                handleProfile: (text) => handleProfile(text),
+                handleHouse: (text) => handleHouse(text),
+              }}
+            />
+            <Widget
+              src={`dokxo.near/widget/Compose.Platform`}
+              props={{
+                issued1: state.issued1,
+                issued2: state.issued2,
+                issued3: state.issued3,
+                addition_platform: state.addition_platform,
+
+                handleIssued1: (file) => handleIssued1(file),
+                handleIssued2: (text) => handleIssued2(text),
+                handleIssued3: (text) => handleIssued3(text),
+                handleAditional: (text) => handleAditional(text),
+              }}
+            />
+            <Widget
+              src={`dokxo.near/widget/Compose.Affiliations`}
+              props={{
+                affiliations: state.afiliation,
+
+                addFields: () => addFields(),
+                removeField: (index) => removeField(index),
+                handleAFFCompanyName: (_params) =>
+                  handleAFFCompanyName(_params),
+                handleAFFStartdate: (_params) => handleAFFStartdate(_params),
+                handleAFFEnddate: (_params) => handleAFFEnddate(_params),
+                handleAFFRole: (_params) => handleAFFRole(_params),
+              }}
+            />
+
+            <div
+              class="row col-sm-12  mx-0  "
+              style={{ "padding-left": "16px", "padding-right": "16px" }}
+            >
+              <FormsectionHouse_ name="FormsectionHouse_">
+                <H2styled>{"House"} </H2styled>
+                <FormsectionHouseDropdown
+                  name="house-intended"
+                  id="house-intended"
+                  onChange={(e) =>
+                    State.update({ house_intended: e.target.value })
+                  }
                 >
-                  <img
-                    src={`https://emerald-related-swordtail-341.mypinata.cloud/ipfs/QmWyPdBc3nqDe2mAp26a4BAvDYiuk1JEfJiyGejff3ZrjL?_gl=1*mwwy4f*rs_ga*YTcxZDg1OTgtZTYyOC00M2U2LWE4MTctNzUzMDRkMjA3ZWVl*rs_ga_5RMPXG14TE*MTY4Njk2NDYyNi4xNC4xLjE2ODY5NjQ2NDQuNDIuMC4w`}
-                  />
-                  <p
-                    style={{
-                      width: "173px",
-                      height: "14px",
-                      "font-family": "Avenir",
-                      "font-style": "normal",
-                      "font-weight": "400",
-                      "font-size": "12px",
-                      "line-height": "120%",
-                      display: "flex",
-                      "align-items": "center",
-                      color: "#828688",
-                      flex: "none",
-                      order: "1",
-                      "flex-grow": "0",
-                      "margin-top": "2px",
-                      "margin-bottom": "0rem",
-                      "margin-left": ".5rem",
-                    }}
-                  >
-                    {state.img.name === ""
-                      ? "Click here to upload your image"
-                      : state.img.name}
-                  </p>
-                </Files>
-              </label>
+                  <option default value="0">
+                    Select house
+                  </option>
+                  <option value="Council of Advisors">
+                    Council of Advisors
+                  </option>
+                  <option value="House Of Merit">House Of Merit</option>
+                  <option value="Transparency Commission">
+                    Transparency Commission
+                  </option>
+                </FormsectionHouseDropdown>
+              </FormsectionHouse_>
             </div>
-            <div class="Formsection" style={{ order: "1" }}>
-              <h2 class="H2styled">Name </h2>
-              <input
-                class="InputStyled"
-                name="Name"
-                id="Name"
-                type="text"
-                placeholder="Nomination name"
-                onChange={(e) => handleInputs("name", e)}
-              />
+            <Widget
+              src={`dokxo.near/widget/Compose.TagAndDeclaration`}
+              props={{
+                agreement: state.agreement,
+                tags: state.tags,
+                handleTags: (item) => handleTags(item),
+                handleDeclaration: (item) => handleDeclaration(item),
+              }}
+            />
+            <div
+              class="row col-sm-12  mx-0  "
+              style={{ "padding-left": "16px", "padding-right": "16px" }}
+            >
+              <Submitcontainer>
+                <CancelBtn> Cancel </CancelBtn>
+                <SubmitBtn onClick={validatedInputs}> Submit </SubmitBtn>
+              </Submitcontainer>
             </div>
-            <div class="Formsection" style={{ order: "2" }}>
-              <h2 class="H2styled">Profile </h2>
-              <input
-                class="InputStyled"
-                name="Profile"
-                id="Profile"
-                type="text"
-                placeholder="@profile"
-                onChange={(e) => handleInputs("profileAccount", e)}
-              />
-            </div>
-
-            <div class="FormsectionPlatform" style={{ order: "3" }}>
-              <div class="FormsectionPlatformtitle">
-                {"Platform - Key Issue 1: What’s your view and pledge on XYZ?"}{" "}
-              </div>
-              <textarea
-                class="FormsectionPlatformtextarea"
-                name="Profile"
-                id="Profile"
-                type="text"
-                placeholder="Write your platform "
-                onChange={(e) => handleInputs("issued1", e)}
-              />
-            </div>
-            <div class="FormsectionPlatform">
-              <div class="FormsectionPlatformtitle">
-                {"Platform - Key Issue 2: What’s your view and pledge on XYZ?"}{" "}
-              </div>
-              <textarea
-                class="FormsectionPlatformtextarea"
-                name="Profile"
-                id="Profile"
-                type="text"
-                placeholder="Write your platform "
-                onChange={(e) => handleInputs("issued2", e)}
-              />
-            </div>
-            <div class="FormsectionPlatform">
-              <div class="FormsectionPlatformtitle">
-                {"Platform - Key Issue 3: What’s your view and pledge on XYZ?"}{" "}
-              </div>
-              <textarea
-                class="FormsectionPlatformtextarea"
-                name="Profile"
-                id="Profile"
-                type="text"
-                placeholder="Write your platform "
-                onChange={(e) => handleInputs("issued3", e)}
-              />
-            </div>
-            <div class="FormsectionHouse" style={{ order: "4" }}>
-              <h2 class="H2styled">{"House"} </h2>
-              <select
-                class="FormsectionHouseDropdown"
-                name="house-intended"
-                id="house-intended"
-                onChange={(e) => handleInputs("house_intended", e)}
-              >
-                <option default value="0">
-                  Select house
-                </option>
-                <option value="Council of Advisors">Council of Advisors</option>
-                <option value="House Of Merit">House Of Merit</option>
-                <option value="Transparency Commission">
-                  Transparency Commission
-                </option>
-              </select>
-            </div>
-            <div class="FormsectionAffiliation" style={{ order: "5" }}>
-              <div class="AffiliationHead" style={{ order: "1" }}>
-                <div class="AffiliationTitle">
-                  <h2 class="H2styled">{"Afiliations"}</h2>
-                  <button
-                    onClick={addFields}
-                    style={{
-                      background: "#00000000",
-                      "border-color": "#00000000",
-                    }}
-                  >
-                    <img
-                      src={`https://emerald-related-swordtail-341.mypinata.cloud/ipfs/QmbNqXEbUqSkGY7quBnyBqU6nKuXimYTnxTNsbYHnhdVXw?_gl=1*aubyn4*rs_ga*YTcxZDg1OTgtZTYyOC00M2U2LWE4MTctNzUzMDRkMjA3ZWVl*rs_ga_5RMPXG14TE*MTY4Njk0MjQwOC4xMS4xLjE2ODY5NDI0NzMuNTcuMC4w`}
-                    />
-                  </button>
-                </div>
-                <hr
-                  style={{
-                    width: "326px",
-                    height: "0px",
-                    border: "1px solid rgba(208, 214, 217, 0.4)",
-                    flex: "none",
-                    order: "1",
-                    margin: "0px",
-                    "flex-grow": "0",
-                  }}
-                />
-              </div>
-
-              <div
-                class="AffiliationBody"
-                style={{
-                  height: AffiliationBodyheight,
-                }}
-              >
-                {state.afiliation.map((form, index) => {
-                  return (
-                    <>
-                      <div
-                        class="Companycont"
-                        style={{ order: index, "margin-top": "2px" }}
-                      >
-                        <div class="CompanyTitle">
-                          {"Company Name"}
-
-                          <button
-                            onClick={removeField}
-                            style={{
-                              background: "#00000000",
-                              "border-color": "#00000000",
-                            }}
-                          >
-                            <img
-                              style={{
-                                width: "20px",
-                                height: "20px",
-                              }}
-                              src={`https://emerald-related-swordtail-341.mypinata.cloud/ipfs/Qmb1wcWEWHiqYq5UvtuChVB2u4MEyKutL9UU5LcTrULriP?_gl=1*iz6jdo*rs_ga*YTcxZDg1OTgtZTYyOC00M2U2LWE4MTctNzUzMDRkMjA3ZWVl*rs_ga_5RMPXG14TE*MTY4Njk1MTE5NS4xMi4xLjE2ODY5NTEyMjkuMjYuMC4w`}
-                            />
-                          </button>
-                        </div>
-                        <input
-                          class="CompanyInput"
-                          placeholder="Company Name"
-                          onChange={(event) =>
-                            handleFieldsChange(event, index, "company")
-                          }
-                        />
-                      </div>
-                      <div class="DateCont" style={{ order: index + 1 }}>
-                        <div class="DateContItem">
-                          <div class="CompanyTitle">{"Start date"}</div>
-                          <input
-                            class="CompanyInput"
-                            style={{ width: "161px" }}
-                            placeholder="Company Name"
-                            onChange={(event) =>
-                              handleFieldsChange(event, index, "start")
-                            }
-                          />
-                        </div>
-                        <div class="DateContItem">
-                          <div class="CompanyTitle">{"End date"}</div>
-                          <input
-                            class="CompanyInput"
-                            style={{ width: "161px" }}
-                            placeholder="Company Name"
-                            onChange={(event) =>
-                              handleFieldsChange(event, index, "end")
-                            }
-                          />
-                        </div>
-                      </div>
-                    </>
-                  );
-                })}
-              </div>
-              <div class="FormsectionPlatform" style={{ order: "2" }}>
-                <div class="FormsectionPlatformtitle">
-                  {"Description of your Role"}{" "}
-                </div>
-                <textarea
-                  class="FormsectionPlatformtextarea"
-                  style={{
-                    "font-family": "Avenir",
-                    "font-style": "normal",
-                    "font-weight": "400",
-                    "font-size": "10px",
-                  }}
-                  name="Description"
-                  id="Description"
-                  type="text"
-                  placeholder="Add tags that describe your nomination, separated by comma"
-                  onChange={(e) => handleInputs("issued1", e)}
-                />
-              </div>
-              <div class="Formsection" style={{ order: "3" }}>
-                <h2 class="H2styled">{"Tags"} </h2>
-                <input
-                  class="InputStyled"
-                  style={{
-                    "font-family": "Avenir",
-                    "font-style": "normal",
-                    "font-weight": "400",
-                    "font-size": "10px",
-                  }}
-                  name="Tags"
-                  id="Tags"
-                  type="text"
-                  placeholder="Add tags that describe your nomination"
-                  onChange={(e) => handleInputs("tags", e)}
-                />
-              </div>
-            </div>
-          </div>
-          <div
-            class="Formsection"
-            style={{
-              order: "7",
-              height: "auto",
-              "margin-top": "15px",
-              "margin-left": "16px",
-            }}
-          >
-            <h2 class="H2Declarationstyled">
-              {"Declaration of transparency "}
-            </h2>
-          </div>
+          </CardForm>
         </div>
-      </div>
-
-      <div
-        class="Formsection"
-        style={{
-          order: "7",
-
-          "align-items": " flex-start",
-          "margin-left": "16px",
-          "margin-right": "auto",
-        }}
-      >
-        <div
-          class="FormsectionDecaration"
-          style={{
-            "margin-top": "10px",
-            "margin-left": "16px",
-            "margin-right": "auto",
-          }}
-        >
-          <input
-            class="InputcheckboxStyled"
-            type="checkbox"
-            onChange={(e) => handleInputs("agreement", e)}
-          />
-          <p class="PStyled">
-            I agree the <a class="AStyled">{"Declaration of transparency"} </a>
-          </p>
-        </div>
-      </div>
-      <div class="Submitcontainer">
-        <button class="SubmitBtn" onClick={validatedInputs}>
-          {" "}
-          Submit{" "}
-        </button>
-        <button class="CancelBtn"> Cancel </button>
-      </div>
+      </CardStyled>
     </div>
-  </Theme>
+  </>
 );
