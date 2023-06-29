@@ -322,8 +322,7 @@ const AccountContainer = styled.p`
   text-overflow: ellipsis;
   max-width: 100%;
   text-align: start;
-  margin-left: 0.2rem;
-  margin-right: 0.2rem;
+  margin: 0.2rem
 `;
 
 const ShowMoreIndicator = styled.p`
@@ -331,8 +330,7 @@ const ShowMoreIndicator = styled.p`
   cursor: pointer;
   text-decoration: underline;
   text-align: start;
-  margin-left: 0.2rem;
-  margin-right: 0.2rem;
+  margin: 0.2rem
 
   :hover {
       color: var(--bs-indigo);
@@ -438,7 +436,7 @@ const Stats = () =>
         >
           {state.expandReactionList == obj.text &&
             renderReactionList(obj.accounts, obj.text)}
-          {state.showReactionsListModal == obj.text &&
+          {(state.showReactionsListModal == obj.text || true) &&
             renderReactionListModal(obj.accounts, obj.text)}
           <StatWrapper
             title={`${obj.text}`}
