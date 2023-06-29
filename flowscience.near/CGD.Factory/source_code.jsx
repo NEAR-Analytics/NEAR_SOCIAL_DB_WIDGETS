@@ -160,6 +160,13 @@ return (
       Purpose:
       <input type="text" onChange={(e) => onChangePurpose(e.target.value)} />
     </div>
+    <div className="mb-2">
+      Data URI:
+      <input type="text" onChange={(e) => onChangePurpose(e.target.value)} />
+    </div>
+    <button className="btn btn-outline-success mt-3" onClick={handleCreate}>
+      Upload Data
+    </button>
     <button className="btn btn-outline-success mt-3" onClick={handleCreate}>
       Create SubDAO
     </button>
