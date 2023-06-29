@@ -114,6 +114,7 @@ return (
                 src={widgets.item}
                 props={{
                   isIAmHuman,
+                  replyTo: kudo.id,
                   accountId: kudo.accountId,
                   description: kudo.value.answer,
                   upvotes: upvotesMap[kudo.blockHeight]
